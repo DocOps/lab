@@ -31,10 +31,6 @@ SchemaGraphy::
 * Extends YAML through *SGYML* and accompanying libraries, providing advanced *data typing* and document *transclusion* (`$ref` pointer) abilities.
 * Provides a full-featured schema language that allows users to define complex *data structures*, *document structures*, and whole *interfaces* in a single, unified format.
 
-The goal of all this is to create a "`docs-as-code`" ecosystem that empowers *developers and non-developers alike* to leverage the full power of modern documentation practices without needing to become full-fledged developers.
-
-If you find this interesting, take a second to *follow link:{docops_www_base_url}[DocOPs Lab]* on GitHub and join the link:https://docopslab.zulipchat.com[community on Zulip].
-
 Jekyll-AsciiDoc Extensions::
 A set of Jekyll plugins and themes that enrich AsciiDoc web output.
 * Themes:
@@ -48,3 +44,7 @@ A set of Jekyll plugins and themes that enrich AsciiDoc web output.
 ReleaseHx and Issuer::
 Issue-ticket creation and release-history management tools that integrate with Jira, GitHub, and GitLab.
 Bulk-create work items from a single YAML file, then generate release notes and changelogs in AsciiDoc, Markdown, or HTML formats at release time.
+
+The goal of all this is to create a "`docs-as-code`" ecosystem that empowers *developers and non-developers alike* to leverage the full power of modern documentation practices without needing to become full-fledged developers.
+
+If you find this interesting, take a second to *follow link:{docops_www_base_url}[DocOPs Lab]* on GitHub and join the link:https://docopslab.zulipchat.com[community on Zulip].
