@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .intro {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+        
+        main {
+            padding: 4rem 0;
+        }
+        
+        .mission {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .mission h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2d3748;
+        }
+        
+        .mission p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #4a5568;
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            margin-right: 1rem;
+            color: #667eea;
+        }
+        
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: #2d3748;
+            margin: 0;
+        }
+        
+        .project-card p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-tag {
+            background: #e2e8f0;
+            color: #2d3748;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .features li {
+            padding: 0.5rem 0;
+            color: #4a5568;
+        }
+        
+        .features li::before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .cta {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            background: white;
+            color: #2d3748;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .projects {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>DocOps Lab</h1>
+            <p class="subtitle">Bridging the Gap Between Writers and Code</p>
+            <p class="intro">
+                I am working to democratize the power of docs-as-code for non-developers. 
+                Too many technical writers, project managers, paralegals, researchers, and educators 
+                are stuck with legacy document tools that limit their potential.
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="mission">
+                <h2>The Bridge I'm Building</h2>
+                <p>
+                    Through several interconnected open source projects, I'm creating pathways for 
+                    "tech-savvy non-programmers" to harness developer tools without becoming developers themselves.
+                </p>
+            </section>
+
+            <section class="projects">
+                <div class="project-card">
+                    <div class="project-header">
+                        <i data-lucide="package" class="project-icon"></i>
+                        <h3>Ruby DocOps</h3>
+                    </div>
+                    <p>
+                        This project provides a Docker-containerized environment that eliminates the complexity 
+                        of setting up development tools. Non-developers can run a single command (<code>docksh run</code>) 
+                        and instantly access Ruby, Git, Node.js, Python, Pandoc, and specialized documentation tools 
+                        in a pre-configured shell environment.
+                    </p>
+                    <div class="tech-list">
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Ruby</span>
+                        <span class="tech-tag">Git</span>
+                        <span class="tech-tag">Pandoc</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <i data-lucide="graduation-cap" class="project-icon"></i>
+                        <h3>Docs-as-Code School</h3>
+                    </div>
+                    <p>
+                        Structured education in modern technical documentation and document processing. 
+                        Starting with "Deep Semantics" and expanding to courses on version management, 
+                        code-like workflow adoption, and legal document operations, this project uses 
+                        docs-as-code to teach docs-as-code principles.
+                    </p>
+                    <div class="tech-list">
+                        <span class="tech-tag">Education</span>
+                        <span class="tech-tag">AsciiDoc</span>
+                        <span class="tech-tag">Semantics</span>
+                        <span class="tech-tag">Workflows</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <i data-lucide="layers" class="project-icon"></i>
+                        <h3>AYL DocStack</h3>
+                    </div>
+                    <p>
+                        <strong>AsciiDoc. YAML. Liquid.</strong><br>
+                        A three-language approach to managing complex, multi-variant documentation. 
+                        This "tech stack" maximizes power while minimizing syntax overhead, making advanced 
+                        documentation techniques accessible to beginners while remaining powerful enough for enterprise needs.
+                    </p>
+                    <div class="tech-list">
+                        <span class="tech-tag">AsciiDoc</span>
+                        <span class="tech-tag">YAML</span>
+                        <span class="tech-tag">Liquid</span>
+                        <span class="tech-tag">Templates</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <i data-lucide="network" class="project-icon"></i>
+                        <h3>SchemaGraphy</h3>
+                    </div>
+                    <p>
+                        Extends YAML through SGYML and accompanying libraries, providing advanced data typing 
+                        and document transclusion capabilities. Provides a full-featured schema language that 
+                        allows users to define complex data structures, document structures, and whole interfaces 
+                        in a single, unified format.
+                    </p>
+                    <ul class="features">
+                        <li>Advanced data typing and validation</li>
+                        <li>Document transclusion ($ref pointers)</li>
+                        <li>Unified schema language</li>
+                        <li>Complex structure definitions</li>
+                    </ul>
+                    <div class="tech-list">
+                        <span class="tech-tag">YAML</span>
+                        <span class="tech-tag">SGYML</span>
+                        <span class="tech-tag">Schemas</span>
+                        <span class="tech-tag">Validation</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <i data-lucide="palette" class="project-icon"></i>
+                        <h3>Jekyll-AsciiDoc Extensions</h3>
+                    </div>
+                    <p>
+                        A set of Jekyll plugins and themes that enrich AsciiDoc web output. 
+                        Includes themes like AsciiDocsy and Just The AsciiDocs, plus plugins for 
+                        Jekyll-OpenAPI integration, aDocBook document converter, and 25 UI extensions for AsciiDoc.
+                    </p>
+                    <ul class="features">
+                        <li>AsciiDocsy theme</li>
+                        <li>Just The AsciiDocs theme</li>
+                        <li>Jekyll-OpenAPI integration</li>
+                        <li>25 UI extensions for AsciiDoc</li>
+                    </ul>
+                    <div class="tech-list">
+                        <span class="tech-tag">Jekyll</span>
+                        <span class="tech-tag">AsciiDoc</span>
+                        <span class="tech-tag">Themes</span>
+                        <span class="tech-tag">Plugins</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <i data-lucide="git-branch" class="project-icon"></i>
+                        <h3>ReleaseHx and Issuer</h3>
+                    </div>
+                    <p>
+                        Issue-ticket creation and release-history management tools that integrate with Jira, GitHub, and GitLab. 
+                        Bulk-create work items from a single YAML file, then generate release notes and changelogs 
+                        in AsciiDoc, Markdown, or HTML formats at release time.
+                    </p>
+                    <ul class="features">
+                        <li>Jira, GitHub, GitLab integration</li>
+                        <li>Bulk work item creation from YAML</li>
+                        <li>Automated release notes generation</li>
+                        <li>Multiple output formats</li>
+                    </ul>
+                    <div class="tech-list">
+                        <span class="tech-tag">YAML</span>
+                        <span class="tech-tag">Jira</span>
+                        <span class="tech-tag">GitHub</span>
+                        <span class="tech-tag">GitLab</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Join the Movement</h2>
+            <p>
+                The goal of all this is to create a "docs-as-code" ecosystem that empowers 
+                developers and non-developers alike to leverage the full power of modern 
+                documentation practices without needing to become full-fledged developers.
+            </p>
+            <div class="cta-buttons">
+                <a href="https://github.com/docops" class="btn">
+                    <i data-lucide="github"></i>
+                    Follow DocOps Lab
+                </a>
+                <a href="https://docopslab.zulipchat.com" class="btn btn-secondary">
+                    <i data-lucide="message-circle"></i>
+                    Join Community Chat
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
