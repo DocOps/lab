@@ -1,0 +1,16 @@
+# When processing user responses in this file:
+# 1. For fix?: 'add' or 'd': Add the term to the filters section in:
+#    gems/docopslab-dev/assets/config-packs/vale/authoring/Spelling.yml
+# 1.a. For fix?: 'do' or 'dolab' or 'docopslab': Add the term to a special '# DocOpsLab Terms' section
+# 1.b. For fix?: nontech("word"): Add the term to a special '# Non-Technical Terms' section
+# 2. For fix?: 'fix': Replace the term in the file with inferred corrected spelling
+# 3. For fix?: 'fix("word")': Replace the term with the word value verbatim
+# 4. For fix?: 'no' or 'n': Ignore this issue for now
+# 5. For fix?: 'pass': Wrap the affected text in {vale_off} and {vale_on} comment attributes
+#               and make sure the attributes are defined in .adoc file header (offer to user):
+#               :vale_off: <!-- vale off -->
+#               :vale_on:  <!-- vale on -->
+# The spelling dictionary is the 'filters:' sequence in the Spelling.yml file
+# When adding to dictionary, maintain alphabetical order within sections
+# DO NOT TAKE INITIATIVE. STick to the instructed changes except where prompted with `fix?: 'fix'`.
+# DO NOT correct neigboring words in text nor add nor alter words in the dictionary other than those named.

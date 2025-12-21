@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+# DocOps Lab pre-commit hook template
+# Managed by docopslab-dev gem
+# Developer-friendly: warns about issues but doesn't block commits
+
+set -e
+
+echo "🪝 DocOps Lab pre-commit advisory checks..."
+
+# Get list of staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+if [[ -z "$STAGED_FILES" ]]; then
+  echo "ℹ️  No files staged for commit."
+  exit 0
+fi
+
+# Advisory config sync check (non-blocking)
+if [[ -f ".config/docopslab-dev.yml" ]] && command -v bundle &> /dev/null; then
+  echo "🔄 Checking config sync status..."
+  if bundle exec rake labdev:config:sync --dry-run &> /dev/null; then
+    echo "✅ Config sync up to date"
+  else
+    echo "💡 Config sync available. Run after commit: bundle exec rake labdev:config:sync"
+  fi
+fi
+
+# Quick syntax check on staged Ruby files (non-blocking)
+RUBY_FILES=$(echo "$STAGED_FILES" | grep -E '\.(rb|rake)$|^Rakefile$' || true)
+if [[ -n "$RUBY_FILES" ]]; then
+  echo "🔍 Quick syntax check on staged Ruby files..."
+  for file in $RUBY_FILES; do
+    if ! ruby -c "$file" &> /dev/null; then
+      echo "⚠️  Syntax error in $file - consider fixing before push"
+    fi
+  done
+fi
+
+# For Bash files, ensure proper shebang
+# Look for .sh files recursively but also search for files with 1. no extensions AND 2. a shebang on the first line that includes "bash" or "sh"
+BASH_FILES=$(echo "$STAGED_FILES" | grep -E '\.sh$|^([^./]+)$' | while read -r file; do
+  if head -n 1 "$file" | grep -qE '^#!.*\b(bash|sh)\b'; then
+    echo "$file"
+  fi
+done)
+if [[ -n "$BASH_FILES" ]]; then
+  for file in $BASH_FILES; do
+    if head -n 1 "$file" | grep -qv '^#!/usr/bin/env bash'; then
+      echo "❌ Incorrect shebang in $file. Please use '#!/usr/bin/env bash'."
+      exit 1
+    fi
+  done
+fi
+
+# Show helpful next steps
+echo ""
+echo "💡 After committing, consider running:"
+echo "   • bundle exec rake labdev:heal     # Auto-fix linting issues"
+echo "   • bundle exec rake labdev:assess  # Check environment"
+echo "   • bundle exec rake labdev:lint:all # Full quality check"
+echo ""
+echo "✅ Commit proceeding (full quality gate runs on push)"
+exit 0
