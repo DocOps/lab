@@ -1,0 +1,60 @@
+- slug: rubocop
+  name: RuboCop
+  config:
+    inheritance: native         # Uses inherit_from property
+    uses_vendor_base: true      # Syncs base config to .vendor/
+    format: YAML
+  
+- slug: vale
+  name: Vale
+  config:
+    inheritance: vale_ini       # Custom inheritance for Vale INI format
+    uses_vendor_base: true      # Syncs base config with rule customizations
+    format: INI
+    package_based: true         # Uses Vale package system
+  packaging:
+    artifact: DocOpsLabStyles.zip
+    packages:
+      - target: DocOpsLab-AsciiDoc
+        source: asciidoc
+      - target: DocOpsLab-Authoring
+        source: authoring
+  paths:
+    patterns:
+      - "**/*.adoc"
+    ignored_paths:
+      - ".bundle"
+      - ".git"
+      - ".github"
+      - ".jekyll-cache"
+      - ".vscode"
+      - "_site"
+      - "gems"
+      - "node_modules"
+      - "scripts"
+      - "tmp"
+      - "vendor"
+      - ".config/.vendor"
+      - "artifacts"
+    git_tracked_only: true
+  
+- slug: htmlproofer
+  name: HTMLProofer
+  config:
+    inheritance: yaml_merge     # Uses docopslab-dev YAML merge
+    uses_vendor_base: true      # Syncs base config to .vendor/
+    format: YAML
+  
+- slug: shellcheck
+  name: ShellCheck
+  config:
+    inheritance: none           # No inheritance support
+    uses_vendor_base: true
+    format: Bash
+  
+- slug: actionlint
+  name: actionlint
+  config:
+    inheritance: native         # Supports standard YAML patterns
+    uses_vendor_base: true      # Syncs base config to .vendor/
+    format: YAML

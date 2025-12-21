@@ -1,0 +1,63 @@
+$schema:
+  type: Map
+  desc: Manifest for docopslab-dev config sync
+  meta:
+    version: v1
+  properties:
+    _meta:
+      req: [source,tools]
+    source:
+      type: Map
+      properties:
+        _meta:
+          req: [repo,ref]
+        repo:
+          type: String
+          desc: Source repo.
+          default: DocOps/lab
+        ref:
+          type: String
+          desc: Git ref (tag or branch) to fetch from
+          default:
+            spec: The latest tag.
+        root:
+          type: String
+          desc: Root path within the source repo
+          default: config-packs
+    tools:
+      type: ArrayTable
+      desc: List of config targets to sync & tools to permit.
+      properties:
+        _meta:
+          req: [tool,files]
+        tool:
+          type: Slug
+          desc: Tool ID; must match registry.
+        enable:
+          type: Boolean
+          desc: Whether to sync this target (default: true)
+          default: true
+        synced:
+          type: Boolean
+          desc: Whether to keep this file in sync with upstream source
+          default: false
+        files:
+          type: ArrayTable
+          desc: List of upstream/local file pairs
+          properties:
+            _meta:
+              req: [upstream,local]
+            upstream:
+              type: Path
+              desc: Upstream path within config-packs root
+            local:
+              type: Path
+              desc: Local destination path within the project repo
+            synced:
+              type: Boolean
+              desc: Whether to auto-sync this file from upstream (overwrites local changes)
+              default: true
+            enabled:
+              type: Boolean
+              desc: Whether this file mapping is active
+              default: true
