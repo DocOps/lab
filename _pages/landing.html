@@ -1,0 +1,55 @@
+---
+layout: lander
+permalink: /
+indexed: false
+---
+
+{% capture intro %}
+{{ site.data.built.attrs.intro }}
+
+{{ site.data.built.attrs.intro-2 }}
+{% endcapture %}
+
+{% include hero.html
+  id="hero"
+  title="DocOps Lab"
+  subtitle=site.data.built.attrs.tagline
+  intro=intro
+%}
+
+{% include container.html
+  id="mission"
+  title="Operate the Docs."
+  desc=site.data.built.attrs.bridge-text
+  class="text-center"
+%}
+
+<!-- tag::featured-projects[] -->
+{% assign starred_projects = site.data.docops-lab-projects.projects | where: 'star', true %}
+{% assign featured_projects = starred_projects | concat: site.data.cards | sort: 'sort' %}
+<!-- end::featured-projects[] -->
+{% include project-cards.html
+  id="featured-projects"
+  title="Featured Projects"
+  class="bg-light"
+  cards=featured_projects
+  show_tags=false
+%}
+
+{% include cta.html
+  id="cta"
+  title="Become an operator with DocOps Lab."
+  desc=site.data.pages.landing.sections.cta.properties.desc
+  buttons=site.data.pages.landing.sections.cta.properties.buttons
+%}
+
+{% include key-content.html
+  id="key-content"
+  title="Resources"
+  class="bg-light"
+  data=site.data.pages.landing.sections.key-content.properties.data
+%}
+
+<footer class="footer-section">
+{% include footer.html %}
+</footer>

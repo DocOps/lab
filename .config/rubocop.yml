@@ -1,0 +1,24 @@
+# DocOps Lab RuboCop Configuration
+
+inherit_from: .vendor/docopslab/rubocop.yml
+
+# Increase metrics limits for this codebase
+Metrics/ClassLength:
+  Max: 300
+  Exclude:
+    - 'gems/docopslab-dev/lib/docopslab/dev/linters.rb'  # Linters module is large by nature
+    - 'gems/docopslab-dev/lib/docopslab/dev/tasks.rb' # Just lots of tasks
+
+Metrics/ModuleLength:
+  Max: 350
+
+Metrics/MethodLength:
+  Max: 100
+  Exclude:
+    - 'gems/docopslab-dev/lib/docopslab/dev/tasks.rb'  # Task definitions are naturally long
+
+Metrics/BlockLength:
+  Max: 100
+
+Metrics/ParameterLists:
+  Max: 6

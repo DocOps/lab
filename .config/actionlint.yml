@@ -1,0 +1,11 @@
+# actionlint configuration for this project
+# References DocOps Lab base configuration
+
+# Note: Shellcheck integration is disabled via -shellcheck= flag in rake task
+# Use dedicated shellcheck linter instead
+
+# Project-specific ignores (add as needed):
+# paths:
+#   .github/workflows/**/*.{yml,yaml}:
+#     ignore:
+#       - 'pattern to ignore'

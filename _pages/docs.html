@@ -1,0 +1,70 @@
+---
+layout: document
+permalink: /docs/
+title: DocOps Lab Contributor Documentation
+description: "Comprehensive guides and reference materials for using and contributing to DocOps Lab projects."
+docstyle: index
+---
+{% assign doc_groups = site.docs | where_exp: "doc","doc.docs-group != nil" | group_by:"docs-group" %}
+{% assign doc_types = site.docs | group_by: "type" %}
+{% assign all_docs = site.docs | sort:"title" | where_exp:"d","d.indexed != false" %}
+
+<!-- use AsciiD0c-style HTML for note admonitionblock -->
+<div class="admonitionblock note">
+  <table>
+    <tr>
+      <td class="icon">
+        <i data-lucide="info" class="admonition-icon"></i>
+      </td>
+      <td class="content">
+        <div class="title">Note</div>
+        <div class="paragraph">
+          DocOps Lab <em>Product</em> Documentation is indexed at <strong><a href="/docs/products/">https://docopslab.org/docs/products</strong></a>.
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="docs-tabs-container">
+  <div class="docs-tabs" role="tablist">
+    <button class="docs-tab" role="tab" aria-selected="true" aria-controls="docs-by-type" id="tab-type">
+      By Type
+    </button>
+    <button class="docs-tab" role="tab" aria-selected="false" aria-controls="docs-by-subject" id="tab-subject">
+      By Subject
+    </button>
+    <button class="docs-tab" role="tab" aria-selected="false" aria-controls="docs-alphabetical" id="tab-alpha">
+      By Title
+    </button>
+  </div>
+
+  <div class="docs-tab-content">
+    <section id="docs-by-type" class="docs-panel active" role="tabpanel" aria-labelledby="tab-type">
+      {% include docs-section.html section_data=doc_types groups=site.doc_types_order %}
+    </section>
+
+    <section id="docs-by-subject" class="docs-panel" role="tabpanel" aria-labelledby="tab-subject">
+      {% include docs-section.html section_data=doc_groups groups=site.doc_groups_order %}
+    </section>
+
+    <section id="docs-alphabetical" class="docs-panel" role="tabpanel" aria-labelledby="tab-alpha">
+      <section class="docs-group all">
+        <div class="container">
+          <div class="docs-list">
+            {% for doc in all_docs %}
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
+              </h4>
+              {% if doc.description %}
+              <p class="doc-description">{{ doc.description }}</p>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+</div>

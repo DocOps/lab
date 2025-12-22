@@ -1,0 +1,18 @@
+# DocOps Lab - Project-specific HTMLProofer Configuration
+# This file contains project-specific overrides for HTMLProofer settings.
+# It will be merged with the base organizational config at runtime.
+
+# Project-specific URL ignores (will be merged with base ignores)
+# ignore_urls:
+#   - /project-specific-url/
+
+# Project-specific file ignores (will be merged with base ignores)  
+# ignore_files:
+#   - project-specific-dir/
+
+# Override any base settings here:
+# check_external_hash: true
+# disable_external: true
+
+# Add any project-specific settings below:
+check_directory: _site

@@ -1,0 +1,39 @@
+---
+layout: projects
+title: "Product Documentation"
+permalink: /docs/products/
+icon: book-open
+---
+
+<p>Technical documentation for DocOps Lab products.</p>
+
+<div class="projects-report">
+
+  {% assign products = site.data.docops-lab-projects.projects | sort: 'slug' | where:'done','live' %}
+  
+  <div class="projects-profiles">
+    <ul>
+  {% for product in products %}
+    {% assign readme_url = "https://github.com/DocOps/" | append: product.slug %}
+    {% assign product_url = "/projects/#" | append: product.slug %}
+    {% if product.page %}
+      {% assign product_url = "/projects/" | append: product.slug %}
+    {% endif %}
+      <li>
+        <strong><a href="{{ product_url }}" class="project-dependency">{{ product.name }}</a></strong>
+        <a class="taxonomy-link meta-toc-link btn-slim" href="{{ readme_url }}">README</a>
+        {% for doc in product.docs %}
+          {% if doc[0] == 'api' %}
+            {% assign doc_label = "API Reference" %}
+          {% else %}
+            {% assign doc_label = doc[0] | capitalize | append: " Docs" %}
+          {% endif %}
+          <a class="taxonomy-link meta-toc-link btn-slim" href="{{ doc[1] }}">{{ doc_label }}</a>
+        {% endfor %}
+      </li>
+  {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% include dependency-popover.html %}

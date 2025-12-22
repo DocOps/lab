@@ -1,0 +1,34 @@
+---
+layout: document
+permalink: /docs/agent/
+title: DocOps Lab AI Agent Documentation
+description: "Docs specially written or repurposed for LLM-backed agentic work."
+docstyle: index
+---
+{% assign agent_docs = site.docs | where: "type", "agent" | sort: "title" %}
+{% assign docs_by_group = agent_docs | group_by: "group" %}
+
+<div class="docs-container"></div>
+  {% for group in docs_by_group %}
+    <section class="docs-group"></section>
+      <div class="container">
+        {% if group.name != "" %}
+          <h2 class="docs-group-title">{{ group.name | capitalize }}</h2>
+        {% endif %}
+        
+        <div class="docs-list">
+          {% for doc in group.items %}
+          <div class="doc-item">
+            <h4 class="doc-title">
+              <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
+            </h4>
+            {% if doc.description %}
+            <p class="doc-description">{{ doc.description }}</p>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endfor %}
+</div>
