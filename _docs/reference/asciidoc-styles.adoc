@@ -1,0 +1,166 @@
+---
+title: DocOps Lab Documentation Style Guide
+tags: ["reference", "documentation", "styles", "asciidoc"]
+description: "DocOps Lab documentation style guide and AsciiDoc syntax conventions."
+order: 64
+docs-group: technical
+---
+:toc: macro
+include::../_local_settings.adoc[]
+= Documentation Style Guide
+
+// tag::content[]
+DocOps Lab is an AsciiDoc shop.
+With a few exceptions, all technical documentation is sourced in AsciiDoc format using a particular (standards-compliant) syntax style.
+
+Structured/reference documentation is typically stored in YAML-formatted files, often with AsciiDoc-formatted text blocks.
+
+Some documentation in DocOps Lab projects is written in Markdown format, such as documents intended for AI consumption (such as for agent orientation/instruction or for RAG retrieval).
+
+
+[[automated-style-enforcement]]
+== Automated Style Enforcement
+
+DocOps Lab projects using the `docopslab-dev` tool automatically enforce documentation style guidelines.
+This is done using link:https://vale.sh[*Vale*], a prose and source-syntax linter.
+
+To check documentation style:
+
+.Check prose for style issues
+ bundle exec rake labdev:lint:text
+
+.Check for AsciiDoc markup syntax issues
+ bundle exec rake labdev:lint:adoc
+
+.Check both syntax markup _and_ prose
+ bundle exec rake labdev:lint:docs
+
+ifndef::audience-agent[]
+See {xref_docs_lab-dev-setup_link} for more on the `docopslab-dev` tool.
+For Vale configuration details, see <<config-vale>>.
+endif::[]
+
+DocOps Lab maintains a general-audience style guide in the AYL DocStack project repository and website.
+That guide is reproduced here.
+
+
+[[general-asciidoc-syntax-guidelines]]
+== General AsciiDoc Syntax Guidelines
+
+DocOps Lab documentation largely follows the conventions outlined in the link:https://asciidoctor.org/docs/asciidoc-recommended-practices/[Recommended Practices] andlink:https://asciidoctor.org/docs/asciidoc-writers-guide/[Writer's Guide] documents maintained by the Asciidoctor project.
+
+
+Reinforcements and exceptions:
+
+* Use `.adoc` extensions _execpt_ for Liquid templates used to render AsciiDoc files, which use `.asciidoc`.
+* Use one sentence per line formatting.
+** Let hard-returns signal spaces between sentences.
+** Also do this for major colon- or semicolon-delimited sentences.
+* Use ATX-style titles and section headings.
+* For DRYness, use attributes for common URLs and paths (see <<attribute-formatting>>).
+
+
+[[docops-lab-specific-syntax-guidelines]]
+== DocOps Lab Specific Syntax Guidelines
+
+include::../../../aylstack/content/topics/asciidoc-syntax.adoc[lines=2..]
+
+[[attribute-formatting]]
+=== Attribute Formatting
+
+AsciiDoc attributes are often used to store reusable matter.
+In certain contexts, attributes should follow a formatting convention that makes them easier to name and recall.
+
+[[boolean-attributes]]
+==== Boolean Attributes
+
+Use toggles to set or conditionalize states such as:
+
+* intended audience type or role
+** `audience-agent`
+** `audience-beginner`
+** ``
+* target platform or format
+** `env-github`
+** `site-gen-jekyll`
+** `backend-pdf`
+
+These kinds of attributes are passed depending on how the AsciiDoc is converted.
+Platform and format indicators tend to get argued by the converter at runtime.
+
+But you can also look check for statuses that might be set in previous files depending on the use-case of the output.
+
+.Testing for _existence_ of a target platform
+[source,asciidoc]
+----
+\ifdef::audience-level-beginner[]
+As a beginner, you will see extra content in parts of this guide.
+
+If you are an expert, skip to the <<expert-guide>>.
+\endif::[]
+----
+
+.Testing for _non-existence_ of a target audience type.
+[source,asciidoc]
+----
+\ifndef::audience-agent[]
+This content is _not_ to appear in docs generated for AI agents.
+\endif::[]
+----
+
+It is generally advised to create two versions of any such indicator that may need to be resolve a variable placeholder later.
+
+.Setting open-ended key and boolean simultaneously
+[source,asciidoc]
+----
+:audience-level: beginner
+:audience-level-beginner: true
+
+Later we can reference the {audience-level}, which might be overwritten by an attribute passed at runtime.
+----
+
+[[url-attributes]]
+==== URL Attributes
+
+Format URL-storing attributes like so:
+
+[source,asciidoc]
+----
+:syntax_area_descriptive-slug_form:
+----
+ 
+Where:
+
+* `syntax_` is one of
+** `href_` (external)
+** `xref_` (local)
+** none (skip it -- presumed to be a straight URL)
+* `area_` is a component or category like `docs_` or `pages_`, mainly to ensure unique slugs across divisions
+* `form` is the way the resource is presented:
+** `link` (includes linked text _and_ the URL)
+** `url` (just the URL)
+
+.Examples
+[source,asciidoc,subs=none]
+----
+:docopslab_hub_url: https://github.com/DocOps
+:href_docopslab_aylstack_url: {docopslab_hub_url}/aylstack/
+:href_docopslab_aylstack_link: link:{href_docopslab_aylstack_url}[AYL DocStack]
+----
+
+// TODO: Add Path attributes and a few others
+
+
+[[config-vale]]
+== Vale Configuration and Usage
+
+Vale configuration and styles are managed in coordination with the link:`docopslab-dev` gem.
+
+Our implementation of Vale allows for local project overrides while maintaining a centralized database of styles.
+
+include::../../gems/docopslab-dev/README.adoc[tags="config-vale",leveloffset="-2"]
+
+[NOTE]
+For information on managing DocOps Lab's Vale styles, see link:{this_repo_base_url}/blob/main/gems/docopslab-dev/README.adoc[the `docopslab-dev` gem README].
+
+// end::content[]

@@ -1,0 +1,117 @@
+%%{
+  init: {
+    'theme': 'forest',
+    'themeVariables': {
+      'primaryColor': '#BB2528',
+      'primaryBorderColor': '#7C0000',
+      'lineColor': '#F8B229',
+      'secondaryColor': '#006100',
+      'tertiaryColor': '#fff'
+    }
+  }
+}%%
+flowchart TD
+  A[**DIRECTORY NAMING DECISION TREE**]
+
+  A --> SCOPE{WHERE DOES THIS DIRECTORY LIVE?}
+
+  %% Scope split: tool/gem repo vs applied docs app
+  SCOPE --> T[Tool / gem source repo<br/>(ReleaseHx, Issuer, etc.)]
+  SCOPE --> D[Applied docs app<br/>(lab-site, docs/jekyll, etc.)]
+
+  %% =========================
+  %% TOOL / GEM SOURCE BRANCH
+  %% =========================
+  T --> TQ{WHAT IS THE PRIMARY ROLE<br/>OF THIS DIRECTORY?}
+
+  TQ --> TP[Product code / docs / tests<br/>that ship with the gem]
+  TQ --> TBC[Build artifacts / packages]
+  TQ --> TCONF[Dev/build/CI configuration<br/>that must be tracked]
+  TQ --> TSTATE[Tool state / caches / metadata<br/>that are safe to regenerate]
+
+  %% Product code/docs/tests
+  TP --> TP_RES[**Use no prefix**<br/>Examples:<br/>lib/, specs/, docs/, examples/, scripts/, exe/, bin/]
+
+  %% Build artifacts
+  TBC --> TBCQ{ARE THESE ARTIFACTS<br/>PART OF RELEASED OUTPUT?}
+  TBCQ --> TBCR[Yes: release artifacts<br/>(e.g., .gem files)]
+  TBCQ --> TBCN[No: ephemeral build output<br/>(safe to delete)]
+
+  TBCR --> TBCR_RES[**Use no prefix**<br/>Examples:<br/>pkg/, pkg/*.gem<br/>(gitignored)]
+  TBCN --> TBCN_RES[**Use no prefix** at top level<br/>Examples:<br/>build/, build/docs/, build/regions/, build/snippets/<br/>(gitignored)]
+
+  %% Tracked config
+  TCONF --> TCONFQ{IS IT GENERIC REPO/CI CONFIG<br/>OR TOOL-SPECIFIC CONFIG?}
+  TCONFQ --> TCONFR[Generic repo/CI config]
+  TCONFQ --> TCONFT[Tool-specific dev/build config]
+
+  TCONFR --> TCONFR_RES[**Dot-prefixed, tracked**<br/>Examples:<br/>.github/, .gitlab/, .devcontainer/]
+  TCONFT --> TCONFT_RES[**Dot-prefixed, tracked**<br/>Prefer a shared namespace:<br/>.config/<br/>Examples:<br/>.config/releasehx.yml,<br/>.config/jekyll-dev.yml]
+
+  %% Tool state / caches
+  TSTATE --> TSTATE_RES[**Dot-prefixed, gitignored**<br/>Examples:<br/>.yardoc/, .jekyll-cache/, .jekyll-metadata,<br/>.releasehx/, .mytool-cache/<br/>Safe to delete to clear state]
+
+  %% =========================
+  %% APPLIED DOCS APP BRANCH
+  %% =========================
+  D --> DQ{IS THIS APP JEKYLL-STYLE<br/>(underscore collections, _site)?}
+
+  DQ --> DJY[Yes, Jekyll or Jekyll-like]
+  DQ --> DJN[No, other generator or custom pipeline]
+
+  %% ----- Jekyll-style apps (lab-site, docs/jekyll) -----
+  DJY --> JROLE{WHAT IS THE DIRECTORY'S ROLE<br/>IN THE SITE MODEL?}
+
+  JROLE --> JCONTENT[Published pages/assets<br/>visible in the output]
+  JROLE --> JCOLL[Collections of content<br/>managed by the engine]
+  JROLE --> JSYS[Templates / partials / plugins / data]
+  JROLE --> JOUT[Build output for the site]
+  JROLE --> JCONF[Dev/build/CI configuration]
+  JROLE --> JSTATE[Tool state / caches / metadata]
+
+  %% Published content
+  JCONTENT --> JCONTENT_RES[**Use no prefix**<br/>Examples:<br/>docs/, assets/, images/, scripts/, CNAME,<br/>README.adoc, favicon.ico]
+
+  %% Collections
+  JCOLL --> JCOLL_RES[**Use underscore prefix**<br/>Examples:<br/>_docs/, _blog/, _pages/, _projects/,<br/>_reports/, _metablog/, _data/]
+
+  %% Templates / partials / plugins / data
+  JSYS --> JSYS_RES[**Use underscore prefix**<br/>Examples:<br/>_layouts/, _includes/, _sass/, _plugins/,<br/>_data/ (site data)]
+
+  %% Build output
+  JOUT --> JOUTQ{ARE YOU FOLLOWING<br/>JEKYLL CONVENTION?}
+  JOUTQ --> JOUTY[Yes, Jekyll default]
+  JOUTQ --> JOUTN[No, custom output layout]
+
+  JOUTY --> JOUTY_RES[**Use _site/**<br/>Examples:<br/>_site/ at project root<br/>build/docs/_site/ inside tool repos]
+  JOUTN --> JOUTN_RES[**Use no prefix**<br/>Examples:<br/>build/, build/html/, dist/<br/>(gitignored)]
+
+  %% Config in apps
+  JCONF --> JCONFQ{IS IT REPO/CI CONFIG<br/>OR SITE ENGINE CONFIG?}
+  JCONFQ --> JCONFR[Repo/CI config]
+  JCONFQ --> JCONFS[Site engine config]
+
+  JCONFR --> JCONFR_RES[**Dot-prefixed, tracked**<br/>Examples:<br/>.config/, .github/]
+  JCONFS --> JCONFS_RES[**Engine-specific name**<br/>Examples:<br/>_config.yml (Jekyll),<br/>.releasehx.yml if you adopt it]
+
+  %% State in apps
+  JSTATE --> JSTATE_RES[**Dot-prefixed, gitignored**<br/>Examples:<br/>.jekyll-cache/, .jekyll-metadata,<br/>.releasehx/, .mytool-cache/]
+
+  %% ----- Non-Jekyll apps -----
+  DJN --> NJROLE{WHAT IS THE DIRECTORY'S ROLE<br/>IN THE GENERATED APP?}
+
+  NJROLE --> NJCONTENT[Published content / assets]
+  NJROLE --> NJSYS[Templates / partials / data<br/>consumed by the generator]
+  NJROLE --> NJOUT[Build output]
+  NJROLE --> NJCONF[Dev/build/CI configuration]
+  NJROLE --> NJSTATE[Tool state / caches / metadata]
+
+  NJCONTENT --> NJCONTENT_RES[**Use no prefix**<br/>Examples:<br/>docs/, pages/, assets/, images/]
+
+  NJSYS --> NJSYS_RES[**Use underscore prefix<br/>for framework-specific inputs**<br/>Examples:<br/>_layouts/, _partials/, _data/]
+
+  NJOUT --> NJOUT_RES[**Use no prefix**<br/>Examples:<br/>build/, build/html/, dist/<br/>(gitignored)]
+
+  NJCONF --> NJCONF_RES[**Dot-prefixed, tracked**<br/>Examples:<br/>.config/, .github/, .devcontainer/]
+
+  NJSTATE --> NJSTATE_RES[**Dot-prefixed, gitignored**<br/>Examples:<br/>.mytool-cache/, .engine-cache/]

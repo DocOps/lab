@@ -1,0 +1,19 @@
+---
+title: DocOps Lab Privacy Policy
+docs-group: legal
+description: No telemetry, no data collection, period.
+icon: shield-lock
+docstyle: policy
+order: 28
+---
+:toc: macro
+include::../_local_settings.adoc[]
+= DocOps Lab Privacy Assurances
+include::../../README.adoc[tag=globals]
+
+DocOps Lab is committed to the strictest protections of user privacy.
+This document outlines our privacy practices and the measures we take to ensure your data remains secure.
+
+DocOps Lab software does not collect _any_ data from users through telemetry or other means, personally identifiable or otherwise.
+
+If you use remote or third-party resources via DocOps Lab software, such as REST APIs, CI/CD platforms, or content delivery networks (CDNs), those services may collect data as outlined in their own privacy policies.

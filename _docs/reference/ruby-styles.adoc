@@ -1,0 +1,100 @@
+---
+tags: ["reference", "infrastructure", "ruby", "development", "styles"]
+description: "Ruby coding styles and conventions for DocOps Lab projects."
+docs-group: technical
+order: 62
+---
+include::../_local_settings.adoc[]
+= Ruby Development Style Guide
+
+This guide outlines the Ruby coding styles and conventions used in DocOps Lab projects.
+
+
+[[automated-style-enforcement]]
+== Automated Style Enforcement
+
+DocOps Lab projects using the `docopslab-dev` gem automatically enforce Ruby style guidelines through:
+
+RuboCop:: Automated code style checking and auto-fixing
+Git Hooks:: Pre-commit advisory checks, pre-push quality gates
+CI/CD Integration:: Automated linting in GitHub Actions workflows
+
+To apply style fixes: `bundle exec rake labdev:heal:ruby`
+
+See {xref_docs_lab-dev-usage_link} for setup details.
+
+
+// tag::conventions[]
+[[conventions]]
+== Conventions
+
+DocOps Lab largely follows Ruby's community conventions, with some exceptions.
+Conventions are either reiterated or clarified here.
+
+However, conventions are not exhaustively listed, and deviations are rarely pointed out as such.
+
+[[naming-conventions]]
+=== Naming Conventions
+
+* Use `snake_case` for variable and method names.
+* Use `CamelCase` for class and module names.
+* Use `SCREAMING_SNAKE_CASE` for constants.
+* Use descriptive names that convey the purpose of the variable, method, or class.
+* Avoid abbreviations unless they are widely understood.
+* Use verbs for method names to indicate actions.
+* Use nouns for class and module names to indicate entities.
+
+[[architectural-conventions]]
+=== Architectural Conventions
+
+* Use classes and class instance methods for objects that work like _objects_ -- they have state and do not act on other objects' state.
+* Use module methods acting on objects or carrying out general operations/utility functions.
+* Use Rake for internal (developer) CLI; use Thor for user-facing CLI
+* Gems may begin life as a module within another gem.
+
+[[path-conventions]]
+=== Path Conventions
+
+* Use `lib/` for main application code.
+** `lib/<project_name>.rb` for the main file
+** `lib/<project_name>/` for supporting files and modules
+** `lib/<project_name>/<module_name>/` for submodules
+* Use `spec/` for specifications and tests.
+* Use `docs/` or `_docs/` for documentation.
+* Use `build/` for pre-runtime artifacts.
+* Use `_build/` as default in applications that generate files at runtime, unless another path is more appropriate (ex: `_site/` in Jekyll-centric apps).
+* Do NOT assume or insist upon perfect alignment with Ruby path conventions:
+** `SomeModule` or `SomeClass` may be sourced at `lib/some_module.rb` or `lib/some_class.rb` instead of `lib/some/module.rb` or `lib/some/class.rb`.
+** Some modules like `SchemaGraphy` and `AsciiDoc` are never broken up into `schema_graphy` or `ascii_doc` namespaces.
+** Modules with multiple parallel sibling modules in a category like (`WriteOps`, `DraftOps`) belong in paths like `lib/ops/write.rb` instead of `lib/write_ops.rb` or `lib/write/ops.rb`.
+
+[[syntax-conventions]]
+=== Syntax Conventions
+
+* Use 2 spaces for indentation.
+* Limit lines to 120 characters or so when possible.
+* Use parentheses for method calls with arguments, but omit them for methods without arguments.
+* Do not use parentheses in method definitions (`def method_name arg1, arg2`).
+* Use single quotes for strings that do not require interpolation or special symbols.
+* Use double quotes for strings that require interpolation or special symbols.
+
+[[commenting-conventions]]
+=== Commenting Conventions
+
+See {xref_docs_code-commenting_link} for detailed commenting conventions.
+// end::conventions[]
+
+
+[[rubocop-customization]]
+== RuboCop Customization
+
+[TIP]
+These rules ("`cops`") can be overridden on a per-project basis in the `.config/rubocop.yml` file.
+See <<config-rubocop>> for docopslab-dev-managed RuboCop configuration.
+
+include::../partials/built/_rubocop-styles.adoc[leveloffset=+2]
+
+[[config-rubocop]]
+=== RuboCop Configuration
+
+include::../../gems/docopslab-dev/README.adoc[tags="config-rubocop",leveloffset="-2"]

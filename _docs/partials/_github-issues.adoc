@@ -1,0 +1,6 @@
+DocOps Lab projects use GitHub Issues to track work items and user reports.
+
+We also use our own tools to manage GH Issues:
+
+* link:{docopslab_hub_url}/issuer[Issuer] for bulk-posting issues
+* link:{docopslab_hub_url}/releasehx[ReleaseHx] for generating release notes and changelogs from issues.

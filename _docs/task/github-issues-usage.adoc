@@ -1,0 +1,45 @@
+---
+title: Using GitHub Issues for DocOps Lab Projects
+docs-group: technical
+slug: github-issues-usage
+description: "Tracking work for DocOps Lab projects"
+order: 56
+---
+include::../_local_settings.adoc[]
+= Using GitHub Issues
+
+include::../partials/_github-issues.adoc[]
+
+See {xref_docs_github-issues_link}.
+
+
+// tag::github-issues-management[]
+[[github-issues-management]]
+== Managing GitHub Issues with `gh`
+
+The GitHub CLI tool, `gh`, can be used to manage issues from the command line.
+
+See link:https://cli.github.com/manual/gh_issue[GitHub CLI Manual: gh issue] for details on using `gh` to create, view, edit, and manage issues and issue metadata.
+
+Some common commands:
+
+.Create a new issue.
+[.prompt]
+ gh issue create --title "Issue Title" --body "Issue description." --label "bug,component:docs" --assignee "username"
+
+.List open issues.
+[.prompt]
+ gh issue list --state open
+
+View a specific issue.
+[.prompt]
+ gh issue view <issue-number>
+
+
+[[bulk-posting-issues-with-issuer]]
+== Bulk-posting Issues with Issuer
+
+The `issuer` tool can be used to bulk-post issues to any repository from a YAML file.
+
+Follow the instructions at link:{docopslab_hub_url}/issuer[Issuer] to install and use the tool.
+// end::github-issues-management[]

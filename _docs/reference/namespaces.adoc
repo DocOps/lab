@@ -1,0 +1,46 @@
+---
+title: DocOps Lab Namespace Semantics
+docs-group: technical
+description: "A guide to naming and elements in programming code and interfaces"
+order: 69
+---
+:toc: macro
+:page-published: false
+= Namespace Semantics
+
+This reference maps the existing and theoretical namespaces used or planned for use in DocOps Lab projects.
+
+toc::[]
+
+.Namespaces and namespace semantics
+****
+One of the most complicated aspects of programming is maintaining consistent naming conventions (and names) across all products and interfaces without straying too far from domain conventions and standards.
+
+Take the term "`domain`", for instance.
+In the previous paragraph, I used _domain_ to refer to the "`field`" or "`industry`" or "`genre`" in which a given product is likely to be associated with.
+Yet of course, _domain_ has other technical meanings.
+Not only is it a networking term referring to a string like `example.com` and its implications, but in programming a _domain_ can also refer to a "`bounded context`" for components or interfaces of a certain product.
+
+In the (industrial) "`domain`" of _open-source technical documentation software_, there are many intersecting "`namespaces`" that require careful naming of their member "`elements`".
+
+For instance, terms like _document "`generation`"_, _document "`conversion`"_, _document "`rendering`"_, _document "`building`"_, document "`compiling`".
+In software, most of these terms have a parallel for the application source code, as well.
+Software gets "`compiled`" and "`built`", for sure.
+
+So when naming commands, functions, methods, and so forth, verbs like _build_, _render_, _convert_, and so forth all have specific meanings.
+And they may not correspond perfectly with what a downstream user will understand as the meaning of that term in _their_ domain (their field).
+
+This is as true for when the downstream user is a _developer_ integrating with or extending your product (API endpoints, parameter labels, etc, etc), or an _end-user_ dealing with UIs (CLI commands and options, form or GUI labels, menu items, etc, etc).
+
+All of these are _terms of art_, in that they are relatively common words that have a particular meaning in a particular domain.
+Nevertheless, the programmer's job is to maintain a consistent "`grammar`" when it comes to naming _things_, whether those things are fully internal or they're user-facing, and regardless of the domain context.
+
+****
+
+
+[[documents]]
+== Documents
+
+
+[[verbs]]
+== Verbs

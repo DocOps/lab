@@ -1,0 +1,48 @@
+---
+title: Product Artifact and Documentation Deployment Setup
+docs-group: technical
+slug: deployment-setup
+description: Initial preparation for publishing gems, Docker images, and documentation sites
+order: 44
+---
+include::../_local_settings.adoc[]
+= Deployment Setup (General)
+
+This guide describes the new-project setup for deployment platforms for release artifacts like executables, Docker images, and product documentation sites.
+
+
+[[prerequisites]]
+== Prerequisites
+
+include::../partials/_prerequisites.adoc[tags="release"]
+
+
+[[ruby-gem-publishing]]
+== Ruby Gem Publishing
+
+. Configure GitHub repository secrets with `RUBYGEMS_AUTH_TOKEN`.
+. Ensure gemspec includes `spec.metadata['rubygems_mfa_required'] = 'true'`.
+
+
+[[docker-image-publishing]]
+== Docker Image Publishing
+
+. Create repository on Docker Hub under `docopslab` organization.
+. Create repository on GitHub Container Registry.  
+. Configure GitHub repository secrets with `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN`.
+
+
+[[documentation-site-publishing]]
+== Documentation Site Publishing
+
+include::../../README.adoc[tags="docops-lab-docs-sites",leveloffset="-2"]
+
+[[setup-steps]]
+=== Setup Steps
+
+. Create `docs/CNAME` file containing `<project>.docopslab.org`.
+. Go to repository Settings → Pages.
+. Set Source to "GitHub Actions".  
+. Ensure custom domain is set to `<project>.docopslab.org`.
+. Verify DNS configuration points to GitHub Pages.
+

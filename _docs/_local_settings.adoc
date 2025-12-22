@@ -1,0 +1,12 @@
+:page-slug: {docname}
+:page-file: {docname}.adoc
+:page-permalink: /docs/{page-slug}/
+:page-icon: document
+:page-layout: document
+:page-toc: true
+ifdef::env-github[]
+:extn: .adoc
+endif::env-github[]
+include::../README.adoc[tags="globals"]
+include::partials/built/xref_attrs.adoc[]
+:page-history_url: {this_repo_base_url}/commits/main/_docs/{page-slug}.adoc

@@ -1,0 +1,306 @@
+---
+title: DocOps Lab Bash Coding Guide
+docs-group: technical
+description: "Style guide and best practices for writing Bash scripts in DocOps Lab projects"
+order: 67
+---
+= Bash Scripting Styles and Conventions
+include::../_local_settings.adoc[]
+
+A guide to writing clean, consistent, and maintainable Bash scripts, based on best practices.
+
+
+[[bash-version]]
+== Bash Version
+
+Use Bash 4.0 or later to take advantage of modern features like associative arrays and improved string manipulation.
+
+
+[[file-and-script-structure]]
+== File and Script Structure
+
+[[shebang]]
+=== Shebang
+
+Always start your scripts with a shebang.
+For scripts that require Bash-specific features, use `#!/usr/bin/env bash`.
+
+[source,bash]
+----
+#!/usr/bin/env bash
+----
+
+[[script-header]]
+=== Script Header
+
+Include a header comment block at the top of your script.
+This block should briefly explain:
+
+* The script's purpose.
+* Any dependencies required to run it.
+* License information.
+* Usage examples or a pointer to more detailed documentation.
+
+[[code-organization]]
+=== Code Organization
+
+Structure your script into logical sections to improve readability.
+
+The preferred order is:
+
+. *Global Constants and Variables:*
+Define all global variables and constants at the top.
+
+. *Function Definitions:*
+Group all functions together.
+
+. *Argument Parsing:*
+Handle command-line arguments and flags.
+
+. *Main Logic:*
+The main execution block of the script.
+Often a `case` statement that dispatches commands.
+
+[source,bash]
+----
+#!/usr/bin/env bash
+#
+# script-name
+#
+# Brief description of what the script does.
+# Depends on: curl, jq
+
+# --- GLOBAL VARIABLES ---
+readonly SCRIPT_VERSION="1.0.0"
+LOG_FILE="/var/log/script-name.log"
+
+# --- FUNCTION DEFINITIONS ---
+my_function() {
+  # ...
+}
+
+# --- ARGUMENT PARSING ---
+if [[ "$1" == "--help" ]]; then
+  # ...
+fi
+
+# --- MAIN LOGIC ---
+main() {
+  # ...
+}
+
+main "$@"
+----
+
+
+[[naming-conventions]]
+== Naming Conventions
+
+Global Variables and Constants::
+Use `SCREAMING_SNAKE_CASE`. Use `readonly` for constants.
+* `readonly MAX_RETRIES=5`
+* `APP_CONFIG_PATH=".env"`
+
+Local Variables::
+Use `snake_case` and `local` declaration.
+* `local user_name="$1"`
+
+Function Names::
+Use `snake_case`.
+* `get_user_details()`
+
+
+[[variables-and-data]]
+== Variables and Data
+
+[[declaration-and-scoping]]
+=== Declaration and Scoping
+
+Always use `local` to declare variables inside functions.
+This prevents polluting the global scope and avoids unintended side effects.
+
+[source,bash]
+----
+my_function() {
+  local file_path="$1" # Good: variable is local to the function
+  count=0              # Bad: variable is global by default
+}
+----
+
+[[quoting]]
+=== Quoting
+
+Always quote variable expansions (`"$variable"`) and command substitutions (`"$(command)"`) to prevent issues with word splitting and unexpected filename expansion (globbing).
+
+[source,bash]
+----
+# Good: handles spaces and special characters in filenames
+echo "$file_name"
+touch "$new_file"
+
+# Bad: will fail if file_name contains spaces
+echo $file_name
+touch $new_file
+----
+
+[NOTE]
+Files created by DocOps Lab should never include spaces, but this habit is important for dealing with user input or external data.
+
+[[arrays]]
+=== Arrays
+
+Use standard indexed arrays for lists of items.
+
+Use associative arrays (`declare -A`) for key-value pairs (i.e., maps).
+
+[source,bash]
+----
+# Indexed array
+local -a packages=("git" "curl" "jq")
+echo "First package is: ${packages[0]}"
+
+# Associative array
+declare -A user_details
+user_details["name"]="John Doe"
+user_details["email"]="john.doe@example.com"
+echo "User email: ${user_details["email"]}"
+----
+
+
+[[functions]]
+== Functions
+
+[[syntax]]
+=== Syntax
+
+Use the `function_name() { ... }` syntax for clarity.
+
+[[arguments]]
+=== Arguments
+
+Access arguments using positional parameters (`$1`, `$2`, etc.).
+Use `"$@"` to forward all arguments.
+
+[source,bash]
+----
+log_message() {
+  local level="$1"
+  local message="$2"
+  echo "[$level] $message"
+}
+
+log_message "INFO" "Process complete."
+----
+
+[[returning-values]]
+=== Returning Values
+
+*To return a string or data*, use `echo` or `printf` and capture the output using command substitution.
+
+[source,bash]
+----
+get_user_home() {
+  local user="$1"
+  # ... logic to find home directory ...
+  echo "/home/$user" # Returns string via stdout
+}
+----
+
+*To return a status*, use `return` with a numeric code. `0` means success, and any non-zero value (`1-255`) indicates failure.
+
+[source,bash]
+----
+check_file_exists() {
+  if [[ -f "$1" ]]; then
+    return 0 # Success
+  else
+    return 1 # Failure
+  fi
+}
+----
+
+
+[[conditionals]]
+== Conditionals
+
+Use `[[ ... ]]` for conditional tests.
+It is more powerful, prevents many common errors, and is easier to use than the older `[ ... ]` or `test` builtins.
+
+[source,bash]
+----
+# Good
+if [[ "$name" == "admin" && -f "$config_file" ]]; then
+  # ...
+fi
+
+# Avoid
+if [ "$name" = "admin" -a -f "$config_file" ]; then
+  # ...
+fi
+----
+
+For dispatching based on a command or option, `case` statements are often cleaner than long `if/elif/else` chains.
+
+[source,bash]
+----
+case "$command" in
+  build)
+    build_image
+    ;;
+  run)
+    run_container
+    ;;
+  *)
+    echo "Error: Unknown command '$command'" >&2
+    exit 1
+    ;;
+esac
+----
+
+
+[[error-handling]]
+== Error Handling
+
+* Use `set -o errexit` (or `set -e`) at the top of your script to make it exit immediately if a command fails.
+* Use `set -o pipefail` to cause a pipeline to fail if any of its commands fail, not just the last one.
+* Print error messages to standard error (`stderr`).
+* Exit with a non-zero status code on failure.
+
+[source,bash]
+----
+#!/usr/bin/env bash
+set -o errexit
+set -o pipefail
+
+echo "Error: Something went wrong." >&2
+exit 1
+----
+
+
+[[practices-to-avoid]]
+== Practices to Avoid
+
+[[avoid-eval]]
+=== Avoid `eval`
+
+The `eval` command can execute arbitrary code and poses a significant security risk if used with external or user-provided data.
+
+It also makes code difficult to debug.
+
+Avoid it whenever possible.
+Modern Bash versions provide safer alternatives like namerefs (`declare -n`) for indirect variable/array manipulation.
+
+[[avoid-backticks]]
+=== Avoid Backticks
+
+Use `+++$(...)+++` for command substitution instead of backticks (`+++`...`+++`).
+It is easier to read and can be nested.
+
+[source,bash]
+----
+# Good
+current_dir="$(pwd)"
+
+# Avoid
+current_dir=`pwd`
+----

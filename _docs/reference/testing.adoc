@@ -1,0 +1,263 @@
+---
+title: DocOps Lab Testing & Specifications
+docs-group: technical
+description: "Specifying and testing DocOps Lab projects"
+order: 54
+---
+= Specs & Tests
+include::../_local_settings.adoc[]
+
+Most DocOps Lab projects include a `specs/` directory in the base.
+This path is for all "`definitional`" code and content, including:
+
+* YAML- or JSON-formatted schema or definition documents
+* "`natural language`" requirement/specification documents
+* test scripts in RSpec or other formats
+* test data files
+* test configurations
+
+The typical structure of this path is:
+
+....
+specs/
+  docs/             # natural language PRDs
+    *.adoc
+  data/             # defs, schemas, test data
+    *.yml,*.yaml
+  tests/
+    *.rb, *.sh      # test scripts
+    rspec/          # RSpec test files
+      spec_helper.rb
+      *_spec.rb
+    results/        # Test output logs
+....
+
+
+[[specifications-requirements-and-definitions]]
+== Specifications, Requirements, and Definitions
+
+DocOps Lab project development is "`docs-driven`", meaning we write up our code requirements and specifications in natural language documents before we start coding.
+These files tend to take the following form:
+
+`README.adoc`::
+Especially during early development, fairly detailed product documentation is stored here.
+
+`specs/docs/*.adoc`::
+Natural language product requirement documents (PRD) specifying dependencies, features, behaviors, and inter-component contracts and interfaces.
+
+`specs/data/*.yml`::
+YAML-formatted definition files that designate actual attributes and content of the app, typically including `config-def.yml` for configuration properties defaults and docs.
+
+`specs/data/*-schema.yaml`::
+SGYML-formatted schema files that define the structure and constraints user-editable YAML files, such as configuration files.
+
+
+[[testing-infrastructure-standards]]
+== Testing Infrastructure Standards
+
+DocOps Lab projects follow consistent testing patterns to ensure reliability and maintainability across the ecosystem.
+These standards cover test organization, configuration files, and data management used by testing frameworks.
+
+[[rspec-configuration]]
+=== RSpec Configuration
+
+All Ruby-based projects should include:
+
+`.rspec`::
+Configuration file specifying RSpec options and test file patterns.
+Standard configuration:
++
+....
+--format documentation
+--color
+--pattern 'specs/tests/rspec/**/*_spec.rb'
+....
+
+`specs/tests/rspec/spec_helper.rb`::
+Shared configuration, helper methods, and sample data for tests.
+Should include:
++
+* Bundler setup and project requires
+* RSpec configuration (monkey patching disabled, expect syntax)
+* Helper methods for temporary file/directory creation
+* Sample data generators for testing
+* Cleanup procedures for test artifacts
+
+[[standard-rake-tasks]]
+=== Standard Rake Tasks
+// tag::standard-rake-tasks[]
+All Ruby gem projects with tests should implement these standard Rake tasks in their `Rakefile`:
+
+`bundle exec rake rspec`::
+Run RSpec test suite using the standard pattern matcher.
+
+`bundle exec rake cli_test`::
+Validate command-line interface functionality.
+May test basic CLI loading, help output, version information.
+
+`bundle exec rake yaml_test`::
+Validate YAML configuration files and data structures.
+Should test all project YAML files for syntax correctness.
+
+`bundle exec rake pr_test`::
+Comprehensive test suite for pre-commit and pull request validation.
+Typically includes: RSpec tests, CLI tests, YAML validation.
+
+`bundle exec rake install_local`::
+Build and install the project locally for testing.
+
+Note that non-gem projects may have some or all of these tasks, as applicable.
+// end::standard-rake-tasks[]
+
+[[test-categories]]
+=== Test Categories
+
+// tag::test-writing-guidelines[]
+Tests should be organized into these categories:
+
+Unit Tests::
+* Module loading and initialization
+* Class structure validation  
+* Basic functionality verification
+* Individual method testing
+
+Integration Tests::
+* Data processing workflows
+* Template rendering operations
+* Configuration loading scenarios
+* API client functionality (where applicable)
+
+Validation Tests::
+* File format compliance (YAML, JSON)
+* Configuration schema validation
+* Template syntax verification
+* Command-line option parsing
+// end::test-writing-guidelines[]
+
+[[test-data-management]]
+=== Test Data Management
+
+Projects should utilize:
+
+Demo/Sample Data::
+Rich sample data in dedicated demo directories (e.g., `../projectname-demo/`).
+Used for integration testing and examples.
+
+Generated Test Data::
+Programmatically generated test data using helper methods.
+Ensures consistent, controlled test scenarios.
+
+Temporary Files::
+Automatic creation and cleanup of temporary files/directories.
+Prevents test pollution and ensures isolated test environments.
+
+[[test-documentation]]
+=== Test Documentation
+
+Each project's `specs/tests/README.adoc` should:
+
+Reference shared standards::
+Link to https://docopslab.org/docs/testing.
+
+Document project-specific patterns::
+Cover unique testing approaches.
+
+Provide quick start instructions::
+Enable new contributors to run tests immediately.
+
+Explain integration with demo data::
+Show how sample data is used.
+
+List available test commands::
+Document all relevant Rake tasks and their purposes.
+
+pass:[<!-- vale off -->]
+
+[[test-ing-the-documentation]]
+=== Test__ing__ the Documentation
+
+pass:[<!-- vale on -->]
+
+Not only do tests need to be documented, but documentation needs to be systematically tested.
+
+These tests are mainly performed via the link:{xref_docs_lab-dev-setup_url}[docopslab-dev tool].
+
+DocOps Lab performs markup-syntax linting, prose linting, HTML linting, HTML link testing, and code-block testing.
+
+Syntax linting::
+Evaluates AsciiDoc and RDoc source syntax for proper style and formatting.
+We use link:{xref_docs_asciidoc-styles_url}#config-vale[Vale] for prose linting and custom link:{xref_docs_ruby-styles_url}#rubocop-customization[RuboCop] for RDoc comment.
+
+HTML linting and link testing::
+Validates generated HTML documentation for proper structure, formatting, and link integrity.
+See <<config-htmlproofer>>.
+
+Code-block testing::
+Extracts and executes code blocks from documentation to ensure accuracy and functionality.
+This is performed using the Sourcerer library, which is presently part of the ReleaseHx gem but will soon be released as a standalone gem.
+
+[[config-htmlproofer]]
+==== Docs Link Testing with HTMLProofer
+
+include::../../gems/docopslab-dev/README.adoc[tags="config-htmlproofer",leveloffset="-2"]
+
+
+[[continuous-integration-standards]]
+== Continuous Integration Standards
+
+DocOps Lab projects follow consistent CI/CD patterns.
+These broadly include pre-commit/pre-push testing, GitHub Actions integration, and release testing.
+
+[[pre-push-testing]]
+=== Pre-push Testing
+
+[.prompt]
+ bundle exec rake pr_test
+
+This test runs the complete local suite, including RSpec tests as well as any established CLI testing.
+
+[[github-actions-integration]]
+=== GitHub Actions Integration
+
+Projects should implement GitHub Actions workflows that:
+
+* Run on pull requests
+* Execute the complete `pr_test` suite
+* Test across multiple Ruby versions (where applicable)
+* Validate documentation quality
+* Report test coverage
+
+[[release-testing]]
+=== Release Testing
+
+Before any merge to `main` and pre-release.
+
+[.prompt]
+
+....
+bundle exec rake install_local
+bundle exec rake pr_test
+....
+
+Release testing also involves examining artifacts (packaged gems, Docker image, documentation) before it is published.
+See <<test-results-artifacts,below>> for basics and {xref_docs_release_link} for details.
+
+
+[[test-results-artifacts]]
+== Test Results and Artifacts
+
+Test execution should generate:
+
+`specs/tests/results/`::
+Directory for test output, logs, and reports.
+Automatically created during test runs.
+
+`.rspec_status`::
+RSpec status persistence file for `--only-failures` and `--next-failure` flags.
+
+Test results should include:
+
+* Pass/fail status for all test categories
+* Performance metrics (where applicable)
+* Coverage reports
+* Artifact validation logs

@@ -1,0 +1,76 @@
+---
+title: DocOps Lab Spellcheck and Fixing
+docs-group: technical
+description: "Troubleshooting and fixing spelling issues with optional AI support."
+order: 48
+type: troubleshooter
+---
+= Fix Spelling Issues
+// We're going to author this doc with 2 audiences in mind, and we're going to tag it semantically with // tag::<subject>[] markers.
+// The first audience is developers who want to understand how to implement a spelling issue fixer in DocOps Lab projects.
+// The second audience is AI agents that will be able to read portions of this doc and learn to implement in DocOps Lab projects when prompted.
+
+This procedure is to help you trace and fix spelling issues in documentation.
+It uses DocOps Lab's custom Vale implementation to identify spelling errors and generate a report for correction.
+
+You can then pass that report to an AI agent to help you fix the issues based on the data, your feedback, and further instructions.
+
+
+[[procedure-overview]]
+== Procedure Overview
+
+.PREREQUISITE
+[IMPORTANT]
+====
+This procedure requires the link:{xref_docs_lab-dev-setup_url}[`docopslab-dev` utility].
+====
+
+// tag::procedure[]
+. Use the spellcheck task to generate a spelling report.
++
+[.prompt]
+ bundle exec rake labdev:lint:spellcheck
+
+ifndef::audience-agent[]
+. Open the generated report in your favorite YAML editor.
+
+. Update the report with your instructions or corrections (see <<error-report>>).
+
+. Provide the updated report to your AI agent for processing.
+endif::[]
+
+ifdef::audience-agent[]
+. Follow the prompts in the generated report.
+endif::[]
+// end::procedure[]
+
+
+[[error-report]]
+== The Spellcheck Report
+
+The report is a YAML file that lists the spelling issues found in your documentation.
+
+Each entry in the sequence represents an issue detected by Vale, along with its context.
+
+
+[[spellcheck-prompt]]
+== The Spellcheck Prompt
+
+The report will include a prompt that helps an AI agent understand the procedures for following up on your instructions.
+
+.The default AI prompt
+....
+include::../../gems/docopslab-dev/assets/templates/spellcheck.prompt.yml[]
+....
+
+To override this prompt on a project level, configure it in your `.config/docopslab-dev.yml` file.
+
+[source,yaml]
+----
+spellcheck:
+  output_dir: .agent/spellcheck    # defaults to .labdev/spellcheck
+  output_file: spelling-report.yml # defaults to spellcheck-<datetime>.yml
+  prompt: |
+    # Your custom prompt here
+    # Preceed each line with a hash (#)
+----
