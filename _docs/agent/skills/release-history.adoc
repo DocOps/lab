@@ -1,0 +1,9 @@
+---
+permalink: /docs/agent/release-history/
+indexed: false
+origins: [product-change-docs]
+---
+include::../_agent_settings.adoc[]
+= Preparing a Version Release History Document
+
+include::../../task/product-change-docs.adoc[tag="releasehx", leveloffset=-1 ]

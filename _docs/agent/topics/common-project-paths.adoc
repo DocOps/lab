@@ -1,0 +1,12 @@
+---
+permalink: /docs/agent/common-project-paths/
+---
+include::../_agent_settings.adoc[]
+= Overview of Common Paths/Files in DocOps Lab Projects
+
+_If you are creating a new DocOPs Lab project_, use this guide to establish initial files.
+This also applies to adding major facilities or features to an existing project.
+
+_If you are just getting to know a DocOps Lab codebase_, favor the project's `README.adoc` file over this guide.
+
+include::../../reference/infrastructure.adoc[tags=common-project-paths,leveloffset=-1]

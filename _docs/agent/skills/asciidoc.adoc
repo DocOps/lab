@@ -1,0 +1,44 @@
+---
+permalink: /docs/agent/asciidoc/
+indexed: false
+origins: ["asciidoc-styles"]
+---
+include::../_agent_settings.adoc[]
+= AI Agent's Guide to Writing in AsciiDoc 
+
+If you learn nothing else form this guide, learn this:
+DocOps Lab is an AsciiDoc shop, and we _do not_ author in Markdown;
+we instead try to model excellent AsciiDoc authoring and syntax.
+
+
+[[avoid-slop-syntax]]
+== Avoid Slop Syntax
+
+The biggest mistake AI agents make when writing AsciiDoc syntax is that they slip into Markdown.
+
+*DO NOT use Markdown* syntax or conventions when generating AsciiDoc markup.
+
+Use AsciiDoc description-list markup instead of bulleted lists when topical or parameterized information is to be conveyed.
+
+.DO use DLs
+[source,asciidoc]
+----
+some topic or term::
+The description of that term, possibly as a complete sentence or paragraph with a period.
+----
+
+.DO NOT use arbitrarily formatted lists
+[source,asciidoc]
+----
+* *This kind of thing*: Followed by more information, is non-semantic.
+----
+
+.Definition DO NOT do it in Markdown
+[source,markdown]
+----
+- **That awful double-asterisk notation**: Followed by a colon outside the bolding (no!) and then the "description". Just don't.
+----
+
+You will almost NEVER be asked to author in Markdown, except when leaving notes to yourself, in which case your unfortunate bias towards Markdown is acceptable.
+
+include::../../reference/asciidoc-styles.adoc[tags=content]

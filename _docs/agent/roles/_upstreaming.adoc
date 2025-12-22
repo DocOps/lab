@@ -1,0 +1,7 @@
+. Prompt the Operator to consider whether this change might be beneficial to other DocOps Lab projects.
+. _If so_, offer to create a work ticket in GitHub Issues for the DocOPs/lab repo.
+. _With approval_, open a ticket _or_ directly draft a change in the `../lab` repo if you have access.
+.. Prompt the Operator for a list of affected projects to amend or a change to the `docopslab-dev` tool.
+.. Prompt the Operator for the current `docops-lab-projects.yml` file, or look for it at `../lab/_data/docops-lab-projects.yml` relative to the current project root.
+.. Review that file for similar dependencies that might be affected and suggest them to the Operator.
+. Proceed to post the work ticket or make the changes on a clean local `DocOps/lab` branch.

@@ -1,0 +1,150 @@
+---
+permalink: /docs/agent/conduct-release/
+indexed: false
+---
+:tok_majmin: <major.minor>
+:tok_patch: <patch>
+:page-origins: [release]
+include::../_agent_settings.adoc[]
+include::../../task/release.adoc[tag="attributes"]
+= MISSION: Conduct a Product Release
+
+An AI Agent or multiple Agents, in collaboration with a human Operator, can execute the release procedure for a DocOps Lab project/product.
+
+This mission covers the entire process from pre-flight checks to post-release cleanup.
+
+Check the `README.adoc` or `docs/**/release.adoc` file specific to the project you are releasing for specific procedures.
+
+== Agent Roles
+
+The following agent roles will take a turn at steps in this mission.
+
+devops/release engineer::
+Execute the technical steps of the release, including git operations, tagging, and artifact publication.
+
+project manager::
+Oversee the release process, ensure conditions are met, and handle communications.
+
+tech writer::
+Prepare release notes and ensure documentation is up to date.
+
+=== Context Management for Multi-role Sessions
+
+include::_common.adoc[tag="context-management"]
+
+=== Task Assignments and Suggestions
+
+include::_common.adoc[tag="task-metadata"]
+
+
+== Prerequisite: Attention OPERATOR
+
+This process requires the `docopslab-dev` tooling is installed and synced.
+Ensure you have the necessary credentials for GitHub and any artifact registries (RubyGems, DockerHub, etc.).
+
+== Mission Procedure
+
+In general, the following stages are to be followed in order and tracked in a mission document.
+
+=== Stage 0: Mission Prep
+
+Create a mission-tracking document::
+Write a document with detailed steps for fulfilling the mission assigned here, based on any project-specific context.
+(`role: project-manager; path: .agent/release-mission.md`)
+
+=== Evergreen Tasks
+
+The following tasks apply to most stages.
+
+Keep the mission-tracking document up to date::
+At the end of every stage, update the progress.
+(`path: .agent/release-mission.md`)
+
+=== Stage {counter:stage}: Pre-flight Checks
+
+Verify conditions::
+Ensure the "Definition of Done" is met.
++
+include::../../task/release.adoc[tag="conditions"]
+(`role: devops-release-engineer; upto: project-manager; with: Operator`)
+
+Manual double-checks::
+Perform the following checks before proceeding.
++
+include::../../task/release.adoc[tag="manual-double-checks"]
+(`role: project-manager; with: Operator`)
+
+=== Stage {counter:stage}: Release History
+
+Prepare Release Notes doc::
+Generate and refine the release history.
++
+include::../../task/release.adoc[tag="step-history"]
+(`role: devops-release-engineer; upto: tech-writer; with: Operator; read: .agent/docs/skills/release-history.md`)
+
+=== Stage {counter:stage}: Merge and Tag
+
+Merge the dev branch to `main``::
+Merge the development branch into the main branch.
++
+include::../../task/release.adoc[tag="step-merge"])
+
+Tag the release::
+Create and push the release tag.
++
+include::../../task/release.adoc[tag="step-tag"]
+
+=== Stage {counter:stage}: Release Announcement
+
+Create GitHub release::
+Publish the release on GitHub.
++
+include::../../task/release.adoc[tag="step-announce"]
+(`role: project-manager; with: devops-release-engineer`)
+
+=== Stage {counter:stage}: Artifact Publication
+
+Publish artifacts::
+Build and publish the final artifacts.
++
+include::../../task/release.adoc[tag="step-artifacts"]
+(`role: devops-release-engineer; with: Operator`)
+
+=== Stage {counter:stage}: Post-Release Tests & Cleanup
+
+Test published artifacts::
+Manually fetch and install/activate any gems, images, or other binary files, and spot check published documentation.
+(`role: devops-release-engineer; upto: qa-testing-engineer; with: Operator`)
+
+Post-release tasks::
+Perform necessary cleanup and preparation for the next cycle.
++
+include::../../task/release.adoc[tag="post-release"]
+(`role: project-manager; with: devops-release-engineer`)
+
+=== Post-mission Debriefing
+
+Review the Mission Report::
+Highlight outstanding or special notices from the Mission Report.
+(`role: Agent; with: Operator; read: .agent/reports/release-mission.md`)
+
+Suggest modifications to _this_ mission assignment::
+Taking into account any bumps, blockers, or unexpected occurrences during fulfillment of this mission, recommend changes or additions to *"`{doctitle}`"* itself.
+(`role: Agent; with: Operator; path: ../lab/_docs/agent/missions/conduct-release.adoc`).
+
+IMPORTANT: In case of emergency rollback or patching, see `.agent/docs/skills/product-release-rollback.md`.
+
+
+== Fulfillment Principles
+
+=== ALWAYS
+
+include::_common.adoc[tag="always"]
+
+=== NEVER
+
+include::_common.adoc[tag="never"]
+
+=== Quality Bar
+
+A successful release is one where all artifacts are published correctly, the documentation accurately reflects the changes, and the repository is in a clean state for the next development cycle.

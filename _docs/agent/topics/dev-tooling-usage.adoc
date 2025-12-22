@@ -1,0 +1,16 @@
+---
+permalink: /docs/agent/dev-tooling-usage/
+---
+include::../_agent_settings.adoc[]
+= AI Agent Instructions for In-house Dev-Tooling Usage
+
+include::../../partials/_docopslab-dev-context-notice.adoc[]
+
+include::../../../gems/docopslab-dev/README.adoc[tag="globals"]
+
+include::../../../gems/docopslab-dev/README.adoc[tag="standard-usage",leveloffset="-1"]
+
+include::../../../gems/docopslab-dev/README.adoc[tag="workflow"]
+
+include::../../../gems/docopslab-dev/README.adoc[tag="customization"]
+

@@ -1,0 +1,12 @@
+---
+permalink: /docs/agent/tests-writing/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+= Writing Tests for DocOps Lab Projects
+
+As an AI agent, you can help DocOps Lab developers write comprehensive tests following established patterns and categories.
+
+include::../../reference/testing.adoc[tag="test-writing-guidelines"]
+
+include::../../reference/testing.adoc[tag="standard-rake-tasks"]

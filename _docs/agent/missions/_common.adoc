@@ -1,0 +1,56 @@
+// tag::context-management[]
+By default will be up to the Agent to decide whether to hand off to a concurrent or subsequent Agent or "`upgrade`" role/skills during a session.
+
+The Operator may of course dictate or override this decision.
+
+The goal is to use appropriate agents without cluttering any given agent's context window.
+
+Soft-reset between roles::
+At each transition, declare what you're loading (role doc + skills) and what you're backgrounding.
+Don't hold all previous stage details in active memory.
+
+Mission tracker as swap file::
+Dump detailed handoff notes into `.agent/project-setup-mission.md` after each stage.
+Read it first when starting new roles to understand what was built and what's needed.
+
+Checkpoint between stages::
+After each stage, ask Operator to review/continue/pause.
+Creates intervention points if focus dilutes.
+
+Watch for dilution::
+Mixing concerns across roles, contradicting earlier decisions, hedging instead of checking files.
+If noticed, stop and checkpoint.
+
+Focused lenses::
+Each role emphasizes different details (Product Engineer = code structure, QA = test coverage, DevOps = automation, PM = coordination).
+Switch lenses deliberately; shared base knowledge (README, goals, conventions) stays warm.
+// end::context-management[]
+
+// tag::always[]
+* Always ask the Operator when you don't know exactly how DocOps Lab prefers a step be carried out.
+* Always follow the mission procedure as closely as possible, adapting only when necessary due to project-specific constraints.
+* Always document any deviations from the standard procedure and the reasons for them in the Mission Report.
+* Always look for a DRY way to define product metadata/attrbutes in README.adoc and YAML files (`specs/data/*-def.yml`).
+* Always pause for Operator approval before ANY publishing or deployment action, including pushing/posting to GitHub.
+// end::always[]
+
+// tag::never[]
+* Never get creative or innovative without Operator permission.
+* Never skip steps in the mission procedure without documenting the reason.
+* Never assume the Operator understands DocOps Lab conventions without explanation.
+// end::never[]
+
+// tag::task-metadata[]
+In the Mission Procedures section, metadata is associated with each task.
+
+All tasks are assigned a preferred `role:` the Agent should assume in carrying out the task.
+That role has further documentation at `.agent/docs/roles/<role-slug>.md`, and the executing agent should ingest that document entirely before proceeding.
+
+Recommended collaborators are indicated by `with:`.
+
+Recommended upgrades are designated by `upto:`.
+
+Suggested skill/topic readings are indicated by `read:`.
+
+Any working directories or files are listed in `path:`.
+// end::task-metadata[]

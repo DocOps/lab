@@ -1,0 +1,25 @@
+---
+permalink: /docs/agent/devops-ci-cd/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+= AI Agent Orientation to DocOps Lab DevOps/CI/CD Practices
+
+DocOps Lab is in a very nascent stage of establishing shared (cross-repo) tools, workflows, and protocols to for automating development, integration, build, and deployment processes.
+
+DocOps Lab uses GitHub Actions and Docker as primary platforms for integration and deployment automation.
+
+For now you can get a good idea for getting started with automation by checking the standard paths in the current project (`Dockerfile`, `docker-compose.yml`, `.github/workflos/`, `Rakefile`, `scripts/`) as well as looking at similar DocOps Lab projects that have more established CI/CD workflows.
+
+The rest of this document is snippets from various relevant internal documentation.
+
+include::../../reference/infrastructure.adoc[tags="common-scripts"]
+
+== Docker Usage
+
+include::../../reference/docker.adoc[tags=body,leveloffset=+1]
+
+== See Also
+
+* `./dev-tooling-usage.md`
+* `../skills/git.md`

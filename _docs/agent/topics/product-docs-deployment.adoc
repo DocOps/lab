@@ -1,0 +1,8 @@
+---
+permalink: /docs/agent/product-docs-deployment/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+= Product Documentation Deployment
+
+include::../../../README.adoc[tags="globals,docops-lab-docs-sites",leveloffset="-2"]

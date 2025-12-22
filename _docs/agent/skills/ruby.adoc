@@ -1,0 +1,16 @@
+---
+permalink: /docs/agent/ruby/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+= Ruby Coding Guide for DocOps Lab AI Agents
+
+include::../../reference/ruby-styles.adoc[tags=conventions]
+
+
+[[rubocop-config]]
+== RuboCop Config
+
+....
+include::../../../gems/docopslab-dev/assets/config-packs/rubocop/base.yml[]
+....

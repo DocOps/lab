@@ -1,0 +1,12 @@
+---
+permalink: /docs/agent/product-release-rollback-and-patching/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+:tok_majmin: <major.minor>
+:tok_patch: <patch>
+= Rolling Back and/or Patching a Product Release
+
+As an AI agent, you can assist DocOps Lab developers in executing product-release patching and rolling back.
+
+include::../../task/release.adoc[tags="attributes,rollback-patching", leveloffset=-1]
