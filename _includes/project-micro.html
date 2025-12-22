@@ -1,0 +1,37 @@
+{% assign projects = include.projects | default: site.data.docops-lab-projects.projects %}
+{% if include.project %}
+  {% assign proj = include.project %}
+{% else %}
+  {% assign proj = projects | where: 'slug', include.slug | first %}
+{% endif %}
+
+{% if proj %}
+{% assign type_meta = site.data.docops-lab-projects['$meta']['types'] | where: 'slug', proj.type | first %}
+{% assign fallback_icon = type_meta.icon | default: 'layers' %}
+
+<div class="project-profile project-card profile-micro project-micro" data-project-slug="{{ proj.slug | default: proj.name | slugify }}">
+  <div class="project-header">
+    <i data-lucide="{{ proj.icon | default: fallback_icon }}" class="project-icon"></i>
+    <h4>{{ proj.text | default: proj.title | default: proj.name }}</h4>
+    {% if proj.done == "100%" %}
+      <a href="https://github.com/DocOps/{{ proj.repo | default: proj.slug }}" class="status-badge-link" target="_blank">
+        <span class="status-badge status-{{ proj.done | slugify }}">{{ proj.done }}</span>
+      </a>
+    {% endif %}
+  </div>
+
+  {% if proj.line %}
+  <div class="project-line">{{ proj.line }}</div>
+  {% endif %}
+  
+  <div class="project-page-link">
+  {% if proj.page or proj.star %}
+    <a href="/projects/{{ proj.slug | default: proj.name | slugify }}/" class="page-link">
+  {% else %}
+    <a href="/projects/#{{ proj.slug | default: proj.name | slugify }}" class="page-link">
+  {% endif %}
+    Project Profile
+    </a>
+  </div>
+</div>
+{% endif %}

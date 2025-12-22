@@ -1,0 +1,230 @@
+# Site settings
+title: DocOps Lab
+description: "Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers."
+url: "https://docopslab.org"
+baseurl: ""
+future: true # show future-dated posts
+
+# Author settings
+author:
+  name: DocOps Lab
+  email: lab@docopslab.org
+
+# Build settings
+markdown: kramdown
+highlighter: highlightjs
+permalink: none
+
+excerpt_separator: "\n// more\n"
+
+# Plugins
+plugins:
+  - jekyll-asciidoc
+  - jekyll-feed
+  - jekyll-sitemap
+
+# AsciiDoc settings
+asciidoc: {}
+asciidoctor:
+  base_dir: :docdir
+  safe: unsafe
+  attributes:
+    idseparator: "-"
+    sectanchors:
+    sectlinks:
+    idprefix: ""
+    source-highlighter: highlightjs
+    icons: font
+    iconsdir: /assets/images/icons
+    icon-uri-scheme: https
+    allow-uri-read: true
+    callout-icons: 
+    attribute-missing: warn
+
+
+# Collections
+collections:
+  blog:
+    output: true
+    permalink: /blog/:name/
+    label: "Blog"
+    tag: "blog"
+    intro_text: |
+      Welcome to the DocOps Lab Blog, where we explore all levels and potential applications of docs-as-code techniques, as well as software releases from the Lab.
+    intro_text_icon: rss
+    posts_label: "posts"
+    read_more_text: "Read more"
+    no_posts_icon: "edit-3"
+    no_posts_title: "No posts yet"
+  docs:
+    output: true
+    permalink: /:collection/:slug/
+    special_term: "DocOps Lab Docs"
+  metablog:
+    output: true
+    permalink: /metablog/:name/
+    metablog: true
+    force_mode: dark
+    intro_text: |
+      Welcome to the meta-layer!
+      Here Dr. Meta provides blog source-code analysis and deeper technical exploration of concepts introduced in the main DocOps Lab Blog posts.
+    intro_text_icon: layers
+    posts_label: "meta-posts"
+    read_more_text: "Read meta-analysis"
+    no_posts_icon: "microscope"
+    no_posts_title: "No meta-posts yet"
+  projects:
+    output: true
+    permalink: /projects/:name/
+    xref_attributes: true
+
+# Defaults
+defaults:
+  - scope:
+      path: "_blog"
+      type: "blog"
+    values:
+      layout: "post"
+      permalink: /blog/:name/
+      excerpt: ""
+  - scope:
+      path: "_metablog"
+      type: "metablog"
+    values:
+      layout: "post"
+      metablog: true
+      highlighter_dark_theme: an-old-hope
+  - scope:
+      path: "index"
+    values:
+      layout: "lander"
+# tag::defaults-snippet[]
+  - scope:
+      path: "_docs/"
+    values:
+      layout: "document"
+      toc: true
+      indexed: true
+      excerpt: ""
+  - scope:
+      path: "_docs/reference/"
+    values:
+      type: reference
+      indexed: true
+  - scope:
+      path : "_docs/policy/"
+    values:
+      type: policy
+      indexed: true
+  - scope:
+      path: "_docs/task/"
+    values:
+      type: procedure
+      indexed: true
+  - scope: 
+      path: "_docs/agent/"
+    values:
+      type: agent
+      indexed: false
+      noindex: true
+  - scope:
+      path: "_docs/agent/topics"
+    values:
+      group: topics
+  - scope:
+      path: "_docs/agent/roles"
+    values:
+      group: roles
+  - scope:
+      path: "_docs/agent/skills"
+    values:
+      group: skills
+  - scope:
+      path: "_docs/agent/missions"
+    values:
+      group: missions
+# end::defaults-snippet[]
+
+highlighting:
+  dark_mode_theme: "atom-one-dark"
+  light_mode_theme: "a11y-light"
+  languages: # non-standard langs for highlight.js
+    - asciidoc
+    - twig
+    - shell
+    - python
+
+search:
+  engine: elasticlunr   # minisearch | lunr | elasticlunr
+  #version: '7.2.0'     # set to '2.3.9' for lunr, '0.9.6' for elasticlunr
+  options:
+    prefix: true        # minisearch
+    fuzzy: 0.2          # minisearch
+    title_boost: 3      # minisearch/lunr
+    bool: 'AND'         # elasticlunr
+    expand: true        # elasticlunr
+  debug: false
+  disable: false
+  exclude:
+    - /assets/**
+    - /snippets/**
+    - /feed.xml
+    - /robots.txt
+    - /sitemap.xml
+    - /blog.xml
+    - /search.json
+    - /projects/by-*
+
+
+# Exclude from processing
+exclude:
+  - '*.md'
+  - artifacts/
+  - README.adoc
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .config/
+  - gems/
+  - scripts/
+  - specs/
+  - snippets/
+  - 'assets/snippets/'
+  - '*.sh'
+
+include:
+  - _pages
+  - _reports
+  - _metablog/_asciidoc-snippets.adoc
+
+# Theme settings (for future gem extraction)
+theme_config:
+  name: "jekyll-asciidoc-lander"
+  version: "0.1.0"
+  dark_mode: true
+  parallax: true
+  scrollspy: true
+
+feed:
+  collections:
+    blog:
+      path: /blog.xml
+
+doc_groups_order:
+  - contributing
+  - technical
+  - legal
+
+doc_types_order:
+  - policy
+  - procedure
+  - reference
+  - troubleshooter
+  - template
+
+xref_attrs:
+  outfile: _docs/partials/built/xref_attrs.adoc

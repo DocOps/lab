@@ -1,0 +1,187 @@
+<!-- Dependency popover template -->
+<div id="dependency-popover" class="dependency-popover" style="display: none;">
+  <div class="popover-content">
+  <div class="popover-header">
+    <i data-lucide="info" class="popover-icon"></i>
+    <h4 class="popover-title"></h4>
+  </div>
+  <div class="popover-body">
+    <p class="popover-line"></p>
+    <p class="popover-description"></p>
+    <div class="popover-meta">
+      <span class="popover-status"></span>
+      <span class="popover-wave"></span>
+    </div>
+  </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Build project lookup for dependencies
+  const projects = {
+  {% assign all_projects_for_lookup = site.data.docops-lab-projects.projects %}
+  {% for project in all_projects_for_lookup %}
+  {% assign type_meta = site.data.docops-lab-projects['$meta']['types'] | where: 'slug', project.type | first %}
+  {% assign project_icon = project.icon | default: type_meta.icon | default: 'layers' %}
+  '{{ project.slug | default: project.name | slugify }}': {
+    slug: '{{ project.slug | default: project.name | slugify }}',
+    title: {{ project.title | default: project.name | jsonify }},
+    line: {{ project.line | jsonify }},
+    desc: {{ project.desc | strip | truncatewords: 20 | jsonify }},
+    icon: '{{ project_icon }}',
+    done: {{ project.done | jsonify }},
+    wave: {{ project.wave | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  };
+
+  const popover = document.getElementById('dependency-popover');
+  let hideTimeout;
+
+  // Handle dependency link hover
+  document.addEventListener('mouseover', function(e) {
+  if (e.target.classList.contains('project-dependency')) {
+    clearTimeout(hideTimeout);
+    
+    const depName = e.target.textContent.trim();
+    const depSlug = depName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const project = projects[depSlug];
+    
+    if (project) {
+      // Populate popover
+      popover.querySelector('.popover-icon').setAttribute('data-lucide', project.icon);
+      popover.querySelector('.popover-title').textContent = project.title;
+      popover.querySelector('.popover-line').textContent = project.line || '';
+      popover.querySelector('.popover-description').textContent = project.desc || '';
+      popover.querySelector('.popover-status').textContent = project.done ? `Status: ${project.done}` : '';
+      popover.querySelector('.popover-wave').textContent = project.wave ? `Wave: ${project.wave}` : '';
+      
+      // Show popover first to get accurate dimensions
+      popover.style.display = 'block';
+      popover.style.visibility = 'hidden'; // Hide while positioning
+      
+      // Get link and popover dimensions
+      const rect = e.target.getBoundingClientRect();
+      const popoverRect = popover.getBoundingClientRect();
+      const gap = 20;
+      
+      // Calculate position above the link
+      let left = rect.left;
+      let top = rect.top + window.scrollY - popoverRect.height - gap;
+      
+      // Adjust horizontal position if off screen
+      if (left < 10) {
+        left = 10;
+      } else if (left + popoverRect.width > window.innerWidth - 10) {
+        left = window.innerWidth - popoverRect.width - 10;
+      }
+      
+      // Check if there's room above
+      if (top < window.scrollY + 10) {
+        // Not enough room above, position below instead
+        top = rect.bottom + window.scrollY + gap;
+      }
+      
+      // Apply final position and make visible
+      popover.style.left = left + 'px';
+      popover.style.top = top + 'px';
+      popover.style.visibility = 'visible';
+      
+      // Re-initialize Lucide icons in popover
+      if (window.lucide && project.icon) {
+        window.lucide.createIcons();
+      }
+    }
+  }
+  });
+
+  // Handle dependency link mouseout
+  document.addEventListener('mouseout', function(e) {
+  if (e.target.classList.contains('project-dependency')) {
+    hideTimeout = setTimeout(() => {
+      popover.style.display = 'none';
+    }, 200);
+  }
+  });
+
+  // Keep popover open when hovering over it
+  popover.addEventListener('mouseover', function() {
+  clearTimeout(hideTimeout);
+  });
+
+  popover.addEventListener('mouseout', function() {
+  hideTimeout = setTimeout(() => {
+    popover.style.display = 'none';
+  }, 200);
+  });
+});
+</script>
+
+<style>
+.dependency-popover {
+  position: absolute;
+  background: var(--card-background);
+  border: 1px solid var(--text-light);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-hover);
+  max-width: 300px;
+  z-index: 1000;
+  font-size: 0.875rem;
+  opacity: 0.98;
+  backdrop-filter: blur(2px);
+}
+
+.popover-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.popover-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary-color);
+}
+
+.popover-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.popover-line {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.popover-description {
+  margin: 0 0 0.75rem 0;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+.popover-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.project-dependency {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--primary-color);
+  cursor: pointer;
+}
+
+.project-dependency:hover {
+  color: var(--secondary-color);
+  border-bottom-color: var(--secondary-color);
+}
+</style>

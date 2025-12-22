@@ -1,0 +1,28 @@
+{% comment %}
+Dynamic breadcrumb navigation
+Usage: {% include breadcrumb-nav.html %}
+Automatically generates breadcrumbs based on page context
+{% endcomment %}
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  {% if page.collection == 'projects' or page.url contains '/projects/' %}
+  <a href="/projects/" class="breadcrumb-link">Projects</a>
+  {% if page.title and page.title != 'Projects' %}
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">{{ page.title }}</span>
+  {% endif %}
+  {% elsif page.collection == 'docs' or page.url contains '/docs/' %}
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  {% if page.title and page.title != 'Documentation' %}
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">{{ page.title }}</span>
+  {% endif %}
+  {% elsif page.url contains '/about/' %}
+  <span class="breadcrumb-current">About</span>
+  {% else %}
+  <span class="breadcrumb-current">{{ page.title | default: page.url | split: '/' | last | replace: '.html', '' | replace: '-', ' ' | capitalize }}</span>
+  {% endif %}
+</nav>

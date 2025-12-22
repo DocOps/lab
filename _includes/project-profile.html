@@ -1,0 +1,118 @@
+{% assign projects = include.projects | default: site.data.docops-lab-projects.projects %}
+{% assign project = projects | where: 'slug', include.slug | first %}
+{% unless project %}
+  {% assign project = projects | where: 'name', include.slug | first %}
+{% endunless %}
+{% assign type_meta = site.data.docops-lab-projects['$meta']['types'] | where: 'slug', project.type | first %}
+{% assign fallback_icon = type_meta.icon | default: 'layers' %}
+{% assign scope = include.scope | default: 'mini' %}
+{% if page.type == 'profile' %}
+  {% assign scope = 'full' %}
+{% endif %}
+{% assign has_page = false %}
+{% if project.page or project.star %}
+  {% assign has_page = true %}
+{% endif %}
+<div class="project-profile project-card profile-{{ scope }}" id="{{ project.slug | default: project.name | slugify }}">
+  <div class="project-header">
+  <i data-lucide="{{ project.icon | default: fallback_icon }}" class="project-icon"></i>
+  <h3>
+    {% if has_page %}<a href="/projects/{{ project.slug | default: project.name | slugify }}/" class="project-title-link">{% endif %}
+      {{ project.title | default: project.name }}
+    {% if has_page %}</a>{% endif %}
+  </h3>
+  {% if project.vrsn %}
+  <span class="project-version">
+    {% if project.done == "100%" %}
+      <i data-lucide="check-circle" class="live-icon"></i>
+    {% endif %}
+    {% include version-badge.html project=project %}
+  </span>
+  {% endif %}
+  </div>
+  {% if project.line %}
+  <div class="project-line">  
+  {{ project.line | asciidocify }}
+  </div>
+  {% endif %}
+  <div class="project-description">
+  {% if project.card == "readme" %}
+    {{ site.data.built.attrs[project.slug] | asciidocify }}
+  {% else %}
+    {{ project.desc | asciidocify }}
+  {% endif %}
+  </div>
+  <div class="project-meta">
+    {% if project.type and page.group_by != "type" %}
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-{{ project.type }}">
+          {{ site.data.built.projects_metadata.types[project.type] | default: "misc" }}
+        </a>
+      </dd>
+    </dl>
+    {% endif %}
+    {% if project.done %}
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>{{ project.done }}</dd>
+    </dl>
+    {% endif %}
+    {% if project.wave and page.group_by != "wave" %}
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>{{ project.wave }}</dd>
+    </dl>
+    {% endif %}
+    {% if project.deps %}
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        {% for dep in project.deps %}
+        {% assign dep_project = projects | where: 'slug', dep | first %}
+        {% unless dep_project %}{% assign dep_project = projects | where: 'name', dep | first %}{% endunless %}
+        {% assign dep_name = dep_project.name | default: dep %}
+        <a href="/projects/#{{ dep | slugify }}" class="project-dependency">{{ dep_name }}</a>{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </dd>
+    </dl>
+    {% endif %}
+    {% if include.show_tags != false %}
+      {% if project.tags %}
+    <div class="meta-list">
+        {% for tag in project.tags %}
+      <span class="meta-label"><a href="/projects/by-category/#tag-{{ tag | slugify }}"># {{ tag }}</a></span>
+        {% endfor %}
+    </div>
+      {% endif %}
+      {% if project.tech %}
+    <div class="meta-list">
+      {% for tech in project.tech%}
+      <span class="meta-label"><a href="/projects/by-tech/#tech-{{ tech | slugify }}">{{ tech }}</a></span>
+      {% endfor %}
+    </div>
+      {% endif %}
+    {% endif %}
+    {% if project.libs or project.subjects or project.packs %}
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          {% if project.libs %}
+            <a href="/projects/#{{ project.slug }}-libs" class="project-asset-link">Code Libraries</a>{% if project.subjects or project.packs %} | {% endif %}
+          {% endif %}
+          {% if project.subjects %}
+            <a href="/projects/#{{ project.slug }}-subjects" class="project-asset-link">Subjects</a>{% if project.packs %} | {% endif %}
+          {% endif %}
+          {% if project.packs %}
+            <a href="/projects/#{{ project.slug }}-packs" class="project-asset-link">Packs</a>
+          {% endif %}
+        </dd>
+      </dl>
+    </div> 
+    {% endif %}   
+  </div>
+  
+
+</div>

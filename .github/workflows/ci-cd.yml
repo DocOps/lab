@@ -1,0 +1,181 @@
+name: CI/CD for Ruby Gems
+
+on:
+  workflow_call:
+    inputs:
+      ruby_versions:
+        description: "Ruby versions to test (JSON array format)"
+        type: string
+        default: '["3.1", "3.2", "3.3"]'
+      enable_cache:
+        description: "Enable bundler and other caching"
+        type: boolean
+        default: true
+      enable_rubygems:
+        description: "Enable RubyGems publishing on release"
+        type: boolean
+        default: false
+      gem_name:
+        description: "Name of the gem (for CLI testing)"
+        type: string
+        required: false
+      cli_command:
+        description: "CLI command to test (e.g., 'issuer --version')"
+        type: string
+        required: false
+    secrets:
+      RUBYGEMS_API_KEY:
+        description: "RubyGems API key for publishing"
+        required: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby-version: ${{ fromJSON(inputs.ruby_versions) }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby ${{ matrix.ruby-version }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: ${{ inputs.enable_cache }}
+
+      - name: Install dependencies
+        run: |
+          bundle install --jobs 4 --retry 3
+          bundle list
+
+      - name: Run tests
+        run: |
+          if bundle exec rake -T | grep -q "rspec\|test"; then
+            if bundle exec rake -T | grep -q "rspec"; then
+              bundle exec rake rspec
+            else
+              bundle exec rake test
+            fi
+          else
+            echo "No test task found - skipping tests"
+          fi
+
+      - name: CLI smoke test
+        if: inputs.cli_command
+        run: |
+          # Test CLI functionality
+          if [ -d "exe" ]; then
+            echo "Testing CLI from exe/ directory..."
+            bundle exec ruby -Ilib exe/${{ inputs.gem_name || github.event.repository.name }} ${{ inputs.cli_command }}
+          elif [ -d "bin" ]; then
+            echo "Testing CLI from bin/ directory..."
+            bundle exec ruby -Ilib bin/${{ inputs.gem_name || github.event.repository.name }} ${{ inputs.cli_command }}
+          else
+            echo "No exe/ or bin/ directory found - skipping CLI test"
+          fi
+
+      - name: Build gem
+        run: |
+          if [ -f "*.gemspec" ]; then
+            gem build *.gemspec
+          else
+            echo "No gemspec found - skipping gem build"
+          fi
+
+  gem-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: ${{ inputs.enable_cache }}
+
+      - name: Run gem quality checks
+        run: |
+          # Install gem-release for validation
+          gem install gem-release
+          
+          # Validate gemspec
+          if [ -f "*.gemspec" ]; then
+            echo "Validating gemspec..."
+            gem build *.gemspec --dry-run
+          fi
+          
+          # Check for security vulnerabilities
+          if bundle exec rake -T | grep -q "bundle:audit"; then
+            bundle exec rake bundle:audit
+          else
+            gem install bundler-audit
+            bundle audit check --update
+          fi
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: [test, gem-quality]
+    if: github.event_name == 'release' && inputs.enable_rubygems
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: ${{ inputs.enable_cache }}
+
+      - name: Build and publish gem
+        env:
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+        run: |
+          mkdir -p ~/.gem
+          echo ":rubygems_api_key: ${RUBYGEMS_API_KEY}" > ~/.gem/credentials
+          chmod 600 ~/.gem/credentials
+          
+          gem build *.gemspec
+          gem push *.gem
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: [test, gem-quality, publish]
+    if: always()
+    timeout-minutes: 2
+    steps:
+      - name: CI/CD Summary
+        run: |
+          echo "## CI/CD Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Test Results
+          if [ "${{ needs.test.result }}" = "success" ]; then
+            echo "✅ **Tests**: All Ruby versions passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Tests**: Some tests failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Quality Results
+          if [ "${{ needs.gem-quality.result }}" = "success" ]; then
+            echo "✅ **Quality**: Gem validation passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Quality**: Gem validation failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Publish Results
+          if [ "${{ inputs.enable_rubygems }}" = "false" ]; then
+            echo "⏭️ **Publish**: RubyGems publishing disabled" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ github.event_name }}" != "release" ]; then
+            echo "⏭️ **Publish**: Not a release event" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ needs.publish.result }}" = "success" ]; then
+            echo "✅ **Publish**: Successfully published to RubyGems" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Publish**: Failed to publish to RubyGems" >> $GITHUB_STEP_SUMMARY
+          fi

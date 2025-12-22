@@ -1,0 +1,43 @@
+<!-- Reusable Navigation Component -->
+{% assign nav = site.data.top-nav %}
+
+<nav class="nav-component{% if include.variant %} nav-{{ include.variant }}{% endif %}">
+  {% if include.show_brand != false %}
+  <div class="nav-brand">
+    <a href="{{ nav.brand.url }}" class="nav-brand-link">
+      {{ nav.brand.name }}
+    </a>
+    {% if include.show_tagline and nav.brand.tagline %}
+    <p class="nav-tagline">{{ nav.brand.tagline }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+  
+  <ul class="nav-links">
+    {% for link in nav.primary_links %}
+    <li>
+      <a href="{{ link.url }}" class="nav-link" {% if link.description %}title="{{ link.description }}"{% endif %}>
+        {% if link.icon and include.show_icons != false %}
+        <i data-lucide="{{ link.icon }}" class="nav-icon"></i>
+        {% endif %}
+        <span class="nav-text">{{ link.name }}</span>
+      </a>
+    </li>
+    {% endfor %}
+    
+    {% if include.show_external != false %}
+    {% for link in nav.external_links %}
+    <li>
+      <a href="{{ link.url }}" class="nav-link nav-external" 
+         {% if link.target %}target="{{ link.target }}"{% endif %}
+         {% if link.description %}title="{{ link.description }}"{% endif %}>
+        {% if link.icon and include.show_icons != false %}
+        <i data-lucide="{{ link.icon }}" class="nav-icon"></i>
+        {% endif %}
+        <span class="nav-text">{{ link.name }}</span>
+      </a>
+    </li>
+    {% endfor %}
+    {% endif %}
+  </ul>
+</nav>

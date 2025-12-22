@@ -1,0 +1,263 @@
+{% assign projects = site.data.docops-lab-projects.projects %}
+{% assign project = projects | find: 'slug', include.slug %}
+{% unless project %}{% assign project = projects | where: 'name', include.slug | first %}{% endunless %}
+
+<!-- Project Metadata Grid -->
+<section class="project-metadata">
+  <h2>Project Details</h2>
+  
+  <div class="project-details-list">
+    {% if project.href %}
+    <div class="detail-item">
+      <dt>Website:</dt>
+      <dd><a href="{{ project.href }}" target="_blank" class="external-link">
+        <i data-lucide="external-link" class="inline-icon"></i>
+        {{ project.href }}
+      </a></dd>
+    </div>
+    {% endif %}
+    
+    {% if project.docs %}
+    <div class="detail-item">
+      <dt>Documentation:</dt>
+      <dd>
+        {% if project.docs.user %}
+          <a href="{{ project.docs.user }}" target="_blank" class="external-link">
+            <i data-lucide="book-open" class="inline-icon"></i>
+            User Docs
+          </a>
+        {% endif %}
+      </dd>
+    </div>
+    {% endif %}
+    
+    {% if project.lang %}
+    <div class="detail-item">
+      <dt>Language:</dt>
+      <dd>{{ project.lang }}</dd>
+    </div>
+    {% endif %}
+    
+    {% if project.vrsn %}
+    <div class="detail-item">
+      <dt>Version:</dt>
+      <dd>{% include version-badge.html project=project %}</dd>
+    </div>
+    {% endif %}
+    
+    {% if project.done %}
+    <div class="detail-item">
+      <dt>Status:</dt>
+      <dd>
+        {% if project.done == "100%" %}
+          <span class="status-badge status-live">Released</span>
+        {% else %}
+          <span class="status-badge status-development">{{ project.done }} Complete</span>
+        {% endif %}
+      </dd>
+    </div>
+    {% endif %}
+    
+    {% if project.wave %}
+    <div class="detail-item">
+      <dt>Wave:</dt>
+      <dd>{{ project.wave }}</dd>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Note Section -->
+{% if project.note %}
+<section class="project-note">
+  <div class="note-content">
+    <div class="note-icon">
+      <i data-lucide="info" class="icon"></i>
+    </div>
+    <div class="note-text">
+      <p><strong>Note:</strong> {{ project.note }}</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Libraries (for utilities/frameworks) -->
+{% if project.libs %}
+<section class="project-libraries">
+  <h3 id="libraries">Libraries</h3>
+  <ul class="label-list">
+    {% if  project.slug == 'jekyll-asciidoc-ui' %}
+      {% assign components = site.data.built.jekyll-asciidoc-ui-config-def.properties.asciidoc-ui.properties.components.properties | sort %}
+      {% for library in components %}
+        {% assign lib = library[0] %}
+        {% assign lib_meta = library[1] %}
+        {% unless lib == '_enable' or lib == '_disable' %}
+    <li class="library-item">
+      <a href="#">
+      {{ lib_meta['name'] | default: lib }}
+      </a>
+          {% if lib_meta['desc'] %}
+      <div class="library-component-description">
+        {{ lib_meta['desc'] | replace: "<<", "*" | replace: ">>", "*" | replace: "component-", "" | asciidocify }}
+      </div>
+          {% endif %}
+    </li>
+        {% endunless %}
+      {% endfor %}
+    {% else %}
+      {% for lib in project.libs %}
+    <li class="library-item">
+      {{ lib }}
+    </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+</section>
+{% endif %}
+
+<!-- Subjects/Content (for content projects) -->
+{% if project.subjects %}
+<section class="project-subjects">
+  <h3>Content</h3>
+  
+  {% assign subjects_by_type = project.subjects | group_by: 'type' %}
+  {% for type_group in subjects_by_type %}
+    {% if type_group.name and type_group.name != '' %}
+    <div class="subject-type-group">
+      <h4>{{ type_group.name | capitalize }}s</h4>
+      
+      <div class="simple-list">
+        {% for subject in type_group.items %}
+        <div class="list-item">
+          <div class="subject-content">
+            {% if subject.done == 'live' %}
+              {% assign subject_href_dflt = project.href | append: '/' | append: subject.slug %}
+            {% elsif subject.done == 'draft' %}
+              {% assign subject_href = "https://github.com/DocOps/" | append: project.slug | append: "/tree/main/subjects/" | append: subject.slug %}
+            {% else %}
+              {% assign subject_href_dflt = "" %}
+            {% endif %}
+            {% assign subject_href = subject.href | default: subject_href_dflt %}
+            
+            {% if subject_href != "" %}
+            <a href="{{ subject_href }}" class="subject-link">
+            {% endif %}
+              {{ subject.name }}
+            {% if subject_href != "" %}
+            </a>
+            {% endif %}
+            
+            {% if subject.done and subject.done != 'live' %}
+            <span class="status-badge status-{{ subject.done }}">{{ subject.done }}</span>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+</section>
+{% endif %}
+
+<!-- Site URLs (for web projects) -->
+{% if project.urls %}
+<section class="project-urls">
+  <h3>Site URLs</h3>
+  <div class="urls-list">
+    {% for url in project.urls %}
+    <div class="url-item">
+      <dt><code>{{ url.path }}</code></dt>
+      <dd>{{ url.desc }}</dd>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<!-- Package Collections (for schemas) -->
+{% if project.packs %}
+<section class="project-packs">
+  <h3>Package Collections</h3>
+  {% for pack in project.packs %}
+  <div class="pack-item">
+    <h4>{{ pack[0] }}</h4>
+    <p>{{ pack[1].desc }}</p>
+    {% if pack[1].deps %}
+    <p><strong>Dependends on:</strong> {{ pack[1].deps | join: ', ' }}</p>
+    {% endif %}
+    {% if pack[1].libs %}
+    <div class="pack-libraries">
+      <strong>Libraries:</strong>
+      <ul>
+        {% for lib in pack[1].libs %}
+        <li>{{ lib }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+<!-- Technologies and Categories -->
+{% if project.tech or project.tags %}
+<section class="project-taxonomy">
+  <div class="taxonomy-grid">
+    {% if project.tech %}
+    <div class="tech-section">
+      <h3>Technologies</h3>
+      <div class="taxonomy-links">
+        {% for tech_item in project.tech %}
+        <a href="/projects/by-tech/#tech-{{ tech_item | slugify }}" class="taxonomy-link tech-link">
+          <i data-lucide="code" class="link-icon"></i>
+          {{ tech_item }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if project.tags %}
+    <div class="categories-section">
+      <h3>Categories</h3>
+      <div class="taxonomy-links">
+        {% for tag in project.tags %}
+        <a href="/projects/by-category/#tag-{{ tag | slugify }}" class="taxonomy-link tag-link">
+          <i data-lucide="tag" class="link-icon"></i>
+          {{ tag }}
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endif %}
+
+<!-- Dependencies -->
+{% if project.deps and project.deps.size > 0 %}
+<section class="project-dependencies">
+  <h3>Depends on</h3>
+  <div class="dependencies-micro-grid">
+    {% for dep in project.deps %}
+    {% assign dep_project = projects | where: 'slug', dep | first %}
+    {% unless dep_project %}{% assign dep_project = projects | where: 'name', dep | first %}{% endunless %}
+    
+    {% if dep_project %}
+      <!-- Dependency with full project data -->
+      {% include project-micro.html project=dep_project projects=projects %}
+    {% else %}
+      <!-- Dependency without project data -->
+      <div class="project-profile project-card profile-micro project-micro">
+        <div class="project-header">
+          <i data-lucide="package" class="project-icon"></i>
+          <h4>{{ dep }}</h4>
+        </div>
+      </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

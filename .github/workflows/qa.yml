@@ -1,0 +1,204 @@
+name: Quality Assurance
+
+on:
+  workflow_call:
+    inputs:
+      ruby_versions:
+        description: "Ruby versions to test (comma-separated)"
+        type: string
+        default: "3.1,3.2,3.3"
+      ref_override:
+        description: "Override config-packs ref for hotfixes (maps to CONFIG_PACKS_REF)"
+        type: string
+        required: false
+      enable_cache:
+        description: "Enable bundler and other caching"
+        type: boolean
+        default: true
+      vale_min_alert:
+        description: "Minimum Vale alert level (suggestion, warning, error)"
+        type: string
+        default: "warning"
+      paths:
+        description: "Paths to lint/test (space-separated)"
+        type: string
+        required: false
+      skip_vale:
+        description: "Skip Vale prose linting"
+        type: boolean
+        default: false
+      skip_rubocop:
+        description: "Skip RuboCop code linting"
+        type: boolean
+        default: false
+      skip_htmlproofer:
+        description: "Skip HTML-Proofer link checking"
+        type: boolean
+        default: false
+
+jobs:
+  config-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: ${{ inputs.enable_cache }}
+
+      - name: Set config packs ref override
+        if: inputs.ref_override
+        run: echo "CONFIG_PACKS_REF=${{ inputs.ref_override }}" >> $GITHUB_ENV
+
+      - name: Sync configurations
+        run: bundle exec rake labdev:config:sync
+
+      - name: Verify config sync
+        run: |
+          if ! git diff --quiet; then
+            echo "❌ Config files are out of sync!"
+            echo "Please run 'bundle exec rake labdev:config:sync' and commit the changes."
+            git diff --name-only
+            exit 1
+          fi
+
+  rubocop:
+    runs-on: ubuntu-latest
+    needs: config-sync
+    timeout-minutes: 10
+    if: ${{ !inputs.skip_rubocop }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: ${{ inputs.enable_cache }}
+
+      - name: Sync configurations
+        run: bundle exec rake labdev:config:sync
+
+      - name: Run RuboCop
+        run: |
+          if [ -n "${{ inputs.paths }}" ]; then
+            bundle exec rake labdev:lint:rubocop PATHS="${{ inputs.paths }}"
+          else
+            bundle exec rake labdev:lint:rubocop
+          fi
+
+  vale:
+    runs-on: ubuntu-latest
+    needs: config-sync
+    timeout-minutes: 15
+    if: ${{ !inputs.skip_vale }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: ${{ inputs.enable_cache }}
+
+      - name: Sync configurations
+        run: bundle exec rake labdev:config:sync
+
+      - name: Set Vale alert level
+        run: echo "VALE_MIN_ALERT_LEVEL=${{ inputs.vale_min_alert }}" >> $GITHUB_ENV
+
+      - name: Run Vale
+        run: |
+          if [ -n "${{ inputs.paths }}" ]; then
+            bundle exec rake labdev:lint:vale PATHS="${{ inputs.paths }}"
+          else
+            bundle exec rake labdev:lint:vale
+          fi
+
+  htmlproofer:
+    runs-on: ubuntu-latest
+    needs: config-sync
+    timeout-minutes: 20
+    if: ${{ !inputs.skip_htmlproofer }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: ${{ inputs.enable_cache }}
+
+      - name: Sync configurations
+        run: bundle exec rake labdev:config:sync
+
+      - name: Build site (if needed)
+        run: |
+          if [ -f "_config.yml" ] || [ -f "config.ru" ]; then
+            if command -v jekyll &> /dev/null && [ -f "_config.yml" ]; then
+              echo "Building Jekyll site..."
+              bundle exec jekyll build
+            elif [ -f "config.ru" ]; then
+              echo "Rack application detected - HTML-Proofer will run against existing files"
+            fi
+          fi
+
+      - name: Run HTML-Proofer
+        run: |
+          if [ -n "${{ inputs.paths }}" ]; then
+            bundle exec rake labdev:lint:htmlproofer PATHS="${{ inputs.paths }}"
+          else
+            bundle exec rake labdev:lint:htmlproofer
+          fi
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: [config-sync, rubocop, vale, htmlproofer]
+    if: always()
+    timeout-minutes: 2
+    steps:
+      - name: Quality Assurance Summary
+        run: |
+          echo "## Quality Assurance Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Config Sync
+          if [ "${{ needs.config-sync.result }}" = "success" ]; then
+            echo "✅ **Config Sync**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Config Sync**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # RuboCop
+          if [ "${{ inputs.skip_rubocop }}" = "true" ]; then
+            echo "⏭️ **RuboCop**: Skipped" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ needs.rubocop.result }}" = "success" ]; then
+            echo "✅ **RuboCop**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **RuboCop**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Vale
+          if [ "${{ inputs.skip_vale }}" = "true" ]; then
+            echo "⏭️ **Vale**: Skipped" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ needs.vale.result }}" = "success" ]; then
+            echo "✅ **Vale**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Vale**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # HTML-Proofer
+          if [ "${{ inputs.skip_htmlproofer }}" = "true" ]; then
+            echo "⏭️ **HTML-Proofer**: Skipped" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ needs.htmlproofer.result }}" = "success" ]; then
+            echo "✅ **HTML-Proofer**: Passed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **HTML-Proofer**: Failed" >> $GITHUB_STEP_SUMMARY
+          fi

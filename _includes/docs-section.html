@@ -1,0 +1,21 @@
+{% for group_name in include.groups %}
+  {% assign current_group = include.section_data | where: "name", group_name | first %}
+  {% assign group_items = current_group.items | sort:"order" %}
+  <section class="docs-group {{ group_name }}">
+    <div class="container">
+      <h3 class="docs-group">{{ group_name | capitalize }}</h3>
+      <div class="docs-list">
+        {% for doc in group_items %}
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
+          </h4>
+          {% if doc.description %}
+          <p class="doc-description">{{ doc.description }}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endfor %}

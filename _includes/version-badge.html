@@ -1,0 +1,44 @@
+{% comment %}
+  Display project version with optional GitHub link
+  
+  Usage:
+    {% include version-badge.html project=project_object %}
+    {% include version-badge.html slug="project-slug" %}
+  
+  Renders version number, linked to GitHub repo if live
+{% endcomment %}
+
+{% if include.project %}
+  {% assign project = include.project %}
+{% elsif include.slug %}
+  {% assign projects = site.data.docops-lab-projects.projects %}
+  {% assign project = projects | where: 'slug', include.slug | first %}
+{% endif %}
+
+{% if project.vrsn %}
+  {% if project.live %}
+    {% comment %} Calculate repo URL {% endcomment %}
+    {% assign repo_name = project.repo | default: project.slug %}
+    
+    {% if repo_name contains 'http://' or repo_name contains 'https://' %}
+      {% assign repo_url = repo_name %}
+    {% elsif repo_name contains '/' %}
+      {% assign repo_url = 'https://github.com/' | append: repo_name %}
+    {% else %}
+      {% assign repo_url = 'https://github.com/DocOps/' | append: repo_name %}
+    {% endif %}
+    
+    {% if project.path %}
+      {% assign repo_url = repo_url | append: '/tree/main/' | append: project.path %}
+    {% endif %}
+    
+    {% comment %} Render linked version {% endcomment %}
+    <a href="{{ repo_url }}" target="_blank" class="project-version-link" title="View on GitHub">
+      {{ project.vrsn }}
+      <i data-lucide="github" class="inline-icon"></i>
+    </a>
+  {% else %}
+    {% comment %} Render plain version {% endcomment %}
+    {{ project.vrsn }}
+  {% endif %}
+{% endif %}

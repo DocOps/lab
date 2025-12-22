@@ -1,0 +1,29 @@
+{% assign projects = site.data.docops-lab-projects.projects %}
+{% assign project = projects | where: 'slug', include.slug | first %}
+{% unless project %}{% assign project = projects | where: 'name', include.slug | first %}{% endunless %}
+
+{% if project %}
+<div class="project-page-content">
+  
+  <!-- Project Line and Description (missing from layout header) -->
+  {% if project.line %}
+  <div class="project-tagline">
+    {{ project.line | asciidocify }}
+  </div>
+  {% endif %}
+  
+  {% if project.desc %}
+  <div class="project-description">
+    {% if project.card == "readme" %}
+      {{ site.data.built.attrs[project.slug] | asciidocify }}
+    {% else %}
+      {{ project.desc | asciidocify }}
+    {% endif %}
+  </div>
+  {% endif %}
+  
+  <!-- Comprehensive Project Details -->
+  {% include project-details.html slug=include.slug %}
+
+</div>
+{% endif %}

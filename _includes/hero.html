@@ -1,0 +1,29 @@
+<!-- Hero Section -->
+<section id="{{ include.id | default: 'hero' }}" class="hero-section {{ include.class }}">
+  <div class="container">
+  {% if include.title %}
+  <h1>{{ include.title }}</h1>
+  {% endif %}
+  
+  {% if include.subtitle %}
+  <div class="subtitle intro" id="tagline">{{ include.subtitle | asciidocify }}</div>
+  {% endif %}
+  
+  {% if include.intro %}
+  <div class="intro" id="intro">
+    {{ include.intro | asciidocify }}
+  </div>
+  {% endif %}
+  
+  {% if include.buttons %}
+  <div class="hero-buttons">
+    {% for button in include.buttons %}
+    <a href="{{ button.url }}" class="btn {% if button.style %}btn-{{ button.style }}{% endif %}">
+      {% if button.icon %}<i data-lucide="{{ button.icon }}"></i>{% endif %}
+      {{ button.text }}
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+  </div>
+</section>
