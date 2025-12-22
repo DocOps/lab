@@ -38,14 +38,12 @@ end
 desc 'Validate projects YAML file'
 task :validate_projects do
   require_relative 'scripts/validate-projects-yaml'
-  
+
   file_path = '_data/docops-lab-projects.yml'
   puts "🔍 Validating #{file_path}..."
   validator = ProjectsYAMLValidator.new(file_path)
-  
-  unless validator.validate
-    exit 1
-  end
+
+  exit 1 unless validator.validate
 end
 
 # Utility: Convert arbitrary HTML to Markdown using our ReverseMarkdown extensions
