@@ -1,0 +1,9 @@
+# tag::issuer-rhx[]
+- name: Issuer and ReleaseHx
+  type: utility
+  card: |
+    Issue-ticket creation and release-history management tools that integrate with Jira, GitHub, and GitLab. Bulk-create work items from a single YAML file, then generate release notes and changelogs in AsciiDoc, Markdown, YAML, JSON, HTML, or PDF formats at release time.
+  icon: logs
+  sort: 6
+  href: /blog/issuer-releasehx-news/
+# end::issuer-rhx[]

@@ -1,0 +1,54 @@
+---
+layout: projects  
+title: "Projects by Category"
+permalink: /projects/by-category/
+group_by: tag
+icon: tag
+---
+
+<div class="projects-report">
+
+  {% assign all_projects = site.data.docops-lab-projects.projects %}
+  {% assign tags_array = site.data.built.projects_metadata.tags %}
+
+  {% include projects-by-meta-toc.html metas=tags_array meta_string=page.group_by icon="tag" %}
+  {% assign popular = "" %}
+
+  {% for tag in site.data.built.projects_metadata.tags %}
+  {% assign tag_projects = all_projects | where_exp: 'project', 'project.tags contains tag' %}
+  {% assign tag_by_type = all_projects | where: 'type', tag %}
+  {% assign tag_projects = tag_projects | concat: tag_by_type | uniq %}
+  {% if tag_projects.size > 0 %}
+  <section class="tag-section" id="tag-{{ tag | slugify }}">
+    <h2>{{ tag }}</h2>
+    <div class="projects-micro-grid">
+      {% for project in tag_projects %}
+        {% include project-micro.html project=project projects=all_projects %}
+      {% endfor %}
+    </div>
+  </section>
+    {% if tag_projects.size > 3 %}
+      {% assign popular = popular | append: "," | append: tag %}
+    {% endif %}
+  {% endif %}
+  {% endfor %}
+</div>
+
+{% assign popular_projects = popular | split: "," %}
+<!-- javascript to add a .popular class to any .meta-toc-link matcing all tags in the popular_projects Array -->
+<script>
+  // first make a constant out of popular_projects
+  const popular_projects = {{ popular_projects | jsonify }};
+  // then loop through each popular project and add the .popular class to the matching .toc-link-{{ meta | downcase | replace: ' ', '-' }}
+  popular_projects.forEach(tag => {
+    const tag_class = `.toc-link-${tag.toLowerCase().replace(/ /g, '-')}`;
+    const tag_element = document.querySelector(tag_class);
+    if (tag_element) {
+      tag_element.classList.add('popular');
+      // add a popover to the element
+      tag_element.setAttribute('data-popover', 'Most Popular');
+      tag_element.setAttribute('data-popover-position', 'top');
+    }
+  });
+</script>
+{% include dependency-popover.html %}

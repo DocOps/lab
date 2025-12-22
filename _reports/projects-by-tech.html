@@ -1,0 +1,31 @@
+---
+layout: projects  
+title: "Projects by Technology"
+permalink: /projects/by-tech/
+group_by: tech
+icon: cpu
+---
+
+<div class="projects-report">
+
+  {% assign all_projects = site.data.docops-lab-projects.projects | sort: 'slug' %}
+  {% assign techs_array = site.data.built.projects_metadata.tech %}
+
+  {% include projects-by-meta-toc.html metas=techs_array meta_string=page.group_by icon="cpu" %}
+  
+  {% for tech in techs_array %}
+  {% assign tech_projects = all_projects | where_exp: 'project', 'project.tech contains tech' %}
+  {% if tech_projects.size > 0 %}
+  <section class="tech-section" id="tech-{{ tech | slugify }}">
+    <h2>{{ tech }}</h2>
+    <div class="projects-micro-grid">
+      {% for project in tech_projects %}
+        {% include project-micro.html project=project projects=all_projects %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+</div>
+
+{% include dependency-popover.html %}

@@ -1,0 +1,33 @@
+---
+layout: projects  
+title: "Projects by Type"
+permalink: /projects/by-type/
+group_by: type
+---
+
+<div class="projects-report">
+
+  {% assign all_projects = site.data.docops-lab-projects.projects | where_exp: "project", "project.wave != nil" | sort: 'slug' %}
+  {% assign type_definitions = site.data.docops-lab-projects['$meta']['types'] %}
+  
+  {% for type_def in type_definitions %}
+  {% assign type_projects = all_projects | where: 'type', type_def.slug %}
+  {% if type_projects.size > 0 %}
+  <section class="type-section" id="type-{{ type_def.slug | slugify }}">
+    <h2>{{ type_def.head }}</h2>
+    <p class="type-description">{{ type_def.desc }}</p>
+    <div class="projects-profiles">
+      {% for project in type_projects %}
+    {% include project-profile.html
+         project=project
+         projects=all_projects
+         show_tags=true
+         scope="mini" %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+</div>
+
+{% include dependency-popover.html %}

@@ -1,0 +1,72 @@
+nav:
+  top: []
+
+sections:
+  hero:
+    file: hero.html
+    properties:
+      title: DocOps Lab
+      subtitle: Bridging the gap between documentarians and the world of code
+      intro: |
+        I am working to distribute the power of docs-as-code for non-developers.
+        Too many technical writers, project managers, paralegals, researchers, and educators
+        are stuck with legacy document tools that constrain their potential.
+
+  mission:
+    file: container.html
+    properties:
+      title: The Bridge I'm Building
+      desc: |
+        Through several interconnected open source projects, I'm creating pathways for
+        "tech-savvy non-programmers" to harness developer tools for document operations.
+      class: text-center
+
+  featured-projects:
+    file: project-cards.html
+    properties:
+      title: Featured Projects
+      class: bg-light
+    nodes: "{{ site.data.docops-lab-projects | where: 'star', true }}"
+
+  cta:
+    file: cta.html
+    properties:
+      title: Join the Movement
+      desc: |
+        The goal of DocOps Lab is to create a "docs-as-code" ecosystem (and community)
+        that enables developers and non-developers alike to leverage modern documentation practices
+        through a proper set of technologies, strategies, and conventions.
+      buttons:
+        - text: Follow DocOps Lab
+          url: https://github.com/DocOps
+          icon: github
+        - text: Join Community Chat
+          url: https://docopslab.zulipchat.com
+          icon: message-circle
+          style: secondary
+  
+  key-content:
+    file: key-content.html
+    properties:
+      title: Resources
+      class: bg-light
+      data:
+        - text: Projects by Type
+          href: /projects/by-type/
+          icon: folder
+        - text: Projects by Timeline
+          href: /projects/by-wave/
+          icon: calendar
+        - text: Projects by Technology
+          href: /projects/by-tech/
+          icon: cpu
+        - text: Contributor's Guide
+          href: /docs/contributing/
+          icon: book-open
+        - text: DocOps Lab Mission
+          href: /docs/mission/
+          icon: target
+        - text: DocOps Lab Blog
+          href: /blog/
+          icon: rss
+        

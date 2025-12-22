@@ -1,0 +1,1259 @@
+# TOC:
+# Core Content
+# Environment
+# Frameworks
+# APIs
+# Web Apps
+# Utilities
+# Jekyll Extensions
+#   Plugins
+#   Themes
+# Schemas
+# Sites
+# Misc
+# The Plan
+
+projects:
+
+# CORE CONTENT
+
+## AYL DocStack:
+  - name: AYL DocStack
+    slug: ayl-docstack
+    type: content
+    desc: |
+      A highly opinionated guide to maintaining technical, legal, educational, and other types of documentation in a technology stack revolving around AsciiDoc, YAML, and Liquid.
+      Also standardized around utilities such as Git, Docker, Asciidoctor, Jekyll, and Clide.
+      Styles, conventions, and bootstrapping tools to get you started in the world of docs-as-code;
+       references, deep-dives, and tutorials to help you excel.
+    line: An open-source tech stack, frameworks, and guidance for planning and implementing professional docs-as-code projects
+    star: true
+    page: true
+    subjects:
+      - name: AYL Manifesto
+        path: README.adoc
+        done: 95%
+        type: explainer
+      - name: Matrix of SSGs that support AsciiDoc markup
+        slug: asciidoc-ssgs
+        href: https://gist.github.com/briandominick/e5754cc8438dd9503d936ef65fffbb2d
+        done: 100%
+        type: reference
+        live: true
+      - name: API Decision Matrix
+        slug: api-decision-matrix
+        href: https://gist.github.com/briandominick/3ffab6be460fbde799aa34e0a42a4299
+        done: 100%
+        type: reference
+        live: true
+      # - Matrix of AsciiDoc Frameworks (asciidoc-frameworks)
+      - name: Docs-as-Code Style Guides 
+        slug: docs-as-code-style-guides
+        type: style guide
+      - name: Content Semantics
+        slug: semantics-content
+        path: data/semantics-content.yml
+        done: 90%
+        type: style guide
+      - name: Block Semantics
+        slug: semantics-block
+        path: data/semantics-block.yml
+        done: 90%
+        type: style guide
+      - name: Inline Semantics
+        slug: semantics-inline
+        path: data/semantics-inline.yml
+        done: 90%
+        type: style guide
+      - name: Free, Open Source Software Licenses
+        slug: foss-licenses
+        done: 99%
+        type: reference
+      - name: Glossary
+        done: 80%
+        type: reference
+        slug: glossary
+    deps: [docops-box]
+    done: 90%
+    vrsn: V1
+    wave: 1
+    card: readme
+    icon: layers
+    sort: 3
+    tech: [AsciiDoc,YAML,Liquid,Git,Docker]
+    tags: [tech stack,lightweight markup]
+
+## Docs-as-Code School:
+  - name: Docs-as-Code School
+    slug: docs-as-code-school
+    type: content
+    desc: |
+      Deep-dive courses and other resources for learning general docs-as-code methods.
+      Initially focused on using AYL DocStack tools and strategies to tackle complex documentation tasks and projects.
+      Includes nascent AsciiDoc EDU platform/framework code.
+    line: Learn to author and manage documents the way progrmamers do.
+    star: true
+    page: true
+    card: readme
+    icon: school
+    tags: [education,training,technical writing,versioning,semantics,Dockerized]
+    tech: [AsciiDoc,YAML,Liquid,Git,GitHub,Reveal.js,HTML,CSS/Sass,JavaScript]
+    done: 60%
+    vrsn: 0.1.0
+    sort: 2
+    subjects:
+      # COURSES
+      - name: "Deep Semantics: Structure, Markup, Styling, and Effects for Technical Content"
+        id: semantics
+        slug: deep-semantics
+        type: course
+        done: 80%
+      - name: "Divergence Handling: Versioning Strategy for Software Products and Documentation"
+        id: versioning
+        slug: versioning
+        type: course
+        done: 60%
+      - name: "Work Like a Coder: Exploit Developers' Tools and Code-like Documentation Practices"
+        id: worklike
+        slug: work-like-coder
+        type: course
+        done: 40%
+      - name: "Code the Docs: Dynamism, Structure, and Semantics for Technical Writing with AsciiDoc"
+        id: codedocs
+        slug: code-the-docs
+        type: course
+        done: 10%
+      - name: "DocOps for Law: Managing Legal Documents the Coder's Way"
+        id: lawdocops
+        slug: legal-docops
+        type: course
+        done: 10%
+      - name: "Docs as Defs: Using YAML to Define and Document UIs and APIs"
+        id: defsdocs
+        slug: defs-as-docs
+        type: course
+        done: 20%
+      - name: "Next Level READMEs: Seeding and Single-Sourcing Codebases with AsciiDoc"
+        id: readmes
+        slug: next-level-readmes
+        type: course
+        done: 10%
+      # LESSONS
+      - name: "Internal Docs: First-classing and Single-sourcing Documentation Across the Public/Private Divide"
+        id: internal-docs
+        slug: internal
+        type: lesson
+        done: 50%
+        note: Slides complete; article needed.
+      # TUTORIALS
+      - name: "Using Jekyll for OpenAPI Documentation Delivery"
+        slug: jekyll-api-docs-delivery
+        type: tutorial
+        done: 50%
+        deps: [jekyll-openapi]
+      - name: "Mapping Your Product and Docs Versioning Scheme with YAML"
+        slug: mapping-versions
+        line: Use OpenVMY to document all manner of product and documentation divergence.
+        type: tutorial
+        done: 30%
+        deps: [versioneer]
+      - name: "Supercharge Your Jekyll Docs Site"
+        slug: jekyll-supercharge
+        type: tutorial
+        done: 0%
+        deps: [jekyll-asciidoc-ui]
+      - name: "README.adoc-Driven Development and Documentation (RADDD)"
+        title: "README.adoc-Driven Development and Documentation"
+        desc: |
+          Way beyond "start with a README file" -- advice for true docs-first programming.
+          Use an AsciiDoc-formatted README file to single source key product attributes for reuse throughout the docs and product code.
+        slug: readme-asciidoc-ddd
+        type: tutorial
+        done: 0%
+        deps: [adocbook]
+      - name: "Modern Documentation from Structured AsciiDoc"
+        slug: structured-asciidoc
+        type: tutorial
+        deps: [adocbook]
+        done: 0%
+    wave: 1
+
+## Jekyll/AsciiDoc Extension Platform Docs:
+  - name: Jekyll/AsciiDoc Extension Platform Docs
+    slug: jekyll-asciidoc-ext-docs
+    type: content
+    desc: |
+      Disambiguation and coordination of the core components of an application based in our Jekyll/Asciidoctor-based publishing framework.
+      These utilities make up the Jekyll _publishing_ aspect of a typical Asciidoctor, Jekyll, and Clide-based toolchain, but they can readily be used independent of that toolchain.
+
+      This is a unified docs site for the various plugins and themes based on jekyll-asciidoc-ui.
+      The intention is for this plugin to differentially feed all of these extensions with core options and a means for each plugin to incorporate these libraries into its own gem or application.
+    line: A unified documentation site for Jekyll/AsciiDoc extensions, plugins, and themes.
+    vrsn: '0.0' # unversioned website
+    tags: [documentation,website]
+    tech: [Jekyll,AsciiDoc,Liquid,HTML,CSS/Sass,JavaScript]
+    wave: 1
+    done: 80%
+    icon: book-open
+    deps: [jekyll-asciidoc-ui,jekyll-openapi,adocBook,asciidocsy-jekyll-theme]
+
+
+# ENVIRONMENT
+
+## DocOps Box:
+# tag::docops-box[]
+  - name: DocOps Box
+    slug: docops-box
+    type: environment
+    desc: |
+      Everything needed for managing customized Ruby, Node.js, Python, and Pandoc environments via Docker containers, ready for interactive work.
+      Including the popular ZShell with handy configurations.
+      Alternatively builds a production-ready ("live") image for automation/deployment.
+    line: Up and running with Ruby, Node, Zsh, Pandoc, and Git for document operations with interactive and production-ready Docker images.
+    star: true
+    page: true
+    done: 90%
+    vrsn: 0.1.0
+    wave: 0
+    card: readme
+    icon: container
+    tech: [Docker,Bash,Zsh,Ruby,Git,Pandoc,Node.js,Python]
+    tags: [development,automation,containers,virtualization,Dockerized]
+    sort: 1
+# end::docops-box[]
+  
+  - name: issuer-rhx
+    slug: issuer-rhx
+    type: environment
+    desc: |
+      A Docker image preconfigured with Issuer and ReleaseHx CLIs and their dependencies.
+      For managing issue tickets and release notes/changelogs in Jira, GitHub, and GitLab.
+    line: Docker image preconfigured with Issuer and ReleaseHx CLIs for ticket and change management
+    vrsn: "0.2.1/0.1.0"
+    tags: [issues,release history,changelog,CLI,API,Dockerized]
+    tech: [Docker,Bash,Ruby,GitHub Issues,GitLab Issues,Jira]
+    wave: 0
+    done: 90%
+    icon: logs
+    deps: [issuer, releasehx]
+
+
+# FRAMEWORKS (DATA AND UI DEFINITIONS)
+
+## SchemaGraphy:
+  - name: SchemaGraphy
+    slug: schemagraphy
+    type: framework
+    desc: |
+      Framework for user-friendly schema definitions for data and content alike.
+      Includes SGYML, an extension of YAML, and URIx, for extending URIs with data paths, schema assignment, and more.
+      Provides its own specifications and an CLI (graphy) and Ruby API for validating and parsing SchemaGraphy data objects, datasets, and text objects.
+      Define the expected structure of YAML data objects and AsciiDoc documents, link YAML documents, and more.
+      Eventually to include ports for JavaScript, Python, and more.
+    line: A framework for defining, validating, and parsing data and text objects using YAML and AsciiDoc.
+    memo: Currently a module in ReleaseHx 0.1.0. (Needs spin-off.)
+    star: true
+    deps: [sourcerer]
+    done: 40%
+    vrsn: V1-beta
+    wave: 2
+    card: readme
+    page: true
+    icon: grid-2x2-check
+    sort: 4
+    tech: [SGYML,YAML,JSON,JMESPath,JSONPath,JSON Schema,AsciiDoc,Ruby]
+    tags: [schemas,data,text,validation,parsing,serialization,Dockerized,API]
+    # libs:
+      # NEEDS TO BE COMPLETED
+
+## CliGraphy:
+  - name: CliGraphy
+    slug: cligraphy
+    type: framework
+    desc: |
+      Implementation of SchemaGraphy for using YAML/Liquid to define and even script commandline interfaces.
+      This is an API/platform for configuring custom CLIs for document processing and manipulation.
+    line: Define and script commandline interfaces using YAML and Liquid markup
+    vrsn: 0.1.0
+    tags: [CLI,API,schema,Dockerized]
+    tech: [YAML,SGYML,Liquid,Ruby]
+    wave: 2
+    done: 30%
+    icon: terminal
+    deps: [SchemaGraphy, schemagraphy-open-cli-spec-ruby]
+    libs: [open-cli]
+
+## FormaGraphy:
+  - name: FormaGraphy
+    slug: formagraphy
+    type: framework
+    desc: |
+      Generate dynamic, jQuery-backed HTML5 forms from YAML files and collect data online.
+      Build interactive web forms with validation, conditional logic, and data collection capabilities.
+    line: Generate dynamic HTML5 forms from YAML definitions with jQuery backing
+    vrsn: 0.1.0
+    tags: [forms,web,schema,data collection,Dockerized,API]
+    tech: [YAML,SGYML,HTML,CSS,JavaScript,jQuery]
+    wave: 2
+    done: 40%
+    icon: form-input
+    deps: [CliGraphy, SchemaGraphy, schemagraphy-open-formy-spec-ruby]
+    libs: [OpenFormY]
+
+## Versioneer:
+  - name: Versioneer
+    slug: versioneer
+    type: framework
+    desc: |
+      A model for describing, defining, and mapping all manner of product and documentation divergence, enabling other systems to coordinate and conform to them.
+      Presents the logic for VMYML markup framework.
+    line: Map and coordinate product and documentation versioning with VMYML markup
+    vrsn: 0.1.0
+    tags: [versioning,schema,documentation,product management,Dockerized,API]
+    tech: [YAML,SGYML,Git]
+    wave: 2
+    done: 15%
+    icon: git-branch
+    deps: [schemagraphy]
+    libs: [OpenVMY]
+
+## OpenPathYML:
+  - name: OpenPathYML
+    slug: openpathy
+    type: framework
+    desc: |
+      A YAML syntax for defining, validating, documenting, and spawning fileset structures.
+      Create reproducible directory structures and file templates with comprehensive validation.
+    line: Define, validate, and spawn fileset structures using YAML syntax
+    vrsn: 0.1.0
+    tags: [filesystem,schema,project structure,templates,Dockerized,API]
+    tech: [YAML,SGYML,Bash,Ruby]
+    wave: 1
+    done: 70%
+    icon: folder-tree
+    libs: [OpenPathYML]
+
+# FRAMEWORKS (DOCUMENT[ATION] OPS)
+
+## Clientele-as-Code:
+  - name: Clientele-as-Code
+    slug: clientele-as-code
+    live: true
+    type: framework
+    line: Invoice and contract management with YAML and AsciiDoc
+    desc: |
+      For freelancers and agencies.
+      Manage contracts and invoices in a code-like manner.
+      Track payment data as YAML and generate invoices in PDF and HTML, via Asciidoctor.
+      Maintain a prime contract in AsciiDoc, and have clients digitally sign private variants using Git and GPG.
+    vrsn: 0.1.0
+    tags: [business,invoicing,contracts,freelancing,legal tech,Dockerized]
+    tech: [YAML,AsciiDoc,Git,GPG,PDF,Docker]
+    wave: 0
+    done: 100%
+    icon: briefcase
+
+## AsciiDoc Ops:
+  - name: AsciiDoc Ops for Tech Docs
+    slug: asciidoc-ops
+    type: framework
+    desc: | 
+      * True single-sourcing framework for managing technical documents using YAML, AsciiDoc, Jekyll, Liquid, and clide.
+      * Builds modern websites and PDFs.
+      * Enables highly customized instances with version control, scripted builds, integrated search.
+      * Includes schemas for YAML objects and lots of Liquid templates for generating YAML, AsciiDoc, and HTML output.
+    line: True single-sourcing framework for technical documentation sites, slides, and PDFs using AsciiDoc, YAML, and Liquid
+    vrsn: 0.1.0
+    tags: [technical writing,single-sourcing]
+    tech: [YAML,AsciiDoc,Liquid,Git,Jekyll,Ruby]
+    wave: 3
+    done: 50%
+    icon: layers
+    deps: [clide, LiquiDoc, SchemaGraphy, ayl-docstack]
+    page: true
+
+## LegalDoc Ops:
+  - name: LegalDoc Ops
+    slug: legaldoc-ops
+    type: framework
+    desc: |
+      Framework for managing legal documents like code, with AsciiDoc and YAML.
+      Includes client intake, metadata handling, and document/contract drafting, rendering, and even digital signing procedures.
+      Even includes Creative Commons-licensed starter templates for end-of-life planning documents and employment contracts, with proceeds from professional use to benefit National Lawyers Guild.
+    line: Manage legal documents like code with AsciiDoc and YAML
+    vrsn: 0.1.0
+    tags: [legal tech,contracts,document management,legal writing]
+    tech: [YAML,AsciiDoc,Liquid,Git,GPG]
+    wave: 3
+    done: 40%
+    icon: scale
+    deps: [clide, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
+    page: true
+
+## AsciiDoc EDU:
+  - name: AsciiDoc EDU
+    slug: asciidoc-edu
+    type: framework
+    desc: |
+      The Educational Document Utilities framework for authoring and maintaining curriculum matter, such as textbooks, workbooks, slide presentations, quizzes, exams, grades, and so forth.
+      Share curriculum in forkable repos, which other instructors can use to adapt to their own situations.
+      Generate study materials, presentations, and tests, all from a single source of truth.
+      Will extract framework from docs-as-code-school repo.
+    line: Framework for authoring curriculum with AsciiDoc, YAML, and Liquid
+    vrsn: 0.1.0
+    tags: [education,curriculum,presentations]
+    tech: [YAML,AsciiDoc,Liquid,Git,Reveal.js,HTML]
+    wave: 3
+    done: 30%
+    icon: graduation-cap
+    note: Currently developed as part of Docs-as-Code School.
+    deps: [clide, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
+    page: true
+
+# APIs
+
+## Sourcerer:
+  - name: Sourcerer
+    slug: sourcerer
+    type: ruby-api
+    desc: |
+      A library for pre-build and build-time documentation processing for strict single sourcing of application docs.
+      Provides Ruby API for extracting, parsing, and manipulating AsciiDoc content and YAML/SGYML data programmatically.
+    line: Ruby API for pre-build and build-time AsciiDoc/YAML processing
+    vrsn: 0.1.0
+    tags: [API,documentation,single-sourcing]
+    tech: [Ruby,AsciiDoc,Asciidoctor]
+    wave: 1
+    done: 70%
+    icon: gem
+    memo: Currently a module in ReleaseHx 0.1.0. (Needs spin-off.)
+    deps: [SchemaGraphy]
+
+## SchemaGraphy REST:
+  - name: SchemaGraphy REST
+    slug: schemagraphy-rest
+    type: rest-api
+    desc: |
+      A RESTful API service for processing schema/data and schema/text combinations without installing SchemaGraphy libaries locally.
+    line: REST API for testing and processing SchemaGraphy schemas.
+    vrsn: 0.1.0
+    tags: [sandbox,schemas,web service,validation,Dockerized]
+    tech: [Ruby on Rails,JavaScript,Stimulus.js,HTML,CSS]
+    wave: 4
+    done: 0%
+    icon: cloud
+    deps: [SchemaGraphy]
+
+## WEB APPS
+
+## SchemaGraphy Cloud:
+  - name: SchemaGraphy Cloud
+    slug: schemagraphy-cloud
+    type: web-app
+    desc: |
+      A fiddle-like web application for testing and demonstrating schema/data and schema/text combinations.
+      Online playground for experimenting with SchemaGraphy schemas and validations.
+    line: Web app for testing and demonstrating SchemaGraphy schemas online
+    vrsn: 0.1.0
+    tags: [sandbox,schemas,web app,web service,validation]
+    tech: [JavaScript,Stimulus.js,HTML,CSS]
+    wave: 4
+    done: 0%
+    icon: cloud
+    deps: [schemagraphy-rest]
+
+
+# UTILITIES
+
+## ReleaseHx:
+  - name: ReleaseHx
+    slug: releasehx
+    type: utility
+    desc: |
+      A utility for managing product release history, notes, and changelog.
+      Includes a Ruby API and CLI, `releasehx`/`rhx`.
+      Includes SchemaGraphy prototype.
+    line: Manage product release notes and changelog with CLI and Ruby API
+    vrsn: 0.1.0
+    tags: [issues,release history,changelog,product management,versioning,CLI,API,Dockerized]
+    tech: [YAML,Ruby,AsciiDoc,GitHub Issues,GitLab Issues,Jira,Liquid,ERB,JMESPath,JSONPath]
+    wave: 0
+    done: 90%
+    icon: history
+    page: true
+
+## Issuer:
+  - name: Issuer
+    slug: issuer
+    live: true
+    type: utility
+    desc: |
+      A CLI for bulk creating issues in cloud-based systems like Jira and GitHub Issues.
+      Introduces an open standard called IMYML for defining individual issue entries and default settings such as global labels, milestones, and assignees.
+    line: Bulk create issues in Jira and GitHub from YAML definitions
+    vrsn: 0.2.1
+    tags: [issues,issue management,CLI,automation,Dockerized,API]
+    tech: [YAML,IMYML,GitHub Issues,Jira,Ruby]
+    wave: 0
+    done: 100%
+    icon: logs
+    page: true
+
+## SubTxt
+  - name: SubTxt
+    slug: subtxt
+    live: true
+    type: utility
+    desc: |
+      A CLI utility for substituting text in files based on regex definition pairs.
+      Use SubTxt to perform bulk text substitutions across multiple files using simple YAML mapping files.
+    line: CLI utility for bulk text substitutions based on regex pattern pairs
+    vrsn: 0.3.0
+    tags: [CLI,text processing,automation,Dockerized]
+    tech: [YAML,Ruby,Bash]
+    wave: 0
+    done: 100%
+    icon: text-wrap
+
+## LiquiDoc:
+  - name: LiquiDoc # refactor
+    slug: liquidoc
+    type: utility
+    desc: |
+      Low-code template parser and build tool, specializing in Liquid and AsciiDoc, scriptable with YAML and Liquid.
+      Includes complete Ruby API and CLI for document generation and processing workflows.
+    line: Template parser and build tool for Liquid and AsciiDoc, scriptable with YAML
+    vrsn: 1.0.0 # (v0.13+ needs complete refactor)
+    tags: [templates,build tool,liquid,CLI,API,Dockerized]
+    tech: [Ruby,Liquid,AsciiDoc,YAML,Asciidoctor]
+    wave: 2
+    done: 15%
+    icon: droplets
+    deps: [schemagraphy, Sourcerer, cligraphy]
+
+## adocBook:
+  - name: adocBook
+    slug: adocbook
+    type: utility
+    desc: |
+      Technically a plugin for Jekyll SSG that paginates AsciiDoc documents, inspired by mdBook.
+      Basically, it breaks a book down into a website, wrapping it in Just the AsciiDocs theme.
+    line: Publishing tool that paginates AsciiDoc documents into chunked sites, inspired by mdBook
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,pagination,documentation,Dockerized,API,CLI]
+    tech: [Jekyll,AsciiDoc,Ruby,Liquid,HTML,CSS]
+    wave: 1
+    done: 85%
+    icon: notebook-text
+    deps: [jekyll-just-the-asciidocs,jekyll-asciidoc-ui]
+    page: true
+
+## graphy:
+  - name: graphy
+    slug: graphy
+    repo: schemagraphy
+    type: utility
+    desc: |
+      CLI utility for executing SchemaGraphy operations.
+      Use graphy to validate, parse, and manipulate SGYML data objects and AsciiDoc documents according to SchemaGraphy definition documents.
+    line: CLI utility for managing data and text objects with SchemaGraphy definitions
+    vrsn: 0.1.0
+    deps: [SchemaGraphy]
+    tags: [CLI,schema,data,text,validation,parsing,Dockerized]
+    tech: [Ruby,SGYML,YAML]
+    wave: 1
+    done: 70%
+    icon: grid-2x2-check
+
+## opathy:
+  - name: opathy
+    slug: opathy
+    repo: openpathyml
+    type: utility
+    desc: |
+      CLI utility for executing OPYML operations.
+      Use opathy to validate, initiate, document, or abstract filesets according to OpenPathy definition documents.
+    line: CLI utility for managing filesets with OpenPathYML definitions
+    vrsn: 0.1.0
+    deps: [SchemaGraphy]
+    tags: [CLI,schema,filesystem,project structure,validation,Dockerized]
+    tech: [Ruby,YAML,SGYML,Bash]
+    wave: 1
+    done: 70%
+    icon: folder-tree
+
+## formy:
+  - name: formy
+    slug: formy
+    repo: openformyml
+    type: utility
+    desc: |
+      CLI utility for executing OpenFormY operations.
+      Use formy to validate, initiate, document, or abstract HTML5 forms according to OpenFormYML definition documents.
+    line: CLI utility for managing HTML5 forms with OpenFormYML definitions
+    vrsn: 0.1.0
+    deps: [SchemaGraphy]
+    tags: [CLI,schema,forms,validation,Dockerized]
+    tech: [Ruby,YAML,SGYML,HTML,CSS,JavaScript,jQuery]
+    wave: 2
+    done: 70%
+    icon: text-cursor-input
+
+## clide:
+  - name: clide
+    slug: clide
+    type: utility
+    desc: |
+      A domain-customized CommandLine-Integrated Documentation Environment utility for automating document management tasks, including project initiation, new-file stubbing, scripted-build execution, and Git-related functions.
+      A way to organize and execute your own scripted procedures using simple, semantic commands.
+      Clide has preset grammars and workflows for different domains/frameworks: tech docs/AsciiDoc Ops, legal docs/LegalDoc Ops, and educational docs (Liquid EDU).
+    line: Domain-customized CLI for automating document management workflows
+    vrsn: 0.1.0
+    tags: [CLI,automation,documentation,workflow,project management,Dockerized]
+    tech: [Ruby,YAML,Git,Bash]
+    wave: 2
+    done: 30%
+    icon: rabbit
+    deps: [LiquiDoc,SchemaGraphy,CliGraphy]
+
+## docksh:
+  - name: docksh
+    slug: docksh
+    repo: docops-box
+    type: utility
+    desc: |
+      Manager for DocOps Docker images and containers.
+      Simplifies building, running, and managing DocOps development environments via Docker.
+    line: Manager for DocOps Docker images and containers
+    vrsn: 0.1.0
+    tags: [CLI,containers,development,environment]
+    tech: [Bash,Docker]
+    wave: 0
+    done: 85%
+    icon: ship-wheel
+
+## docopslab-dev:
+  - name: DocOps Lab Devtool
+    slug: docopslab-dev
+    repo: lab
+    path: gems/docopslab-dev
+    live: true
+    type: utility
+    desc: |
+      A development utility that centralizes authoring of common configs, styles/rules, and documentation for sharing across all DocOps Lab project repos.
+      Provides a numer of Rake tasks for maintaining consistency of distributed libraries and assets used in _development_ of DocOps Lab tools but not necessary for _using_ said tools.
+    line: Aka `labdev`, a tool for distributing common libraries and assets across DocOps Lab project repos
+    vrsn: 0.1.0
+    tags: [development,environment]
+    tech: [CLI,Ruby,Docker,Rake,Vale,RuboCop,YAML,Bash,ShellCheck]
+    wave: 0
+    done: 100%
+    icon: tool-case
+
+# ## hookr:
+#   - name: hookr
+#     slug: hookr
+#     type: utility
+#     desc: |
+#       A CLI tool for managing Git Hooks (extensions) by finding, downloading, and managing the application of hooks to your various Git repos.
+#       Distributed as a Bash script that can download and install Git hooks, either globally or in a given project's `.git/hooks` directory.
+#       Store hook scripts as individual files and manage the order of execution on a per-repo basis, or maintain a global library of hooks.
+
+#       * registers your Git repos.
+#       * creates a library of hooks, either at `~/.git/hooks` or at `<project>/.git/hooks`.
+#     line: Manage Git hooks with a CLI tool for finding, downloading, and applying hooks to your Git repos
+#     vrsn: 0.1.0
+#     icon: webhook
+#     wave: 3
+#     tech: [Bash,Git]
+#     tags: [CLI,automation]
+#     done: 20%
+    
+# JEKYLL EXTENSIONS
+
+## jekyll-ext
+  - name: Jekyll Extender
+    slug: jekyll-extender
+    type: jekyll-ext
+    desc: |
+      A plugin that extends Jekyll with core capabilities key to DocOps Lab Jekyll extension projects but broadly useful to Jekyll plugin and theme developers.
+    line: Core Jekyll extension capabilities for Jekyll projects
+    libs:
+      - migrate-assets
+      - config-defaults
+      - sgyml-support
+      - schemagraphy-filters
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,documentation,assets,configuration]
+    tech: [Jekyll,Ruby,Liquid]
+    wave: 1
+    done: 80%
+    icon: test-tube-diagonal
+    deps: [schemagraphy]
+    page: true
+
+## jekyll-asciidoc-ui:
+  - name: Jekyll AsciiDoc UI Extensions
+    slug: jekyll-asciidoc-ui
+    text: Jekyll Extensions
+    type: jekyll-ext
+    desc: |
+      Front-end assets and components that any Jekyll theme could use to add front-end AsciiDoc support.
+      Includes templates that interpret specified data objects, such as ReleaseHX and glossaries.
+      Adds some common Bootstrap components such as collapse, accordion, button, badge, card, and so forth.
+    line: Front-end assets and components for adding AsciiDoc support to Jekyll themes
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,documentation,UI,components,Bootstrap]
+    tech: [Jekyll,AsciiDoc,Liquid,YAML,Bootstrap,HTML,CSS/Sass,JavaScript,OpenAPI]
+    wave: 1
+    done: 70%
+    icon: test-tube-diagonal
+    star: true
+    page: true
+    card: readme
+    sort: 5
+    deps: [releasehx,ayl-docstack]
+    memo: AYL DockStack dependency is mainly for glossary functionality.
+    libs:
+      # General Jekyll extensions
+      - glossaries
+      - releasehx
+      - term-ext
+      - seo-ext
+      - code-copy
+      - toc-alt
+      - alt-markdown
+      - ai-crawl
+      - gdpr-dialog
+      - gdpr-enforce
+      # AsciiDoc integrators
+      - theme-ext
+      - asciidoc-dark-jtd
+      - asciidoc-light-docsy
+      - tabbed-panes
+      # Bootstrap-AsciiDoc integrators
+      - collapse
+      - accordion
+      - button
+      - badge
+      - card
+      - tooltip
+      - popover
+      # Page/topic semantics
+      - content-type
+      # Inline semantics
+      - inline-term
+      - inline-file
+      - trademarker
+      # AsciiDoc block semantics/manipulaton
+      - admonition-ext
+      - sidebar-ext
+      - code-truncate
+      - literal-prompt
+      - code-highlight
+
+## jekyll-openapi:
+  - name: jekyll-openapi
+    slug: jekyll-openapi
+    type: jekyll-ext
+    desc: |
+      A plugin that extends Jekyll SSG with AsciiDoc-friendly OpenAPI (OAS3) REST API docs.
+      Includes paginated format, AsciiDoc in description fields, and code-sample handling.
+    line: Jekyll plugin for AsciiDoc-friendly OpenAPI REST API documentation
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,API docs,REST,OpenAPI,documentation]
+    tech: [Jekyll,AsciiDoc,Liquid,YAML,OpenAPI,HTML,CSS,JavaScript]
+    wave: 1
+    done: 80%
+    icon: cloud-download
+    deps: [jekyll-asciidoc-ui]
+
+## jekyll-versioneer:
+  - name: jekyll-versioneer
+    slug: jekyll-versioneer
+    type: jekyll-ext
+    desc: |
+      A plugin that provides a version-handling framework to Jekyll sites.
+      Includes version-mapping data structures and front-end components.
+    line: Jekyll plugin for version-handling and mapping in documentation sites
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,versioning,documentation,version management]
+    tech: [Jekyll,YAML,SGYML,Liquid,HTML,CSS,JavaScript]
+    wave: 2
+    done: 70%
+    icon: git-branch
+    deps: [SchemaGraphy,jekyll-asciidoc-ui,versioneer]
+
+## jekyll-api-docs:
+  - name: jekyll-api-docs
+    slug: jekyll-api-docs
+    type: jekyll-ext
+    desc: |
+      A plugin that helps integrate API references generated by various tools that generate documentation from native code and comments.
+      Copies their headerless/footerless HTML output, infers metadata, inserts frontmatter, generates NavMap data.
+    line: Jekyll plugin for integrating API references from docstring tools
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,API docs,documentation,integration]
+    tech: [Jekyll,HTML,Ruby,Liquid]
+    wave: 4
+    done: 0%
+    icon: puzzle
+    deps: [jekyll-asciidoc-ui,jekyll-openapi]
+
+# JEKYLL THEMES & ENHANCEMENTS
+
+## Jekyll-AsciiDoc Lander
+  - name: Jekyll-AsciiDoc Lander
+    slug: jekyll-asciidoc-lander
+    type: jekyll-theme
+    desc: |
+      A simple landing page theme for Jekyll sites that use AsciiDoc.
+      Based on the Minimal Mistakes theme.
+      Includes AsciiDoc-friendly templates and jekyll-asciidoc-ui assets.
+    line: Simple landing page theme for Jekyll sites using AsciiDoc
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,landing page,minimal]
+    tech: [Jekyll,AsciiDoc,Liquid,HTML,CSS/Sass]
+    wave: 2
+    done: 10%
+    icon: layout-template
+    deps: [jekyll-asciidoc-ui]
+    note: Currently under development in link:/[DocOps LAB] site (THIS very site!).
+
+## AsciiDocsy:
+  - name: AsciiDocsy
+    slug: asciidocsy-jekyll-theme
+    live: true
+    type: jekyll-theme
+    desc: |
+      Jekyll website theme for version-controlled technical documentation across multiple products.
+      Accommodates extra categorization, navigation features, multiple search engines, AsciiDoc styling.
+      The most complex and most powerful product.
+    line: Jekyll theme for version-controlled technical documentation across multiple products (1.0 target release)
+    vrsn: 1.0.0
+    tags: [Jekyll plugin,documentation,versioning,multi-product,technical writing]
+    tech: [Jekyll,AsciiDoc,Liquid,YAML,HTML,CSS/Sass,JavaScript]
+    wave: 2
+    done: 100%
+    icon: panels-top-left
+    deps: [LiquiDoc, Graphy, SchemaGraphy, jekyll-asciidoc-ui, jekyll-versioneer]
+    note: AsciiDocsy is technically live, but will be refactored for 1.0.0 release.
+    docs:
+      user: https://asciidocsy.netlify.app/docs/theme
+
+## Just the AsciiDocs:
+  - name: Just the AsciiDocs
+    slug: jekyll-just-the-asciidocs
+    type: jekyll-theme
+    desc: |
+      Templates and plugin for extending the excellent Just the Docs Jekyll theme to be AsciiDoc friendly 
+      and accommodate components of AsciiDocsy as well as nav features.
+      This is a dark-mode theme highly consistent with the light-mode Material MkAdocs plugin.
+    line: AsciiDoc-friendly extension of Just the Docs Jekyll theme with dark mode
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,dark-mode,documentation,navigation]
+    tech: [Jekyll,AsciiDoc,Liquid,HTML,CSS/Sass,JavaScript]
+    wave: 1
+    done: 50%
+    icon: moon
+
+## Material MkAdocs:
+  - name: Material MkAdocs
+    slug: jekyll-material-mkadocs
+    type: jekyll-theme
+    desc: |
+      Templates and plugin for extending the Material-based MkDocs Jekyll theme, which mimics the MkDocs utility project and the Material Design website theme system.
+      This is a light-mode theme highly consistent with Just the AsciiDocs plugin.
+    line: Material Design-inspired Jekyll theme mimicking MkDocs with light mode
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,light-mode,material-design,documentation]
+    tech: [Jekyll,AsciiDoc,Liquid,HTML,CSS/Sass,JavaScript]
+    wave: 3
+    done: 0%
+    icon: mountain
+
+## Asciidoctor Jekyll Hyde:
+  - name: Asciidoctor Jekyll Hyde
+    slug: jekyll-asciidoctor-hyde
+    type: jekyll-theme
+    desc: |
+      Templates and plugin integrating the simplistic jekyll-hyde theme and the jekyll-asciidoc plugin and (optionally) adocBook chunking.
+    line: Simple Jekyll theme integrating Hyde with AsciiDoc support and optional chunking
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,minimal,documentation]
+    tech: [Jekyll,AsciiDoc,Liquid,HTML,CSS]
+    wave: 3
+    done: 0%
+    icon: test-tube-diagonal
+    deps: [adocBook, jekyll-asciidoc-ui]
+
+## YAML Agency:
+  - name: YAML Agency
+    slug: jekyll-agency-yaml
+    type: jekyll-theme
+    desc: |
+      100% YAML-sourced Agency Bootstrap landing page -- no messing with HTML.
+      Even ingest existing product data to source page elements.
+      Quickly add a landing page to your product docs, either for promoting your product itself, or for introducing the docs, or both, or one for each.
+    line: 100% YAML-sourced Agency Bootstrap landing page with no HTML required
+    vrsn: 0.1.0
+    tags: [Jekyll plugin,landing page,Bootstrap]
+    tech: [Jekyll,YAML,Bootstrap,HTML,CSS/Sass,JavaScript]
+    wave: 2
+    done: 70%
+    icon: layout-panel-top
+    memo: Found in AsciiDocsy repo
+
+# ## AsciiDoc Agency:
+#   - name: AsciiDoc Agency
+#     slug: jekyll-agency-asciidoc
+#     type: jekyll-theme
+#     desc: |
+#       Extends Agency Bootstrap theme with an AsciiDoc-sourced template for a product landing page.
+#       Uses custom AsciiDoc semantics (roles, etc) for definition of page elements.
+#       Quickly add a landing page to your product docs, either for promoting your product itself, or for introducing the docs, or  both, or one for each.
+#     deps: [jekyll-asciidoc-ui]
+#     tags: [landing page]
+#     tech: [Jekyll,AsciiDoc,Liquid,HTML,CSS/Sass,JavaScript]
+#     done: 40%
+#     icon: layout-panel-top
+#     memo: Found in AsciiDocsy repo
+
+# SCHEMA DEPENDENCIES
+
+## schema-specifications:
+  - name: schema-specifications
+    slug: schema-specifications
+    type: content
+    desc: |
+      Data Schema specifications or requirements docs for specialized SGYML (YAML) data objects, for governing flat-file data sources as code.
+      These standards specify how end users can create custom definitional documents out of these syntaxes and process them.
+      These natural-language specifications and their SGYML Schema counterparts dictate: how SchemaGraphy validators, parsers, and other supporting utilities should be configured to process SGYML documents in specific syntaxes.
+      This monorepo includes full documentaton of each "`spec`", though contents are mainly sourced in separate repos alongside a flagship API for the given syntax.
+    deps: [schemagraphy]
+    subjects:
+      - name: OpenHXY
+        desc: YAML-based syntax for product release history, notes, changelog
+        slug: open-release-history-sgyml
+      - name: OpenSGGY
+        desc: YAML-based syntax for style guide / glossary definition format (Open Style Guides)
+        slug: open-style-guide-glossary-sgyml
+      - name: OpenVMY
+        desc: YAML-based syntax for version (source and output) divergence mapping system
+        slug: open-version-management-sgyml
+      - name: OpenCLY
+        desc: YAML-based syntax for defining & documenting CLIs
+        slug: open-cli-definition-sgyml
+      - name: OpenFormY
+        desc: YAML-based syntax for defining & documenting Web forms
+        slug: open-form-definition-sgyml
+      - name: OpenCFGY
+        desc: YAML-based syntax for defining config files
+        slug: open-config-definition-sgyml
+      - name: OpenPathY
+        desc: |
+          A YAML-based syntax for defining, documenting, validating, & initiating fileset structures
+        slug: open-pathtree-sgyml
+      - name: OpenIMY
+        desc: YAML-based syntax for defining issue tickets
+        slug: open-issues-definition-sgyml
+    packs:
+      schemagraphy-specs:
+        desc: |
+          Specification schemas as Ruby libraries.
+          Automatically generated from Schema Specifications Repo.
+        deps: [schema-specifications]
+        libs:
+          - schemagraphy-release-hx-spec-ruby
+          - schemagraphy-open-versioneer-spec-ruby
+          - schemagraphy-open-cli-spec-ruby
+          - schemagraphy-open-formy-spec-ruby
+          - schemagraphy-open-config-spec-ruby
+          - schemagraphy-open-pathy-spec-ruby
+          - schemagraphy-open-issues-spec-ruby
+      schemagraphy-specs-py:
+        desc: |
+          Specification schemas as Python libraries.
+          Automatically generated from Schema Specifications Repo.
+        deps: [schema-specifications]
+        libs:
+          - schemagraphy-release-hx-spec-python
+          - schemagraphy-versioneer-spec-python
+          - schemagraphy-open-cli-spec-python
+          - schemagraphy-open-formy-spec-python
+          - schemagraphy-open-config-spec-python
+          - schemagraphy-open-pathy-spec-python
+          - schemagraphy-open-issues-spec-python
+      schemagraphy-specs-npm:
+        desc: |
+          Specification schemas as JavaScript libraries.
+          Automatically generated from Schema Specifications Repo.
+        deps: [schema-specifications]
+        libs:
+          - schemagraphy-release-hx-spec-node
+          - schemagraphy-versioneer-spec-node
+          - schemagraphy-open-cli-spec-node
+          - schemagraphy-open-formy-spec-node
+          - schemagraphy-open-config-spec-node
+          - schemagraphy-open-pathy-spec-node
+          - schemagraphy-open-issues-spec-node
+    tech: [SGYML,YAML,JSON,JSON Schema,JMESPath,JSONPath,Ruby,Python,JavaScript]
+    wave: 2
+    done: 30%
+    icon: library
+
+# SITES:
+
+## LAB:
+  - name: LAB
+    slug: lab
+    live: true
+    type: content
+    line: The home base and landing-page source for DocOps Lab
+    desc: |
+      LAB is the core project/switchboard for DocOps Lab.
+      It is home to the YAML file that defines all of its projects (the source of the very text you are reading now).
+      It also hosts policy and procedural documentation and key assets like common scripts and data files, testing scripts, testing images, and more.
+      LAB is also the source of assets for the sites rooted in *docopslab.org* (and *docops.github.io*).
+    vrsn: '0.0' # unversioned website
+    tags: [website,documentation,landing page]
+    tech: [AsciiDoc,YAML,Liquid,Git,Jekyll,HTML,CSS/Sass,JavaScript]
+    wave: 0
+    done: 90%
+    icon: flask-conical
+
+## jekyll-samples-site:
+  # - name: Jekyll Samples Site
+  #   slug: jekyll-samples-site
+  #   type: website
+  #   href: samples.docopslab.org
+  #   desc: Presents sample REST and native APIs with Jekyll plugins
+  #   deps:
+  #     - jekyll-openapi # docs
+  #     - jekyll-api-docs
+  #     - asciidoctor-jekyll-hyde
+  #     - jekyll-api-docs-delivery # tutorial
+  #     - sample-api-ruby-yarn
+  #     - sample-api-python-sphynx
+  #   wave: 4
+  #   done: 0%
+  #   icon: beaker
+  #   tech: [Jekyll,AsciiDoc,Liquid,YAML,HTML,CSS,JavaScript]
+  #   tags: [API docs,documentation]
+
+# DEMO REPOS
+
+## releasehx-demo:
+  - name: ReleaseHx Demo
+    slug: releasehx-demo
+    type: demo
+    line: Files for testing, demonstrating, and learning ReleaseHx configuration
+    vrsn: '0.0' # unversioned demo
+    tags: [tutorial,issues,release history,changelog]
+    tech: [YAML,Liquid]
+    wave: 0
+    done: 90%
+    icon: rocket
+    deps: [releasehx]
+
+## issuer-rhx-demo:
+  - name: Issuer + ReleaseHx Demo
+    slug: issuer-rhx-demo
+    type: demo
+    line: Demo and tutorial for the Issuer-ReleaseHx lifecycle
+    vrsn: '0.0' # unversioned demo
+    tags: [tutorial,issues,release history,changelog]
+    tech: [YAML,Liquid]
+    wave: 0
+    done: 0%
+    icon: tickets
+    deps: [issuer,releasehx]
+
+## kitchen-sink-rest:
+  - name: Kitchen Sink REST API Demo
+    slug: kitchen-sink-rest
+    type: demo
+    line: A complex but small REST API for testing and demonstraton of OpenAPI docs generation
+    desc: |
+      A sample REST API with OpenAPI 3.0 spec, Postman collection, and example client code in Ruby, Python, and JavaScript.
+    vrsn: V1
+    wave: 4
+    done: 0%
+    icon: utensils-crossed
+    tags: [tutorial,API,REST]
+    tech: [Node.js,OpenAPI]
+
+# MISC
+
+# ## ChoiceBox:
+#   - name: ChoiceBox
+#     type: misc
+#     desc: Framework/utility for designing interactive challenges like stories, surveys, exams, quiz games, and elections (tale, poll, exam, quiz, & vote).
+#     line: Framework for designing interactive challenges like stories, surveys, exams, quiz games, and elections
+#     vrsn: 0.1.0
+#     tags: [interactive,framework,utility,game]
+#     deps: [LiquiDoc, Clide, formagraphy]
+#     wave: 5
+#     icon: split
+
+
+# CONFIG/METADATA for PROJECTS
+$meta:
+  types:
+    - slug: content
+      head: Content Repos
+      desc: Written content, such as documentation, tutorials, courses, and specifications.
+      icon: letter-text
+    - slug: environment
+      head: Environments
+      desc: Docker images and other pre-configured environments for document operations.
+      icon: container
+    - slug: framework
+      head: Frameworks
+      desc: Structured systems for managing documents, data, or processes.
+      icon: briefcase
+    - slug: ruby-api
+      text: Ruby API
+      head: Ruby APIs
+      desc: Ruby-native backends for local document processing or management.
+      icon: gem
+    - slug: rest-api
+      text: REST API
+      head: REST APIs
+      desc: Web-based APIs for remote document processing or management.
+      icon: network
+    - slug: web-app
+      head: Web Applications
+      desc: Web apps for interfacing with RESTful backends or databases.
+      icon: app-window
+    - slug: utility
+      head: Utilities
+      desc: Command-line tools or applications.
+      icon: shovel
+    - slug: jekyll-ext
+      text: Jekyll extension
+      head: Jekyll Extensions
+      desc: Jekyll plugins or extensions for enhancing documentation sites.
+      icon: test-tube-diagonal
+    - slug: jekyll-theme
+      text: Jekyll theme
+      head: Jekyll Themes
+      desc: Jekyll layout templates and styles for documentation sites.
+      icon: palette
+    - slug: demo
+      head: Demo Repos
+      desc: Demonstrations, samples, and tutorials for using various DocOps Lab projects.
+      icon: monitor-play
+    - slug: website
+      head: Websites
+      desc: Sites for documentation, tutorials, or project information.
+      icon: globe
+    - slug: schema
+      head: Schemas and Specifications
+      desc: Requirement/definition docs for data structures or document formats.
+      icon: file-json
+  waves:
+    - id: 0
+      date: 2025-11-30
+      head: Wave 0
+      desc: Initial set of projects, mostly MVPs or prototype utilities or content.
+    - id: 1
+      date: 2026-4-31
+      head: Wave 1
+      desc: First major batch of releases, including foundational frameworks and key utilities.
+    - id: 2
+      date: 2026-09-03
+      head: Wave 2
+      desc: Second major batch of releases, including advanced frameworks and additional utilities.
+    - id: 3
+      date: 2027-03-31
+      head: Wave 3
+      desc: Third major batch of releases, including additional themes and extensions.
+    - id: 4
+      date: 2027-10-31
+      head: Wave 4
+      desc: Fourth major batch of releases, including sample sites and additional utilities.
+    - id: 5
+      date: 2028-04-30
+      head: Wave 5
+      desc: Fifth major batch of releases, including interactive frameworks and additional utilities.
+
+# THE PLAN
+
+# These are the projects I hope to release under the DocOps Lab umbrella.
+# Broadly, they are the AYL DocStack ecosystem -- a series of frameworks,
+#  utilities, libraries, and documentation for handling technical documents
+#  like software source code.
+# The biggest blocker is not having adocBook done, as it is going to be
+#  the basis for most of the websites and example content presentation.
+# Yet it is dependent on several other projects.
+# But more broadly, the blocker is interdependency. So much of this depends on
+#  the SchemaGraphy project, which is a ways from completion.
+# The first and next major release will be the ReleaseHx utility, which has
+#  SchemaGraphy built into it and needing to be spun off sometime after
+#  ReleaseHx 0.1.0 goes GA.
+# That gem also introduces Sourcerer, which is also a major dependency.
+
+# RULES FOR THIS FILE
+# 1. Each project should have a unique name and slug.
+# 2. Each project should have a type, which is one of the types defined in
+#    the $meta.types array.
+# 3. Each project should have a description, which is a short summary of what
+#    the project does.
+# 4. Each project should have a version, which is a target version number, 
+#    either in Semantic (SemVer) format or VN where N is a whole number.
+# 5. Each project should have a wave.
+# 6. Each project should have a done percentage, which is a percentage string
+#    (0%-100%) indicating how complete the project is toward its 0.1.0 release.
+#    Use "100%" for released projects.
+# 7. Each project should have a tags array, which is an array of categorical
+#    strings that the project meets as criteria, usually meaning:
+#    "at leat part of this project _is_ or _does_ or _contains_ <tag>".
+# 7A. Special Tags:
+#     - "Dockerized" - indicates that the project has its own Docker image
+#     - "DocOpsLab"  - the project is mainly meta or internal-facing
+# 7B. Tags should never include the project type of their project, but if
+#     there is crossover, tags may include OTHER types.
+# 8. Each project should have a tech array, which is an array of technologies
+#    used in the project, such as programming languages, frameworks, or libraries.
+# 9. Each project should have an icon, which is a clevrely representative Lucide
+#    icon name from: https://lucide.dev/icons
+# 10. Each project should have a line, which is a short, one-line description of
+#     the project, suitable for use in a list or summary.
+# 11. Each project should have a deps array, which is an array of slugs
+#     of other projects that this project depends on DIRECTLY.
+# 12. Projects MAY have a note, which is a user-facing notice or comment.
+# 13. Projects MAY have a repo property, which is ONLY needed if the repo is NOT DocOps/<slug>.
+#     Format: Just the repo name (without 'DocOps/' prefix), or full path for non-DocOps repos.
+#     Examples:
+#       repo: schemagraphy         # means https://github.com/DocOps/schemagraphy
+#       repo: lab                  # means https://github.com/DocOps/lab
+#       repo: account/repo-name    # means https://github.com/account/repo-name
+#       repo: https://example.com/repo.git  # full URL for non-GitHub repos
+#     If omitted, the default repo is assumed to be https://github.com/DocOps/<slug>
+# 13A. Projects MAY have a path property, which appends to the repo location.
+#     Example: repo: lab, path: gems/docopslab-dev
+#       Results in: https://github.com/DocOps/lab/tree/main/gems/docopslab-dev
+# 14. Projects MAY have a live Boolean property indicating whether the repository
+#     is publicly accessible on GitHub. This has nothing to do with release status,
+#     only repo visibility. If omitted, assume false (repo is private or doesn't exist yet).
+# 15. Projects MAY have a href property, which is a URL to the project's website
+#     or documentation site. External URLs only (not GitHub repos).
+# 16. Projects MAY have a text property, which which is to override the property's
+#     actual name in displays on the website.
+# 17. Projects MAY have a look, which is a short description of the project's appearance,
+#     when relevant, such as a theme or design style.
+# 18. Projects MAY have a card, which is a short, promotional description of the project
+#     suitable for use on the landing page.
+# 19. Projects MAY have a star Boolean to indicate if they should appear on the landing page.
+# 20. Projects MAY have a memo, which is an internal-facing note or comment, not intended for
+#     for users, but also not private.
+# 21. Projects MAY have a subjects array, which is an array of objects defining
+#     sub-projects or subject areas within the project.
+# 22. Projects MAY have a packs array, which is an array of objects defining
+#     sub-projects or subject areas within the project.
+# 23. Projects MAY have a libs array, which is an array of objects defining technical libraries
+#     supplied by the project.
+# 24. Projects MAY have a methods array, which is an array of objects defining key technical methods
+#     or endpoints in the project's API.
+# 25. DO NOT use bold or italics in descriptions OR lines. Do use AsciiDoc syntax as needed (ex: "`curly quotes`").
