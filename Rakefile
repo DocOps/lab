@@ -287,7 +287,7 @@ end
 desc 'Update slides from docs-as-code-school repo'
 task :update_slides do
   puts '📊 Updating slides from docs-as-code-school...'
-  system('./copy-slides.sh') or raise 'Slides update failed'
+  system('./scripts/copy-slides.sh') or raise 'Slides update failed'
   puts '✅ Slides updated'
 end
 
