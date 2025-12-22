@@ -1,0 +1,192 @@
+// Mixins for common patterns
+
+// Button mixin
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  
+  &:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: var(--primary-color);
+  color: white;
+  
+  &:hover {
+    background: var(--primary-color);
+    opacity: 0.9;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  
+  &:hover {
+    background: var(--primary-color);
+    color: white;
+  }
+}
+
+// Card mixin
+@mixin card {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+  
+  &:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+}
+
+// Language-specific code block styling
+@mixin language-label($bg-color, $text-color: white) {
+  &[data-lang] {
+    background: $bg-color;
+    color: $text-color;
+  }
+}
+
+@mixin code-language-styles {
+  @include language-label(var(--asciidoc-teal)) {
+    &[data-lang="asciidoc"] { @content; }
+  }
+  @include language-label(var(--ruby-red)) {
+    &[data-lang="ruby"] { @content; }
+  }
+  @include language-label(var(--liquid-blue)) {
+    &[data-lang="liquid"],
+    &[data-lang="twig"] { @content; }
+  }
+  @include language-label(var(--yaml-yellow), var(--yaml-gray-text)) {
+    &[data-lang="yaml"],
+    &[data-lang="yml"] { @content; }
+  }
+  @include language-label(var(--html5-orange)) {
+    &[data-lang="html"],
+    &[data-lang="html5"] { @content; }
+  }
+  @include language-label(var(--javascript-yellow), #000000) {
+    &[data-lang="javascript"],
+    &[data-lang="js"] { @content; }
+  }
+  @include language-label(var(--python-teal), var(--python-yellow-text)) {
+    &[data-lang="python"],
+    &[data-lang="py"] { @content; }
+  }
+}
+
+// Code block base styling
+@mixin code-block {
+  background: var(--pre-background);
+  border: 1px solid var(--pre-border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  color: var(--pre-text-color);
+}
+
+// Terminal styling mixin
+@mixin terminal-block {
+  background-color: var(--terminal-background);
+  color: var(--terminal-text);
+  border: 1px solid var(--terminal-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  margin: 0;
+  padding: 1.5rem;
+  
+  .dark-mode & {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+// Meta label styling
+@mixin meta-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Responsive grid
+@mixin responsive-grid($min-width: 300px, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: $gap;
+}
+
+// Text truncation
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Screen reader only content
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Focus states
+@mixin focus-ring {
+  &:focus,
+  &:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+}

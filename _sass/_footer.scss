@@ -1,0 +1,197 @@
+// Import mixins for use in this file
+@use "mixins";
+
+// Footer Section - Clean, unified styling
+footer {
+  background: var(--background-color);
+  color: var(--text-color);
+  border-top: 1px solid var(--border-color);
+  padding: 3rem 0 2rem 0;
+
+  .footer-page {
+    margin-bottom: 2rem;
+  }
+  
+  .footer-main {
+    @include mixins.flex-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    gap: 2rem;
+  }
+  
+  .footer-content {
+    flex: 1;
+  }
+  
+  .footer-brand {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .footer-tagline {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+  }
+
+  img.footer-logo {
+    width: 1.5rem;
+    vertical-align: middle;
+
+    &.logo-asciidoctor,
+    &.logo-github {
+      margin: 0 .2rem 0 .5rem;
+    }
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    
+    // Style navigation component in footer
+    .nav-component.nav-footer {
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      
+      li {
+        margin: 0;
+        padding: 0;
+      }
+      
+      .nav-link {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color var(--transition);
+        
+        &:hover {
+          color: var(--primary-color);
+          text-decoration: underline;
+        }
+      }
+    }
+    
+    // Legacy footer-link class for backward compatibility
+    .footer-link {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color var(--transition);
+      
+      &:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  // No bullets, items go side by side and wrap
+  .footer-docs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin: 0;
+    }
+  }
+  
+  .footer-legal {
+    text-align: right;
+    min-width: 200px;
+    
+    p {
+      margin-bottom: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      
+      &.copyright {
+        font-weight: 500;
+        color: var(--text-color);
+      }
+    }
+    
+    .footer-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color var(--transition);
+      
+      &:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+    }
+    
+    .footer-source-icon {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.25rem;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  
+  .footer-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    border: none;
+    margin: 0;
+  }
+  
+  .footer-bottom {
+    margin-top: 1.5rem;
+    margin-bottom: 6rem;
+    text-align: center;
+  }
+  
+  .footer-note {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+    margin-bottom: 1rem;
+    
+    .footer-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      
+      &:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .footer-main {
+      flex-direction: column;
+      text-align: center;
+      gap: 2rem;
+    }
+    
+    .footer-legal {
+      text-align: center;
+      min-width: auto;
+    }
+    
+    .footer-links {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}

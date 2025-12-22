@@ -1,0 +1,1441 @@
+// Import mixins for use in this file
+@use "mixins";
+
+// Project styles - Individual project cards, profiles, and project report pages
+// Combined styles for both individual project components and project listing pages
+
+.layout-projects {
+  &.has-sticky-banner {
+    .container {
+      margin-top: 6rem;
+    }
+  }
+}
+
+// Project report page containers
+.projects-report {
+  margin: 0 auto;
+  padding: 2rem 0;
+
+  .report-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .report-description {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+}
+
+// Meta TOC grid for by-tech, by-category pages
+.meta-toc-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0;
+  justify-content: center;
+}
+
+.meta-toc-link {
+  @include mixins.meta-label;
+  
+  &.popular {
+    border: 2px solid var(--text-light);
+    background-color: var(--primary-color);
+    color: var(--text-primary)
+  }
+  &:hover {
+    color: white;
+  }
+
+  .toc-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  &.btn-slim {
+    height: 1.2rem;
+  }
+}
+
+// Table of Contents for meta-grouped pages (like by-tech)
+.projects-by-meta-toc {
+  @include mixins.card;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: none;
+  transform: none;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    li {
+      a {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        background: var(--tag-bg);
+        color: var(--tag-text);
+        text-decoration: none;
+        border-radius: 0.25rem;
+        font-size: 0.85rem;
+        border: 1px solid var(--tag-border);
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: var(--primary-color);
+          color: white;
+          border-color: var(--primary-color);
+        }
+      }
+    }
+  }
+}
+
+// Project listing containers
+.projects-profiles {
+  display: block;
+  width: 100%;
+
+  // For micro profiles (tag/tech pages) - grid layout
+  .tag-section &,
+  .tech-section & {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0;
+    margin: -0.75rem; // Offset the margin from micro profiles
+  }
+}
+
+// Section headers for grouped reports
+.type-section,
+.tag-section,
+.tech-section,
+.wave-section {
+  margin-bottom: 3rem;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  .type-description {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+}
+
+// Project page layout styles
+.project-page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+
+  // Tagline and description at the top level (after the layout header)
+  > .project-tagline {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    font-style: italic;
+  }
+
+  > .project-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    max-width: 800px;
+  }
+}
+
+.project-page-header {
+  position: relative;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 2rem;
+
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .header-content {
+    position: relative;
+  }
+
+  .project-header-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: -0.25rem;
+    margin-right: 8rem;
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+      color: var(--text-light);
+    }
+  }
+}
+
+.project-title-section {
+  margin-bottom: 2rem;
+}
+
+.project-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  .project-page-icon {
+    width: 3rem;
+    height: 3rem;
+    color: var(--primary-color);
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .project-version {
+    background: var(--tag-bg);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+.project-tagline {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.project-page-header .project-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  max-width: 800px;
+}
+
+// Dependencies grid
+.dependencies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+// Dependencies micro grid for micro profiles
+.dependencies-micro-grid,
+.projects-micro-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+// Enhanced micro profile for dependencies and other micro listings
+.project-micro {
+  width: 280px;
+  max-width: 280px;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+
+  .project-header {
+    h4 {
+      font-size: 1rem;
+      margin: 0;
+      color: var(--text-primary);
+    }
+
+    .status-badge {
+      padding: 0.125rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 0.75rem;
+      font-weight: 500;
+
+      &.status-live {
+        background: var(--success-bg, #e6f7ff);
+        color: var(--success-color, #1890ff);
+      }
+
+      &.status-development,
+      &.status-80-v0-1-0,
+      &.status-90-v0-1-0,
+      &.status-draft {
+        background: var(--warning-bg, #fff7e6);
+        color: var(--warning-color, #fa8c16);
+      }
+    }
+  }
+
+  .micro-expanded-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-top: 0px solid var(--border-color);
+    margin-top: 0;
+    padding-top: 0;
+
+    .project-line {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .project-description {
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-page-link {
+      margin-top: 0.75rem;
+      
+      .page-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.375rem 0.75rem;
+        background: var(--primary-color);
+        color: white;
+        text-decoration: none;
+        border-radius: 0.375rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: var(--primary-hover, var(--primary-color));
+          transform: translateY(-1px);
+        }
+
+        .link-icon {
+          width: 0.875rem;
+          height: 0.875rem;
+        }
+      }
+    }
+  }
+
+  &.expanded {
+    .micro-expanded-content {
+      max-height: 300px;
+      opacity: 1;
+      border-top-width: 1px;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+    }
+  }
+
+  &:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+}
+
+.project-tagline {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.project-page-header .project-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  max-width: 800px;
+}
+
+.project-taxonomy-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+
+  h4 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.meta-labels-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.meta-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+
+  .label-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &.tech-label {
+    color: var(--tech-color, var(--primary-color));
+    border-color: var(--tech-color, var(--primary-color));
+
+    &:hover {
+      background: var(--tech-color, var(--primary-color));
+    }
+  }
+
+  &.tag-label {
+    color: var(--tag-color, var(--secondary-color));
+    border-color: var(--tag-color, var(--secondary-color));
+
+    &:hover {
+      background: var(--tag-color, var(--secondary-color));
+    }
+  }
+}
+
+// Enhanced meta-label styling for project details sections
+.project-taxonomy .meta-label {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.25rem 0.5rem 0.25rem 0;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+
+    .label-icon {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+  }
+
+  &.tech-label a {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+
+    &:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+  }
+
+  &.tag-label a {
+    color: var(--secondary-color, var(--text-secondary));
+    border-color: var(--secondary-color, var(--border-color));
+
+    &:hover {
+      background: var(--secondary-color, var(--primary-color));
+      color: white;
+    }
+  }
+}
+
+// Project taxonomy (Technologies and Categories) side-by-side layout
+.project-taxonomy {
+  margin: 2rem 0;
+
+  .taxonomy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .taxonomy-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .taxonomy-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+
+    .link-icon {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+
+    &.tech-link {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+
+      &:hover {
+        background: var(--primary-color);
+        color: white;
+      }
+    }
+
+    &.tag-link {
+      color: var(--secondary-color, var(--text-secondary));
+      border-color: var(--secondary-color, var(--border-color));
+
+      &:hover {
+        background: var(--secondary-color, var(--primary-color));
+        color: white;
+      }
+    }
+  }
+}
+
+// Simple list styling for libraries, methods, content
+.simple-list {
+  .list-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+
+    code {
+      background: var(--code-bg, var(--card-background));
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 0.875rem;
+    }
+
+    .subject-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+
+      .subject-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .subject-name {
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+
+      .status-badge {
+        padding: 0.125rem 0.5rem;
+        font-size: 0.75rem;
+        border-radius: 0.75rem;
+        font-weight: 500;
+
+        &.status-live {
+          background: var(--success-bg, #e6f7ff);
+          color: var(--success-color, #1890ff);
+        }
+
+        &.status-development, &.status-draft {
+          background: var(--warning-bg, #fff7e6);
+          color: var(--warning-color, #fa8c16);
+        }
+      }
+    }
+  }
+}
+
+// List of label-style items, arranged 1-3 columns depending on width, flowing in columns
+.label-list {
+  columns: 3;
+  column-gap: 1rem;
+  column-fill: balance;
+  padding: 0;
+  list-style: none;
+
+  // Responsive column count
+  @media (max-width: 1200px) {
+    columns: 2;
+  }
+  
+  @media (max-width: 800px) {
+    columns: 1;
+  }
+
+  .library-component-description {
+    display: none;
+  }
+  
+  .library-item {
+    break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+// Library description popover
+.library-popover {
+  position: absolute;
+  z-index: 1000;
+  min-width: 250px;
+  max-width: 400px;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  
+  // Ensure it appears above other elements
+  backdrop-filter: blur(8px);
+  
+  // Typography inside popover
+  p {
+    margin: 0 0 0.75rem 0;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // Links inside popover
+  a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  // Code blocks inside popover
+  code {
+    background: var(--code-bg, var(--tag-bg));
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    color: var(--code-color, var(--text-primary));
+  }
+  
+  // Lists inside popover
+  ul, ol {
+    margin: 0 0 0.75rem 1rem;
+    padding: 0;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    li {
+      margin-bottom: 0.25rem;
+    }
+  }
+}
+
+// Interactive library items with popover capability
+.project-libraries {
+  .library-item.has-popover {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    // Add arrow indicator right after the text content
+    &::after {
+      content: ' ▶';
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      opacity: 0.6;
+      transition: all 0.2s ease;
+      pointer-events: none;
+    }
+    
+    // Hover effect on the entire cell
+    &:hover {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+      
+      // Make arrow white on hover
+      &::after {
+        color: white;
+        opacity: 0.8;
+      }
+      
+      // Make any text content white
+      a, .meta-label {
+        color: white !important;
+      }
+    }
+    
+    // When popover is open, rotate arrow to point down
+    &.popover-open::after {
+      content: ' ▼';
+    }
+  }
+}
+
+.project-content {
+  ul {
+    margin: 1rem;
+  }
+
+  li {
+    margin-left: 1rem;
+  }
+
+  dl {
+    &.horizontal {
+
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+
+      dt {
+        margin-right: 0.25rem;
+        /* Ensure dt does not grow */
+        flex: 0 0 auto;
+      }
+
+      dd {
+        margin-left: 1rem;
+        /* Ensure dd appears to the right of dt */
+        flex: 1 1 0;
+      }
+    }
+  }  
+}
+
+// Base project profile styles
+.project-profile {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+
+  // Make all links in project profiles use primary color with dotted underline
+  a {
+    color: var(--primary-color);
+    text-decoration: underline dotted;
+    font-weight: 500;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--primary-color-hover);
+      text-decoration: underline;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+  }
+
+  // Project header (icon + title + version)
+  .project-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+
+    .project-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      color: var(--primary-color);
+      flex-shrink: 0;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .project-version {
+      margin-left: auto;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid var(--tag-border);
+      .live-icon {
+        width: 1rem;
+        height: 1rem;
+        margin-right: 0.25rem;
+        color: var(--success-color, #1890ff);
+      }
+    }
+      // Project line (short description)
+    .project-line {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  // Project description (collapsible detailed description)
+  .project-description {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 0;
+    padding-top: 0;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+
+    p {
+      margin: 0 0 0.75rem 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Project metadata (type, status, wave, dependencies)
+  .project-meta {
+    margin-top: 1rem;
+
+    dl {
+      margin: 0.5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+
+      &.horizontal {
+        align-items: center;
+      }
+
+      dt {
+        font-weight: 600;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+
+      dd {
+        margin: 0;
+        color: var(--text-primary);
+        font-size: 0.85rem;
+      }
+    }
+
+    .project-dependency {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Meta labels (tags, tech)
+  .meta-list {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+
+    .meta-label {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid var(--tag-border);
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+    }
+  }
+}
+
+// Scope-specific styles
+.project-profile {
+  // Full profile (individual project pages)
+  &.profile-full {
+  max-width: none;
+  width: 100%;
+  cursor: default;
+
+  .project-description {
+    max-height: none;
+    opacity: 1;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .meta-list {
+    display: flex; // Always show tags
+  }
+
+  .project-header {
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    .project-icon {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+  }
+
+  // Mini profile (default - row-based layout for reports)
+  &.profile-mini {
+    max-width: 70%;
+    width: 100%;
+    margin-bottom: 1.5rem;
+
+    .meta-list {
+      display: none; // Hidden by default, shown on expand
+    }
+  }
+
+  // Micro profile (compact cards for tag/tech pages)
+  &.profile-micro {
+    max-width: 300px;
+    width: 300px;
+    margin: 0.75rem;
+    padding: 1rem;
+    display: inline-block;
+    vertical-align: top;
+
+    .project-header {
+      margin-bottom: 0.75rem;
+      gap: 0.5rem;
+
+      .project-icon {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      h3 {
+        font-size: 1rem;
+      }
+    }
+
+    .project-line {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .project-meta {
+      margin-top: 0.75rem;
+
+      dl {
+        margin: 0.25rem 0;
+        font-size: 0.75rem;
+
+        dt, dd {
+      font-size: 0.75rem;
+        }
+      }
+    }
+
+    .meta-list {
+      display: none; // Always hidden for micro profiles
+    }
+  }
+}
+
+// Mobile responsive adjustments
+@media (max-width: 768px) {
+  .project-profile {
+  &.profile-mini {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  &.profile-micro {
+    max-width: 100%;
+    width: 100%;
+    margin: 0.5rem 0;
+    display: block;
+  }
+
+  .project-header {
+    .project-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
+  }
+}
+
+// Custom icon styles for project profiles
+.project-icon {
+  flex-shrink: 0;
+  font-size: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Minimal Lucide icon support */
+[data-lucide] {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// Project page detail styles (for project-page.html)
+.project-details-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.detail-item {
+  display: flex;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+
+  &:last-child {
+  border-bottom: none;
+  }
+
+  dt {
+  font-weight: 600;
+  min-width: 120px;
+  color: var(--text-primary);
+  }
+
+  dd {
+  color: var(--text-secondary);
+  }
+}
+
+.external-link {
+  color: var(--primary-color);
+  text-decoration: none;
+
+  &:hover {
+  text-decoration: underline;
+  }
+}
+
+.subjects-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.subject-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+  text-decoration: underline;
+  }
+}
+
+.subject-name {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  &.status-live {
+    background-color: #dcfce7;
+    color: #166534;
+  }
+
+  &.status-development {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+
+  &.status-draft {
+    background-color: #e0e7ff;
+    color: #3730a3;
+  }
+
+  &.status-planned {
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+}
+
+
+// Project Details Component Styles (for project-details.html)
+.project-metadata,
+.project-taxonomy,
+.project-dependencies,
+.project-libraries,
+.project-methods,
+.project-subjects,
+.project-urls,
+.project-packs {
+  margin-bottom: 2rem;
+
+  h2, h3 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+  }
+}
+
+.project-subjects {
+  .subject-type-group {
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    h4 {
+      margin-top: .5rem;
+    }
+  }
+}
+
+// Dependencies grid layout
+.dependencies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.dependency-item {
+  .dependency-link {
+    display: block;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background: var(--card-background);
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: var(--primary-color);
+      box-shadow: var(--shadow);
+    }
+  }
+
+  .dependency-basic {
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    background: var(--background-color);
+  }
+
+  .dependency-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .dependency-icon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .dependency-name {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .dependency-description {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+}
+
+// Subjects grid
+.subjects-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.subject-item {
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--card-background);
+
+  .subject-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+// Libraries and methods lists
+.libraries-list,
+.methods-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  .library-item,
+  .method-item {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    border: 1px solid var(--tag-border);
+
+    code {
+      background: none;
+      color: inherit;
+      padding: 0;
+      font-size: inherit;
+    }
+  }
+}
+
+// URLs list
+.urls-list {
+  .url-item {
+    display: flex;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    dt {
+      font-weight: 600;
+      min-width: 150px;
+      color: var(--text-primary);
+
+      code {
+        background: var(--code-background);
+        color: var(--code-color);
+        padding: 0.125rem 0.25rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    dd {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+  }
+}
+
+// Package collections
+.pack-item {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--card-background);
+
+  h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+  }
+
+  .pack-libraries {
+    margin-top: 0.75rem;
+
+    ul {
+      margin-top: 0.5rem;
+      margin-left: 1rem;
+    }
+  }
+}
+
+// Note styling
+.project-note {
+  margin-bottom: 2rem;
+
+  .note-content {
+    display: flex;
+    padding: 1rem;
+    background: #f0f9ff;
+    border: 1px solid #0ea5e9;
+    border-left: 4px solid #0ea5e9;
+    border-radius: 0.5rem;
+    gap: 0.75rem;
+
+    .dark-mode &,
+    :root.dark-mode & {
+      background: var(--shadow);
+    }
+
+    .note-icon {
+      .icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: #0ea5e9;
+      }
+    }
+
+    .note-text {
+      flex: 1;
+
+      p {
+        margin: 0;
+        color: #0c4a6e;
+
+        .dark-mode &,
+        :root.dark-mode & {
+          color: var(--note-color);
+        }
+      }
+    }
+  }
+}
+
+// Inline icon utility
+.inline-icon {
+  width: 1rem;
+  height: 1rem;
+  display: inline;
+  vertical-align: text-bottom;
+  margin-right: 0.25rem;
+}
+
