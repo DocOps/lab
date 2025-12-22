@@ -1,0 +1,98 @@
+.DocOps Lab ✦ Table of Delightfully Over-Engineered Examples
+[cols="^1,<2,3,>1",width=100%,options="header,footer",frame=all,grid=all,stripes=even]
+|===
+4+^h| Multiverse Documentation Planning Matrix — Because simple tables are for mortals
+
+^s| Persona
+^s| Toolkit
+^s| Sample Artifact
+^s| KPI
+
+// ── A multirow persona cell with block content; spans 2 body rows.
+<a| *End-User*
+
+*Pain points*:
+
+* “Where is the button?”
+* “What’s a token?”
+* “Why is my coffee YAML-flavored?”
+
+| AsciiDoc + Antora
+
+a| Quickstart Guide
+
+TIP: Keep it friendly. If the docs feel like a boss fight, you already lost.
+
+^| ⏱  *Time-to-First-Success* ↓
+
+| *Admin User*
+| Paligo + Snagit
+| Troubleshooting Article
+| ☎  *Support Tickets/1k users* ↓
+
+// ── A “section header” row that spans all four columns.
+4+^| ——— Sprint 42: Docs Ops Experiments ———
+
+// ── A persona cell that spans three rows; note the dot-prefix count for rowspan.
+.3+^| *Developer*
+| AsciiDoc + Make + PlantUML
+a| Code-Adjacent HOWTO
+[source,ruby]
+----
+def deploy env='prod'
+  puts "Shipping to #{env}…"
+end
+----
+
+^| ⚙  *Build Failures Blamed on Docs* ↓
+
+| Jekyll + Kramdown
+a| API Changelog
+
+* Sections grouped by `part`
+* Rendered to HTML/PDF
+* Includes `{%- include -%}` sorcery
+
+^| 🔁  *PRs Merged w/ Docs* ↑
+
+| Antora + Lunr
+a| “Docs as Feature” RFC
+
+[quote, 'A slightly dramatic PM']
+____
+If it isn’t documented, did it even ship?
+____
+^| 🧭  *Feature Discoverability* ↑
+
+// ── Another section header with full-row colspan.
+4+^.^| ——— Release Train: 2.3 “Quantum Marmot” ———
+
+// ── Here we demonstrate a single row that contains a 3-column cell + one regular cell.
+3+<a| **Composite Artifact: “One Doc to Rule Them All”**
+
+* Installation (for Humans)
+* API (for Machines)
+* Architecture (for Historians)
++
+NOTE: This cell spans *three* columns. The rightmost cell is independent.
+^| 📈  *Adoption Rate* ↑
+
+// ── Fun with inline formatting, footnotes, and subscripts/superscripts.
+| *Internal Auditor*
+| AsciiDoc + CSV + a dash of awk
+| Compliance Matrix (SOC 2, ISO 27001)
+| σ = 2.3^±^ footnote:[Margin of error calculated by a friendly spreadsheet goblin.]
+
+// ── A cell that spans two columns on the right; pair with two normal cells on the left.
+| *Site Reliability Engineer*
+| Runbook Pack
+<a| *Incident Bundle*
+
+* Playbooks
+* Postmortem template
+* “Pager-Yoga” breathing guide
+^| 🔍  *Incident Response Time* ↓
+
+// ── Closing “totals/notes” row spanning all columns as a footer.
+4+^s| In conclusion: Tables are for communicating *structure*, not suffering. Use colspans/rowspans judiciously, and never apologize for beautiful grids.
+|===

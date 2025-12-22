@@ -1,0 +1,36 @@
+:page-tags: ["DevOps", "DocOps", "docopslab-dev", "foss", "automation",  "CI/CD"]
+:page-date: 2025-11-20
+:page-author: Dr Meta
+:page-published: false
+:page-excerpt: tl;dr, DocOps is just the part of DevOps that focuses on documentation practices, tools, workflow, automation, and culture. But I may have a way of highlighting some of the distinctions and boundaries.
+:page-image: 
+:page-image-alt: 
+:page-version: 1.0.0
+:toc: macro
+include::../README.adoc[tag=globals]
+= Where DocOps and DevOps Meet and Diverge
+
+I have spent a lot of time crossing over from my main focus, _documentation operations_ (DocOps) to _develoment operations_ (DevOps).
+
+{page-excerpt}
+
+
+[[labdev-operations]]
+== The DocOps Lab Devtool and its Operations
+
+I have been developing a library of assets and operations that are common across multiple DocOps Lab projects.
+
+This library is called the link:{this_repo_base_url}/main/gems/docopslab-dev/[DocOps Lab Devtool], and it is available as a Ruby gem and a Docker image.
+It's meant to be configured to adapt to every codebase it gets included into.
+
+[TIP]
+====
+This utility is very much customized for use in Ruby codebases like those preferred by DocOps Lab, but some version of this is recommended for any collaborative documentation project -- including or perhaps _especially AI/LLM-assisted projects_.
+I blog more about that in {xref_blog_single-sourcing-for-ai-agents_link}.
+====
+
+Once customized, the Devtool provides services such as file linting (Ruby, Bash, AsciiDoc, YAML), management of AI agent docs libraries, synchronization of documentation assets, and more.
+It keeps libraries synced to "`upstream`" assets, keeping things consistent across all our repos.
+
+This "`Devtool`" may be named after DocOps Lab, but very little of it would be considered DocOps.
+Mostly, it is a DevOps tool.

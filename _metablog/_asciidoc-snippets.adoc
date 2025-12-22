@@ -1,0 +1,236 @@
+:page-layout: post
+:page-permalink: /metablog/asciidoc-snippets
+:page-canonical: /metablog/tech-blogging-in-asciidoc
+:page-indexed: false
+= Kitchen Sink Snippets Page
+
+This page contains snippets used in AsciiDoc blogging examples, and it uses include directives to embed content from other files.
+The link:{page-canonical}[main blog entry] is the place to look for context.
+
+// tag::admonition-simple[]
+Let's kick things off with an example of a simple note admonition.
+
+[NOTE]
+====
+This is a NOTE admonition with a Lucide info circle icon. It should display with a blue color scheme and an information icon.
+
+It can contain multiple paragraphs, like this second one.
+====
+// end::admonition-simple[]
+
+// tag::admonition-simpler[]
+Those `====` demarcation characters and the `[NOTE]` heading are only necessary when there is something special about your admonition content, such as multiple paragraphs or distinct styling.
+
+TIP: Normally, this works just fine to create an admonition block.
+
+And blogging in standardized lightweight markup doesn't get much simpler than that.
+// end::admonition-simpler[]
+
+// tag::ruby-callout-listing[]
+[source,ruby]
+----
+def hello_world message="Hello, world!", case="upper" # <1>
+  message_cased = case == "upper" ? message.upcase : message.downcase # <2>
+  puts message_cased # <3>
+end
+----
+<1> defines the method with default parameters
+<2> processes the message based on the case parameter  
+<3> outputs the processed message
+// end::ruby-callout-listing[]
+
+// tag::blockquote[]
+[quote, Dr Meta]
+This is a blockquote with a citation.
+Not something you use in tech writing very often, but quite common in all kinds of blogging.
+// end::blockquote[]
+
+// tag::pullquote[]
+[quote,role=pullquote]
+This is some text that I want to highlight as a pull quote.
+I've styled it to be distinct from a standard blockquote, and I use them to preview interesting content that appears later in a post.
+// end::pullquote[]
+
+// tag::simple-table[]
+.This table has an automatically numbered caption
+[cols="1,1,1",options="header"]
+|===
+| Header 1 | Header 2 | Header 3
+
+| Cell 1
+| Cell 2
+| Cell 3
+
+| Cell 4
+| Cell 5
+| Cell 6
+
+| Cell 7
+| Cell 8
+| Cell 9
+|===
+// end::simple-table[]
+
+include::_asciidoc-crazy-table-snippet.adoc[]
+
+// tag::definition-list[]
+AsciiDoc::
+A lightweight markup language that is particularly well-suited for technical documentation and blogging, offering a rich set of features for structuring content.
+
+Markdown::
+A widely-used lightweight markup language known for its simplicity and ease of use, but with fewer features compared to AsciiDoc.
+
+lightweight markup::
+A category of markup languages designed to be easy to read and write in plain text, while still allowing for formatting and structuring of content.
+// end::definition-list[]
+
+// tag::ordered-list[]
+An ordered list broken up by an admonition:
+
+. Install the NPM packages.
++
+[.prompt]
+ npm install
+
+. Build the app.
++
+[.prompt]
+ npm run build
+
+[NOTE]
+Your app is now built and ready to deploy!
+
+[start=3]
+. Deploy the app.
++
+[.prompt]
+ npm run deploy
+// end::ordered-list[]
+
+// tag::unordered-list[]
+
+.An unordered list with deep nesting square bullets
+[square]
+* First item
+[square]
+** Sub-item A
+*** Sub-sub-item i
+*** Sub-sub-item ii
+** Sub-item B
+* Second item
+
+.Hyphen bullets with nested ordered list
+- Another first-level item
+. Nested with dashes
+. Back to dashes at first level
+- Final item
+// end::unordered-list[]
+
+// tag::sidebar[]
+This would be mainline text that pertains very directly and prominently to the subject.
+The reader is reading or scanning along, but at this point the author wants to at least introduce some auxiliary content that is relevant but not strictly necessary to the main point, or not a priority at this stage.
+
+.A sidebar about sidebar authoring
+****
+Sidebars are for textbooks and magazines, at least in the sense of being placed alongside the main content to provide additional context, definitions, or related information.
+
+In HTML, sidebars tend to be for navigation and others static content like masthead info.
+
+But the _concept_ of a content-adjacent sidebars is useful in all kinds of technical writing, including blogging.
+
+Sidebars are for content that is pinned or otherwise relevant to the main topic, but which might be a distraction if dumped inline.
+It doesn't quite belong as a section or even a subsection.
+
+The content is not totally required knowledge, but it relates to the content and is not yet a whole other lesson.
+You want readers to at least be able to make note of it, even at risk of interrupting their reading flow.
+
+In AsciiDoc, sidebars can contain just about any other block or inline content.
+
+When it comes to layout, sidebars should either be collapsed or they should actually be pinned to a bar that runs alongside the content.
+And in either case, they should be dismissable and stashable so a reader can skip them now but come back to them later.
+****
+
+Below that sidebar element, the mainline text would resume, and the reader can choose to read the sidebar, stash it for later, or skip it altogether.
+
+You can also just stick all your sidebars at the end of the post like little appendices, optionally linking to them from the point in the text where they are relevant.
+// end::sidebar[]
+
+// tag::example-block[]
+.Example block containing a code block
+====
+I typically use example blocks to show _results_, but you can also use them for code listings as well.
+Let's make this one a combo.
+
+[source,yaml]
+----
+name: example
+array:
+  - item1
+  - item2
+  - item3
+----
+====
+// end::example-block[]
+
+// vale off
+// tag::3ticks[]
+```python
+def hello_world():
+    print("Hello, world!")
+```
+
+```asciidoc
+This was written in a code block denoted with `+++```+++` literals.
+```
+// end::3ticks[]
+// vale on
+
+// tag::3ticks-attribute[]
+:3ticks: ```
+
+Here come the backticks: `{3ticks}`
+// end::3ticks-attribute[]
+
+// tag::literalblock-adoc[]
+ This is a literal block, the syntax for which was a simple 1-space indent
+
+....
+This literal block is fenced by four dots (periods), which allows for
+
+non-contiguous
+
+multiline text.
+....
+
+[literal,role=prompt,title=Properly labeled command literal]
+Use a heading line if you wish to assign a role or other options.
+
+// end::literalblock-adoc[] 
+
+// tag::literal-markdown[]
+    This line was indented by 4 spaces to indicate a literal.
+    
+    You can keep adding lines that are indented by 4 spaces.
+
+    Some converters will render this embedded in `<code>` tags anyway.
+// end::literal-markdown[]
+
+// tag::html-passthrough-block[]
+++++
+<!-- HTML block with a gray background and white text and an embedded SVG file of a cute logo -->
+<div style="background-color: #414141; color: #333; padding: 10px; border-radius: 5px;">
+  <p style="font-weight: 900">You're looking at HTML right now, sourced inside an AsciiDoc file.</p>
+  <p>It can be used for anything, including to embed adorable SVG images you come up with after an all-night coding session, like this:</p>
+  <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="40" fill="#ffcc00"/>
+    <text x="50%" y="50%" font-size="20" text-anchor="middle" fill="#333" dy=".3em">Cute!</text>
+  </svg>
+</div>
+++++
+// end::html-passthrough-block[]
+
+// tag::strikethrough[]
+This is the built-in role for [line-through]#strikethrough#.
+
+This is an alternate method [.strike]#for slightly# with fewer characters.
+// end::strikethrough[]

@@ -1,0 +1,24 @@
+include::../README.adoc[tag=globals]
+:page-date: 2025-12-22 10:00:00 -0500
+:page-tags: ["announcement", "website", "projects", "update"]
+:page-excerpt: Today I release a major update to the DocOps Lab website, reporting for the first time on all the projects underway or planned, including their statuses.
+:page-author: Brian Dominick
+:page-image: blog-release-burns.jpg
+:page-image-alt: The Simpsons character Mr Burns looking sinister.
+= Release the Lab!
+
+{page-excerpt}
+
+The site is heavily data driven, mainly based on a complex link:{docopslab_hub_url}/blob/main/_data/docops-lab-projects.yml[YAML file] maintained for the past 2+ years to track projects, their relationships, progress, and so forth.
+Now it informs a static website built with Jekyll and Asciidoctor, which is hosted on GitHub Pages.
+
+Check out the link:{docopslab_hub_url}[Git repository and README] for more details.
+Also link:/metablog/lab-projects-source-site/[this MetaBlog post] explores the source data and site generation in more detail.
+
+The site now contains "`reports`", which group and arrange project status updates by various criteria, such as the link:/projects/by-type[type of application], the link:/projects/by-tech[technologies] involved, and the link:/projects/by-wave[target launch date].
+
+Certain featured projects have their own profile pages, such as link:/projects/ayl-docstack/[AYL DocStack] and link:/projects/docs-as-code-school/[Docs-as-Code School], providing more details.
+
+I am keeping this blog post short as a way of encouraging myself to post more frequently.
+
+I will try to keep the progress of various DocOps Lab projects updated on the site, and I will also do my best to post more detailed updates here on the blog.
