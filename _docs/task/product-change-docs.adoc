@@ -50,10 +50,12 @@ Add a release note for a given issue by appending it to the issue body following
 ----
 ## Release Note
 
-The content of the release note goes here, in Markdown format. Try to keep it to one paragraph with minimal formatting.
+The content of the release note goes here, in Markdown format.
+Try to keep it to one paragraph with minimal formatting.
 ----
 
 // end::contribute-docs[]
+
 
 [[release-history-management]]
 == Release History Document Creation

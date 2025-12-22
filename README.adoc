@@ -555,7 +555,9 @@ Contributions to this repository are welcome, but in this case especially, it ma
 [[making-changes]]
 === Making Changes
 
-. Work on the `main` branch.
+The current one-contributor workflow is as follows:
+
+. Work on a `main` branch.
 
 . Edit source files in `_layouts/`, `_includes/`, `_sass/`, etc.
 
@@ -564,6 +566,8 @@ Contributions to this repository are welcome, but in this case especially, it ma
 . Test locally with `rake serve`.
 
 . Deploy with `rake deploy_safe` → review → `rake commit_deploy` → `rake push_deploy`.
+
+This workflow will change once other organization members are actively working on the `lab` repository.
 
 [[registering-projects]]
 === Registering Projects
