@@ -274,6 +274,83 @@ task serve: [:build_site] do
   system(serve_cmd) or raise 'Jekyll serve failed'
 end
 
+namespace :review do
+  desc 'Fetch and serve a PR review build from GitHub Actions artifact'
+  task :serve do
+    require 'fileutils'
+    require 'tmpdir'
+    require 'json'
+
+    sha = ENV['SHA'] || abort('❌ SHA environment variable required (e.g., SHA=abc123 rake review:serve)')
+    port = ENV['PORT'] || '4001'
+    repo = 'DocOps/lab'
+
+    puts "🔍 Fetching artifact for commit #{sha[0..7]}..."
+
+    # Check if gh CLI is available
+    unless system('which gh > /dev/null 2>&1')
+      abort('❌ GitHub CLI (gh) not found. Install using your system\'s package manager (or see https://cli.github.com/)')
+    end
+
+    # Create temp directory for review
+    review_dir = File.join(Dir.tmpdir, 'docops-lab-review', sha)
+    FileUtils.mkdir_p review_dir
+
+    # Find workflow run for this SHA
+    puts '🔎 Finding workflow run...'
+    run_json = `gh run list --repo #{repo} --json databaseId,status,conclusion,name,headSha --limit 20`
+    runs = JSON.parse(run_json)
+
+    # Filter for runs matching this SHA and the main workflow
+    matching_runs = runs.select { |r| r['headSha'].start_with?(sha) && r['name'] == 'Main CI/CD Pipeline' }
+
+    abort("❌ No workflow runs found for commit #{sha[0..7]}") if matching_runs.empty?
+
+    run = matching_runs.find { |r| r['status'] == 'completed' && r['conclusion'] == 'success' }
+
+    if run.nil?
+      in_progress = matching_runs.find { |r| r['status'] == 'in_progress' }
+      if in_progress
+        abort('⏳ Workflow is still running for this commit. Wait for it to complete.')
+      else
+        abort("❌ No successful workflow run found for commit #{sha[0..7]}")
+      end
+    end
+
+    run_id = run['databaseId']
+    puts "✓ Found workflow run ##{run_id}"
+
+    # Get artifacts for this run to find the actual site artifact name
+    puts '🔎 Finding site artifact...'
+    artifacts_json = `gh api repos/#{repo}/actions/runs/#{run_id}/artifacts`
+    artifacts = JSON.parse(artifacts_json)['artifacts']
+    site_artifact = artifacts.find { |a| a['name'].start_with?('site-') }
+
+    abort('❌ No site artifact found for this run') unless site_artifact
+    artifact_name = site_artifact['name']
+
+    # Check if site is already cached
+    if File.exist?(File.join(review_dir, 'index.html'))
+      puts "✓ Using cached site from #{review_dir}"
+    else
+      puts "📦 Downloading #{artifact_name}..."
+      Dir.chdir(review_dir) do
+        result = system("gh run download #{run_id} --repo #{repo} --name #{artifact_name}")
+        abort('❌ Failed to download artifact') unless result
+      end
+    end
+
+    puts "✅ Review site ready at #{review_dir}"
+    puts "🚀 Starting server on http://localhost:#{port}..."
+    puts '   (Press Ctrl+C to stop)'
+    puts ''
+
+    # Serve with Jekyll, specifying the source directory
+    serve_cmd = "bundle exec jekyll serve --watch --port #{port} --skip-initial-build --source #{review_dir}"
+    system(serve_cmd) or abort('❌ Server failed')
+  end
+end
+
 desc 'Clean build artifacts'
 task :clean do
   puts '🧹 Cleaning build artifacts...'

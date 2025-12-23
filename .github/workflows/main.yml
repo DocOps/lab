@@ -93,9 +93,9 @@ jobs:
             - **Site Build**: Available in workflow artifacts as \`site-${{ github.sha }}\`
             - **Gem Package**: Available in workflow artifacts as \`gem-${{ github.sha }}\`
             
-            To preview the site locally:
+            To preview the site locally (requires [GitHub CLI](https://cli.github.com/)):
             \`\`\`bash
-            SHA=${{ github.sha }} GITHUB_TOKEN=<your-token> bundle exec rake review:serve
+            SHA=${{ github.sha }} bundle exec rake review:serve
             \`\`\`
             
             This will automatically fetch, extract, and serve the review site at http://localhost:4001
