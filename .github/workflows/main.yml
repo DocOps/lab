@@ -109,47 +109,132 @@ jobs:
               body: body
             });
 
-  # Deploy to production (main branch only)
-  deploy-production:
-    name: Deploy to Production
+  # Deploy site to gh-pages branch (main branch only)
+  deploy-gh-pages:
+    name: Deploy to gh-pages Branch
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: build-site
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: write
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
       - name: Download site artifact
         uses: actions/download-artifact@v4
         with:
           name: site-${{ github.sha }}
-          path: _site
+          path: _temp_site
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Clear gh-pages and copy new site
+        run: |
+          # Remove everything except .git
+          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' -exec rm -rf {} +
+          
+          # Copy new site
+          cp -r _temp_site/* .
+          rm -rf _temp_site
 
-      - name: Upload to Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy site from ${{ github.sha }}" || echo "No changes to commit"
+          git push origin gh-pages
 
       - name: Create deployment summary
         run: |
-          echo "## 🎉 Production Deployment Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "## 🎉 Site Deployed to gh-pages!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Site URL:** ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Site URL:** https://docopslab.org" >> $GITHUB_STEP_SUMMARY
+          echo "**Source Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
           echo "**Deployed at:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+
+  # Publish agent docs to agent-docs branch (main branch only)
+  publish-agent-docs:
+    name: Publish Agent Docs Branch
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build-site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup agent-docs branch
+        run: |
+          # Check if agent-docs branch exists
+          if git ls-remote --exit-code --heads origin agent-docs; then
+            echo "Branch exists, checking out"
+            git checkout agent-docs
+          else
+            echo "Branch doesn't exist, creating orphan branch"
+            git checkout --orphan agent-docs
+            git rm -rf .
+          fi
+
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: _temp_site
+
+      - name: Extract agent docs from artifact
+        run: |
+          # Clear existing content except .git
+          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' ! -name '_temp_site' -exec rm -rf {} +
+          
+          # The built gem contains the agent docs
+          if [ -d "_temp_site/gems/docopslab-dev/pkg" ]; then
+            # Extract gem to get agent docs
+            cd _temp_site/gems/docopslab-dev/pkg
+            gem unpack *.gem
+            cd -
+            
+            # Copy agent docs from unpacked gem
+            UNPACKED_DIR=$(find _temp_site/gems/docopslab-dev/pkg -type d -name "docopslab-dev-*" ! -name "*.gem")
+            if [ -d "$UNPACKED_DIR/docs/agent" ]; then
+              cp -r "$UNPACKED_DIR/docs/agent/"* .
+              echo "✅ Agent docs extracted from gem"
+            else
+              echo "❌ Agent docs not found in gem"
+              exit 1
+            fi
+          else
+            echo "❌ Gem not found in artifact"
+            exit 1
+          fi
+          
+          rm -rf _temp_site
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update agent docs from ${{ github.sha }}" || echo "No changes to commit"
+          git push origin agent-docs
+
+      - name: Create deployment summary
+        run: |
+          echo "## 📚 Agent Docs Published!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** agent-docs" >> $GITHUB_STEP_SUMMARY
+          echo "**Source Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Published at:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
 
   # Publish gem artifacts on release
   publish-artifacts:
     name: Publish Release Artifacts
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'release:')
-    needs: [build-site, deploy-production]
+    needs: [build-site, deploy-gh-pages]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -161,9 +246,3 @@ jobs:
           name: gem-${{ github.sha }}
           path: gems/
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: gems/*.gem
-          generate_release_notes: true
-          tag_name: v${{ github.run_number }}
