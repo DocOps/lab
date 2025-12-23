@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocOps Lab Contributor Documentation | DocOps Lab</title>
+  <meta name="description" content="Comprehensive guides and reference materials for using and contributing to DocOps Lab projects.">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DocOps Lab Contributor Documentation">
+  <meta property="og:description" content="Comprehensive guides and reference materials for using and contributing to DocOps Lab projects.">
+  <meta property="og:url" content="https://docopslab.org/docs/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DocOps Lab Contributor Documentation">
+  <meta name="twitter:description" content="Comprehensive guides and reference materials for using and contributing to DocOps Lab projects.">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container index">
+  <nav class="document-nav">
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">DocOps Lab Contributor Documentation</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>DocOps Lab Contributor Documentation</h1>
+      
+      <p class="document-description">Comprehensive guides and reference materials for using and contributing to DocOps Lab projects.</p>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      
+
+
+
+<!-- use AsciiD0c-style HTML for note admonitionblock -->
+<div class="admonitionblock note">
+  <table>
+    <tr>
+      <td class="icon">
+        <i data-lucide="info" class="admonition-icon"></i>
+      </td>
+      <td class="content">
+        <div class="title">Note</div>
+        <div class="paragraph">
+          DocOps Lab <em>Product</em> Documentation is indexed at <strong><a href="/docs/products/">https://docopslab.org/docs/products</strong></a>.
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="docs-tabs-container">
+  <div class="docs-tabs" role="tablist">
+    <button class="docs-tab" role="tab" aria-selected="true" aria-controls="docs-by-type" id="tab-type">
+      By Type
+    </button>
+    <button class="docs-tab" role="tab" aria-selected="false" aria-controls="docs-by-subject" id="tab-subject">
+      By Subject
+    </button>
+    <button class="docs-tab" role="tab" aria-selected="false" aria-controls="docs-alphabetical" id="tab-alpha">
+      By Title
+    </button>
+  </div>
+
+  <div class="docs-tab-content">
+    <section id="docs-by-type" class="docs-panel active" role="tabpanel" aria-labelledby="tab-type">
+      
+  
+  
+  <section class="docs-group policy">
+    <div class="container">
+      <h3 class="docs-group">Policy</h3>
+      <div class="docs-list">
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/mission/">Operate the Docs: DocOps Lab Purpose and Approach</a>
+          </h4>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/contributing/">DocOps Lab Contributor&#8217;s Guide</a>
+          </h4>
+          
+          <p class="doc-description">Guidelines, protocols, and best practices for contributing to DocOps Lab projects.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/cla/">DocOps Lab Contributor License Agreement (CLA)</a>
+          </h4>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/privacy/">DocOps Lab Privacy Assurances</a>
+          </h4>
+          
+          <p class="doc-description">No telemetry, no data collection, period.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/generative-ai-usage/">DocOps Lab Generative &#8220;AI&#8221; Guidance</a>
+          </h4>
+          
+          <p class="doc-description">How we manage output that was created with at least partial assistance from an LLM/agent</p>
+          
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  
+  
+  <section class="docs-group procedure">
+    <div class="container">
+      <h3 class="docs-group">Procedure</h3>
+      <div class="docs-list">
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/development/">Development Process (General)</a>
+          </h4>
+          
+          <p class="doc-description">General development process for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/lab-dev-setup/">Dev-tooling Setup</a>
+          </h4>
+          
+          <p class="doc-description">Environment and Bootstrapping for new DocOpsLab project codebases or establishing a complete dev environment</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/lab-dev-usage/">Dev-tooling Usage</a>
+          </h4>
+          
+          <p class="doc-description">Using docopslab-dev tooling with DocOps Lab project codebases</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/product-change-docs/">Product Change Tracking and Documentation</a>
+          </h4>
+          
+          <p class="doc-description">Integration and deployment/delivery process for DocOps Lab sites and artifacts.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/release/">Release Process (General)</a>
+          </h4>
+          
+          <p class="doc-description">Integration and deployment/delivery process for DocOps Lab sites and artifacts.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/deployment-setup/">Deployment Setup (General)</a>
+          </h4>
+          
+          <p class="doc-description">Initial preparation for publishing gems, Docker images, and documentation sites</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/github-issues-usage/">Using GitHub Issues</a>
+          </h4>
+          
+          <p class="doc-description">Tracking work for DocOps Lab projects</p>
+          
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  
+  
+  <section class="docs-group reference">
+    <div class="container">
+      <h3 class="docs-group">Reference</h3>
+      <div class="docs-list">
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/lab-dev-config/">Dev-tooling Configuration</a>
+          </h4>
+          
+          <p class="doc-description">Configuring the `docopslab-dev.yml` manifest for DocOps Lab development tooling</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/infrastructure/">Development &amp; Deployment Infrastructure</a>
+          </h4>
+          
+          <p class="doc-description">Local and cloud assets for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/testing/">Specs &amp; Tests</a>
+          </h4>
+          
+          <p class="doc-description">Specifying and testing DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/github-issues/">GitHub Issues Types and Tasks</a>
+          </h4>
+          
+          <p class="doc-description">Tracking work for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/ruby-styles/">Ruby Development Style Guide</a>
+          </h4>
+          
+          <p class="doc-description">Ruby coding styles and conventions for DocOps Lab projects.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/asciidoc-styles/">Documentation Style Guide</a>
+          </h4>
+          
+          <p class="doc-description">DocOps Lab documentation style guide and AsciiDoc syntax conventions.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/code-commenting/">Code Commenting Guidance</a>
+          </h4>
+          
+          <p class="doc-description">Protocols and styles for commenting code in DocOps Lab projects.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/docker/">Dockerfile and Docker Image Management</a>
+          </h4>
+          
+          <p class="doc-description">Dockerfile coding and Docker image management in DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/git-commit-styles/">Git Commits Style Guide</a>
+          </h4>
+          
+          <p class="doc-description">Protocols for authoring Git commits for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/bash-styles/">Bash Scripting Styles and Conventions</a>
+          </h4>
+          
+          <p class="doc-description">Style guide and best practices for writing Bash scripts in DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/cli-styles/">Command-line Interface Styles</a>
+          </h4>
+          
+          <p class="doc-description">Style guide and best practices for writing Ruby and Bash CLI utilities</p>
+          
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  
+  
+  <section class="docs-group troubleshooter">
+    <div class="container">
+      <h3 class="docs-group">Troubleshooter</h3>
+      <div class="docs-list">
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/fix-broken-links/">Fix Broken Links</a>
+          </h4>
+          
+          <p class="doc-description">Troubleshooting and fixing broken links in DocOps Lab documentation sites.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/fix-jekyll-asciidoc-build-errors/">Fix Jekyll-AsciiDoc Build Errors</a>
+          </h4>
+          
+          <p class="doc-description">Analyzing and addressing Asciidoctor errors that surface in Jekyll build operations</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/fix-spelling-issues/">Fix Spelling Issues</a>
+          </h4>
+          
+          <p class="doc-description">Troubleshooting and fixing spelling issues with optional AI support.</p>
+          
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  
+  
+  <section class="docs-group template">
+    <div class="container">
+      <h3 class="docs-group">Template</h3>
+      <div class="docs-list">
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/templates/AGENTS.md/">AGENTS.md Template</a>
+          </h4>
+          
+          <p class="doc-description">AI Agent Guide orientation template for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/universal-attributes/">Universal Project Attributes</a>
+          </h4>
+          
+          <p class="doc-description">Current status of all project info as AsciiDoc attributes</p>
+          
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+    </section>
+
+    <section id="docs-by-subject" class="docs-panel" role="tabpanel" aria-labelledby="tab-subject">
+      
+  
+  
+  <section class="docs-group contributing">
+    <div class="container">
+      <h3 class="docs-group">Contributing</h3>
+      <div class="docs-list">
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/contributing/">DocOps Lab Contributor&#8217;s Guide</a>
+          </h4>
+          
+          <p class="doc-description">Guidelines, protocols, and best practices for contributing to DocOps Lab projects.</p>
+          
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  
+  
+  <section class="docs-group technical">
+    <div class="container">
+      <h3 class="docs-group">Technical</h3>
+      <div class="docs-list">
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/development/">Development Process (General)</a>
+          </h4>
+          
+          <p class="doc-description">General development process for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/lab-dev-setup/">Dev-tooling Setup</a>
+          </h4>
+          
+          <p class="doc-description">Environment and Bootstrapping for new DocOpsLab project codebases or establishing a complete dev environment</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/lab-dev-config/">Dev-tooling Configuration</a>
+          </h4>
+          
+          <p class="doc-description">Configuring the `docopslab-dev.yml` manifest for DocOps Lab development tooling</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/lab-dev-usage/">Dev-tooling Usage</a>
+          </h4>
+          
+          <p class="doc-description">Using docopslab-dev tooling with DocOps Lab project codebases</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/product-change-docs/">Product Change Tracking and Documentation</a>
+          </h4>
+          
+          <p class="doc-description">Integration and deployment/delivery process for DocOps Lab sites and artifacts.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/release/">Release Process (General)</a>
+          </h4>
+          
+          <p class="doc-description">Integration and deployment/delivery process for DocOps Lab sites and artifacts.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/deployment-setup/">Deployment Setup (General)</a>
+          </h4>
+          
+          <p class="doc-description">Initial preparation for publishing gems, Docker images, and documentation sites</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/fix-broken-links/">Fix Broken Links</a>
+          </h4>
+          
+          <p class="doc-description">Troubleshooting and fixing broken links in DocOps Lab documentation sites.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/fix-jekyll-asciidoc-build-errors/">Fix Jekyll-AsciiDoc Build Errors</a>
+          </h4>
+          
+          <p class="doc-description">Analyzing and addressing Asciidoctor errors that surface in Jekyll build operations</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/fix-spelling-issues/">Fix Spelling Issues</a>
+          </h4>
+          
+          <p class="doc-description">Troubleshooting and fixing spelling issues with optional AI support.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/infrastructure/">Development &amp; Deployment Infrastructure</a>
+          </h4>
+          
+          <p class="doc-description">Local and cloud assets for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/testing/">Specs &amp; Tests</a>
+          </h4>
+          
+          <p class="doc-description">Specifying and testing DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/github-issues-usage/">Using GitHub Issues</a>
+          </h4>
+          
+          <p class="doc-description">Tracking work for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/github-issues/">GitHub Issues Types and Tasks</a>
+          </h4>
+          
+          <p class="doc-description">Tracking work for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/ruby-styles/">Ruby Development Style Guide</a>
+          </h4>
+          
+          <p class="doc-description">Ruby coding styles and conventions for DocOps Lab projects.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/asciidoc-styles/">Documentation Style Guide</a>
+          </h4>
+          
+          <p class="doc-description">DocOps Lab documentation style guide and AsciiDoc syntax conventions.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/code-commenting/">Code Commenting Guidance</a>
+          </h4>
+          
+          <p class="doc-description">Protocols and styles for commenting code in DocOps Lab projects.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/docker/">Dockerfile and Docker Image Management</a>
+          </h4>
+          
+          <p class="doc-description">Dockerfile coding and Docker image management in DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/git-commit-styles/">Git Commits Style Guide</a>
+          </h4>
+          
+          <p class="doc-description">Protocols for authoring Git commits for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/bash-styles/">Bash Scripting Styles and Conventions</a>
+          </h4>
+          
+          <p class="doc-description">Style guide and best practices for writing Bash scripts in DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/cli-styles/">Command-line Interface Styles</a>
+          </h4>
+          
+          <p class="doc-description">Style guide and best practices for writing Ruby and Bash CLI utilities</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/templates/AGENTS.md/">AGENTS.md Template</a>
+          </h4>
+          
+          <p class="doc-description">AI Agent Guide orientation template for DocOps Lab projects</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/universal-attributes/">Universal Project Attributes</a>
+          </h4>
+          
+          <p class="doc-description">Current status of all project info as AsciiDoc attributes</p>
+          
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  
+  
+  <section class="docs-group legal">
+    <div class="container">
+      <h3 class="docs-group">Legal</h3>
+      <div class="docs-list">
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/cla/">DocOps Lab Contributor License Agreement (CLA)</a>
+          </h4>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/privacy/">DocOps Lab Privacy Assurances</a>
+          </h4>
+          
+          <p class="doc-description">No telemetry, no data collection, period.</p>
+          
+        </div>
+        
+        <div class="doc-item">
+          <h4 class="doc-title">
+            <a href="/docs/generative-ai-usage/">DocOps Lab Generative &#8220;AI&#8221; Guidance</a>
+          </h4>
+          
+          <p class="doc-description">How we manage output that was created with at least partial assistance from an LLM/agent</p>
+          
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+    </section>
+
+    <section id="docs-alphabetical" class="docs-panel" role="tabpanel" aria-labelledby="tab-alpha">
+      <section class="docs-group all">
+        <div class="container">
+          <div class="docs-list">
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/templates/AGENTS.md/">AGENTS.md Template</a>
+              </h4>
+              
+              <p class="doc-description">AI Agent Guide orientation template for DocOps Lab projects</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/bash-styles/">Bash Scripting Styles and Conventions</a>
+              </h4>
+              
+              <p class="doc-description">Style guide and best practices for writing Bash scripts in DocOps Lab projects</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/code-commenting/">Code Commenting Guidance</a>
+              </h4>
+              
+              <p class="doc-description">Protocols and styles for commenting code in DocOps Lab projects.</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/cli-styles/">Command-line Interface Styles</a>
+              </h4>
+              
+              <p class="doc-description">Style guide and best practices for writing Ruby and Bash CLI utilities</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/deployment-setup/">Deployment Setup (General)</a>
+              </h4>
+              
+              <p class="doc-description">Initial preparation for publishing gems, Docker images, and documentation sites</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/lab-dev-config/">Dev-tooling Configuration</a>
+              </h4>
+              
+              <p class="doc-description">Configuring the `docopslab-dev.yml` manifest for DocOps Lab development tooling</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/lab-dev-setup/">Dev-tooling Setup</a>
+              </h4>
+              
+              <p class="doc-description">Environment and Bootstrapping for new DocOpsLab project codebases or establishing a complete dev environment</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/lab-dev-usage/">Dev-tooling Usage</a>
+              </h4>
+              
+              <p class="doc-description">Using docopslab-dev tooling with DocOps Lab project codebases</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/infrastructure/">Development &amp; Deployment Infrastructure</a>
+              </h4>
+              
+              <p class="doc-description">Local and cloud assets for DocOps Lab projects</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/development/">Development Process (General)</a>
+              </h4>
+              
+              <p class="doc-description">General development process for DocOps Lab projects</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/cla/">DocOps Lab Contributor License Agreement (CLA)</a>
+              </h4>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/contributing/">DocOps Lab Contributor&#8217;s Guide</a>
+              </h4>
+              
+              <p class="doc-description">Guidelines, protocols, and best practices for contributing to DocOps Lab projects.</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/generative-ai-usage/">DocOps Lab Generative &#8220;AI&#8221; Guidance</a>
+              </h4>
+              
+              <p class="doc-description">How we manage output that was created with at least partial assistance from an LLM/agent</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/privacy/">DocOps Lab Privacy Assurances</a>
+              </h4>
+              
+              <p class="doc-description">No telemetry, no data collection, period.</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/docker/">Dockerfile and Docker Image Management</a>
+              </h4>
+              
+              <p class="doc-description">Dockerfile coding and Docker image management in DocOps Lab projects</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/asciidoc-styles/">Documentation Style Guide</a>
+              </h4>
+              
+              <p class="doc-description">DocOps Lab documentation style guide and AsciiDoc syntax conventions.</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/fix-broken-links/">Fix Broken Links</a>
+              </h4>
+              
+              <p class="doc-description">Troubleshooting and fixing broken links in DocOps Lab documentation sites.</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/fix-jekyll-asciidoc-build-errors/">Fix Jekyll-AsciiDoc Build Errors</a>
+              </h4>
+              
+              <p class="doc-description">Analyzing and addressing Asciidoctor errors that surface in Jekyll build operations</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/fix-spelling-issues/">Fix Spelling Issues</a>
+              </h4>
+              
+              <p class="doc-description">Troubleshooting and fixing spelling issues with optional AI support.</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/git-commit-styles/">Git Commits Style Guide</a>
+              </h4>
+              
+              <p class="doc-description">Protocols for authoring Git commits for DocOps Lab projects</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/github-issues/">GitHub Issues Types and Tasks</a>
+              </h4>
+              
+              <p class="doc-description">Tracking work for DocOps Lab projects</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/mission/">Operate the Docs: DocOps Lab Purpose and Approach</a>
+              </h4>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/product-change-docs/">Product Change Tracking and Documentation</a>
+              </h4>
+              
+              <p class="doc-description">Integration and deployment/delivery process for DocOps Lab sites and artifacts.</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/release/">Release Process (General)</a>
+              </h4>
+              
+              <p class="doc-description">Integration and deployment/delivery process for DocOps Lab sites and artifacts.</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/ruby-styles/">Ruby Development Style Guide</a>
+              </h4>
+              
+              <p class="doc-description">Ruby coding styles and conventions for DocOps Lab projects.</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/testing/">Specs &amp; Tests</a>
+              </h4>
+              
+              <p class="doc-description">Specifying and testing DocOps Lab projects</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/universal-attributes/">Universal Project Attributes</a>
+              </h4>
+              
+              <p class="doc-description">Current status of all project info as AsciiDoc attributes</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/github-issues-usage/">Using GitHub Issues</a>
+              </h4>
+              
+              <p class="doc-description">Tracking work for DocOps Lab projects</p>
+              
+            </div>
+            
+            <div class="doc-item">
+              <h4 class="doc-title">
+                <a href="/docs/xref-attrs/">Xref_attrs</a>
+              </h4>
+              
+            </div>
+            
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2025 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

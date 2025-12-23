@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://docopslab.org/blog.xml" rel="self" type="application/atom+xml" /><link href="https://docopslab.org/" rel="alternate" type="text/html" /><updated>2025-12-23T16:30:09+00:00</updated><id>https://docopslab.org/blog.xml</id><title type="html">DocOps Lab | Blog</title><subtitle>Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.</subtitle><author><name>DocOps Lab</name><email>lab@docopslab.org</email></author><entry><title type="html">Release the Lab!</title><link href="https://docopslab.org/blog/release-the-lab/" rel="alternate" type="text/html" title="Release the Lab!" /><published>2025-12-22T15:00:00+00:00</published><updated>2025-12-22T15:00:00+00:00</updated><id>https://docopslab.org/blog/release-the-lab</id><content type="html" xml:base="https://docopslab.org/blog/release-the-lab/"><![CDATA[<div class="paragraph">
+<p>Today I release a major update to the DocOps Lab website, reporting for the first time on all the projects underway or planned, including their statuses.</p>
+</div>
+<div class="paragraph">
+<p>The site is heavily data driven, mainly based on a complex <a href="https://github.com/DocOps/blob/main/_data/docops-lab-projects.yml">YAML file</a> maintained for the past 2+ years to track projects, their relationships, progress, and so forth.
+Now it informs a static website built with Jekyll and Asciidoctor, which is hosted on GitHub Pages.</p>
+</div>
+<div class="paragraph">
+<p>Check out the <a href="https://github.com/DocOps">Git repository and README</a> for more details.
+Also <a href="/metablog/lab-projects-source-site/">this MetaBlog post</a> explores the source data and site generation in more detail.</p>
+</div>
+<div class="paragraph">
+<p>The site now contains &#8220;reports&#8221;, which group and arrange project status updates by various criteria, such as the <a href="/projects/by-type">type of application</a>, the <a href="/projects/by-tech">technologies</a> involved, and the <a href="/projects/by-wave">target launch date</a>.</p>
+</div>
+<div class="paragraph">
+<p>Certain featured projects have their own profile pages, such as <a href="/projects/ayl-docstack/">AYL DocStack</a> and <a href="/projects/docs-as-code-school/">Docs-as-Code School</a>, providing more details.</p>
+</div>
+<div class="paragraph">
+<p>I am keeping this blog post short as a way of encouraging myself to post more frequently.</p>
+</div>
+<div class="paragraph">
+<p>I will try to keep the progress of various DocOps Lab projects updated on the site, and I will also do my best to post more detailed updates here on the blog.</p>
+</div>]]></content><author><name>Brian Dominick</name></author><category term="announcement" /><category term="website" /><category term="projects" /><category term="update" /><summary type="html"><![CDATA[Today I release a major update to the DocOps Lab website, reporting for the first time on all the projects underway or planned, including their statuses.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://docopslab.org/blog-release-burns.jpg" /><media:content medium="image" url="https://docopslab.org/blog-release-burns.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Building Docs for AI Agents from Single-Sourced Content</title><link href="https://docopslab.org/blog/single-sourcing-for-ai-agents/" rel="alternate" type="text/html" title="Building Docs for AI Agents from Single-Sourced Content" /><published>2025-10-25T00:00:00+00:00</published><updated>2025-10-25T00:00:00+00:00</updated><id>https://docopslab.org/blog/single-sourcing-for-ai-agents</id><content type="html" xml:base="https://docopslab.org/blog/single-sourcing-for-ai-agents/"><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>I build alternate versions of my developer documentation, specially for consumption by LLM-backed coding agents.</p>
+</div>
+<div class="paragraph">
+<p>These documents begin life as AsciiDoc files oriented toward human users, but I selectively transclude content into AI-specific documentation files.
+Then the files are converted to Markdown (via HTML) for better compatibility with LLMs.</p>
+</div>
+<div class="paragraph">
+<p>I then use a tool that lets me sync those agent-oriented docs from a central source into all my code repositories.
+This way any LLM agents have ready access to a library of specific skills or protocols they may be called upon to use, without overwhelming them with entire sets of remote, HTML-laden documents in every session.</p>
+</div>
+<div class="paragraph">
+<p>If this sounds convoluted, hear me out.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="source-content">Source Content</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The source content for my AI-agent-oriented docs lives in the same AsciiDoc files I use for human developer documentation.</p>
+</div>
+<div class="paragraph">
+<p>In my experience, LLMs are more adept at consuming examples and bulleted lists, and they prefer these in Markdown format with some HTML tags.</p>
+</div>
+<div class="paragraph">
+<p>However, complex tech docs are best authored in a structured format like AsciiDoc, reStructuredText, DITA, or MadCap Flare.
+For me, this means authoring in AsciiDoc, converting to HTML, and then reverting to Markdown.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Why not just write the AI docs in Markdown?</div>
+<div class="paragraph">
+<p>If all your docs are already sourced in pure Markdown of one flavor or another, you have a head start in this process.
+You can basically just show the source files to your LLM agent&#8230;&#8203; so long as your docs do not need to be assembled.</p>
+</div>
+<div class="paragraph">
+<p>But for structured authoring with strict single sourcing and transclusion, source files are incomplete until they are rendered to another format.</p>
+</div>
+<div class="paragraph">
+<p>Assuming you wish to source your AI-agent docs along with people docs, you will probably want to render each document, and you further want to slim down your docs.</p>
+</div>
+<div class="paragraph">
+<p>Most advanced static-site generators (SSGs) and doc generators can render complex docs from Markdown-like sources, but conditional transclusion usually requires mixing in preprocessor templates.
+Whereas formats like AsciiDoc, reStructuredText, DITA, and Flare support this feature natively.</p>
+</div>
+<div class="paragraph">
+<p>And because we love AsciiDoc at DocOps Lab, we&#8217;re usually going to find a way to avoid actually having to author in (or even read) Markdown.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Assuming you want to selectively include content for AI agents, use AsciiDoc tagging to indicate sections or blocks to include or exclude.</p>
+</div>
+<div class="paragraph">
+<p>For example, my original, people-focused documentation on how to interact with Git does not assume much prior knowledge of Git commands.
+Whereas LLMs definitely know how to use Git; they are basically experts.
+So all I need to convey is the specific procedures preferred for DocOps Lab projects.</p>
+</div>
+<div class="paragraph">
+<p>Here is how I tag the relevant content in my AsciiDoc source files:</p>
+</div>
+<div class="listingblock">
+<div class="title">Original AsciiDoc source snippet</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">// tag::repo-state[]
+[[repo-state]]
+== Repository State
+
+Development is done on development _trunk_ branches named like `dev/x.y`, where `x` is the major version and `y` is the minor.
+
+To start development on a new release version:
+
+....
+git checkout main
+git pull origin main
+git checkout -b dev/1.2
+git checkout -b chore/bump-version-1.2.0
+git commit -am "Bumped version attributes in README"
+git checkout dev/1.2
+git merge chore/bump-version-1.2.0
+git push -u origin dev/1.2
+....
+// end::repo-state[]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>From there it is just a matter of creating a set of AsciiDoc files that use the <code>include::</code> directive to pull in the tagged content.
+This way I can skip verbose introductory or beginner-oriented content that is unnecessary for LLMs.</p>
+</div>
+<div class="listingblock">
+<div class="title">Using include directive to embed single-sourced content</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[[basics]]
+== The Basics
+
+. Follow proper branching procedures as outlined in &lt;&lt;repo-state&gt;&gt;.
+
+. Commit messages should be concise and easy for users to edit. +
+See &lt;&lt;commit-messages&gt;&gt; for guidance.
+
+. Always prompt user to approve commits before pushing.
+
+. Use `gh` for interacting with GitHub whenever possible. +
+See &lt;&lt;gh-cli&gt;&gt; for more information.
+
+include::../task/development.adoc[tag=repo-state]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generating-ai-agent-docs">Generating AI-Agent Docs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The best way to get Markdown from AsciiDoc files is to perform an HTML conversion and then downgrade to Markdown.</p>
+</div>
+<div class="paragraph">
+<p>There are numerous tools for carrying this latter step, not the least of them the <a href="https://pandoc.org">beloved Pandoc</a>.
+I have modified a Ruby library called <a href="https://github.com/xijo/reverse_markdown">ReverseMarkdown</a> to accommodate AsciiDoc&#8217;s richer semantics.
+My extension is available as <a href="https://github.com/DocOps/lab/blob/main/scripts/mark_down_grade.rb"><code>scripts/mark_down_grade.rb</code></a> in this very repo.</p>
+</div>
+<div class="paragraph">
+<p>Here I include a window into the current state of one such document (<a href="https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/docs/agent/skills/git.md">source</a>, <a href="https://docopslab.org/docs/agent/git">rendered</a>), which may change over time as I refine the AI-agent docs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">Unresolved directive in single-sourcing-for-ai-agents.adoc - include::../gems/docopslab-dev/docs/agent/skills/git.md[]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I am quite happy with the twice-converted Markdown output.
+Having spent a decade publishing AsciiDoc to HTML and PDF, this experience of publishing to Markdown has been fun.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="distribution">Distribution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is the extra-credit section of the blog entry.
+It only pertains to organizations or projects that maintain multiple repos or authors who need to lint textual content across multiple projects with a single voice.</p>
+</div>
+<div class="paragraph">
+<p>This matter of AI-oriented docs came about as a side effect of my need to centrally maintain a series of helper utilities like code and text linters backed by customizable libraries.</p>
+</div>
+<div class="paragraph">
+<p>In order to make sure all of my many concurrent projects have access to the latest customizations and configurations of the tools they all depend on, I built a common dependency across all my repos, just for managing these shared assets.</p>
+</div>
+<div class="paragraph">
+<p>The specifics of this tool are not all that important; I will leave them for a separate post.
+The trick is to use whatever resources are available to you to ensure your docs and helper tooling are consistent across your team and accessible to all AI agents.</p>
+</div>
+<div class="paragraph">
+<p>Once you have a library of topical documents for your AI agents to use, make sure they are aware of them by indicating their location in your project&#8217;s <a href="https://agents.md"><code>AGENTS.md</code></a> or <a href="https://claudecode.io/tutorials/claude-md-setup"><code>CLAUDE.md</code></a> file.</p>
+</div>
+</div>
+</div>]]></content><author><name>DocOps Lab</name><email>lab@docopslab.org</email></author><category term="AI agents" /><category term="documentation" /><category term="AsciiDoc" /><category term="Markdown" /><category term="RAG" /><category term="SSOT" /><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://docopslab.org/blog-neo-kungfu.png" /><media:content medium="image" url="https://docopslab.org/blog-neo-kungfu.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">DocOps Lab Licensing and Usage</title><link href="https://docopslab.org/blog/foss-licensing-usage/" rel="alternate" type="text/html" title="DocOps Lab Licensing and Usage" /><published>2025-09-16T00:00:00+00:00</published><updated>2025-09-16T00:00:00+00:00</updated><id>https://docopslab.org/blog/foss-licensing-usage</id><content type="html" xml:base="https://docopslab.org/blog/foss-licensing-usage/"><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s talk about permissively licensed software and how it is best used and managed downstream.</p>
+</div>
+<div class="paragraph">
+<p>Most people&#8201;&#8212;&#8201;including software developers&#8201;&#8212;&#8201;interact with most software as <em>consumers</em> or <em>end users</em>.
+Nevertheless, open source software often seems to be packaged <em>for</em> other developers.</p>
+</div>
+<div class="paragraph">
+<p>This is a guide for new developers or non-devs who need to incorporate FOSS (free open source software) into their own projects.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>This blog entry is meant to help demystify the world of runtime-based open source software.
+It is meant to empower rather than intimidate, just like the best open source software does.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>DocOps Lab software is typically released in both source code and binary/packaged forms, for users' convenience.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>code</strong> is released on an interactive platform (<a href="https://github.com/DocOps">GitHub</a>) so you can investigate it, extend it, or help fix and improve it.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>binaries and packages</strong> are released so you can install and execute it without including the source code in your own projects.
+This way even if you share your project as open source, any open source software it uses unmodified can be referenced as a dependency rather than packaged in your codebase.</p>
+</div>
+<div class="paragraph">
+<p>Likewise, DocOps Labs' <strong>documentation</strong> is similarly shared as both source code and rendered HTML/PDF, also under these exact same conditions.
+Use it as you wish, help improve it, even re-brand it&#8201;&#8212;&#8201;the only requirement is maintaining the &#8220;upstream&#8221; chain of attribution.
+We mainly care about this for accountability, not credit (which we don&#8217;t care about) or control (which we fully relinquish).</p>
+</div>
+<div class="paragraph">
+<p>Our licensing says you can use it however you want, but if you re-share the code, it must remain under the same license and be attributed to DocOps Lab.</p>
+</div>
+<div class="paragraph">
+<p>Note that you do NOT have to share it or changes you make to it, and also note that we do not really care if you keep the attribution or not, whether you release a modified version or not.
+We just want to make it easy for you to use our tools, and we want to be able to point to a common codebase that we can all work on together (or not).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="how-to-use-docops-lab-software">How to Use DocOps Lab Software</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you want to use our software, there is a near certainty that it will not &#8220;just work&#8221;, so to speak, &#8220;out of the box&#8221;, so to speak.</p>
+</div>
+<div class="sect2">
+<h3 id="modified-vs-packaged">Modified vs Packaged</h3>
+<div class="paragraph">
+<p>There are a few ways to take advantage of DocOps Lab software and content.</p>
+</div>
+<div class="paragraph">
+<p>The most common way would be as a compiled-and-packaged dependency in your own project, perhaps as a Ruby gem a Docker image.
+This way, you do not need to fuss over licensing at all.</p>
+</div>
+<div class="paragraph">
+<p>If you do want to modify the code, you can fork it and make changes, then use your own modified version as a dependency in your own project.
+You do not need to re-share or contribute back your changes.</p>
+</div>
+<div class="paragraph">
+<p>Modified code can be used in many ways as well, including copied and pasted snippets, or even just as inspiration for your own code.
+But of course you can also make a wholesale copy, modify it, and rebuild and package it for yourself, then cite that dependency in your <code>Gemfile</code> or <code>Dockerfile</code>.</p>
+</div>
+<div class="paragraph">
+<p>The goal of any open source project should be a balance between extensibility and configurability.
+Most users needing to customize should be able to do so by tweaking powerful settings or an application programming interface (API) or a domain-specific language (DSL) without needing to modify the project&#8217;s source code.</p>
+</div>
+<div class="paragraph">
+<p>Yet for users with extraordinary needs, or perhaps after the project has been abandoned, the ability to fork and modify the code is essential.</p>
+</div>
+<div class="paragraph">
+<p>However, source code modification is not the topic of the day.
+In fact, it&#8217;s the opposite.
+We are going to review all the ways the kinds of &#8220;runtime tools&#8221; we use most in docs-as-code platforms can be modified and used <em>without</em> touching their source code.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="make-foss-work-for-you">Make FOSS Work for You</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are many ways to interact with and amend the behavior of software before you should ever consider hacking the source.
+True programmers do their best to <em>avoid</em> modifying the source code of products they wish to <em>use</em> but not to <em>maintain</em>.</p>
+</div>
+<div class="sect2">
+<h3 id="clis">CLIs</h3>
+<div class="paragraph">
+<p>Command-line interfaces can be run from any UNIX-like shell environment and manipulated with arguments, options, flags, and environment variables.
+This is likely the fastest way to leverage any DocOps Lab tools.</p>
+</div>
+<div class="paragraph">
+<p>CLI commands can be scripted.
+You can string them together, run them conditionally, run them in loops, and so forth.
+Commands are simply instructions, and instructions can be concatenated into scripts.</p>
+</div>
+<div class="paragraph">
+<p>The output can be piped to other commands for further processing.</p>
+</div>
+<div class="paragraph">
+<p>CLIs can be used in combination with configuration, domain-specific languages, and extensions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apis">APIs</h3>
+<div class="paragraph">
+<p>There are two broad categories of APIs: native and remote.</p>
+</div>
+<div class="paragraph">
+<p>Native APIs are libraries or modules designed to be used in a given programming environment, such as Java, Python, JavaScript, or in our case mostly Ruby.</p>
+</div>
+<div class="paragraph">
+<p>Most people in tech are more familiar with remote APIs, specifically RESTful APIs, but also GraphQL, SOAP, and other kinds.</p>
+</div>
+<div class="paragraph">
+<p>In both cases, an API is a system that awaits input in an expected format and returns output in a documented format&#8201;&#8212;&#8201;usually some kind of data structure.
+In the case of remote APIs, the output is typically JSON delivered over HTTP.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configs">Configs</h3>
+<div class="paragraph">
+<p>Most command-line tools can be configured with local files that stablish a baseline of settings and behaviors.
+Configuration files, or &#8220;configs&#8221; , are a kind of interface, though they tend to be application-specific in structure, syntax, and nomenclature.</p>
+</div>
+<div class="paragraph">
+<p>DocOps Lab prefers YAML-formatted configuration files, but sometimes we use INI format.</p>
+</div>
+<div class="paragraph">
+<p>Configs are constrained by whatever the product&#8217;s developers predicted users would want to do.
+It often means establishing persistent preferences for the types of things CLIs and APIs allow you to indicate at runtime using arguments.</p>
+</div>
+<div class="paragraph">
+<p>Good Configs are well documented, but truthfully configuration docs often get de-emphasized, especially in open source projects.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dsls">DSLs</h3>
+<div class="paragraph">
+<p>Domain-specific languages (DSLs) are mini programming syntaxes designed to express concepts in a particular domain, usually with modest scope.</p>
+</div>
+<div class="paragraph">
+<p>DSLs can be their very own syntax, or they can use an existing syntax like YAML or XML in a predefined manner, expecting particular keys with a given range of values to script or configure user-defined outcomes for a given set of inputs.</p>
+</div>
+<div class="paragraph">
+<p>Examples of DSLs you might be familiar with include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>GitHub Actions workflow files</p>
+</li>
+<li>
+<p>Kubernetes manifests</p>
+</li>
+<li>
+<p>Dockerfiles</p>
+</li>
+<li>
+<p>SCSS/SASS and LESS for CSS pre-processing</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>DocOps Lab prefers to use YAML-based DSLs wherever possible, as they are easy to read and write, and widely supported.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="templates">Templates</h3>
+<div class="paragraph">
+<p>Templates are a kind of DSL that define how input textual and variable data is to be transformed into output content.</p>
+</div>
+<div class="paragraph">
+<p>Templates use a syntax that is interpreted by a rendering engine.
+This engine accepts data from an outside source (YAML or JSON or a relational database) and merges it into the template structure to produce predictable output.</p>
+</div>
+<div class="paragraph">
+<p>Templates are often used in DocOps Lab projects to generate HTML, Markdown, AsciiDoc, YAML, or other text-based formats.</p>
+</div>
+<div class="paragraph">
+<p>DocOps Lab prefers Liquid templates and uses an extended version of Jekyll&#8217;s Liquid 4 engine.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="extensions-plugins">Extensions/Plugins</h3>
+<div class="paragraph">
+<p>Forward-thinking developers instill their software with &#8220;hooks&#8221; so that downstream devs can extend the product&#8217;s behavior using its native source syntax or a DSL.</p>
+</div>
+<div class="paragraph">
+<p>While some DSLs and templating systems are used to perform tasks the product developer predicted most users would need, extensions are for needs the developer did not anticipate or has not yet implemented.</p>
+</div>
+<div class="paragraph">
+<p>Extensions are often packaged as plugins or modules that can be installed alongside the main product.
+Developers themselves often provide plugins for optional features that might not be optimal as a built-in aspect of the core product.</p>
+</div>
+<div class="paragraph">
+<p>Other times, plugins are created by third-party developers to add functionality the original developers did not envision.
+These &#8220;community extensions&#8221; sometimes get merged into the official product.</p>
+</div>
+<div class="paragraph">
+<p>Any user can develop an extension and <em>not</em> share it.
+This is common for extensions that solve an internal use case but are not designed for public consumption.
+A local extension can even include hard-coded data or proprietary logic that would not be appropriate for open source sharing.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="licensing-choices-and-implications">Licensing Choices and Implications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In some ways, the distinctions between open source licenses do not matter very much.
+If you just want to use some FOSS utility or another, even for professional or commercial purposes, most licenses will allow you to do so with no strings attached.</p>
+</div>
+<div class="paragraph">
+<p>Licensing starts to matter when you want to package or copy source code into your own projects, especially if you intend to share your own project as open source.</p>
+</div>
+<div class="sect2">
+<h3 id="why-licenses">Why Licenses?</h3>
+<div class="paragraph">
+<p>Software you intend to share needs a license.
+What many people misunderstand is that unlicensed software you find on GitHub or elsewhere is still copyrighted, and you technically are <em>NOT</em> supposed to reuse it in your own projects.</p>
+</div>
+<div class="paragraph">
+<p>Truthfully, a lot of shared code just happens to be lacking a license out of neglect, and it&#8217;s fine for you to reuse.</p>
+</div>
+<div class="paragraph">
+<p>Most of the engineering shops I&#8217;ve worked at disallow incorporating unlicensed code even if the developer obviously intended to share it.
+You can always post an Issue on a project&#8217;s GitHub repo to ask the author to add a permissive license.</p>
+</div>
+<div class="paragraph">
+<p>So we have to have a license to make it clear our code is freely copyable and reusable.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-mit">Why MIT?</h3>
+<div class="paragraph">
+<p>By some stroke of coincidence or culture or convention, nearly everything in our particular toolchain (meaning the applications we use to develop our own) is <a href="https://opensource.org/license/mit">MIT licensed</a>, so it makes sense to use the same license for our own code.</p>
+</div>
+<div class="paragraph">
+<p>MIT License totally permissive; it should not trouble anyone&#8217;s manager or CTO or Legal Department, and that&#8217;s that.</p>
+</div>
+<div class="paragraph">
+<p>There are lots of other considerations deep thinkers fuss over, but I have not found time to care much about the nuance politics of FOSS licensing.</p>
+</div>
+<div class="paragraph">
+<p>MIT works.
+<a href="https://opensource.org/license/apache-2-0">Apache</a> works.
+<a href="https://opensource.org/license/bsd-2-clause">BSD</a> works.
+Knock yourself out.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-cc-by-4-0">Why CC BY 4.0?</h3>
+<div class="paragraph">
+<p>We release some extra documentation like websites and educational materials under <a href="https://creativecommons.org/licenses/by/4.0/deed.en">Creative Commons Attribution 4.0 International (CC BY 4.0)</a> because it is similarly permissive like MIT and widely understood, and because we quite like CC and their efforts in the world of knowledge sharing.</p>
+</div>
+<div class="paragraph">
+<p>CC BY indicates a requirement to note what changes are made if you redistribute the so-licensed content, so for stuff like Docs-as-Code School or this the main <a href="https://docopslab.org">DocOpsLab.org</a> website.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="what-does-all-this-mean">What Does All This Mean?</h3>
+<div class="paragraph">
+<p>In practical terms, you can use DocOps Lab software and documentation in your own projects, whether personal or commercial, without worrying about licensing fees or restrictions.
+You can modify it, adapt it, and even redistribute it, and we don&#8217;t even care about credit, so long as you leave some trail back to the source.</p>
+</div>
+<div class="paragraph">
+<p>The only real requirement is that if you do redistribute the <em>source code</em> itself, it must remain under the same license.</p>
+</div>
+</div>
+</div>
+</div>]]></content><author><name>DocOps Lab</name><email>lab@docopslab.org</email></author><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://docopslab.org/blog-foss-licenses.jpg" /><media:content medium="image" url="https://docopslab.org/blog-foss-licenses.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Why DocOps Lab Chooses GitHub over GitLab</title><link href="https://docopslab.org/blog/why-github/" rel="alternate" type="text/html" title="Why DocOps Lab Chooses GitHub over GitLab" /><published>2025-09-06T00:00:00+00:00</published><updated>2025-09-06T00:00:00+00:00</updated><id>https://docopslab.org/blog/why-github</id><content type="html" xml:base="https://docopslab.org/blog/why-github/"><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>I quite like GitLab for a number of reasons, but before I ever knew it existed, I was already deeply embedded in GitHub&#8217;s ecosystem.
+The <strong>TL;DR</strong> of this blog post is that GitHub&#8217;s network effects and ubiquity outweigh GitLab&#8217;s technical advantages for my own open source projects.</p>
+</div>
+<div class="paragraph">
+<p>I was not particularly bothered by Microsoft&#8217;s acquisition of GitHub, despite a general bias against Microsoft for political and technical reasons.
+At that time, it did not seem like MS was particularly interested in changing GitHub&#8217;s culture or direction, and MS being more invested in open source was a welcome development.</p>
+</div>
+<div class="paragraph">
+<p>But the recent immersion of GitHub into MS&#8217;s AI division, with GH no longer having a CEO or even the pretense of independence, I find myself wishing I was rooted on another platform.</p>
+</div>
+<div class="paragraph">
+<p>For this reason, I had a stop-and-think about this subject before I released a new bunch of codebases on the platform.
+I gave it enough serious thought and did enough research to feel like it makes a nice, short blog post that maybe nobody should be particularly influenced by.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-comparison">The Comparison</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are a lot of &#8220;content marketing&#8221; articles out there that claim to help you decide for your own case.
+<strong>This article is not one of those.</strong>
+I never know how much of those articles is sponsored content or SEO gaming or just AI slop that may or may not be true.</p>
+</div>
+<div class="paragraph">
+<p>Really I am just documenting my own decision for accountability.</p>
+</div>
+<div class="paragraph">
+<p>My decision took into account a peculiar use case: different (non-developer) audience, strong technological opinions, and a need to grow a community around the work.</p>
+</div>
+<div class="paragraph">
+<p>My own research involved a marathon ChatGPT 5 session evaluating numerous aspects of the two platforms.</p>
+</div>
+<div class="paragraph">
+<p>Here is a table ChatGPT made to represent the assessment that I led it to through interrogation and testing of its assessments.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
+<col style="width: 10%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Criterion</th>
+<th class="tableblock halign-left valign-top">GitHub</th>
+<th class="tableblock halign-left valign-top">GitLab</th>
+<th class="tableblock halign-left valign-top">Win</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Account friction</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ubiquitous accounts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">New signup needed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon icon-2rem"><i class="fa fa-github" title="github"></i></span></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Discoverability</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Strong social graph</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Limited visibility</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon icon-2rem"><i class="fa fa-github" title="github"></i></span></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>PR/MR workflow</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simple &amp; familiar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powerful but heavier</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon icon-2rem"><i class="fa fa-gitlab" title="gitlab"></i></span><span class="icon icon-2rem"><i class="fa fa-github" title="github"></i></span></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>AsciiDoc Support</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modest</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Strong</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon icon-2rem"><i class="fa fa-gitlab" title="gitlab"></i></span></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Issues/Discussions</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Familiar, lightweight</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Powerful but heavy</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon icon-2rem"><i class="fa fa-github" title="github"></i></span></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Browser editing</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seamless</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Full IDE, slower</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon icon-2rem"><i class="fa fa-github" title="github"></i></span><span class="icon icon-2rem"><i class="fa fa-gitlab" title="gitlab"></i></span></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Incentives</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Global profile value</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Siloed</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><span class="icon icon-2rem"><i class="fa fa-github" title="github"></i></span></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>I weighed a couple of these criteria <em>a lot</em>, including AsciiDoc support and PR/MR workflow.
+(I even dislike the term &#8220;pull request&#8221; and would much prefer GitLab&#8217;s &#8220;merge request&#8221;.)</p>
+</div>
+<div class="paragraph">
+<p>GitLab has better aesthetic (&#8220;front end&#8221;) support for AsciiDoc rendering, and it supports the powerful <code>include::</code> directive.</p>
+</div>
+<div class="paragraph">
+<p>Then again, since I want all of my frameworks and strategies to be GitHub friendly, I really should not actually take advantage of major (&#8220;back end&#8221;) features that GitHub does not support.</p>
+</div>
+<div class="paragraph">
+<p>When it comes to actually generating user-facing documentation, neither platform matters.
+This criteria is just about how it renders READMEs and displays browseable source files.
+(Truthfully, README files should not employ transclusion, anyway.)</p>
+</div>
+<div class="paragraph">
+<p>The same is basically true for workflow features like pull request/merge request process or UI tools.
+Either people can use the excellent tools and interfaces GitHub provides, or there really is no reason to believe a push for code-like practices by non-developers is viable.</p>
+</div>
+<div class="paragraph">
+<p>I rightly will not be able to control or really even influence where people choose to host their own projects that employ the techniques DocOps Lab exists to promote.
+Most will choose GitHub, so everything we are trying to prove and demonstrate should probably happen on GitHub.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-conclusion">The Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the end, I have decided that since I have no gravity of my own to draw people to a platform, I should not add variables (&#8220;friction&#8221;) to this endeavor that might disadvantage it any further than its starting point.</p>
+</div>
+<div class="paragraph">
+<p>If my work somehow engenders a draw of its own, perhaps the community could make a project of migrating to a platform that is not owned by a publicly traded corporation in the first place.
+For now, it seems like GitHub is the best path to popularizing tools and techniques that most people will invariably practice on GitHub.</p>
+</div>
+</div>
+</div>]]></content><author><name>Brian Dominick</name></author><summary type="html"><![CDATA[Why DocOps Lab reluctantly chooses GitHub over GitLab for open source projects]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://docopslab.org/blog-github-vs-gitlab.png" /><media:content medium="image" url="https://docopslab.org/blog-github-vs-gitlab.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">TRUE Single Sourcing with YAML and AsciiDoc</title><link href="https://docopslab.org/blog/true-single-sourcing/" rel="alternate" type="text/html" title="TRUE Single Sourcing with YAML and AsciiDoc" /><published>2025-06-25T00:00:00+00:00</published><updated>2025-06-25T00:00:00+00:00</updated><id>https://docopslab.org/blog/true-single-sourcing</id><content type="html" xml:base="https://docopslab.org/blog/true-single-sourcing/"><![CDATA[<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Documentation and application should derive all key data from a true single source of truth (TSST) defined once and conveyed across all product and documentation builds.</p>
+</div>
+<div class="paragraph">
+<p>This approach conveys more advantages than you might think at first gloss, including <strong>testability</strong> and <strong>cooperative design</strong> through Git-tracked specification and definition.</p>
+</div>
+<div class="paragraph">
+<p>My method is to use AsciiDoc <code>README.adoc</code> and YAML files to assign all kinds of key product data, including structured data for interface definition and reference documentation.</p>
+</div>
+<div class="paragraph">
+<p>This post is a doozie, so let&#8217;s TOC it out.</p>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#the-example-of-openapi">The Example of OpenAPI</a></li>
+<li><a href="#why-stop-there">Why Stop There?</a>
+<ul class="sectlevel2">
+<li><a href="#interface-types">About Those Other Interface Types</a></li>
+<li><a href="#the-advantages-of-yaml-based-tsst">The Advantages of YAML-based TSST</a></li>
+</ul>
+</li>
+<li><a href="#single-source-readme">Single Sourcing in `README.adoc`</a></li>
+<li><a href="#generating-docs-with-templating-engines">Generating Docs with Templating Engines</a></li>
+<li><a href="#truth-and-purism">Truth and Purism</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-example-of-openapi">The Example of OpenAPI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are few universally known technologies across all of programming and software technical writing, but one of them is OpenAPI Specification (OAS), a standardized data format used to &#8220;describe&#8221; or &#8220;define&#8221; server application interfaces that honor the standard RESTful HTTP architecture and protocol.</p>
+</div>
+<div class="paragraph">
+<p>That is, one &#8220;language&#8221; can be used to detail <em>just about</em> everything anyone would need to know about how a given REST API is supposed to work, at least in terms of what endpoints do what with a given set of data and a given method (POST, GET, PUT, DELETE).</p>
+</div>
+<div class="paragraph">
+<p>OAS is a great example of a &#8220;true single source of truth&#8221; (TSST) when used to <em>define</em> the API itself as well as the documentation downstream developers use to make informed connections to the API.</p>
+</div>
+<div class="quoteblock pullquote">
+<blockquote>
+<div class="paragraph">
+<p><a href="#why-stop-there">Defining relatively complex interfaces in YAML can apply to much more than just REST APIs.</a></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re having trouble recalling just what OpenAPI code looks like, here&#8217;s a simple example:</p>
+</div>
+<div class="listingblock">
+<div class="title">OpenAPI Example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">openapi: 3.1.0
+info:
+  title: Sample API
+  description: A simple API to illustrate OpenAPI concepts
+  version: '2'
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /items:
+    get:
+      summary: Retrieve a list of items
+      responses:
+        '200':
+          description: A JSON array of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    score:
+                      type: integer
+    post:
+      summary: Create a new item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                score:
+                  type: integer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code defines two operations on one endpoint of a hypothetical API, but it should serve to illustrate.</p>
+</div>
+<div class="paragraph">
+<p>At its best, OpenAPI is a <em>YAML data format</em> that can be used to generate documentation, client libraries, server stubs, and more.
+At the very least, it can be used as an authoritative reference for API development and testing.</p>
+</div>
+<div class="paragraph">
+<p>In fact, non-developers, such as <em>technical writers</em> and <em>product managers</em>, can use or even <em>contribute to</em> an OpenAPI document (OAD).
+The RESTful interface architecture is relatively simple, and anyone who comes to understand it can help design and define such an API using OAS.
+There is no reason at all to leave this to developers, though they may have critical feedback during the planning or implementation stages.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="why-stop-there">Why Stop There?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Defining relatively complex interfaces in YAML can apply to much more than just REST APIs.</p>
+</div>
+<div class="paragraph">
+<p>Full-stack application development involves much more &#8220;coding&#8221; than most would consider actual &#8220;programming&#8221;.
+Consider <em>interface design</em> and <em>database design</em>, for instance.
+Both are best done in code, but neither is really <em>programming</em>, per se.</p>
+</div>
+<div class="paragraph">
+<p>Now, I have admittedly never seen a non-developer design a database schema, but I can readily imagine savvy technical writers and product managers creating sensible YAML documents to convey structured data when a relational database would be overkill.
+And I certainly <em>have</em> seen non-developers contribute to REST API design via OAS.</p>
+</div>
+<div class="paragraph">
+<p>So that <em>non-programming coding</em> category certainly includes editing YAML files, and I would imagine it even includes <em>templating</em> languages such as Jinja, Liquid, and Handlebars.
+These can involve data processing and logic, but they are relatively simple and purpose-built for <em>text transformation</em>.</p>
+</div>
+<div class="paragraph">
+<p>Liquid was specifically designed for non-developers, and generative-AI coding tools are adept at writing templates in nearly all popular syntaxes.
+This means those savvy non-programmers can help author data files <em>and</em> help turn them into good, auto-generated reference documentation.</p>
+</div>
+<div class="paragraph">
+<p>This non-programmer involvement is but one of the key advantages of stepping away from &#8220;native&#8221; (Python, Java, Rust, Javascript, Ruby, Golang, etc) programming code and into a truly cross-language, human-writeable data format like YAML.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+While YAML is second only to JSON and XML in terms of current popularity, it is wildly more user- and Git-friendly than the leading formats.
+Meanwhile, YAML-like formats such as TOML, CSON, HJSON are lesser known alternatives.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="interface-types">About Those Other Interface Types</h3>
+<div class="paragraph">
+<p>It turns out YAML is a terrific format for all kinds of interface <em>definition</em> coding.</p>
+</div>
+<div class="paragraph">
+<p>It can be used for defining YAML/JSON <strong>configuration files</strong>.
+It can be used to define <strong>command-line interfaces</strong> (CLIs), <strong>HTML forms</strong>, <strong>file/directory structures</strong>, and much more, always allowing for extensive auxiliary metadata for each element so defined, whether it be a REST API endpoint or a form input field.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of how I use YAML to define YAML-formatted configuration files for my Ruby applications:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">properties:
+  log_level:
+    type: String
+    desc: The logging level for the application.
+    dflt: info
+    opts: [debug, info, warn, error, fatal]
+  output_format:
+    type: String
+    desc: The format for output data.
+    opts: [json, yaml, xml]
+    dflt: json
+  max_retries:
+    type: Integer
+    desc: The maximum number of retry attempts for failed operations.
+    span: '0..5'
+    dflt: 3</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This definition supports some automated validation, and it allows me to generate documentation directly from this very source.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">`log_level`::
+The logging level for the application.
+
+[horizontal]
+Default::: `info`
+Options::: `debug`, `info`, `warn`, `error`, `fatal`
+
+`output_format`::
+The format for output data.
+
+[horizontal]
+Default::: `json`
+Options::: `json`, `yaml`, `xml`
+
+`max_retries`::
+The maximum number of retry attempts for failed operations.
+
+[horizontal]
+Default::: `3`
+Range::: `0-5`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-advantages-of-yaml-based-tsst">The Advantages of YAML-based TSST</h3>
+<div class="paragraph">
+<p>So what are the key advantages of using YAML-based TSST?</p>
+</div>
+<div class="openblock cards">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Enables truly cooperative design and definition.</strong>
+Non-programmers can contribute to the design and definition of interfaces, data structures, and more.</p>
+</li>
+<li>
+<p><strong>Sources documentation right where the interface is defined.</strong>
+Developers are used to this for REST and native APIs, though the latter is usually (sensibly) handled in the language&#8217;s official or dominant &#8220;inline&#8221; format.
+For less language-specific interfaces, YAML is a great way to define the interface and its documentation in one place.</p>
+</li>
+<li>
+<p><strong>Informs automated testing.</strong>
+Integration tests can ingest YAML definition data to test against a single data source maintained by all stakeholders.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>For these reasons, YAML is my go-to source format for defining nearly all interfaces, as I will explore in this blog in future posts.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="single-source-readme">Single Sourcing in `README.adoc`</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The other place I love to define global application data is in the root <code>README.adoc</code> file of the project.
+Only data that appears in the README is optimally stored here, since YAML is a more flexible and precise data-serialization format.</p>
+</div>
+<div class="paragraph">
+<p>But user-defined AsciiDoc attributes are a great way to ensure that ALL documentation and even the product itself are deriving data from the same single source.</p>
+</div>
+<div class="paragraph">
+<p>For example, all of my Ruby APIs and CLIs derive their canonical version number from an attribute in the <code>README.adoc</code> file.
+It&#8217;s called <code>this_prod_vrsn</code>, and I can express it anywhere in the documentation as <code>{this_prod_vrsn}</code>, as well as ingest it into the product at build time.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'asciidoctor'
+doc = Asciidoctor.load_file('README.adoc', safe: :safe)
+ATTRS = doc.attributes
+VERSION = ATTRS['this_prod_vrsn']</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>AsciiDoc attributes unfortunately do not support nested data structures or even Arrays, but they are sufficient for core data such as default values, general product data, and anything else you might wish to report in your README itself as well as throughout the product and user documentation.</p>
+</div>
+<div class="paragraph">
+<p>One big advantage of AsciiDoc attributes is that they are inheritable like native variables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:product_base_url: https://example.org
+:product_api_url: {product_base_url}/api</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generating-docs-with-templating-engines">Generating Docs with Templating Engines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You may have been wondering how our YAML data turned into AsciiDoc source code in the <a href="#interface-types">previous examples</a>.</p>
+</div>
+<div class="paragraph">
+<p>The trick is a templating processor, such as those that parse syntaxes like Liquid and render textual output from the input data provided.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% for property in properties %}
+property[0]::
+{{ property[1].desc }}
+[horizontal]
+Default::: `{{ property[1].dflt }}`
+{% if property[1].opts %}
+Options::: {% for opt in property[1].opts %}`{{ opt }}`{% unless forloop.last %}, {% endunless %}{% endfor %}
+{% endif %}
+{% if property[1].span %}
+Range::: `{{ property[1].span | replace:".." , "-" }}`
+{% endif %}
+{% endfor %}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That is all the markup that is required to generate the AsciiDoc source code shown earlier, which I&#8217;ll repeat here again for convenience.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">`log_level`::
+The logging level for the application.
+
+[horizontal]
+Default::: `info`
+Options::: `debug`, `info`, `warn`, `error`, `fatal`
+
+`output_format`::
+The format for output data.
+
+[horizontal]
+Default::: `json`
+Options::: `json`, `yaml`, `xml`
+
+`max_retries`::
+The maximum number of retry attempts for failed operations.
+
+[horizontal]
+Default::: `3`
+Range::: `0-5`</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truth-and-purism">Truth and Purism</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s a funny coincidence that &#8220;TSST&#8221; reads and sounds like a scolding.
+The very concept is strict and somewhat cold, I have to admit.</p>
+</div>
+<div class="paragraph">
+<p>It is unwise to be a &#8220;purist&#8221; about nearly anything, especially in software development, so of course there may be exceptions where an instance of product datum has to be defined twice.</p>
+</div>
+<div class="paragraph">
+<p>But it is a great principle to aim for, as it offers true benefits along the design &#8594; definition &#8594; documentation &#8594; validation pipeline.</p>
+</div>
+</div>
+</div>]]></content><author><name>Brian Dominick</name></author><category term="programming" /><category term="documentation" /><category term="DocOps" /><category term="automation" /><category term="builds" /><summary type="html"><![CDATA[Documentation and application should derive all key data from a true single source of truth (TSST) defined once and conveyed across all product and documentation builds.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://docopslab.org/blog-truthiness.jpg" /><media:content medium="image" url="https://docopslab.org/blog-truthiness.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

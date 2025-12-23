@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Tech Blogging is Better in AsciiDoc | DocOps Lab</title>
+  <meta name="description" content="This post is an ongoing experiment demonstrating the &#8220;front end&#8221; output produced by various expressions of AsciiDoc syntax, and it will show off ...">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why Tech Blogging is Better in AsciiDoc">
+  <meta property="og:description" content="This post is an ongoing experiment demonstrating the &#8220;front end&#8221; output produced by various expressions of AsciiDoc syntax, and it will show off ...">
+  <meta property="og:url" content="https://docopslab.org/metablog/tech-blogging-in-asciidoc/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/asciidoc-logo-small.png">
+    
+  
+  
+  <meta property="article:author" content="Dr Meta">
+  <meta property="article:published_time" content="2025-12-23T16:30:09+00:00">
+    
+      
+  <meta property="article:tag" content="test">
+      
+  <meta property="article:tag" content="icons">
+      
+  <meta property="article:tag" content="AsciiDoc">
+      
+    
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Tech Blogging is Better in AsciiDoc">
+  <meta name="twitter:description" content="This post is an ongoing experiment demonstrating the &#8220;front end&#8221; output produced by various expressions of AsciiDoc syntax, and it will show off ...">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/asciidoc-logo-small.png">
+    
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="Dr Meta">
+  
+  <meta name="publish_date" property="og:publish_date" content="2025-12-23T16:30:09+00:00">
+  
+  <link rel="canonical" href="https://docopslab.org/metablog/tech-blogging-in-asciidoc">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/an-old-hope.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700&family=Source+Code+Pro:ital,wght@0,400;0,500;0,700&display=swap" rel="stylesheet">
+
+  <!-- Font Detection Script for MetaBlog -->
+  <script>
+    // Wait for fonts to load and then detect what's actually being used
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        const codeElements = document.querySelectorAll('.metablog pre, .metablog code');
+        if (codeElements.length > 0) {
+          const testElement = codeElements[0];
+          const computedStyle = window.getComputedStyle(testElement);
+          const actualFont = computedStyle.fontFamily;
+          console.log('🔍 MetaBlog Font Detection:');
+          console.log('Computed font-family:', actualFont);
+          console.log('First element tested:', testElement);
+          
+          // Add data attribute for CSS debugging
+          document.documentElement.setAttribute('data-metablog-font', actualFont.split(',')[0].replace(/['"]/g, ''));
+        }
+      }, 500); // Wait for font loading
+    });
+  </script>
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+</head>
+<body class="layout-post dark-forced  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  
+
+
+
+
+<div class="blog-post-container metablog">
+  <div class="container">
+    <article class="blog-post metablog">
+    <header class="post-header metablog">
+      <h1 class="post-title metablog">
+        Why Tech Blogging is Better in AsciiDoc
+        
+      </h1>
+      
+      
+      <h2 class="blog-title metablog">
+        <i data-lucide="microscope"></i>
+        A Dr Meta's MetaBlog entry
+      </h2>
+      
+      
+      
+      
+      
+      <div class="post-meta metablog">
+        
+        
+        
+        
+        <span class="post-author metablog">
+          <i data-lucide="user"></i>
+          Dr Meta
+        </span>
+        
+        
+        <div class="post-tags metablog">
+          <i data-lucide="tag"></i>
+          
+            <span class="tag">test</span>
+          
+            <span class="tag">icons</span>
+          
+            <span class="tag">AsciiDoc</span>
+          
+        </div>
+        
+        
+          
+          <div class="post-version">
+            <span class="version-param"><i data-lucide="milestone"></i><span class="tag">POST VERSION:</span> <strong><code>0.1.0</code></strong></span>
+          </div>
+          
+          
+        
+      </div>
+    </header>
+    
+    <div class="post-content metablog">
+      
+      <figure class="post-image">
+        <img src="/assets/images/asciidoc-logo-small.png" alt="Why Tech Blogging is Better in AsciiDoc" class="post-image-img">
+        
+      </figure>
+      
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This post is an ongoing experiment demonstrating the &#8220;front end&#8221; output produced by various expressions of AsciiDoc syntax, and it will show off some of the CSS and JavaScript work I&#8217;ve done in this area.</p>
+</div>
+<div class="paragraph">
+<p>The styling and effects you see here are not &#8220;vanilla&#8221; AsciiDoc output.
+After rendering AsciiDoc to HTML, it still needs to be styled with CSS, and most interactive effects need to be defined with CSS or JavaScript.</p>
+</div>
+<div class="paragraph">
+<p>Styling and effects are outside this post, but you can find the sources for all of this at <a href="https://github.com/DocOps/lab/tree/main/_sass/asciidoc.scss" class="bare">https://github.com/DocOps/lab/tree/main/_sass/asciidoc.scss</a> and <a href="https://github.com/DocOps/lab/tree/main/assets/js/main.js" class="bare">https://github.com/DocOps/lab/tree/main/assets/js/main.js</a>.</p>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#the-examples">The Examples</a>
+<ul class="sectlevel2">
+<li><a href="#example-block-example">Example Block Example</a></li>
+<li><a href="#transclusion-examples">Transclusion Examples</a></li>
+<li><a href="#admonition-examples">Admonition Examples</a></li>
+<li><a href="#callout-example">Callout Example</a></li>
+<li><a href="#blockquote-examples">Blockquote Examples</a></li>
+<li><a href="#table-examples">Table Examples</a></li>
+<li><a href="#description-list-example">Description List Example</a></li>
+<li><a href="#other-list-types">Other List Types</a>
+<ul class="sectlevel3">
+<li><a href="#ordered-lists">Ordered Lists</a></li>
+<li><a href="#unordered-lists">Unordered Lists</a></li>
+</ul>
+</li>
+<li><a href="#sidebar-example">Sidebar Example</a></li>
+<li><a href="#examples-wrapup">Examples Wrapup</a></li>
+</ul>
+</li>
+<li><a href="#asciidoc-better-than-what">AsciiDoc is Better than What, Though?</a>
+<ul class="sectlevel2">
+<li><a href="#markdown-vs-asciidoc">Markdown vs AsciiDoc</a>
+<ul class="sectlevel3">
+<li><a href="#hyperlink-syntax">Hyperlink Syntax</a></li>
+<li><a href="#code-blocks-syntax">Code Blocks Syntax? (Nope)</a></li>
+<li><a href="#html-embedding-nope">HTML Embedding? (Nope)</a></li>
+<li><a href="#strikethrough-syntax-gotcha-asciidoc">Strikethrough Syntax (Gotcha, AsciiDoc!)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="the-examples">The Examples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s time to examine the AsciiDoc awesome sauce.</p>
+</div>
+<div class="sect2">
+<h3 id="example-block-example">Example Block Example</h3>
+<div class="paragraph">
+<p>First, let&#8217;s address something you don&#8217;t see every day in tech blogging: an actual, semantically (and visually) distinct block for exhibiting examples.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example block containing a code block</div>
+<div class="content">
+<div class="paragraph">
+<p>I typically use example blocks to show <em>results</em>, but you can also use them for code listings as well.
+Let&#8217;s make this one a combo.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">name: example
+array:
+  - item1
+  - item2
+  - item3</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock wrap">
+<div class="title">How that was coded&#8230;&#8203;</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.Example block containing a code block
+====
+I typically use example blocks to show _results_, but you can also use them for code listings as well.
+Let's make this one a combo.
+
+[source,yaml]
+----
+name: example
+array:
+  - item1
+  - item2
+  - item3
+----
+====</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We will be using example blocks throughout this post to show off <em>rendered</em> output, in contrast to the code blocks we&#8217;ll use to expose the source of those blocks.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="transclusion-examples">Transclusion Examples</h3>
+<div class="paragraph">
+<p>The AsciiDoc <code>include::</code> directive is awesome.
+It embeds the content of another file&#8201;&#8212;&#8201;in whole <em>or in part</em>&#8201;&#8212;&#8201;into a parent document.</p>
+</div>
+<div class="paragraph">
+<p>Such includes are also used throughout the <a href="https://github.com/DocOps/blob/main/_metablog/tech-blogging-in-asciidoc.adoc?plain=1">source for this post</a>.</p>
+</div>
+<div class="paragraph">
+<p>Nearly every example of block content in this post is transcluded from an adjacent file called <code>_asciidoc-snippets.adoc</code>, which is subvidivded using AsciiDoc include tags, demarcated like so:</p>
+</div>
+<div class="listingblock">
+<div class="title">An example of tagged content</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">This part of the document will not be included.
+
+// tag::segment-name[]
+Everything between tagged lines is included in the "calling" document.
+// end::segment-name[]
+
+Nothing outside the tags will be included in a tagged include directive</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The desired line of AsciiDoc source in a nearby or even <em>online</em> file can be transcluded with a line like:</p>
+</div>
+<div class="listingblock">
+<div class="title">Embedding tagged content</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">include::_asciidoc-snippets.adoc[tag="segment-name"]</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Which resolves as&#8230;&#8203;</div>
+<div class="content">
+<div class="paragraph">
+<p>Everything between tagged lines is included in the "calling" document.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>But this works for files of any other format, as well.
+I use it a lot for YAML files.</p>
+</div>
+<div class="listingblock">
+<div class="title">Take a YAML file that looks like this:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">properties:
+# tag::arbitrary-tagname[]
+  - key: tagged-content
+    description: |
+      This exemplifies demarcated tagging in YAML, for inclusion into AsciiDoc files.
+    status: awesome!
+# end::arbitrary-tagname[]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Use a tagged include directive&#8230;&#8203;</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[source,yaml]
+include::_metablog/_asciidoc-yaml-snippet.yml[tag=arbitrary-tagname]</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Those 2 lines of code result in:</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  - key: tagged-content
+    description: |
+      This exemplifies demarcated tagging in YAML, for inclusion into AsciiDoc files.
+    status: awesome!</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="admonition-examples">Admonition Examples</h3>
+<div class="paragraph">
+<p>What some systems call &#8220;alerts&#8221; or &#8220;callouts&#8221; or &#8220;notices&#8221;, AsciiDoc calls &#8220;admonitions&#8221;.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example:</div>
+<div class="content">
+<div class="paragraph">
+<p>Let&#8217;s kick things off with an example of a simple note admonition.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This is a NOTE admonition with a Lucide info circle icon. It should display with a blue color scheme and an information icon.</p>
+</div>
+<div class="paragraph">
+<p>It can contain multiple paragraphs, like this second one.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="listingblock wrap">
+<div class="title">How it was made&#8230;&#8203;</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Let's kick things off with an example of a simple note admonition.
+
+[NOTE]
+====
+This is a NOTE admonition with a Lucide info circle icon. It should display with a blue color scheme and an information icon.
+
+It can contain multiple paragraphs, like this second one.
+====</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That wasn&#8217;t simple enough for you?
+Check this out&#8230;&#8203;</p>
+</div>
+<div class="listingblock wrap">
+<div class="title">One-liner admonition markup</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Those `====` demarcation characters and the `[NOTE]` heading are only necessary when there is something special about your admonition content, such as multiple paragraphs or distinct styling.
+
+TIP: Normally, this works just fine to create an admonition block.
+
+And blogging in standardized lightweight markup doesn't get much simpler than that.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Renders&#8230;&#8203;</div>
+<div class="content">
+<div class="paragraph">
+<p>Those <code>====</code> demarcation characters and the <code>[NOTE]</code> heading are only necessary when there is something special about your admonition content, such as multiple paragraphs or distinct styling.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Normally, this works just fine to create an admonition block.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>And blogging in standardized lightweight markup doesn&#8217;t get much simpler than that.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="callout-example">Callout Example</h3>
+<div class="paragraph">
+<p>Speaking of &#8220;callouts&#8221;&#8201;&#8212;&#8201;when AsciiDoc uses that term, it means annotations inside a code block.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example of a code listing with callouts</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def hello_world message="Hello, world!", case="upper" <i class="conum" data-value="1"></i><b>(1)</b>
+  message_cased = case == "upper" ? message.upcase : message.downcase <i class="conum" data-value="2"></i><b>(2)</b>
+  puts message_cased <i class="conum" data-value="3"></i><b>(3)</b>
+end</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>defines the method with default parameters</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>processes the message based on the case parameter</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>outputs the processed message</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you highlight the contents and use your operating system&#8217;s copy-to-clipboard, or if you click the copy button, you&#8217;ll see that only the source code copies, not the callout numbers.</p>
+</div>
+<details>
+<summary class="title">Click here to reveal a textarea box you can paste into</summary>
+<div class="content">
+<textarea cols="60" rows="7" style="font-size: 1rem; padding: 1rem;" placeholder="Try pasting the sample code here..."></textarea>
+<div class="paragraph">
+<p>See?
+No callouts were picked up in the copy operation!</p>
+</div>
+</div>
+</details>
+<div class="listingblock wrap">
+<div class="title">The code that made that code:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[source,ruby]
+----
+def hello_world message="Hello, world!", case="upper" # <1>
+  message_cased = case == "upper" ? message.upcase : message.downcase # <2>
+  puts message_cased # <3>
+end
+----
+<1> defines the method with default parameters
+<2> processes the message based on the case parameter
+<3> outputs the processed message</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="blockquote-examples">Blockquote Examples</h3>
+<div class="paragraph">
+<p>Block quotes are a staple of blogging.
+Here are two of my favorite ways to use them.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Blockquote with citation</div>
+<div class="content">
+<div class="quoteblock">
+<blockquote>
+This is a blockquote with a citation.
+Not something you use in tech writing very often, but quite common in all kinds of blogging.
+</blockquote>
+<div class="attribution">
+&#8212; Dr Meta
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock wrap">
+<div class="title">Blockquote + citation code:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[quote, Dr Meta]
+This is a blockquote with a citation.
+Not something you use in tech writing very often, but quite common in all kinds of blogging.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I have always loved blockquotes, so I made my own style that can be designated with a simple role argument in AsciiDoc.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Blockquote with a pullquote role</div>
+<div class="content">
+<div class="quoteblock pullquote">
+<blockquote>
+This is some text that I want to highlight as a pull quote.
+I&#8217;ve styled it to be distinct from a standard blockquote, and I use them to preview interesting content that appears later in a post.
+</blockquote>
+</div>
+</div>
+</div>
+<div class="listingblock wrap">
+<div class="title">Pullquote code:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[quote,role=pullquote]
+This is some text that I want to highlight as a pull quote.
+I've styled it to be distinct from a standard blockquote, and I use them to preview interesting content that appears later in a post.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="table-examples">Table Examples</h3>
+<div class="paragraph">
+<p>There is no question that AsciiDoc&#8217;s lightweight table markup is excellent.</p>
+</div>
+<div class="listingblock">
+<div class="title">Simple table code:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.This table has an automatically numbered caption
+[cols="1,1,1",options="header"]
+|===
+| Header 1 | Header 2 | Header 3
+
+| Cell 1
+| Cell 2
+| Cell 3
+
+| Cell 4
+| Cell 5
+| Cell 6
+
+| Cell 7
+| Cell 8
+| Cell 9
+|===</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Simple table</div>
+<div class="content">
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. This table has an automatically numbered caption</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Header 1</th>
+<th class="tableblock halign-left valign-top">Header 2</th>
+<th class="tableblock halign-left valign-top">Header 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell 3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell 4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell 6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell 7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell 8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cell 9</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="paragraph">
+<p>AsciiDoc table syntax doesn&#8217;t rely on mimicking the shape of the table or its columns and cells, so you can break it down and organize the markup in a way that makes sense to you.
+AsciiDoc does not require you to make ASCII art like some table syntaxes.</p>
+</div>
+<div class="paragraph">
+<p>But if you need to make it complex, you can do that too.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Now let&#8217;s get a little crazy&#8230;&#8203;</div>
+<div class="content">
+<table class="tableblock frame-all grid-all stripes-even stretch">
+<caption class="title">Table 2. DocOps Lab ✦ Table of Delightfully Over-Engineered Examples</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 42.8571%;">
+<col style="width: 14.2858%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top" colspan="4">Multiverse Documentation Planning Matrix — Because simple tables are for mortals</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Persona</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Toolkit</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Sample Artifact</strong></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>KPI</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>End-User</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Pain points</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>“Where is the button?”</p>
+</li>
+<li>
+<p>“What’s a token?”</p>
+</li>
+<li>
+<p>“Why is my coffee YAML-flavored?”</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AsciiDoc + Antora</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Quickstart Guide</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Keep it friendly. If the docs feel like a boss fight, you already lost.
+</td>
+</tr>
+</table>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">⏱  <strong>Time-to-First-Success</strong> ↓</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Admin User</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paligo + Snagit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Troubleshooting Article</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">☎  <strong>Support Tickets/1k users</strong> ↓</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="4"><p class="tableblock">——— Sprint 42: Docs Ops Experiments ———</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top" rowspan="3"><p class="tableblock"><strong>Developer</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AsciiDoc + Make + PlantUML</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Code-Adjacent HOWTO</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">def deploy env='prod'
+  puts "Shipping to #{env}…"
+end</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">⚙  <strong>Build Failures Blamed on Docs</strong> ↓</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Jekyll + Kramdown</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>API Changelog</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sections grouped by <code>part</code></p>
+</li>
+<li>
+<p>Rendered to HTML/PDF</p>
+</li>
+<li>
+<p>Includes <code>{%- include -%}</code> sorcery</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">🔁  <strong>PRs Merged w/ Docs</strong> ↑</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Antora + Lunr</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>“Docs as Feature” RFC</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>If it isn’t documented, did it even ship?</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; A slightly dramatic PM
+</div>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">🧭  <strong>Feature Discoverability</strong> ↑</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" colspan="4"><p class="tableblock">——— Release Train: 2.3 “Quantum Marmot” ———</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="3"><div class="content"><div class="paragraph">
+<p><strong>Composite Artifact: “One Doc to Rule Them All”</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Installation (for Humans)</p>
+</li>
+<li>
+<p>API (for Machines)</p>
+</li>
+<li>
+<p>Architecture (for Historians)</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This cell spans <strong>three</strong> columns. The rightmost cell is independent.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">📈  <strong>Adoption Rate</strong> ↑</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Internal Auditor</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AsciiDoc + CSV + a dash of awk</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compliance Matrix (SOC 2, ISO 27001)</p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock">σ = 2.3<sup>±</sup> <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><strong>Site Reliability Engineer</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Runbook Pack</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><strong>Incident Bundle</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Playbooks</p>
+</li>
+<li>
+<p>Postmortem template</p>
+</li>
+<li>
+<p>“Pager-Yoga” breathing guide</p>
+</li>
+</ul>
+</div></div></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">🔍  <strong>Incident Response Time</strong> ↓</p></td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td class="tableblock halign-center valign-top" colspan="4"><p class="tableblock"><strong>In conclusion: Tables are for communicating <strong>structure</strong>, not suffering. Use colspans/rowspans judiciously, and never apologize for beautiful grids.</strong></p></td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<details>
+<summary class="title">Click to expose the source code for the crazy table</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.DocOps Lab ✦ Table of Delightfully Over-Engineered Examples
+[cols="^1,&lt;2,3,&gt;1",width=100%,options="header,footer",frame=all,grid=all,stripes=even]
+|===
+4+^h| Multiverse Documentation Planning Matrix — Because simple tables are for mortals
+
+^s| Persona
+^s| Toolkit
+^s| Sample Artifact
+^s| KPI
+
+// ── A multirow persona cell with block content; spans 2 body rows.
+&lt;a| *End-User*
+
+*Pain points*:
+
+* “Where is the button?”
+* “What’s a token?”
+* “Why is my coffee YAML-flavored?”
+
+| AsciiDoc + Antora
+
+a| Quickstart Guide
+
+TIP: Keep it friendly. If the docs feel like a boss fight, you already lost.
+
+^| ⏱  *Time-to-First-Success* ↓
+
+| *Admin User*
+| Paligo + Snagit
+| Troubleshooting Article
+| ☎  *Support Tickets/1k users* ↓
+
+// ── A “section header” row that spans all four columns.
+4+^| ——— Sprint 42: Docs Ops Experiments ———
+
+// ── A persona cell that spans three rows; note the dot-prefix count for rowspan.
+.3+^| *Developer*
+| AsciiDoc + Make + PlantUML
+a| Code-Adjacent HOWTO
+[source,ruby]
+----
+def deploy env='prod'
+  puts "Shipping to #{env}…"
+end
+----
+
+^| ⚙  *Build Failures Blamed on Docs* ↓
+
+| Jekyll + Kramdown
+a| API Changelog
+
+* Sections grouped by `part`
+* Rendered to HTML/PDF
+* Includes `{%- include -%}` sorcery
+
+^| 🔁  *PRs Merged w/ Docs* ↑
+
+| Antora + Lunr
+a| “Docs as Feature” RFC
+
+[quote, 'A slightly dramatic PM']
+____
+If it isn’t documented, did it even ship?
+____
+^| 🧭  *Feature Discoverability* ↑
+
+// ── Another section header with full-row colspan.
+4+^.^| ——— Release Train: 2.3 “Quantum Marmot” ———
+
+// ── Here we demonstrate a single row that contains a 3-column cell + one regular cell.
+3+&lt;a| **Composite Artifact: “One Doc to Rule Them All”**
+
+* Installation (for Humans)
+* API (for Machines)
+* Architecture (for Historians)
++
+NOTE: This cell spans *three* columns. The rightmost cell is independent.
+^| 📈  *Adoption Rate* ↑
+
+// ── Fun with inline formatting, footnotes, and subscripts/superscripts.
+| *Internal Auditor*
+| AsciiDoc + CSV + a dash of awk
+| Compliance Matrix (SOC 2, ISO 27001)
+| σ = 2.3^±^ footnote:[Margin of error calculated by a friendly spreadsheet goblin.]
+
+// ── A cell that spans two columns on the right; pair with two normal cells on the left.
+| *Site Reliability Engineer*
+| Runbook Pack
+&lt;a| *Incident Bundle*
+
+* Playbooks
+* Postmortem template
+* “Pager-Yoga” breathing guide
+^| 🔍  *Incident Response Time* ↓
+
+// ── Closing “totals/notes” row spanning all columns as a footer.
+4+^s| In conclusion: Tables are for communicating *structure*, not suffering. Use colspans/rowspans judiciously, and never apologize for beautiful grids.
+|===</code></pre>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>Yes, that really was all done with AsciiDoc markup.</p>
+</div>
+<div class="paragraph">
+<p>However, I am pleased to admit that ChatGPT actually wrote all of that content based on a prompt to create &#8220;really complex AsciiDoc table&#8221; and to &#8220;make the content interesting, maybe clever/cute/funny&#8221;.
+I was so shocked, I decided to use it as-is.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="description-list-example">Description List Example</h3>
+<div class="paragraph">
+<p>One feature of AsciiDoc that Markdown does not even attempt is the <em>description</em> or <em>definition</em> list: <code>&lt;DL&gt;</code> in HTML terms.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Description list example</div>
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">AsciiDoc</dt>
+<dd>
+<p>A lightweight markup language that is particularly well-suited for technical documentation and blogging, offering a rich set of features for structuring content.</p>
+</dd>
+<dt class="hdlist1">Markdown</dt>
+<dd>
+<p>A widely-used lightweight markup language known for its simplicity and ease of use, but with fewer features compared to AsciiDoc.</p>
+</dd>
+<dt class="hdlist1">lightweight markup</dt>
+<dd>
+<p>A category of markup languages designed to be easy to read and write in plain text, while still allowing for formatting and structuring of content.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="listingblock wrap">
+<div class="title">The underlying AsciiDoc markup</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">AsciiDoc::
+A lightweight markup language that is particularly well-suited for technical documentation and blogging, offering a rich set of features for structuring content.
+
+Markdown::
+A widely-used lightweight markup language known for its simplicity and ease of use, but with fewer features compared to AsciiDoc.
+
+lightweight markup::
+A category of markup languages designed to be easy to read and write in plain text, while still allowing for formatting and structuring of content.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>DLs are a semantically powerful format for &#8220;parameterized data&#8221;&#8201;&#8212;&#8201;I use it all the time in my docs, and whenever an LLM tries to do this with bulleting and bold, I cringe.</p>
+</div>
+<div class="listingblock wrap">
+<div class="title">The Markdown version:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">- **AsciiDoc:**
+A lightweight markup language that is particularly well-suited for technical documentation and blogging, offering a rich set of features for structuring content.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Importantly, this will not generate a DL list, which means screen readers and interpreters may not even associate the bolded term with its description.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-list-types">Other List Types</h3>
+<div class="paragraph">
+<p>AsciiDoc also supports ordered lists (numbered), unordered lists (bulleted), and checklists (task lists), along with nesting of each type, even across types.</p>
+</div>
+<div class="sect3">
+<h4 id="ordered-lists">Ordered Lists</h4>
+<div class="paragraph">
+<p>Ordered lists can be pretty powerful, in that you can start an re-start them at any number.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Ordered list example</div>
+<div class="content">
+<div class="paragraph">
+<p>An ordered list broken up by an admonition:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Install the NPM packages.</p>
+<div class="literalblock prompt">
+<div class="content">
+<pre>npm install</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Build the app.</p>
+<div class="literalblock prompt">
+<div class="content">
+<pre>npm run build</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your app is now built and ready to deploy!
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Deploy the app.</p>
+<div class="literalblock prompt">
+<div class="content">
+<pre>npm run deploy</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="listingblock wrap">
+<div class="title">Under the hood&#8230;&#8203;</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">An ordered list broken up by an admonition:
+
+. Install the NPM packages.
++
+[.prompt]
+ npm install
+
+. Build the app.
++
+[.prompt]
+ npm run build
+
+[NOTE]
+Your app is now built and ready to deploy!
+
+[start=3]
+. Deploy the app.
++
+[.prompt]
+ npm run deploy</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unordered-lists">Unordered Lists</h4>
+<div class="paragraph">
+<p>For unordered lists, AsciiDoc supports using either <code>-</code> or <code>*</code> characters for bullet markup.
+Nesting is done by adding bullets&#8201;&#8212;&#8201;no need to keep track of indentation.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Unordered list example</div>
+<div class="content">
+<div class="ulist square">
+<div class="title">An unordered list with deep nesting square bullets</div>
+<ul class="square">
+<li>
+<p>First item</p>
+<div class="ulist square">
+<ul class="square">
+<li>
+<p>Sub-item A</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Sub-sub-item i</p>
+</li>
+<li>
+<p>Sub-sub-item ii</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Sub-item B</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Second item</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Hyphen bullets with nested ordered list</div>
+<ul>
+<li>
+<p>Another first-level item</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Nested with dashes</p>
+</li>
+<li>
+<p>Back to dashes at first level</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Final item</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="listingblock wrap">
+<div class="title">The code:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">.An unordered list with deep nesting square bullets
+[square]
+* First item
+[square]
+** Sub-item A
+*** Sub-sub-item i
+*** Sub-sub-item ii
+** Sub-item B
+* Second item
+
+.Hyphen bullets with nested ordered list
+- Another first-level item
+. Nested with dashes
+. Back to dashes at first level
+- Final item</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sidebar-example">Sidebar Example</h3>
+<div class="paragraph">
+<p>Now we get to what might be my favorite AsciiDoc feature, which is a lovely holdover from DocBook: sidebars.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Sidebar example</div>
+<div class="content">
+<div class="paragraph">
+<p>This would be mainline text that pertains very directly and prominently to the subject.
+The reader is reading or scanning along, but at this point the author wants to at least introduce some auxiliary content that is relevant but not strictly necessary to the main point, or not a priority at this stage.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">A sidebar about sidebar authoring</div>
+<div class="paragraph">
+<p>Sidebars are for textbooks and magazines, at least in the sense of being placed alongside the main content to provide additional context, definitions, or related information.</p>
+</div>
+<div class="paragraph">
+<p>In HTML, sidebars tend to be for navigation and others static content like masthead info.</p>
+</div>
+<div class="paragraph">
+<p>But the <em>concept</em> of a content-adjacent sidebars is useful in all kinds of technical writing, including blogging.</p>
+</div>
+<div class="paragraph">
+<p>Sidebars are for content that is pinned or otherwise relevant to the main topic, but which might be a distraction if dumped inline.
+It doesn&#8217;t quite belong as a section or even a subsection.</p>
+</div>
+<div class="paragraph">
+<p>The content is not totally required knowledge, but it relates to the content and is not yet a whole other lesson.
+You want readers to at least be able to make note of it, even at risk of interrupting their reading flow.</p>
+</div>
+<div class="paragraph">
+<p>In AsciiDoc, sidebars can contain just about any other block or inline content.</p>
+</div>
+<div class="paragraph">
+<p>When it comes to layout, sidebars should either be collapsed or they should actually be pinned to a bar that runs alongside the content.
+And in either case, they should be dismissable and stashable so a reader can skip them now but come back to them later.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Below that sidebar element, the mainline text would resume, and the reader can choose to read the sidebar, stash it for later, or skip it altogether.</p>
+</div>
+<div class="paragraph">
+<p>You can also just stick all your sidebars at the end of the post like little appendices, optionally linking to them from the point in the text where they are relevant.</p>
+</div>
+</div>
+</div>
+<details>
+<summary class="title">Click to see how the sidebar was coded</summary>
+<div class="content">
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">This would be mainline text that pertains very directly and prominently to the subject.
+The reader is reading or scanning along, but at this point the author wants to at least introduce some auxiliary content that is relevant but not strictly necessary to the main point, or not a priority at this stage.
+
+.A sidebar about sidebar authoring
+****
+Sidebars are for textbooks and magazines, at least in the sense of being placed alongside the main content to provide additional context, definitions, or related information.
+
+In HTML, sidebars tend to be for navigation and others static content like masthead info.
+
+But the _concept_ of a content-adjacent sidebars is useful in all kinds of technical writing, including blogging.
+
+Sidebars are for content that is pinned or otherwise relevant to the main topic, but which might be a distraction if dumped inline.
+It doesn't quite belong as a section or even a subsection.
+
+The content is not totally required knowledge, but it relates to the content and is not yet a whole other lesson.
+You want readers to at least be able to make note of it, even at risk of interrupting their reading flow.
+
+In AsciiDoc, sidebars can contain just about any other block or inline content.
+
+When it comes to layout, sidebars should either be collapsed or they should actually be pinned to a bar that runs alongside the content.
+And in either case, they should be dismissable and stashable so a reader can skip them now but come back to them later.
+****
+
+Below that sidebar element, the mainline text would resume, and the reader can choose to read the sidebar, stash it for later, or skip it altogether.
+
+You can also just stick all your sidebars at the end of the post like little appendices, optionally linking to them from the point in the text where they are relevant.</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="examples-wrapup">Examples Wrapup</h3>
+<div class="paragraph">
+<p>Those were several of my favorite semantic block elements supported by AsciiDoc.
+Not even mentioned were the enumerable inline semantic features like inline roles and what can be done with them on the front end, nor AsciiDoc&#8217;s terrific built-in support for footnotes<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup>.</p>
+</div>
+<div class="paragraph">
+<p>Both the DocOps Blog and this MetaBlog will continue to explore AsciiDoc syntax and output from time to time, but those were some of the highlights.</p>
+</div>
+<div class="paragraph">
+<p>However, this post is not done yet, and neither are the AsciiDoc examples.
+We still have to answer the big question&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="asciidoc-better-than-what">AsciiDoc is Better than What, Though?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Well, it&#8217;s definitely better than rich-text editors (&#8220;WYSIWYG&#8221;) like those typically used in WordPress and other blogging platforms&#8201;&#8212;&#8201;at least if your subject matter is <em>code</em>.
+I guess you might be a tech blogger who writes about gadgets, in which case I have no idea, you do you.</p>
+</div>
+<div class="paragraph">
+<p>But since the vast majority of blogging about coding is done in Markdown, let&#8217;s compare AsciiDoc to the leading brand.</p>
+</div>
+<div class="sect2">
+<h3 id="markdown-vs-asciidoc">Markdown vs AsciiDoc</h3>
+<div class="paragraph">
+<p>Admittedly, I have never blogged in Markdown, but since AsciiDoc is basically a superset of Markdown, you&#8217;d be hard-pressed to find advantages of Markdown itself.</p>
+</div>
+<div class="paragraph">
+<p>There surely are probably syntax situations where Markdown has the edge over AsciiDoc, though I am only aware of a couple.
+I&#8217;ll take you through them here, with some meanderings planned along the way.</p>
+</div>
+<div class="sect3">
+<h4 id="hyperlink-syntax">Hyperlink Syntax</h4>
+<div class="paragraph">
+<p>Let&#8217;s look at some Markdown.</p>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">You're reading along in Markdown and then you come to a link like [Asciidoctor](https://asciidoctor.org), and that seems natural</code></pre>
+</div>
+</div>
+<div class="listingblock wrap">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Whereas in AsciiDoc, you're reading along and then https://asciidoctor.org[Asciidoctor] BAM! you got hit with a URL that didn't really matter.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Mind you, both of these markups generate the same HTML output: <a href="https://asciidoctor.org">Asciidoctor</a>.
+But I have to admit, I have come to slightly prefer the label-first Markdown approach, mainly for the effect when I&#8217;m reading the text as code, even though it uses two extra characters.</p>
+</div>
+<details>
+<summary class="title">Click here for a mega-meta mini tangent</summary>
+<div class="content">
+<div class="sidebarblock">
+<div class="content">
+<div class="title">The optimal lightweight link syntax</div>
+<div class="paragraph">
+<p>I tend to write AsciiDoc links in the optionally more explicit format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">link:https://asciidoctor.org[Asciidoctor]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Which makes me wish the following <em>invalid</em> format were actually proper:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">link:[Asciidoctor,href=https://asciidoctor.org]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alas, no lightweight markup is perfect&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+</div>
+</details>
+<div class="paragraph">
+<p>What other ways is Markdown syntax thought to be stronger than AsciiDoc?</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-blocks-syntax">Code Blocks Syntax? (Nope)</h4>
+<div class="paragraph">
+<p>You may be thinking you prefer Markdown&#8217;s simple <code>```</code> notation for demarcating code blocks, which are after all among the most frequently employed elements in blogging about code.</p>
+</div>
+<div class="paragraph">
+<p>Not so fast.
+If you prefer that style, Asciidoctor supports it perfectly.
+Take a look:</p>
+</div>
+<div class="paragraph">
+<p>Here is the effect of using just 3 backticks to sandwich literal content.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Two code blocks sourced using Markdown-style syntax in AsciiDoc</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def hello_world():
+    print("Hello, world!")</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">This was written in a code block denoted with `+++```+++` literals.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Under the hood&#8230;&#8203;</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">```python
+def hello_world():
+    print("Hello, world!")
+```
+
+```asciidoc
+This was written in a code block denoted with `+++```+++` literals.
+```</code></pre>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">What&#8217;s up with the <code>+++</code> markup?</div>
+<div class="paragraph">
+<p>You are probably noticing something funny about that syntax.
+All those extra <code>+++</code> characters might look like something went wrong, but they&#8217;re actually one of the countless advantages of AsciiDoc markup.</p>
+</div>
+<div class="paragraph">
+<p>Those are <strong>&#8220;passthrough&#8221;</strong> indicators, which I used outside the code block above to show you 3 backticks in a row without triggering the standard effects of backticks in both AsciiDoc and Markdown.
+I&#8217;ll do it again here: <code>```</code>.</p>
+</div>
+<div class="paragraph">
+<p>I could also simplify this by making it an attribute and just calling it later with a placeholder.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:3ticks: ```
+
+Here come the backticks: `{3ticks}`</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Which renders:</div>
+<div class="content">
+<div class="paragraph">
+<p>Here come the backticks: <code>```</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>When it comes to literal blocks, which are typically used to represent plain text or terminal input/output in docs, AsciiDoc has two or three ways of expressing this element, whereas Markdown has only one that I am aware of.
+Converters tend to render this as a <code>&lt;pre&gt;</code> block without a <code>&lt;code&gt;</code> inset.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"> This is a literal block, the syntax for which was a simple 1-space indent
+
+....
+This literal block is fenced by four dots (periods), which allows for
+
+non-contiguous
+
+multiline text.
+....
+
+[literal,role=prompt,title=Properly labeled command literal]
+Use a heading line if you wish to assign a role or other options.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Literal blocks rendered</div>
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>This is a literal block, the syntax for which was a simple 1-space indent</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>This literal block is fenced by four dots (periods), which allows for
+
+non-contiguous
+
+multiline text.</pre>
+</div>
+</div>
+<div class="literalblock prompt">
+<div class="title">Properly labeled command literal</div>
+<div class="content">
+<pre>Use a heading line if you wish to assign a role or other options.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>There really is no guaranteed Markdown equivalent to this, but you can try something like what follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">    This line was indented by 4 spaces to indicate a literal.
+
+    You can keep adding lines that are indented by 4 spaces.
+
+    Some converters will render this embedded in `&lt;code&gt;` tags anyway.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want your literal blocks to be handled distinctly from code blocks, or if you want to do anything cool with them or add caption/labels, you&#8217;re going to have to jerry rig it in Markdown, probably by adding explicit HTML.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="html-embedding-nope">HTML Embedding? (Nope)</h4>
+<div class="paragraph">
+<p>Speaking of passthroughs, you may have been thinking all along that you <em>prefer</em> the way Markdown supports HTML tags throughout.
+You can just write <code>&lt;div class="foo"&gt;</code> and it works, right?</p>
+</div>
+<div class="paragraph">
+<p>Cool.
+Same with AsciiDoc.
+You just use those passthrough markers inline, or the 4-char version (<code>++++</code>) for a block.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example of HTML passthrough</div>
+<div class="content">
+<!-- HTML block with a gray background and white text and an embedded SVG file of a cute logo -->
+<div style="background-color: #414141; color: #333; padding: 10px; border-radius: 5px;">
+  <p style="font-weight: 900">You're looking at HTML right now, sourced inside an AsciiDoc file.</p>
+  <p>It can be used for anything, including to embed adorable SVG images you come up with after an all-night coding session, like this:</p>
+  <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="40" fill="#ffcc00"/>
+    <text x="50%" y="50%" font-size="20" text-anchor="middle" fill="#333" dy=".3em">Cute!</text>
+  </svg>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">And the code for that&#8230;&#8203;</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">++++
+&lt;!-- HTML block with a gray background and white text and an embedded SVG file of a cute logo --&gt;
+&lt;div style="background-color: #414141; color: #333; padding: 10px; border-radius: 5px;"&gt;
+  &lt;p style="font-weight: 900"&gt;You're looking at HTML right now, sourced inside an AsciiDoc file.&lt;/p&gt;
+  &lt;p&gt;It can be used for anything, including to embed adorable SVG images you come up with after an all-night coding session, like this:&lt;/p&gt;
+  &lt;svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"&gt;
+    &lt;circle cx="50" cy="50" r="40" fill="#ffcc00"/&gt;
+    &lt;text x="50%" y="50%" font-size="20" text-anchor="middle" fill="#333" dy=".3em"&gt;Cute!&lt;/text&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;
+++++</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So, anything you can do in an HTML page, you can do in AsciiDoc files.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="strikethrough-syntax-gotcha-asciidoc">Strikethrough Syntax (Gotcha, AsciiDoc!)</h4>
+<div class="paragraph">
+<p>Okay, okay, I realize I only gave one example of where Markdown syntax is superior, and then I slipped right back into showing how great AsciiDoc is.</p>
+</div>
+<div class="paragraph">
+<p>So I will give you truthfully the only other syntax advantage of Markdown over AsciiDoc that I am aware of, and that is bloggers&#8217; <span class="line-through">favorite,</span> ubiquitous strikethrough effect.</p>
+</div>
+<div class="listingblock">
+<div class="title">In Markdown, it&#8217;s fun and easy:</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">This is ~~strikethrough~~ text.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That same syntax in AsciiDoc produces: This is <sub>~strikethrough</sub>~ text.</p>
+</div>
+<div class="paragraph">
+<p>Oof.
+Not cool, AsciiDoc.</p>
+</div>
+<div class="paragraph">
+<p>An inline role is required to do this in my beloved format:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">This is the built-in role for [line-through]#strikethrough#.
+
+This is an alternate method [.strike]#for slightly# with fewer characters.</code></pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Which renders:</div>
+<div class="content">
+<div class="paragraph">
+<p>This is the built-in role for <span class="line-through">strikethrough</span>.</p>
+</div>
+<div class="paragraph">
+<p>This is an alternate method <span class="strike">for slightly</span> with fewer characters.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Then again, if you&#8217;re into using <mark>inline highlighting</mark> in your text, AsciiDoc makes that trivial with <code>#inline highlighting#</code> syntax, while you have to use <code>&lt;mark&gt;inline highlighting&lt;/mark&gt;</code> HTML tags in Markdown.</p>
+</div>
+<div class="paragraph">
+<p>Sorry, I realize I have done it again, but this is why I&#8217;m so confident that if you like blogging in Markdown, you will love blogging in AsciiDoc.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>AsciiDoc is nearly as advantageous for blogging about code as it is for officially documenting software.
+You can do <em>so much more</em> without missing literally anything you can do with Markdown.</p>
+</div>
+<div class="paragraph">
+<p>I encourage anyone to provide other examples of superior Markdown syntax or capability.</p>
+</div>
+<div class="paragraph">
+<p>The biggest thing going for Markdown is surely that every programming language and code-oriented content platform supports <em>some flavor</em> of it.
+That is a <em>huge</em> plus for Markdown, but AsciiDoc&#8217;s widespread advantages make it worth setting up if you blog in any of <a href="https://gist.github.com/briandominick/e5754cc8438dd9503d936ef65fffbb2d">these SSGs</a>.</p>
+</div>
+<div class="paragraph">
+<p>I would say it&#8217;s even worth choosing or migrating to a platform from that list, with Jekyll, Hugo, and 11ty being my favorites for blogging.</p>
+</div>
+<div id="footnotes-placeholder"></div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. Margin of error calculated by a friendly spreadsheet goblin.
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. The text of a footnote is recorded inline but appears collected at a place in the page of your choosing. Now click the number of this footnote to return!
+</div>
+</div>
+    </div>
+    
+    
+    
+    
+    <footer class="post-footer metablog">
+      
+      
+      
+      <div class="post-navigation">
+        
+        
+        
+        <a href="/metablog/lab-projects-source-site/" class="nav-link nav-next">
+          <div class="nav-text">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">Single Sourcing and Rendering DocOps Lab Project Profiles</span>
+          </div>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        
+      </div>
+      
+      
+      
+      <div class="back-to-metablog">
+        <a href="/metablog/" class="btn-secondary">
+          <i data-lucide="microscope"></i>
+          Back to MetaBlog
+        </a>
+      </div>
+      
+    </footer>
+    </article>
+  </div>
+</div>
+
+
+
+<footer class="footer-section">
+<!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2025 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

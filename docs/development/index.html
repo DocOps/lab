@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Development Process (General) | DocOps Lab</title>
+  <meta name="description" content="General development process for DocOps Lab projects">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Development Process (General)">
+  <meta property="og:description" content="General development process for DocOps Lab projects">
+  <meta property="og:url" content="https://docopslab.org/docs/development/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Development Process (General)">
+  <meta name="twitter:description" content="General development process for DocOps Lab projects">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/development/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Development Process (General)</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Development Process (General)</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Development Process (General)</h1>
+      
+      <p class="document-description">General development process for DocOps Lab projects</p>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab projects follow a consistent, if always progressing, architecture and development/release process.</p>
+</div>
+<div class="paragraph">
+<p>This guide focuses on contributing code to projects and products, be it functional code, data, or documentation.</p>
+</div>
+<div class="paragraph">
+<p>More generally, dev contributors will most likely need to use the <code>docopslab-dev</code> tool to coordinate development and testing tasks.
+Each repository has its own <code>Rakefile</code> with custom tasks, but each also incorporates the common (upstream) <code>docopslab-dev</code> library for extending the rake tasks.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="technologies-overview">Technologies Overview</h3>
+<div class="paragraph">
+<p>DocOps Lab projects are primarily Ruby gems, usually with associated Docker images that provide proper environments for the CLI associated with the project gem.</p>
+</div>
+<div class="paragraph">
+<p>Ruby is used mainly because of its excellent AsciiDoc tooling through Asciidoctor, with an accompanying preference for Jekyll static-site generator and Liquid templating language, all of which are Ruby native.</p>
+</div>
+<div class="paragraph">
+<p>Docker is employed by internal developers and end users of DocOps Lab tooling alike, to reduce if not eliminate the Ruby maintenance overhead.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="required-tools">Required Tools</h3>
+<div class="paragraph">
+<p>If you are brand new to the world of code, Git, and GitHub, DocOps Lab will soon have resources aimed precisely at your experience level.
+For now, some experience with these tools is assumed.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Must-haves</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Docker, natively installed:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.docker.com/desktop/setup/install/mac-install/">Docker Desktop on MacOs</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/desktop/features/wsl/">Docker Desktop with WSL2 on Windows</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/engine/install/">Docker Engine on Linux</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Git, natively installed</p>
+</li>
+<li>
+<p>Ruby runtime 3.2.7, natively or via Docker (recommended)</p>
+</li>
+<li>
+<p><a href="https://github.com/signup">GitHub account</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Should-haves</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cli.github.com">GitHub CLI</a> (<code>gh</code>)</p>
+</li>
+<li>
+<p>a code editor that supports Ruby, AsciiDoc, and YAML<br>
+(Try <a href="https://code.visualstudio.com">VS Code</a> if you don&#8217;t have a preference yet.)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ruby-environment">Ruby Environment</h3>
+<div class="paragraph">
+<p>Ruby dependencies are managed through Bundler using each project&#8217;s <code>Gemfile</code>/<code>.gemspec</code> definitions.</p>
+</div>
+<div class="paragraph">
+<p>A proper Ruby environment and all common (cross-project) development dependencies are supplied in the <code>docopslab/dev</code> Docker image.
+Containers run from this image provide unified linting, git hooks, and development tooling used by most DocOps Lab codebases.</p>
+</div>
+<div class="paragraph">
+<p>These quality-control tools are also built into all GitHub repos via GH Actions workflows, local availability is not required just to work on or contribute to a DocOps Lab codebase.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="/docs/lab-dev-setup/">DocOps Lab Dev-tooling Setup</a> for comprehensive setup details if you are initializing a new DocOps Lab project.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="repo-state">Repository State</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Development is done on development <em>trunk</em> branches named like <code>dev/x.y</code>, where <code>x</code> is the major version and <code>y</code> is the minor.</p>
+</div>
+<div class="paragraph">
+<p>To start development on a new release version:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git checkout main
+git pull origin main
+git checkout -b dev/1.2
+git checkout -b chore/bump-version-1.2.0
+git commit -am "Bumped version attributes in README"
+git checkout dev/1.2
+git merge chore/bump-version-1.2.0
+git push -u origin dev/1.2</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="development-procedures">Development Procedures</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Work on feature or fix branches off the corresponding <code>dev/x.y</code> trunk.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git checkout dev/1.2
+git checkout -b feat/add-widget
+… implement …
+git add .
+git commit -m "feat: add widget"
+git push -u origin feat/add-widget
+gh pr create --base dev/1.2 --title "feat: add widget" --body "Adds a new widget to the dashboard."</pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Branch naming conventions</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>feat/&#8230;&#8203;</code> for new features OR improvements</p>
+</li>
+<li>
+<p><code>fix/&#8230;&#8203;</code> for bugfixes</p>
+</li>
+<li>
+<p><code>chore/&#8230;&#8203;</code> for version bumps and sundry tasks with no product impact</p>
+</li>
+<li>
+<p><code>epic/&#8230;&#8203;</code> for large features or changes that span releases</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="commit-message-conventions">Commit Message Conventions</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Description (first line) conventions</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Use present-tense descriptive verbs (&#8220;adds widget&#8221;, not &#8220;added&#8221; or &#8220;add&#8221;)</p>
+</li>
+<li>
+<p><code>feat: &#8230;&#8203;</code> for new features OR improvements</p>
+</li>
+<li>
+<p><code>fix: &#8230;&#8203;</code> for bugfixes</p>
+</li>
+<li>
+<p><code>chore: &#8230;&#8203;</code> for version bumps and sundry tasks with no product impact</p>
+</li>
+<li>
+<p><code>docs: &#8230;&#8203;</code> for documentation changes</p>
+</li>
+<li>
+<p><code>test: &#8230;&#8203;</code> for test code changes</p>
+</li>
+<li>
+<p><code>refactor: &#8230;&#8203;</code> for code restructuring with no functional changes</p>
+</li>
+<li>
+<p><code>style: &#8230;&#8203;</code> for formatting, missing semi-colons, etc; no functional changes</p>
+</li>
+<li>
+<p><code>perf: &#8230;&#8203;</code> for performance improvements</p>
+</li>
+<li>
+<p><code>auto: &#8230;&#8203;</code> for changes to CI/CD pipelines and build system</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Body conventions</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Use the body to explain what and why vs. how.</p>
+</li>
+<li>
+<p>Reference issues and pull requests as needed.</p>
+</li>
+<li>
+<p>Use bullet points (<code>- text</code>) and paragraphs as needed for clarity.</p>
+</li>
+<li>
+<p>Do not hard-wrap lines, but <em>do</em>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>use 1-sentence per line</p>
+</li>
+<li>
+<p>keep sentences short</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>See <a href="/docs/git-commit-styles/">DocOps Lab Git Commits Style Guide</a> for detailed commit message conventions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merging-changes">Merging Changes</h3>
+<div class="paragraph">
+<p>Squash-merge branches back into <code>dev/x.y</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git checkout dev/1.2
+git checkout -b feat/add-widget
+… implement …
+git add .
+git commit -m "feat: add widget"
+git merge --squash feat/add-widget
+git commit -m "feat: add widget"
+git push origin dev/1.2</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Delete merged branches.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="dev-branch-rules">Dev Branch Rules</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Always branch from <code>dev/x.y</code>.</p>
+</li>
+<li>
+<p>Always squash-merge into <code>dev/x.y</code>.</p>
+</li>
+<li>
+<p>Never merge directly into <code>main</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="documentation-practices">Documentation Practices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A critical part of development at DocOps Lab is writing and maintaining good documentation.
+After all, docs are our business.</p>
+</div>
+<div class="sect2">
+<h3 id="standard-user-docs">Standard (User) Docs</h3>
+<div class="paragraph">
+<p>Standard documentation is mainly done in AsciiDoc.</p>
+</div>
+<div class="paragraph">
+<p>AsciiDoc files are found in the <code>_docs/</code> or <code>docs/</code> directory.</p>
+</div>
+<div class="paragraph">
+<p>A <code>_docs/</code> directory exists for internal documentation.
+These files may be published in some form, but they should be distinct from docs intended to help end users.</p>
+</div>
+<div class="paragraph">
+<p>A <code>docs/</code> directory exists for user-facing documentation files.
+These are published distinctly.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For complete documentation styles guidance, see <a href="/docs/asciidoc-styles/">DocOps Lab Documentation Style Guide</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Initially, all developer and user-facing documentation is maintained in the <code>README.adoc</code> file, simply for convenience.
+Prior to a 1.0.0 release, most user-facing and usually some developer-facing documentation should be moved from the README to the <code>docs/</code> and <code>_docs/</code> directories.</p>
+</div>
+<div class="paragraph">
+<p>In GitHub Issues, use <code>needs:docs</code> to designate work items that will require standard internal or user-facing documentation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="inline-documentation">Inline Documentation</h3>
+<div class="paragraph">
+<p>Some documentation can be accessed through the product (such as <code>--help</code> menus), which is also often sourced inside product files (rather than dedicated doc files).</p>
+</div>
+<div class="sect3">
+<h4 id="apis">APIs</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <a href="https://yardoc.org/">YARD</a> for Ruby code documentation.</p>
+</li>
+<li>
+<p>Document all public methods and classes.</p>
+</li>
+<li>
+<p>API docs are published at <code>https://gemdocs.org/PROJECT_NAME/</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clis">CLIs</h4>
+<div class="paragraph">
+<p>Most DocOps Lab CLIs provide <code>--help</code> and even <code>--man</code> flags, for a basic menu or a manpage related to the given command.</p>
+</div>
+<div class="paragraph">
+<p>These will be designated and documented in the project&#8217;s <code>README.adoc</code> file.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="release-history">Release History</h3>
+<div class="paragraph">
+<p>DocOps Lab projects use ReleaseHx to maintain release notes and changelogs.</p>
+</div>
+<div class="paragraph">
+<p>Each project should have a <code>.config/releasehx.yml</code> file.</p>
+</div>
+<div class="paragraph">
+<p>There are also labels available to designate a GitHub issue&#8217;s status in the documentation announcing the release it belongs to.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>needs:note</code> to designate an issue that should be detailed for end users.</p>
+</li>
+<li>
+<p>Use <code>changelog</code> to designate an issue that should be included in the changelog (just the summary).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Release notes are added to the main GitHub issue body as appended Markdown.
+At the end of the note body, add:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">## Release Note
+
+One or two sentences summarizing the change for end users.
+Markdown formatting *will* be converted to AsciiDoc during drafting.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="/docs/release/">DocOps Lab Release Process (General)</a> for more on generating the release history.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="test-development-process">Test Development Process</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All DocOps Lab projects should include comprehensive test suites following consistent patterns.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Testing itself is documented in <a href="/docs/testing/">DocOps Lab Testing &amp; Specifications</a>, but this section focuses on creating and maintaining tests as part of development.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="adding-tests-for-new-features">Adding Tests for New Features</h3>
+<div class="paragraph">
+<p>When implementing new functionality:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Create corresponding tests</strong> alongside feature implementation</p>
+</li>
+<li>
+<p><strong>Follow existing patterns</strong> established in <code>spec_helper.rb</code></p>
+</li>
+<li>
+<p><strong>Use descriptive test names</strong> that clearly indicate what is being tested</p>
+</li>
+<li>
+<p><strong>Group related tests</strong> in logical contexts and describe blocks</p>
+</li>
+<li>
+<p><strong>Add cleanup procedures</strong> for any temporary files or resources</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="test-file-template">Test File Template</h3>
+<div class="paragraph">
+<p>Use this template for new test files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require_relative 'spec_helper'
+
+RSpec.describe YourModule do
+  let(:temp_dir) { create_temp_dir }
+  let(:sample_data) { create_temp_yaml_file(your_sample_data) }
+
+  after do
+    FileUtils.rm_rf(temp_dir) if Dir.exist?(temp_dir)
+    File.unlink(sample_data) if File.exist?(sample_data)
+  end
+
+  describe "core functionality" do
+    context "when given valid input" do
+      it "processes data correctly" do
+        result = YourModule.process(sample_data)
+        expect(result).to be_a(Hash)
+        expect(result).to have_key('expected_field')
+      end
+    end
+
+    context "when given invalid input" do
+      it "handles errors gracefully" do
+        expect { YourModule.process(nil) }.to raise_error(ArgumentError)
+      end
+    end
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="test-data-integration">Test Data Integration</h3>
+<div class="paragraph">
+<p>Projects should leverage demo data for realistic testing:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Demo Directory Usage</strong></dt>
+<dd>
+<p>Utilize rich sample data from <code>../projectname-demo/</code> directories.
+Validate configuration files, mapping files, and sample data sets.</p>
+</dd>
+<dt class="hdlist1"><strong>Helper Methods</strong></dt>
+<dd>
+<p>Implement helper methods in <code>spec_helper.rb</code> for:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>create_temp_yaml_file(content)</code> - Generate temporary YAML files</p>
+</li>
+<li>
+<p><code>create_temp_json_file(content)</code> - Generate temporary JSON files</p>
+</li>
+<li>
+<p><code>create_temp_dir</code> - Create temporary directories</p>
+</li>
+<li>
+<p><code>sample_*_data</code> - Provide realistic test data structures</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>Cleanup Procedures</strong></dt>
+<dd>
+<p>Ensure all tests clean up after themselves:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">after do
+  FileUtils.rm_rf(temp_dir) if Dir.exist?(temp_dir)
+  File.unlink(temp_file) if File.exist?(temp_file)
+end</code></pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="test-maintenance-best-practices">Test Maintenance Best Practices</h3>
+<div class="sect3">
+<h4 id="standard-rake-testing-tasks">Standard Rake Testing Tasks</h4>
+<div class="paragraph">
+<p>All Ruby gem projects with tests should implement these standard Rake tasks in their <code>Rakefile</code>:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>bundle exec rake rspec</code></dt>
+<dd>
+<p>Run RSpec test suite using the standard pattern matcher.</p>
+</dd>
+<dt class="hdlist1"><code>bundle exec rake cli_test</code></dt>
+<dd>
+<p>Validate command-line interface functionality.
+May test basic CLI loading, help output, version information.</p>
+</dd>
+<dt class="hdlist1"><code>bundle exec rake yaml_test</code></dt>
+<dd>
+<p>Validate YAML configuration files and data structures.
+Should test all project YAML files for syntax correctness.</p>
+</dd>
+<dt class="hdlist1"><code>bundle exec rake pr_test</code></dt>
+<dd>
+<p>Comprehensive test suite for pre-commit and pull request validation.
+Typically includes: RSpec tests, CLI tests, YAML validation.</p>
+</dd>
+<dt class="hdlist1"><code>bundle exec rake install_local</code></dt>
+<dd>
+<p>Build and install the project locally for testing.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Note that non-gem projects may have some or all of these tasks, as applicable.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="test-organization">Test Organization</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Unit Tests</strong></dt>
+<dd>
+<p>Test individual methods and classes in isolation.
+Focus on edge cases, error conditions, and expected behavior.</p>
+</dd>
+<dt class="hdlist1"><strong>Integration Tests</strong></dt>
+<dd>
+<p>Test workflows that span multiple components.
+Validate data flow through processing pipelines.</p>
+</dd>
+<dt class="hdlist1"><strong>Validation Tests</strong></dt>
+<dd>
+<p>Test configuration loading, file format compliance.
+Validate that all demo/example files are syntactically correct.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="performance-considerations">Performance Considerations</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Use temporary files/directories that are automatically cleaned up.</p>
+</li>
+<li>
+<p>Avoid testing with large datasets unless specifically testing performance.</p>
+</li>
+<li>
+<p>Use mocking/stubbing for external API calls and expensive operations.</p>
+</li>
+<li>
+<p>Group related tests to minimize setup/teardown overhead.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="error-testing">Error Testing</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Test both expected errors and edge cases.</p>
+</li>
+<li>
+<p>Verify error messages are helpful and actionable.</p>
+</li>
+<li>
+<p>Test error recovery and graceful degradation.</p>
+</li>
+<li>
+<p>Validate that errors don&#8217;t leave systems in inconsistent states.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="continuous-integration">Continuous Integration</h3>
+<div class="sect3">
+<h4 id="pre-commit-testing">Pre-commit Testing</h4>
+<div class="paragraph">
+<p>Before committing changes:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>rake pr_test  # Run comprehensive test suite</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pull-request-validation">Pull Request Validation</h4>
+<div class="paragraph">
+<p>Ensure all pull requests:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Pass the complete test suite</strong> (<code>rake pr_test</code>)</p>
+</li>
+<li>
+<p><strong>Include tests for new functionality</strong></p>
+</li>
+<li>
+<p><strong>Update existing tests</strong> when modifying behavior</p>
+</li>
+<li>
+<p><strong>Maintain or improve test coverage</strong></p>
+</li>
+<li>
+<p><strong>Include integration tests</strong> for workflow changes</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="release-testing">Release Testing</h3>
+<div class="paragraph">
+<p>Before any release:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Ensure any new tests are added.</p>
+</li>
+<li>
+<p>Run automated tests.</p>
+<div class="literalblock">
+<div class="content">
+<pre>rake install_local    # Build and install locally
+rake pr_test          # Complete validation</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Manually test key workflows.</p>
+</li>
+<li>
+<p>Update or add any documentation.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="common-problems">Common Problems</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Test File Cleanup</dt>
+<dd>
+<p>Tests should automatically clean up temporary files.
+Manual cleanup: <code>rm -rf /tmp/projectname_test_*</code></p>
+</dd>
+<dt class="hdlist1">Missing Dependencies</dt>
+<dd>
+<p>Ensure <code>bundle install</code> has been run.
+Check that all required gems are in Gemfile.</p>
+</dd>
+<dt class="hdlist1">Demo Data Access</dt>
+<dd>
+<p>Verify that demo directories exist and are accessible.
+Ensure tests are run from the correct working directory.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="debug-mode">Debug Mode</h4>
+<div class="paragraph">
+<p>Run tests with verbose output for troubleshooting:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>bundle exec rspec --format documentation --backtrace
+rake pr_test  # Often includes verbose options</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ai-usage-policy">AI Usage Policy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab does not share <em>unreviewed</em> AI output with the outside world, period.
+Such matter is kept from public code repositories, documentation sites, and the rest of our public footprint.</p>
+</div>
+<div class="paragraph">
+<p>As a general rule of thumb, everything we produce that is affected by AI must have been <em>enhanced or improved</em> by the AI&#8217;s contributions.</p>
+</div>
+<div class="paragraph">
+<p>By this, we mean AI output should be at least <em>as good as or better than</em> output we would be able to produce without those tools.
+We <strong>do not release code or content that is inferior</strong>, compared to what we can produce ourselves, in terms of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>accuracy</p>
+</li>
+<li>
+<p>clarity</p>
+</li>
+<li>
+<p>logic</p>
+</li>
+<li>
+<p>style</p>
+</li>
+<li>
+<p>humanity</p>
+</li>
+<li>
+<p>security</p>
+</li>
+<li>
+<p>maintainability</p>
+</li>
+<li>
+<p>compliance with standards or best practices</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For the complete policy, see <a href="/docs/generative-ai-usage/">DocOps Lab Generative "AI" Guidance</a>.</p>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/development.adoc" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2025 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

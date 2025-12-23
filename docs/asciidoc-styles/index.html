@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation Style Guide | DocOps Lab</title>
+  <meta name="description" content="DocOps Lab documentation style guide and AsciiDoc syntax conventions.">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Documentation Style Guide">
+  <meta property="og:description" content="DocOps Lab documentation style guide and AsciiDoc syntax conventions.">
+  <meta property="og:url" content="https://docopslab.org/docs/asciidoc-styles/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Documentation Style Guide">
+  <meta name="twitter:description" content="DocOps Lab documentation style guide and AsciiDoc syntax conventions.">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/asciidoc-styles/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Documentation Style Guide</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Documentation Style Guide</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Documentation Style Guide</h1>
+      
+      <p class="document-description">DocOps Lab documentation style guide and AsciiDoc syntax conventions.</p>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab is an AsciiDoc shop.
+With a few exceptions, all technical documentation is sourced in AsciiDoc format using a particular (standards-compliant) syntax style.</p>
+</div>
+<div class="paragraph">
+<p>Structured/reference documentation is typically stored in YAML-formatted files, often with AsciiDoc-formatted text blocks.</p>
+</div>
+<div class="paragraph">
+<p>Some documentation in DocOps Lab projects is written in Markdown format, such as documents intended for AI consumption (such as for agent orientation/instruction or for RAG retrieval).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="automated-style-enforcement">Automated Style Enforcement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab projects using the <code>docopslab-dev</code> tool automatically enforce documentation style guidelines.
+This is done using <a href="https://vale.sh"><strong>Vale</strong></a>, a prose and source-syntax linter.</p>
+</div>
+<div class="paragraph">
+<p>To check documentation style:</p>
+</div>
+<div class="literalblock">
+<div class="title">Check prose for style issues</div>
+<div class="content">
+<pre>bundle exec rake labdev:lint:text</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Check for AsciiDoc markup syntax issues</div>
+<div class="content">
+<pre>bundle exec rake labdev:lint:adoc</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Check both syntax markup <em>and</em> prose</div>
+<div class="content">
+<pre>bundle exec rake labdev:lint:docs</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="/docs/lab-dev-setup/">DocOps Lab Dev-tooling Setup</a> for more on the <code>docopslab-dev</code> tool.
+For Vale configuration details, see <a href="#config-vale">Vale Configuration and Usage</a>.</p>
+</div>
+<div class="paragraph">
+<p>DocOps Lab maintains a general-audience style guide in the AYL DocStack project repository and website.
+That guide is reproduced here.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="general-asciidoc-syntax-guidelines">General AsciiDoc Syntax Guidelines</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab documentation largely follows the conventions outlined in the <a href="https://asciidoctor.org/docs/asciidoc-recommended-practices/">Recommended Practices</a> and<a href="https://asciidoctor.org/docs/asciidoc-writers-guide/">Writer&#8217;s Guide</a> documents maintained by the Asciidoctor project.</p>
+</div>
+<div class="paragraph">
+<p>Reinforcements and exceptions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>.adoc</code> extensions <em>execpt</em> for Liquid templates used to render AsciiDoc files, which use <code>.asciidoc</code>.</p>
+</li>
+<li>
+<p>Use one sentence per line formatting.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Let hard-returns signal spaces between sentences.</p>
+</li>
+<li>
+<p>Also do this for major colon- or semicolon-delimited sentences.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use ATX-style titles and section headings.</p>
+</li>
+<li>
+<p>For DRYness, use attributes for common URLs and paths (see <a href="#attribute-formatting">Attribute Formatting</a>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docops-lab-specific-syntax-guidelines">DocOps Lab Specific Syntax Guidelines</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="inline-syntax">Inline Syntax</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="inline-semantics">Inline Semantics</h3>
+<div class="paragraph">
+<p>The main purpose of inline semantics is to provide a clear indication of the role of the text to the reader&#8201;&#8212;&#8201;including artificial readers.</p>
+</div>
+<div class="paragraph">
+<p>We can convey semantics by way of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>declaration by element, role, or class</p>
+</li>
+<li>
+<p>text style based on declaration</p>
+</li>
+<li>
+<p>browser effects based on declaration and additional data</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We use the following inline semantic coding in DocOps Lab publications.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="syntax-preferences">Syntax Preferences</h3>
+<div class="paragraph">
+<p>Use inline semantics liberally, even if you only insert the heavier syntax on a second or third pass.</p>
+</div>
+<div class="paragraph">
+<p>Formatting with simple <code>*</code>, <code>_</code>, and <code>`</code> characters on first drafting makes lots of sense&#8201;&#8212;&#8201;or even missing some of these altogether until the second pass.</p>
+</div>
+<div class="paragraph">
+<p>But before you merge new text documents into your codebase, add role-based inline semantics wherever they are supported.</p>
+</div>
+<div class="paragraph">
+<p>Let the reader know and make use of special text, most importantly any <strong>verbatim inline text</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Even if you are not ready to add such fine-grained tests to your pipeline, consider the value of having all your commands for a given runtime app labeled ahead of time (such as <code>.app-ruby</code>), and the advantage to the reader, as well.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="block-syntax">Block Syntax</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="block-semantics">Block Semantics</h3>
+<div class="paragraph">
+<p>Use semantic indicators deliberately.</p>
+</div>
+<div class="paragraph">
+<p>The more you assert about a block of text you are writing, the better the placement and content of that block will be.</p>
+</div>
+<div class="paragraph">
+<p>Semantic assertions reside in the source markup, which may convey means of interpreting that same data visually in the output, as an indication to the reader.</p>
+</div>
+<div class="paragraph">
+<p>For instance, <em>warning</em> admonitions should only deliver warning content, and the user should clearly see that a warning is interrupting the flow of the content in which it appears.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[WARNING]
+====
+Avoid misusing or overusing admonition blocks.
+====</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Semantic notations in our source remind us to treat the content properly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[WARNING]
+====
+Avoid misusing or overusing admonition blocks.
+This will be hypocritically violated throughout this guide.
+====</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>True as it may be, the second sentence in that admonition should be removed from the block.
+It can either be its own block, or it can be allowed to fade into the surrounding content.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes the entire admonition may end up deserving this treatment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-delimited-blocks">Use Delimited Blocks</h3>
+<div class="paragraph">
+<p>Generally, use explicit boundary lines to wrap significant blocks, rather than relying on other syntax cues to establish the &#8220;type&#8221; of block is intended.
+These lines are called <a href="https://docs.asciidoctor.org/asciidoc/latest/blocks/delimited/#linewise-delimiters"><em>linewise delimiters</em></a>.</p>
+</div>
+<div class="paragraph">
+<p>For example, use the following syntax to wrap the contents of an admonition block:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Example admonition block syntax with linewise delimiter</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[NOTE]
+====
+The content of an admonition block should be sandwiched between `====` lines.
+Use one-sentence-per-line even in admonitions.
+====</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The standard linewise delimiters for various AsciiDoc blocks are as follows:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+<code>====</code>
+</td>
+<td class="hdlist2">
+<p>For <em>admonitions</em> and <em>examples</em></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>----</code>
+</td>
+<td class="hdlist2">
+<p>For code listing (verbatim) blocks</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>....</code>
+</td>
+<td class="hdlist2">
+<p>For literal (verbatim) blocks</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>****</code>
+</td>
+<td class="hdlist2">
+<p>For sidebar blocks</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>|===</code>
+</td>
+<td class="hdlist2">
+<p>For tables</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>____</code>
+</td>
+<td class="hdlist2">
+<p>For quote blocks</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>++++</code>
+</td>
+<td class="hdlist2">
+<p>For raw/passthrough blocks</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+<code>--</code>
+</td>
+<td class="hdlist2">
+<p>For open blocks</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For code listings, literals, or really any block that might contain text that could be confused with the delimiter, vary the length by using a greater number of delimiter characters on the <em>outer</em> block.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example &#8220;example&#8221; block containing an admonition block</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[example]
+========
+[NOTE]
+====
+This is an example block containing an admonition block.
+====
+========</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exception-brief-admonitions">Exception: Brief admonitions</h4>
+<div class="paragraph">
+<p>Some blocks do not require delimiters.
+In cases of <em>repeated</em>, <em>nearly identical</em> blocks, containing just one line of content, you can use the <em>single-line</em> syntax where it is available.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example single-line admonition block syntax</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">NOTE: This is a single-line admonition block.</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Exception to this exception</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>We do not recommend the same-line syntax for admonition blocks other than <code>NOTE</code> and <code>TIP</code>.
+For <code>IMPORTANT</code>, <code>CAUTION</code>, and <code>WARNING</code>, use at least the 2-line syntax, if not explicit delimiters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[IMPORTANT]
+This is a critical notice, but it's not warning you of danger.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exception-single-line-terminal-commands">Exception: Single-line terminal commands</h4>
+<div class="paragraph">
+<p>Another common case is 1-line terminal commands, for which this guide recommends using a literal block with a <code>prompt</code> role added.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[.prompt]
+ echo "Hello, world!"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The single preceding space notation affirms the use of a literal block for any consecutive lines of content preceded by a single space.
+For multi-line terminal commands/output, use the <code>&#8230;&#8203;.</code> syntax to distinguish the block.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exception-to-the-exceptions">Exception to the exceptions</h4>
+<div class="paragraph">
+<p>Whenever additional options must be set for a block, such as a title or role, use the linewise delimiter syntax&#8201;&#8212;&#8201;even in one-liner cases.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[.prompt,subs="+attributes"]
+....
+echo "Hello, {what}!"
+....</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example-blocks">Example Blocks</h3>
+<div class="paragraph">
+<p>Use example blocks liberally.
+If something fits the description of being an example&#8201;&#8212;&#8201;especially if the words &#8220;example&#8221; or &#8220;sample&#8221; are used in the title, caption, or surrounding text referring to a given block of <em>anything</em>&#8230;&#8203;
+then <strong>wrap it in an example block</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Instances of the following block types may commonly be instances of examples, and just as commonly they may not be.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>figures (diagrams, illustrations, screenshots)</p>
+</li>
+<li>
+<p>tables</p>
+</li>
+<li>
+<p>code listings</p>
+</li>
+<li>
+<p>literal blocks (sample prompts, logs, etc)</p>
+</li>
+<li>
+<p>rich-text snippets (rendered results, a user story, etc)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Whenever any such instances <em>are examples</em>, prepend and append them with example blocks, and prefer to title them at the exampple-block level rather than the inner-content level.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of a code block treated as an example</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:example-caption: Example
+
+.require statement in Ruby
+====
+[source,ruby]
+----
+require 'jekyll'
+----
+====</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="special-syntax">Special Syntax</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="attributes">Attributes</h3>
+
+</div>
+<div class="sect2">
+<h3 id="attribute-formatting">Attribute Formatting</h3>
+<div class="paragraph">
+<p>AsciiDoc attributes are often used to store reusable matter.
+In certain contexts, attributes should follow a formatting convention that makes them easier to name and recall.</p>
+</div>
+<div class="sect3">
+<h4 id="boolean-attributes">Boolean Attributes</h4>
+<div class="paragraph">
+<p>Use toggles to set or conditionalize states such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>intended audience type or role</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>audience-agent</code></p>
+</li>
+<li>
+<p><code>audience-beginner</code></p>
+</li>
+<li>
+<p>``</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>target platform or format</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>env-github</code></p>
+</li>
+<li>
+<p><code>site-gen-jekyll</code></p>
+</li>
+<li>
+<p><code>backend-pdf</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These kinds of attributes are passed depending on how the AsciiDoc is converted.
+Platform and format indicators tend to get argued by the converter at runtime.</p>
+</div>
+<div class="paragraph">
+<p>But you can also look check for statuses that might be set in previous files depending on the use-case of the output.</p>
+</div>
+<div class="listingblock">
+<div class="title">Testing for <em>existence</em> of a target platform</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ifdef::audience-level-beginner[]
+As a beginner, you will see extra content in parts of this guide.
+
+If you are an expert, skip to the &lt;&lt;expert-guide&gt;&gt;.
+endif::[]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Testing for <em>non-existence</em> of a target audience type.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ifndef::audience-agent[]
+This content is _not_ to appear in docs generated for AI agents.
+endif::[]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is generally advised to create two versions of any such indicator that may need to be resolve a variable placeholder later.</p>
+</div>
+<div class="listingblock">
+<div class="title">Setting open-ended key and boolean simultaneously</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:audience-level: beginner
+:audience-level-beginner: true
+
+Later we can reference the {audience-level}, which might be overwritten by an attribute passed at runtime.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="url-attributes">URL Attributes</h4>
+<div class="paragraph">
+<p>Format URL-storing attributes like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:syntax_area_descriptive-slug_form:</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>syntax_</code> is one of</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>href_</code> (external)</p>
+</li>
+<li>
+<p><code>xref_</code> (local)</p>
+</li>
+<li>
+<p>none (skip it&#8201;&#8212;&#8201;presumed to be a straight URL)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>area_</code> is a component or category like <code>docs_</code> or <code>pages_</code>, mainly to ensure unique slugs across divisions</p>
+</li>
+<li>
+<p><code>form</code> is the way the resource is presented:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>link</code> (includes linked text <em>and</em> the URL)</p>
+</li>
+<li>
+<p><code>url</code> (just the URL)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Examples</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:docopslab_hub_url: https://github.com/DocOps
+:href_docopslab_aylstack_url: {docopslab_hub_url}/aylstack/
+:href_docopslab_aylstack_link: link:{href_docopslab_aylstack_url}[AYL DocStack]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="config-vale">Vale Configuration and Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vale configuration and styles are managed in coordination with the link:`docopslab-dev` gem.</p>
+</div>
+<div class="paragraph">
+<p>Our implementation of Vale allows for local project overrides while maintaining a centralized database of styles.</p>
+</div>
+<div class="paragraph">
+<p>Linting for documentation quality and consistency, both AsciiDoc markup syntax and prose quality/correctness.</p>
+</div>
+<div class="paragraph">
+<p>This tool provides a custom styles package and a modified configuration system, enabling multi-file merging.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Base config</dt>
+<dd>
+<p><code>.config/.vendor/docopslab/vale.ini</code> (from source)</p>
+</dd>
+<dt class="hdlist1">Project config</dt>
+<dd>
+<p><code>.config/vale.local.ini</code> (inherits via <code>BasedOnStyles</code>)</p>
+</dd>
+<dt class="hdlist1">Ephemeral config</dt>
+<dd>
+<p><code>.config/vale.ini</code> (merged from base and target)</p>
+</dd>
+<dt class="hdlist1">Sync command</dt>
+<dd>
+<p><code>bundle exec rake labdev:sync:vale</code></p>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="vale-consumer-mode">Consumer Mode (Other Projects)</h3>
+<div class="paragraph">
+<p>For all other projects, the gem works in a standard package consumption mode:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The project&#8217;s <code>vale.ini</code> should list all desired packages, including a URL to the stable, published <code>DocOpsLabStyles.zip</code>.</p>
+</li>
+<li>
+<p>The <code>labdev:sync:styles</code> task simply runs <code>vale sync</code> in the proper context, downloading all listed packages into a local <code>.vale/styles</code> directory.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code>labdev:sync:vale</code> task updates both the base config and the styles package.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>.config/vale.ini</code> for consumer projects (based on the gem&#8217;s template) should look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini"># CONSUMER MODE CONFIG
+
+StylesPath = .vale/styles
+
+# List all packages, including the URL to the central DocOpsLabStyles package.
+# TODO: Update with the real URL.
+Packages = RedHat, proselint, write-good, https://example.com/path/to/DocOpsLabStyles.zip
+
+[*.adoc]
+BasedOnStyles = RedHat, DocOpsLab-Authoring, DocOpsLab-AsciiDoc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This dual-mode system provides a robust workflow for both developing and consuming the centralized Vale styles.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For full Vale configuration settings (&#8220;keys&#8221;) reference, see <a href="https://vale.sh/docs/configuration">the Vale documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For information on managing DocOps Lab&#8217;s Vale styles, see <a href="https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc">the <code>docopslab-dev</code> gem README</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/asciidoc-styles.adoc" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2025 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

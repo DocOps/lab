@@ -3,36 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DocOps Lab</title>
-  <meta name="description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  <title>Single Sourcing and Rendering DocOps Lab Project Profiles | DocOps Lab</title>
+  <meta name="description" content="Sourcing complex profile metadata from YAML and rendering it with Liquid templates.">
   
   
   <!-- Social Graph / Open Graph metadata -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="DocOps Lab">
-  <meta property="og:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
-  <meta property="og:url" content="https://docopslab.org/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Single Sourcing and Rendering DocOps Lab Project Profiles">
+  <meta property="og:description" content="Sourcing complex profile metadata from YAML and rendering it with Liquid templates.">
+  <meta property="og:url" content="https://docopslab.org/metablog/lab-projects-source-site/">
   <meta property="og:site_name" content="DocOps Lab">
   <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
   
-  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
-  <meta property="og:image:alt" content="DocOps Lab Logo">
+  <meta property="og:image" content="https://docopslab.org/assets/images/featured-projects-screenshot.png">
+    
+  <meta property="og:image:alt" content="The Featured Projects section from the DocOps Lab landing page, showing cards for several projects.">
+    
   
+  
+  <meta property="article:author" content="Dr Meta">
+  <meta property="article:published_time" content="2024-08-25T00:00:00+00:00">
+    
+      
+  <meta property="article:tag" content="Jekyll">
+      
+  <meta property="article:tag" content="YAML">
+      
+  <meta property="article:tag" content="Liquid">
+      
+  <meta property="article:tag" content="single-sourcing">
+      
+  <meta property="article:tag" content="metadata">
+      
+    
   
   
   <!-- Twitter Card metadata -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="DocOps Lab">
-  <meta name="twitter:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Single Sourcing and Rendering DocOps Lab Project Profiles">
+  <meta name="twitter:description" content="Sourcing complex profile metadata from YAML and rendering it with Liquid templates.">
   
-  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
-  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/featured-projects-screenshot.png">
+    
+  <meta name="twitter:image:alt" content="The Featured Projects section from the DocOps Lab landing page, showing cards for several projects.">
+    
   
   
   <!-- Additional metadata -->
-  <meta name="author" content="DocOps Lab">
+  <meta name="author" content="Dr Meta">
   
-  <link rel="canonical" href="https://docopslab.org/">
+  <meta name="publish_date" property="og:publish_date" content="2024-08-25T00:00:00+00:00">
+  
+  <link rel="canonical" href="https://docopslab.org/metablog/lab-projects-source-site/">
   
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
@@ -75,13 +97,36 @@
   <link rel="stylesheet" href="/assets/css/main.css">
   
   <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
-  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/an-old-hope.min.css" disabled>
   <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
 
   <!-- Font Awesome for AsciiDoc callouts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
   <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700&family=Source+Code+Pro:ital,wght@0,400;0,500;0,700&display=swap" rel="stylesheet">
+
+  <!-- Font Detection Script for MetaBlog -->
+  <script>
+    // Wait for fonts to load and then detect what's actually being used
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        const codeElements = document.querySelectorAll('.metablog pre, .metablog code');
+        if (codeElements.length > 0) {
+          const testElement = codeElements[0];
+          const computedStyle = window.getComputedStyle(testElement);
+          const actualFont = computedStyle.fontFamily;
+          console.log('🔍 MetaBlog Font Detection:');
+          console.log('Computed font-family:', actualFont);
+          console.log('First element tested:', testElement);
+          
+          // Add data attribute for CSS debugging
+          document.documentElement.setAttribute('data-metablog-font', actualFont.split(',')[0].replace(/['"]/g, ''));
+        }
+      }, 500); // Wait for font loading
+    });
+  </script>
   
   
   <!-- Lucide Icons CDN -->
@@ -211,7 +256,7 @@
   
   
 </head>
-<body class="layout-lander  has-sticky-banner">
+<body class="layout-post  has-sticky-banner">
   <script>
     (function() {
       var theme = window.__initialTheme;
@@ -413,265 +458,373 @@
   
   
 
-<!-- Hero Section -->
-<section id="hero" class="hero-section ">
+
+
+
+<div class="blog-post-container metablog">
   <div class="container">
-  
-  <h1>DocOps Lab</h1>
-  
-  
-  
-  <div class="subtitle intro" id="tagline"><div class="paragraph">
-<p>Bridging the gap between document professionals and the world of code</p>
-</div></div>
-  
-  
-  
-  <div class="intro" id="intro">
-    <div class="paragraph">
-<p>DocOps Lab is working to distribute the power of docs-as-code for non-programmers.</p>
-</div>
-<div class="paragraph">
-<p>Too many <strong class="role">technical writers</strong>, <strong class="role">project managers</strong>, <strong class="role">paralegals</strong>, <strong class="role">researchers</strong>, and <strong class="role">educators</strong> are stuck with legacy document tools that constrain their potential.</p>
-</div>
-  </div>
-  
-  
-  
-  </div>
-</section>
-
-
-<!-- Container Section -->
-<section id="mission" class="container-section text-center">
-  <div class="container">
-  
-  <div class="section-header ">
-    
-    <h2 class="section-heading">Operate the Docs.</h2>
-    
-    
-    <div class="section-description"><div class="paragraph">
-<p>Through several interconnected open source projects, DocOps Lab is creating pathways for &#8220;tech-savvy non-programmers&#8221; to harness developer tools.</p>
-</div></div>
-    
-  </div>
-  
-
-  
-
-  
-  </div>
-</section>
-
-
-<!-- tag::featured-projects[] -->
-
-
-<!-- end::featured-projects[] -->
-<!-- Project Cards Section -->
-<section id="featured-projects" class="projects-section bg-light">
-  <div class="container">
-  
-  <div class="section-header text-center">
-    
-    <h2 class="section-heading" id="Featured Projects">Featured Projects</h2>
-    
-    
-  </div>
-  
-
-  <div class="projects-grid size-5">
-    
-      <!-- Custom defined cards -->
+    <article class="blog-post metablog">
+    <header class="post-header metablog">
+      <h1 class="post-title metablog">
+        Single Sourcing and Rendering DocOps Lab Project Profiles
+        
+      </h1>
       
-        
-        
-        <div class="project-card" data-href="/projects/docops-box">
-        <div class="project-header">
-          <i data-lucide="container" class="project-icon"></i>
-          <h3>DocOps Box</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>A Docker-containerized environment and shell script for reducing the complexity of setting up “developer tools”. Non-developers can run a single command (<code>docksh run</code>) and instantly access whole runtimes and specialized documentation tools in a pre-configured shell environment.</p>
-</div>
-          
-        </div>
-        
-        </div>
       
-        
-        
-        <div class="project-card" data-href="/projects/docs-as-code-school">
-        <div class="project-header">
-          <i data-lucide="school" class="project-icon"></i>
-          <h3>Docs-as-Code School</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>Structured education in modern technical documentation and document processing. Starting with &#8220;Deep Semantics&#8221; (Fall 2025?) and expanding to courses on version management, code-like workflow adoption, and legal document operations, this project uses docs-as-code to teach docs-as-code principles.</p>
-</div>
-          
-        </div>
-        
-        </div>
+      <h2 class="blog-title metablog">
+        <i data-lucide="microscope"></i>
+        A Dr Meta's MetaBlog entry
+      </h2>
       
-        
-        
-        <div class="project-card" data-href="/projects/ayl-docstack">
-        <div class="project-header">
-          <i data-lucide="layers" class="project-icon"></i>
-          <h3>AYL DocStack</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>AsciiDoc. YAML. Liquid. A three-language approach to managing complex, multi-variant documentation. This &#8220;tech stack&#8221; maximizes power while minimizing syntax overhead, making advanced documentation techniques accessible to beginners while remaining powerful enough for enterprise needs.</p>
-</div>
-          
-        </div>
-        
-        </div>
       
-        
-        
-        <div class="project-card" data-href="/projects/schemagraphy">
-        <div class="project-header">
-          <i data-lucide="grid-2x2-check" class="project-icon"></i>
-          <h3>SchemaGraphy</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>Extends YAML through SGYML and accompanying libraries, providing advanced data typing and document transclusion capabilities. Provides a full-featured schema language that allows users to define complex data structures, document structures, and whole interfaces in a single, unified format.</p>
-</div>
-          
-        </div>
-        
-        </div>
       
-        
-        
-        <div class="project-card" data-href="/projects/jekyll-asciidoc-ui">
-        <div class="project-header">
-          <i data-lucide="test-tube-diagonal" class="project-icon"></i>
-          <h3>Jekyll Extensions</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>A set of Jekyll plugins and themes that enrich AsciiDoc web output. Includes themes like AsciiDocsy and Just The AsciiDocs, plus plugins for Jekyll-OpenAPI integration, adocBook document converter, and 25 UI extensions for AsciiDoc.</p>
-</div>
-          
-        </div>
-        
-        </div>
       
-        
-        
-        <div class="project-card" data-href="/blog/issuer-releasehx-news/">
-        <div class="project-header">
-          <i data-lucide="logs" class="project-icon"></i>
-          <h3>Issuer and ReleaseHx</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>Issue-ticket creation and release-history management tools that integrate with Jira, GitHub, and GitLab. Bulk-create work items from a single YAML file, then generate release notes and changelogs in AsciiDoc, Markdown, YAML, JSON, HTML, or PDF formats at release time.</p>
-</div>
-          
-        </div>
-        
-        </div>
       
-    
-  </div>
-  </div>
-</section>
-
-
-<!-- Call to Action Section -->
-<section id="cta" class="cta-section ">
-  <div class="container">
-  
-  <h2 class="cta-title">Become an operator with DocOps Lab.</h2>
-  
-  
-  
-  <div class="cta-description section-description">
-    <div class="paragraph">
-<p>The goal of DocOps Lab is to create a "docs-as-code" ecosystem (and community)
-that enables developers and non-developers alike to leverage modern documentation practices
-through a proper set of technologies, strategies, and conventions.</p>
-</div>
-  </div>
-  
-  
-  
-  <div class="cta-buttons">
-    
-    <a href="https://github.com/DocOps" class="btn ">
-      <i data-lucide="github"></i>
-      Follow DocOps Lab
-    </a>
-    
-    <a href="https://docopslab.zulipchat.com" class="btn btn-secondary">
-      <i data-lucide="message-circle"></i>
-      Join Community Chat
-    </a>
-    
-  </div>
-  
-  </div>
-</section>
-
-
-<!-- Key Content Links Section -->
-<section id="key-content" class="container-section key-content">
-  <div class="container">
-    <div class="section-header text-center">
-      <h2 class="section-heading">Resources</h2>
-    </div>
-    <div class="section-content">
-      <div class="resource-cards-grid">
+      <div class="post-meta metablog">
         
-        <a class="resource-card" href="/projects/by-type/">
-          <span class="resource-icon"><i data-lucide="folder"></i></span>
-          <span class="resource-label">Projects by Type</span>
-        </a>
         
-        <a class="resource-card" href="/projects/by-wave/">
-          <span class="resource-icon"><i data-lucide="calendar"></i></span>
-          <span class="resource-label">Projects by Timeline</span>
-        </a>
         
-        <a class="resource-card" href="/projects/by-tech/">
-          <span class="resource-icon"><i data-lucide="cpu"></i></span>
-          <span class="resource-label">Projects by Technology</span>
-        </a>
         
-        <a class="resource-card" href="/docs/contributing/">
-          <span class="resource-icon"><i data-lucide="book-open"></i></span>
-          <span class="resource-label">Contributor's Guide</span>
-        </a>
+        <span class="post-author metablog">
+          <i data-lucide="user"></i>
+          Dr Meta
+        </span>
         
-        <a class="resource-card" href="/docs/mission/">
-          <span class="resource-icon"><i data-lucide="target"></i></span>
-          <span class="resource-label">DocOps Lab Mission</span>
-        </a>
         
-        <a class="resource-card" href="/blog/">
-          <span class="resource-icon"><i data-lucide="rss"></i></span>
-          <span class="resource-label">DocOps Lab Blog</span>
-        </a>
+        <div class="post-tags metablog">
+          <i data-lucide="tag"></i>
+          
+            <span class="tag">Jekyll</span>
+          
+            <span class="tag">YAML</span>
+          
+            <span class="tag">Liquid</span>
+          
+            <span class="tag">single-sourcing</span>
+          
+            <span class="tag">metadata</span>
+          
+        </div>
+        
+        
+          
+          <div class="post-version">
+            <span class="version-param"><i data-lucide="milestone"></i><span class="tag">POST VERSION:</span> <strong><code>1.0.0</code></strong></span>
+          </div>
+          
+          
         
       </div>
-    </div>
+    </header>
+    
+    <div class="post-content metablog">
+      
+      <figure class="post-image">
+        <img src="/assets/images/featured-projects-screenshot.png" alt="The Featured Projects section from the DocOps Lab landing page, showing cards for several projects." class="post-image-img">
+        
+      </figure>
+      
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Much of this website consists of representations of DocOps Lab projects, in different orders and forms.</p>
+</div>
+<div class="paragraph">
+<p>Project metadata is stored in the <code>_data/docops-lab-projects.yml</code> file, which is the canonical source of truth <em>about</em> the numerous codebases DocOps Lab maintains.
+At least, it represents the sole source of most of the data it contains, though at any given point some part of that file is likely out of sync with reality.</p>
+</div>
+<div class="paragraph">
+<p>Nevertheless, some aspects of this sourcing and output strategy are pretty extreme and therefore worth blogging about.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="source-files">Source Files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Effectively all of the information about DocOps Lab projects on this site is single-sourced, though some of it is sourced (once) in different places.</p>
+</div>
+<div class="paragraph">
+<p>Most of it is sourced in the <code>docops-lab-projects.yml</code> file, which we will dive into shortly.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The content of the code snippets used in this post is subject to change.
+When the blog next builds, the live data will be transcluded into the code blocks on this page, and the text around them should remain accurate.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note meta">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The above note is single sourced at <code>_snippets-may-change-note.adoc</code> so it can be embedded in multiple posts.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A small amount is sourced in the <code>README.adoc</code> file, as data attributes.
+This includes the text for each of the Featured Projects cards on the landing page, which are also expressed in the README file itself.</p>
+</div>
+<div class="listingblock">
+<div class="title">Snippet from <code>README.adoc</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:docops-box-desc: A Docker-containerized environment and shell script for reducing the complexity of setting up “developer tools”. Non-developers can run a single command (`docksh run`) and instantly access whole runtimes and specialized documentation tools in a pre-configured shell environment.
+:docs-as-code-school-desc: Structured education in modern technical documentation and document processing. Starting with &#8220;Deep Semantics&#8221; (Fall 2025?) and expanding to courses on version management, code-like workflow adoption, and legal document operations, this project uses docs-as-code to teach docs-as-code principles.
+:ayl-docstack-desc: AsciiDoc. YAML. Liquid. A three-language approach to managing complex, multi-variant documentation. This &#8220;tech stack&#8221; maximizes power while minimizing syntax overhead, making advanced documentation techniques accessible to beginners while remaining powerful enough for enterprise needs.
+:schemagraphy-desc: Extends YAML through SGYML and accompanying libraries, providing advanced data typing and document transclusion capabilities. Provides a full-featured schema language that allows users to define complex data structures, document structures, and whole interfaces in a single, unified format.
+:jekyll-asciidoc-ui-desc: A set of Jekyll plugins and themes that enrich AsciiDoc web output. Includes themes like AsciiDocsy and Just The AsciiDocs, plus plugins for Jekyll-OpenAPI integration, adocBook document converter, and 25 UI extensions for AsciiDoc.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="data-structure">Data Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="https://github.com/DocOps/blob/main/_data/docops-lab-projects.yml"><code>docops-lab-projects.yml</code> file</a> is basically a large array of tabular data.
+Each project&#8217;s record has a number of parameters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  - name: DocOps Box
+    slug: docops-box
+    type: environment
+    desc: |
+      Everything needed for managing customized Ruby, Node.js, Python, and Pandoc environments via Docker containers, ready for interactive work.
+      Including the popular ZShell with handy configurations.
+      Alternatively builds a production-ready ("live") image for automation/deployment.
+    line: Up and running with Ruby, Node, Zsh, Pandoc, and Git for document operations with interactive and production-ready Docker images.
+    star: true
+    page: true
+    done: 90%
+    vrsn: 0.1.0
+    wave: 0
+    card: readme
+    icon: container
+    tech: [Docker,Bash,Zsh,Ruby,Git,Pandoc,Node.js,Python]
+    tags: [development,automation,containers,virtualization,Dockerized]
+    sort: 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I think most of the above data record is mostly self-explanatory, but a few fields merit highlighting.</p>
+</div>
+<div class="paragraph">
+<p>I also added a concept of custom cards, which are defined in another file: <code>_data/cards.yml</code>.
+As of now, it contains only one card record.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Issuer and ReleaseHx
+  type: utility
+  card: |
+    Issue-ticket creation and release-history management tools that integrate with Jira, GitHub, and GitLab. Bulk-create work items from a single YAML file, then generate release notes and changelogs in AsciiDoc, Markdown, YAML, JSON, HTML, or PDF formats at release time.
+  icon: logs
+  sort: 6
+  href: /blog/issuer-releasehx-news/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is all pulled together using simple Liquid assignments and filters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign starred_projects = site.data.docops-lab-projects.projects | where: 'star', true %}
+{% assign featured_projects = starred_projects | concat: site.data.cards | sort: 'sort' %}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-profiles">Project Profiles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Project profiles come in micro, mini, and page sizes.</p>
+</div>
+<div class="paragraph">
+<p>The micros are for card-based representations, such as the <a href="/#featured-projects">Featured Projects section on the landing page</a>, or pages that group projects in ways that might involve repeated instances of the same project in the output, such as the <a href="/projects/by-tech/">Projects by Technology</a> and <a href="/projects/by-category/">Projects by Category</a> pages.</p>
+</div>
+<div class="paragraph">
+<p>The minis are for the project detail sections that appear on the <a href="/projects/">Projects Overview</a> page, which includes a lot more information about each project, but still in a compact format.</p>
+</div>
+<div class="paragraph">
+<p>Finally, some projects have their own dedicated pages, such as <a href="/projects/docs-as-code-school/">Docs-as-Code School</a>.
+This is the most comprehensive representation of a project.</p>
+</div>
+<div class="paragraph">
+<p>I can even re-create one here in this page using Liquid templates.</p>
+</div>
+<div class="project-profile project-card profile-mini" id="docops-box">
+  <div class="project-header">
+  <i data-lucide="container" class="project-icon"></i>
+  <h3>
+    <a href="/projects/docops-box/" class="project-title-link">
+      DocOps Box
+    </a>
+  </h3>
+
+  <span class="project-version">
+
+
+
+
+
+
+
+
+    0.1.0
+
+
+
+  </span>
+
   </div>
-</section>
+
+  <div class="project-line">
+  <div class="paragraph">
+<p>Up and running with Ruby, Node, Zsh, Pandoc, and Git for document operations with interactive and production-ready Docker images.</p>
+</div>
+  </div>
+
+  <div class="project-description">
+
+    <div class="paragraph">
+<p>A Docker-containerized environment and shell script for reducing the complexity of setting up “developer tools”. Non-developers can run a single command (<code>docksh run</code>) and instantly access whole runtimes and specialized documentation tools in a pre-configured shell environment.</p>
+</div>
+
+  </div>
+  <div class="project-meta">
+
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-environment">
+          environment
+        </a>
+      </dd>
+    </dl>
+
+
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>90%</dd>
+    </dl>
+
+
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+
+
+
+
+    <div class="meta-list">
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-development"># development</a></span>
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-automation"># automation</a></span>
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-containers"># containers</a></span>
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-virtualization"># virtualization</a></span>
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+
+    </div>
+
+
+    <div class="meta-list">
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-docker">Docker</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-zsh">Zsh</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-pandoc">Pandoc</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-node-js">Node.js</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-python">Python</a></span>
+
+    </div>
+
+
+
+  </div>
+
+
+</div>
+<div class="paragraph">
+<p>The above &#8220;mini-profile&#8221; expression was called with this Liquid code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% include project-profile.html slug='docops-box' %}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note how the style for this page remains largely intact in affecting the profile rendering.</p>
+</div>
+</div>
+</div>
+    </div>
+    
+    
+    
+    
+    <footer class="post-footer metablog">
+      
+      
+      
+      <div class="post-navigation">
+        
+        <a href="/metablog/tech-blogging-in-asciidoc/" class="nav-link nav-prev">
+          <i data-lucide="arrow-left"></i>
+          <div class="nav-text">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">Why Tech Blogging is Better in AsciiDoc</span>
+          </div>
+        </a>
+        
+        
+        
+      </div>
+      
+      
+      
+      <div class="back-to-metablog">
+        <a href="/metablog/" class="btn-secondary">
+          <i data-lucide="microscope"></i>
+          Back to MetaBlog
+        </a>
+      </div>
+      
+    </footer>
+    </article>
+  </div>
+</div>
+
 
 
 <footer class="footer-section">

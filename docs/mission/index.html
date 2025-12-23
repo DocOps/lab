@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operate the Docs: DocOps Lab Purpose and Approach | DocOps Lab</title>
+  <meta name="description" content="">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Operate the Docs: DocOps Lab Purpose and Approach">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://docopslab.org/docs/mission/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Operate the Docs: DocOps Lab Purpose and Approach">
+  <meta name="twitter:description" content="">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/mission/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Operate the Docs: DocOps Lab Purpose and Approach</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Operate the Docs: DocOps Lab Purpose and Approach</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Operate the Docs: DocOps Lab Purpose and Approach</h1>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Making true <strong>operators</strong> out of professional writers and document wranglers is the <strong>DocOps Lab mission</strong>.</p>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#docops-lab-philosophy">1. DocOps Lab Philosophy</a>
+<ul class="sectlevel2">
+<li><a href="#conventions">1.1. Conventions</a>
+<ul class="sectlevel3">
+<li><a href="#strategies">1.1.1. Strategies</a></li>
+<li><a href="#tactics">1.1.2. Tactics</a></li>
+</ul>
+</li>
+<li><a href="#tooling">1.2. Tooling</a>
+<ul class="sectlevel3">
+<li><a href="#utilities">1.2.1. Utilities</a></li>
+<li><a href="#automation">1.2.2. Automation</a></li>
+</ul>
+</li>
+<li><a href="#principles">1.3. Principles</a>
+<ul class="sectlevel3">
+<li><a href="#accessibility">1.3.1. Usability</a></li>
+<li><a href="#reusability">1.3.2. Reusability</a></li>
+<li><a href="#interoperability">1.3.3. Interoperability</a></li>
+<li><a href="#extensibility">1.3.4. Extensibility</a></li>
+<li><a href="#innovation">1.3.5. Innovation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#methods">2. DocOps Lab Commitments</a>
+<ul class="sectlevel2">
+<li><a href="#foss">2.1. Free, Open-Source (Tools and Docs)</a></li>
+<li><a href="#open-standards">2.2. Open Standards</a></li>
+<li><a href="#open-education">2.3. Open Education</a></li>
+<li><a href="#open-community">2.4. Open Community</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docops-lab-philosophy">1. DocOps Lab Philosophy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab is a <strong>problem-solving philosophy</strong> that employs <em>tech</em> (<em>technologies</em> and <em>techniques</em>) to optimize the way professionals create, manage, and publish digital documents with complex sourcing, processing, and delivery requirements.</p>
+</div>
+<div class="paragraph">
+<p><strong>Document operators</strong> are people who employ the techniques and technologies preferred by programmers when it comes to the documentation they rely on and are responsible for.</p>
+</div>
+<div class="paragraph">
+<p>This section explores <em>exemplary</em> tech, as well as further <strong>principles</strong> used to evaluate solutions.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <a href="#conventions">Conventions</a> and <a href="#tooling">Tooling</a> in this document are representative rather than exhaustive, and they are subject to change over time.
+The <a href="#principles">Principles</a>, however, are foundational and may evolve but should be definitive, enduring, and difficult to undo.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="conventions">1.1. Conventions</h3>
+<div class="paragraph">
+<p>Problem-solving <em>techniques</em> are generally known to DocOps Lab as <em>conventions</em>, broken down into two types: <a href="#strategies">Strategies</a> and <a href="#tactics">Tactics</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="strategies">1.1.1. Strategies</h4>
+<div class="paragraph">
+<p>Approaches to addressing general problems at scale serve to guide assessment and analysis, mapping solutions to entire documentation sets by organizing, categorizing, versioning, and other broad sets of techniques.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Examples of DocOps strategies</div>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>To <em class="problem">map docs to product versions</em>, use a <em class="solution">framework for grouping and categorizing</em> types of divergence in both the deployed/delivered product and the documentation output.</p>
+</li>
+<li>
+<p>To enable authors to indicate and readers to readily <em class="problem">identify the purpose of a piece of information</em>, use <strong class="solution">semantic typing</strong> for documents/topics, blocks, and inline elements.</p>
+</li>
+<li>
+<p>To <em class="problem">store, define, and manage "`small data`"</em> for configurations, component profiling, and so forth, use Git-trackable, text-editable <strong class="solution">flat files</strong>.</p>
+</li>
+<li>
+<p>To turn <em class="problem">complex data into rich documents</em>, use <strong class="solution">dynamic templates</strong> that blend data with document markup.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tactics">1.1.2. Tactics</h4>
+<div class="paragraph">
+<p>Specific methods for implementing strategies.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Examples of DocOps tactics</div>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Version-mapping</strong> tactics:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <strong>SemVer</strong> for sequential changes/releases.</p>
+</li>
+<li>
+<p>Use <strong>editions</strong> for parallel versions of products and docs.</p>
+</li>
+<li>
+<p>Use <strong>localization</strong> for international translations and regional variants.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Semantic typing</strong> tactics:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <strong>AsciiDoc</strong> in particular ways for semantic authoring, such as <strong>inline roles</strong>.</p>
+</li>
+<li>
+<p>Apply our hybrid <strong>Ditataxis</strong> categorization to define and organize document collections.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Flat-file data</strong> tactics:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <strong>YAML</strong> for configuration and profiling data.</p>
+</li>
+<li>
+<p>Use <strong>CSV</strong> for tabular data.</p>
+</li>
+<li>
+<p>Use <strong>Google Sheets</strong> to edit tabular data.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Dynamic templating</strong> tactics:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <strong>Liquid</strong> templates and engine to blend data into document markup.</p>
+</li>
+<li>
+<p>Use <strong>Regular Expressions</strong> patterns to extract and filter data from logs.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tooling">1.2. Tooling</h3>
+<div class="paragraph">
+<p>Problem-solving <em>technologies</em> generally fall under the umbrella category of &#8220;tooling&#8221;, which is industry jargon for software, including <em>how it is scripted and configured</em>.</p>
+</div>
+<div class="sect3">
+<h4 id="utilities">1.2.1. Utilities</h4>
+<div class="paragraph">
+<p>Hands-on tools that enable day-to-day authoring and management operations.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Examples of DocOps utilities</div>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Git</strong> for version control.</p>
+</li>
+<li>
+<p><strong>Docker</strong> for containerized environments.</p>
+</li>
+<li>
+<p><strong>VS Code</strong> for text editing.</p>
+</li>
+<li>
+<p><strong>Pandoc</strong> for migrating to standardized formats.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="automation">1.2.2. Automation</h4>
+<div class="paragraph">
+<p>Scripted routines and always-available platforms that execute common tasks in a predictable manner.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Examples of DocOps automation</div>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>GitHub Actions</strong> for continuous integration and deployment.</p>
+</li>
+<li>
+<p><strong>Rake</strong> and <strong>Bash</strong> for task-level automation.</p>
+</li>
+<li>
+<p><strong>Vale</strong> for text/markup linting.</p>
+</li>
+<li>
+<p><strong>Jekyll</strong> for static-site generation.</p>
+</li>
+<li>
+<p><strong>Redocly CLI</strong> for OpenAPI rendering.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="principles">1.3. Principles</h3>
+<div class="paragraph">
+<p>When it comes to evaluating, selecting, and innovating on conventions and tooling, DocOps Lab applies a set of principles that guide our decisions and practices.</p>
+</div>
+<div class="paragraph">
+<p>Unlike the conventions and tooling, these principles are relatively exhaustive, definitive, and immutable, especially in combination with <a href="#methods">DocOps Lab Commitments</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="accessibility">1.3.1. Usability</h4>
+<div class="paragraph">
+<p>DocOps Lab emphasizes tools and techniques that non-expects can grasp and use effectively and without intensive training.
+Operators will still need to be comfortable with technology, but they do not need to know anything about <em>programming</em> to get started.</p>
+</div>
+<div class="paragraph">
+<p>In fact, DocOps Lab tools are <em>not</em> for programmers or developers, other than how they may incidentally or by design overlap with their particular needs.<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>We specialize in tools with:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>low-code or no-code interfaces</p>
+</li>
+<li>
+<p>sensible command-line interfaces</p>
+</li>
+<li>
+<p>YAML-based configuration</p>
+</li>
+<li>
+<p>lightweight markup languages</p>
+</li>
+<li>
+<p>text transformation by templating</p>
+</li>
+<li>
+<p>scriptable with YAML- and Liquid-based DSLs (domain-specific languages)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>While full-fledged scripting languages and programming environments are a robust fallback for DocOps platforms, DocOps Lab focuses on maximizing the range of what can be accomplished with minimal coding and straightforward configuration.</p>
+</div>
+<div class="paragraph">
+<p>The principle of usability also means <strong>accessibility</strong> in the more traditional sense.
+At this time, true accessibility is a goal rather than a reality for DocOps Lab, but we are working to make our tooling truly open to people with disabilities.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reusability">1.3.2. Reusability</h4>
+<div class="paragraph">
+<p>DocOps approaches will work in more than one place with only circumstantial modifications.</p>
+</div>
+<div class="paragraph">
+<p>This is a core approach to software development, but it is also a key principle of technical documentation and formal documents at all levels.</p>
+</div>
+<div class="paragraph">
+<p>Reusability implies DRY (&#8220;Don&#8217;t Repeat Yourself&#8221;) in terms of content, data, and configuration.</p>
+</div>
+<div class="paragraph">
+<p>It also means that the same tools and conventions can be used across different projects, industries, and problem spaces.</p>
+</div>
+<div class="paragraph">
+<p>This principle broadly covers <strong>universality</strong>, <strong>portability</strong>, and <strong>repeatability</strong>.
+Basically, tools need to be able to work equally in a wide range of environments and circumstances.</p>
+</div>
+<div class="paragraph">
+<p>Our commitment to containerization (with Docker, etc) is a key part of this principle, as it allows users to run the same environment anywhere Docker is supported.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="interoperability">1.3.3. Interoperability</h4>
+<div class="paragraph">
+<p>Similar to some of the sub-principles of reusability, interoperability means technology and techniques that fit and work together in a cohesive manner.</p>
+</div>
+<div class="paragraph">
+<p>DocOPs favors tool integration and data exchange mechanisms that enable seamless workflows across different systems.
+This also means <em>effective</em> compatibility across operating systems (Windows, MacOS, and Linux).</p>
+</div>
+<div class="exampleblock">
+<div class="title">Examples of DocOps interoperability</div>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Git</strong> and <strong>GitHub</strong> for version control of document sources, tooling configurations, scripted automation, and rendered artifacts.</p>
+</li>
+<li>
+<p><strong>LiquiDoc</strong> and <strong>Jekyll</strong> standardize around Liquid, YAML, and AsciiDoc generation, also supporting Markdown, JSON, CSV, and other formats.</p>
+</li>
+<li>
+<p><strong>OpenAPI</strong> format for REST API documentation, as it is an open standard that also uses YAML and covers nearly everything HTTP interfaces can do, and numerous tools can generate output from it in various forms.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The goal of interoperability is a smooth experience with the shortest possible toolchain and technology stack.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="extensibility">1.3.4. Extensibility</h4>
+<div class="paragraph">
+<p>Tools and conventions that can be extended, configured, or otherwise customized to meet highly specific yet unforeseen needs without substantially altering the prime source of tooling or documentation.
+Users should always be able to make changes that <em>build upon</em> rather than alter the upstream source.</p>
+</div>
+<div class="paragraph">
+<p>What works in one peculiar use case should be adaptable to others.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example of DocOps extensibility</div>
+<div class="content">
+<div class="paragraph">
+<p>DocOps Lab maintains a &#8220;content typing&#8221; system which itself extends both the Diátaxis and the DITA topic typing systems.
+This &#8220;Ditataxis++&#8221; system defines a set of standard content types and subtypes, each with its own purpose, structure, and conventions.</p>
+</div>
+<details>
+<summary class="title">Continue reading this example of extensibility</summary>
+<div class="content">
+<div class="paragraph">
+<p>For a downstream user to add, remove, or change a content type, they simply create a new YAML file that conforms to the open-standard format for defining semantical taxonomies.
+This way they can use DocOps Lab software to apply their local patches and produce documentation and even linter code that leverages the whole collection of content types, to be included in a style guide and even automated docs testing.</p>
+</div>
+<div class="paragraph">
+<p>In fact, the same library provides the same kind of definitional data for the original DITA and Diátaxis systems, so any team can select a standard through simple configuration and use it instead of our preferred Ditataxis++.</p>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="paragraph">
+<p>Extensibility also includes <strong>scalability</strong>.
+Solutions must be able to grow along with the teams and enterprises that use them, in terms of complexity and sheer amounts of content or contributors.</p>
+</div>
+<div class="paragraph">
+<p>Whenever possible, extensibility should not cost any more than the labor required to implement and use the changes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="innovation">1.3.5. Innovation</h4>
+<div class="paragraph">
+<p>When conventions and tools are not enough, we innovate.
+For DocOps Lab, this is the <em>extensibility</em> of our own approach: modify and build upon what exists to accommodate new challenges.</p>
+</div>
+<div class="paragraph">
+<p>Innovation means developing new methods and/or technologies that <em>extend</em> our current conventions and tools.
+Whenever possible, these solutions should broadly accommodate or modularly integrate with other approaches and toolchains.
+That is to say, solutions should always meet the other principles.</p>
+</div>
+<div class="paragraph">
+<p>Innovation also means doing things differently <em>when appropriate</em>; it means not being afraid to break out of conventions and standards that have grown inadequate or obsolete.
+Favoring a trusty standard makes sense until you find it simply too constraining.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="methods">2. DocOps Lab Commitments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab adheres to radically open principles.</p>
+</div>
+<div class="paragraph">
+<p>For the DocOps Lab mission, developing and propagating conventions, tooling, and the skills to execute them absolutely requires a wide-open program of collaboration and sharing.</p>
+</div>
+<div class="paragraph">
+<p>Your organization may have different priorities and constraints, but DocOps Lab commits to these methods as a matter of principle so users and contributors can count on them.</p>
+</div>
+<div class="sect2">
+<h3 id="foss">2.1. Free, Open-Source (Tools and Docs)</h3>
+<div class="paragraph">
+<p>All of the tools we develop, and nearly all of the tools we use or recommend<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup>, are fully free and open-source software (FOSS).</p>
+</div>
+<div class="paragraph">
+<p>This goes for the documentation we produce, too.
+You are welcome to reuse and repurpose it to whatever end you see fit, with attribution but no requirement to re-share what you do with it.</p>
+</div>
+<div class="paragraph">
+<p>Unrelated third parties can even use our course content to teach their own classes, even charge a fee, so long as they credit the content appropriately.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="open-standards">2.2. Open Standards</h3>
+<div class="paragraph">
+<p>Industries and professions that eschew proprietary methods and adopt open standards see greater integration, interoperability, innovation, and adoption of best practices<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup><sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup>.</p>
+</div>
+<div class="paragraph">
+<p>Our interoperability and extensibility principles depend almost entirely on open standards.
+And while we cannot claim DocOps Lab never eschews an established standard over a preferred or even custom alternative, at least we only ever introduce new <em>open</em> standards, and we only make our own when the leading solution really does not suffice for our needs.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example of DocOps open standards</div>
+<div class="content">
+<div class="paragraph">
+<p>Advanced documentation systems tend to need to point to data objects inside flat files (JSON, YAML, etc).
+There are (at least) three competing open standards for this: JSON Pointer, JSON Path, and JMESPath.</p>
+</div>
+<div class="paragraph">
+<p>DocOps Lab is introducing a standard called URIx, which is a universal way to use <em>any of these three</em> standards to indicate data, whether it be in the same files as the reference, inside a local file, or inside a remote file.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="open-education">2.3. Open Education</h3>
+<div class="paragraph">
+<p>DocOps Lab is committed to <em>teaching</em> the principles and practices of docs-as-code to as many people as possible.
+This is the whole purposes of the Docs-as-Code School project: <em>using</em> DocOps tech to <em>teach</em> DocOps tech.</p>
+</div>
+<div class="paragraph">
+<p>All course content is openly licensed for anyone to use, adapt, and repurpose&#8201;&#8212;&#8201;you can even teach it yourself, modified or unmodified.</p>
+</div>
+<div class="paragraph">
+<p>The only thing we charge for is real-time access to instructors and professional mentors.
+All content, including some that is student generated, will remain freely available.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="open-community">2.4. Open Community</h3>
+<div class="paragraph">
+<p>For DocOps Lab, community is the least defined element with the greatest potential.
+<em>Everyone</em> can impact this part.</p>
+</div>
+<div class="paragraph">
+<p>There is a <a href="https://docopslab.zulipchat.com">Zulip chat group</a>, GitHub discussions, and a broader community with Write the Docs, its international conferences, local chapters, and vibrant Slack community.
+There are even the GitHub Issues boards on our repositories.</p>
+</div>
+<div class="paragraph">
+<p>However community pans out for DocOps/docs-as-code broadly and those participating in DocOps Lab in particular, openness and active participation are surely the keys to success.</p>
+</div>
+<div class="paragraph">
+<p>Talking about DocOps Lab projects <em>is contributing</em>.
+The <a href="/docs/contributing/">DocOps Lab Contributor&#8217;s Guide</a> applies to <em>everyone</em> who participates.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. DocOps CLIs and APIs are meant to be integrated with other applications, usually by programmers or IT personnel, but the main user base for all our projects is <em>digital document professionals</em>, which of course includes programmers.
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. Some platforms we use or recommend MAY offer paid plans, and their offerings may not be fully open source, but in all cases such providers are strongly open-source <em>supportive</em>.
+</div>
+<div class="footnote" id="_footnotedef_3">
+<a href="#_footnoteref_3">3</a>. On the difference between open <em>source</em> and open <em>standards</em>: <a href="https://www.ibm.com/think/topics/open-standards-vs-open-source-explanation" class="bare">https://www.ibm.com/think/topics/open-standards-vs-open-source-explanation</a>
+</div>
+<div class="footnote" id="_footnotedef_4">
+<a href="#_footnoteref_4">4</a>. On the <em>efficacy</em> of open standards: <a href="https://www.dynatrace.com/news/blog/open-source-software-and-open-standards/" class="bare">https://www.dynatrace.com/news/blog/open-source-software-and-open-standards/</a> and <a href="https://www.4ipcouncil.com/application/files/3615/4357/3178/4iP_Council_-_Proprietary-vs-Open-Standards_-_Nov18.pdf" class="bare">https://www.4ipcouncil.com/application/files/3615/4357/3178/4iP_Council_-_Proprietary-vs-Open-Standards_-_Nov18.pdf</a> (PDF).
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/mission.adoc" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2025 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

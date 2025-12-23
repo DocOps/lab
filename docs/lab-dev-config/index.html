@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DocOps Lab</title>
-  <meta name="description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  <title>Dev-tooling Configuration | DocOps Lab</title>
+  <meta name="description" content="Configuring the `docopslab-dev.yml` manifest for DocOps Lab development tooling">
   
   
   <!-- Social Graph / Open Graph metadata -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="DocOps Lab">
-  <meta property="og:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
-  <meta property="og:url" content="https://docopslab.org/">
+  <meta property="og:title" content="Dev-tooling Configuration">
+  <meta property="og:description" content="Configuring the `docopslab-dev.yml` manifest for DocOps Lab development tooling">
+  <meta property="og:url" content="https://docopslab.org/docs/lab-dev-config/">
   <meta property="og:site_name" content="DocOps Lab">
   <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
   
@@ -22,8 +22,8 @@
   
   <!-- Twitter Card metadata -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="DocOps Lab">
-  <meta name="twitter:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  <meta name="twitter:title" content="Dev-tooling Configuration">
+  <meta name="twitter:description" content="Configuring the `docopslab-dev.yml` manifest for DocOps Lab development tooling">
   
   <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
   <meta name="twitter:image:alt" content="DocOps Lab Logo">
@@ -32,7 +32,7 @@
   <!-- Additional metadata -->
   <meta name="author" content="DocOps Lab">
   
-  <link rel="canonical" href="https://docopslab.org/">
+  <link rel="canonical" href="https://docopslab.org/docs/lab-dev-config/">
   
   <!-- Favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
@@ -211,7 +211,7 @@
   
   
 </head>
-<body class="layout-lander  has-sticky-banner">
+<body class="layout-document  has-sticky-banner">
   <script>
     (function() {
       var theme = window.__initialTheme;
@@ -411,271 +411,329 @@
 </header>
 
   
-  
-
-<!-- Hero Section -->
-<section id="hero" class="hero-section ">
-  <div class="container">
-  
-  <h1>DocOps Lab</h1>
-  
-  
-  
-  <div class="subtitle intro" id="tagline"><div class="paragraph">
-<p>Bridging the gap between document professionals and the world of code</p>
-</div></div>
-  
-  
-  
-  <div class="intro" id="intro">
-    <div class="paragraph">
-<p>DocOps Lab is working to distribute the power of docs-as-code for non-programmers.</p>
-</div>
-<div class="paragraph">
-<p>Too many <strong class="role">technical writers</strong>, <strong class="role">project managers</strong>, <strong class="role">paralegals</strong>, <strong class="role">researchers</strong>, and <strong class="role">educators</strong> are stuck with legacy document tools that constrain their potential.</p>
-</div>
-  </div>
-  
-  
-  
-  </div>
-</section>
-
-
-<!-- Container Section -->
-<section id="mission" class="container-section text-center">
-  <div class="container">
-  
-  <div class="section-header ">
+  <div class="document-container document">
+  <nav class="document-nav">
     
-    <h2 class="section-heading">Operate the Docs.</h2>
-    
-    
-    <div class="section-description"><div class="paragraph">
-<p>Through several interconnected open source projects, DocOps Lab is creating pathways for &#8220;tech-savvy non-programmers&#8221; to harness developer tools.</p>
-</div></div>
-    
-  </div>
-  
-
-  
-
-  
-  </div>
-</section>
-
-
-<!-- tag::featured-projects[] -->
-
-
-<!-- end::featured-projects[] -->
-<!-- Project Cards Section -->
-<section id="featured-projects" class="projects-section bg-light">
-  <div class="container">
-  
-  <div class="section-header text-center">
-    
-    <h2 class="section-heading" id="Featured Projects">Featured Projects</h2>
-    
-    
-  </div>
-  
-
-  <div class="projects-grid size-5">
-    
-      <!-- Custom defined cards -->
-      
-        
-        
-        <div class="project-card" data-href="/projects/docops-box">
-        <div class="project-header">
-          <i data-lucide="container" class="project-icon"></i>
-          <h3>DocOps Box</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>A Docker-containerized environment and shell script for reducing the complexity of setting up “developer tools”. Non-developers can run a single command (<code>docksh run</code>) and instantly access whole runtimes and specialized documentation tools in a pre-configured shell environment.</p>
-</div>
-          
-        </div>
-        
-        </div>
-      
-        
-        
-        <div class="project-card" data-href="/projects/docs-as-code-school">
-        <div class="project-header">
-          <i data-lucide="school" class="project-icon"></i>
-          <h3>Docs-as-Code School</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>Structured education in modern technical documentation and document processing. Starting with &#8220;Deep Semantics&#8221; (Fall 2025?) and expanding to courses on version management, code-like workflow adoption, and legal document operations, this project uses docs-as-code to teach docs-as-code principles.</p>
-</div>
-          
-        </div>
-        
-        </div>
-      
-        
-        
-        <div class="project-card" data-href="/projects/ayl-docstack">
-        <div class="project-header">
-          <i data-lucide="layers" class="project-icon"></i>
-          <h3>AYL DocStack</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>AsciiDoc. YAML. Liquid. A three-language approach to managing complex, multi-variant documentation. This &#8220;tech stack&#8221; maximizes power while minimizing syntax overhead, making advanced documentation techniques accessible to beginners while remaining powerful enough for enterprise needs.</p>
-</div>
-          
-        </div>
-        
-        </div>
-      
-        
-        
-        <div class="project-card" data-href="/projects/schemagraphy">
-        <div class="project-header">
-          <i data-lucide="grid-2x2-check" class="project-icon"></i>
-          <h3>SchemaGraphy</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>Extends YAML through SGYML and accompanying libraries, providing advanced data typing and document transclusion capabilities. Provides a full-featured schema language that allows users to define complex data structures, document structures, and whole interfaces in a single, unified format.</p>
-</div>
-          
-        </div>
-        
-        </div>
-      
-        
-        
-        <div class="project-card" data-href="/projects/jekyll-asciidoc-ui">
-        <div class="project-header">
-          <i data-lucide="test-tube-diagonal" class="project-icon"></i>
-          <h3>Jekyll Extensions</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>A set of Jekyll plugins and themes that enrich AsciiDoc web output. Includes themes like AsciiDocsy and Just The AsciiDocs, plus plugins for Jekyll-OpenAPI integration, adocBook document converter, and 25 UI extensions for AsciiDoc.</p>
-</div>
-          
-        </div>
-        
-        </div>
-      
-        
-        
-        <div class="project-card" data-href="/blog/issuer-releasehx-news/">
-        <div class="project-header">
-          <i data-lucide="logs" class="project-icon"></i>
-          <h3>Issuer and ReleaseHx</h3>
-        </div>
-        <div class="project-content">
-          
-            <div class="paragraph">
-<p>Issue-ticket creation and release-history management tools that integrate with Jira, GitHub, and GitLab. Bulk-create work items from a single YAML file, then generate release notes and changelogs in AsciiDoc, Markdown, YAML, JSON, HTML, or PDF formats at release time.</p>
-</div>
-          
-        </div>
-        
-        </div>
-      
-    
-  </div>
-  </div>
-</section>
-
-
-<!-- Call to Action Section -->
-<section id="cta" class="cta-section ">
-  <div class="container">
-  
-  <h2 class="cta-title">Become an operator with DocOps Lab.</h2>
-  
-  
-  
-  <div class="cta-description section-description">
-    <div class="paragraph">
-<p>The goal of DocOps Lab is to create a "docs-as-code" ecosystem (and community)
-that enables developers and non-developers alike to leverage modern documentation practices
-through a proper set of technologies, strategies, and conventions.</p>
-</div>
-  </div>
-  
-  
-  
-  <div class="cta-buttons">
-    
-    <a href="https://github.com/DocOps" class="btn ">
-      <i data-lucide="github"></i>
-      Follow DocOps Lab
-    </a>
-    
-    <a href="https://docopslab.zulipchat.com" class="btn btn-secondary">
-      <i data-lucide="message-circle"></i>
-      Join Community Chat
-    </a>
-    
-  </div>
-  
-  </div>
-</section>
-
-
-<!-- Key Content Links Section -->
-<section id="key-content" class="container-section key-content">
-  <div class="container">
-    <div class="section-header text-center">
-      <h2 class="section-heading">Resources</h2>
-    </div>
-    <div class="section-content">
-      <div class="resource-cards-grid">
-        
-        <a class="resource-card" href="/projects/by-type/">
-          <span class="resource-icon"><i data-lucide="folder"></i></span>
-          <span class="resource-label">Projects by Type</span>
-        </a>
-        
-        <a class="resource-card" href="/projects/by-wave/">
-          <span class="resource-icon"><i data-lucide="calendar"></i></span>
-          <span class="resource-label">Projects by Timeline</span>
-        </a>
-        
-        <a class="resource-card" href="/projects/by-tech/">
-          <span class="resource-icon"><i data-lucide="cpu"></i></span>
-          <span class="resource-label">Projects by Technology</span>
-        </a>
-        
-        <a class="resource-card" href="/docs/contributing/">
-          <span class="resource-icon"><i data-lucide="book-open"></i></span>
-          <span class="resource-label">Contributor's Guide</span>
-        </a>
-        
-        <a class="resource-card" href="/docs/mission/">
-          <span class="resource-icon"><i data-lucide="target"></i></span>
-          <span class="resource-label">DocOps Lab Mission</span>
-        </a>
-        
-        <a class="resource-card" href="/blog/">
-          <span class="resource-icon"><i data-lucide="rss"></i></span>
-          <span class="resource-label">DocOps Lab Blog</span>
-        </a>
-        
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Dev-tooling Configuration</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
       </div>
     </div>
-  </div>
-</section>
+    
+  </nav>
 
+  <main class="document-content">
+    
 
-<footer class="footer-section">
-<!-- Footer Section Common Core -->
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Dev-tooling Configuration</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Dev-tooling Configuration</h1>
+      
+      <p class="document-description">Configuring the `docopslab-dev.yml` manifest for DocOps Lab development tooling</p>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide pertains to the <code>docopslab-dev</code> environment.
+For complete documentation, see the <a href="https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc">project&#8217;s README</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The environment described and provided here is <em>not</em> optimized for DocOps Lab <em>applications</em> used in third-party projects.
+For your own applications of DocOps Labs products like ReleaseHx and Issuer, see <a href="https://github.com/DocOps/box">DocOps Box</a> for a full-featured docs-focused workspace, runtime, and production environment.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For dev-tooling setup instructions, see <a href="/docs/lab-dev-setup/">DocOps Lab Dev-tooling Setup</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For dev-tooling usage instructions, see <a href="/docs/lab-dev-usage/">DocOps Lab Dev-tooling Usage</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Initialization automatically creates <code>.config/docopslab-dev.yml</code>, which you can edit, or you can create it manually.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">source:
+  repo: DocOps/lab
+  ref: v1
+  root: gems/docopslab-dev/assets/config-packs
+
+docs:
+  - source: docs/agent/AGENTS.md
+    target: AGENTS.md
+    synced: false
+  - source: docs/agent/skills/*.md
+    target: .agent/docs/skills/
+    synced: true
+  - source: docs/agent/topics/*.md
+    target: .agent/docs/topics/
+    synced: true
+  - source: docs/agent/roles/*.md
+    target: .agent/docs/roles/
+    synced: true
+
+tools:
+  - tool: rubocop
+    files:
+      - source: rubocop/base.yml
+        target: .config/.vendor/docopslab/rubocop.yml
+        synced: true
+      - source: rubocop/project.yml
+        target: .config/rubocop.yml
+        synced: false
+
+  - tool: vale
+    files:
+      - source: vale/base.ini
+        target: .config/.vendor/docopslab/vale.ini
+        synced: true
+      - source: vale/project.ini
+        target: .config/vale.local.ini
+        synced: false
+
+  - tool: htmlproofer
+    enabled: false  # Disabled by default, enable per project
+    files:
+      - source: htmlproofer/base.yml
+        target: .config/.vendor/docopslab/htmlproofer.yml
+        synced: true
+      - source: htmlproofer/project.yml
+        target: .config/htmlproofer.yml
+        synced: false
+    paths:
+      lint: docs/_site
+
+  - tool: shellcheck
+    files:
+      - source: shellcheck/base.shellcheckrc
+        target: .config/shellcheckrc
+        synced: true
+  
+  - tool: actionlint
+    files:
+      - source: actionlint/base.yml
+        target: .config/.vendor/docopslab/actionlint.yml
+        synced: true
+      - source: actionlint/project.yml
+        target: .config/actionlint.yml
+        synced: false</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="properties-ref">Properties Reference</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>tools</code></dt>
+<dd>
+<p>(Array) List of tool configurations to enable and manage.
+Each entry may/must include:</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>tool</code></dt>
+<dd>
+<p>(Slug) Name of the tool, ex:, <code>rubocop</code>, <code>vale</code>, <code>htmlproofer</code>, <code>actionlint</code>, <code>shellcheck</code>.</p>
+</dd>
+<dt class="hdlist1"><code>enabled</code></dt>
+<dd>
+<p>(Boolean) Whether to enable this tool&#8217;s tasks and git hooks.</p>
+</dd>
+<dt class="hdlist1"><code>files</code></dt>
+<dd>
+<p>List of files to init or sync for the tool.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>source</code></dt>
+<dd>
+<p>Path within the gem where the base config is located, e.g., <code>config-packs/rubocop/base.yml</code>.</p>
+</dd>
+<dt class="hdlist1"><code>target</code></dt>
+<dd>
+<p>Path in the project where the file should be synced, e.g., <code>.config/.vendor/docopslab/rubocop.yml</code>.</p>
+</dd>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1"><code>paths</code></dt>
+<dd>
+<p>Repo=specific paths to include or exclude in linting operations for this tool.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>lint</code></dt>
+<dd>
+<p>(Array) List of paths or glob patterns to lint with this tool.</p>
+</dd>
+<dt class="hdlist1"><code>skip</code></dt>
+<dd>
+<p>(Array) List of paths or glob patterns to exclude from linting with this tool.</p>
+</dd>
+<dt class="hdlist1"><code>exts</code></dt>
+<dd>
+<p>(Array) List of file extensions to include in linting with this tool.</p>
+</dd>
+<dt class="hdlist1"><code>git_tracked_only</code></dt>
+<dd>
+<p>(Boolean) Whether to limit linting to only Git-tracked files.</p>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+<dt class="hdlist1"><code>docs</code></dt>
+<dd>
+<p>(Array) List of documentation files to sync from the gem to the target project.
+Each entry includes:</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>source</code></dt>
+<dd>
+<p>(String) Source path relative to <code>lib/docopslab/</code> in the gem.
+Supports glob patterns (e.g., <code>docs/agent/*.md</code>) or specific files.</p>
+</dd>
+<dt class="hdlist1"><code>target</code></dt>
+<dd>
+<p>(String) Target path relative to the project root.
+Can be a directory (e.g., <code>_docs/</code>) or specific file path (e.g., <code>AGENTS.md</code>).</p>
+</dd>
+<dt class="hdlist1"><code>synced</code></dt>
+<dd>
+<p>(Boolean) Whether to update existing files on sync.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>true</code> - Always overwrite on sync (keeps docs current with gem updates)</p>
+</li>
+<li>
+<p><code>false</code> - Create once, preserve user customizations</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="documentation-syncing-examples">Documentation Syncing Examples</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Customizable template (create once, allow modifications)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">docs:
+  - source: docs/AGENTS.md
+    target: AGENTS.md
+    synced: false</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Auto-synced agent guides (keep current)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">docs:
+  - source: docs/agent/*.md
+    target: .docopslab-dev/agent/
+    synced: true</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Mixed strategy (glob + specific override)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">docs:
+  - source: docs/agent/*.md
+    target: _docs/
+    synced: true
+  - source: docs/agent/ruby.md
+    target: _docs/styles/ruby-custom.md
+    synced: false</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See tool-specific sections in the various guides, such as for <a href="/docs/asciidoc-styles/#config-vale">Vale (Documentation Style Guide)</a>, <a href="/docs/ruby-styles/#config-rubocop">RuboCop (Ruby Style Guide)</a>, and <a href="/docs/testing/#config-htmlproofer"> HTMLProofer</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
   <div class="container">
     <div class="footer-main">
       <div class="footer-content">
@@ -780,14 +838,18 @@ through a proper set of technologies, strategies, and conventions.</p>
     </div>
   </div>
 
-</footer>
-
+    </footer>
+    </article>
+  </main>
+</div>
 
   
   <!-- JavaScript -->
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/micro-profiles.js"></script>
   
+  
+      <script src="/assets/js/scrollspy.js"></script>
   
   
   <!-- Highlight.js JavaScript -->

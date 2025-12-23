@@ -1,0 +1,7629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Projects | DocOps Lab</title>
+  <meta name="description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="All Projects">
+  <meta property="og:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  <meta property="og:url" content="https://docopslab.org/projects/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="All Projects">
+  <meta name="twitter:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/projects/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+</head>
+<body class="layout-projects  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="project-profile-page">
+  <div class="container mx-auto px-4 py-8 max-w-4xl">
+  <!-- Dynamic Breadcrumb Navigation -->
+  
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/projects/" class="breadcrumb-link">Projects</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">All Projects</span>
+  
+  
+</nav>
+
+
+  <!-- Page Header with Icon -->
+  <header class="project-page-header mb-6 relative">
+    <div class="header-content flex items-start justify-between">
+      <div class="header-text flex-1">
+    <h1 class="text-3xl font-bold mb-2">All Projects</h1>
+    
+      </div>
+      
+    <!-- Project Icon -->
+    
+    
+    
+    
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="project-content prose prose-lg max-w-none">
+    <div class="projects-report">
+  <header class="report-header">
+  <p class="report-description">Complete listing of all DocOps Lab projects.</p>
+  <p>
+    <a href="/projects/by-type/" class="report-link">by type</a> |
+    <a href="/projects/by-tech/" class="report-link">by technology</a> |
+    <a href="/projects/by-category/" class="report-link">by category</a> |
+    <a href="/projects/by-wave/" class="report-link">by release target</a>
+  </p>
+  </header>
+
+  
+  
+  <div class="projects-profiles">
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="adocbook">
+  <div class="project-header">
+  <i data-lucide="notebook-text" class="project-icon"></i>
+  <h3>
+    <a href="/projects/adocbook/" class="project-title-link">
+      adocBook
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Publishing tool that paginates AsciiDoc documents into chunked sites, inspired by mdBook</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Technically a plugin for Jekyll SSG that paginates AsciiDoc documents, inspired by mdBook.
+Basically, it breaks a book down into a website, wrapping it in Just the AsciiDocs theme.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>85%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#jekyll-just-the-asciidocs" class="project-dependency">Just the AsciiDocs</a>, 
+        
+        
+        
+        
+        <a href="/projects/#jekyll-asciidoc-ui" class="project-dependency">Jekyll AsciiDoc UI Extensions</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-pagination"># pagination</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css">CSS</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="asciidoc-edu">
+  <div class="project-header">
+  <i data-lucide="graduation-cap" class="project-icon"></i>
+  <h3>
+    <a href="/projects/asciidoc-edu/" class="project-title-link">
+      AsciiDoc EDU
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Framework for authoring curriculum with AsciiDoc, YAML, and Liquid</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>The Educational Document Utilities framework for authoring and maintaining curriculum matter, such as textbooks, workbooks, slide presentations, quizzes, exams, grades, and so forth.
+Share curriculum in forkable repos, which other instructors can use to adapt to their own situations.
+Generate study materials, presentations, and tests, all from a single source of truth.
+Will extract framework from docs-as-code-school repo.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-framework">
+          framework
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>30%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>3</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#clide" class="project-dependency">clide</a>, 
+        
+        
+        
+        
+        <a href="/projects/#liquidoc" class="project-dependency">LiquiDoc</a>, 
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#formagraphy" class="project-dependency">FormaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#ayl-docstack" class="project-dependency">AYL DocStack</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-education"># education</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-curriculum"># curriculum</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-presentations"># presentations</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-reveal-js">Reveal.js</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="asciidoc-ops">
+  <div class="project-header">
+  <i data-lucide="layers" class="project-icon"></i>
+  <h3>
+    <a href="/projects/asciidoc-ops/" class="project-title-link">
+      AsciiDoc Ops for Tech Docs
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>True single-sourcing framework for technical documentation sites, slides, and PDFs using AsciiDoc, YAML, and Liquid</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="ulist">
+<ul>
+<li>
+<p>True single-sourcing framework for managing technical documents using YAML, AsciiDoc, Jekyll, Liquid, and clide.</p>
+</li>
+<li>
+<p>Builds modern websites and PDFs.</p>
+</li>
+<li>
+<p>Enables highly customized instances with version control, scripted builds, integrated search.</p>
+</li>
+<li>
+<p>Includes schemas for YAML objects and lots of Liquid templates for generating YAML, AsciiDoc, and HTML output.</p>
+</li>
+</ul>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-framework">
+          framework
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>50%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>3</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#clide" class="project-dependency">clide</a>, 
+        
+        
+        
+        
+        <a href="/projects/#liquidoc" class="project-dependency">LiquiDoc</a>, 
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#ayl-docstack" class="project-dependency">AYL DocStack</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-technical-writing"># technical writing</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-single-sourcing"># single-sourcing</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="asciidocsy-jekyll-theme">
+  <div class="project-header">
+  <i data-lucide="panels-top-left" class="project-icon"></i>
+  <h3>
+    
+      AsciiDocsy
+    
+  </h3>
+  
+  <span class="project-version">
+    
+      <i data-lucide="check-circle" class="live-icon"></i>
+    
+    
+
+
+
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://github.com/DocOps/asciidocsy-jekyll-theme" target="_blank" class="project-version-link" title="View on GitHub">
+      1.0.0
+      <i data-lucide="github" class="inline-icon"></i>
+    </a>
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Jekyll theme for version-controlled technical documentation across multiple products (1.0 target release)</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Jekyll website theme for version-controlled technical documentation across multiple products.
+Accommodates extra categorization, navigation features, multiple search engines, AsciiDoc styling.
+The most complex and most powerful product.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-theme">
+          Jekyll theme
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>100%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#liquidoc" class="project-dependency">LiquiDoc</a>, 
+        
+        
+        
+        
+        <a href="/projects/#graphy" class="project-dependency">Graphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#jekyll-asciidoc-ui" class="project-dependency">Jekyll AsciiDoc UI Extensions</a>, 
+        
+        
+        
+        
+        <a href="/projects/#jekyll-versioneer" class="project-dependency">jekyll-versioneer</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-versioning"># versioning</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-multi-product"># multi-product</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-technical-writing"># technical writing</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css-sass">CSS/Sass</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="ayl-docstack">
+  <div class="project-header">
+  <i data-lucide="layers" class="project-icon"></i>
+  <h3>
+    <a href="/projects/ayl-docstack/" class="project-title-link">
+      AYL DocStack
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    V1
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>An open-source tech stack, frameworks, and guidance for planning and implementing professional docs-as-code projects</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>AsciiDoc. YAML. Liquid. A three-language approach to managing complex, multi-variant documentation. This &#8220;tech stack&#8221; maximizes power while minimizing syntax overhead, making advanced documentation techniques accessible to beginners while remaining powerful enough for enterprise needs.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-content">
+          content
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>90%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#docops-box" class="project-dependency">DocOps Box</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-tech-stack"># tech stack</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-lightweight-markup"># lightweight markup</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-docker">Docker</a></span>
+      
+    </div>
+      
+    
+    
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          
+          
+            <a href="/projects/#ayl-docstack-subjects" class="project-asset-link">Subjects</a>
+          
+          
+        </dd>
+      </dl>
+    </div> 
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="clide">
+  <div class="project-header">
+  <i data-lucide="rabbit" class="project-icon"></i>
+  <h3>
+    
+      clide
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Domain-customized CLI for automating document management workflows</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A domain-customized CommandLine-Integrated Documentation Environment utility for automating document management tasks, including project initiation, new-file stubbing, scripted-build execution, and Git-related functions.
+A way to organize and execute your own scripted procedures using simple, semantic commands.
+Clide has preset grammars and workflows for different domains/frameworks: tech docs/AsciiDoc Ops, legal docs/LegalDoc Ops, and educational docs (Liquid EDU).</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>30%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#liquidoc" class="project-dependency">LiquiDoc</a>, 
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#cligraphy" class="project-dependency">CliGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-automation"># automation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-workflow"># workflow</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-project-management"># project management</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="clientele-as-code">
+  <div class="project-header">
+  <i data-lucide="briefcase" class="project-icon"></i>
+  <h3>
+    
+      Clientele-as-Code
+    
+  </h3>
+  
+  <span class="project-version">
+    
+      <i data-lucide="check-circle" class="live-icon"></i>
+    
+    
+
+
+
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://github.com/DocOps/clientele-as-code" target="_blank" class="project-version-link" title="View on GitHub">
+      0.1.0
+      <i data-lucide="github" class="inline-icon"></i>
+    </a>
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Invoice and contract management with YAML and AsciiDoc</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>For freelancers and agencies.
+Manage contracts and invoices in a code-like manner.
+Track payment data as YAML and generate invoices in PDF and HTML, via Asciidoctor.
+Maintain a prime contract in AsciiDoc, and have clients digitally sign private variants using Git and GPG.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-framework">
+          framework
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>100%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-business"># business</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-invoicing"># invoicing</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-contracts"># contracts</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-freelancing"># freelancing</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-legal-tech"># legal tech</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-gpg">GPG</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-pdf">PDF</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-docker">Docker</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="cligraphy">
+  <div class="project-header">
+  <i data-lucide="terminal" class="project-icon"></i>
+  <h3>
+    
+      CliGraphy
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Define and script commandline interfaces using YAML and Liquid markup</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Implementation of SchemaGraphy for using YAML/Liquid to define and even script commandline interfaces.
+This is an API/platform for configuring custom CLIs for document processing and manipulation.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-framework">
+          framework
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>30%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy-open-cli-spec-ruby" class="project-dependency">schemagraphy-open-cli-spec-ruby</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schema"># schema</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+    </div>
+      
+    
+    
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          
+            <a href="/projects/#cligraphy-libs" class="project-asset-link">Code Libraries</a>
+          
+          
+          
+        </dd>
+      </dl>
+    </div> 
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="docksh">
+  <div class="project-header">
+  <i data-lucide="ship-wheel" class="project-icon"></i>
+  <h3>
+    
+      docksh
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Manager for DocOps Docker images and containers</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Manager for DocOps Docker images and containers.
+Simplifies building, running, and managing DocOps development environments via Docker.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>85%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-containers"># containers</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-development"># development</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-environment"># environment</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-docker">Docker</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="docops-box">
+  <div class="project-header">
+  <i data-lucide="container" class="project-icon"></i>
+  <h3>
+    <a href="/projects/docops-box/" class="project-title-link">
+      DocOps Box
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Up and running with Ruby, Node, Zsh, Pandoc, and Git for document operations with interactive and production-ready Docker images.</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A Docker-containerized environment and shell script for reducing the complexity of setting up “developer tools”. Non-developers can run a single command (<code>docksh run</code>) and instantly access whole runtimes and specialized documentation tools in a pre-configured shell environment.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-environment">
+          environment
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>90%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-development"># development</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-automation"># automation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-containers"># containers</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-virtualization"># virtualization</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-docker">Docker</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-zsh">Zsh</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-pandoc">Pandoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-node-js">Node.js</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-python">Python</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="docopslab-dev">
+  <div class="project-header">
+  <i data-lucide="tool-case" class="project-icon"></i>
+  <h3>
+    
+      DocOps Lab Devtool
+    
+  </h3>
+  
+  <span class="project-version">
+    
+      <i data-lucide="check-circle" class="live-icon"></i>
+    
+    
+
+
+
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://github.com/DocOps/lab/tree/main/gems/docopslab-dev" target="_blank" class="project-version-link" title="View on GitHub">
+      0.1.0
+      <i data-lucide="github" class="inline-icon"></i>
+    </a>
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Aka <code>labdev</code>, a tool for distributing common libraries and assets across DocOps Lab project repos</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A development utility that centralizes authoring of common configs, styles/rules, and documentation for sharing across all DocOps Lab project repos.
+Provides a numer of Rake tasks for maintaining consistency of distributed libraries and assets used in <em>development</em> of DocOps Lab tools but not necessary for <em>using</em> said tools.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>100%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-development"># development</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-environment"># environment</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-cli">CLI</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-docker">Docker</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-rake">Rake</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-vale">Vale</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-rubocop">RuboCop</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-shellcheck">ShellCheck</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="docs-as-code-school">
+  <div class="project-header">
+  <i data-lucide="school" class="project-icon"></i>
+  <h3>
+    <a href="/projects/docs-as-code-school/" class="project-title-link">
+      Docs-as-Code School
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Learn to author and manage documents the way progrmamers do.</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Structured education in modern technical documentation and document processing. Starting with &#8220;Deep Semantics&#8221; (Fall 2025?) and expanding to courses on version management, code-like workflow adoption, and legal document operations, this project uses docs-as-code to teach docs-as-code principles.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-content">
+          content
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>60%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-education"># education</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-training"># training</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-technical-writing"># technical writing</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-versioning"># versioning</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-semantics"># semantics</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-github">GitHub</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-reveal-js">Reveal.js</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css-sass">CSS/Sass</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+    
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          
+          
+            <a href="/projects/#docs-as-code-school-subjects" class="project-asset-link">Subjects</a>
+          
+          
+        </dd>
+      </dl>
+    </div> 
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="formagraphy">
+  <div class="project-header">
+  <i data-lucide="form-input" class="project-icon"></i>
+  <h3>
+    
+      FormaGraphy
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Generate dynamic HTML5 forms from YAML definitions with jQuery backing</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Generate dynamic, jQuery-backed HTML5 forms from YAML files and collect data online.
+Build interactive web forms with validation, conditional logic, and data collection capabilities.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-framework">
+          framework
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>40%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#cligraphy" class="project-dependency">CliGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy-open-formy-spec-ruby" class="project-dependency">schemagraphy-open-formy-spec-ruby</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-forms"># forms</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-web"># web</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schema"># schema</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-data-collection"># data collection</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css">CSS</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jquery">jQuery</a></span>
+      
+    </div>
+      
+    
+    
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          
+            <a href="/projects/#formagraphy-libs" class="project-asset-link">Code Libraries</a>
+          
+          
+          
+        </dd>
+      </dl>
+    </div> 
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="formy">
+  <div class="project-header">
+  <i data-lucide="text-cursor-input" class="project-icon"></i>
+  <h3>
+    
+      formy
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>CLI utility for managing HTML5 forms with OpenFormYML definitions</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>CLI utility for executing OpenFormY operations.
+Use formy to validate, initiate, document, or abstract HTML5 forms according to OpenFormYML definition documents.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>70%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schema"># schema</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-forms"># forms</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-validation"># validation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css">CSS</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jquery">jQuery</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="graphy">
+  <div class="project-header">
+  <i data-lucide="grid-2x2-check" class="project-icon"></i>
+  <h3>
+    
+      graphy
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>CLI utility for managing data and text objects with SchemaGraphy definitions</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>CLI utility for executing SchemaGraphy operations.
+Use graphy to validate, parse, and manipulate SGYML data objects and AsciiDoc documents according to SchemaGraphy definition documents.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>70%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schema"># schema</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-data"># data</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-text"># text</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-validation"># validation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-parsing"># parsing</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="issuer">
+  <div class="project-header">
+  <i data-lucide="logs" class="project-icon"></i>
+  <h3>
+    <a href="/projects/issuer/" class="project-title-link">
+      Issuer
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+      <i data-lucide="check-circle" class="live-icon"></i>
+    
+    
+
+
+
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://github.com/DocOps/issuer" target="_blank" class="project-version-link" title="View on GitHub">
+      0.2.1
+      <i data-lucide="github" class="inline-icon"></i>
+    </a>
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Bulk create issues in Jira and GitHub from YAML definitions</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A CLI for bulk creating issues in cloud-based systems like Jira and GitHub Issues.
+Introduces an open standard called IMYML for defining individual issue entries and default settings such as global labels, milestones, and assignees.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>100%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-issues"># issues</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-issue-management"># issue management</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-automation"># automation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-imyml">IMYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-github-issues">GitHub Issues</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jira">Jira</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="issuer-rhx">
+  <div class="project-header">
+  <i data-lucide="logs" class="project-icon"></i>
+  <h3>
+    
+      issuer-rhx
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.2.1/0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Docker image preconfigured with Issuer and ReleaseHx CLIs for ticket and change management</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A Docker image preconfigured with Issuer and ReleaseHx CLIs and their dependencies.
+For managing issue tickets and release notes/changelogs in Jira, GitHub, and GitLab.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-environment">
+          environment
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>90%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#issuer" class="project-dependency">Issuer</a>, 
+        
+        
+        
+        
+        <a href="/projects/#releasehx" class="project-dependency">ReleaseHx</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-issues"># issues</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-release-history"># release history</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-changelog"># changelog</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-docker">Docker</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-github-issues">GitHub Issues</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-gitlab-issues">GitLab Issues</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jira">Jira</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="issuer-rhx-demo">
+  <div class="project-header">
+  <i data-lucide="tickets" class="project-icon"></i>
+  <h3>
+    
+      Issuer + ReleaseHx Demo
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Demo and tutorial for the Issuer-ReleaseHx lifecycle</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-demo">
+          demo
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>0%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#issuer" class="project-dependency">Issuer</a>, 
+        
+        
+        
+        
+        <a href="/projects/#releasehx" class="project-dependency">ReleaseHx</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-tutorial"># tutorial</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-issues"># issues</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-release-history"># release history</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-changelog"># changelog</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-agency-yaml">
+  <div class="project-header">
+  <i data-lucide="layout-panel-top" class="project-icon"></i>
+  <h3>
+    
+      YAML Agency
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>100% YAML-sourced Agency Bootstrap landing page with no HTML required</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>100% YAML-sourced Agency Bootstrap landing page&#8201;&#8212;&#8201;no messing with HTML.
+Even ingest existing product data to source page elements.
+Quickly add a landing page to your product docs, either for promoting your product itself, or for introducing the docs, or both, or one for each.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-theme">
+          Jekyll theme
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>70%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-landing-page"># landing page</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-bootstrap"># Bootstrap</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bootstrap">Bootstrap</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css-sass">CSS/Sass</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-api-docs">
+  <div class="project-header">
+  <i data-lucide="puzzle" class="project-icon"></i>
+  <h3>
+    
+      jekyll-api-docs
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Jekyll plugin for integrating API references from docstring tools</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A plugin that helps integrate API references generated by various tools that generate documentation from native code and comments.
+Copies their headerless/footerless HTML output, infers metadata, inserts frontmatter, generates NavMap data.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-ext">
+          Jekyll extension
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>0%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>4</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#jekyll-asciidoc-ui" class="project-dependency">Jekyll AsciiDoc UI Extensions</a>, 
+        
+        
+        
+        
+        <a href="/projects/#jekyll-openapi" class="project-dependency">jekyll-openapi</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api-docs"># API docs</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-integration"># integration</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-asciidoc-ext-docs">
+  <div class="project-header">
+  <i data-lucide="book-open" class="project-icon"></i>
+  <h3>
+    
+      Jekyll/AsciiDoc Extension Platform Docs
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>A unified documentation site for Jekyll/AsciiDoc extensions, plugins, and themes.</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Disambiguation and coordination of the core components of an application based in our Jekyll/Asciidoctor-based publishing framework.
+These utilities make up the Jekyll <em>publishing</em> aspect of a typical Asciidoctor, Jekyll, and Clide-based toolchain, but they can readily be used independent of that toolchain.</p>
+</div>
+<div class="paragraph">
+<p>This is a unified docs site for the various plugins and themes based on jekyll-asciidoc-ui.
+The intention is for this plugin to differentially feed all of these extensions with core options and a means for each plugin to incorporate these libraries into its own gem or application.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-content">
+          content
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>80%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#jekyll-asciidoc-ui" class="project-dependency">Jekyll AsciiDoc UI Extensions</a>, 
+        
+        
+        
+        
+        <a href="/projects/#jekyll-openapi" class="project-dependency">jekyll-openapi</a>, 
+        
+        
+        
+        
+        <a href="/projects/#adocbook" class="project-dependency">adocBook</a>, 
+        
+        
+        
+        
+        <a href="/projects/#asciidocsy-jekyll-theme" class="project-dependency">AsciiDocsy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-website"># website</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css-sass">CSS/Sass</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-asciidoc-lander">
+  <div class="project-header">
+  <i data-lucide="layout-template" class="project-icon"></i>
+  <h3>
+    
+      Jekyll-AsciiDoc Lander
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Simple landing page theme for Jekyll sites using AsciiDoc</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A simple landing page theme for Jekyll sites that use AsciiDoc.
+Based on the Minimal Mistakes theme.
+Includes AsciiDoc-friendly templates and jekyll-asciidoc-ui assets.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-theme">
+          Jekyll theme
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>10%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#jekyll-asciidoc-ui" class="project-dependency">Jekyll AsciiDoc UI Extensions</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-landing-page"># landing page</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-minimal"># minimal</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css-sass">CSS/Sass</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-asciidoc-ui">
+  <div class="project-header">
+  <i data-lucide="test-tube-diagonal" class="project-icon"></i>
+  <h3>
+    <a href="/projects/jekyll-asciidoc-ui/" class="project-title-link">
+      Jekyll AsciiDoc UI Extensions
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Front-end assets and components for adding AsciiDoc support to Jekyll themes</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A set of Jekyll plugins and themes that enrich AsciiDoc web output. Includes themes like AsciiDocsy and Just The AsciiDocs, plus plugins for Jekyll-OpenAPI integration, adocBook document converter, and 25 UI extensions for AsciiDoc.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-ext">
+          Jekyll extension
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>70%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#releasehx" class="project-dependency">ReleaseHx</a>, 
+        
+        
+        
+        
+        <a href="/projects/#ayl-docstack" class="project-dependency">AYL DocStack</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-ui"># UI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-components"># components</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-bootstrap"># Bootstrap</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bootstrap">Bootstrap</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css-sass">CSS/Sass</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-openapi">OpenAPI</a></span>
+      
+    </div>
+      
+    
+    
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          
+            <a href="/projects/#jekyll-asciidoc-ui-libs" class="project-asset-link">Code Libraries</a>
+          
+          
+          
+        </dd>
+      </dl>
+    </div> 
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-asciidoctor-hyde">
+  <div class="project-header">
+  <i data-lucide="test-tube-diagonal" class="project-icon"></i>
+  <h3>
+    
+      Asciidoctor Jekyll Hyde
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Simple Jekyll theme integrating Hyde with AsciiDoc support and optional chunking</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Templates and plugin integrating the simplistic jekyll-hyde theme and the jekyll-asciidoc plugin and (optionally) adocBook chunking.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-theme">
+          Jekyll theme
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>0%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>3</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#adocbook" class="project-dependency">adocBook</a>, 
+        
+        
+        
+        
+        <a href="/projects/#jekyll-asciidoc-ui" class="project-dependency">Jekyll AsciiDoc UI Extensions</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-minimal"># minimal</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css">CSS</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-extender">
+  <div class="project-header">
+  <i data-lucide="test-tube-diagonal" class="project-icon"></i>
+  <h3>
+    <a href="/projects/jekyll-extender/" class="project-title-link">
+      Jekyll Extender
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Core Jekyll extension capabilities for Jekyll projects</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A plugin that extends Jekyll with core capabilities key to DocOps Lab Jekyll extension projects but broadly useful to Jekyll plugin and theme developers.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-ext">
+          Jekyll extension
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>80%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-assets"># assets</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-configuration"># configuration</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+    </div>
+      
+    
+    
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          
+            <a href="/projects/#jekyll-extender-libs" class="project-asset-link">Code Libraries</a>
+          
+          
+          
+        </dd>
+      </dl>
+    </div> 
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-just-the-asciidocs">
+  <div class="project-header">
+  <i data-lucide="moon" class="project-icon"></i>
+  <h3>
+    
+      Just the AsciiDocs
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>AsciiDoc-friendly extension of Just the Docs Jekyll theme with dark mode</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Templates and plugin for extending the excellent Just the Docs Jekyll theme to be AsciiDoc friendly
+and accommodate components of AsciiDocsy as well as nav features.
+This is a dark-mode theme highly consistent with the light-mode Material MkAdocs plugin.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-theme">
+          Jekyll theme
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>50%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dark-mode"># dark-mode</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-navigation"># navigation</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css-sass">CSS/Sass</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-material-mkadocs">
+  <div class="project-header">
+  <i data-lucide="mountain" class="project-icon"></i>
+  <h3>
+    
+      Material MkAdocs
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Material Design-inspired Jekyll theme mimicking MkDocs with light mode</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Templates and plugin for extending the Material-based MkDocs Jekyll theme, which mimics the MkDocs utility project and the Material Design website theme system.
+This is a light-mode theme highly consistent with Just the AsciiDocs plugin.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-theme">
+          Jekyll theme
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>0%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>3</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-light-mode"># light-mode</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-material-design"># material-design</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css-sass">CSS/Sass</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-openapi">
+  <div class="project-header">
+  <i data-lucide="cloud-download" class="project-icon"></i>
+  <h3>
+    
+      jekyll-openapi
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Jekyll plugin for AsciiDoc-friendly OpenAPI REST API documentation</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A plugin that extends Jekyll SSG with AsciiDoc-friendly OpenAPI (OAS3) REST API docs.
+Includes paginated format, AsciiDoc in description fields, and code-sample handling.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-ext">
+          Jekyll extension
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>80%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#jekyll-asciidoc-ui" class="project-dependency">Jekyll AsciiDoc UI Extensions</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api-docs"># API docs</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-rest"># REST</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-openapi"># OpenAPI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-openapi">OpenAPI</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css">CSS</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="jekyll-versioneer">
+  <div class="project-header">
+  <i data-lucide="git-branch" class="project-icon"></i>
+  <h3>
+    
+      jekyll-versioneer
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Jekyll plugin for version-handling and mapping in documentation sites</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A plugin that provides a version-handling framework to Jekyll sites.
+Includes version-mapping data structures and front-end components.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-jekyll-ext">
+          Jekyll extension
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>70%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#jekyll-asciidoc-ui" class="project-dependency">Jekyll AsciiDoc UI Extensions</a>, 
+        
+        
+        
+        
+        <a href="/projects/#versioneer" class="project-dependency">Versioneer</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-jekyll-plugin"># Jekyll plugin</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-versioning"># versioning</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-version-management"># version management</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css">CSS</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="kitchen-sink-rest">
+  <div class="project-header">
+  <i data-lucide="utensils-crossed" class="project-icon"></i>
+  <h3>
+    
+      Kitchen Sink REST API Demo
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    V1
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>A complex but small REST API for testing and demonstraton of OpenAPI docs generation</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A sample REST API with OpenAPI 3.0 spec, Postman collection, and example client code in Ruby, Python, and JavaScript.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-demo">
+          demo
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>0%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>4</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-tutorial"># tutorial</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-rest"># REST</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-node-js">Node.js</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-openapi">OpenAPI</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="lab">
+  <div class="project-header">
+  <i data-lucide="flask-conical" class="project-icon"></i>
+  <h3>
+    
+      LAB
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://github.com/DocOps/lab" target="_blank" class="project-version-link" title="View on GitHub">
+      0.0
+      <i data-lucide="github" class="inline-icon"></i>
+    </a>
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>The home base and landing-page source for DocOps Lab</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>LAB is the core project/switchboard for DocOps Lab.
+It is home to the YAML file that defines all of its projects (the source of the very text you are reading now).
+It also hosts policy and procedural documentation and key assets like common scripts and data files, testing scripts, testing images, and more.
+LAB is also the source of assets for the sites rooted in <strong>docopslab.org</strong> (and <strong>docops.github.io</strong>).</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-content">
+          content
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>90%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-website"># website</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-landing-page"># landing page</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jekyll">Jekyll</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css-sass">CSS/Sass</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="legaldoc-ops">
+  <div class="project-header">
+  <i data-lucide="scale" class="project-icon"></i>
+  <h3>
+    <a href="/projects/legaldoc-ops/" class="project-title-link">
+      LegalDoc Ops
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Manage legal documents like code with AsciiDoc and YAML</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Framework for managing legal documents like code, with AsciiDoc and YAML.
+Includes client intake, metadata handling, and document/contract drafting, rendering, and even digital signing procedures.
+Even includes Creative Commons-licensed starter templates for end-of-life planning documents and employment contracts, with proceeds from professional use to benefit National Lawyers Guild.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-framework">
+          framework
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>40%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>3</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#clide" class="project-dependency">clide</a>, 
+        
+        
+        
+        
+        <a href="/projects/#liquidoc" class="project-dependency">LiquiDoc</a>, 
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#formagraphy" class="project-dependency">FormaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#ayl-docstack" class="project-dependency">AYL DocStack</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-legal-tech"># legal tech</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-contracts"># contracts</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-document-management"># document management</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-legal-writing"># legal writing</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-gpg">GPG</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="liquidoc">
+  <div class="project-header">
+  <i data-lucide="droplets" class="project-icon"></i>
+  <h3>
+    
+      LiquiDoc
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    1.0.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Template parser and build tool for Liquid and AsciiDoc, scriptable with YAML</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Low-code template parser and build tool, specializing in Liquid and AsciiDoc, scriptable with YAML and Liquid.
+Includes complete Ruby API and CLI for document generation and processing workflows.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>15%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>, 
+        
+        
+        
+        
+        <a href="/projects/#sourcerer" class="project-dependency">Sourcerer</a>, 
+        
+        
+        
+        
+        <a href="/projects/#cligraphy" class="project-dependency">CliGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-templates"># templates</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-build-tool"># build tool</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-liquid"># liquid</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoctor">Asciidoctor</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="opathy">
+  <div class="project-header">
+  <i data-lucide="folder-tree" class="project-icon"></i>
+  <h3>
+    
+      opathy
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>CLI utility for managing filesets with OpenPathYML definitions</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>CLI utility for executing OPYML operations.
+Use opathy to validate, initiate, document, or abstract filesets according to OpenPathy definition documents.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>70%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schema"># schema</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-filesystem"># filesystem</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-project-structure"># project structure</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-validation"># validation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="openpathy">
+  <div class="project-header">
+  <i data-lucide="folder-tree" class="project-icon"></i>
+  <h3>
+    
+      OpenPathYML
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Define, validate, and spawn fileset structures using YAML syntax</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A YAML syntax for defining, validating, documenting, and spawning fileset structures.
+Create reproducible directory structures and file templates with comprehensive validation.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-framework">
+          framework
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>70%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-filesystem"># filesystem</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schema"># schema</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-project-structure"># project structure</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-templates"># templates</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+    </div>
+      
+    
+    
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          
+            <a href="/projects/#openpathy-libs" class="project-asset-link">Code Libraries</a>
+          
+          
+          
+        </dd>
+      </dl>
+    </div> 
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="releasehx">
+  <div class="project-header">
+  <i data-lucide="history" class="project-icon"></i>
+  <h3>
+    <a href="/projects/releasehx/" class="project-title-link">
+      ReleaseHx
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Manage product release notes and changelog with CLI and Ruby API</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A utility for managing product release history, notes, and changelog.
+Includes a Ruby API and CLI, <code>releasehx</code>/<code>rhx</code>.
+Includes SchemaGraphy prototype.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>90%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-issues"># issues</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-release-history"># release history</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-changelog"># changelog</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-product-management"># product management</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-versioning"># versioning</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-github-issues">GitHub Issues</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-gitlab-issues">GitLab Issues</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jira">Jira</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-erb">ERB</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jmespath">JMESPath</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jsonpath">JSONPath</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="releasehx-demo">
+  <div class="project-header">
+  <i data-lucide="rocket" class="project-icon"></i>
+  <h3>
+    
+      ReleaseHx Demo
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Files for testing, demonstrating, and learning ReleaseHx configuration</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-demo">
+          demo
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>90%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#releasehx" class="project-dependency">ReleaseHx</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-tutorial"># tutorial</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-issues"># issues</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-release-history"># release history</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-changelog"># changelog</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-liquid">Liquid</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="schema-specifications">
+  <div class="project-header">
+  <i data-lucide="library" class="project-icon"></i>
+  <h3>
+    
+      schema-specifications
+    
+  </h3>
+  
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Data Schema specifications or requirements docs for specialized SGYML (YAML) data objects, for governing flat-file data sources as code.
+These standards specify how end users can create custom definitional documents out of these syntaxes and process them.
+These natural-language specifications and their SGYML Schema counterparts dictate: how SchemaGraphy validators, parsers, and other supporting utilities should be configured to process SGYML documents in specific syntaxes.
+This monorepo includes full documentaton of each &#8220;spec&#8221;, though contents are mainly sourced in separate repos alongside a flagship API for the given syntax.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-content">
+          content
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>30%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-json">JSON</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-json-schema">JSON Schema</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jmespath">JMESPath</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jsonpath">JSONPath</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-python">Python</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+    </div>
+      
+    
+    
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          
+          
+            <a href="/projects/#schema-specifications-subjects" class="project-asset-link">Subjects</a> | 
+          
+          
+            <a href="/projects/#schema-specifications-packs" class="project-asset-link">Packs</a>
+          
+        </dd>
+      </dl>
+    </div> 
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="schemagraphy">
+  <div class="project-header">
+  <i data-lucide="grid-2x2-check" class="project-icon"></i>
+  <h3>
+    <a href="/projects/schemagraphy/" class="project-title-link">
+      SchemaGraphy
+    </a>
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    V1-beta
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>A framework for defining, validating, and parsing data and text objects using YAML and AsciiDoc.</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>Extends YAML through SGYML and accompanying libraries, providing advanced data typing and document transclusion capabilities. Provides a full-featured schema language that allows users to define complex data structures, document structures, and whole interfaces in a single, unified format.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-framework">
+          framework
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>40%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#sourcerer" class="project-dependency">Sourcerer</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schemas"># schemas</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-data"># data</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-text"># text</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-validation"># validation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-parsing"># parsing</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-serialization"># serialization</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-json">JSON</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jmespath">JMESPath</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-jsonpath">JSONPath</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-json-schema">JSON Schema</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="schemagraphy-cloud">
+  <div class="project-header">
+  <i data-lucide="cloud" class="project-icon"></i>
+  <h3>
+    
+      SchemaGraphy Cloud
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Web app for testing and demonstrating SchemaGraphy schemas online</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A fiddle-like web application for testing and demonstrating schema/data and schema/text combinations.
+Online playground for experimenting with SchemaGraphy schemas and validations.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-web-app">
+          web-app
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>0%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>4</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy-rest" class="project-dependency">SchemaGraphy REST</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-sandbox"># sandbox</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schemas"># schemas</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-web-app"># web app</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-web-service"># web service</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-validation"># validation</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-stimulus-js">Stimulus.js</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css">CSS</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="schemagraphy-rest">
+  <div class="project-header">
+  <i data-lucide="cloud" class="project-icon"></i>
+  <h3>
+    
+      SchemaGraphy REST
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>REST API for testing and processing SchemaGraphy schemas.</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A RESTful API service for processing schema/data and schema/text combinations without installing SchemaGraphy libaries locally.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-rest-api">
+          REST API
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>0%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>4</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-sandbox"># sandbox</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schemas"># schemas</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-web-service"># web service</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-validation"># validation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby-on-rails">Ruby on Rails</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-javascript">JavaScript</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-stimulus-js">Stimulus.js</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-html">HTML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-css">CSS</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="sourcerer">
+  <div class="project-header">
+  <i data-lucide="gem" class="project-icon"></i>
+  <h3>
+    
+      Sourcerer
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Ruby API for pre-build and build-time AsciiDoc/YAML processing</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A library for pre-build and build-time documentation processing for strict single sourcing of application docs.
+Provides Ruby API for extracting, parsing, and manipulating AsciiDoc content and YAML/SGYML data programmatically.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-ruby-api">
+          Ruby API
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>70%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>1</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-single-sourcing"># single-sourcing</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoc">AsciiDoc</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-asciidoctor">Asciidoctor</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="subtxt">
+  <div class="project-header">
+  <i data-lucide="text-wrap" class="project-icon"></i>
+  <h3>
+    
+      SubTxt
+    
+  </h3>
+  
+  <span class="project-version">
+    
+      <i data-lucide="check-circle" class="live-icon"></i>
+    
+    
+
+
+
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    <a href="https://github.com/DocOps/subtxt" target="_blank" class="project-version-link" title="View on GitHub">
+      0.3.0
+      <i data-lucide="github" class="inline-icon"></i>
+    </a>
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>CLI utility for bulk text substitutions based on regex pattern pairs</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A CLI utility for substituting text in files based on regex definition pairs.
+Use SubTxt to perform bulk text substitutions across multiple files using simple YAML mapping files.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-utility">
+          utility
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>100%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+    
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-cli"># CLI</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-text-processing"># text processing</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-automation"># automation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+      
+    </div>
+      
+    
+       
+  </div>
+  
+
+</div>
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="project-profile project-card profile-mini" id="versioneer">
+  <div class="project-header">
+  <i data-lucide="git-branch" class="project-icon"></i>
+  <h3>
+    
+      Versioneer
+    
+  </h3>
+  
+  <span class="project-version">
+    
+    
+
+
+
+
+  
+    
+    0.1.0
+  
+
+
+  </span>
+  
+  </div>
+  
+  <div class="project-line">  
+  <div class="paragraph">
+<p>Map and coordinate product and documentation versioning with VMYML markup</p>
+</div>
+  </div>
+  
+  <div class="project-description">
+  
+    <div class="paragraph">
+<p>A model for describing, defining, and mapping all manner of product and documentation divergence, enabling other systems to coordinate and conform to them.
+Presents the logic for VMYML markup framework.</p>
+</div>
+  
+  </div>
+  <div class="project-meta">
+    
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-framework">
+          framework
+        </a>
+      </dd>
+    </dl>
+    
+    
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>15%</dd>
+    </dl>
+    
+    
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>2</dd>
+    </dl>
+    
+    
+    <dl class="project-deps">
+      <dt>Dependencies:</dt>
+      <dd>
+        
+        
+        
+        
+        <a href="/projects/#schemagraphy" class="project-dependency">SchemaGraphy</a>
+        
+      </dd>
+    </dl>
+    
+    
+      
+    <div class="meta-list">
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-versioning"># versioning</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-schema"># schema</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-documentation"># documentation</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-product-management"># product management</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+        
+      <span class="meta-label"><a href="/projects/by-category/#tag-api"># API</a></span>
+        
+    </div>
+      
+      
+    <div class="meta-list">
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-yaml">YAML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-sgyml">SGYML</a></span>
+      
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+      
+    </div>
+      
+    
+    
+    <div class="project-assets">
+      <dl>
+        <dt>Project assets:</dt>
+        <dd>
+          
+            <a href="/projects/#versioneer-libs" class="project-asset-link">Code Libraries</a>
+          
+          
+          
+        </dd>
+      </dl>
+    </div> 
+       
+  </div>
+  
+
+</div>
+
+  
+
+  <h2 style="text-align: center; margin: 3rem;">Additional Assets</h2>
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="ayl-docstack-subjects">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="layers" class="project-icon"></i>
+        <a href="/projects/ayl-docstack">AYL DocStack</a> Subjects
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="">AYL Manifesto</li>
+        
+          <li id="asciidoc-ssgs">Matrix of SSGs that support AsciiDoc markup</li>
+        
+          <li id="api-decision-matrix">API Decision Matrix</li>
+        
+          <li id="docs-as-code-style-guides">Docs-as-Code Style Guides</li>
+        
+          <li id="semantics-content">Content Semantics</li>
+        
+          <li id="semantics-block">Block Semantics</li>
+        
+          <li id="semantics-inline">Inline Semantics</li>
+        
+          <li id="foss-licenses">Free, Open Source Software Licenses</li>
+        
+          <li id="glossary">Glossary</li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+      
+    
+  
+    
+  
+    
+  
+    
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="cligraphy-libs">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="terminal" class="project-icon"></i>
+        <a href="/projects/#cligraphy">CliGraphy</a> Code Libraries
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="open-cli">open-cli</li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+      
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="docs-as-code-school-subjects">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="school" class="project-icon"></i>
+        <a href="/projects/docs-as-code-school">Docs-as-Code School</a> Subjects
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="deep-semantics">Deep Semantics: Structure, Markup, Styling, and Effects for Technical Content</li>
+        
+          <li id="versioning">Divergence Handling: Versioning Strategy for Software Products and Documentation</li>
+        
+          <li id="work-like-coder">Work Like a Coder: Exploit Developers' Tools and Code-like Documentation Practices</li>
+        
+          <li id="code-the-docs">Code the Docs: Dynamism, Structure, and Semantics for Technical Writing with AsciiDoc</li>
+        
+          <li id="legal-docops">DocOps for Law: Managing Legal Documents the Coder's Way</li>
+        
+          <li id="defs-as-docs">Docs as Defs: Using YAML to Define and Document UIs and APIs</li>
+        
+          <li id="next-level-readmes">Next Level READMEs: Seeding and Single-Sourcing Codebases with AsciiDoc</li>
+        
+          <li id="internal">Internal Docs: First-classing and Single-sourcing Documentation Across the Public/Private Divide</li>
+        
+          <li id="jekyll-api-docs-delivery">Using Jekyll for OpenAPI Documentation Delivery</li>
+        
+          <li id="mapping-versions">Mapping Your Product and Docs Versioning Scheme with YAML: Use OpenVMY to document all manner of product and documen...</li>
+        
+          <li id="jekyll-supercharge">Supercharge Your Jekyll Docs Site</li>
+        
+          <li id="readme-asciidoc-ddd">README.adoc-Driven Development and Documentation (RADDD): Way beyond "start with a README file" -- advice for true ...</li>
+        
+          <li id="structured-asciidoc">Modern Documentation from Structured AsciiDoc</li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+      
+    
+  
+    
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="formagraphy-libs">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="form-input" class="project-icon"></i>
+        <a href="/projects/#formagraphy">FormaGraphy</a> Code Libraries
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="OpenFormY">OpenFormY</li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+      
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="jekyll-asciidoc-ui-libs">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="test-tube-diagonal" class="project-icon"></i>
+        <a href="/projects/jekyll-asciidoc-ui">Jekyll AsciiDoc UI Extensions</a> Code Libraries
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="glossaries">glossaries</li>
+        
+          <li id="releasehx">releasehx</li>
+        
+          <li id="term-ext">term-ext</li>
+        
+          <li id="seo-ext">seo-ext</li>
+        
+          <li id="code-copy">code-copy</li>
+        
+          <li id="toc-alt">toc-alt</li>
+        
+          <li id="alt-markdown">alt-markdown</li>
+        
+          <li id="ai-crawl">ai-crawl</li>
+        
+          <li id="gdpr-dialog">gdpr-dialog</li>
+        
+          <li id="gdpr-enforce">gdpr-enforce</li>
+        
+          <li id="theme-ext">theme-ext</li>
+        
+          <li id="asciidoc-dark-jtd">asciidoc-dark-jtd</li>
+        
+          <li id="asciidoc-light-docsy">asciidoc-light-docsy</li>
+        
+          <li id="tabbed-panes">tabbed-panes</li>
+        
+          <li id="collapse">collapse</li>
+        
+          <li id="accordion">accordion</li>
+        
+          <li id="button">button</li>
+        
+          <li id="badge">badge</li>
+        
+          <li id="card">card</li>
+        
+          <li id="tooltip">tooltip</li>
+        
+          <li id="popover">popover</li>
+        
+          <li id="content-type">content-type</li>
+        
+          <li id="inline-term">inline-term</li>
+        
+          <li id="inline-file">inline-file</li>
+        
+          <li id="trademarker">trademarker</li>
+        
+          <li id="admonition-ext">admonition-ext</li>
+        
+          <li id="sidebar-ext">sidebar-ext</li>
+        
+          <li id="code-truncate">code-truncate</li>
+        
+          <li id="literal-prompt">literal-prompt</li>
+        
+          <li id="code-highlight">code-highlight</li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+      
+      
+    
+  
+    
+  
+    
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="jekyll-extender-libs">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="test-tube-diagonal" class="project-icon"></i>
+        <a href="/projects/jekyll-extender">Jekyll Extender</a> Code Libraries
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="migrate-assets">migrate-assets</li>
+        
+          <li id="config-defaults">config-defaults</li>
+        
+          <li id="sgyml-support">sgyml-support</li>
+        
+          <li id="schemagraphy-filters">schemagraphy-filters</li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+      
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="openpathy-libs">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="folder-tree" class="project-icon"></i>
+        <a href="/projects/#openpathy">OpenPathYML</a> Code Libraries
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="OpenPathYML">OpenPathYML</li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+      
+      
+    
+  
+    
+  
+    
+  
+    
+      
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="schema-specifications-subjects">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="library" class="project-icon"></i>
+        <a href="/projects/#schema-specifications">schema-specifications</a> Subjects
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="open-release-history-sgyml">OpenHXY: YAML-based syntax for product release history, notes, cha...</li>
+        
+          <li id="open-style-guide-glossary-sgyml">OpenSGGY: YAML-based syntax for style guide / glossary definition f...</li>
+        
+          <li id="open-version-management-sgyml">OpenVMY: YAML-based syntax for version (source and output) diverge...</li>
+        
+          <li id="open-cli-definition-sgyml">OpenCLY: YAML-based syntax for defining & documenting CLIs</li>
+        
+          <li id="open-form-definition-sgyml">OpenFormY: YAML-based syntax for defining & documenting Web forms</li>
+        
+          <li id="open-config-definition-sgyml">OpenCFGY: YAML-based syntax for defining config files</li>
+        
+          <li id="open-pathtree-sgyml">OpenPathY: A YAML-based syntax for defining, documenting, validating...</li>
+        
+          <li id="open-issues-definition-sgyml">OpenIMY: YAML-based syntax for defining issue tickets</li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="schema-specifications-packs">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="library" class="project-icon"></i>
+        <a href="/projects/#schema-specifications">schema-specifications</a> Packs
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="schemagraphy-specs">
+            schemagraphy-specs
+            
+            <ul>
+              
+                <li id="schemagraphy-release-hx-spec-ruby">schemagraphy-release-hx-spec-ruby</li>
+              
+                <li id="schemagraphy-open-versioneer-spec-ruby">schemagraphy-open-versioneer-spec-ruby</li>
+              
+                <li id="schemagraphy-open-cli-spec-ruby">schemagraphy-open-cli-spec-ruby</li>
+              
+                <li id="schemagraphy-open-formy-spec-ruby">schemagraphy-open-formy-spec-ruby</li>
+              
+                <li id="schemagraphy-open-config-spec-ruby">schemagraphy-open-config-spec-ruby</li>
+              
+                <li id="schemagraphy-open-pathy-spec-ruby">schemagraphy-open-pathy-spec-ruby</li>
+              
+                <li id="schemagraphy-open-issues-spec-ruby">schemagraphy-open-issues-spec-ruby</li>
+              
+            </ul>
+            
+          </li>
+        
+          <li id="schemagraphy-specs-py">
+            schemagraphy-specs-py
+            
+            <ul>
+              
+                <li id="schemagraphy-release-hx-spec-python">schemagraphy-release-hx-spec-python</li>
+              
+                <li id="schemagraphy-versioneer-spec-python">schemagraphy-versioneer-spec-python</li>
+              
+                <li id="schemagraphy-open-cli-spec-python">schemagraphy-open-cli-spec-python</li>
+              
+                <li id="schemagraphy-open-formy-spec-python">schemagraphy-open-formy-spec-python</li>
+              
+                <li id="schemagraphy-open-config-spec-python">schemagraphy-open-config-spec-python</li>
+              
+                <li id="schemagraphy-open-pathy-spec-python">schemagraphy-open-pathy-spec-python</li>
+              
+                <li id="schemagraphy-open-issues-spec-python">schemagraphy-open-issues-spec-python</li>
+              
+            </ul>
+            
+          </li>
+        
+          <li id="schemagraphy-specs-npm">
+            schemagraphy-specs-npm
+            
+            <ul>
+              
+                <li id="schemagraphy-release-hx-spec-node">schemagraphy-release-hx-spec-node</li>
+              
+                <li id="schemagraphy-versioneer-spec-node">schemagraphy-versioneer-spec-node</li>
+              
+                <li id="schemagraphy-open-cli-spec-node">schemagraphy-open-cli-spec-node</li>
+              
+                <li id="schemagraphy-open-formy-spec-node">schemagraphy-open-formy-spec-node</li>
+              
+                <li id="schemagraphy-open-config-spec-node">schemagraphy-open-config-spec-node</li>
+              
+                <li id="schemagraphy-open-pathy-spec-node">schemagraphy-open-pathy-spec-node</li>
+              
+                <li id="schemagraphy-open-issues-spec-node">schemagraphy-open-issues-spec-node</li>
+              
+            </ul>
+            
+          </li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+        
+
+
+
+
+
+
+  
+  
+  
+
+  <div class="project-profile project-card profile-mini" id="versioneer-libs">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="git-branch" class="project-icon"></i>
+        <a href="/projects/#versioneer">Versioneer</a> Code Libraries
+      </h3>
+    </div>
+    <ul>
+      
+        
+          <li id="OpenVMY">OpenVMY</li>
+        
+      
+    </ul>
+  </div>
+
+
+      
+      
+      
+    
+    
+  </div>
+
+
+
+</div>
+
+<!-- Dependency popover template -->
+<div id="dependency-popover" class="dependency-popover" style="display: none;">
+  <div class="popover-content">
+  <div class="popover-header">
+    <i data-lucide="info" class="popover-icon"></i>
+    <h4 class="popover-title"></h4>
+  </div>
+  <div class="popover-body">
+    <p class="popover-line"></p>
+    <p class="popover-description"></p>
+    <div class="popover-meta">
+      <span class="popover-status"></span>
+      <span class="popover-wave"></span>
+    </div>
+  </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Build project lookup for dependencies
+  const projects = {
+  
+  
+  
+  
+  'ayl-docstack': {
+    slug: 'ayl-docstack',
+    title: "AYL DocStack",
+    line: "An open-source tech stack, frameworks, and guidance for planning and implementing professional docs-as-code projects",
+    desc: "A highly opinionated guide to maintaining technical, legal, educational, and other types of documentation in a technology stack revolving around...",
+    icon: 'layers',
+    done: "90%",
+    wave: 1
+  },
+  
+  
+  
+  'docs-as-code-school': {
+    slug: 'docs-as-code-school',
+    title: "Docs-as-Code School",
+    line: "Learn to author and manage documents the way progrmamers do.",
+    desc: "Deep-dive courses and other resources for learning general docs-as-code methods. Initially focused on using AYL DocStack tools and strategies to...",
+    icon: 'school',
+    done: "60%",
+    wave: 1
+  },
+  
+  
+  
+  'jekyll-asciidoc-ext-docs': {
+    slug: 'jekyll-asciidoc-ext-docs',
+    title: "Jekyll/AsciiDoc Extension Platform Docs",
+    line: "A unified documentation site for Jekyll/AsciiDoc extensions, plugins, and themes.",
+    desc: "Disambiguation and coordination of the core components of an application based in our Jekyll/Asciidoctor-based publishing framework. These utilities make up...",
+    icon: 'book-open',
+    done: "80%",
+    wave: 1
+  },
+  
+  
+  
+  'docops-box': {
+    slug: 'docops-box',
+    title: "DocOps Box",
+    line: "Up and running with Ruby, Node, Zsh, Pandoc, and Git for document operations with interactive and production-ready Docker images.",
+    desc: "Everything needed for managing customized Ruby, Node.js, Python, and Pandoc environments via Docker containers, ready for interactive work. Including the...",
+    icon: 'container',
+    done: "90%",
+    wave: 0
+  },
+  
+  
+  
+  'issuer-rhx': {
+    slug: 'issuer-rhx',
+    title: "issuer-rhx",
+    line: "Docker image preconfigured with Issuer and ReleaseHx CLIs for ticket and change management",
+    desc: "A Docker image preconfigured with Issuer and ReleaseHx CLIs and their dependencies. For managing issue tickets and release notes/changelogs in...",
+    icon: 'logs',
+    done: "90%",
+    wave: 0
+  },
+  
+  
+  
+  'schemagraphy': {
+    slug: 'schemagraphy',
+    title: "SchemaGraphy",
+    line: "A framework for defining, validating, and parsing data and text objects using YAML and AsciiDoc.",
+    desc: "Framework for user-friendly schema definitions for data and content alike. Includes SGYML, an extension of YAML, and URIx, for extending...",
+    icon: 'grid-2x2-check',
+    done: "40%",
+    wave: 2
+  },
+  
+  
+  
+  'cligraphy': {
+    slug: 'cligraphy',
+    title: "CliGraphy",
+    line: "Define and script commandline interfaces using YAML and Liquid markup",
+    desc: "Implementation of SchemaGraphy for using YAML/Liquid to define and even script commandline interfaces. This is an API/platform for configuring custom...",
+    icon: 'terminal',
+    done: "30%",
+    wave: 2
+  },
+  
+  
+  
+  'formagraphy': {
+    slug: 'formagraphy',
+    title: "FormaGraphy",
+    line: "Generate dynamic HTML5 forms from YAML definitions with jQuery backing",
+    desc: "Generate dynamic, jQuery-backed HTML5 forms from YAML files and collect data online. Build interactive web forms with validation, conditional logic,...",
+    icon: 'form-input',
+    done: "40%",
+    wave: 2
+  },
+  
+  
+  
+  'versioneer': {
+    slug: 'versioneer',
+    title: "Versioneer",
+    line: "Map and coordinate product and documentation versioning with VMYML markup",
+    desc: "A model for describing, defining, and mapping all manner of product and documentation divergence, enabling other systems to coordinate and...",
+    icon: 'git-branch',
+    done: "15%",
+    wave: 2
+  },
+  
+  
+  
+  'openpathy': {
+    slug: 'openpathy',
+    title: "OpenPathYML",
+    line: "Define, validate, and spawn fileset structures using YAML syntax",
+    desc: "A YAML syntax for defining, validating, documenting, and spawning fileset structures. Create reproducible directory structures and file templates with comprehensive...",
+    icon: 'folder-tree',
+    done: "70%",
+    wave: 1
+  },
+  
+  
+  
+  'clientele-as-code': {
+    slug: 'clientele-as-code',
+    title: "Clientele-as-Code",
+    line: "Invoice and contract management with YAML and AsciiDoc",
+    desc: "For freelancers and agencies. Manage contracts and invoices in a code-like manner. Track payment data as YAML and generate invoices...",
+    icon: 'briefcase',
+    done: "100%",
+    wave: 0
+  },
+  
+  
+  
+  'asciidoc-ops': {
+    slug: 'asciidoc-ops',
+    title: "AsciiDoc Ops for Tech Docs",
+    line: "True single-sourcing framework for technical documentation sites, slides, and PDFs using AsciiDoc, YAML, and Liquid",
+    desc: "* True single-sourcing framework for managing technical documents using YAML, AsciiDoc, Jekyll, Liquid, and clide. * Builds modern websites and...",
+    icon: 'layers',
+    done: "50%",
+    wave: 3
+  },
+  
+  
+  
+  'legaldoc-ops': {
+    slug: 'legaldoc-ops',
+    title: "LegalDoc Ops",
+    line: "Manage legal documents like code with AsciiDoc and YAML",
+    desc: "Framework for managing legal documents like code, with AsciiDoc and YAML. Includes client intake, metadata handling, and document/contract drafting, rendering,...",
+    icon: 'scale',
+    done: "40%",
+    wave: 3
+  },
+  
+  
+  
+  'asciidoc-edu': {
+    slug: 'asciidoc-edu',
+    title: "AsciiDoc EDU",
+    line: "Framework for authoring curriculum with AsciiDoc, YAML, and Liquid",
+    desc: "The Educational Document Utilities framework for authoring and maintaining curriculum matter, such as textbooks, workbooks, slide presentations, quizzes, exams, grades,...",
+    icon: 'graduation-cap',
+    done: "30%",
+    wave: 3
+  },
+  
+  
+  
+  'sourcerer': {
+    slug: 'sourcerer',
+    title: "Sourcerer",
+    line: "Ruby API for pre-build and build-time AsciiDoc/YAML processing",
+    desc: "A library for pre-build and build-time documentation processing for strict single sourcing of application docs. Provides Ruby API for extracting,...",
+    icon: 'gem',
+    done: "70%",
+    wave: 1
+  },
+  
+  
+  
+  'schemagraphy-rest': {
+    slug: 'schemagraphy-rest',
+    title: "SchemaGraphy REST",
+    line: "REST API for testing and processing SchemaGraphy schemas.",
+    desc: "A RESTful API service for processing schema/data and schema/text combinations without installing SchemaGraphy libaries locally.",
+    icon: 'cloud',
+    done: "0%",
+    wave: 4
+  },
+  
+  
+  
+  'schemagraphy-cloud': {
+    slug: 'schemagraphy-cloud',
+    title: "SchemaGraphy Cloud",
+    line: "Web app for testing and demonstrating SchemaGraphy schemas online",
+    desc: "A fiddle-like web application for testing and demonstrating schema/data and schema/text combinations. Online playground for experimenting with SchemaGraphy schemas and...",
+    icon: 'cloud',
+    done: "0%",
+    wave: 4
+  },
+  
+  
+  
+  'releasehx': {
+    slug: 'releasehx',
+    title: "ReleaseHx",
+    line: "Manage product release notes and changelog with CLI and Ruby API",
+    desc: "A utility for managing product release history, notes, and changelog. Includes a Ruby API and CLI, `releasehx`/`rhx`. Includes SchemaGraphy prototype....",
+    icon: 'history',
+    done: "90%",
+    wave: 0
+  },
+  
+  
+  
+  'issuer': {
+    slug: 'issuer',
+    title: "Issuer",
+    line: "Bulk create issues in Jira and GitHub from YAML definitions",
+    desc: "A CLI for bulk creating issues in cloud-based systems like Jira and GitHub Issues. Introduces an open standard called IMYML...",
+    icon: 'logs',
+    done: "100%",
+    wave: 0
+  },
+  
+  
+  
+  'subtxt': {
+    slug: 'subtxt',
+    title: "SubTxt",
+    line: "CLI utility for bulk text substitutions based on regex pattern pairs",
+    desc: "A CLI utility for substituting text in files based on regex definition pairs. Use SubTxt to perform bulk text substitutions...",
+    icon: 'text-wrap',
+    done: "100%",
+    wave: 0
+  },
+  
+  
+  
+  'liquidoc': {
+    slug: 'liquidoc',
+    title: "LiquiDoc",
+    line: "Template parser and build tool for Liquid and AsciiDoc, scriptable with YAML",
+    desc: "Low-code template parser and build tool, specializing in Liquid and AsciiDoc, scriptable with YAML and Liquid. Includes complete Ruby API...",
+    icon: 'droplets',
+    done: "15%",
+    wave: 2
+  },
+  
+  
+  
+  'adocbook': {
+    slug: 'adocbook',
+    title: "adocBook",
+    line: "Publishing tool that paginates AsciiDoc documents into chunked sites, inspired by mdBook",
+    desc: "Technically a plugin for Jekyll SSG that paginates AsciiDoc documents, inspired by mdBook. Basically, it breaks a book down into...",
+    icon: 'notebook-text',
+    done: "85%",
+    wave: 1
+  },
+  
+  
+  
+  'graphy': {
+    slug: 'graphy',
+    title: "graphy",
+    line: "CLI utility for managing data and text objects with SchemaGraphy definitions",
+    desc: "CLI utility for executing SchemaGraphy operations. Use graphy to validate, parse, and manipulate SGYML data objects and AsciiDoc documents according...",
+    icon: 'grid-2x2-check',
+    done: "70%",
+    wave: 1
+  },
+  
+  
+  
+  'opathy': {
+    slug: 'opathy',
+    title: "opathy",
+    line: "CLI utility for managing filesets with OpenPathYML definitions",
+    desc: "CLI utility for executing OPYML operations. Use opathy to validate, initiate, document, or abstract filesets according to OpenPathy definition documents....",
+    icon: 'folder-tree',
+    done: "70%",
+    wave: 1
+  },
+  
+  
+  
+  'formy': {
+    slug: 'formy',
+    title: "formy",
+    line: "CLI utility for managing HTML5 forms with OpenFormYML definitions",
+    desc: "CLI utility for executing OpenFormY operations. Use formy to validate, initiate, document, or abstract HTML5 forms according to OpenFormYML definition...",
+    icon: 'text-cursor-input',
+    done: "70%",
+    wave: 2
+  },
+  
+  
+  
+  'clide': {
+    slug: 'clide',
+    title: "clide",
+    line: "Domain-customized CLI for automating document management workflows",
+    desc: "A domain-customized CommandLine-Integrated Documentation Environment utility for automating document management tasks, including project initiation, new-file stubbing, scripted-build execution, and Git-related...",
+    icon: 'rabbit',
+    done: "30%",
+    wave: 2
+  },
+  
+  
+  
+  'docksh': {
+    slug: 'docksh',
+    title: "docksh",
+    line: "Manager for DocOps Docker images and containers",
+    desc: "Manager for DocOps Docker images and containers.\nSimplifies building, running, and managing DocOps development environments via Docker.",
+    icon: 'ship-wheel',
+    done: "85%",
+    wave: 0
+  },
+  
+  
+  
+  'docopslab-dev': {
+    slug: 'docopslab-dev',
+    title: "DocOps Lab Devtool",
+    line: "Aka `labdev`, a tool for distributing common libraries and assets across DocOps Lab project repos",
+    desc: "A development utility that centralizes authoring of common configs, styles/rules, and documentation for sharing across all DocOps Lab project repos....",
+    icon: 'tool-case',
+    done: "100%",
+    wave: 0
+  },
+  
+  
+  
+  'jekyll-extender': {
+    slug: 'jekyll-extender',
+    title: "Jekyll Extender",
+    line: "Core Jekyll extension capabilities for Jekyll projects",
+    desc: "A plugin that extends Jekyll with core capabilities key to DocOps Lab Jekyll extension projects but broadly useful to Jekyll...",
+    icon: 'test-tube-diagonal',
+    done: "80%",
+    wave: 1
+  },
+  
+  
+  
+  'jekyll-asciidoc-ui': {
+    slug: 'jekyll-asciidoc-ui',
+    title: "Jekyll AsciiDoc UI Extensions",
+    line: "Front-end assets and components for adding AsciiDoc support to Jekyll themes",
+    desc: "Front-end assets and components that any Jekyll theme could use to add front-end AsciiDoc support. Includes templates that interpret specified...",
+    icon: 'test-tube-diagonal',
+    done: "70%",
+    wave: 1
+  },
+  
+  
+  
+  'jekyll-openapi': {
+    slug: 'jekyll-openapi',
+    title: "jekyll-openapi",
+    line: "Jekyll plugin for AsciiDoc-friendly OpenAPI REST API documentation",
+    desc: "A plugin that extends Jekyll SSG with AsciiDoc-friendly OpenAPI (OAS3) REST API docs. Includes paginated format, AsciiDoc in description fields,...",
+    icon: 'cloud-download',
+    done: "80%",
+    wave: 1
+  },
+  
+  
+  
+  'jekyll-versioneer': {
+    slug: 'jekyll-versioneer',
+    title: "jekyll-versioneer",
+    line: "Jekyll plugin for version-handling and mapping in documentation sites",
+    desc: "A plugin that provides a version-handling framework to Jekyll sites.\nIncludes version-mapping data structures and front-end components.",
+    icon: 'git-branch',
+    done: "70%",
+    wave: 2
+  },
+  
+  
+  
+  'jekyll-api-docs': {
+    slug: 'jekyll-api-docs',
+    title: "jekyll-api-docs",
+    line: "Jekyll plugin for integrating API references from docstring tools",
+    desc: "A plugin that helps integrate API references generated by various tools that generate documentation from native code and comments. Copies...",
+    icon: 'puzzle',
+    done: "0%",
+    wave: 4
+  },
+  
+  
+  
+  'jekyll-asciidoc-lander': {
+    slug: 'jekyll-asciidoc-lander',
+    title: "Jekyll-AsciiDoc Lander",
+    line: "Simple landing page theme for Jekyll sites using AsciiDoc",
+    desc: "A simple landing page theme for Jekyll sites that use AsciiDoc. Based on the Minimal Mistakes theme. Includes AsciiDoc-friendly templates...",
+    icon: 'layout-template',
+    done: "10%",
+    wave: 2
+  },
+  
+  
+  
+  'asciidocsy-jekyll-theme': {
+    slug: 'asciidocsy-jekyll-theme',
+    title: "AsciiDocsy",
+    line: "Jekyll theme for version-controlled technical documentation across multiple products (1.0 target release)",
+    desc: "Jekyll website theme for version-controlled technical documentation across multiple products. Accommodates extra categorization, navigation features, multiple search engines, AsciiDoc styling....",
+    icon: 'panels-top-left',
+    done: "100%",
+    wave: 2
+  },
+  
+  
+  
+  'jekyll-just-the-asciidocs': {
+    slug: 'jekyll-just-the-asciidocs',
+    title: "Just the AsciiDocs",
+    line: "AsciiDoc-friendly extension of Just the Docs Jekyll theme with dark mode",
+    desc: "Templates and plugin for extending the excellent Just the Docs Jekyll theme to be AsciiDoc friendly and accommodate components of...",
+    icon: 'moon',
+    done: "50%",
+    wave: 1
+  },
+  
+  
+  
+  'jekyll-material-mkadocs': {
+    slug: 'jekyll-material-mkadocs',
+    title: "Material MkAdocs",
+    line: "Material Design-inspired Jekyll theme mimicking MkDocs with light mode",
+    desc: "Templates and plugin for extending the Material-based MkDocs Jekyll theme, which mimics the MkDocs utility project and the Material Design...",
+    icon: 'mountain',
+    done: "0%",
+    wave: 3
+  },
+  
+  
+  
+  'jekyll-asciidoctor-hyde': {
+    slug: 'jekyll-asciidoctor-hyde',
+    title: "Asciidoctor Jekyll Hyde",
+    line: "Simple Jekyll theme integrating Hyde with AsciiDoc support and optional chunking",
+    desc: "Templates and plugin integrating the simplistic jekyll-hyde theme and the jekyll-asciidoc plugin and (optionally) adocBook chunking.",
+    icon: 'test-tube-diagonal',
+    done: "0%",
+    wave: 3
+  },
+  
+  
+  
+  'jekyll-agency-yaml': {
+    slug: 'jekyll-agency-yaml',
+    title: "YAML Agency",
+    line: "100% YAML-sourced Agency Bootstrap landing page with no HTML required",
+    desc: "100% YAML-sourced Agency Bootstrap landing page -- no messing with HTML. Even ingest existing product data to source page elements....",
+    icon: 'layout-panel-top',
+    done: "70%",
+    wave: 2
+  },
+  
+  
+  
+  'schema-specifications': {
+    slug: 'schema-specifications',
+    title: "schema-specifications",
+    line: null,
+    desc: "Data Schema specifications or requirements docs for specialized SGYML (YAML) data objects, for governing flat-file data sources as code. These...",
+    icon: 'library',
+    done: "30%",
+    wave: 2
+  },
+  
+  
+  
+  'lab': {
+    slug: 'lab',
+    title: "LAB",
+    line: "The home base and landing-page source for DocOps Lab",
+    desc: "LAB is the core project/switchboard for DocOps Lab. It is home to the YAML file that defines all of its...",
+    icon: 'flask-conical',
+    done: "90%",
+    wave: 0
+  },
+  
+  
+  
+  'releasehx-demo': {
+    slug: 'releasehx-demo',
+    title: "ReleaseHx Demo",
+    line: "Files for testing, demonstrating, and learning ReleaseHx configuration",
+    desc: "",
+    icon: 'rocket',
+    done: "90%",
+    wave: 0
+  },
+  
+  
+  
+  'issuer-rhx-demo': {
+    slug: 'issuer-rhx-demo',
+    title: "Issuer + ReleaseHx Demo",
+    line: "Demo and tutorial for the Issuer-ReleaseHx lifecycle",
+    desc: "",
+    icon: 'tickets',
+    done: "0%",
+    wave: 0
+  },
+  
+  
+  
+  'kitchen-sink-rest': {
+    slug: 'kitchen-sink-rest',
+    title: "Kitchen Sink REST API Demo",
+    line: "A complex but small REST API for testing and demonstraton of OpenAPI docs generation",
+    desc: "A sample REST API with OpenAPI 3.0 spec, Postman collection, and example client code in Ruby, Python, and JavaScript.",
+    icon: 'utensils-crossed',
+    done: "0%",
+    wave: 4
+  }
+  
+  };
+
+  const popover = document.getElementById('dependency-popover');
+  let hideTimeout;
+
+  // Handle dependency link hover
+  document.addEventListener('mouseover', function(e) {
+  if (e.target.classList.contains('project-dependency')) {
+    clearTimeout(hideTimeout);
+    
+    const depName = e.target.textContent.trim();
+    const depSlug = depName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const project = projects[depSlug];
+    
+    if (project) {
+      // Populate popover
+      popover.querySelector('.popover-icon').setAttribute('data-lucide', project.icon);
+      popover.querySelector('.popover-title').textContent = project.title;
+      popover.querySelector('.popover-line').textContent = project.line || '';
+      popover.querySelector('.popover-description').textContent = project.desc || '';
+      popover.querySelector('.popover-status').textContent = project.done ? `Status: ${project.done}` : '';
+      popover.querySelector('.popover-wave').textContent = project.wave ? `Wave: ${project.wave}` : '';
+      
+      // Show popover first to get accurate dimensions
+      popover.style.display = 'block';
+      popover.style.visibility = 'hidden'; // Hide while positioning
+      
+      // Get link and popover dimensions
+      const rect = e.target.getBoundingClientRect();
+      const popoverRect = popover.getBoundingClientRect();
+      const gap = 20;
+      
+      // Calculate position above the link
+      let left = rect.left;
+      let top = rect.top + window.scrollY - popoverRect.height - gap;
+      
+      // Adjust horizontal position if off screen
+      if (left < 10) {
+        left = 10;
+      } else if (left + popoverRect.width > window.innerWidth - 10) {
+        left = window.innerWidth - popoverRect.width - 10;
+      }
+      
+      // Check if there's room above
+      if (top < window.scrollY + 10) {
+        // Not enough room above, position below instead
+        top = rect.bottom + window.scrollY + gap;
+      }
+      
+      // Apply final position and make visible
+      popover.style.left = left + 'px';
+      popover.style.top = top + 'px';
+      popover.style.visibility = 'visible';
+      
+      // Re-initialize Lucide icons in popover
+      if (window.lucide && project.icon) {
+        window.lucide.createIcons();
+      }
+    }
+  }
+  });
+
+  // Handle dependency link mouseout
+  document.addEventListener('mouseout', function(e) {
+  if (e.target.classList.contains('project-dependency')) {
+    hideTimeout = setTimeout(() => {
+      popover.style.display = 'none';
+    }, 200);
+  }
+  });
+
+  // Keep popover open when hovering over it
+  popover.addEventListener('mouseover', function() {
+  clearTimeout(hideTimeout);
+  });
+
+  popover.addEventListener('mouseout', function() {
+  hideTimeout = setTimeout(() => {
+    popover.style.display = 'none';
+  }, 200);
+  });
+});
+</script>
+
+<style>
+.dependency-popover {
+  position: absolute;
+  background: var(--card-background);
+  border: 1px solid var(--text-light);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-hover);
+  max-width: 300px;
+  z-index: 1000;
+  font-size: 0.875rem;
+  opacity: 0.98;
+  backdrop-filter: blur(2px);
+}
+
+.popover-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.popover-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary-color);
+}
+
+.popover-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.popover-line {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.popover-description {
+  margin: 0 0 0.75rem 0;
+  color: var(--text-color);
+  line-height: 1.4;
+}
+
+.popover-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.project-dependency {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--primary-color);
+  cursor: pointer;
+}
+
+.project-dependency:hover {
+  color: var(--secondary-color);
+  border-bottom-color: var(--secondary-color);
+}
+</style>
+
+
+  </main>
+
+  <footer>
+    <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2025 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+  </footer>
+  </div>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

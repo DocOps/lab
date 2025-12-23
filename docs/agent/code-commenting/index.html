@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Commenting | DocOps Lab</title>
+  <meta name="description" content="">
+  
+  <meta name="robots" content="noindex,nofollow" />
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Code Commenting">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://docopslab.org/docs/agent/code-commenting/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Code Commenting">
+  <meta name="twitter:description" content="">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/agent/code-commenting/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Code Commenting</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Code Commenting</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Code Commenting</h1>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+        <div class="audience-agent info">
+          <p>This document is intended for AI agents operating within a DocOps Lab environment.</p>
+          
+        </div>
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Employing good code commenting practices is more important than ever in the age of LLM-assisted programming.
+Existing comments are a model for future comments, and poor commenting hygiene is contagious.</p>
+</div>
+<div class="paragraph">
+<p>In order to maximize the usefulness of code comments for both human and AI readers, DocOps Lab projects follow specific commenting conventions, including purpose and style constraints.</p>
+</div>
+<div class="paragraph">
+<p>LLM-backed tools and linters are used to review comments and enforce adherence to these conventions, but developer attention is critical.
+Comments are unlikely to be improved upon after initially merged.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#orientation">Code Comments Orientation</a>
+<ul class="sectlevel2">
+<li><a href="#kinds">Kinds of Comments</a></li>
+<li><a href="#code-flavors">Flavors of Code</a></li>
+<li><a href="#general-style-rules">General Style Rules</a></li>
+</ul>
+</li>
+<li><a href="#expository-comments">Expository Comments: Use and Abuse</a>
+<ul class="sectlevel2">
+<li><a href="#expository-comment-principles">Principles</a></li>
+<li><a href="#general-examples">General Examples</a></li>
+<li><a href="#expository-comment-style">Style</a></li>
+<li><a href="#expository-comment-examples">Examples</a></li>
+</ul>
+</li>
+<li><a href="#protocols-by-language">Comment Protocols by Language</a>
+<ul class="sectlevel2">
+<li><a href="#ruby-comments">Ruby Commenting Protocols</a></li>
+<li><a href="#yaml-comments">YAML Commenting Protocols</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="orientation">Code Comments Orientation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To begin, we will standardize our understanding of what types of comments are applied to what kinds of code.</p>
+</div>
+<div class="sect2">
+<h3 id="kinds">Kinds of Comments</h3>
+<div class="paragraph">
+<p>Code comments come in several distinct types.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">documentation</dt>
+<dd>
+<p>Code comments used to build downstream-facing reference docs for methods, classes, functions, data objects, and so forth.</p>
+<div class="paragraph">
+<p><em>Docstrings</em> are specifically comments used in the generation of rich-text reference docs.
+That they also happen to &#8220;document&#8221; the code to which they are adjacent is secondary.</p>
+</div>
+</dd>
+<dt class="hdlist1">expository</dt>
+<dd>
+<p>Code comments that explain the purpose or function of code blocks, algorithms, or complex logic, strictly in natural language.
+Also called &#8220;inline comments&#8221;, these arbitrary remarks are mainly what is governed by this protocol guide.</p>
+</dd>
+<dt class="hdlist1">rationale</dt>
+<dd>
+<p>Comments that explain the reasoning behind a particular implementation choice, design pattern, or data structure.</p>
+</dd>
+<dt class="hdlist1">status</dt>
+<dd>
+<p>Stability and lifecycle markers: <code>DEPRECATED:</code>, <code>EXPERIMENTAL:</code>, <code>INTERNAL:</code>, <code>UNSTABLE:</code>.
+May also include planned removal dates, version gates, feature flags.</p>
+</dd>
+<dt class="hdlist1">admonition</dt>
+<dd>
+<p>Developer-facing warnings, notes, or tips embedded in code.
+Use <code>WARNING:</code>, <code>NOTE:</code>, and <code>TIP:</code> prefixes to mark these comments distinctly.</p>
+</dd>
+<dt class="hdlist1">task</dt>
+<dd>
+<p>Comments like <code>TODO:</code> and <code>FIXME:</code> are used to mark code that needs further work.</p>
+</dd>
+<dt class="hdlist1">instructional</dt>
+<dd>
+<p>Code comments left in template, stub, or sample files for interactive use.
+These comments tend to be intended for a downstream user who will interact directly with the file or one based on it.</p>
+</dd>
+<dt class="hdlist1">label</dt>
+<dd>
+<p>Comments that simply annotate sections of code by category or general purpose, to help with demarcation and navigation.
+These comments are usually brief and may use special formatting to stand out.</p>
+</dd>
+<dt class="hdlist1">directive</dt>
+<dd>
+<p>In some languages, we use special character patterns to signify that a comment has a special purpose, other than for generating reference docs.
+These comments may mark code for special parsing, content transclusion, or other operations.</p>
+<div class="paragraph">
+<p>In AsciiDoc, comments like <code>// tag::example[]</code> and <code>// end::example[]</code> are used to mark content for inclusion elsewhere.</p>
+</div>
+<div class="paragraph">
+<p>The popular linter Vale recognizes HTML comments like <code>&lt;!-- vale off -&#8594;</code> and <code>&lt;!-- vale on -&#8594;</code> to disable and re-enable content linting.</p>
+</div>
+</dd>
+<dt class="hdlist1">sequential/collection</dt>
+<dd>
+<p>Comments that number or order logical stages in a complex or lengthy process or members of a set.
+Usually something like <code># STEP 1:</code>, <code># PHASE 1:</code>, and so forth, or else <code># GROUP A:</code>, <code># SECTION 1:</code>, etc.
+Always use uppercase for these markers (ex: <code># STEP:</code> not <code># Step:</code>).</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-flavors">Flavors of Code</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Ruby</dt>
+<dd>
+<p>The most robust environment for code comments, Ruby supports RDoc/YARD-style documentation comments that can be used to generate reference documentation.
+See <a href="#ruby-comments">Ruby Commenting Protocols</a> for more.</p>
+</dd>
+<dt class="hdlist1">Bash</dt>
+<dd>
+<p>We make extensive use of comments in Bash scripts, but Bash has no standard for documentation comments or structured comments.</p>
+</dd>
+<dt class="hdlist1">AsciiDoc</dt>
+<dd>
+<p>Comments in <code>.adoc</code> files tend to be labels, tasks, and directives (AsciiDoc tags).
+AsciiDoc files tend not to have expository comments, since the content is already documentation.</p>
+</dd>
+<dt class="hdlist1">YAML/SGYML</dt>
+<dd>
+<p>YAML files use copious label and instructional comments to help downstream users navigate and understand large or complex data structures.
+Comments can also be used to annotate nesting depth.
+See <a href="#yaml-comments">YAML Commenting Protocols</a> for more.</p>
+</dd>
+<dt class="hdlist1">Liquid</dt>
+<dd>
+<p>Our use of Liquid comments is inconsistent at best.
+Part of the problem is their terrible format with explicit <code>{% comment %}</code> and <code>{% endcomment %}</code> tags.
+While Liquid 5 has greatly improved that, DocOps Lab tooling is standardized on Liquid 4 at this time.</p>
+</dd>
+<dt class="hdlist1">HTML</dt>
+<dd>
+<p>We don&#8217;t code much HTML directly.
+It is mostly either converted from lightweight markup or rendered by Liquid templates (or JavaScript).
+Comments are usually to mark nested objects for convenience, to label major structures or to highlight/clarify obscure asset references, or as directives such as <code>&lt;!-- vale off -&#8594;</code>, which disables content linting.</p>
+</dd>
+<dt class="hdlist1">JavaScript</dt>
+<dd>
+<p>We are not a JavaScript shop, but we do write a good bit of vanilla JavaScript.
+Comments are used mainly to establish our bearings in the code and therefor are sometimes heavier than with other languages.</p>
+</dd>
+<dt class="hdlist1">CSS/SCSS</dt>
+<dd>
+<p>We mainly write CSS as SCSS, and commenting is mainly to express the intent upon compiling.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="general-style-rules">General Style Rules</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Do not use em dashes or en dashes or (` - `).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use colons (`: `) to prefix a comment with a classification.</p>
+</li>
+<li>
+<p>Use semicolons (`; `) to break up clauses.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use sentence-style capitalization.</p>
+</li>
+<li>
+<p>Do not use terminal punctuation (periods, exclamation points, question marks) unless the comment is multiple sentences.</p>
+</li>
+<li>
+<p>Hard wrap comments around 110-120 characters.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Use one-sentence per line.</p>
+</li>
+<li>
+<p>Try not to wrap anything <em>except</em> full sentences.</p>
+</li>
+<li>
+<p>When wrapping multi-line sentences, indent subsequent lines by an additional space.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="expository-comments">Expository Comments: Use and Abuse</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Arbitrary inline comments used to explain code should be used consistently and only when they add value.</p>
+</div>
+<div class="paragraph">
+<p>Arbitrary comments can <em>often</em> add value, under an array of conditions that may be more art than science.
+We must be forgiving and understanding of occasional or even frequent misfires in various developers' subjective takes on what is useful.</p>
+</div>
+<div class="paragraph">
+<p>This guide exists to help with comment evaluation.</p>
+</div>
+<div class="sect2">
+<h3 id="expository-comment-principles">Principles</h3>
+<div class="paragraph">
+<p>Expository comments (and their authors) should adhere to these principles:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">1) Express purpose, not implementation.</dt>
+<dd>
+<p>Comments should explain why code exists or what it is intended to do, rather than how it does it.
+(Rationale comments are available for explaining design/engineering choices, if necessary.)</p>
+</dd>
+<dt class="hdlist1">2) Summarize peculiar or complex implementation (without violating #1).</dt>
+<dd>
+<p>Expository comments may <em>include</em> a <em>brief</em> reference to an explicit design choice.
+Still not a <em>rationale comment</em> (too brief, in passing) nor a <em>task comment</em> (no further action prescribed), just a nod to an unusual or non-obvious implementation detail.</p>
+</dd>
+<dt class="hdlist1">3) Use natural, imperative language.</dt>
+<dd>
+<p>Comments should not contain code, and they should be formatted as English clauses or sentences.
+Comments should be phrased as commands or instructions, focusing on the action being performed, from the perspective of what the code is to do.</p>
+</dd>
+<dt class="hdlist1">4) Be concise.</dt>
+<dd>
+<p>Comments should be as brief as possible.
+Multi-sentence comments should be the exception.
+In fact, comments should not typically be complete sentences.</p>
+</dd>
+<dt class="hdlist1">5) Maintain relevance and accuracy.</dt>
+<dd>
+<p>Comments should be reviewed and updated as code changes to ensure they remain accurate and relevant.</p>
+</dd>
+<dt class="hdlist1">6) Never cover straightforward code (except&#8230;&#8203;).</dt>
+<dd>
+<p>Not all blocks need comments at all.
+The main criterion is whether the code&#8217;s purpose or function would not be <em>immediately</em> clear from the code itself to a newcomer with beginner or intermediate knowledge of the language and little familiarity with the application architecture.</p>
+<div class="paragraph">
+<p>Exception: Sometimes an oddity or pivotal point needs to be highlighted even in otherwise straightforward code.</p>
+</div>
+</dd>
+<dt class="hdlist1">7} Do not use comments as notes to reviewers.</dt>
+<dd>
+<p>Temporary comments intended to guide code reviewers should be avoided.
+Code used to help with flag logical points or communicate during pair programming or pre-commit review should be denoted as admonitions (such as `# LOGIC: ` or `# REVIEW: `) or `# TEMP: ` and removed before merging.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="general-examples">General Examples</h3>
+<div class="sect3">
+<h4 id="unnecessary-comments">Unnecessary Comments</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Create destination directory if needed
+FileUtils.mkdir_p(File.dirname(target_path))</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code does <em>exactly and only</em> what the English comment says.
+In fact, the comment is muddier than the code.
+The code will create any necessary parent directories, whereas the comment only mentions the destination directory itself and does not explain <em>if needed</em>.
+In <code>mkdor_p</code>, the <em>if needed</em> means <em>if the ancestor directories do not exist</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Determine if we should copy the file
+file_existed_before_copy = File.exist?(target_path)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This comment is trying to explain the <em>purpose</em> of the line it precedes, but this is unnecessary.
+The code itself merely sets a variable to a Boolean value.
+Not only is the direct purpose of the variable clear from its name and the code making up its value, but the purpose of the variable is only relevant in the context of later code that uses it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="comments-that-add-value">Comments that Add Value</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">end
+
+# Public helper methods accessible to LogIssue class
+
+def normalize_source_path source_file
+  normalized = source_file.gsub(/#excerpt$/, '').gsub(%r{/$}, '')
+  normalized.gsub(%r{^\./}, '')
+end
+
+def normalize_problem_path reported_path, source_file</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A comment preceded and followed by blank lines indicates that it references or labels multiple subsequent blocks.
+(Or it is be part of a series of such comments that tend to and in its own case may yet still cover multiple blocks each.)</p>
+</div>
+<div class="paragraph">
+<p>This categorizes sections for user convenience.
+It also helps LLM-backed tools to find relevant sections more easily.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Try to convert absolute path back to relative path
+if missing_path =~ %r{/home/[^/]+/[^/]+/work/[^/]+/(.+)$} ||
+    missing_path =~ %r{/([^/]+/[^/]+\.adoc)$}
+  @path = Regexp.last_match(1)
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Summarizing a complex Regex pattern is vital.
+Conveying the <em>intent</em> of the pattern is far more important than explaining its mechanics.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="expository-comment-style">Style</h3>
+<div class="paragraph">
+<p>Expository comments have a <em>subject</em>: the code they refer to, typically in the form of a line or block.
+In nearly all cases, comments should immediately precede the subject code.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of comment preceding subject code</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Validate all inputs individually
+inputs.each do |input|
+  # ...
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In some languages, comments can be placed inline.
+This should be used sparingly.</p>
+</div>
+<div class="paragraph">
+<p>We most commonly do this in YAML files.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of inline comment in YAML</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">inputs: # List of inputs to validate
+  - input1
+  - input2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We also do this in JavaScript files.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of inline comment in JavaScript</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-js hljs" data-lang="js">let count = calculated; // Start with the dynamic value</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="expository-comment-examples">Examples</h3>
+<div class="listingblock">
+<div class="title">Good comment examples</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Calculate the factorial of a number using recursion
+
+# Handle the base case
+
+# Never call factorial with a negative number
+
+# Validate all inputs individually</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Good comments are descriptive and purely abstract.
+They express an instruction and/or a principle to be adhered to or enforced within the subject block.</p>
+</div>
+<div class="listingblock">
+<div class="title">Bad comment examples (too simple/unnecessary)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Initialize the result to 1
+
+# Loop through numbers from 1 to n
+
+# Return the result</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Bad comment examples (non-imperative form)</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby"># Calculates the factorial of a number</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="protocols-by-language">Comment Protocols by Language</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="ruby-comments">Ruby Commenting Protocols</h3>
+<div class="paragraph">
+<p>All public-facing methods and classes should be documented with <a href="#ruby-api-comments">YARD documentation comments</a>.</p>
+</div>
+<div class="paragraph">
+<p>For expository comments, follow the <a href="#expository-comment-principles">Principles</a> outlined above.</p>
+</div>
+<div class="sect3">
+<h4 id="ruby-api-comments">API Documentation Comments</h4>
+<div class="paragraph">
+<p>Many of our Ruby gems provide public APIs that are documented using YARD.</p>
+</div>
+<div class="paragraph">
+<p>Private methods and classes may also be documented, but this is not required.</p>
+</div>
+<div class="paragraph">
+<p>Never describe a method just by what it returns or what parameters it takes.
+Describe what the method <em>does</em> behind the scenes or what its summarized purpose.</p>
+</div>
+<div class="paragraph">
+<p>When documenting Ruby classes and methods with YARD, follow these patterns:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">class descriptions</dt>
+<dd>
+<p>Keep class descriptions focused on the class&#8217;s primary responsibility and role within the system.
+Avoid overselling capabilities or implementation details.</p>
+</dd>
+<dt class="hdlist1">method descriptions</dt>
+<dd>
+<p>Lead with what the method accomplishes, not just its signature.
+Example: "Processes the provided attributes to populate Change properties" rather than "Initializes a new Change object."</p>
+</dd>
+<dt class="hdlist1">capitalization consistency</dt>
+<dd>
+<p>When referring to class objects conceptually or as an instance (not variable names), use CamelCase names.
+Use lowercase for most instances where the term refers to a real-world object or concept.</p>
+</dd>
+<dt class="hdlist1">voice consistency</dt>
+<dd>
+<p>Use descriptive, present-tense &#8220;voice&#8221; for API documentation and YARD comments.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exceptions">Exceptions</h4>
+<div class="paragraph">
+<p>On rare occasions, comments are used to denote deep nesting in large files.</p>
+</div>
+<div class="listingblock">
+<div class="title">Annotating <code>end</code> keywords that wrap up large blocks/statements</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">        end # method my_method
+      end # class MyClass
+    end # module MyModule
+  end # module SuperModule
+end # module OurCoolGem</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Whenever possible, even when deep nesting is warranted, keep files small enough that such labels won&#8217;t be need, all else being equal.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="yaml-comments">YAML Commenting Protocols</h3>
+<div class="paragraph">
+<p>YAML files often contain extensive comments to help users understand the structure and purpose of the data.</p>
+</div>
+<div class="paragraph">
+<p>Comments should be used to label sections, explain complex structures, and provide hints or assistance for downstream/later users populating data fields.</p>
+</div>
+<div class="listingblock">
+<div class="title">Examples of YAML comments</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># General data
+inputs:
+  - name: input1 # required
+  - name: input2 # optional
+config: # Settings for the application itself
+  setting1: value1 # Enable feature X (which is not called setting1 and thus needs translation)
+body: | # Use AsciiDoc format
+  This is content for the body of something.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We sometimes use comments to categorize a large Array or Map for navigation, even if the data is included in all members of the Array.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example of YAML section label</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># POSTS
+- slug: first-post
+  title: My First Post
+  type: post
+
+- slug: second-post
+  title: My Second Post
+  type: post
+
+# - etc
+
+# PAGES
+- slug: about
+  title: About Me
+  type: page
+
+# - etc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is used when it makes no sense to nest data under parent keys like <code>posts:</code> and <code>pages:</code>, yet users will still need to navigate through large collections.</p>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2025 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

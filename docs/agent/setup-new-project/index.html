@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISSION: Start a New DocOps Lab Project | DocOps Lab</title>
+  <meta name="description" content="">
+  
+  <meta name="robots" content="noindex,nofollow" />
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MISSION: Start a New DocOps Lab Project">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://docopslab.org/docs/agent/setup-new-project/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MISSION: Start a New DocOps Lab Project">
+  <meta name="twitter:description" content="">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/agent/setup-new-project/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>MISSION: Start a New DocOps Lab Project</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">MISSION: Start a New DocOps Lab Project</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>MISSION: Start a New DocOps Lab Project</h1>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+        <div class="audience-agent info">
+          <p>This document is intended for AI agents operating within a DocOps Lab environment.</p>
+          
+        </div>
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>An AI Agent or multiple Agents, in collaboration with a human Operator, can initialize and prepare a codebase for a new DocOps Lab project.</p>
+</div>
+<div class="paragraph">
+<p>This codebase can be based on an existing specification document, or one can be drafted during this procedure.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#agent-roles">Agent Roles</a>
+<ul class="sectlevel2">
+<li><a href="#context-management-for-multi-role-sessions">Context Management for Multi-role Sessions</a></li>
+<li><a href="#task-assignments-and-suggestions">Task Assignments and Suggestions</a></li>
+</ul>
+</li>
+<li><a href="#prerequisite-attention-operator">Prerequisite: Attention OPERATOR</a></li>
+<li><a href="#mission-procedure">Mission Procedure</a>
+<ul class="sectlevel2">
+<li><a href="#stage-0-mission-prep">Stage 0: Mission Prep</a></li>
+<li><a href="#evergreen-tasks">Evergreen Tasks</a></li>
+<li><a href="#stage-1-project-specification">Stage 1: Project Specification</a></li>
+<li><a href="#stage-2-codebaseenvironment-setup">Stage 2: Codebase/Environment Setup</a></li>
+<li><a href="#stage-3-testing-framework-setup">Stage 3: Testing Framework Setup</a></li>
+<li><a href="#stage-4-cicd-pipeline-setup">Stage 4: CI/CD Pipeline Setup</a></li>
+<li><a href="#stage-5-initial-product-code">Stage 5: Initial Product Code</a></li>
+<li><a href="#stage-6-review-initial-project-setup">Stage 6: Review Initial Project Setup</a></li>
+<li><a href="#stage-7-agent-documentation">Stage 7: Agent Documentation</a></li>
+<li><a href="#stage-8-squash-and-push-to-github">Stage 8: Squash and Push to GitHUb</a></li>
+<li><a href="#stage-9-configure-gh-issues-board">Stage 9: Configure GH Issues Board</a></li>
+<li><a href="#stage-10-create-initial-work-issues">Stage 10: Create Initial Work Issues</a></li>
+<li><a href="#post-mission-debriefing">Post-mission Debriefing</a></li>
+</ul>
+</li>
+<li><a href="#fulfillment-principles">Fulfillment Principles</a>
+<ul class="sectlevel2">
+<li><a href="#always">ALWAYS</a></li>
+<li><a href="#never">NEVER</a></li>
+<li><a href="#quality-bar">Quality Bar</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="agent-roles">Agent Roles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following agent roles will take a turn at steps in this mission.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">planner/architect (optional)</dt>
+<dd>
+<p>If there is no specification yet, this agent works with the Operator and any relevant documentation to draft a project specification and/or definition documents.</p>
+</dd>
+<dt class="hdlist1">product engineer</dt>
+<dd>
+<p>Initialize the basic environment and dependencies; oversee DevOps, DocOps, and QA contributions; wireframe/scaffold basic library structure.</p>
+</dd>
+<dt class="hdlist1">QA/testing engineer</dt>
+<dd>
+<p>Set up testing frameworks and initial/demonstrative test cases.</p>
+</dd>
+<dt class="hdlist1">DevOps/release engineer</dt>
+<dd>
+<p>Set up CI/CD pipelines, containerization, and infrastructure as code.</p>
+</dd>
+<dt class="hdlist1">project manager</dt>
+<dd>
+<p>Review the initial project setup; create initial work issues and tasks for further development.</p>
+</dd>
+<dt class="hdlist1">tech writer</dt>
+<dd>
+<p>Assist in writing/reviewing specification docs and README.</p>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="context-management-for-multi-role-sessions">Context Management for Multi-role Sessions</h3>
+<div class="paragraph">
+<p>By default will be up to the Agent to decide whether to hand off to a concurrent or subsequent Agent or &#8220;upgrade&#8221; role/skills during a session.</p>
+</div>
+<div class="paragraph">
+<p>The Operator may of course dictate or override this decision.</p>
+</div>
+<div class="paragraph">
+<p>The goal is to use appropriate agents without cluttering any given agent&#8217;s context window.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Soft-reset between roles</dt>
+<dd>
+<p>At each transition, declare what you&#8217;re loading (role doc + skills) and what you&#8217;re backgrounding.
+Don&#8217;t hold all previous stage details in active memory.</p>
+</dd>
+<dt class="hdlist1">Mission tracker as swap file</dt>
+<dd>
+<p>Dump detailed handoff notes into <code>.agent/project-setup-mission.md</code> after each stage.
+Read it first when starting new roles to understand what was built and what&#8217;s needed.</p>
+</dd>
+<dt class="hdlist1">Checkpoint between stages</dt>
+<dd>
+<p>After each stage, ask Operator to review/continue/pause.
+Creates intervention points if focus dilutes.</p>
+</dd>
+<dt class="hdlist1">Watch for dilution</dt>
+<dd>
+<p>Mixing concerns across roles, contradicting earlier decisions, hedging instead of checking files.
+If noticed, stop and checkpoint.</p>
+</dd>
+<dt class="hdlist1">Focused lenses</dt>
+<dd>
+<p>Each role emphasizes different details (Product Engineer = code structure, QA = test coverage, DevOps = automation, PM = coordination).
+Switch lenses deliberately; shared base knowledge (README, goals, conventions) stays warm.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task-assignments-and-suggestions">Task Assignments and Suggestions</h3>
+<div class="paragraph">
+<p>In the Mission Procedures section, metadata is associated with each task.</p>
+</div>
+<div class="paragraph">
+<p>All tasks are assigned a preferred <code>role:</code> the Agent should assume in carrying out the task.
+That role has further documentation at <code>.agent/docs/roles/&lt;role-slug&gt;.md</code>, and the executing agent should ingest that document entirely before proceeding.</p>
+</div>
+<div class="paragraph">
+<p>Recommended collaborators are indicated by <code>with:</code>.</p>
+</div>
+<div class="paragraph">
+<p>Recommended upgrades are designated by <code>upto:</code>.</p>
+</div>
+<div class="paragraph">
+<p>Suggested skill/topic readings are indicated by <code>read:</code>.</p>
+</div>
+<div class="paragraph">
+<p>Any working directories or files are listed in <code>path:</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisite-attention-operator">Prerequisite: Attention OPERATOR</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This process requires the <code>docopslab-dev</code> tooling is installed and synced, or at the very least the <code>.agent/docs/</code> library maintained by that tool be in place.</p>
+</div>
+<div class="paragraph">
+<p>For unorthodox projects, simply copying an up-to-date version of that library to your project root directory should suffice.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mission-procedure">Mission Procedure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In general, the following stages are to be followed in order and tracked in a mission document.</p>
+</div>
+<div class="sect2">
+<h3 id="stage-0-mission-prep">Stage 0: Mission Prep</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Create a mission-tracking document</dt>
+<dd>
+<p>Write a document with detailed steps for fulfilling the mission assigned here, based on any project-specific context that might rule in or out some of the following stages or steps.
+(<code>role: project-manager; path: .agent/project-setup-mission.md</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="evergreen-tasks">Evergreen Tasks</h3>
+<div class="paragraph">
+<p>The following tasks apply to most stages.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Keep the mission-tracking document up to date</dt>
+<dd>
+<p>At the end of every stage, update the progress.
+(<code>path: .agent/project-setup-mission.md</code>)</p>
+</dd>
+<dt class="hdlist1">Perform tests as needed</dt>
+<dd>
+<p>Run tests to ensure the initial setup is functioning as expected.
+(<code>role: qa-testing-engineer; read: [.agent/docs/skills/tests-running.md, specs/tests/README.adoc]</code>)</p>
+</dd>
+<dt class="hdlist1">Update docs as needed</dt>
+<dd>
+<p>Continuously improve the relevant <code>README.adoc</code> and other documentation based on new insights or changes in the project setup.
+(<code>role: tech-writer; read: .agent/docs/skills/asciidoc.md, .agent/docs/skills/readme-driven-dev.md, paths: [README.adoc, specs/docs/**/*.adoc, specs/tests/README.adoc]</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-1-project-specification">Stage 1: Project Specification</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Specification review</dt>
+<dd>
+<p><em>If the project already contains one or more specification documents (<code>specs/docs/*.adoc</code>) and/or an extensive <code>README.adoc</code> file</em>, review them for thoroughness and advise of missing information, ambiguities, inconsistencies, and potential pitfalls.
+(<code>role: planner-architect; with: operator; upto: [product-engineer, product-manager]</code>)</p>
+</dd>
+<dt class="hdlist1">Draft a specification</dt>
+<dd>
+<p><em>If no specification and no detailed <code>README.adoc</code> exists</em>, work with the Operator to draft a basic project specification/requirements document in AsciiDoc and data/interface definition files in YAML/SGYML.
+(<code>role: planner-architect; with: [product-manager, tech-writer]; upto: product-developer; read: [.agent/docs/skills/asciidoc.md, .agent/docs/skills/schemagraphy-sgyml.md], path: specs/docs/&lt;subject-slug&gt;-requirements.adoc</code>)</p>
+</dd>
+<dt class="hdlist1">Create/enrich README</dt>
+<dd>
+<p>The <code>README.adoc</code> file is <em>the</em> primary document for every DocOps Lab repo.
+Make it great.
+(<code>role: tech-writer; with: [planner-architect, product-manager]; upto: product-engineer; read: .agent/docs/skills/asciidoc.md, .agent/docs/skills/readme-driven-dev.md</code>, path: <code>README.adoc</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-2-codebaseenvironment-setup">Stage 2: Codebase/Environment Setup</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Establish initial files</dt>
+<dd>
+<p>Create the basic project directory structure and initial files, including <code>README.adoc</code>, <code>.gitignore</code>, <code>Dockerfile</code>, <code>Rakefile</code>, along with any necessary configuration files.
+(<code>role: product-engineer; read: .agent/docs/topics/common-project-paths.md</code>)</p>
+</dd>
+<dt class="hdlist1">Establish versioning</dt>
+<dd>
+<p>Define the revision code (probably <code>0.1.0</code>) in the <code>README.adoc</code> and make sure the base module/code reads it from there as SSoT.
+(<code>role: product-engineer; read: .agent/docs/skills/readme-driven-dev.md; path: README.adoc</code>)</p>
+</dd>
+<dt class="hdlist1">Populate initial files</dt>
+<dd>
+<p>Fill in the initial files with dependency requirements, boilerplate content, placeholder comments, project description, based on the Specification.
+(<code>role: product-engineer; read: .agent/docs/skills/code-commenting.md</code>, path: <code>[Rakefile, .gitignore, lib/**, &lt;product-slug&gt;.gemspec, etc]</code>)</p>
+</dd>
+<dt class="hdlist1">Instantiate environment/dependencies</dt>
+<dd>
+<p>Install dependency libraries (usually <code>bundle install</code>, <code>npm install</code>, and so forth).
+(`role: product-engineer)</p>
+</dd>
+<dt class="hdlist1">Update the README</dt>
+<dd>
+<p>Add relevant details from this stage to the project&#8217;s <code>README.adoc</code> file.
+Include basic setup/quickstart instructions for developers.
+(<code>role: product-engineer; upto: tech-writer; read: .agent/docs/skills/asciidoc.md, .agent/docs/skills/readme-driven-dev.md</code>, path: <code>README.adoc</code>)</p>
+</dd>
+<dt class="hdlist1">Commit to Git</dt>
+<dd>
+<p>Test the <code>.gitignore</code> and any pre-commit hooks by adding and committing files.
+Adjust <code>.gitignore</code> as needed and amend commits until correct.
+(<code>role: product-engineer; read: .agent/docs/skills/git.md;</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-3-testing-framework-setup">Stage 3: Testing Framework Setup</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Create basic testing scaffold</dt>
+<dd>
+<p>Prompt the Operator to provide relevant examples from similar repos and modify it for the current project&#8217;s use case.
+(<code>role: qa-testing-engineer; with: operator; upto: product-engineer; read: [README.adoc, specs/ .agent/docs/skills/tests-writing.md, .agent/docs/skills/rake-cli-dev.md]; path: specs/tests/</code>)</p>
+</dd>
+<dt class="hdlist1">Populate initial test cases</dt>
+<dd>
+<p>Draft initial test cases that cover basic functionality and edge cases based on the project specification.
+(<code>role: qa-testing-engineer; upto: product-engineer; read: .agent/docs/skills/tests-writing.md; paths: specs/tests/rspec/</code>)</p>
+</dd>
+<dt class="hdlist1">Create a testing README</dt>
+<dd>
+<p>Draft the initial docs for the testing regimen.
+(<code>role: qa-testing-engineer; upto: tech-writer; read: .agent/docs/skills/asciidoc.md, .agent/docs/skills/readme-driven-dev.md</code>, path: <code>specs/tests/README.adoc</code>)</p>
+</dd>
+<dt class="hdlist1">Update the project README</dt>
+<dd>
+<p>Make a note of the tests path and docs in the main <code>README.adoc</code> file. (<code>role: qa-testing-engineer; upto: tech-writer; read: .agent/docs/skills/asciidoc.md, .agent/docs/skills/readme-driven-dev.md</code>, path: <code>README.adoc</code>)</p>
+</dd>
+<dt class="hdlist1">Commit to Git</dt>
+<dd>
+<p>Add and commit testing files to Git.
+(<code>role: qa-testing-engineer; read: .agent/docs/skills/git.md;</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-4-cicd-pipeline-setup">Stage 4: CI/CD Pipeline Setup</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Draft initial CI/CD workflows</dt>
+<dd>
+<p>Set up GitHub Actions workflows for building, testing, and deploying the project.
+Integrate tests into <code>Rakefile</code> or other scripts as appropriate.
+(<code>role: devops-release-engineer; upto: product-engineer; read: .agent/docs/skills/devops-ci-cd.md; paths: [Rakefile, .github/workflows/, .scripts/**]</code>)</p>
+</dd>
+<dt class="hdlist1">Commit to Git</dt>
+<dd>
+<p>Add and commit CI/CD files to Git.
+(<code>role: devops-release-engineer; read: .agent/docs/skills/git.md;</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-5-initial-product-code">Stage 5: Initial Product Code</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Write code to initial tests</dt>
+<dd>
+<p>Implement the minimum viable code to pass the initial test cases.
+(<code>role: product-engineer; with: [Operator, qa-testing-engineer]; read: [specs/tests/rspec/**, specs/docs/*.adoc]; upto: [qa-testing-engineer, devops-release-engineer]; paths: [lib/**, specs/tests/rspec/**]</code>)</p>
+</dd>
+<dt class="hdlist1">Commit to Git</dt>
+<dd>
+<p>Add and commit the initial product code to Git.
+(<code>role: product-engineer; read: .agent/docs/skills/git.md;</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-6-review-initial-project-setup">Stage 6: Review Initial Project Setup</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Review mission report</dt>
+<dd>
+<p>Check the mission progress document for any <code>TODO`s or notes from previous stages.
+Triage these and consider invoking new roles to fulfill the steps.
+(`role: project-manager; with: Operator; read: .agent/project-setup-mission.md; path: .agent/reports/project-setup-mission.md</code>)</p>
+</dd>
+<dt class="hdlist1">Check project against README and specs</dt>
+<dd>
+<p>Read through the relevant specifications to ensure at least the <em>scaffolding</em> to meet the project requirements is in place.
+Take note of any place the codebase falls short.
+(<code>role: project-manager; read: [README.adoc, specs/**/*.{adoc,yml,yaml}]; upto: [planner-architect, product-engineer, qa-testing-engineer, devops-release-engineer]; path: .agent/reports/project-setup-mission.md; with: Operator</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-7-agent-documentation">Stage 7: Agent Documentation</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Draft an AGENTS.md file from template</dt>
+<dd>
+<p>Use the <code>AGENTS.markdown</code> file available through <code>docopslab-dev</code> (sync initially, then set <code>sync: false</code> in <code>.config/docopslab-dev.yml</code>).
+Follow the instructions in the doc to transform it into a localized edition of the prime doc.
+(<code>role: Agent; path: AGENTS.adoc</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-8-squash-and-push-to-github">Stage 8: Squash and Push to GitHUb</h3>
+<div class="paragraph">
+<p>The repository should now be ready for sharing.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Squash commits</dt>
+<dd>
+<p>Squash any previous commits into <code>initial commit</code>.
+(<code>role: product-engineer; read: .agent/docs/skills/git.md;</code>)</p>
+</dd>
+<dt class="hdlist1">Push to GitHub</dt>
+<dd>
+<p>Push the local repository to a new remote GitHub repository.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-9-configure-gh-issues-board">Stage 9: Configure GH Issues Board</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Set up GH Issues facility for the project</dt>
+<dd>
+<p>Use <code>gh</code> tool or instruct the Operator to use the GH Web UI to prepare the Issues facility.
+Make sure to set up appropriate labels and milestones, and ensure API read/write access.
+(<code>role: project-manager; read: [.agent/docs/skills/github-issues.md];</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-10-create-initial-work-issues">Stage 10: Create Initial Work Issues</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Draft an IMYML file</dt>
+<dd>
+<p>Add all the issues to a scratch file in IMYML format.
+(<code>role: project-manager; read: .agent/docs/skills/github-issues.md; path: .agent/scratch/initial-issues.yml; with: Operator</code>)</p>
+</dd>
+<dt class="hdlist1">Bulk create initial issues</dt>
+<dd>
+<p>Use the <code>issuer</code> tool to generate remote GH Issues entries based on the issues draft file.
+(<code>role: project-manager; cmds: 'bundle exec issuer --help'; path: .agent/scratch/initial-issues.yml; upto: [product-engineer, tech-writer, devops-release-engineer, qa-testing-engineer, docops-engineer]</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="post-mission-debriefing">Post-mission Debriefing</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Review Mission Report</dt>
+<dd>
+<p>Highlight outstanding or special notices from the Mission Report.
+(<code>role: Agent; with: Operator; read: .agent/reports/project-setup-mission.md</code>)</p>
+</dd>
+<dt class="hdlist1">Suggest modifications to <em>this</em> mission assignment</dt>
+<dd>
+<p>Taking into account any bumps, blockers, or unexpected occurrences during fulfillment of this mission, recommend changes or additions to <strong>&#8220;MISSION: Start a New DocOps Lab Project&#8221;</strong> itself.
+Put yourself in the shoes of a future agent facing down an unknown project.
+(<code>role: Agent; with: Operator; path: ../lab/_docs/agent/missions/setup-new-project.adoc</code>).</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fulfillment-principles">Fulfillment Principles</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="always">ALWAYS</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Always ask the Operator when you don&#8217;t know exactly how DocOps Lab prefers a step be carried out.</p>
+</li>
+<li>
+<p>Always follow the mission procedure as closely as possible, adapting only when necessary due to project-specific constraints.</p>
+</li>
+<li>
+<p>Always document any deviations from the standard procedure and the reasons for them in the Mission Report.</p>
+</li>
+<li>
+<p>Always look for a DRY way to define product metadata/attrbutes in README.adoc and YAML files (<code>specs/data/*-def.yml</code>).</p>
+</li>
+<li>
+<p>Always pause for Operator approval before ANY publishing or deployment action, including pushing/posting to GitHub.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="never">NEVER</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Never get creative or innovative without Operator permission.</p>
+</li>
+<li>
+<p>Never skip steps in the mission procedure without documenting the reason.</p>
+</li>
+<li>
+<p>Never assume the Operator understands DocOps Lab conventions without explanation.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quality-bar">Quality Bar</h3>
+<div class="paragraph">
+<p>A good output is a codebase that a human engineer could pick up and continue developing with minimal onboarding due to logical structure and conventions as well as clear documentation of the architecture, setup process, and project-specific considerations.</p>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2025 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>
