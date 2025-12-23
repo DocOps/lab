@@ -63,7 +63,7 @@ Reinforcements and exceptions:
 [[docops-lab-specific-syntax-guidelines]]
 == DocOps Lab Specific Syntax Guidelines
 
-include::../../../aylstack/content/topics/asciidoc-syntax.adoc[lines=2..]
+include::_asciidoc-syntax.adoc[lines=2..]
 
 [[attribute-formatting]]
 === Attribute Formatting

@@ -179,6 +179,7 @@ search:
 # Exclude from processing
 exclude:
   - '*.md'
+  - '*.mmd'
   - artifacts/
   - README.adoc
   - Gemfile

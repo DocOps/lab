@@ -1,0 +1,207 @@
+= AsciiDoc Syntax Style Guide
+
+== Inline Syntax
+
+=== Inline Semantics
+
+The main purpose of inline semantics is to provide a clear indication of the role of the text to the reader -- including artificial readers.
+
+We can convey semantics by way of:
+
+* declaration by element, role, or class
+* text style based on declaration
+* browser effects based on declaration and additional data
+
+We use the following inline semantic coding in DocOps Lab publications.
+
+// include::built/inline-semantics.adoc[]
+
+=== Syntax Preferences
+
+Use inline semantics liberally, even if you only insert the heavier syntax on a second or third pass.
+
+Formatting with simple `+++*+++`, `_`, and `+++`+++` characters on first drafting makes lots of sense -- or even missing some of these altogether until the second pass.
+
+But before you merge new text documents into your codebase, add role-based inline semantics wherever they are supported.
+
+Let the reader know and make use of special text, most importantly any *verbatim inline text*.
+// TODO: Add link to Docs-as-Code School lesson on "Inline Semantics" when available
+// link:[See the Docs-as-Code School lesson "`Inline Semantics`" for more.]
+
+Even if you are not ready to add such fine-grained tests to your pipeline, consider the value of having all your commands for a given runtime app labeled ahead of time (such as `.app-ruby`), and the advantage to the reader, as well.
+
+== Block Syntax
+
+// tag::block-semantics[]
+=== Block Semantics
+
+Use semantic indicators deliberately.
+
+The more you assert about a block of text you are writing, the better the placement and content of that block will be.
+
+Semantic assertions reside in the source markup, which may convey means of interpreting that same data visually in the output, as an indication to the reader.
+
+For instance, _warning_ admonitions should only deliver warning content, and the user should clearly see that a warning is interrupting the flow of the content in which it appears.
+
+// tag::warning-example-good[]
+[source,asciidoc]
+--------
+[WARNING]
+====
+Avoid misusing or overusing admonition blocks.
+====
+--------
+// end::warning-example-good[]
+
+Semantic notations in our source remind us to treat the content properly.
+
+// tag::warning-example-bad[]
+[source,asciidoc]
+--------
+[WARNING]
+====
+Avoid misusing or overusing admonition blocks.
+This will be hypocritically violated throughout this guide.
+====
+--------
+// end::warning-example-bad[]
+
+True as it may be, the second sentence in that admonition should be removed from the block.
+It can either be its own block, or it can be allowed to fade into the surrounding content.
+
+Sometimes the entire admonition may end up deserving this treatment.
+
+=== Use Delimited Blocks
+
+Generally, use explicit boundary lines to wrap significant blocks, rather than relying on other syntax cues to establish the "`type`" of block is intended.
+These lines are called link:https://docs.asciidoctor.org/asciidoc/latest/blocks/delimited/#linewise-delimiters[_linewise delimiters_].
+
+For example, use the following syntax to wrap the contents of an admonition block:
+
+.Example admonition block syntax with linewise delimiter
+========
+[source,asciidoc]
+--------
+[NOTE]
+====
+The content of an admonition block should be sandwiched between `====` lines.
+Use one-sentence-per-line even in admonitions.
+====
+--------
+========
+
+The standard linewise delimiters for various AsciiDoc blocks are as follows:
+
+// tag::delimited-blocks-reference[]
+[horizontal]
+`====`:: For _admonitions_ and _examples_
+`----`:: For code listing (verbatim) blocks
+`+++....+++`:: For literal (verbatim) blocks
+`+++****+++`:: For sidebar blocks
+`|===`:: For tables
+`+++____+++`:: For quote blocks
+`pass:[++++]`:: For raw/passthrough blocks
+`--`:: For open blocks
+// end::delimited-blocks-reference[]
+
+For code listings, literals, or really any block that might contain text that could be confused with the delimiter, vary the length by using a greater number of delimiter characters on the _outer_ block.
+
+.Example "`example`" block containing an admonition block
+[source,asciidoc]
+--------
+[example]
+========
+[NOTE]
+====
+This is an example block containing an admonition block.
+====
+========
+--------
+
+==== Exception: Brief admonitions
+
+Some blocks do not require delimiters.
+In cases of _repeated_, _nearly identical_ blocks, containing just one line of content, you can use the _single-line_ syntax where it is available.
+
+.Example single-line admonition block syntax
+[source,asciidoc]
+--------
+NOTE: This is a single-line admonition block.
+--------
+
+Exception to this exception::
++
+--
+We do not recommend the same-line syntax for admonition blocks other than `NOTE` and `TIP`.
+For `IMPORTANT`, `CAUTION`, and `WARNING`, use at least the 2-line syntax, if not explicit delimiters.
+
+[source,asciidoc]
+--------
+[IMPORTANT]
+This is a critical notice, but it's not warning you of danger.
+--------
+--
+
+==== Exception: Single-line terminal commands
+
+Another common case is 1-line terminal commands, for which this guide recommends using a literal block with a `prompt` role added.
+
+// tag::prompt-single-line[]
+[source,asciidoc]
+--------
+[.prompt]
+ echo "Hello, world!"
+--------
+// end::prompt-single-line[]
+
+The single preceding space notation affirms the use of a literal block for any consecutive lines of content preceded by a single space.
+For multi-line terminal commands/output, use the `....` syntax to distinguish the block.
+
+==== Exception to the exceptions
+
+Whenever additional options must be set for a block, such as a title or role, use the linewise delimiter syntax -- even in one-liner cases.
+
+// tag::prompt-multiline[]
+[source,asciidoc]
+--------
+[.prompt,subs="+attributes"]
+....
+echo "Hello, {what}!"
+....
+--------
+// end::prompt-multiline[]
+
+=== Example Blocks
+
+Use example blocks liberally.
+If something fits the description of being an example -- especially if the words "`example`" or "`sample`" are used in the title, caption, or surrounding text referring to a given block of _anything_...
+then *wrap it in an example block*.
+
+Instances of the following block types may commonly be instances of examples, and just as commonly they may not be.
+
+* figures (diagrams, illustrations, screenshots)
+* tables
+* code listings
+* literal blocks (sample prompts, logs, etc)
+* rich-text snippets (rendered results, a user story, etc)
+
+Whenever any such instances _are examples_, prepend and append them with example blocks, and prefer to title them at the exampple-block level rather than the inner-content level.
+
+.Example of a code block treated as an example
+[source,asciidoc]
+--------
+:example-caption: Example 
+
+.require statement in Ruby
+====
+[source,ruby]
+----
+require 'jekyll'
+----
+====
+--------
+
+
+== Special Syntax
+
+=== Attributes
