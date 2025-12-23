@@ -555,8 +555,11 @@ namespace :gemdo do
   task :gen_agent_docs do
     require_relative 'scripts/gen_agent_docs'
 
-    # Ensure Jekyll site is built
-    Rake::Task['build_site'].invoke
+    # Build Jekyll site if not already built (for agent docs HTML)
+    unless Dir.exist?(BUILD_DIR) && !Dir.empty?(BUILD_DIR)
+      puts '📄 Building Jekyll site for agent docs HTML...'
+      system('bundle exec jekyll build') or raise 'Jekyll build failed'
+    end
 
     # Run the generation script
     GenAgentDocs.run(BUILD_DIR)
