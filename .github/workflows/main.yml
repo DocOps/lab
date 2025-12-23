@@ -168,11 +168,21 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Generate agent docs
+        run: bundle exec rake gemdo:gen_agent_docs
+
       - name: Setup agent-docs branch
         run: |
           # Check if agent-docs branch exists
           if git ls-remote --exit-code --heads origin agent-docs; then
             echo "Branch exists, checking out"
+            git fetch origin agent-docs
             git checkout agent-docs
           else
             echo "Branch doesn't exist, creating orphan branch"
@@ -180,39 +190,20 @@ jobs:
             git rm -rf .
           fi
 
-      - name: Download site artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: site-${{ github.sha }}
-          path: _temp_site
-
-      - name: Extract agent docs from artifact
+      - name: Copy agent docs
         run: |
-          # Clear existing content except .git
-          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' ! -name '_temp_site' -exec rm -rf {} +
+          # Clear existing content except .git and the source gem directory
+          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' ! -name 'gems' -exec rm -rf {} +
           
-          # The built gem contains the agent docs
-          if [ -d "_temp_site/gems/docopslab-dev/pkg" ]; then
-            # Extract gem to get agent docs
-            cd _temp_site/gems/docopslab-dev/pkg
-            gem unpack *.gem
-            cd -
-            
-            # Copy agent docs from unpacked gem
-            UNPACKED_DIR=$(find _temp_site/gems/docopslab-dev/pkg -type d -name "docopslab-dev-*" ! -name "*.gem")
-            if [ -d "$UNPACKED_DIR/docs/agent" ]; then
-              cp -r "$UNPACKED_DIR/docs/agent/"* .
-              echo "✅ Agent docs extracted from gem"
-            else
-              echo "❌ Agent docs not found in gem"
-              exit 1
-            fi
+          # Copy agent docs from source
+          if [ -d "gems/docopslab-dev/docs/agent" ]; then
+            cp -r gems/docopslab-dev/docs/agent/* .
+            rm -rf gems
+            echo "✅ Agent docs copied"
           else
-            echo "❌ Gem not found in artifact"
+            echo "❌ Agent docs not found at gems/docopslab-dev/docs/agent"
             exit 1
           fi
-          
-          rm -rf _temp_site
 
       - name: Commit and push
         run: |
