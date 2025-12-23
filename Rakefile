@@ -260,7 +260,7 @@ end
 
 desc 'Build the Jekyll site (with single-sourced cards and project pages)'
 task build_site: %i[extract_readme_attrs generate_project_pages generate_metadata copy_jekyll_ui_config
-                    write_rubocop_styles generate_universal_attributes] do
+                    write_rubocop_styles generate_universal_attributes gemdo:gen_agent_docs] do
   puts '🔨 Building Jekyll site...'
   system('bundle exec jekyll build') or raise 'Jekyll build failed'
   puts '✅ Build complete'
