@@ -78,7 +78,7 @@ There are numerous tools for carrying this latter step, not the least of them th
 I have modified a Ruby library called link:https://github.com/xijo/reverse_markdown[ReverseMarkdown] to accommodate AsciiDoc's richer semantics.
 My extension is available as link:{this_repo_base_url}/blob/main/scripts/mark_down_grade.rb[`scripts/mark_down_grade.rb`] in this very repo.
 
-Here I include a window into the current state of one such document (link:{this_repo_base_url}/blob/main/gems/docopslab-dev/docs/agent/skills/git.md[source], link:{docopslab_www_base_url}/docs/agent/git[rendered]), which may change over time as I refine the AI-agent docs:
+Here I include a window into the current state of one such document (link:https://github.com/DocOps/lab/blob/agent-docs/skills/git.md[source], link:{docopslab_www_base_url}/docs/agent/git[rendered]), which may change over time as I refine the AI-agent docs:
 
 [source,markdown]
 --------

@@ -5,8 +5,8 @@ include::../README.adoc[tag=globals]
 :page-version: 0.1.0
 :page-image: asciidoc-logo-small.png
 :example-caption!:
-:page-github-url: {docopslab_hub_url}/blob/main/_metablog/tech-blogging-in-asciidoc.adoc
-:page-github-edit-url: {docopslab_hub_url}/edit/main/_metablog/tech-blogging-in-asciidoc.adoc
+:page-github-url: {this_repo_base_url}/blob/main/_metablog/tech-blogging-in-asciidoc.adoc
+:page-github-edit-url: {this_repo_base_url}/edit/main/_metablog/tech-blogging-in-asciidoc.adoc
 :page-canonical: /metablog/tech-blogging-in-asciidoc
 :toc: macro
 :toclevels: 3
@@ -18,7 +18,7 @@ include::../README.adoc[tag=globals]
 The styling and effects you see here are not "`vanilla`" AsciiDoc output.
 After rendering AsciiDoc to HTML, it still needs to be styled with CSS, and most interactive effects need to be defined with CSS or JavaScript.
 
-Styling and effects are outside this post, but you can find the sources for all of this at {this_repo_base_url}/tree/main/_sass/asciidoc.scss and {this_repo_base_url}/tree/main/assets/js/main.js.
+Styling and effects are outside this post, but you can find the sources for all of this at {this_repo_base_url}/tree/main/_sass and {this_repo_base_url}/blob/main/assets/js/main.js.
 
 toc::[]
 

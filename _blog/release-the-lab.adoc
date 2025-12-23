@@ -9,10 +9,10 @@ include::../README.adoc[tag=globals]
 
 {page-excerpt}
 
-The site is heavily data driven, mainly based on a complex link:{docopslab_hub_url}/blob/main/_data/docops-lab-projects.yml[YAML file] maintained for the past 2+ years to track projects, their relationships, progress, and so forth.
+The site is heavily data driven, mainly based on a complex link:{this_repo_base_url}/blob/main/_data/docops-lab-projects.yml[YAML file] maintained for the past 2+ years to track projects, their relationships, progress, and so forth.
 Now it informs a static website built with Jekyll and Asciidoctor, which is hosted on GitHub Pages.
 
-Check out the link:{docopslab_hub_url}[Git repository and README] for more details.
+Check out the link:{this_repo_base_url}[Git repository and README] for more details.
 Also link:/metablog/lab-projects-source-site/[this MetaBlog post] explores the source data and site generation in more detail.
 
 The site now contains "`reports`", which group and arrange project status updates by various criteria, such as the link:/projects/by-type[type of application], the link:/projects/by-tech[technologies] involved, and the link:/projects/by-wave[target launch date].

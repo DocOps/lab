@@ -10,7 +10,7 @@ include::../_local_settings.adoc[]
 include::../partials/_docopslab-dev-context-notice.adoc[]
 
 [NOTE]
-For full setup instructions, see link:/docs/lab-dev-setup[DocOps Lab Dev-tooling Setup].
+For full setup instructions, see {xref_docs_lab-dev-setup_link}.
 
 [NOTE]
 For configuration details, see {xref_docs_lab-dev-config_link}.

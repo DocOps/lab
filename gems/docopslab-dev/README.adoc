@@ -15,7 +15,7 @@ Internal development tooling for working on DocOps Lab codebases.
 [IMPORTANT]
 ====
 The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects.
-For your own applications of DocOps Labs products like ReleaseHx and Issuer, see link:https://github.com/DocOps/box[DocOps Box] for a full-featured docs-focused workspace, runtime, and production environment.
+For your own applications of DocOps Labs products like ReleaseHx and Issuer, see link:/box[DocOps Box] for a full-featured docs-focused workspace, runtime, and production environment.
 ====
 // end::docopsbox[]
 
@@ -62,7 +62,7 @@ Completely containerized docopslab-dev environment without local installation
 // tag::setup[]
 If this is _your first time using_ `docopslab-dev` on a given workstation, you will need to ensure the <<prerequisites,prerequisites>> are met.
 
-If you have the prerequisites and are just getting started with _a given DocOps Lab project_, you should be ready after <<init-sync>>.
+If you have the prerequisites and are just getting started with _a given DocOps Lab project_, you should be ready after <<initialize-sync>>.
 
 If you are initializing `docopslab-dev` in an new project, you will also need to initialize the environment.
 
@@ -194,6 +194,7 @@ This process is part of the `init` operation, but on its own it ensures local co
 .Sync configuration files  
 [.prompt]
  bundle exec rake labdev:sync:all
+
 // end::setup[]
 
 
@@ -452,7 +453,7 @@ BasedOnStyles = RedHat, DocOpsLab-Authoring, DocOpsLab-AsciiDoc
 This dual-mode system provides a robust workflow for both developing and consuming the centralized Vale styles.
 
 [NOTE]
-For full Vale configuration settings ("`keys`") reference, see link:https://vale.sh/docs/configuration[the Vale documentation].
+For full Vale configuration settings ("`keys`") reference, see link:https://vale.sh/docs/vale-ini[the Vale documentation].
 
 // end::config-vale[]
 
@@ -714,7 +715,7 @@ Projects using `docopslab-dev` will have a configuration structure like the foll
 
 [source,tree]
 ----
-config/
+.config/
 ├── docopslab-dev.yml             # Project manifest (tracked)
 ├── actionlint.yml                # Project config (tracked; inherits from base)
 ├── htmlproofer.local.yml         # Project config (tracked; inherits from base)

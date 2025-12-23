@@ -9,12 +9,16 @@ icon: book-open
 
 <div class="projects-report">
 
-  {% assign products = site.data.docops-lab-projects.projects | sort: 'slug' | where:'done','live' %}
+  {% assign products = site.data.docops-lab-projects.projects | sort: 'slug' | where:'live',true %}
   
   <div class="projects-profiles">
     <ul>
   {% for product in products %}
-    {% assign readme_url = "https://github.com/DocOps/" | append: product.slug %}
+    {% assign product_repo = product.repo | default: product.slug %}
+    {% assign readme_url = "https://github.com/DocOps/" | append: product_repo %}
+    {% if product.path %}
+      {% assign readme_url = readme_url | append: "/tree/main/" | append: product.path %}
+    {% endif %}
     {% assign product_url = "/projects/#" | append: product.slug %}
     {% if product.page %}
       {% assign product_url = "/projects/" | append: product.slug %}

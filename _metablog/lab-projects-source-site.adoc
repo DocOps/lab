@@ -50,7 +50,7 @@ include::../README.adoc[tag=projects]
 [[data-structure]]
 == Data Structure
 
-The link:{docopslab_hub_url}/blob/main/_data/docops-lab-projects.yml[`docops-lab-projects.yml` file] is basically a large array of tabular data.
+The link:{this_repo_base_url}/blob/main/_data/docops-lab-projects.yml[`docops-lab-projects.yml` file] is basically a large array of tabular data.
 Each project's record has a number of parameters.
 
 [source,yaml,subs=attributes]
