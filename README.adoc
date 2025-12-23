@@ -202,7 +202,7 @@ At a minimum, this should be a subset of the `README.adoc` file.
 Product user docs:: `https://<project>.docopslab.org/docs/`
 
 Product developer docs::
-`https://<project>.docopslab.org/docs/api/(<apiname>/)`
+`+++https://<project>.docopslab.org/docs/api/(<apiname>/)+++`
 +
 The final `<apiname>` directory is only applicable when the product contains multiple distinct APIs.
 
@@ -503,9 +503,6 @@ Use `{xref_<collection-label>_<page-slug>_link}` as a shortcode for the entire l
 
 | /projects/
 | All projects listing
-
-| /slides/internal/
-| Internal presentation slides
 
 | /docs/
 | Documentation
