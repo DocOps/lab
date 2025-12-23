@@ -131,12 +131,19 @@ jobs:
 
       - name: Clear gh-pages and copy new site
         run: |
-          # Remove everything except .git
-          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' -exec rm -rf {} +
+          # Remove everything except .git and _temp_site
+          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' ! -name '_temp_site' -exec rm -rf {} +
           
-          # Copy new site
-          cp -r _temp_site/* .
-          rm -rf _temp_site
+          # Copy new site (use shopt to include hidden files)
+          shopt -s dotglob nullglob
+          if [ -d "_temp_site" ] && [ "$(ls -A _temp_site)" ]; then
+            mv _temp_site/* .
+            rmdir _temp_site
+          else
+            echo "❌ _temp_site is empty or doesn't exist"
+            ls -la _temp_site || echo "Directory doesn't exist"
+            exit 1
+          fi
 
       - name: Commit and push
         run: |
