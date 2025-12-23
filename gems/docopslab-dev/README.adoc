@@ -9,6 +9,7 @@
 :project_manifest_path: .config/docopslab-dev.yml
 // end::globals[]
 
+// tag::ai-prompt[]
 Internal development tooling for working on DocOps Lab codebases.
 
 // tag::docopsbox[]
@@ -55,7 +56,7 @@ Automated pre-commit linting and validation with interactive updates
 Docker image::
 Completely containerized docopslab-dev environment without local installation
 // end::features[]
-
+// end::ai-prompt[]
 
 [[setup]]
 == Setup

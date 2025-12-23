@@ -3,8 +3,9 @@
 # It will be merged with the base organizational config at runtime.
 
 # Project-specific URL ignores (will be merged with base ignores)
-# ignore_urls:
-#   - /project-specific-url/
+ignore_urls:
+  # exclude all links at medium.com
+  - /medium.com/
 
 # Project-specific file ignores (will be merged with base ignores)  
 # ignore_files:
