@@ -87,7 +87,7 @@
   <h3 id="libraries">Libraries</h3>
   <ul class="label-list">
     {% if  project.slug == 'jekyll-asciidoc-ui' %}
-      {% assign components = site.data.built.jekyll-asciidoc-ui-config-def.properties.asciidoc-ui.properties.components.properties | sort %}
+      {% assign components = site.data.jekyll-asciidoc-ui-config-def.properties.asciidoc-ui.properties.components.properties | sort %}
       {% for library in components %}
         {% assign lib = library[0] %}
         {% assign lib_meta = library[1] %}

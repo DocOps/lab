@@ -1,0 +1,1278 @@
+# Setting descriptions and defaults for all jekyll-asciidoc-ui configuration options
+# This also models the domain-specific language (DSL) enabled by this plugin's own API method: Jekyll.
+properties:
+  jekyll-ext: # root-level block for Jekyll extensions
+    name: Jekyll Plugin-System Extension Settings
+    desc: |
+      General plugin settings that determine how the `jekyll-asciidoc-ui` plugin's JekyllExt API is used.    
+    properties:
+      copy_assets:
+        dflt: ['jekyll-asciidoc-ui/assets/**/*']
+        type: Array
+        desc: |
+          Array of assets paths (Globs) to copy from the plugin to the site.
+
+          Glob Strings listed here will accumulate (all arrays will concatenate with duplicates dropped).
+          Then copy operations will be performed on all paths for each gem that includes this gem.
+
+          TIP: In order to ignore `jekyll-asciidoc-ui` gem assets, place your plugin's assets at a path other than lib/_assets and indicate your own path.
+
+          If your plugin is a theme, Jekyll will use files from your gem's `./_includes` and `./_layouts` directories instead of the plugin's, when the config lists your theme as `site.theme`.
+          This procedure copies the assets from `./lib/<path>` to the application codebase.
+
+      stay_assets:
+        dflt: ['jekyll-asciidoc-ui/assets/_includes','**/.*']
+        type: Array
+        desc: |
+          Array of asset paths (Globs) not to copy from upstream plugins' lib/ directory.
+          Use this to prevent the plugin from copying certain assets to the site, for unused or locally modified files.
+
+          This will have no effect on a site theme's `_includes` and `_layouts` directories, which will always be used when not locally superseded.
+
+      default_configs:
+        dflt: [config-def.yml]
+        type: Array
+        desc: |
+          Array of config definition files to pass to the runtime configuration. 
+          Default configs must be in the experimental OpenCFGY (CFGYML) format.
+
+          An empty Array (`[]`) disables the feature.
+
+          Paths are relative to plugin's `lib/` directory.
+
+          Plugin developers: Name your file something like `_config-def.yml` and place it in your plugin's `lib/` path to disable this plugin's config defaults, or override them specifically in your own copy of `lib/config-def.yml`.
+          Use a path like `lib/my-plugin-name/config-def.yml` to allow downstream users to skip your config specifically.
+
+      inherit_configs:
+        dflt: true
+        type: Boolean
+        desc: |
+          Whether to inherit configuration settings from upstream plugins.
+          If set to `true`, the plugin will inherit settings from upstream plugins that use the `jekyll-ext` system.
+          Otherwise it will fall back to the plugin defaults, followed up by your modifications and additions using `default_configs sibling property.
+
+          End users (site admins) will be able to re-override this setting in their own config files.
+  
+  asciidoc-ui: # root-level block for AsciiDoc UI configuration
+    name: User Interface Configuration
+    desc: |
+      Configuration options for the jekyll-asciidoc-ui plugin, which define the `site.asciidoc-ui` data object.
+      This is the top-level configuration object for the plugin.
+      The options in this object are used to configure the plugin itself, with `site.asciidoc-ui.components` enabling and configuring the included components and extensions.
+    properties:
+
+      container:
+        properties:
+          selector:
+            dflt: '.asciidoc-html5'
+            type: Selector
+            desc: |
+              CSS selector for the container element(s) in which to apply the plugin.
+              Designated elements will be affected by styles and scripts applied by the plugin.
+
+              Defaults to any element with the class `asciidoc-html5`.
+      
+      libraries: # third-party frontend dependencies
+        name: Third-Party Library Settings
+        desc: |
+          These settings establish how third-party libraries are handled.
+          If a given library's `method` is set to `local`, the plugin will look for the library's assets in the local project.
+
+          Assets can be handled in an of numerous ways:
+
+          * Open-source CDN delivery straight to the user's browser
+          * Compiled libraries served from your own website
+          ** sourced in local path/submodule, _or_
+          ** sourced from a remote URI, including `git@` protocols, and compiled into the project
+          * Static artifacts stored locally or retrieved upon site build, served from your site
+
+          The plugin will iterate through the libraries listed here and load them in the order they are defined.
+          Users may add their own, arbitrarily named to suit the custom or additional library.
+
+        properties:
+          bootstrap:
+            properties:
+              revision:
+                dflt: '5.3.2'
+                type: SemVer
+                desc: Version of Bootstrap to use for styling and JS components.
+              base_url:
+                dflt: 'https://cdnjs.com/libraries/bootstrap'
+                type: URL
+                desc: |
+                  Absolute URL where Bootstrap assets are served.
+                  Change to a path relative to your domain if [.ppty]`method` is set to `compile` or `serve`.
+              source_uri:
+                type: URI
+                desc: |
+                  Optional URI for the source of assets to build.
+                  This retrieves the source code from the source URI and compiles them into the project.
+              method: &library_method_property
+                dflt: cdn # cdn, serve, compile
+                type: String
+                desc: |
+                  Method for delivering library assets.
+                  Options are:
+                  
+                  * `cdn` (default), for cloud-sourced asset delivery
+                  * `compile` for local build from source files and served from site
+                  * `serve` for local or retrieved static assets served from the site
+
+                  If `cdn`, the base_uri must be a valid base URL for CDN delivery of the library.
+                  If `compile`, the URI may be remote (URL or `git@` protocol) or local (path to submodule or local directory).
+                  If `serve`, the source_uri must be a base URL or path to the assets to serve.
+
+                  Remote assets are retrieved via curl for `serve` method, and for `compile` method:  git (if source is a git path), or else Ruby gem (via Bundler) or Node.js package (via npm).
+
+                  For `serve` and `compile` methods, use a `base_url` relative to your own domain (`assets/css/bootstrap`).
+              branch: &library_branch_property
+                type: String
+                dflt: 'main'
+                desc: |
+                  Branch or tag to use for the library source.
+                  Only necessary if `method` is `compile` and the preferred source is a tag or branch other than `main`.
+              files:
+                type: Array
+                desc: |
+                  Array of files to include from the library.
+                  Use this to specify only the files you need from the library.
+                  If not specified, the plugin will include all files from the library.
+          
+          fontawesome:
+            properties:
+              revision:
+                dflt: '6.5.1'
+                type: SemVer
+                desc: Version of Font Awesome to use for icons.
+              base_uri:
+                dflt: 'https://cdnjs.com/libraries/font-awesome'
+                type: URI
+                desc: |
+                  Root path or URL to source for FontAwesome artifacts.
+                  May be local or remote.
+              source_uri:
+                type: URI
+                desc: |
+                  Optional URI for the source of assets to build.
+                  This retrieves the assets from the source URI and builds them into the project.
+              method:
+                <<: *library_method_property
+                desc: |
+                  Method for loading Font Awesome assets.
+                  Options are `cdn` or `local`.
+          
+          highlightjs:
+            properties:
+              revision:
+                dflt: '11.9.0'
+                type: SemVer
+                desc: Version of Highlight.js to use for syntax highlighting.
+              base_uri:
+                dflt: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js'
+                type: String
+                desc: Root path or URL to source for Highlight.js assets.
+              method: 
+                <<: *library_method_property
+                desc: |
+                  Method for loading Highlight.js assets.
+                  Options are `cdn` or `local`.
+          
+          prism:
+            properties:
+              revision:
+                dflt: '1.29.0'
+                type: SemVer
+                desc: Version of Prism to use for syntax highlighting.
+              base_uri:
+                dflt: 'https://cdnjs.com/libraries/prism'
+                type: String
+                desc: Root path or URL to source for Prism assets.
+              method:
+                dflt: 'local' # NOTE different default
+                type: String
+                desc: |
+                  Method for loading Prism assets.
+                  Options are `cdn` or `local`.
+          
+          jquery:
+            properties:
+              revision:
+                dflt: '3.6.0'
+                type: SemVer
+                desc: Version of jQuery to use for scripting.
+              base_uri:
+                dflt: 'https://cdnjs.com/libraries/jquery'
+                type: String
+                desc: Root path or URL to source for jQuery assets.
+              method:
+                <<: *library_method_property
+                desc: |
+                  Method for loading jQuery assets.
+                  Options are `cdn` or `local`.
+      
+      components: # plugin features
+        name: Enable/Configure UI Features/Components
+        docs: |
+          Configuration options for the UI components and features.
+          Sub-properties of this object are components to be configured, except for [.ppty]`enable`.
+        properties:
+          _enable:
+            dflt:
+            # General Jekyll extensions
+              # - releasehx
+              # - glossaries
+              # - term-ext
+              # - seo-ext
+              # - auth-content
+              - clipable
+              - toc-js
+              # - gdpr-dialog
+              # - gdpr-enforce
+              - content-typing
+              - resourcer
+            # AsciiDoc integrators
+              - theme-ext
+              - tabbed-panes
+              - asciidoctor-tabs
+            # Bootstrap-AsciiDoc integrators
+              - collapse
+              - accordion
+              - button
+              - badge
+              - card
+            # Inline semantics
+              - inline-term
+              - inline-file
+              - trademarker
+            # Block semantics/manipulation
+              - admonition-ext
+              - sidebar-ext
+              - code-truncate
+              - literal-prompt
+              - code-highlight
+            # Version handling
+              - revision-urls
+            type: Array
+            docs: |
+              Array of component Slugs for activating non-default components or disabling default components.
+              
+              You can either use an explicit list of components to enable, or use special notation to add or subtract components to/from the default list.
+        
+              To enable components that are disabled by default, list them using a `+` prefix notation, like `[+releasehx, +glossary]`.
+
+              Non-default components available for enabling:
+
+              * `+releasehx`
+              * `+glossary`
+              * `+term-ext`
+              * `+seo-ext`
+              * `+gdpr-dialog`
+              * `+gdpr-enforce`
+
+              To disable components that are enabled by default, list them using a `-` prefix notation, like `[-clipable, -literal-prompt, +releasehx]`.
+
+              If a component is listed here but not detailed as a sibling property in the [.ppty]`components` object, it will be activated with its default settings.
+              
+              Likewise, any property explicitly included as a sibling to this property will activate that component with the settings provided, unless that component also appears here with the `-` prefix, which will disable the component.
+
+              For these settings, the "`default`" components list is modified by successive upstream dependencies.
+              (See <<plugin-settings-inheritance>> for more information.))
+
+          # COMPONENT DEFINITIONS
+
+          glossaries:
+            name: Glossaries
+            desc: |
+              Adds glossary pages or documents to the site.
+              The glossary page is a single page or series of pages listing and defining any terms added to the collection.
+
+              Use <<config-terms-ext>> to auto-detect and classify terms in the document body.
+            docs: |
+              Call using `{% include ui/glossary.html %}` in a page or layout file.
+
+              The associated properties are for default/global glossary settings.
+
+              You may pass these as arguments when including/rendering `ui/glossary.html`.
+
+              You may also add arbitrary arguments either as properties of this ([.ppty']`asciidoc-ui.components.glossary`) object in the config file,
+               or as additional variables to pass in the tag itself.
+
+              For example, `{% include ui/glossary.html source="site.data.my-glossary" my_var="some value" %}`.
+
+              These properties can also be set in any glossary data object, which are usually sourced like `data/glossary/product-a.yml`.
+
+              The order of precedence for these settings is:
+
+              . The tag itself, which overrides
+              . The glossary data's `volume` object, which overrides
+              . The config file
+
+              Tags alone can additionally specify a `volume`, `categories`, `tags`, or `applications` arguments to filter the glossary terms displayed.
+
+            properties:
+              source:
+                dflt: "site.data.glossary"
+                type: String
+                desc: Object path for glossary data.
+              sources:
+                dflt: []
+                type: Array
+                desc: Array of object paths for glossary data, in descending order of preference (which definitions will overwrite which others by default).
+              name:
+                dflt: Glossary
+                type: String
+                desc: Title to display for the glossary page.
+              text:
+                dflt: Glossary of terms used in this documentation
+                type: String
+                desc: Description to display for the glossary page.
+              layout:
+                dflt: asciidoc
+                type: Slug
+                desc: Layout to use for the glossary page.
+              permalink:
+                dflt: /glossary-public
+                type: Path
+                desc: Permalink URL for the glossary page.
+              paginate:
+                dflt: 100
+                type: Integer or 'alphabetical'
+                desc: Number of terms to display per page.
+          
+          releasehx:
+            name: ReleaseHX
+            desc: |
+              Adds a release history page or document to the site.
+              The release history a page or pages serializing the product releases as Release Notes and/or Changelog.
+
+              NOTE: ReleaseHX is configured in its own data file at `site.data.ui.releasehx`.
+          
+          gdpr-dialog:
+            name: GDPR Dialog
+            desc: |
+              Adds a GDPR-compliant cookie consent dialog to the site.
+              The dialog is displayed to users on their first visit to the site, and can be dismissed or accepted.
+
+              NOTE: The dialog will not appear if there are no cookies listed.
+            properties:
+              title:
+                dflt: Cookie Policy
+                type: String
+                desc: Title to display in the dialog.
+              message:
+                dflt: |
+                  This site uses cookies to enhance your experience.
+
+                  Use of this site implies acceptance of our cookie policy.
+
+                  Select the types of cookies you approve below.
+                type: Block
+                desc: Message to display in the dialog.
+              dismiss:
+                dflt: optional
+                type: String
+                regx: /^(optional|individual|both)$/
+                desc: |
+                  Type or types that can be dismissed.
+                  Use `optional` to enable dismissal of all non-required types and `individual` to allow dismissal of specific non-required types.
+                  Use `both` to let users dismiss all non-required types or individually select among non-required types.
+              trigger:
+                dflt: onload
+                type: String
+                regx: /^(onload|onload-delayed|on-scroll)$/
+                desc: |
+                  Event that triggers the dialog.
+                  Use `onload` to trigger the dialog on page load, `onload-delayed` to trigger the dialog after a delay, or `on-scroll` to trigger the dialog after the user has scrolled a certain distance.
+                  Use `preload` to force the dialog to be responded to before the any page loads.
+              dialog_delay:
+                dflt: 2000
+                type: Integer
+                desc: |
+                  Delay in either milliseconds if `trigger` is `onload-delayed` or pixels if `trigger` is `on-scroll`.
+              cookies:
+                desc: |
+                  Categories of cookies to manage.
+                  
+                  NOTE: Each category is an Array of exact strings or Regular Expression patterns (use `/pattern/`) for matching cookie names.
+                properties:
+                  required:
+                    dflt: []
+                    type: ArrayList
+                    desc: |
+                      Array of cookie names that are required for the site to function.
+                      If this array is not empty, this category of cookies must be accepted.
+                  performance:
+                    dflt: []
+                    type: ArrayList
+                    desc: |
+                      Array of cookie names that are used to improve the site experience.
+                  marketing:
+                    dflt: []
+                    type: ArrayList
+                    desc: |
+                      Array of cookie names that are used for marketing purposes.
+                  analytics:
+                    dflt: []
+                    type: ArrayList
+                    desc: |
+                      Array of cookie names that are used for analytics purposes.
+                  networking:
+                    dflt: []
+                    type: ArrayList
+                    desc: |
+                      Array of cookie names that are used for social networking purposes.
+              
+          gdpr-enforce:
+            name: GDPR Enforce
+            desc: |
+              Keeps pages from planting cookies until/unless the user has accepted the cookie consent dialog.
+
+              NOTE: Adds a cookie called `blocked-cookies` that records the list of cookies not (yet) accepted by the user.
+            properties:
+              policy:
+                dflt: strict
+                regx: /^(strict|permissive)$/
+                type: String
+                desc: |
+                  Policy for enforcing the cookie consent dialog.
+                  
+                  * `strict` will block all cookies until the user has accepted the dialog.
+                  * `permissive` will allow cookies to be planted before the user has accepted the dialog.
+
+          # auth-content:
+          #   name: Auth-restricted content
+          #   desc: |
+          #     Adds authentication and authorization to the site.
+          #     Auth pages are pages that require a user to be logged in to view.
+
+          #     Once enabled, add `auth-restrict: true` to any page, layout, etc, to require authentication to view pages governed by this component.
+
+          #     Add an `.auth-restrict` class to any element to require authentication to view that element.
+          #     Use `.auth-restrict-hide` to entirely hide content from unauthorized users.
+          #     By default, content is replated by an opaque area labeled "`Blocked Content`".
+          #   properties:
+          #     auth_domain:
+          #       dflt: 'https://auth.example.com'
+          #       type: URL
+          #       desc: |
+          #         URL of the authentication server.
+          #         Use this to authenticate users against a remote server.
+          #     audience:
+          #       type: String
+          #       desc: |
+          #         The API identifier for the authentication server.
+                  
+          seo-ext:
+            name: SEO Extension
+            desc: |
+              Detects specifically classed terms or phrases in the document body for use in the keywords meta tag for search-engine optimization (SEO).
+              Writes directly to the `head` element of the document (not JavaScript).
+            properties:
+              keywords:
+                properties:
+                  roles:
+                    dflt: [] # [key, keyword, buzz, buz]
+                    type: Array
+                    docs: |
+                      Assign an Array of AsciiDoc inline roles (HTML classes) for detecting keywords in the document body.
+
+                      Leave empty to defer to the selector property.
+                  selector:
+                    dflt: '.buzz, .key, .buzz dt, .keywords dt'
+                    type: Selector
+                    docs: |
+                      CSS selector for the element/s the content of which will be used to generate the keywords meta tag.
+                  specifier:
+                    dflt: 'kee-'
+                    type: Slug
+                    desc: |
+                      The String to use with an inline semantic like _keyword_ roles, to designate how to express the term in a meta keywords listing.
+
+                      For example, write `[.buzz.kee-api]*APIs*` to make sure `api` is expressed as the keyword.
+                      
+                      Alternatively, to use the syntax `[.buzz.keyw--api]*APIs* for the same result, change this [.ppty]`specifier` property value to `keyw--`.
+
+          resourcer:
+            name: Mardown Resourcer
+            desc: |
+              Generates an alternate Markdown file _from the rendered HTML_, reverse engineering back to a lightweight markup, especially designed for LLM (large language model) crawlers and RAG (retrieval-augmented generation) systems.
+              Optionally (by default) reates a `<link rel="alternate" type="text/markdown" href="/alt/markdown.md">` link in the document head.
+            properties:
+              add_link_rel:
+                dflt: true
+                type: Boolean
+                desc: |
+                  Whether to add a `<link rel="alternate" type="text/markdown" href="/alt/markdown.md">` link in the document head.
+                  This link points to the alternate Markdown file generated from the rendered HTML.
+              dest_dir:
+                dflt: 'alt'
+                type: String
+                desc: |
+                  Directory under `site.destination_dir` (usually `_site/`) where the alternate Markdown files will be written.
+              include:
+                dflt: []
+                type: Array
+                desc: |
+                  Array of paths or URL prefixes to include in the alternate Markdown generation.
+                  This overrides the `exclude` property.
+              exclude:
+                dflt: []
+                type: Array
+                desc: |
+                  Array of paths or URL prefixes to exclude from the alternate Markdown generation.
+              use_gfm:
+                dflt: true
+                type: Boolean
+                desc: |
+                  Whether to pass `github_flavored: true` to the `reverse_markdown` gem
+                  This enables GitHub Flavored Markdown (GFM) features in the generated Markdown.
+              unknown_tags:
+                dflt: 'bypass'
+                type: String
+                regx: /^(pass_through|drop|bypass|raise)$/
+                desc: |
+                  How to handle unknown HTML tags in the rendered HTML.
+                  Options are:
+                  * `pass_through` to keep unknown tags in the Markdown
+                  * `drop` to remove unknown tags from the Markdown
+                  * `bypass` to leave unknown tags as-is in the Markdown
+                  * `raise` to raise an error if unknown tags are found
+              sitemap:
+                dflt: 'auto'
+                type: String
+                regx: /^(auto|off|[\/\w-]+)$/
+                desc: |
+                  How to handle the sitemap for the alternate Markdown files.
+                  Options are:
+                  * `auto` to automatically generate a sitemap for the alternate Markdown files
+                  * `off` to disable the sitemap generation
+                  * `<absolute-or-site-root path>` to specify a custom path for the sitemap.
+          
+          term-ext:
+            name: Term Extension
+            desc: |
+              Uses glossary data to proactively highlight (or not) any terms found on a given page.
+              Adds wrapper elements and classes to the DOM where matching terms are found.
+              See <<config-glossary>> and <<config-term>> for context.
+
+          ppty-ext:
+            name: Property Handler
+            desc: |
+              Specially parses text designated with a role like `ppty`, indicating the content is to be treated like a reference to a property in the same reference context.
+              Use the settings of `ppty-ext` to configure the syntax and behavior of this semantic.
+            
+            docs: |
+              Use the Jekyll frontmatter setting `:page-ppty-refs-coll:` to designate a default property collection for a given page.
+              This specifies a collection to assume we are referencing when we invoke an inline property reference.
+
+              [NOTE]
+              A properties collection is basically any group of settings formatted using OpenCFGY (CFGYML) object format.
+              
+              [source,asciidoc]
+              :page-ppty-refs-data: our-api
+
+              By default, this component:
+
+              * generates xref attributes for all properties in the collection
+              * shows the basics of the property entry in a popover
+
+              The `ppty-ext` component is enabled by default.
+
+              Nested properties must be referenced fully, either in the content text or the role specifier.
+
+              Everything between the `+++`+++` delimiters is treated like a property reference in either dot-delimited or 
+              
+            properties:
+              selector:
+                dflt: '.ppty'
+                type: Selector
+                desc: |
+                  CSS selector for the elements to which to apply the property handler.
+              prefix:
+                dflt: 'ppty-'
+                type: Slug
+                desc: |
+                  The String to prepend to strings passed along with the `ppty` role.
+
+                  For example, write `Document your [.ppty.ppty-api]*APIs* by...` to make sure `api` is expressed as the property ID.
+                  
+                  Alternatively, to use the syntax `[.ppty.ppty_api]*APIs* for the same result, change this setting value to `ppty_`.
+              collections:
+                dflt: []
+                type: ArrayList
+                desc: |
+                  Array of collection names that match an object in the [.ppty]`base_data_path` property.
+                docs: |
+                  Collection names must match an object at the path consisting of `<base_data_path>.<collection_name>`, where [.ppty.ppty-base_data_path]`<base_data_path>` is defined as a sibling to this property (defaults to `site.data`).
+                  The collection's reference page 
+
+                  Example:
+                  [source,asciidoc]
+                  ----
+                  asciidoc-ui:
+                    components:
+                      ppty-ext:
+                        collections: [config, user-roles]
+                  ----
+
+                  When referencing a property in a collection not designated as the containing page's default collection, use the syntax `[ppty.pptycoll-config]+++`+++some-prop+++`+++` to indicate the property `some-prop` in the collection  named `config`.
+
+                  Alternatively, use this `collections` property with an additional object mapping instead of an ArrayList in order to designate collections and declare alternate keys and other attributes of that collection.
+
+                  For example:
+
+                  [source,yaml]
+                  ----
+                  asciidoc-ui:
+                    components:
+                      ppty-ext:
+                        collections:
+                          config:
+                            data_path: site.data.conf
+                            key: cfg
+                          users-roles:
+                            key: usr
+                            url_path: /users/roles
+                  ----
+
+                  For the above example, the `config` collection will be found at `site.data.conf` but be keyed as `pptycoll-cfg` (assuming [.ppty.ppty-ppty-ext_prefix]`ppty-ext.prefix` is `ppty-`).
+                  The `users` collection will be found at `site.data.users`, and the reference docs will appear at a URL like `example.com/docs/settings/users/roles/`.
+              base_data_path:
+                dflt: 'site.data'
+                type: String
+                desc: |
+                  Base path to the object containing the property data.
+                  This is a dot-delimited Jekyll/Liquid-style data object reference that should always begin with `site.`.
+              base_url_path:
+                dflt: ''
+                type: String
+                desc: |
+                  The path, following the site `base_url`, to a page named after the designated collection.
+                  So if the `site.base_url` is `/docs` and this (`base_url_path`) is `/settings`, links to properties in a given reference collection called `config` will point to an anchor in `example.com/docs/refs/config/`.
+                  
+          tabbed-panes:
+            name: Tabbed Panes
+            desc: |
+              Enables showing and hiding blocks of content in place, usually for switching between language-variant versions of the same data or code.
+              See also <<component-asciidoctor-tabs>>.
+
+            docs: |
+              Configure an instance of tabbed panes by wrapping a set of AsciiDoc block elements in an open div with the `tabbed-panes` role.
+
+          asciidoctor-tabs:
+            name: Asciidoctor Tabs
+            desc: |
+              The official Asciidoctor extension with performance similar to the <<component-tabbed-panes>> component.
+              Enable this component to activate the Asciidoctor Tabs extension.
+
+          # Block Semantics/features
+
+          code-truncate:
+            name: Code Truncate
+            desc: |
+              Optionally truncate *code listings* and *literal blocks* to a maximum number of lines, after which a "Show more" link will be displayed.
+            docs: |
+              Applies to both `.literalblock` and `.listingblock` elements.
+
+              Use the additional roles `truncate show-6-lines`, where `6` can be any number of lines to show before truncating.
+
+              [source,asciidoc]
+              ------
+              [source,yaml,role="truncate show-12-lines"]
+              ----
+              # code block with 50 lines
+              ----
+              ------
+
+              To apply to literal blocks such as terminal screens, use:
+
+              [source,asciidoc]
+              ------
+              [.truncate.show-10-lines]
+              ....
+              # log output with 50 lines
+              ....
+              ------
+            properties:
+              default_lines:
+                dflt: 6
+                type: Integer
+                regx: /^-1|[0-9]+$/
+                docs: |
+                  Maximum number of lines to display in a codeblock before truncating.
+                  
+                  Set to `-1` to not perform default truncation.
+
+          literal-prompt:
+            name: Literal Prompt
+            desc: |
+              Adds a prompt string to the beginning of a literal string or each line in a literal block.
+            docs: |
+              Add the prompt specifier to either a literal string or a literal block to prepend a prompt string to the content.
+            properties:
+              string:
+                dflt: '$'
+                type: String
+                desc: |
+                  The prompt string to prepend to the content.
+                  Use a space after the prompt string to separate it from the content.
+              selector:
+                dflt: '.literalblock.prompt, .literalblock.prompt > .content, code.prompt'
+                type: Selector
+                desc: |
+                  CSS selector for the elements to which to add the prompt effect.
+              alt_strings:
+                type: Map
+                desc: |
+                  A map of keys (prompt indicators) and strings (prompt strings) to use for different prompts.
+                docs: |
+                  Add key-value pairs to the `alt_strings` object to enable non-default prompt strings associated with an extra role (`.priompt-<key>`, where `<key>` is the key of the prompt string to use).
+
+                  For example, to use a different prompt string for a block with the role `.prompt-root`, add something like following to the `alt_strings` object:
+
+                  [source,yaml]
+                  ----
+                  asciidoc-ui:
+                    components:
+                      literal-prompt:
+                        alt_strings:
+                          root: 'root#'
+                  ----
+          
+          literal-sudo-highlight:
+            name: Literal Sudo Highlight
+            desc: |
+              For any line in a literal block that starts with `sudo`, wraps in a `SPAN.sudo` element.
+          
+          clipable:
+            name: Clipable
+            desc: |
+              Adds a "`Copy`" button with copy-to-clipboard functionality to designated elements/classes on the _hover_ state.
+            properties:
+              selector:
+                dflt: 'div.listingblock > div.content, div.literalblock > div.content, .clip'
+                type: Selector
+                desc: |
+                  CSS selector for the code blocks to which to add the copy button.
+              suppressor:
+                dflt: '.noclip, .no-clip'
+                type: Selector
+                desc: |
+                  CSS selector for the elements to which to suppress the copy button.
+              denier:
+                dflt: '.xclip, .x-clip'
+                type: Selector
+                desc: |
+                  CSS selector for elements on which to deny copy-to-clipboard functionality.
+              label:
+                dflt: ""
+                type: String
+                desc: |
+                  Title attribute for the copy button.
+              icon: 
+                dflt: 'fa-copy'
+                type: String
+                desc: |
+                  Indicator of the icon to use for the copy button.
+
+          code-highlight:
+            name: Code Highlight
+            desc: |
+              Universal syntax highlighting configuration for code listings.
+            properties:
+              highlighter:
+                dflt: highlightjs
+                type: String
+                desc: |
+                  Indicator of the code highlighter to use for syntax highlighting of code listings.
+                  Currently only `highlightjs` and `prism` are supported.
+                  
+                  Indicate `custom` to provide your own source URLs/settings for a different highlighter.
+              source:
+                dflt: cdnjs
+                type: String
+                regx: /^(cdnjs|local)$/
+                desc: |
+                  Whether source is `cdnjs` (cloud CDN) or `local` (built from assets).
+              theme:
+                dflt: tomorrow-night-blue
+                type: String
+                desc: |
+                  Indicator of the code highlighter theme/skin to use for syntax highlighting of code blocks.
+              base_url:
+                type: String
+                desc: |
+                  Base URL for the code highlighter source.
+                  Only necessary if `source` is `custom`.
+          
+          sidebar-ext:
+            name: Sidebar Extension
+            desc: |
+              Enhances AsciiDoc sidebar elements with truncation and semantic tags and icons.
+              Optionally adds a "move to" button to each sidebar block, allowing users to send the sidebar to the bottom of the page for later reading.
+            properties:
+              _enable:
+                dflt: [more, casestudy, walkthrough, tutorial, fastpath, workaround, challenge, solution, exercise]
+                type: Array
+                desc: |
+                  Array listing of sidebar types to enhance.
+              _disable:
+                dflt: []
+                type: Array
+                desc: |
+                  Array listing of sidebar types not to enhance.
+              move_to:
+                dflt: '#sidebar-till'
+                type: Selector or `false`
+                docs: |
+                  CSS selector for the element to which user's may move sidebar blocks.
+                  Use `false` to disallow move altogether.
+          
+          admonition-ext:
+            name: Admonition Extension
+            desc: |
+              Enhances AsciiDoc admonition elements with truncation and semantic tags and icons.
+            properties:
+              _enable:
+                dflt: [note, tip, important, caution, warning, more, next, question, answer, limit]
+                type: Array
+                desc: |
+                  Array listing of supported admonition types.
+              _disable:
+                dflt: []
+                type: Array
+                desc: |
+                  Array listing of admonition types to leave off.
+
+          # General Extension Utilities
+
+          theme-ext:
+            name: Theme Extension
+            desc: |
+              Adds theme files to calling project's assets.
+            properties:
+              theme:
+                dflt: asciidoc-dark-jtd
+                type: String
+                docs: |
+                  Slug for the theme extension to use.
+              sources:
+                dflt:
+                  - lib/assets/themes/asciidoc-dark-jtd/css/*
+                  - lib/assets/themes/asciidoc-dark-jtd/js/*
+                type: Array
+                docs: |
+                  Array of theme slugs to include in the project.
+
+          toc-js:
+            name: Alternate Table of Contents
+            desc: |
+              Infers a ToC from your rendered headlines instead of using the built-in Asciidoctor ToC for a given page.
+            docs: |
+              Add the `toc-js` page variable to the front matter of any page to enable this feature.
+            properties:
+              range:
+                dflt: 2..5
+                desc: The span of heading levels to display in the ToC.
+                docs:
+                  $ref: "#/components/properties/range/docs"
+                exes:
+                  - lang: yaml
+                    code: |
+                      toc-js:
+                        range: 2..4
+                    desc: ToC will show headings levels 2 through 4.
+
+          # Page elements
+
+          collapse:
+            name: Collapse
+            desc: |
+              Adds Bootstrap collapse functionality to sections of the document body.
+            docs: |
+              Use the `collapse` role on any AsciiDoc block or section to make it collapsible.
+
+              Add the `show` role to make the block or section start in the expanded state on page load.
+
+              Add the `hide` role (default) to start the block or section hidden on page load.
+            exes:
+              - lang: asciidoc
+                code: |
+                  [.collapse]
+                  ==== Section Heading
+                  
+                  This level 5 section will be collapsed when the page loads but expands on click.
+              - lang: asciidoc
+                code: |
+                  [.collapse.show]
+                  .Some example block
+                  ====
+                  This block will be expanded when the page loads but collapses on click.
+                  ====
+            properties:
+              selector:
+                dflt: '.collapse'
+                type: Selector
+                desc: |
+                  CSS selector for the sections to which to add the collapse button.
+              hide_selector:
+                dflt: '.collapse.hide'
+                type: Selector
+                desc: |
+                  CSS selector for the sections to which to add the collapse button.
+              show_selector:
+                dflt: '.collapse.show'
+                type: Selector
+                desc: |
+                  CSS selector for the sections to which to add the collapse button.
+              default_start_state:
+                dflt: 'show'
+                type: String
+                desc: |
+                  Default state for the collapsible block or section with no `hide` or `show` class.
+              icon_show:
+                dflt: 'fa-caret-square-down'
+                type: String
+                desc: |
+                  Indicator of the icon to use for the expand button.
+              icon_collapse:
+                dflt: 'fa-caret-square-up'
+                type: String
+                desc: |
+                  Indicator of the icon to use for the collapse button.
+          
+          card:
+            name: Card
+            desc: Transform an AsciiDoc block into a Bootstrap card component.  
+            docs: |
+              Add the `card` role to any AsciiDoc block to make it a card.
+
+              Complete card AsciiDoc markup:
+
+              [source,asciidoc]
+              ----
+              [.card]
+              .Some Title for the Card
+              ====
+              [.card-header]
+              --
+              This is the header of the card.
+              --
+
+              This is the body of the card.
+
+              * item
+              * item 2
+              * item 3
+
+              [.card-footer]
+              --
+              This is the footer of the card.
+              --
+              ====
+              ----
+
+          button:
+            name: Button
+            desc: Turn a link or span element into a button with Bootstrap styling.
+            docs: |
+              Add the `button` role to any AsciiDoc link or span element to make it a button.
+            exes:
+              - lang: asciidoc
+                code: |
+                  link:https://example.com[Click me,role="button"]
+              - lang: asciidoc
+                code: |
+                  [.button]#Click me#
+
+          badge:
+            name: Badge
+            desc: Turn any text element into a Bootstrap badge.
+            docs: |
+              Add the `badge` role to any inline text element to make it a badge.
+            exes:
+              - lang: asciidoc
+                code: |
+                  This is a [.badge]*badge* and so is [.badge]#this#.
+
+          # Document/Page/Topic/Section Semantics
+
+          content-typing:
+            name: Content Typing System
+            desc: |
+              Adds a document type to the document body.
+              This is a semantic tag that can be used to classify the document for search, navigation/architecture, display theming, and other purposes.
+            docs: |
+              Add the `.contype-<type>` role to any AsciiDoc section level `0` through `3` (HTML headers `H1` through `H4`) to make it a document type.
+
+              [source,asciidoc]
+              [.contype-tutorial]
+              This is the first sentence of a tutorial.
+
+              Alternatively, designate at the page level with `:page-contype: <type>` in the document header or page front matter.
+
+              Or else designate in the source filename using the `path_template` pattern, and the type will be detected from the type slug or alias (`aka`) that is embedded at the designated position(s) in the source path.
+            properties:
+              term:
+                dflt: Content Type
+                type: String
+                desc: |
+                  The word or phrase to use for the document/topic type nomenclature.
+                  This is the term that will be used to reference the categories of your document typing system.
+# tag::dry-yaml[]
+              type_definitions:
+                dflt: &type_definitions_map
+                  $ref: "https://raw.githubcontent.com/DocOps/aylstack/content-types.yml#ditataxis-plus"
+                desc: &type_description |
+                  A collection of "`content types`" supported by your style guidance, in the form of a Map of types and their properties.
+                docs: &type_definitions_docs |
+                  A Map object with the following schema:
+
+                  [horizontal]
+                  <type-name>:: Arbitrary key name for the content type, itself a Map of the following properties:
+                  
+                  [horizontal]
+                  name::: (String) The formal name for the content type (can include spaces, non-Ascii chars, etc)
+                  akas::: (Array) List of alternate key names for this content type.
+                  desc::: (String) A short description of the content type.
+                  kind::: (String) Optional, in case this is a content __sub__type, names the primary content type this fits into.
+                  meta::: (Map) Additional arbitrary properties for this content type.
+              
+              page_types_system:
+                type: Map
+                dflt: *type_definitions_map
+                desc: |
+                  The collection of "`content types`" supported by your style guidance for _individual pages_, in the form of a Map of types and their properties.
+                docs: *type_definitions_docs
+# end::dry-yaml[]
+              page_types_list:
+                type: ArrayList
+                desc: |
+                  Specific content types that can be assigned to _individual pages_ or _topics_.
+                  Defaults to _all_ the types associated with the selected `content_typing.page_type_system` object.
+                docs: |
+                  Select your own set of types by replacing elements in this Array with your own subset of those established in `content_typing.page_types_system`.
+# tag::dry-yaml[]
+              volume_types_system:
+                default: *type_definitions_map
+                desc: |
+                  The collection of "`content types`" supported by your style guidance for _volumes_ (or _collections_) of topics.
+# end::dry-yaml[]
+              volume_types_list:
+                type: ArrayList
+                dflt: [reference,collection,history,blog,glossary,casestudies,cookbook,userstories]
+                desc: |
+                  Specific content types that can be assigned to _volumes_ (or _collections_) of topics.
+                  Defaults to _all_ the types associated with the selected [.ppty]`content_typing.volume_types_system`.
+
+                  Add and remove items using the `+` and `-` prefix notation throughout your Array.
+                docs: |
+                  Select your own set of types by replacing elements in this Array with your own subset of those established in `content_typing.volume_types_system`.
+              semantic_path_template:
+                dflt: '{{ page_slug }}_{{ type_aka }}.adoc'
+                desc: |
+                  Template for detecting _page_ document types from the _source_ file path.
+                  Similar to and overridden by setting the `:page-contype:` attribute in a page's given source file.
+                type: Template
+                docs: |
+                  This is a Liquid template forming a relative path to a given `AsciiDoc` file, which can contain keywords that designate content type.
+                  Uses parameters established by the `page_type_system` object.
+                  
+                  Available variables:
+                  
+                  [horizontal]
+                  include::partials/path_capture_variables.adoc[]
+                exes:
+                  - code: "{{ type_aka_at[-1] }}/{{ page_slug }}.adoc"
+                    desc: Matches the last-listed alias (`aka`) of the document type key.
+                  - code: "{{ page_slug }}-{{ type_key }}.adoc"
+                    desc: Matches the page base filename appended with the keyname of the document type.
+                  - code: "{{ page_slug }}_{{ type_aka }}.adoc"
+              semantic_path_regexp:
+                dflt: ''
+                type: RegExp
+                desc: |
+                  Regular expression pattern to _constrain_ source file paths, as well as detecting _page_ document types from the _source_ file path.
+                  Works with or else overrides the `path_template` property.
+                docs: |
+                  Uses detailed String rules and named capture groups match the source path to a page source file.
+
+                  Available variables:
+
+                  [horizontal]
+                  include::partials/path_capture_variables.adoc[tag="regexp"]
+
+                  This method does not work with transcluded content (`include::` macro), only conventional jekyll-asciidoc pages.
+                exes:
+                  - code: '^(?<type_aka>[a-z]+)_(?<page_slug>[a-z-]+)\.adoc$'
+                    desc: Matches the page base filename appended with the keyname of the document type.
+                  - code: '^(?<page_slug>[a-z-]+)-(?<type_key>[a-z]+)\.adoc$'
+                    desc: Matches the page base filename appended with the keyname of the document type.
+                  - code: '^(?<page_slug>[a-z-]+)_(?<type_aka>[a-z]+)\.adoc$'
+              enforce_semantic_paths:
+                dflt: false
+                type: Boolean
+                desc: |
+                  Whether to enforce the use of semantic paths for page types.
+                  If set to `true`, the plugin will require all pages to express a content type in their source file path.
+
+          # URL/Path Semantics
+
+          # subject_revisions:
+          #   desc: Category of properties for tracking subject revision versions.
+          #   properties:
+          #     versions:
+          #       desc: |
+          #         A Map object conforming to the Versioneer/OpenVMY standard or the `revisions` object from same.
+          #         This object lists supported revisions and their details, such as release date.
+          #       type: Map
+          #     version_path_template:
+          #       desc: |
+          #         Typically used for converting a Semantic Version number to a `major.minor` version number.
+          #       type: Template
+          #       dflt: |
+          #         {% assign vrsn = version | split: '.' %}
+          #         {{ vrsn[0] }}.{{ vrsn[1] }}
+
+          # page_permalink_mapping:
+          #   dflt: |
+          #     {% if page_type %}{{ page_type }}_{% endif %}{{ page_slug}}
+          #   type: String
+        # END CONTENT TYPING PROPERTIES 
+          
+        # Inline Semantics
+
+          inline-term:
+            name: Inline Term Semantics
+            desc: A term to highlight inline in the document body, optionally displaying or linking to a definition or description of that term.
+            docs: |
+              Add the `.term` role to any inline text element to make it a term link.
+
+              [source,asciidoc]
+              This is a paragraph with a glossary-defined [.term]*word* or [.term]*multi-word phrase*.
+
+              Add an explicit slug to disambiguate the term if the wrapped text content is not exactly the term.
+              In these cases, you will use the String designated by [.ppty]`inline-term.specifier` (defaults to `kee-`) followed by a hyphen and the term slug, as listed in the glossary.
+
+              [source,asciidoc]
+              This is a sentence with a [.term.kee-technology-stack]#tech stack#.
+
+              Note that all of this inline syntax is unnecessary if you use the <<config_term-extension>> component, except to override its automated assignments or to add assignments to unconventional formulations of terms.
+            properties:
+              roles:
+                dflt: [term]
+                type: Array
+                desc: |
+                  Array of role names to use for terms.
+              specifier:
+                dflt: 'trm-'
+                type: Slug
+                desc: |
+                  The String to use with an inline semantic like _term_ role, to designate how to signify a key being passed when it does not match the quoted word or phrase.
+
+                  For example, `if you write [.term.trm-api]*APIs* but want to make sure `api` is the term matched in the glossary.
+                  In this case, the [.ppty]`specifier` property must be set to `trm-` (the default).
+
+          inline-file:
+            name: File Semantics
+            desc: Add the appropriate file icon to any mention of a file.
+            docs: |
+              Add the `.file` role to any inline text element to make it a file link.
+
+              [source,asciidoc]
+              This is a paragraph with a [.file]`path/to/file.yml` or [.file]`some-code.php`.
+
+              For files without an extension, one can be appended to the role.
+
+              [source,asciidoc]
+              Bundler looks for a [file.ext-rb]`Gemfile` to coordinate dependencies.
+            properties:
+              roles:
+                dflt: [file,filename]
+                type: Slug
+                desc: |
+                  The semantic role to indicate that the quoted string is to be treated as a file of a certain type.
+              specifier:
+                dflt: 'ext-'
+                type: Slug
+                desc: |
+                  The String to use with an inline semantic like a _file_ role, to designate a missing or unexpected file extension.
+
+                  For example, `if you write [.file.ext-rb]`./Gemfile` to indicate that the file is a Ruby file.
+                  In this case, the [.ppty]`specifier` property must be set to `ext-` (the default).
+
+          trademarker:
+            name: Trademarker
+            desc: Handle trademark ((TM)) symbols and trademarked terms.
+            docs: |
+              Add the `.tm` role to any inline text element to designate it as a trademarked term.
+
+              [source,asciidoc]
+              Our new product is [.tm-owner]#ACME# [.tm]#Terminus(TM)#, the last terminal emulator you'll ever need.
+
+              Use the `.3p` class to designate a third-party trademark, which may be handled slightly differently, depending on configuration.
+
+              It is recommended that you use the `.tm` role _and_ the +(TM)+ symbol in every instance of a trademarked term.
+
+              Use `.tm-pending` to designate a trademark's status that is `pending`.
+              By default, the status is `registered`.
+
+            properties:
+              first_party:
+                desc: |
+                  Properties for handling first-party (i.e., your own company's) trademarks -- those with an additional `.1p` role or no additional role.
+                properties:
+                  first_occurrence:
+                    dflt: true
+                    type: Boolean
+                    desc: |
+                      Whether to mark the first occurrence of a first-party trademarked term in a given page with a trademark symbol, suppressing subsequent instances.
+                      If set to `false`, all occurrences of first-party trademarks will be marked.
+                  clipable:
+                    dflt: true
+                    type: Boolean
+                    desc: |
+                      Whether or not to automatically treat all instances of the trademark as clipable text.
+                      Effectively adds `.clip` role to each instance.
+                      (See <<config-clipable>> for more information.)
+                  force-tm-copy:
+                    dflt: false
+                    type: Boolean
+                    desc: |
+                      Append a trademark symbol whenever a user tries to copy a first-party trademarked term to their clipboard.
+
+                      CAUTION: Use this feature only under the guidance of legal counsel.
+                  claimer:
+                    dflt: |
+                      {{ tm_term }} is a {{ tm_status }} trademark of {{ tm_owner | default: site.company' | default: 'this company' }}.
+                    type: Template
+              third_party:
+                desc: |
+                  Properties for handling third-party trademarks -- those with an additional `.3p` role.
+
+                  CAUTION: Only use this feature under the guidance of legal counsel or in coordination with third-party trademark holders.
+                properties:
+                  first_occurrence:
+                    dflt: true
+                    type: Boolean
+                    desc: |
+                      Whether to mark the first occurrence of a third-party trademarked term in a given page with a trademark symbol.
+                      If set to `false`, all occurrences of the third-party trademarks will be marked.
+                  disclaimer:
+                    dflt: |
+                      {{ trademarked_term }} is a registered trademark of {{ trademark_owner | default: 'its respective owner' }}.
+                    type: Template
+          
+                       
+
+
+
+components:
+  properties:
+    range:
+      docs: |
+        Use `..` to establish a span.
+
+        A preceding number establishes the starting level/item index.
+        If the range starts with `..n` instead of a number, all numbers from the lowest available or applicable number forward through the terminating number.
+        If the range terminates with `..n` instead of a number, all numbers from the preceding number through to the highest available or applicable number. 

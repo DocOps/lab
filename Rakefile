@@ -201,12 +201,12 @@ task :copy_jekyll_ui_config do
     puts "⚠️  Warning: Containerized environment cannot see #{source}; skipping copy."
     next
   end
-  dest_dir = '_data/built'
+  dest_dir = '_data/'
   dest = File.join(dest_dir, 'jekyll-asciidoc-ui-config-def.yml')
 
   unless File.exist?(source)
-    puts "❌ Source file #{source} does not exist. Please ensure jekyll-asciidoc-ui is cloned."
-    exit 1
+    puts "⚠️  Source file #{source} does not exist. Skipping jekyll-asciidoc-ui config copy (CI/standalone mode)."
+    next
   end
 
   FileUtils.mkdir_p(dest_dir)
