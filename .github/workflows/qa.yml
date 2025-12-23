@@ -55,13 +55,13 @@ jobs:
         run: echo "CONFIG_PACKS_REF=${{ inputs.ref_override }}" >> $GITHUB_ENV
 
       - name: Sync configurations
-        run: bundle exec rake labdev:config:sync
+        run: bundle exec rake labdev:sync:configs
 
       - name: Verify config sync
         run: |
           if ! git diff --quiet; then
             echo "❌ Config files are out of sync!"
-            echo "Please run 'bundle exec rake labdev:config:sync' and commit the changes."
+            echo "Please run 'bundle exec rake labdev:sync:configs' and commit the changes."
             git diff --name-only
             exit 1
           fi
@@ -82,14 +82,14 @@ jobs:
           bundler-cache: ${{ inputs.enable_cache }}
 
       - name: Sync configurations
-        run: bundle exec rake labdev:config:sync
+        run: bundle exec rake labdev:sync:configs
 
       - name: Run RuboCop
         run: |
           if [ -n "${{ inputs.paths }}" ]; then
-            bundle exec rake labdev:lint:rubocop PATHS="${{ inputs.paths }}"
+            bundle exec rake labdev:lint:ruby PATHS="${{ inputs.paths }}"
           else
-            bundle exec rake labdev:lint:rubocop
+            bundle exec rake labdev:lint:ruby
           fi
 
   vale:
@@ -108,7 +108,7 @@ jobs:
           bundler-cache: ${{ inputs.enable_cache }}
 
       - name: Sync configurations
-        run: bundle exec rake labdev:config:sync
+        run: bundle exec rake labdev:sync:configs
 
       - name: Set Vale alert level
         run: echo "VALE_MIN_ALERT_LEVEL=${{ inputs.vale_min_alert }}" >> $GITHUB_ENV
@@ -116,9 +116,9 @@ jobs:
       - name: Run Vale
         run: |
           if [ -n "${{ inputs.paths }}" ]; then
-            bundle exec rake labdev:lint:vale PATHS="${{ inputs.paths }}"
+            bundle exec rake labdev:lint:docs PATHS="${{ inputs.paths }}"
           else
-            bundle exec rake labdev:lint:vale
+            bundle exec rake labdev:lint:docs
           fi
 
   htmlproofer:
@@ -137,7 +137,7 @@ jobs:
           bundler-cache: ${{ inputs.enable_cache }}
 
       - name: Sync configurations
-        run: bundle exec rake labdev:config:sync
+        run: bundle exec rake labdev:sync:configs
 
       - name: Build site (if needed)
         run: |
@@ -153,9 +153,9 @@ jobs:
       - name: Run HTML-Proofer
         run: |
           if [ -n "${{ inputs.paths }}" ]; then
-            bundle exec rake labdev:lint:htmlproofer PATHS="${{ inputs.paths }}"
+            bundle exec rake labdev:lint:html PATHS="${{ inputs.paths }}"
           else
-            bundle exec rake labdev:lint:htmlproofer
+            bundle exec rake labdev:lint:html
           fi
 
   summary:

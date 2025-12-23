@@ -42,7 +42,7 @@ jobs:
 
       - name: Sync configurations
         run: |
-          bundle exec rake labdev:config:sync
+          bundle exec rake labdev:sync:configs
 
       - name: Check for changes
         id: changes

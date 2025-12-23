@@ -64,12 +64,12 @@ jobs:
 
       - name: Sync DocOps Lab configs
         run: |
-          if bundle exec rake -T | grep -q "labdev:config:sync"; then
-            bundle exec rake labdev:config:sync
+          if bundle exec rake -T | grep -q "labdev:sync:configs"; then
+            bundle exec rake labdev:sync:configs
           fi
 
       - name: Auto-detect and build documentation
-        run: |
+        run: | # this block seems overwrought; let's review and trim
           if [ -n "${{ inputs.build_command }}" ]; then
             echo "Using custom build command: ${{ inputs.build_command }}"
             cd ${{ inputs.source_dir }}
