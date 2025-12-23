@@ -1,0 +1,10 @@
+---
+permalink: /docs/agent/tests-running/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+= Running Tests in DocOps Lab Projects
+
+As an AI agent, you can help DocOps Lab developers run tests effectively using standard Rake tasks.
+
+include::../../reference/testing.adoc[tag="standard-rake-tasks"]

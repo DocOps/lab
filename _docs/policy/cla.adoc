@@ -1,0 +1,234 @@
+---
+title: DocOps Lab Contributor License Agreement (CLA)
+docs-group: legal
+layout: document
+docstyle: policy
+order: 24
+---
+:revnumber: 0.2.0
+:revdate: 2025-08-20
+:toc: macro
+:sectnums:
+// tag::tldr[]
+:declaration_statement: By contributing to any DocOps Lab project that links prominently to this CLA document from its README file's "Contributing" section, you assert that you have read and that you agree to the terms of this Agreement.
+// end::tldr[]
+include::../_local_settings.adoc[]
+= DocOps Lab Contributor License Agreement (CLA)
+
+This Contributor License Agreement (CLA or Agreement) sets the terms under which individuals may contribute to DocOps Lab projects.
+By adding your name or GitHub username to this document, you indicate agreement to it.
+
+IMPORTANT: {declaration_statement}
+
+toc::[]
+
+
+[[principles]]
+== Principles
+
+DocOps Lab is a *free as in free__dom__* software organization.
+All projects are licensed under OSI-approved (typically MIT) or Creative Commons permissive licenses.
+We reaffirm alignment with open source community norms:
+
+* Transparency of terms
+* Permanence of license grants
+* Respect for contributor freedom
+
+
+[[scope]]
+== Scope
+
+Projects covered::
+All repositories under the DocOps Lab organization on link:{docopslab_hub_url}[GitHub] are covered by this Agreement.  
+
+Contributions covered::
+All source code, documentation, and related assets of or contributed to DocOps Lab are covered by this Agreement.
+
+Who it applies to::
+All contributors, including DocOps Lab members, maintainers, and users, are covered by relevant portions of this Agreement, to the extent it applies to their relationship with DocOps Lab.
+
+
+[[contributor-identity]]
+== Contributor Identity
+// tag::tldr[]
+Capacity declaration::
+Upon contributing source code or content, contributors must specify whether they act:
+
+* in a personal capacity
+* as part of an employer's work, with employer approval
+* under other constraints or conflicts
+
+Authority::
+Contributors affirm they have the legal right and authority to submit contributions, free of encumbrances or conflicting obligations.
+
+LLM usage declaration::
+Contributors must disclose use of large language models (LLMs), "`AI agents`", "`chat bots`", or similar tools in generating code or content that gets contributed.
+Private, behind-the-scenes usage of LLMs or similar tools to perform tasks that do not generate publishable code or content need _not_ be disclosed.
++
+See also {xref_docs_generative-ai-usage_link} for DocOps Lab's policy on generative AI usage.
+// end::tldr[]
+
+
+[[licensing-of-contributions]]
+== Licensing of Contributions
+
+Declared licenses::
+Contributions are licensed under the repository's declared license or licenses.  
+
+// tag::tldr[]
+Acceptance::
+Contributors accept *all licenses present* in the repository.  
+// end::tldr[]
+
+Permanence::
+DocOps Lab attests that all licenses are *permanent*.
+They will not be changed to more restrictive forms.
+
+Permissiveness::
+DocOps Lab attests that all licenses are *permissive*, in that they do not constrain fair-use or commercial reuse of the source code or its rendered artifacts.
+
+No Relicensing::
+DocOps Lab will not relicense or subvert contributions into restrictive or commercial forms.
+
+
+[[copyright]]
+== Copyright
+
+// tag::tldr[]
+Assignment::
+Contributors relinquish individual copyright in their contributions.
+
+Ownership::
+DocOps Lab holds sole copyright in all accepted contributions but instantly reissues permissively under an attribution-only license.
+// end::tldr[]
+
+Attribution:: 
+* Individual attribution is preserved in Git commit history.  
+* A byline may be preserved where such a byline exists in a document.  
+* Downstream licensees are encouraged but _not obligated_ to preserve individual attribution.
+* Licenses _do_ require downstream attribution of DocOps Lab copyright.
+
+
+[[patents]]
+== Patents
+
+// tag::tldr[]
+Non-assertion pledge::
+Contributors agree not to assert patents against DocOps Lab or downstream users for uses permitted under project licenses.
+// end::tldr[]
+
+Contributor freedom::
+Contributors remain free to patent or commercialize independent works based on contributions to DocOps Lab projects, provided that DocOps Lab's licensed use and all downstream use under that license remain immune from liability or assertion.
+
+
+[[warranties]]
+== Warranties
+
+// tag::tldr[]
+All parties affirm freely contributed original work.
+// end::tldr[]
+
+Contributor warranties::
+// tag::tldr[]
+Contributions are affirmed as:
+
+* Original, OR
+* Properly licensed _with DocOps Lab approval_, AND
+* Not knowingly infringing third-party rights, AND
+* Provided without warranty
+// end::tldr[]
+
+DocOps Lab warranties::
+Existing and future source code are affirmed as:
+
+* Original or properly licensed
+* Not knowingly infringing third-party rights  
+* Provided without warranty
+
+
+[[records]]
+== Records
+
+Tracking::
+Contributor agreements will be publicly tracked in the https://github.com/DocOps/lab[DocOps Lab administrative repository].
+
+Methods::
+DocOps Lab may also use GitHub bots or commit sign-offs to automate agreement tracking.
+
+Confirmation NOT REQUIRED::
+Active signing is NOT required to constitute Agreement.
+See <<acceptance>> below.
+
+
+[[amendments]]
+== Amendments
+
+Versioning:: CLA versions are tracked in Git.  
+
+Notice::
+Contributors will be notified before their next contribution if the CLA is amended.  
+
+New rights or obligations:: Any amendment affecting contributors' rights, responsibilities, or warranties will result in a new version of this document.
+Contributors retain the prerogative to agree to or decline the new version before further contributions.
+
+
+[[code-of-conduct]]
+== Code of Conduct
+// tag::tldr[]
+DocOps Lab adheres to a link:/docs/contributing/#code-of-conduct[Code of Conduct] that promotes a welcoming and inclusive environment for all contributors.
+
+Contributors agree to respect these principles and to engage in constructive, respectful dialogue with other contributors.
+// end::tldr[]
+
+
+[[freedom-of-association]]
+== Freedom of Association
+
+Voluntary::
+Contributors are free to associate or withdraw from contributing at any time.
+Past contributions remain under project license terms.
+
+Severable::
+This Agreement does not obligate future contributions.
+
+
+[[attribution-recognition]]
+== Attribution & Recognition
+
+Documentation:: Attribution appears in Git history.  
+
+Code:: Attribution appears in Git history.  
+
+Recognition::
+DocOps Lab may feature contributors in credits, websites, or other venues outside the repositories themselves, at its discretion.
+
+Contributor identity::
+To indicate how they wish to be identified, contributors should append to this document by way of Git commit and pull request, their:
+
+. identifiers (optional)
+.. name or alias
+.. pronouns, titles, certs, etc
+. GitHub handle (required)
+
+
+[[dispute-resolution]]
+== Dispute Resolution
+// tag::tldr[]
+Preferred dispute process::
+Disputes are to be addressed first informally within the community.
+
+Mediation::
+If unresolved, disputes may be mediated by disinterested and mutually chosen members of the broader open-source community.
+
+Legal forum::
+Legal proceedings are a last resort.
+Jurisdiction defaults to the contributor's home jurisdiction, if remote participation is permitted, or else the most convenient remote venue acceptable to all parties.
+// end::tldr[]
+
+
+[[acceptance]]
+== Acceptance
+// tag::tldr[]
+Declaration of agreement (repeated)::
+*{declaration_statement}*
+// end::tldr[]

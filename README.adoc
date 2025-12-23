@@ -1,50 +1,643 @@
-= DocOps Lab: Bridging the Gap Between Writers and Code
-:docops_www_base_url: https://github.com/docops
+= DocOps Lab
+:toc: macro
+:toclevels: 2
+// tag::universals[]
+:docopslab_hub_url: https://github.com/DocOps
+:docopslab_domain: docopslab.org
+:docopslab_clientele-as-code_repo_url: https://github.com/DocOps/clientele-as-code
+:docopslab_clientele-as-code_site_url: https://clientele-as-code.docopslab.org
+:docopslab_issuer_repo_url: https://github.com/DocOps/issuer
+:docopslab_issuer_site_url: https://issuer.docopslab.org
+:docopslab_subtxt_repo_url: https://github.com/DocOps/subtxt
+:docopslab_subtxt_site_url: https://subtxt.docopslab.org
+:docopslab_asciidocsy-jekyll-theme_repo_url: https://github.com/DocOps/asciidocsy-jekyll-theme
+:docopslab_asciidocsy-jekyll-theme_site_url: https://asciidocsy-jekyll-theme.docopslab.org
+// end::universals[]
+// tag::globals[]
+// tag::general[]
+:docopslab_ruby_version: 3.2.7
+:docopslab_hub_url: https://github.com/DocOps
+:docopslab_www_base_url: https://docopslab.org
+:docopslab_io_base_url: https://docopslab.github.io/lab
+:docopslab_lab_hub_base_url: {docopslab_hub_url}/lab
+:this_repo_base_url: {docopslab_lab_hub_base_url}
+:tagline: Bridging the gap between document professionals and the world of code
+:description: A community resource for free, open-source tools and practices that empower technical writers, project managers, paralegals, researchers, and educators to leverage modern documentation practices through accessible technologies, strategies, and conventions.
+// end::general[]
+// tag::projects[]
+:docops-box-desc: A Docker-containerized environment and shell script for reducing the complexity of setting up “developer tools”. Non-developers can run a single command (`docksh run`) and instantly access whole runtimes and specialized documentation tools in a pre-configured shell environment.
+:docs-as-code-school-desc: pass:q[Structured education in modern technical documentation and document processing. Starting with "`Deep Semantics`" (Fall 2025?) and expanding to courses on version management, code-like workflow adoption, and legal document operations, this project uses docs-as-code to teach docs-as-code principles.]
+:ayl-docstack-desc: pass:q[AsciiDoc. YAML. Liquid. A three-language approach to managing complex, multi-variant documentation. This "`tech stack`" maximizes power while minimizing syntax overhead, making advanced documentation techniques accessible to beginners while remaining powerful enough for enterprise needs.]
+:schemagraphy-desc: pass:q[Extends YAML through SGYML and accompanying libraries, providing advanced data typing and document transclusion capabilities. Provides a full-featured schema language that allows users to define complex data structures, document structures, and whole interfaces in a single, unified format.]
+:jekyll-asciidoc-ui-desc: pass:q[A set of Jekyll plugins and themes that enrich AsciiDoc web output. Includes themes like AsciiDocsy and Just The AsciiDocs, plus plugins for Jekyll-OpenAPI integration, adocBook document converter, and 25 UI extensions for AsciiDoc.]
+// end::projects[]
+:intro: DocOps Lab is working to distribute the power of docs-as-code for non-programmers.
+:intro-2: Too many [.role]*technical writers*, [.role]*project managers*, [.role]*paralegals*, [.role]*researchers*, and [.role]*educators* are stuck with legacy document tools that constrain their potential.
+:bridge-text: pass:q[Through several interconnected open source projects, DocOps Lab is creating pathways for "`tech-savvy non-programmers`" to harness developer tools.]
+:vale_off: pass:[<!-- vale off -->]
+:vale_on: pass:[<!-- vale on -->]
+// end::globals[]
 
-I am working to democratize the power of docs-as-code for non-developers. 
+{tagline}.
 
-Too many technical writers, project managers, paralegals, researchers, and educators are stuck with legacy document tools that limit their potential.
+[[intro]]
+--
+// tag::intro[]
+{intro}
 
-They know their content inside and out, but they're locked out of the advanced workflows that developers take for granted: version control, automation, single-sourcing, and collaborative editing with Git.
+They know their content inside and out, but they are locked out of the advanced workflows that developers take for granted: powerful automation, robust single sourcing, and collaborative editing and version control using Git.
+// end::intro[]
+--
 
 
-== The Bridge I am Building
+[[bridge]]
+== The Bridge
 
-Through several interconnected open source projects, I'm creating pathways for "`tech-savvy non-programmers`" to harness developer tools without becoming developers themselves:
+{bridge-text}
 
-Ruby DocOps::
-This project provides a Docker-containerized environment that eliminates the complexity of setting up development tools.
-Non-developers can run a single command (`docksh run`) and instantly access Ruby, Git, Node.js, Python, Pandoc, and specialized documentation tools in a pre-configured shell environment.
+DocOps Box::
+// tag::docops-box[]
+{docops-box-desc}
+// end::docops-box[]
 
 Docs-as-Code School::
-Structured education in modern *technical documentation* and *document processing*. 
-Starting with *"`Deep Semantics`"* (Fall 2025?) and expanding to courses on *version management*, *code-like workflow* adoption, and *legal document* operations, this project uses docs-as-code to teach docs-as-code principles.
+// tag::docs-as-code-school[]
+{docs-as-code-school-desc}
+// end::docs-as-code-school[]
 
 AYL DocStack::
-*AsciiDoc*.
-*YAML*.
-*Liquid*.
-A three-language approach to managing complex, multi-variant documentation.
-This "`tech stack`" maximizes power while minimizing syntax overhead, making advanced documentation techniques accessible to beginners while remaining powerful enough for enterprise needs.
+// tag::aylstack[]
+{ayl-docstack-desc}
+// end::aylstack[]
 
-SchemaGraphy:: 
-* Extends YAML through *SGYML* and accompanying libraries, providing advanced *data typing* and document *transclusion* (`$ref` pointer) abilities.
-* Provides a full-featured schema language that allows users to define complex *data structures*, *document structures*, and whole *interfaces* in a single, unified format.
+SchemaGraphy::
+// tag::schemagraphy[]
+{schemagraphy-desc}
+// end::schemagraphy[]
 
 Jekyll-AsciiDoc Extensions::
-A set of Jekyll plugins and themes that enrich AsciiDoc web output.
-* Themes:
-** AsciiDocsy
-** Just The AsciiDocs
-* Plugins:
-** Jekyll-OpenAPI integration
-** aDocBook document converter
-** 25 UI extensions for AsciiDoc
+// rag::jekyll-asciidoc-ext[]
+{jekyll-asciidoc-ui-desc}
+// end::jekyll-asciidoc-ext[]
 
-ReleaseHx and Issuer::
+Issuer and ReleaseHx::
+// tag::issuer-releasehx[]
 Issue-ticket creation and release-history management tools that integrate with Jira, GitHub, and GitLab.
 Bulk-create work items from a single YAML file, then generate release notes and changelogs in AsciiDoc, Markdown, or HTML formats at release time.
+// end::issuer-releasehx[]
 
 The goal of all this is to create a "`docs-as-code`" ecosystem that empowers *developers and non-developers alike* to leverage the full power of modern documentation practices without needing to become full-fledged developers.
 
-If you find this interesting, take a second to *follow link:{docops_www_base_url}[DocOPs Lab]* on GitHub and join the link:https://docopslab.zulipchat.com[community on Zulip].
+See the website sourced in this repo for the best overview of DocOps Lab and its projects: link:{docopslab_www_base_url}[docopslab.org].
+
+
+[[repository]]
+== This Repository
+
+This codebase (`DocOps/lab`) contains the Jekyll-based website for DocOps Lab, served at {docopslab_www_base_url}[docopslab.org].
+
+It also contains assets that are common across multiple DocOps Lab projects.
+That includes documentation, which is part of the docopslab.org site (see `_docs/`).
+It also includes the `docopslab-dev` Ruby gem, which is used for running common development and quality-assurance (QA) tasks (see link:{this_repo_url}/blob/main/gems/docopslab-dev/README.adoc[`gems/docopslab-dev/`]).
+
+[[generated-artifacts]]
+=== Generated Artifacts
+
+Aside from the docopslab.org website, which will take up most of this README, this repository also generates:
+
+* a Vale styles package (`DocOpsLabStyles.zip`) that incorporates custom styles and upstream packages
+* the `docopslab-dev` Ruby gem package
+* the `docopslab/dev` Docker image
+* the `agent/docs/` library of Markdown files generated from link:link:{this_repo_url}/blob/main/gems/docopslab-dev/docs/agent/[AsciiDoc sources]
+
+[[the-site]]
+=== The Site
+
+The site has a link:{docopslab_www_base_url}[landing page] which leads mainly to a showcasing of link:{docopslab_www_base_url}/projects/[*DocOps Lab projects*] with a modern, professional interface featuring project cards, dependency visualization, and custom DocOps-themed icons.
+
+It also includes link:{docopslab_www_base_url}/docs/[*technical documentation*] that is common across projects, as well as a link:{docopslab_www_base_url}/blog/[*blog*] for updates and topical writings.
+
+[[blog-versioning]]
+==== Blog Versioning
+
+This site hosts _two_ blogs: the link:{docopslab_www_base_url}/blog[DocOps Lab Blog] and the link:{docopslab_www_base_url}/metablog[DocOps Lab MetaBlog].
+
+Each blog post tracks its own version in the `:page-version:` attribute.
+The version follows link:https://semver.org[Semantic Versioning], with a `MAJOR.MINOR.PATCH` structure.
+
+A version bump is required whenever the rendered content of the post changes, whether through direct edits to the post file or through modifications to any AsciiDoc includes used by that post, _if those changes affect the post content_.
+
+Includes do not carry their own versions; the post's version is the sole authority. 
+Version numbers should change even for small mechanical edits so that the version always reflects the current state of the published text.
+
+MAJOR::
+Substantial reframing or rewriting.
+Prior understanding may no longer apply.
+
+MINOR::
+Additive content or clarifications that do not contradict earlier versions.
+
+PATCH::
+Typos, grammar cleanup, mechanical style adjustments, or any small textual edits.
+
+Mere changes of style or layout do _not_ cause version bumps.
+
+[[repository-structure]]
+=== Repository Structure
+
+This repository uses a *dual-branch deployment* for GitHub Pages publishing.
+
+We'll talk about major source/output branches, then explore the deployment flow and broader ecosystem.
+
+[[main-branch-main]]
+==== Main Branch (`main`)
+
+Contains all source files:
+
+* Jekyll source files (`_layouts/`, `_includes/`, `_sass/`, etc.)
+* Content collections (`_blog/`, `_docs/`, `_projects/`)
+* Project data (`_data/docops-lab-projects.yml`)
+* Configuration files (`_config.yml`, `Gemfile`)
+* Build automation (`Rakefile`)
+* Slides content (`slides/`)
+* Jekyll plugins (`_plugins/`)
+* Site assets (SCSS, JS, images)
+* Common task scripts (`scripts/`)
+* Ruby-based ops tooling and libraries as sub-projects (`gems/`)
+* Specification and definition files (`specs/`, for this repo)
+
+[[branch-gh-pages]]
+==== GitHub Pages Branch (`gh-pages`)
+
+Contains only the built website files:
+
+* Static HTML, CSS, JS files (from Jekyll build output)
+* Preserved `slides/` directory with existing presentation content
+* Minimal `.gitignore` for deployment scope
+
+[[artifact-deployment]]
+==== Artifact Deployment
+
+Non-website artifacts are published via other means.
+
+* Vale styles package (`DocOpsLabStyles.zip`): link:{this_repo_base_url}/blob/main/artifacts/vale/DocOpsLabStyles.zip[GitHub repo assets]
+* `docopslab-dev` Ruby gem: link:https://rubygems.org/gems/docopslab-dev[Rubygems.org]
+* `docopslab/dev` Docker image: link:https://hub.docker.com/r/docopslab/dev[Docker Hub]
+* Agent docs library: link:{this_repo_base_url}/blob/agent-docs/agent/docs/[`agent/docs/` on `agent-docs` branch]
+
+[[docops-lab-docs-sites]]
+=== DocOps Lab Docs Sites
+// tag::docops-lab-docs-sites[]
+Most DocOps Lab projects have their own documentation sites, also built with Jekyll and AsciiDoc, often including YARD for Ruby API reference generation.
+
+For less-formalized projects, documentation is restricted to `README.adoc` and other `*.adoc` files.
+These are hosted as GitHub Pages sites from their respective repositories, but using a consistent URL structure centered on the `docopslab.org` domain hosted here.
+
+The URL structure is as follows:
+
+Project landing page:: `https://<project>.docopslab.org/`
++
+At a minimum, this should be a subset of the `README.adoc` file.
+
+Product user docs:: `https://<project>.docopslab.org/docs/`
+
+Product developer docs::
+`+++https://<project>.docopslab.org/docs/api/(<apiname>/)+++`
++
+The final `<apiname>` directory is only applicable when the product contains multiple distinct APIs.
+
+GH Pages configuration for these sites enables deployment by way of a clean `gh-pages` branch containing only generated documentation artifacts and the `CNAME` file.
+
+// end::docops-lab-docs-sites[]
+
+[[development-workflow]]
+=== Development Workflow
+
+This site is not open for unsolicited content contributions, but if you want to propose a bugfix (including a content correction), either:
+
+* use the link:{this_repo_base_url}/issues[issues system] and post about it
+* fork the repository and issue a pull request.
+
+[[prerequisites]]
+==== Prerequisites
+
+* Ruby 3.x
+* Bundler: `gem install bundler`
+* Ruby dependencies: `bundle install`
+
+Or just use the `docopslab/dev` Docker image, which has everything pre-installed.
+
+See link:{docopslab_www_base_url}/docs/lab-dev-setup/[Devtool Setup] for details.
+
+[[local-development]]
+==== Local Development
+
+.Start development server with live reload
+[.prompt]
+ bundle exec rake serve
+
+.Serve at a specific port (default is 4000)
+[.prompt]
+ PORT=4100 bundle exec rake serve
+
+.Build the site without serving
+[.prompt]
+ bundle exec rake build_site
+
+.Wipe and rebuild artifacts
+[.prompt]
+ bundle exec rake clean
+
+[[deployment-workflow]]
+==== Deployment Workflow
+
+The repository includes a comprehensive Rake-based deployment system:
+
+[[safe-testing-recommended]]
+===== Safe Testing (Recommended)
+
+. Prepare deployment files (no commit/push)
++
+[.prompt]
+ bundle exec rake deploy_safe
+
+. Review changes on gh-pages branch
++
+[.prompt]
+ git status
+ ls -la
+
+. Commit when satisfied
++
+[.prompt]
+ bundle exec rake commit_deploy
+
+. Push to live site (with confirmation prompt)
++
+[.prompt]
+ bundle exec rake push_deploy
+
+. Return to main branch
++
+[.prompt]
+ bundle exec rake return_to_main
+
+[[full-deployment]]
+===== Full Deployment
+
+.One-command deployment (prepare + commit + push)
+[.prompt]
+ bundle exec rake deploy
+
+[[slides-management]]
+===== Slides Management
+
+These slides are from a hastily posted presentation before the DocOps/lab site was really built.
+This is a legacy placeholder for content that will likely move to Docs-as-Code School eventually.
+
+.Update slides from docs-as-code-school repo
+[.prompt]
+ bundle exec rake update_slides
+
+.Deploy with slides update
+[.prompt]
+ bundle exec rake deploy_with_slides
+
+[[building-the-docopslab-dev-gem]]
+==== Building the `docopslab-dev` Gem
+
+The `docopslab-dev` gem is developed within this monorepo at `gems/docopslab-dev/`.
+
+There are several Rake tasks devoted to managing this sub-project and its artifacts, all under the `gemdo:` task namespace.
+
+[.prompt]
+ bundle exec rake -T | grep gemdo:
+
+.Generate the docopslab-dev gem
+[.prompt]
+ bundle exec rake gemdo:build_gem
+
+[[agent-documentation-generation]]
+===== Agent Documentation Generation
+
+Before building the gem, agent documentation must be generated from AsciiDoc sources:
+
+.Generate agent documentation
+[.prompt]
+ bundle exec rake gemdo:generate_agent_docs
+
+This task performs the following:
+
+. Builds the Jekyll site (if not already built)
+. Converts `_docs/agent/*.adoc` → HTML → Markdown
+. Processes `_docs/templates/AGENTS.markdown` (strips Jekyll frontmatter)
+. Writes all generated docs to `gems/docopslab-dev/docs/`
+** `docs/agent/AGENTS.md` - Template for target projects
+** `docs/agent/*.md` - Agent instruction guides
+
+[NOTE]
+[[]]
+====
+Generated documentation files are *git-ignored* as they are built artifacts.
+They are packaged with the gem during the build process.
+[[]]
+====
+
+[[full-devlab-rake-testing]]
+===== Full `devlab:` Rake Testing
+
+Test all the `docopslab-dev` gem's Rake tasks in sequence:
+
+[.prompt]
+ bundle exec rake gemdo:test_tasks
+
+Test specific tasks with:
+
+[.prompt.example]
+ bundle exec rake 'gemdo:test_tasks[spellcheck:file,help]'
+
+[[gem-build-process]]
+===== Gem Build Process
+
+.Build the gem; includes pre-build
+[.prompt]
+ bundle exec rake gemdo:build_gem
+
+Built gems are placed in `gems/docopslab-dev/pkg/`.
+
+Use `bundle exec rake` to invoke the `docopslab-dev` library.
+
+[[docker-image-build]]
+===== Docker Image Build
+
+.Build the `docopslab/dev` Docker image
+[.prompt]
+ bundle exec rake gemdo:build_docker
+
+This builds a complete development environment with all tools pre-installed.
+
+[[workflow-steps]]
+===== Workflow Steps
+
+When working on the gem:
+
+. Make changes to gem source files in `gems/docopslab-dev/`.
+. Make changes to agent docs in `_docs/agent/` or `_docs/templates/`.
+. Generate updated documentation.
++
+[.prompt]
+ bundle exec rake gemdo:generate_agent_docs
+
+. Build and the gem.
++
+[.prompt]
+ bundle exec rake gemdo:build_gem
+
+. Test in a target project.
+
+.. Ensure project `Gemfile` or `.gemspec` sources gem as relative path.
++
+[source,ruby]
+ 'docopslab-dev', path: '../lab/gems/docopslab-dev'
+
+.. Use Bundler to invoke the gem's Rake tasks.
++
+[.prompt]
+ bundle exec rake labdev:check
+
+For more details on using the gem in target projects, see `gems/docopslab-dev/README.adoc`.
+
+[[vale-style-development]]
+===== Vale Style Development
+
+To add or modify DocOps Lab custom styles for Vale:
+
+. Alter styles at source in `gems/docopslab-dev/assets/config-packs/vale/`.
+. Sync changes to project Vale config.
++
+[.prompt]
+ bundle exec rake labdev:sync:styles:local
+
+. Test with Vale linting.
++
+[.prompt]
+ bundle exec rake labdev:lint:docs | grep 'Package.RuleName'
++
+Where `Package.RuleName` is the name of the custom rule you're working on.
+
+See link:https://vale.sh/docs/styles[Vale's Style documentation] for details on creating and modifying Vale styles.
+
+[[fixing-issues]]
+===== Addressing Issues Revealed by Linters
+
+Identify and fix spelling issues::
++
+--
+.Use Vale to identify spelling issues
+[.prompt]
+ bundle exec rake labdev:lint:spellcheck
+
+Use the generated report to guide your fixes.
+See complete docs at link:{docopslab_www_base_url}/docs/task/fix-spelling-issues/[Fix Spelling Issues].
+--
+
+Identify and fix RuboCop offenses::
++
+[.prompt]
+ bundle exec rake labdev:heal:ruby
++
+Unfortunately, for offenses that cannot be fixed automatically, you'll need to consult the link:{docopslab_www_base_url}/reference/ruby-styles/[DocOps Lab Ruby Style Guide] and link:https://docs.rubocop.org/rubocop/index.html[RuboCop documentation].
+
+[[site-features]]
+=== Site Features
+
+[[project-showcase]]
+==== Project Showcase
+
+* *Vertical project profiles* with hover-to-expand descriptions
+* *Custom DocOps icons* integrated with Lucide icon system
+* *Dependency visualization* with hover popovers
+* *Project filtering* by type and development wave
+
+[[technical-implementation]]
+==== Technical Implementation
+
+* *Jekyll 4.3.4* with AsciiDoc support
+* *SCSS/CSS custom properties* for theming
+* *Responsive design* with 70% max-width layout
+* *Custom Lucide icon integration* via JavaScript
+* *YAML-driven content* from `_data/docops-lab-projects.yml`
+
+[[jekyll-asciidoc]]
+==== Jekyll/AsciiDoc
+
+The lab site uses Jekyll 4 with AsciiDoc support via the `jekyll-asciidoc` plugin.
+It does _not yet_ use the link:{docopslab_www_base_url}/projects#jekyll-asciidoc-ui[jekyll-asciidoc-ui] or link:{docopslab_www_base_url}/projects/#jekyll-asciidoc-ext[jekyll-asciidoc-ext] plugins, which are still on the DocOps Lab roadmap.
+
+This site is intentionally a relatively bare-bones Jekyll-AsciiDoc implementation with NO CUSTOM FILTERS and NO CUSTOM TAGS and most Jekyll framework conventions/defaults maintained.
+
+It does, however, add a module for `XrefAttrs`, which is a candidate module for jekyll-asciidoc-ext.
+
+It also has front-end customization, again independent of jekyll-asciidoc-ui.
+
+[[custom-plugin-xref-attributes]]
+===== Custom Plugin: `xref_attributes`
+
+This plugin makes AsciiDoc cross-references available as AsciiDoc attributes when AsciiDoc files are converted.
+
+The format is `{xref_<collection-label>_<page-slug>_url}` and `{xref_<collection-label>_<page-slug>_title}`.
+
+For example: `{xref_docs_infrastructure_url}` to render `/docs/infrastructure/`.
+
+Use `{xref_<collection-label>_<page-slug>_link}` as a shortcode for the entire link element.
+
+[[pages]]
+==== Pages
+
+[cols="1m,1", options="header"]
+|===
+| Page Path | Description
+
+| /
+| Landing page with starred projects
+
+| /projects/
+| All projects listing
+
+| /docs/
+| Documentation
+
+| /blog/
+| Main DocOpsLab Blog posts
+
+| /metablog/
+| Blog posts about the blog
+|===
+
+[[data-structure]]
+=== Data Structure
+
+The site is driven by `_data/docops-lab-projects.yml`, which contains:
+
+* *Project definitions* with metadata, descriptions, dependencies
+* *Type classifications* (content, environment, framework, etc.)
+* *Development waves* with release timelines
+* *Custom icon assignments* for DocOps-specific projects
+
+[[icon-system]]
+=== Icon System
+
+The site uses a hybrid icon approach:
+
+Standard icons:: Lucide icons via CDN
+
+Custom icons::
+SVG definitions for DocOps-specific concepts
+
+[[domain-configuration]]
+=== Domain Configuration
+
+[horizontal]
+Production:: https://docopslab.org
+GitHub Pages:: Served from `gh-pages` branch
+CNAME:: Configured in repository settings
+GH Alias:: https://docopslab.github.io/lab
+
+
+[[contributing]]
+== Contributing
+
+Contributions to this repository are welcome, but in this case especially, it makes sense to be in touch or involved with DocOps Lab before offering significant changes or additions.
+
+[[making-changes]]
+=== Making Changes
+
+The current one-contributor workflow is as follows:
+
+. Work on a `main` branch.
+
+. Edit source files in `_layouts/`, `_includes/`, `_sass/`, etc.
+
+. Update project data in `_data/docops-lab-projects.yml`.
+
+. Test locally with `rake serve`.
+
+. Deploy with `rake deploy_safe` → review → `rake commit_deploy` → `rake push_deploy`.
+
+This workflow will change once other organization members are actively working on the `lab` repository.
+
+[[registering-projects]]
+=== Registering Projects
+
+Edit `_data/docops-lab-projects.yml`:
+
+[source,yaml]
+----
+## New Project:
+  - name: Project Name
+    type: framework  # see $meta.types for options
+    desc: |
+      Project description
+    deps: [dependency1, dependency2]
+    done: 80%; v1.0
+    wave: 2
+    icon: lucide-icon-name  # or custom icon
+----
+
+[[custom-icons]]
+=== Custom Icons
+
+Add new custom icons in `_layouts/default.html`:
+
+[source,javascript]
+----
+// Register custom icon
+lucide.createIcons({
+  icons: {
+    'new-icon': lucide.createElement('svg', {
+      // SVG attributes and paths
+    })
+  }
+});
+----
+
+
+[[troubleshooting]]
+== Troubleshooting
+
+[[build-issues]]
+=== Build Issues
+
+* Ensure Ruby version matches `.ruby-version`
+* Run `bundle install` to update dependencies
+
+[[deployment-issues]]
+=== Deployment Issues
+
+* Verify you're on `main` branch with no uncommitted changes
+* Check that `gh-pages` branch exists
+
+[[icon-issues]]
+=== Icon Issues
+
+* Custom icons must be registered in `_layouts/default.html`
+* Verify icon names match between YAML data and JavaScript registration
+* Check browser Inspector panel's console tab for JavaScript errors
+
+
+[[licensing]]
+== Licensing
+
+All original textual content is released under the Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+Content includes anything sourced under `_docs/`, `_blog/`, `_metablog/`, and `_data/`.
+
+Images, including original graphics, are either copyleft or published under Fair Use and attributed to their best-known source.
+
+All code is released under the MIT License.
+Code includes `.rb`, `.sh`, `.js`, `.html`, and other non-content files.
+
+
+[[support]]
+== Support
+
+For issues or questions about this website implementation, contact the DocOps Lab team or create an issue in this repository.

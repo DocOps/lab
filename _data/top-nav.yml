@@ -1,0 +1,71 @@
+# Top Navigation Configuration
+# Controls both the top banner and footer navigation
+
+brand:
+  name: "DocOps Lab"
+  url: "/"
+  tagline: "Powering documentation operations with automation, tooling, and best practices"
+
+primary_links:
+  - name: "Projects"
+    url: "/projects/"
+    icon: "folder-code"
+    description: "Open source tools and libraries"
+    
+  - name: "Blog"
+    url: "/blog/"
+    icon: "rss"
+    description: "Latest insights and tutorials"
+    
+  - name: "Docs"
+    url: "/docs/"
+    icon: "book-open"
+    description: "Documentation and guides"
+    
+  - name: "Contributing"
+    url: "/docs/contributing/"
+    icon: "heart-handshake"
+    description: "How to get involved"
+
+external_links:
+  - name: "GitHub"
+    url: "https://github.com/DocOps"
+    icon: "github"
+    description: "Source code and repositories"
+    target: "_blank"
+    
+  - name: "Community"
+    url: "https://www.writethedocs.org/slack/"
+    icon: "users"
+    description: "Join our Write the Docs and find the #DocOps channel"
+    target: "_blank"
+
+footer_extras:
+  legal:
+    - name: "CC BY-SA 4.0"
+      url: "https://creativecommons.org/licenses/by-sa/4.0/"
+      target: "_blank"
+      description: "Content license"
+      
+  tools:
+    - name: "Jekyll"
+      url: "https://jekyllrb.com"
+      icon: "/assets/images/jekyll-favicon.png"
+      target: "_blank"
+      
+    - name: "Asciidoctor"
+      url: "https://asciidoctor.org"
+      icon: "/assets/images/asciidoctor-logo.svg"
+      target: "_blank"
+      
+    - name: "GitHub Pages"
+      url: "https://pages.github.com"
+      icon: "/assets/images/github-mark-white.png"
+      target: "_blank"
+
+# Banner behavior settings
+banner:
+  sticky: true
+  hide_on_scroll: true
+  hide_threshold: 200  # pixels scrolled before hiding
+  show_on_footer: false  # show banner when footer is visible

@@ -1,0 +1,227 @@
+---
+title: DocOps Lab Release Process (General)
+docs-group: technical
+description: "Integration and deployment/delivery process for DocOps Lab sites and artifacts."
+order: 38
+---
+// tag::attributes[]
+:docs-change-note: This step may vary significantly depending on project's implementation of ReleaseHx.
+:tok_majmin: <$tok.majmin>
+:tok_patch: <$tok.patch>
+// end::attributes[]
+:page-tokens: majmin,patch
+:page-token_majmin: text
+:page-token_majmin_default: 1.2
+:page-token_majmin_label: Major.Minor Version
+:page-token_patch: text
+:page-token_patch_default: 0
+:page-token_patch_label: Patch Version
+:page-tokens_message: This page supports fixing the version numbers used in the release procedure steps. Adjust as needed.
+include::../_local_settings.adoc[]
+= Release Process (General)
+
+DocOps Lab projects follow a consistent, if always progressing, architecture and development/release process.
+
+This guide focuses on the release process.
+
+
+[[prerequisites]]
+== Prerequisites
+
+include::../partials/_prerequisites.adoc[tags="general"]
+
+include::../partials/_prerequisites.adoc[tags="release"]
+
+[[platform-setup]]
+=== Platform Setup
+
+Deployment platforms must be initialized for each new project, as instructed in {xref_docs_deployment-setup_link}.
+
+
+[[release-procedure]]
+== Release Procedure
+
+// tag::procedure[]
+[[manual-double-checks]]
+=== Manual Double-Checks
+// tag::manual-double-checks[]
+[%interactive]
+- [ ] No local paths in `Gemfile`.
+- [ ] All documentation changes merged.
+- [ ] Version attribute bumped and propagated.
+// end::manual-double-checks[]
+
+[[conditions-definition-of-done]]
+=== Conditions ("Definition of Done")
+
+// tag::conditions[]
+[%interactive]
+- [ ] All target issues are closed.
+- [ ] CI builds and tests pass on `dev/x.y`.
+- [ ] Documentation updated and merged.
+// end::conditions[]
+
+[[release-step-history]]
+=== Step 1. Prepare Release History
+
+// tag::step-history[]
+Generate release notes and changelog using ReleaseHx.
+
+[subs=+attributes]
+....
+bundle update releasehx
+bundle exec releasehx {tok_majmin}.{tok_patch} --md docs/release/{tok_majmin}.{tok_patch}.md
+....
+
+Edit the Markdown file at `docs/release/{tok_majmin}.{tok_patch}.md`.
+
+NOTE: {docs-change-note}
+
+See the project's `README.adoc`; seek for `releasehx`.
+// end::step-history[]
+
+[[step-2-merge-to-main]]
+=== Step 2. Merge to Main
+
+// tag::step-merge[]
+[subs=+attributes]
+....
+git checkout main
+git pull origin main
+git merge --no-ff dev/{tok_majmin}
+git push origin main
+....
+// end::step-merge[]
+
+[[step-3-tag-release]]
+=== Step 3. Tag Release
+
+// tag::step-tag[]
+[subs=+attributes]
+....
+git tag -a v{tok_majmin}.{tok_patch} -m "Release {tok_majmin}.{tok_patch}"
+git push origin v{tok_majmin}.{tok_patch}
+....
+// end::step-tag[]
+
+[[release-step-announce]]
+=== Step 4. Create GitHub Release
+
+// tag::step-announce[]
+Use the GitHub CLI to create a release:
+
+[subs=+attributes]
+....
+gh release create v{tok_majmin}.{tok_patch} --title "Release {tok_majmin}.{tok_patch}" --notes-file docs/releases/{tok_majmin}.{tok_patch}.md --target main
+....
+
+Or else use the GitHub web interface to manually register the release, and copy/paste the contents of `docs/releasehx/{tok_majmin}.{tok_patch}.md` into the release notes field.
+// end::step-announce[]
+
+[[release-step-artifacts]]
+=== Step 5. Publish Remaining Artifacts
+
+// tag::step-artifacts[]
+Use the `publish.sh` script with <<required-credentials,proper credentials>> in place.
+
+....
+./scripts/publish.sh
+....
+
+This step concludes the release process.
+// end::step-artifacts[]
+
+// end::procedure[]
+
+[[post-release-tasks]]
+=== Post-Release Tasks
+
+// tag::post-release[]
+[%interactive]
+- [ ] Cut a _release_ branch for patching (`release/{tok_majmin}`).
+- [ ] Update `:next_prod_vrsn:` in docs.
+- [ ] Create next development branch (`dev/<next>`).
+- [ ] Notify stakeholders.
+// end::post-release[]
+
+
+[[patch-procedure]]
+== Patch Procedure
+
+// tag::rollback-patching[]
+[[rollback-failsafe]]
+=== Rollback Failsafe
+
+If a release must be rolled back and retracted, you must revert the changes and "`yank`" the artifacts.
+
+[subs=+attributes]
+....
+git tag -d v{tok_majmin}.{tok_patch}
+git push origin :refs/tags/v{tok_majmin}.{tok_patch}
+git revert -m 1 <merge-commit>
+git push origin main
+....
+
+Retract or yank the artifacts (DockerHub, RubyGems, etc) and nullify the GH release.
+
+[subs=+attributes]
+....
+gh release delete v{tok_majmin}.{tok_patch}
+gem yank --version {tok_majmin}.{tok_patch} <gemname>
+docker rmi <image>:{tok_majmin}.{tok_patch}
+....
+
+Be sure to un-publish any additional artifacts specific to the project.
+
+[[standard-patching]]
+=== Standard Patching
+
+Perform patch work against the earliest affected `release/x.y`.
+These examples use `1.1`, `1.2`, and `1.2.1` as example versions.
+
+.Patch development procedure
+....
+git checkout release/1.1
+git checkout -b fix/parser-typo
+# … FIX …
+git add .
+git commit -m "fix: correct parser typo"
+git push origin fix/parser-typo
+# … TEST …
+git checkout release/1.1
+git merge --squash fix/parser-typo
+git commit -m "fix: correct parser typo"
+git push origin release/1.1
+git tag -a v1.2 -m "Patch release 1.2"
+git push origin v1.2
+....
+
+
+.Example forward porting procedure
+....
+git checkout release/1.2
+git cherry-pick <commit-hash>
+# … TEST …
+git push origin release/1.2
+git tag -a v1.2.1 -m "Patch release 1.2.1"
+git push origin v1.2.1
+....
+
+[NOTE]
+Be sure to change `1.1`, `1.2`, and `1.2.1` to the actual affected branches and versions.
+
+Repeat for every affected branch then release the patched versions.
+
+[NOTE]
+Between minor versions, patch versions may vary due to inconsistent applicability of patches.
+
+// end::rollback-patching[]
+
+[[patch-releasing]]
+=== Patch Releasing
+
+Perform Steps 1, 4, and 5 of the standard release procedure:
+
+* <<release-step-history>>
+* <<release-step-announce>>
+* <<release-step-artifacts>>

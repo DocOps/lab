@@ -1,0 +1,250 @@
+:page-tags: ["programming", "documentation", "DocOps", "automation", "builds"]
+:page-date: 2025-06-25
+:page-published: true
+:page-excerpt: Documentation and application should derive all key data from a true single source of truth (TSST) defined once and conveyed across all product and documentation builds.
+:page-author: Brian Dominick
+:page-image: blog-truthiness.jpg
+:page-image-alt: Stephen Colbert from The Colbert Report inventing 'truthiness'.
+// tag::more-than-rest[]
+:more-than-rest: Defining relatively complex interfaces in YAML can apply to much more than just REST APIs.
+// end::more-than-rest[]
+:toc: macro
+include::../README.adoc[tag=globals]
+= TRUE Single Sourcing with YAML and AsciiDoc
+
+{page-excerpt}
+
+This approach conveys more advantages than you might think at first gloss, including *testability* and *cooperative design* through Git-tracked specification and definition.
+
+My method is to use AsciiDoc `README.adoc` and YAML files to assign all kinds of key product data, including structured data for interface definition and reference documentation.
+
+This post is a doozie, so let's TOC it out.
+
+toc::[]
+
+
+[[the-example-of-openapi]]
+== The Example of OpenAPI
+
+There are few universally known technologies across all of programming and software technical writing, but one of them is OpenAPI Specification (OAS), a standardized data format used to "`describe`" or "`define`" server application interfaces that honor the standard RESTful HTTP architecture and protocol.
+
+That is, one "`language`" can be used to detail _just about_ everything anyone would need to know about how a given REST API is supposed to work, at least in terms of what endpoints do what with a given set of data and a given method (POST, GET, PUT, DELETE).
+
+OAS is a great example of a "`true single source of truth`" (TSST) when used to _define_ the API itself as well as the documentation downstream developers use to make informed connections to the API.
+
+// tag::pullquote[]
+[.pullquote]
+____
+xref:why-stop-there[{more-than-rest}]
+____
+// end::pullquote[]
+
+If you're having trouble recalling just what OpenAPI code looks like, here's a simple example:
+
+.OpenAPI Example
+[source,yaml]
+----
+openapi: 3.1.0
+info:
+  title: Sample API
+  description: A simple API to illustrate OpenAPI concepts
+  version: '2'
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /items:
+    get:
+      summary: Retrieve a list of items
+      responses:
+        '200':
+          description: A JSON array of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+                    score:
+                      type: integer
+    post:
+      summary: Create a new item
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                score:
+                  type: integer
+----
+
+This code defines two operations on one endpoint of a hypothetical API, but it should serve to illustrate.
+
+At its best, OpenAPI is a _YAML data format_ that can be used to generate documentation, client libraries, server stubs, and more.
+At the very least, it can be used as an authoritative reference for API development and testing.
+
+In fact, non-developers, such as _technical writers_ and _product managers_, can use or even _contribute to_ an OpenAPI document (OAD).
+The RESTful interface architecture is relatively simple, and anyone who comes to understand it can help design and define such an API using OAS.
+There is no reason at all to leave this to developers, though they may have critical feedback during the planning or implementation stages.
+
+
+[[why-stop-there]]
+== Why Stop There?
+
+{more-than-rest}
+
+Full-stack application development involves much more "`coding`" than most would consider actual "`programming`".
+Consider _interface design_ and _database design_, for instance.
+Both are best done in code, but neither is really _programming_, per se.
+
+Now, I have admittedly never seen a non-developer design a database schema, but I can readily imagine savvy technical writers and product managers creating sensible YAML documents to convey structured data when a relational database would be overkill.
+And I certainly _have_ seen non-developers contribute to REST API design via OAS.
+
+So that _non-programming coding_ category certainly includes editing YAML files, and I would imagine it even includes _templating_ languages such as Jinja, Liquid, and Handlebars.
+These can involve data processing and logic, but they are relatively simple and purpose-built for _text transformation_.
+
+Liquid was specifically designed for non-developers, and generative-AI coding tools are adept at writing templates in nearly all popular syntaxes.
+This means those savvy non-programmers can help author data files _and_ help turn them into good, auto-generated reference documentation.
+
+This non-programmer involvement is but one of the key advantages of stepping away from "`native`" (Python, Java, Rust, Javascript, Ruby, Golang, etc) programming code and into a truly cross-language, human-writeable data format like YAML.
+
+[NOTE]
+While YAML is second only to JSON and XML in terms of current popularity, it is wildly more user- and Git-friendly than the leading formats.
+Meanwhile, YAML-like formats such as TOML, CSON, HJSON are lesser known alternatives.
+
+[[interface-types]]
+=== About Those Other Interface Types
+
+It turns out YAML is a terrific format for all kinds of interface _definition_ coding.
+
+It can be used for defining YAML/JSON *configuration files*.
+It can be used to define *command-line interfaces* (CLIs), *HTML forms*, *file/directory structures*, and much more, always allowing for extensive auxiliary metadata for each element so defined, whether it be a REST API endpoint or a form input field.
+
+Here is an example of how I use YAML to define YAML-formatted configuration files for my Ruby applications:
+
+[source,yaml]
+----
+properties:
+  log_level:
+    type: String
+    desc: The logging level for the application.
+    dflt: info
+    opts: [debug, info, warn, error, fatal]
+  output_format:
+    type: String
+    desc: The format for output data.
+    opts: [json, yaml, xml]
+    dflt: json
+  max_retries:
+    type: Integer
+    desc: The maximum number of retry attempts for failed operations.
+    span: '0..5'
+    dflt: 3
+----
+
+This definition supports some automated validation, and it allows me to generate documentation directly from this very source.
+
+[source,asciidoc]
+----
+include::../assets/snippets/config-sample.adoc[]
+----
+
+[[the-advantages-of-yaml-based-tsst]]
+=== The Advantages of YAML-based TSST
+
+So what are the key advantages of using YAML-based TSST?
+
+[.cards]
+--
+* *Enables truly cooperative design and definition.*
+Non-programmers can contribute to the design and definition of interfaces, data structures, and more.
+
+* *Sources documentation right where the interface is defined.*
+Developers are used to this for REST and native APIs, though the latter is usually (sensibly) handled in the language's official or dominant "`inline`" format.
+For less language-specific interfaces, YAML is a great way to define the interface and its documentation in one place.
+
+* *Informs automated testing.*
+Integration tests can ingest YAML definition data to test against a single data source maintained by all stakeholders.
+--
+
+For these reasons, YAML is my go-to source format for defining nearly all interfaces, as I will explore in this blog in future posts.
+
+
+[[single-source-readme]]
+== Single Sourcing in +++`+++README.adoc+++`+++
+
+The other place I love to define global application data is in the root `README.adoc` file of the project.
+Only data that appears in the README is optimally stored here, since YAML is a more flexible and precise data-serialization format.
+
+But user-defined AsciiDoc attributes are a great way to ensure that ALL documentation and even the product itself are deriving data from the same single source.
+
+For example, all of my Ruby APIs and CLIs derive their canonical version number from an attribute in the `README.adoc` file.
+It's called `this_prod_vrsn`, and I can express it anywhere in the documentation as `\{this_prod_vrsn}`, as well as ingest it into the product at build time.
+
+[source,ruby]
+----
+require 'asciidoctor'
+doc = Asciidoctor.load_file('README.adoc', safe: :safe)
+ATTRS = doc.attributes
+VERSION = ATTRS['this_prod_vrsn']
+----
+
+AsciiDoc attributes unfortunately do not support nested data structures or even Arrays, but they are sufficient for core data such as default values, general product data, and anything else you might wish to report in your README itself as well as throughout the product and user documentation.
+
+One big advantage of AsciiDoc attributes is that they are inheritable like native variables.
+
+[source,asciidoc,subs="none"]
+----
+:product_base_url: https://example.org
+:product_api_url: {product_base_url}/api
+----
+
+
+[[generating-docs-with-templating-engines]]
+== Generating Docs with Templating Engines
+
+You may have been wondering how our YAML data turned into AsciiDoc source code in the <<interface-types,previous examples>>.
+
+The trick is a templating processor, such as those that parse syntaxes like Liquid and render textual output from the input data provided.
+
+[source,twig]
+----
+{% for property in properties %}
+property[0]::
+{{ property[1].desc }}
+[horizontal]
+Default::: `{{ property[1].dflt }}`
+{% if property[1].opts %}
+Options::: {% for opt in property[1].opts %}`{{ opt }}`{% unless forloop.last %}, {% endunless %}{% endfor %}
+{% endif %}
+{% if property[1].span %}
+Range::: `{{ property[1].span | replace:".." , "-" }}`
+{% endif %}
+{% endfor %}
+----
+
+That is all the markup that is required to generate the AsciiDoc source code shown earlier, which I'll repeat here again for convenience.
+
+[source,asciidoc]
+----
+include::../assets/snippets/config-sample.adoc[]
+----
+
+
+[[truth-and-purism]]
+== Truth and Purism
+
+It's a funny coincidence that "`TSST`" reads and sounds like a scolding.
+The very concept is strict and somewhat cold, I have to admit.
+
+It is unwise to be a "`purist`" about nearly anything, especially in software development, so of course there may be exceptions where an instance of product datum has to be defined twice.
+
+But it is a great principle to aim for, as it offers true benefits along the design -> definition -> documentation -> validation pipeline.

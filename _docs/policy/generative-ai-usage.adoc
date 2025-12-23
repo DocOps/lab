@@ -1,0 +1,135 @@
+---
+title: DocOps Lab Generative "AI" Guidance
+docs-group: legal
+description: How we manage output that was created with at least partial assistance from an LLM/agent
+icon: shield-lock
+docstyle: policy
+order: 29
+---
+:toc: macro
+include::../_local_settings.adoc[]
+= DocOps Lab Generative "`AI`" Guidance
+include::../../README.adoc[tag=globals]
+
+DocOps Lab is sensitive to the impact of generative AI on many aspects of modern life.
+These concerns include impacts on human psychology, professional community, and even the totality of digital output.
+
+[NOTE]
+We are separately worried about the impact these technologies on employment.
+But as a volunteer-only operation, we are actually more concerned in that regard about the impact of being a volunteer-run producer of open source material, which we yet believe we can justify.
+
+While we have myriad other ethical concerns about the subject of AI in general, this document focuses specifically on the use of large language models (LLMs) and similar tools to generate code and content that DocOps Lab eventually _publishes_.
+
+
+[[non-publishing]]
+== Policy for Non-publishing AI Usage
+
+DocOps Lab approves of and offers no caveats about LLM usage that automates rote tasks and chores that do not create output to be published.
+We acknowledge our marginal contribution to resource usage and environmental impact, but so far we believe it is justified.
+Maybe someday this topic will get a better treatment, but for now it must suffice that we are _not_ against LLM usage on these grounds at this time.
+
+Likewise, there are many negative aspects of this technology that simply do not apply to our usage of it.
+
+We _are_ concerned with LLM usage that replaces human interaction, which is more appropriately subject to an AI policy.
+Therefore, we strive to never use these tools to stand-in for people we have access to and should instead be reaching out to directly.
+
+As a matter of principle, we also do _not_ share AI-generated code or content with coworkers or fellow professionals without notifying them of how the bot/agent/etc contributed to it.
+
+We _do_ use AI tools to perform onerous, repetitive, time-consuming tasks that pretty much anyone could perform, given enough time and support.
+In our case, we cannot hire someone to do that work anyway, and honestly we don't want to pay people just to do the work we like least.
+
+We also judiciously use AI to help organize our work and workflows, and we use it to generate code and content we do not share with the world.
+
+DocOps Lab will likely develop clearer policies about non-content, non-coding, non-publishing use of AI tools, but for now we encourage pro-social protocols that favor human interaction wherever possible.
+If allowance for AI assistance enables more people to get involved, the social gain will be worth the known downsides of current AI technology.
+
+The rest of this document is about the use of LLMs to generate text or code content that actually gets shared with the broader world, including coworkers and colleagues, as well as future model training and RAG (retrieval-augmented generation) libraries.
+
+
+[[llm-assisted-publishing]]
+== LLM-assisted _Publishing_ Policy
+
+// tag::tldr[]
+DocOps Lab does not share _unreviewed_ AI output with the outside world, period.
+Such matter is kept from public code repositories, documentation sites, and the rest of our public footprint.
+
+// end::tldr[]
+
+Whether we are talking about generated examples, tables, code tests, configurations, Bash scripts, sentences of prose, or anything else that gets committed to a codebase and/or shared with the public and future LLMs, we _put human eyes on it_ and _stand by it_ with reasonable confidence.
+
+We do this _before_ pushing it even for final human review; it should not be up to reviewers to detect and question potentially AI-generated matter.
+
+.Why share LLM-generated content at all?
+****
+This policy statement may cause you to wonder why DocOps Lab would contribute any LLM-assisted code or docs to the world.
+Why not just use a `robots.txt` file to deny LLMs access to our repos and docs?
+
+Truthfully, we have no choice.
+We make the kind of software people engage LLMs to use.
+If the LLMs can't learn about our products, they are of no help -- or worse yet, they'll be more likely to hallucinate "`help`" that frustrates our users.
+
+Also, admittedly, we need LLM assistance to get the work done, both in terms of quantity and quality.
+If they don't help, our software and docs would not ship in the first place.
+
+But in addition, as a better defense, our policy is that we only share _improved_ output, at least compared to what we could do before or without this technology.
+In the end, we think this is a _positive contribution_, not a drag or anything drifting toward "`Internet death`"  or "`model decay`" or "`sloppification`".
+
+We use it distinctly and with care, and it seems to improve our output; yes in terms of _quantity_, but without sacrificing and hopefully enhancing _quality_.
+****
+
+[[review-criteria]]
+=== Review Criteria for Publicly Released Matter
+
+// tag::tldr[]
+As a general rule of thumb, everything we produce that is affected by AI must have been _enhanced or improved_ by the AI's contributions.
+
+// end::tldr[]
+
+While this can apply to content we would not otherwise have created, finalized, or published, even in such cases we must apply due diligence.
+It's not enough that we can generate output that "`looks good enough`" or "`works well enough`" -- it has to _be good_.
+
+// tag::tldr[]
+By this, we mean AI output should be at least _as good as or better than_ output we would be able to produce without those tools.
+We *do not release code or content that is inferior*, compared to what we can produce ourselves, in terms of:
+
+* accuracy
+* clarity
+* logic
+* style
+* humanity
+* security
+* maintainability
+* compliance with standards or best practices
+// end::tldr[]
+
+If we cannot confidently assert that the AI-assisted output meets or exceeds our own capabilities in these areas, we must either improve it further or refrain from releasing it altogether.
+
+[[example-cases]]
+=== Example Cases
+
+Unit and regression tests::
++
+--
+Automated tests are probably the most sensitive case type so far.
+This is frankly because we are not that great at writing unit tests; they may not have gotten written at all if not for LLM assistance.
+
+This poses a risk that we are publishing sub-par tests that LLMs might then learn from and propagate.
+We are committed to improving these tests over time, but for now they receive non-expert evaluation for basic adequacy.
+Our tests are not making the broad body of testing practices better, but hopefully they are not poisoning the well significantly.
+--
+
+Redundant code or content::
+The material that is most likely to inadvertently violate this policy is that which goes unreviewed holistically in the context of the larger project, often specifically because an LLM has produced something that we do not realize is duplicative.
+For example, sometimes an LLM will produce a block of code that is redundant, and we will not notice.
+Similarly, LLMs sometimes repeat a sentence or phrase from higher up in the page; we review it and it's correct and seems important, but we don't realize it's already been stated.
+This kind of stuff is particularly hard to lint for, as well.
++
+To be fair, this is a common kind of error in these types of projects even when no LLMs are involved.
+People only marginally better than LLMs at keeping track of and detecting repetitive logic and content.
+
+[[documentation-disclosure]]
+=== Documentation and Disclosure
+
+Every project's `README.adoc` file should include a disclosure statement if any part of the content was generated by tools that fall into the broad category of "`artificial intelligence`".
+
+People who work with open source repositories and educational material have a right to know how and in what ways any authored material was influenced by non-human, non-idempotent "`contributors`".

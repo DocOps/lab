@@ -1,0 +1,239 @@
+name: Main CI/CD Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      deploy_staging:
+        description: 'Deploy to staging environment'
+        type: boolean
+        default: false
+
+# Set permissions for GitHub Pages deployment and PR comments
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: write
+  deployments: write
+
+# Allow only one concurrent deployment per ref
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Run QA checks on all PRs and pushes
+  qa-checks:
+    name: Quality Assurance
+    uses: ./.github/workflows/qa.yml
+    with:
+      ruby_versions: '["3.2"]'
+      enable_cache: true
+      vale_min_alert: "warning"
+      skip_htmlproofer: true  # Skip for now due to private repo links
+
+  # Build the documentation site
+  build-site:
+    name: Build Documentation Site
+    needs: qa-checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Build site and gem
+        run: |
+          bundle exec rake build_site
+          bundle exec rake gemdo:build_gem
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: _site/
+          retention-days: 7
+
+      - name: Upload gem artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gem-${{ github.sha }}
+          path: gems/docopslab-dev/pkg/*.gem
+          retention-days: 30
+
+  # PR artifacts comment
+  pr-artifacts:
+    name: PR Artifacts
+    if: github.event_name == 'pull_request'
+    needs: build-site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment PR with artifact info
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = `## ✅ Build Complete!
+            
+            Your changes have been built successfully. Download the artifacts to review:
+            
+            - **Site Build**: Available in workflow artifacts as \`site-${{ github.sha }}\`
+            - **Gem Package**: Available in workflow artifacts as \`gem-${{ github.sha }}\`
+            
+            To preview the site locally (requires [GitHub CLI](https://cli.github.com/)):
+            \`\`\`bash
+            SHA=${{ github.sha }} bundle exec rake review:serve
+            \`\`\`
+            
+            This will automatically fetch, extract, and serve the review site at http://localhost:4001
+            
+            This build will be updated automatically with new commits to this PR.`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+  # Deploy site to gh-pages branch (main branch only)
+  deploy-gh-pages:
+    name: Deploy to gh-pages Branch
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build-site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: _temp_site
+
+      - name: Clear gh-pages and copy new site
+        run: |
+          # Remove everything except .git
+          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' -exec rm -rf {} +
+          
+          # Copy new site
+          cp -r _temp_site/* .
+          rm -rf _temp_site
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy site from ${{ github.sha }}" || echo "No changes to commit"
+          git push origin gh-pages
+
+      - name: Create deployment summary
+        run: |
+          echo "## 🎉 Site Deployed to gh-pages!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Site URL:** https://docopslab.org" >> $GITHUB_STEP_SUMMARY
+          echo "**Source Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Deployed at:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+
+  # Publish agent docs to agent-docs branch (main branch only)
+  publish-agent-docs:
+    name: Publish Agent Docs Branch
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build-site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Generate agent docs
+        run: bundle exec rake gemdo:gen_agent_docs
+
+      - name: Setup agent-docs branch
+        run: |
+          # Check if agent-docs branch exists
+          if git ls-remote --exit-code --heads origin agent-docs; then
+            echo "Branch exists, checking out"
+            git fetch origin agent-docs
+            git checkout agent-docs
+          else
+            echo "Branch doesn't exist, creating orphan branch"
+            git checkout --orphan agent-docs
+            git rm -rf .
+          fi
+
+      - name: Copy agent docs
+        run: |
+          # Clear existing content except .git and the source gem directory
+          find . -maxdepth 1 ! -name '.git' ! -name '.' ! -name '..' ! -name 'gems' -exec rm -rf {} +
+          
+          # Copy agent docs from source
+          if [ -d "gems/docopslab-dev/docs/agent" ]; then
+            cp -r gems/docopslab-dev/docs/agent/* .
+            rm -rf gems
+            echo "✅ Agent docs copied"
+          else
+            echo "❌ Agent docs not found at gems/docopslab-dev/docs/agent"
+            exit 1
+          fi
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Update agent docs from ${{ github.sha }}" || echo "No changes to commit"
+          git push origin agent-docs
+
+      - name: Create deployment summary
+        run: |
+          echo "## 📚 Agent Docs Published!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Branch:** agent-docs" >> $GITHUB_STEP_SUMMARY
+          echo "**Source Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Published at:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+
+  # Publish gem artifacts on release
+  publish-artifacts:
+    name: Publish Release Artifacts
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'release:')
+    needs: [build-site, deploy-gh-pages]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download gem artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: gem-${{ github.sha }}
+          path: gems/
+

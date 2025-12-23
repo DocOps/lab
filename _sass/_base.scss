@@ -1,0 +1,124 @@
+// Import mixins for use in this file
+@use "mixins";
+
+// Enable CSS anchor positioning
+html {
+  interpolate-size: allow-keywords;
+}
+
+// Base styles - Global resets and typography
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Typography
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition);
+  &.btn-metablog {
+    color: var(--secondary-color);
+  }
+}
+
+// Layout
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Utilities
+.text-center {
+  text-align: center;
+}
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
+.mb-4 { margin-bottom: 4rem; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mt-4 { margin-top: 4rem; }
+
+// Responsive
+@media (max-width: 768px) {
+  .container {
+  padding: 0 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+  padding: 0 10px;
+  }
+}
+
+// Highlight.js customizations
+pre {
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  margin: 1rem 0;
+  /* Default background when no HLJS theme is applied */
+  background-color: var(--pre-background, #f8fafc);
+  padding: 0; /* padding will be applied to the inner code element when highlighted */
+  
+  code {
+  background: none;
+  padding: 1rem; /* move padding to code so theme background fills the padded area */
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: inherit;
+  display: block; /* ensure padding applies as a block */
+  }
+}
+
+/* Only apply inline code background when not a block highlighted by HLJS */
+code:not(pre code) {
+  background-color: var(--code-background, #f1f5f9);
+  color: var(--code-color, #334155);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
+}
+
+/* When HLJS is applied, avoid overriding theme colors */
+pre.hljs-container {
+  background: transparent; /* let code.hljs background define the visual */
+}
+pre.hljs-container code.hljs {
+  /* padding and radius are here so the theme background covers the padded area */
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  display: block;
+  /* enforce the shared surface color so title and code match */
+  background-color: var(--hljs-bg) !important;
+  color: var(--hljs-fg) !important;
+}
+
+// Inline code styling for various contexts
+.content code:not(.literalblock code):not(pre code) {
+  background-color: var(--code-background, #f1f5f9);
+  color: var(--code-color, #334155);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
+}

@@ -1,0 +1,33 @@
+---
+title: DocOps Lab Dockerfile and Docker Image Management
+docs-group: technical
+description: "Dockerfile coding and Docker image management in DocOps Lab projects"
+order: 66
+---
+include::../_local_settings.adoc[]
+= Dockerfile and Docker Image Management
+include::../../README.adoc[tag="globals"]
+
+// tag::body[]
+DocOps Lab projects make extensive use of Docker.
+
+All runtime projects provide have their own Docker image hosted on Docker Hub and sourced in their own repo's `Dockerfile`.
+This way a reliable executable is available across all platforms and environments.
+
+Some of our CI/CD pipelines will be "`Dockerized`" to provide consistent builds and tests across numerous repos.
+
+The DocOps Box project maintains an elaborate Dockerfile and image/container management script (`docksh`) that can help manage multiple environments.
+This is most advantageous for non-Ruby/non-programmer users building a complex documentation codebase in the Ruby/DocOps Lab ecosystem or using multiple DocOps Lab or similar tools across numerous multiple codebases.
+
+
+[[application-dockerfiles-and-images]]
+== Application Dockerfiles and Images
+
+Each runtime application project has its own `Dockerfile` in the root of its repository.
+
+This Dockerfile defines the image that will be built and pushed to Docker Hub for use by anyone needing to run the application.
+
+[NOTE]
+Some Dockerfiles combine multiple applications, such as the link:{docopslab_hub_url}[issuer-rhx image], which combines both the Issuer and ReleaseHx applications.
+
+// end::body[]

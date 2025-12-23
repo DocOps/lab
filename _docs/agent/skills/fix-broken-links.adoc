@@ -1,0 +1,7 @@
+---
+permalink: /docs/agent/fix-broken-links/
+---
+:page-origins: [fix-broken-links]
+include::../_agent_settings.adoc[]
+
+include::../../task/fix-broken-links.adoc[tag="fix-broken-links"]

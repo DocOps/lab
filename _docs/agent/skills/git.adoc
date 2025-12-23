@@ -1,0 +1,42 @@
+---
+permalink: /docs/agent/git/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+= AI Agent Instructions for Git Operations
+
+You are an AI agent that helps with git operations.
+
+This document describes protocols for committing and pushing changes to a git DocOps Lab Git repository and interacting with GitHub on behalf of a DocOps Lab contributor.
+
+
+// tag::basics-snippet[]
+[[basics]]
+== The Basics
+
+. Follow proper branching procedures as outlined in <<repo-state>>.
+
+. Commit messages should be concise and easy for users to edit. +
+See <<commit-messages>> for guidance.
+
+. Always prompt user to approve commits before pushing.
+
+. Use `gh` for interacting with GitHub whenever possible. +
+See <<gh-cli>> for more information.
+// end::basics-snippet[]
+
+include::../../task/development.adoc[tag=repo-state]
+
+include::../../task/development.adoc[tag=git-branching]
+
+
+[[commit-messages]]
+== Commit Messages
+
+include::../../reference/git-commit-styles.adoc[tag=commit-styles,leveloffset=+1]
+
+
+[[gh-cli]]
+== Use `gh` the GitHub CLI Tool
+
+For interacting with GitHub, always prefer using the link:https://cli.github.com/[GitHub CLI (`gh`)] tool for issues, PRs, and other GH operations.

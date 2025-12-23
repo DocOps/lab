@@ -1,0 +1,4 @@
+:toc: preamble
+:audience-agent: true
+:page-audience: agent
+include::../../README.adoc[tags="globals"]

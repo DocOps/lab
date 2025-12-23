@@ -1,0 +1,153 @@
+{% assign is_metablog = include.metablog | default: page.metablog | default: collection.metablog | default: false %}
+{% if is_metablog %}
+  {% assign collection = site.collections | find: "label", "metablog" %}
+  {% assign posts = site.metablog %}
+  {% assign metablog_class = "metablog" %}
+{% else %}
+  {% assign collection = site.collections | find: "label", "posts" %}
+  {% assign posts = site.blog %}
+{% endif %}
+{%- assign posts = posts | sort: 'date' | reverse -%}
+
+<div class="blog-index-container {{ metablog_class }}">
+  {% include container.html %}
+  
+  <div class="blog-header {{ metablog_class }}">
+    <h1 class="blog-title {{ metablog_class }}">
+      {% if is_metablog %}
+        <i data-lucide="microscope" style="width: 2em; height: 2em;"></i>
+      {% else %}
+        <img src="{{ '/assets/images/favicons/favicon-raw-transparent.png' | relative_url }}" alt="DocOps Lab Favicon" class="blog-favicon-logo">
+      {% endif %}
+      {% if is_metablog %}{{ page.blog_title }}{% else %}DocOps Lab Blog{% endif %}
+    </h1>
+    <p class="blog-description {{ metablog_class }}">{{ page.tagline }}</p>
+    {% if collection.intro_text %}
+    <div class="blog-intro metablog">
+      {% if collection.intro_text_icon %}
+      <i data-lucide="{{ collection.intro_text_icon }}" style="width: 3em; height: 3em;"></i>
+      {% endif %}
+      <div class="intro-text">{{ collection.intro_text }}</div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="blog-posts {{ metablog_class }}">
+    {% if posts.size > 0 %}
+      {% for post in posts %}
+        {% comment %} For metablog posts, get the subject post {% endcomment %}
+        {% if is_metablog %}
+          {% assign subject_post = site.posts | where: "slug", post.subject-post | first %}
+        {% endif %}
+        
+        <article class="blog-post-preview {{ metablog_class }}">
+          {% comment %} Regular blog posts can have images {% endcomment %}
+          {% unless is_metablog %}
+            {% if post.image %}
+            <div class="post-preview-image">
+              <img src="/assets/images/{{ post.image | relative_url }}" alt="{{ post.image-alt | default: post.title }}" class="post-image">
+            </div>
+            {% endif %}
+          {% endunless %}
+          
+          <header class="post-preview-header {{ metablog_class }}">
+            <h2 class="post-preview-title {{ metablog_class }}">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h2>
+            
+            <div class="post-preview-meta {{ metablog_class }}">
+
+              {% if post.author %}
+              <span class="post-author {{ metablog_class }}">
+                <i data-lucide="user"></i>
+                {{ post.author }}
+              </span>
+              {% endif %}
+              {% if is_metablog %}
+                {% if subject_post %}
+                <span class="meta-subject-post">
+                  <i data-lucide="microscope"></i>
+                  Analyzing: <a href="{{ subject_post.url | relative_url }}">{{ subject_post.title }}</a>
+                </span>
+                {% endif %}
+              {% else %}
+                <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
+                  <i data-lucide="calendar"></i>
+                  {{ post.date | date: "%B %d, %Y" }}
+                </time>
+              {% endif %}
+
+              
+              {% comment %} Check if regular blog post has metablog entry {% endcomment %}
+              {% unless is_metablog %}
+                {% assign meta_post = site.metablog | find: "subject-post", post.slug %}
+                {% if meta_post %}
+                <span class="metablogged-indicator">
+                  <span class="metablogged-label">
+                    <a href="{{ meta_post.url }}"><i data-lucide="microscope"></i> META-BLOGGED</a>
+                  </span>
+                </span>
+                {% endif %}
+              {% endunless %}
+            </div>
+          </header>
+          
+          {% comment %} Show content preview for regular posts only {% endcomment %}
+          {% unless is_metablog %}
+          <div class="post-preview-content">
+            {% if post.excerpt %}
+              {{ post.excerpt | strip_html | truncatewords: 50 }}
+            {% else %}
+              {{ post.content | strip_html | truncatewords: 50 }}
+            {% endif %}
+          </div>
+          {% endunless %}
+          
+          {% if post.tags and post.tags.size > 0 %}
+          <div class="post-preview-tags {{ metablog_class }}">
+            <i data-lucide="tag"></i>
+            {% for tag in post.tags %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          
+          <footer class="post-preview-footer {{ metablog_class }}">
+            <a href="{{ post.url | relative_url }}" class="read-more">
+              {{ collection.read_more_text | default: "Read More" }}
+              <i data-lucide="arrow-right"></i>
+            </a>
+          </footer>
+        </article>
+      {% endfor %}
+    {% else %}
+      <div class="no-posts {{ metablog_class }}">
+        <i data-lucide="{{ collection.no_posts_icon | default: 'edit-3' }}"></i>
+        <h3>{{ collection.no_posts_title | default: 'No posts yet' }}</h3>
+      </div>
+    {% endif %}
+
+    {% unless is_metablog %}
+      <article class="blog-post-preview metablog-link">
+        <div class="post-preview-content">
+          <h3 class="post-preview-title">
+            <a href="/metablog/" class="metablog-link">
+              <i data-lucide="microscope"></i>
+              Explore the Meta-Layer
+            </a>
+          </h3>
+          <p class="post-preview-description">
+            Dive into Dr. Meta's insights, commentary, and deeper technical explorations of our blog posts.
+          </p>
+        </div>
+      </article>
+
+    {% endunless %}
+  </div>
+  
+  {% if posts.size > 5 %}
+  <div class="blog-pagination {{ metablog_class }}">
+    <!-- Future pagination can go here -->
+  </div>
+  {% endif %}
+</div>

@@ -1,0 +1,518 @@
+include::../README.adoc[tag=globals]
+:page-tags: ["test", "icons", "AsciiDoc"]
+:page-excerpt: pass:q,a[This post is an ongoing experiment demonstrating the "`front end`" output produced by various expressions of AsciiDoc syntax, and it will show off some of the CSS and JavaScript work I've done in this area.]
+:page-author: Dr Meta
+:page-version: 0.1.0
+:page-image: asciidoc-logo-small.png
+:example-caption!:
+:page-github-url: {docopslab_hub_url}/blob/main/_metablog/tech-blogging-in-asciidoc.adoc
+:page-github-edit-url: {docopslab_hub_url}/edit/main/_metablog/tech-blogging-in-asciidoc.adoc
+:page-canonical: /metablog/tech-blogging-in-asciidoc
+:toc: macro
+:toclevels: 3
+:page-forced_mode: dark
+= Why Tech Blogging is Better in AsciiDoc
+
+{page-excerpt}
+
+The styling and effects you see here are not "`vanilla`" AsciiDoc output.
+After rendering AsciiDoc to HTML, it still needs to be styled with CSS, and most interactive effects need to be defined with CSS or JavaScript.
+
+Styling and effects are outside this post, but you can find the sources for all of this at {this_repo_base_url}/tree/main/_sass/asciidoc.scss and {this_repo_base_url}/tree/main/assets/js/main.js.
+
+toc::[]
+
+
+[[the-examples]]
+== The Examples
+
+It's time to examine the AsciiDoc awesome sauce.
+
+[[example-block-example]]
+=== Example Block Example
+
+First, let's address something you don't see every day in tech blogging: an actual, semantically (and visually) distinct block for exhibiting examples.
+
+include::_asciidoc-snippets.adoc[tag="example-block"]
+
+.How that was coded...
+[source,asciidoc,role="wrap"]
+--------
+include::_asciidoc-snippets.adoc[tag="example-block"]
+--------
+
+We will be using example blocks throughout this post to show off _rendered_ output, in contrast to the code blocks we'll use to expose the source of those blocks.
+
+[[transclusion-examples]]
+=== Transclusion Examples
+
+The AsciiDoc `include::` directive is awesome.
+It embeds the content of another file -- in whole _or in part_ -- into a parent document.
+
+Such includes are also used throughout the link:{page-github-url}?plain=1[source for this post].
+
+Nearly every example of block content in this post is transcluded from an adjacent file called `_asciidoc-snippets.adoc`, which is subvidivded using AsciiDoc include tags, demarcated like so:
+
+:tagged_content: Everything between tagged lines is included in the "calling" document.
+
+.An example of tagged content
+[source,asciidoc,subs=+attributes]
+----
+This part of the document will not be included.
+
+// tag::segment-name[]
+{tagged_content}
+// end::segment-name[]
+
+Nothing outside the tags will be included in a tagged include directive
+----
+
+The desired line of AsciiDoc source in a nearby or even _online_ file can be transcluded with a line like:
+
+.Embedding tagged content
+[source,asciidoc]
+--------
+\include::_asciidoc-snippets.adoc[tag="segment-name"]
+--------
+
+.Which resolves as...
+========
+{tagged_content}
+========
+
+But this works for files of any other format, as well.
+I use it a lot for YAML files.
+
+.Take a YAML file that looks like this:
+[source,yaml]
+--------
+include::_asciidoc-yaml-snippet.yml[]
+--------
+
+:include_line: include::_metablog/_asciidoc-yaml-snippet.yml[tag=arbitrary-tagname]
+
+.Use a tagged include directive...
+[source,asciidoc,subs=+attributes]
+------
+[source,yaml]
+{include_line}
+
+------
+
+.Those 2 lines of code result in:
+========
+[source,yaml]
+include::_asciidoc-yaml-snippet.yml[tag=arbitrary-tagname]
+========
+
+[[admonition-examples]]
+=== Admonition Examples
+
+What some systems call "`alerts`" or "`callouts`" or "`notices`", AsciiDoc calls "`admonitions`".
+
+.Example:
+========
+include::_asciidoc-snippets.adoc[tag="admonition-simple"]
+========
+
+.How it was made...
+[source,asciidoc,role="wrap"]
+--------
+include::_asciidoc-snippets.adoc[tag="admonition-simple"]
+--------
+
+That wasn't simple enough for you?
+Check this out...
+
+.One-liner admonition markup
+[source,asciidoc,role="wrap"]
+--------
+include::_asciidoc-snippets.adoc[tag="admonition-simpler"]
+--------
+
+.Renders...
+========
+include::_asciidoc-snippets.adoc[tag="admonition-simpler"]
+========
+
+[[callout-example]]
+=== Callout Example
+
+Speaking of "`callouts`" -- when AsciiDoc uses that term, it means annotations inside a code block.
+
+.Example of a code listing with callouts
+========
+include::_asciidoc-snippets.adoc[tag="ruby-callout-listing"]
+========
+
+If you highlight the contents and use your operating system's copy-to-clipboard, or if you click the copy button, you'll see that only the source code copies, not the callout numbers.
+
+[%collapsible,title="Click here to reveal a textarea box you can paste into"]
+====
+++++
+<textarea cols="60" rows="7" style="font-size: 1rem; padding: 1rem;" placeholder="Try pasting the sample code here..."></textarea>
+++++
+
+See?
+No callouts were picked up in the copy operation!
+====
+
+.The code that made that code:
+[source,asciidoc,role="wrap",subs=macros]
+--------
+include::_asciidoc-snippets.adoc[tag="ruby-callout-listing"]
+--------
+
+[[blockquote-examples]]
+=== Blockquote Examples
+
+Block quotes are a staple of blogging.
+Here are two of my favorite ways to use them.
+
+.Blockquote with citation
+========
+include::_asciidoc-snippets.adoc[tag="blockquote"]
+========
+
+.Blockquote + citation code:
+[source,asciidoc,role="wrap"]
+--------
+include::_asciidoc-snippets.adoc[tag="blockquote"]
+--------
+
+I have always loved blockquotes, so I made my own style that can be designated with a simple role argument in AsciiDoc.
+
+.Blockquote with a pullquote role
+========
+include::_asciidoc-snippets.adoc[tag="pullquote"]
+========
+
+.Pullquote code:
+[source,asciidoc,role="wrap"]
+--------
+include::_asciidoc-snippets.adoc[tag="pullquote"]
+--------
+
+[[table-examples]]
+=== Table Examples
+
+There is no question that AsciiDoc's lightweight table markup is excellent.
+
+.Simple table code:
+[source,asciidoc]
+--------
+include::_asciidoc-snippets.adoc[tag="simple-table"]
+--------
+
+.Simple table
+========
+include::_asciidoc-snippets.adoc[tag="simple-table"]
+========
+
+AsciiDoc table syntax doesn't rely on mimicking the shape of the table or its columns and cells, so you can break it down and organize the markup in a way that makes sense to you.
+AsciiDoc does not require you to make ASCII art like some table syntaxes.
+
+But if you need to make it complex, you can do that too.
+
+.Now let's get a little crazy...
+========
+include::_asciidoc-crazy-table-snippet.adoc[]
+========
+
+[%collapsible,title="Click to expose the source code for the crazy table"]
+====
+[source,asciidoc]
+--------
+include::_asciidoc-crazy-table-snippet.adoc[]
+--------
+====
+
+Yes, that really was all done with AsciiDoc markup.
+
+However, I am pleased to admit that ChatGPT actually wrote all of that content based on a prompt to create "`really complex AsciiDoc table`" and to "`make the content interesting, maybe clever/cute/funny`".
+I was so shocked, I decided to use it as-is.
+
+[[description-list-example]]
+=== Description List Example
+
+One feature of AsciiDoc that Markdown does not even attempt is the _description_ or _definition_ list: `<DL>` in HTML terms.
+
+.Description list example
+========
+include::_asciidoc-snippets.adoc[tag="definition-list"]
+========
+
+.The underlying AsciiDoc markup
+[source,asciidoc,role="wrap"]
+--------
+include::_asciidoc-snippets.adoc[tag="definition-list"]
+--------
+
+DLs are a semantically powerful format for "`parameterized data`" -- I use it all the time in my docs, and whenever an LLM tries to do this with bulleting and bold, I cringe.
+
+.The Markdown version:
+[source,markdown,role="wrap"]
+--------
+- **AsciiDoc:**
+A lightweight markup language that is particularly well-suited for technical documentation and blogging, offering a rich set of features for structuring content.
+--------
+
+Importantly, this will not generate a DL list, which means screen readers and interpreters may not even associate the bolded term with its description.
+
+[[other-list-types]]
+=== Other List Types
+
+AsciiDoc also supports ordered lists (numbered), unordered lists (bulleted), and checklists (task lists), along with nesting of each type, even across types.
+
+[[ordered-lists]]
+==== Ordered Lists
+
+Ordered lists can be pretty powerful, in that you can start an re-start them at any number.
+
+.Ordered list example
+========
+include::_asciidoc-snippets.adoc[tag="ordered-list"]
+========
+
+.Under the hood...
+[source,asciidoc,role="wrap"]
+--------
+include::_asciidoc-snippets.adoc[tag="ordered-list"]
+--------
+
+[[unordered-lists]]
+==== Unordered Lists
+
+For unordered lists, AsciiDoc supports using either `-` or `+++*+++` characters for bullet markup.
+Nesting is done by adding bullets -- no need to keep track of indentation.
+
+.Unordered list example
+========
+include::_asciidoc-snippets.adoc[tag="unordered-list"]
+========
+
+.The code:
+[source,asciidoc,role="wrap"]
+--------
+include::_asciidoc-snippets.adoc[tag="unordered-list"]
+--------
+
+[[sidebar-example]]
+=== Sidebar Example
+
+Now we get to what might be my favorite AsciiDoc feature, which is a lovely holdover from DocBook: sidebars.
+
+.Sidebar example
+========
+include::_asciidoc-snippets.adoc[tag="sidebar"]
+========
+
+[%collapsible,title="Click to see how the sidebar was coded"]
+====
+[source,asciidoc,subs="none",role="wrap"]
+--------
+include::_asciidoc-snippets.adoc[tag="sidebar"]
+--------
+====
+
+[[examples-wrapup]]
+=== Examples Wrapup
+
+Those were several of my favorite semantic block elements supported by AsciiDoc.
+Not even mentioned were the enumerable inline semantic features like inline roles and what can be done with them on the front end, nor AsciiDoc's terrific built-in support for footnotesfootnote:[The text of a footnote is recorded inline but appears collected at a place in the page of your choosing.
+Now click the number of this footnote to return!].
+
+Both the DocOps Blog and this MetaBlog will continue to explore AsciiDoc syntax and output from time to time, but those were some of the highlights.
+
+However, this post is not done yet, and neither are the AsciiDoc examples.
+We still have to answer the big question...
+
+
+[[asciidoc-better-than-what]]
+== AsciiDoc is Better than What, Though?
+
+Well, it's definitely better than rich-text editors ("`WYSIWYG`") like those typically used in WordPress and other blogging platforms -- at least if your subject matter is _code_.
+I guess you might be a tech blogger who writes about gadgets, in which case I have no idea, you do you.
+
+But since the vast majority of blogging about coding is done in Markdown, let's compare AsciiDoc to the leading brand.
+
+[[markdown-vs-asciidoc]]
+=== Markdown vs AsciiDoc
+
+Admittedly, I have never blogged in Markdown, but since AsciiDoc is basically a superset of Markdown, you'd be hard-pressed to find advantages of Markdown itself.
+
+There surely are probably syntax situations where Markdown has the edge over AsciiDoc, though I am only aware of a couple.
+I'll take you through them here, with some meanderings planned along the way.
+
+[[hyperlink-syntax]]
+==== Hyperlink Syntax
+
+Let's look at some Markdown.
+
+[source,markdown,role=wrap]
+You're reading along in Markdown and then you come to a link like [Asciidoctor](https://asciidoctor.org), and that seems natural
+
+[source,asciidoc,role=wrap]
+Whereas in AsciiDoc, you're reading along and then https://asciidoctor.org[Asciidoctor] BAM! you got hit with a URL that didn't really matter.
+
+Mind you, both of these markups generate the same HTML output: https://asciidoctor.org[Asciidoctor].
+But I have to admit, I have come to slightly prefer the label-first Markdown approach, mainly for the effect when I'm reading the text as code, even though it uses two extra characters.
+
+[%collapsible,title="Click here for a mega-meta mini tangent"]
+====
+.The optimal lightweight link syntax
+****
+I tend to write AsciiDoc links in the optionally more explicit format:
+
+[source,asciidoc]
+link:https://asciidoctor.org[Asciidoctor]
+
+Which makes me wish the following _invalid_ format were actually proper:
+
+[source,asciidoc]
+link:[Asciidoctor,href=https://asciidoctor.org]
+
+Alas, no lightweight markup is perfect...
+****
+====
+
+What other ways is Markdown syntax thought to be stronger than AsciiDoc?
+
+[[code-blocks-syntax]]
+==== Code Blocks Syntax? (Nope)
+
+You may be thinking you prefer Markdown's simple `+++```+++` notation for demarcating code blocks, which are after all among the most frequently employed elements in blogging about code.
+
+Not so fast.
+If you prefer that style, Asciidoctor supports it perfectly.
+Take a look:
+
+Here is the effect of using just 3 backticks to sandwich literal content.
+
+:3ticks: ```
+
+.Two code blocks sourced using Markdown-style syntax in AsciiDoc
+========
+include::_asciidoc-snippets.adoc[tag="3ticks"]
+========
+
+.Under the hood...
+[source,asciidoc,subs=+attributes]
+-------
+include::_asciidoc-snippets.adoc[tag="3ticks"]
+-------
+
+.What's up with the `\+++` markup?
+****
+You are probably noticing something funny about that syntax.
+All those extra `\+++` characters might look like something went wrong, but they're actually one of the countless advantages of AsciiDoc markup.
+
+Those are *"`passthrough`"* indicators, which I used outside the code block above to show you 3 backticks in a row without triggering the standard effects of backticks in both AsciiDoc and Markdown.
+I'll do it again here: `+++```+++`.
+
+I could also simplify this by making it an attribute and just calling it later with a placeholder.
+
+[source,asciidoc,subs=none]
+--------
+include::_asciidoc-snippets.adoc[tag="3ticks-attribute"]
+--------
+
+.Which renders:
+====
+include::_asciidoc-snippets.adoc[tag="3ticks-attribute"]
+====
+****
+
+When it comes to literal blocks, which are typically used to represent plain text or terminal input/output in docs, AsciiDoc has two or three ways of expressing this element, whereas Markdown has only one that I am aware of.
+Converters tend to render this as a `<pre>` block without a `<code>` inset.
+
+[source,asciidoc]
+--------
+include::_asciidoc-snippets.adoc[tag="literalblock-adoc"]
+--------
+
+.Literal blocks rendered
+========
+include::_asciidoc-snippets.adoc[tag="literalblock-adoc"]
+========
+
+There really is no guaranteed Markdown equivalent to this, but you can try something like what follows:
+
+[source,markdown]
+--------
+include::_asciidoc-snippets.adoc[tag="literal-markdown"]
+--------
+
+If you want your literal blocks to be handled distinctly from code blocks, or if you want to do anything cool with them or add caption/labels, you're going to have to jerry rig it in Markdown, probably by adding explicit HTML.
+
+==== HTML Embedding? (Nope)
+
+Speaking of passthroughs, you may have been thinking all along that you _prefer_ the way Markdown supports HTML tags throughout.
+You can just write `<div class="foo">` and it works, right?
+
+Cool.
+Same with AsciiDoc.
+You just use those passthrough markers inline, or the 4-char version (`pass:[++++]`) for a block.
+
+.Example of HTML passthrough
+========
+include::_asciidoc-snippets.adoc[tag="html-passthrough-block"]
+========
+
+.And the code for that...
+[source,asciidoc]
+--------
+include::_asciidoc-snippets.adoc[tag="html-passthrough-block"]
+--------
+
+So, anything you can do in an HTML page, you can do in AsciiDoc files.
+
+[[strikethrough-syntax-gotcha-asciidoc]]
+==== Strikethrough Syntax (Gotcha, AsciiDoc!)
+
+Okay, okay, I realize I only gave one example of where Markdown syntax is superior, and then I slipped right back into showing how great AsciiDoc is.
+
+So I will give you truthfully the only other syntax advantage of Markdown over AsciiDoc that I am aware of, and that is bloggers`' [line-through]#favorite,# ubiquitous strikethrough effect.
+
+.In Markdown, it's fun and easy:
+[source,markdown]
+This is ~~strikethrough~~ text.
+
+That same syntax in AsciiDoc produces: This is ~~strikethrough~~ text.
+
+Oof.
+Not cool, AsciiDoc.
+
+An inline role is required to do this in my beloved format:
+
+[source,asciidoc]
+--------
+include::_asciidoc-snippets.adoc[tag="strikethrough"]
+--------
+
+.Which renders:
+========
+include::_asciidoc-snippets.adoc[tag="strikethrough"]
+========
+
+Then again, if you're into using #inline highlighting# in your text, AsciiDoc makes that trivial with `+++#inline highlighting#+++` syntax, while you have to use `<mark>inline highlighting</mark>` HTML tags in Markdown.
+
+Sorry, I realize I have done it again, but this is why I'm so confident that if you like blogging in Markdown, you will love blogging in AsciiDoc.
+
+
+[[conclusion]]
+== Conclusion
+
+AsciiDoc is nearly as advantageous for blogging about code as it is for officially documenting software.
+You can do _so much more_ without missing literally anything you can do with Markdown.
+
+I encourage anyone to provide other examples of superior Markdown syntax or capability.
+
+The biggest thing going for Markdown is surely that every programming language and code-oriented content platform supports _some flavor_ of it.
+That is a _huge_ plus for Markdown, but AsciiDoc's widespread advantages make it worth setting up if you blog in any of link:https://gist.github.com/briandominick/e5754cc8438dd9503d936ef65fffbb2d[these SSGs].
+
+I would say it's even worth choosing or migrating to a platform from that list, with Jekyll, Hugo, and 11ty being my favorites for blogging.
+
+++++
+<div id="footnotes-placeholder"></div>
+++++

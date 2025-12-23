@@ -1,0 +1,38 @@
+---
+---
+{%- if site.search and site.search.disabled != true -%}
+  {%- assign s = site.search -%}
+  {%- assign eng = s.engine | default: 'minisearch' | downcase -%}
+  {%- if eng == 'minisearch' -%}
+    {%- assign vrsn = s.version | default: '6.3.0' -%}
+  {%- elsif eng == 'lunr' -%}
+    {%- assign vrsn = s.version | default: '2.3.9' -%}
+  {%- elsif eng == 'elasticlunr' -%}
+    {%- assign vrsn = s.version | default: '0.9.6' -%}
+  {%- else -%}
+    {%- assign vrsn = '' -%}
+  {%- endif -%}
+
+  {%- case eng -%}
+  {%- when 'minisearch' -%}
+    <script src="https://cdn.jsdelivr.net/npm/minisearch@{{ vrsn }}/dist/umd/index.min.js"></script>
+  {%- when 'lunr' -%}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/{{ vrsn }}/lunr.min.js"></script>
+  {%- when 'elasticlunr' -%}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/{{ vrsn }}/elasticlunr.min.js"></script>
+  {%- else -%}
+    {# no engine configured #}
+  {%- endcase -%}
+
+  <script id="search-config" type="application/json">
+  {
+    "engine": {{ eng | jsonify }},
+    "version": {{ vrsn | jsonify }},
+    "options": {{ s.options | jsonify }},
+    "debug": {{ s.debug | default: false | jsonify }},
+    "searchJson": {{ "/search.json" | relative_url | jsonify }}
+  }
+  </script>
+
+  <script defer src="{{ '/assets/js/search.js' | relative_url }}"></script>
+{%- endif -%}

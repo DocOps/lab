@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# DocOps Lab pre-push hook template
+# Managed by docopslab-dev gem
+# Runs comprehensive linting before pushing to prevent issues in CI
+
+set -e
+
+echo "🚀 DocOps Lab pre-push quality gate..."
+
+# Check if we have any commits to push
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse '@{u}' 2>/dev/null || echo "")
+BASE=$(git merge-base @ '@{u}' 2>/dev/null || echo "")
+
+if [[ -z "$REMOTE" ]]; then
+  echo "ℹ️  No remote tracking branch found, skipping pre-push checks."
+  exit 0
+fi
+
+if [[ "$LOCAL" = "$REMOTE" ]]; then
+  echo "ℹ️  No new commits to push."
+  exit 0
+fi
+
+if git diff --cached --name-only | grep -q 'Gemfile'; then
+  if git diff --cached -U0 | grep -E '^\+.*gem [a-zA-Z0-9_-]+ .+ path:\s*['"'"'"].+['"'"'"]'; then
+    echo ""
+    echo "⚠️  Warning: Detected gems with local path: parameters in Gemfile changes."
+    echo "💡 Consider using published gems from RubyGems.org or Git hosting services instead."
+    echo ""
+  fi
+fi
+
+echo "📋 Checking commits from $BASE to $LOCAL..."
+
+# Run all linters on the codebase
+echo "🔍 Running comprehensive linting..."
+
+# Check config sync status first
+if [[ -f ".config/docopslab-dev.yml" ]]; then
+  echo "🔄 Verifying config sync..."
+  if command -v bundle &> /dev/null; then
+    if ! bundle exec rake labdev:config:sync --dry-run &> /dev/null; then
+      echo "❌ Config sync needed. Run: bundle exec rake labdev:config:sync"
+      exit 1
+    fi
+    echo "✅ Config sync verified"
+  fi
+fi
+
+# Run all linters
+if command -v bundle &> /dev/null; then
+  echo "🧹 Running all linters..."
+  if ! bundle exec rake labdev:lint:all; then
+    echo ""
+    echo "❌ Quality gate failed!"
+    echo "💡 Suggested workflow:"
+    echo "   1. Run: bundle exec rake labdev:heal"
+    echo "   2. Review changes with: git diff"
+    echo "   3. Commit auto-fixes: git commit -am 'Auto-fix linting issues'"
+    echo "   4. Fix remaining issues manually"
+    echo "   5. Try pushing again"
+    echo ""
+    echo "🚫 Or bypass with: git push --no-verify"
+    exit 1
+  fi
+else
+  echo "⚠️  Bundle not available, skipping linting checks"
+fi
+
+echo "✅ Pre-push quality gate passed"
+exit 0

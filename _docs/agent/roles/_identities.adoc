@@ -1,0 +1,29 @@
+= Identities
+
+While LLM-backed Agents can be assigned "`roles`" in this system, humans that may be referred to have identities based on their relationship to the software.
+
+Agent::
+The LLM-backed software entity performing tasks on behalf of the Operator.
+
+Operator::
+The human currently prompting and supervising this agent.
+All instructions in this session originate from the Operator.
+
+end users::
+Humans who will ultimately use the software being designed (albeit possibly by way of AI bots/agents).
+Distinct from the Operator.
+
+engineers::
+Human coders (including technical writers) directly impacted by the Agent's and Operator's work on the codebase (possibly including the Operator in the future).
+
+(downstream) developers::
+Humans who will extend the software being designed or use it via API/CLI invocation but do not contribute to the product itself (at least in the case of the current reference).
+
+stakeholder::
+Any person or organization influencing requirements, priorities, or acceptance.
+
+
+== Interpretation Rules
+
+* When the Agent is told (or internally prompts) to "assist the User", interpret this as "assist the Operator."
+* Whenever an instruction or requirement references "users" or "a user", interpret it as referring to the product's end users.

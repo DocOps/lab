@@ -1,0 +1,106 @@
+include::../README.adoc[tag=globals]
+:page-tags: ["Jekyll", "YAML", "Liquid", "single-sourcing", "metadata"]
+:page-date: 2024-08-25
+:page-author: Dr Meta
+:page-published: true
+:page-excerpt: Sourcing complex profile metadata from YAML and rendering it with Liquid templates.
+:page-image: featured-projects-screenshot.png
+:page-image-alt: The Featured Projects section from the DocOps Lab landing page, showing cards for several projects.
+:page-version: 1.0.0
+:page-liquid: true
+:more-than-rest: Defining relatively complex interfaces in YAML can apply to much more than just REST APIs.
+:toc: macro
+= Single Sourcing and Rendering DocOps Lab Project Profiles
+
+Much of this website consists of representations of DocOps Lab projects, in different orders and forms.
+
+Project metadata is stored in the `+++_+++data/docops-lab-projects.yml` file, which is the canonical source of truth _about_ the numerous codebases DocOps Lab maintains.
+At least, it represents the sole source of most of the data it contains, though at any given point some part of that file is likely out of sync with reality.
+
+Nevertheless, some aspects of this sourcing and output strategy are pretty extreme and therefore worth blogging about.
+
+
+[[source-files]]
+== Source Files
+
+Effectively all of the information about DocOps Lab projects on this site is single-sourced, though some of it is sourced (once) in different places.
+
+Most of it is sourced in the `docops-lab-projects.yml` file, which we will dive into shortly.
+
+[NOTE]
+====
+include::_snippets-may-change-note.adoc[]
+====
+
+[NOTE.meta]
+====
+The above note is single sourced at `_snippets-may-change-note.adoc` so it can be embedded in multiple posts.
+====
+
+A small amount is sourced in the `README.adoc` file, as data attributes.
+This includes the text for each of the Featured Projects cards on the landing page, which are also expressed in the README file itself.
+
+.Snippet from `README.adoc`
+[source,asciidoc,subs=macros]
+----
+include::../README.adoc[tag=projects]
+----
+
+
+[[data-structure]]
+== Data Structure
+
+The link:{docopslab_hub_url}/blob/main/_data/docops-lab-projects.yml[`docops-lab-projects.yml` file] is basically a large array of tabular data.
+Each project's record has a number of parameters.
+
+[source,yaml,subs=attributes]
+----
+include::../_data/docops-lab-projects.yml[tag=docops-box]
+----
+
+I think most of the above data record is mostly self-explanatory, but a few fields merit highlighting.
+
+I also added a concept of custom cards, which are defined in another file: `+++_+++data/cards.yml`.
+As of now, it contains only one card record.
+
+[source,yaml]
+----
+include::../_data/cards.yml[tag=issuer-rhx]
+----
+
+This is all pulled together using simple Liquid assignments and filters.
+
+[source,twig]
+----
+include::../_pages/landing.html[tag=featured-projects]
+----
+
+
+[[project-profiles]]
+== Project Profiles
+
+Project profiles come in micro, mini, and page sizes.
+
+The micros are for card-based representations, such as the link:/#featured-projects[Featured Projects section on the landing page], or pages that group projects in ways that might involve repeated instances of the same project in the output, such as the link:/projects/by-tech/[Projects by Technology] and link:/projects/by-category/[Projects by Category] pages.
+
+The minis are for the project detail sections that appear on the link:/projects/[Projects Overview] page, which includes a lot more information about each project, but still in a compact format.
+
+Finally, some projects have their own dedicated pages, such as {xref_projects_docs-as-code-school_link}.
+This is the most comprehensive representation of a project.
+
+I can even re-create one here in this page using Liquid templates.
+
+++++
+{% include project-profile.html slug='docops-box' %}
+++++
+
+The above "`mini-profile`" expression was called with this Liquid code:
+
+[source,twig,subs="attributes"]
+----
+{% raw %}
+{% include project-profile.html slug='docops-box' %}
+{% endraw %}
+----
+
+Note how the style for this page remains largely intact in affecting the profile rendering.

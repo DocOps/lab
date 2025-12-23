@@ -1,0 +1,196 @@
+name: Build and Deploy Documentation
+
+on:
+  workflow_call:
+    inputs:
+      ruby_version:
+        description: "Ruby version for building docs"
+        type: string
+        default: "3.2"
+      enable_cache:
+        description: "Enable bundler and other caching"
+        type: boolean
+        default: true
+      publish_pages:
+        description: "Publish to GitHub Pages"
+        type: boolean
+        default: true
+      build_command:
+        description: "Custom build command (default: auto-detect)"
+        type: string
+        required: false
+      source_dir:
+        description: "Source directory for docs"
+        type: string
+        default: "."
+      output_dir:
+        description: "Output directory (relative to source_dir)"
+        type: string
+        default: "_site"
+    secrets:
+      GITHUB_TOKEN:
+        description: "GitHub token for Pages deployment"
+        required: false
+
+# Set permissions for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ inputs.ruby_version }}
+          bundler-cache: ${{ inputs.enable_cache }}
+
+      - name: Setup Pages
+        id: pages
+        if: inputs.publish_pages
+        uses: actions/configure-pages@v4
+
+      - name: Sync DocOps Lab configs
+        run: |
+          if bundle exec rake -T | grep -q "labdev:sync:configs"; then
+            bundle exec rake labdev:sync:configs
+          fi
+
+      - name: Auto-detect and build documentation
+        run: | # this block seems overwrought; let's review and trim
+          if [ -n "${{ inputs.build_command }}" ]; then
+            echo "Using custom build command: ${{ inputs.build_command }}"
+            cd ${{ inputs.source_dir }}
+            ${{ inputs.build_command }}
+          elif [ -f "_config.yml" ]; then
+            echo "Jekyll site detected - building with Jekyll"
+            cd ${{ inputs.source_dir }}
+            bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path || '' }}"
+          elif [ -f "config.ru" ]; then
+            echo "Rack application detected"
+            cd ${{ inputs.source_dir }}
+            # For Rack apps, we might need a custom build process
+            if bundle exec rake -T | grep -q "build\|assets"; then
+              bundle exec rake build || bundle exec rake assets:precompile || echo "No build task found"
+            fi
+          elif [ -f "Rakefile" ] && bundle exec rake -T | grep -q "docs\|build"; then
+            echo "Rakefile with docs task detected"
+            cd ${{ inputs.source_dir }}
+            if bundle exec rake -T | grep -q "docs"; then
+              bundle exec rake docs
+            elif bundle exec rake -T | grep -q "build"; then
+              bundle exec rake build
+            fi
+          elif find . -name "*.adoc" -o -name "*.md" | head -1 | grep -q .; then
+            echo "AsciiDoc/Markdown files detected - building with AsciiDoctor"
+            cd ${{ inputs.source_dir }}
+            # Create a simple build for AsciiDoc files
+            mkdir -p ${{ inputs.output_dir }}
+            if command -v asciidoctor &> /dev/null; then
+              find . -name "*.adoc" -exec asciidoctor {} -D ${{ inputs.output_dir }} \;
+            fi
+            if command -v pandoc &> /dev/null; then
+              find . -name "*.md" -exec pandoc {} -o ${{ inputs.output_dir }}/{}.html \;
+            fi
+          else
+            echo "No recognized documentation format - creating minimal index"
+            cd ${{ inputs.source_dir }}
+            mkdir -p ${{ inputs.output_dir }}
+            echo "<html><body><h1>Documentation</h1><p>Built from $(pwd)</p></body></html>" > ${{ inputs.output_dir }}/index.html
+          fi
+
+      - name: Validate build output
+        run: |
+          cd ${{ inputs.source_dir }}
+          if [ ! -d "${{ inputs.output_dir }}" ]; then
+            echo "❌ Output directory ${{ inputs.output_dir }} not found!"
+            exit 1
+          fi
+          
+          if [ ! -f "${{ inputs.output_dir }}/index.html" ]; then
+            echo "⚠️  No index.html found in ${{ inputs.output_dir }}"
+            # Try to find any HTML file to use as index
+            html_file=$(find ${{ inputs.output_dir }} -name "*.html" | head -1)
+            if [ -n "$html_file" ]; then
+              echo "Using $html_file as index.html"
+              cp "$html_file" "${{ inputs.output_dir }}/index.html"
+            else
+              echo "Creating minimal index.html"
+              echo "<html><body><h1>Documentation</h1></body></html>" > ${{ inputs.output_dir }}/index.html
+            fi
+          fi
+          
+          echo "✅ Build output validated"
+          echo "Files in ${{ inputs.output_dir }}:"
+          ls -la ${{ inputs.output_dir }}
+
+      - name: Upload Pages artifact
+        if: inputs.publish_pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ inputs.source_dir }}/${{ inputs.output_dir }}
+
+      - name: Upload build artifact
+        if: ${{ !inputs.publish_pages }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: ${{ inputs.source_dir }}/${{ inputs.output_dir }}
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    if: inputs.publish_pages
+    timeout-minutes: 10
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  summary:
+    runs-on: ubuntu-latest
+    needs: [build, deploy]
+    if: always()
+    timeout-minutes: 2
+    steps:
+      - name: Documentation Build Summary
+        run: |
+          echo "## Documentation Build Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Build Results
+          if [ "${{ needs.build.result }}" = "success" ]; then
+            echo "✅ **Build**: Documentation built successfully" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Build**: Documentation build failed" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          # Deploy Results
+          if [ "${{ inputs.publish_pages }}" = "false" ]; then
+            echo "⏭️ **Deploy**: GitHub Pages deployment disabled" >> $GITHUB_STEP_SUMMARY
+            echo "📦 **Artifact**: Documentation available as build artifact" >> $GITHUB_STEP_SUMMARY
+          elif [ "${{ needs.deploy.result }}" = "success" ]; then
+            echo "✅ **Deploy**: Successfully deployed to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+            if [ -n "${{ needs.deploy.outputs.page_url }}" ]; then
+              echo "🌐 **URL**: ${{ needs.deploy.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "❌ **Deploy**: Failed to deploy to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          fi

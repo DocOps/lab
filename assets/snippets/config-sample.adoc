@@ -1,0 +1,20 @@
+`log_level`::
+The logging level for the application.
+
+[horizontal]
+Default::: `info`
+Options::: `debug`, `info`, `warn`, `error`, `fatal`
+
+`output_format`::
+The format for output data.
+
+[horizontal]
+Default::: `json`
+Options::: `json`, `yaml`, `xml`
+
+`max_retries`::
+The maximum number of retry attempts for failed operations.
+
+[horizontal]
+Default::: `3`
+Range::: `0-5`

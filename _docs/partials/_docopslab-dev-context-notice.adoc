@@ -1,0 +1,4 @@
+This guide pertains to the `docopslab-dev` environment.
+For complete documentation, see the link:https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc[project's README].
+
+include::../../gems/docopslab-dev/README.adoc[tag="docopsbox"]

@@ -1,0 +1,205 @@
+:page-permalink: /blog/foss-licensing-usage/
+:page-date: 2025-09-16
+:page-image: blog-foss-licenses.jpg
+:page-image-source: https://license.md/popular-open-source-software-licenses/
+include::../README.adoc[tag="globals"]
+= DocOps Lab Licensing and Usage
+
+Let's talk about permissively licensed software and how it is best used and managed downstream.
+
+Most people -- including software developers -- interact with most software as _consumers_ or _end users_.
+Nevertheless, open source software often seems to be packaged _for_ other developers.
+
+This is a guide for new developers or non-devs who need to incorporate FOSS (free open source software) into their own projects.
+
+____
+This blog entry is meant to help demystify the world of runtime-based open source software.
+It is meant to empower rather than intimidate, just like the best open source software does.
+____
+
+DocOps Lab software is typically released in both source code and binary/packaged forms, for users' convenience.
+
+The *code* is released on an interactive platform (link:{docopslab_hub_url}[GitHub]) so you can investigate it, extend it, or help fix and improve it.
+
+The *binaries and packages* are released so you can install and execute it without including the source code in your own projects.
+This way even if you share your project as open source, any open source software it uses unmodified can be referenced as a dependency rather than packaged in your codebase.
+
+Likewise, DocOps Labs' *documentation* is similarly shared as both source code and rendered HTML/PDF, also under these exact same conditions.
+Use it as you wish, help improve it, even re-brand it -- the only requirement is maintaining the "`upstream`" chain of attribution.
+We mainly care about this for accountability, not credit (which we don't care about) or control (which we fully relinquish).
+
+Our licensing says you can use it however you want, but if you re-share the code, it must remain under the same license and be attributed to DocOps Lab.
+
+Note that you do NOT have to share it or changes you make to it, and also note that we do not really care if you keep the attribution or not, whether you release a modified version or not.
+We just want to make it easy for you to use our tools, and we want to be able to point to a common codebase that we can all work on together (or not).
+
+
+[[how-to-use-docops-lab-software]]
+== How to Use DocOps Lab Software
+
+If you want to use our software, there is a near certainty that it will not "`just work`", so to speak, "`out of the box`", so to speak.
+
+[[modified-vs-packaged]]
+=== Modified vs Packaged
+
+There are a few ways to take advantage of DocOps Lab software and content.
+
+The most common way would be as a compiled-and-packaged dependency in your own project, perhaps as a Ruby gem a Docker image.
+This way, you do not need to fuss over licensing at all.
+
+If you do want to modify the code, you can fork it and make changes, then use your own modified version as a dependency in your own project.
+You do not need to re-share or contribute back your changes.
+
+Modified code can be used in many ways as well, including copied and pasted snippets, or even just as inspiration for your own code.
+But of course you can also make a wholesale copy, modify it, and rebuild and package it for yourself, then cite that dependency in your `Gemfile` or `Dockerfile`.
+
+The goal of any open source project should be a balance between extensibility and configurability.
+Most users needing to customize should be able to do so by tweaking powerful settings or an application programming interface (API) or a domain-specific language (DSL) without needing to modify the project's source code.
+
+Yet for users with extraordinary needs, or perhaps after the project has been abandoned, the ability to fork and modify the code is essential.
+
+However, source code modification is not the topic of the day.
+In fact, it's the opposite.
+We are going to review all the ways the kinds of "`runtime tools`" we use most in docs-as-code platforms can be modified and used _without_ touching their source code.
+
+
+[[make-foss-work-for-you]]
+== Make FOSS Work for You
+
+There are many ways to interact with and amend the behavior of software before you should ever consider hacking the source.
+True programmers do their best to _avoid_ modifying the source code of products they wish to _use_ but not to _maintain_.
+
+[[clis]]
+=== CLIs
+
+Command-line interfaces can be run from any UNIX-like shell environment and manipulated with arguments, options, flags, and environment variables.
+This is likely the fastest way to leverage any DocOps Lab tools.
+
+CLI commands can be scripted.
+You can string them together, run them conditionally, run them in loops, and so forth.
+Commands are simply instructions, and instructions can be concatenated into scripts.
+
+The output can be piped to other commands for further processing.
+
+CLIs can be used in combination with configuration, domain-specific languages, and extensions.
+
+[[apis]]
+=== APIs
+
+There are two broad categories of APIs: native and remote.
+
+Native APIs are libraries or modules designed to be used in a given programming environment, such as Java, Python, JavaScript, or in our case mostly Ruby.
+
+Most people in tech are more familiar with remote APIs, specifically RESTful APIs, but also GraphQL, SOAP, and other kinds.
+
+In both cases, an API is a system that awaits input in an expected format and returns output in a documented format -- usually some kind of data structure.
+In the case of remote APIs, the output is typically JSON delivered over HTTP.
+
+[[configs]]
+=== Configs
+
+Most command-line tools can be configured with local files that stablish a baseline of settings and behaviors.
+Configuration files, or "`configs`" , are a kind of interface, though they tend to be application-specific in structure, syntax, and nomenclature.
+
+DocOps Lab prefers YAML-formatted configuration files, but sometimes we use INI format.
+
+Configs are constrained by whatever the product's developers predicted users would want to do.
+It often means establishing persistent preferences for the types of things CLIs and APIs allow you to indicate at runtime using arguments.
+
+Good Configs are well documented, but truthfully configuration docs often get de-emphasized, especially in open source projects.
+
+[[dsls]]
+=== DSLs
+
+Domain-specific languages (DSLs) are mini programming syntaxes designed to express concepts in a particular domain, usually with modest scope.
+
+DSLs can be their very own syntax, or they can use an existing syntax like YAML or XML in a predefined manner, expecting particular keys with a given range of values to script or configure user-defined outcomes for a given set of inputs.
+
+Examples of DSLs you might be familiar with include:
+
+* GitHub Actions workflow files
+* Kubernetes manifests
+* Dockerfiles
+* SCSS/SASS and LESS for CSS pre-processing
+
+DocOps Lab prefers to use YAML-based DSLs wherever possible, as they are easy to read and write, and widely supported.
+
+[[templates]]
+=== Templates
+
+Templates are a kind of DSL that define how input textual and variable data is to be transformed into output content.
+
+Templates use a syntax that is interpreted by a rendering engine.
+This engine accepts data from an outside source (YAML or JSON or a relational database) and merges it into the template structure to produce predictable output.
+
+Templates are often used in DocOps Lab projects to generate HTML, Markdown, AsciiDoc, YAML, or other text-based formats.
+
+DocOps Lab prefers Liquid templates and uses an extended version of Jekyll's Liquid 4 engine.
+
+[[extensions-plugins]]
+=== Extensions/Plugins
+
+Forward-thinking developers instill their software with "`hooks`" so that downstream devs can extend the product's behavior using its native source syntax or a DSL.
+
+While some DSLs and templating systems are used to perform tasks the product developer predicted most users would need, extensions are for needs the developer did not anticipate or has not yet implemented.
+
+Extensions are often packaged as plugins or modules that can be installed alongside the main product.
+Developers themselves often provide plugins for optional features that might not be optimal as a built-in aspect of the core product.
+
+Other times, plugins are created by third-party developers to add functionality the original developers did not envision.
+These "`community extensions`" sometimes get merged into the official product.
+
+Any user can develop an extension and _not_ share it.
+This is common for extensions that solve an internal use case but are not designed for public consumption.
+A local extension can even include hard-coded data or proprietary logic that would not be appropriate for open source sharing.
+
+
+[[licensing-choices-and-implications]]
+== Licensing Choices and Implications
+
+In some ways, the distinctions between open source licenses do not matter very much.
+If you just want to use some FOSS utility or another, even for professional or commercial purposes, most licenses will allow you to do so with no strings attached.
+
+Licensing starts to matter when you want to package or copy source code into your own projects, especially if you intend to share your own project as open source.
+
+[[why-licenses]]
+=== Why Licenses?
+
+Software you intend to share needs a license.
+What many people misunderstand is that unlicensed software you find on GitHub or elsewhere is still copyrighted, and you technically are _NOT_ supposed to reuse it in your own projects.
+
+Truthfully, a lot of shared code just happens to be lacking a license out of neglect, and it's fine for you to reuse.
+
+Most of the engineering shops I've worked at disallow incorporating unlicensed code even if the developer obviously intended to share it.
+You can always post an Issue on a project's GitHub repo to ask the author to add a permissive license.
+
+So we have to have a license to make it clear our code is freely copyable and reusable.
+
+[[why-mit]]
+=== Why MIT?
+
+By some stroke of coincidence or culture or convention, nearly everything in our particular toolchain (meaning the applications we use to develop our own) is link:https://opensource.org/license/mit[MIT licensed], so it makes sense to use the same license for our own code.
+
+MIT License totally permissive; it should not trouble anyone's manager or CTO or Legal Department, and that's that.
+
+There are lots of other considerations deep thinkers fuss over, but I have not found time to care much about the nuance politics of FOSS licensing.
+
+MIT works.
+link:https://opensource.org/license/apache-2-0[Apache] works.
+link:https://opensource.org/license/bsd-2-clause[BSD] works.
+Knock yourself out.
+
+[[why-cc-by-4-0]]
+=== Why CC BY 4.0?
+
+We release some extra documentation like websites and educational materials under link:https://creativecommons.org/licenses/by/4.0/deed.en[Creative Commons Attribution 4.0 International (CC BY 4.0)] because it is similarly permissive like MIT and widely understood, and because we quite like CC and their efforts in the world of knowledge sharing.
+
+CC BY indicates a requirement to note what changes are made if you redistribute the so-licensed content, so for stuff like Docs-as-Code School or this the main link:{docopslab_www_base_url}[DocOpsLab.org] website.
+
+[[what-does-all-this-mean]]
+=== What Does All This Mean?
+
+In practical terms, you can use DocOps Lab software and documentation in your own projects, whether personal or commercial, without worrying about licensing fees or restrictions.
+You can modify it, adapt it, and even redistribute it, and we don't even care about credit, so long as you leave some trail back to the source.
+
+The only real requirement is that if you do redistribute the _source code_ itself, it must remain under the same license.

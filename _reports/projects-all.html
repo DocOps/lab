@@ -1,0 +1,46 @@
+---
+layout: projects
+title: "All Projects"
+permalink: /projects/
+icon: layers
+---
+
+<div class="projects-report">
+  <header class="report-header">
+  <p class="report-description">Complete listing of all DocOps Lab projects.</p>
+  <p>
+    <a href="/projects/by-type/" class="report-link">by type</a> |
+    <a href="/projects/by-tech/" class="report-link">by technology</a> |
+    <a href="/projects/by-category/" class="report-link">by category</a> |
+    <a href="/projects/by-wave/" class="report-link">by release target</a>
+  </p>
+  </header>
+
+  {% assign all_projects = site.data.docops-lab-projects.projects | sort: 'slug' %}
+  
+  <div class="projects-profiles">
+  {% for project in all_projects %}
+    {% include project-profile.html project=project projects=all_projects show_tags=true scope="mini" %}
+  {% endfor %}
+
+  <h2 style="text-align: center; margin: 3rem;">Additional Assets</h2>
+  {% for project in all_projects %}
+    {% if project.libs or project.subjects or project.packs %}
+      {% if project.libs %}
+        {% include project-assets-profile.html project=project type="libs" %}
+      {% endif %}
+      {% if project.subjects %}
+        {% include project-assets-profile.html project=project type="subjects" %}
+      {% endif %}
+      {% if project.packs %}
+        {% include project-assets-profile.html project=project type="packs" %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}  
+  </div>
+
+
+
+</div>
+
+{% include dependency-popover.html %}

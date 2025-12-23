@@ -1,0 +1,8 @@
+---
+permalink: /docs/agent/code-commenting/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+= Code Commenting 
+
+include::../../reference/code-commenting.adoc[tags=content]

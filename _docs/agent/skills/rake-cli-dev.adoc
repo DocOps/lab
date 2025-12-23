@@ -1,0 +1,9 @@
+---
+permalink: /docs/agent/rake-cli-dev/
+---
+include::../_agent_settings.adoc[]
+= Agent Rake CLI Guide 
+
+If you need to add or modify Rake tasks for the current project, follow the guidelines in this document.
+
+include::../../reference/cli-styles.adoc[tags=rake-clis,general-cli-principles]

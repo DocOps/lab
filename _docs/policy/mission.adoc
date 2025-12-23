@@ -1,0 +1,271 @@
+---
+docs-group: policy
+---
+include::../_local_settings.adoc[]
+= Operate the Docs: DocOps Lab Purpose and Approach
+:fn:
+:toc: macro
+:toclevels: 3
+:example-caption!:
+:sectnums:
+ifdef::env-github[]
+endif::env-github[]
+:41pcouncil_pdf_url: https://www.4ipcouncil.com/application/files/3615/4357/3178/4iP_Council_-_Proprietary-vs-Open-Standards_-_Nov18.pdf
+
+Making true *operators* out of professional writers and document wranglers is the *DocOps Lab mission*.
+
+toc::[]
+
+
+[[docops-lab-philosophy]]
+== DocOps Lab Philosophy
+
+DocOps Lab is a *problem-solving philosophy* that employs _tech_ (_technologies_ and _techniques_) to optimize the way professionals create, manage, and publish digital documents with complex sourcing, processing, and delivery requirements.
+
+*Document operators* are people who employ the techniques and technologies preferred by programmers when it comes to the documentation they rely on and are responsible for.
+
+This section explores _exemplary_ tech, as well as further *principles* used to evaluate solutions.
+
+[IMPORTANT]
+The <<conventions>> and <<tooling>> in this document are representative rather than exhaustive, and they are subject to change over time.
+The <<principles>>, however, are foundational and may evolve but should be definitive, enduring, and difficult to undo.
+
+[[conventions]]
+=== Conventions
+
+Problem-solving _techniques_ are generally known to DocOps Lab as _conventions_, broken down into two types: <<strategies>> and <<tactics>>.
+
+[[strategies]]
+==== Strategies
+
+Approaches to addressing general problems at scale serve to guide assessment and analysis, mapping solutions to entire documentation sets by organizing, categorizing, versioning, and other broad sets of techniques.
+
+.Examples of DocOps strategies
+====
+* To [.problem]_map docs to product versions_, use a [.solution]_framework for grouping and categorizing_ types of divergence in both the deployed/delivered product and the documentation output.
+* To enable authors to indicate and readers to readily [.problem]_identify the purpose of a piece of information_, use [.solution]*semantic typing* for documents/topics, blocks, and inline elements.
+* To [.problem]_store, define, and manage "`small data`"_ for configurations, component profiling, and so forth, use Git-trackable, text-editable [.solution]*flat files*.
+* To turn [.problem]_complex data into rich documents_, use [.solution]*dynamic templates* that blend data with document markup.
+====
+
+[[tactics]]
+==== Tactics
+
+Specific methods for implementing strategies.
+
+.Examples of DocOps tactics
+====
+* *Version-mapping* tactics:
+** Use *SemVer* for sequential changes/releases.
+** Use *editions* for parallel versions of products and docs.
+** Use *localization* for international translations and regional variants.
+
+* *Semantic typing* tactics:
+** Use *AsciiDoc* in particular ways for semantic authoring, such as *inline roles*.
+** Apply our hybrid *Ditataxis* categorization to define and organize document collections.
+
+* *Flat-file data* tactics:
+** Use *YAML* for configuration and profiling data.
+** Use *CSV* for tabular data.
+** Use *Google Sheets* to edit tabular data.
+
+* *Dynamic templating* tactics:
+** Use *Liquid* templates and engine to blend data into document markup.
+** Use *Regular Expressions* patterns to extract and filter data from logs.
+====
+
+[[tooling]]
+=== Tooling
+
+Problem-solving _technologies_ generally fall under the umbrella category of "`tooling`", which is industry jargon for software, including _how it is scripted and configured_.
+
+[[utilities]]
+==== Utilities
+
+Hands-on tools that enable day-to-day authoring and management operations.
+
+.Examples of DocOps utilities
+====
+* *Git* for version control.
+* *Docker* for containerized environments.
+* *VS Code* for text editing.
+* *Pandoc* for migrating to standardized formats.
+====
+
+[[automation]]
+==== Automation
+
+Scripted routines and always-available platforms that execute common tasks in a predictable manner.
+
+.Examples of DocOps automation
+====
+* *GitHub Actions* for continuous integration and deployment.
+* *Rake* and *Bash* for task-level automation.
+* *Vale* for text/markup linting.
+* *Jekyll* for static-site generation.
+* *Redocly CLI* for OpenAPI rendering.
+====
+
+[[principles]]
+=== Principles
+
+When it comes to evaluating, selecting, and innovating on conventions and tooling, DocOps Lab applies a set of principles that guide our decisions and practices.
+
+Unlike the conventions and tooling, these principles are relatively exhaustive, definitive, and immutable, especially in combination with <<methods>>.
+
+[[accessibility]]
+==== Usability
+
+DocOps Lab emphasizes tools and techniques that non-expects can grasp and use effectively and without intensive training.
+Operators will still need to be comfortable with technology, but they do not need to know anything about _programming_ to get started.
+
+In fact, DocOps Lab tools are _not_ for programmers or developers, other than how they may incidentally or by design overlap with their particular needs.footnote:[DocOps CLIs and APIs are meant to be integrated with other applications, usually by programmers or IT personnel, but the main user base for all our projects is _digital document professionals_, which of course includes programmers.]
+
+We specialize in tools with:
+
+* low-code or no-code interfaces
+* sensible command-line interfaces
+* YAML-based configuration
+* lightweight markup languages
+* text transformation by templating
+* scriptable with YAML- and Liquid-based DSLs (domain-specific languages)
+
+While full-fledged scripting languages and programming environments are a robust fallback for DocOps platforms, DocOps Lab focuses on maximizing the range of what can be accomplished with minimal coding and straightforward configuration.
+
+The principle of usability also means *accessibility* in the more traditional sense.
+At this time, true accessibility is a goal rather than a reality for DocOps Lab, but we are working to make our tooling truly open to people with disabilities.
+
+[[reusability]]
+==== Reusability
+
+DocOps approaches will work in more than one place with only circumstantial modifications.
+
+This is a core approach to software development, but it is also a key principle of technical documentation and formal documents at all levels.
+
+Reusability implies DRY ("`Don't Repeat Yourself`") in terms of content, data, and configuration.
+
+It also means that the same tools and conventions can be used across different projects, industries, and problem spaces.
+
+This principle broadly covers *universality*, *portability*, and *repeatability*.
+Basically, tools need to be able to work equally in a wide range of environments and circumstances.
+
+Our commitment to containerization (with Docker, etc) is a key part of this principle, as it allows users to run the same environment anywhere Docker is supported.
+
+[[interoperability]]
+==== Interoperability
+
+Similar to some of the sub-principles of reusability, interoperability means technology and techniques that fit and work together in a cohesive manner.
+
+DocOPs favors tool integration and data exchange mechanisms that enable seamless workflows across different systems.
+This also means _effective_ compatibility across operating systems (Windows, MacOS, and Linux).
+
+.Examples of DocOps interoperability
+====
+* *Git* and *GitHub* for version control of document sources, tooling configurations, scripted automation, and rendered artifacts.
+* *LiquiDoc* and *Jekyll* standardize around Liquid, YAML, and AsciiDoc generation, also supporting Markdown, JSON, CSV, and other formats.
+* *OpenAPI* format for REST API documentation, as it is an open standard that also uses YAML and covers nearly everything HTTP interfaces can do, and numerous tools can generate output from it in various forms.
+====
+
+The goal of interoperability is a smooth experience with the shortest possible toolchain and technology stack.
+
+[[extensibility]]
+==== Extensibility
+
+Tools and conventions that can be extended, configured, or otherwise customized to meet highly specific yet unforeseen needs without substantially altering the prime source of tooling or documentation.
+Users should always be able to make changes that _build upon_ rather than alter the upstream source.
+
+What works in one peculiar use case should be adaptable to others.
+
+.Example of DocOps extensibility
+======
+DocOps Lab maintains a "`content typing`" system which itself extends both the Diátaxis and the DITA topic typing systems.
+This "`Ditataxis++`" system defines a set of standard content types and subtypes, each with its own purpose, structure, and conventions.
+
+[%collapsible]
+.Continue reading this example of extensibility
+====
+For a downstream user to add, remove, or change a content type, they simply create a new YAML file that conforms to the open-standard format for defining semantical taxonomies.
+This way they can use DocOps Lab software to apply their local patches and produce documentation and even linter code that leverages the whole collection of content types, to be included in a style guide and even automated docs testing.
+
+In fact, the same library provides the same kind of definitional data for the original DITA and Diátaxis systems, so any team can select a standard through simple configuration and use it instead of our preferred Ditataxis++.
+====
+======
+
+Extensibility also includes *scalability*.
+Solutions must be able to grow along with the teams and enterprises that use them, in terms of complexity and sheer amounts of content or contributors.
+
+Whenever possible, extensibility should not cost any more than the labor required to implement and use the changes.
+
+[[innovation]]
+==== Innovation
+
+When conventions and tools are not enough, we innovate.
+For DocOps Lab, this is the _extensibility_ of our own approach: modify and build upon what exists to accommodate new challenges.
+
+Innovation means developing new methods and/or technologies that _extend_ our current conventions and tools.
+Whenever possible, these solutions should broadly accommodate or modularly integrate with other approaches and toolchains.
+That is to say, solutions should always meet the other principles.
+
+Innovation also means doing things differently _when appropriate_; it means not being afraid to break out of conventions and standards that have grown inadequate or obsolete.
+Favoring a trusty standard makes sense until you find it simply too constraining.
+
+
+[[methods]]
+== DocOps Lab Commitments
+
+DocOps Lab adheres to radically open principles.
+
+For the DocOps Lab mission, developing and propagating conventions, tooling, and the skills to execute them absolutely requires a wide-open program of collaboration and sharing.
+
+Your organization may have different priorities and constraints, but DocOps Lab commits to these methods as a matter of principle so users and contributors can count on them.
+
+[[foss]]
+=== Free, Open-Source (Tools and Docs)
+
+All of the tools we develop, and nearly all of the tools we use or recommend{fn}footnote:[Some platforms we use or recommend MAY offer paid plans, and their offerings may not be fully open source, but in all cases such providers are strongly open-source _supportive_.], are fully free and open-source software (FOSS).
+
+This goes for the documentation we produce, too.
+You are welcome to reuse and repurpose it to whatever end you see fit, with attribution but no requirement to re-share what you do with it.
+
+Unrelated third parties can even use our course content to teach their own classes, even charge a fee, so long as they credit the content appropriately.
+
+[[open-standards]]
+=== Open Standards
+
+Industries and professions that eschew proprietary methods and adopt open standards see greater integration, interoperability, innovation, and adoption of best practices{fn}footnote:[On the difference between open _source_ and open _standards_: https://www.ibm.com/think/topics/open-standards-vs-open-source-explanation ]footnote:[On the _efficacy_ of open standards: https://www.dynatrace.com/news/blog/open-source-software-and-open-standards/ and {41pcouncil_pdf_url} (PDF).].
+
+Our interoperability and extensibility principles depend almost entirely on open standards.
+And while we cannot claim DocOps Lab never eschews an established standard over a preferred or even custom alternative, at least we only ever introduce new _open_ standards, and we only make our own when the leading solution really does not suffice for our needs.
+
+.Example of DocOps open standards
+====
+Advanced documentation systems tend to need to point to data objects inside flat files (JSON, YAML, etc).
+There are (at least) three competing open standards for this: JSON Pointer, JSON Path, and JMESPath.
+
+DocOps Lab is introducing a standard called URIx, which is a universal way to use _any of these three_ standards to indicate data, whether it be in the same files as the reference, inside a local file, or inside a remote file.
+====
+
+[[open-education]]
+=== Open Education
+
+DocOps Lab is committed to _teaching_ the principles and practices of docs-as-code to as many people as possible.
+This is the whole purposes of the Docs-as-Code School project: _using_ DocOps tech to _teach_ DocOps tech.
+
+All course content is openly licensed for anyone to use, adapt, and repurpose -- you can even teach it yourself, modified or unmodified.
+
+The only thing we charge for is real-time access to instructors and professional mentors.
+All content, including some that is student generated, will remain freely available.
+
+[[open-community]]
+=== Open Community
+
+For DocOps Lab, community is the least defined element with the greatest potential.
+_Everyone_ can impact this part.
+
+There is a link:https://docopslab.zulipchat.com[Zulip chat group], GitHub discussions, and a broader community with Write the Docs, its international conferences, local chapters, and vibrant Slack community.
+There are even the GitHub Issues boards on our repositories.
+
+However community pans out for DocOps/docs-as-code broadly and those participating in DocOps Lab in particular, openness and active participation are surely the keys to success.
+
+Talking about DocOps Lab projects _is contributing_.
+The {xref_docs_contributing_link} applies to _everyone_ who participates.

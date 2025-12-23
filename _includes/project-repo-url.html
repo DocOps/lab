@@ -1,0 +1,44 @@
+{% comment %}
+  Calculate GitHub repository URL for a project
+  
+  Usage:
+    {% include project-repo-url.html slug="project-slug" %}
+    {% include project-repo-url.html project=project_object %}
+  
+  Sets variables:
+    - repo_url: Full GitHub URL to the project
+    - has_repo: Boolean - whether a public repo exists
+{% endcomment %}
+
+{% if include.project %}
+  {% assign project = include.project %}
+{% elsif include.slug %}
+  {% assign projects = site.data.docops-lab-projects.projects %}
+  {% assign project = projects | where: 'slug', include.slug | first %}
+{% endif %}
+
+{% assign has_repo = false %}
+{% assign repo_url = '' %}
+
+{% if project.live %}
+  {% assign has_repo = true %}
+  
+  {% comment %} Determine repo name {% endcomment %}
+  {% assign repo_name = project.repo | default: project.slug %}
+  
+  {% comment %} Check if it's an external URL {% endcomment %}
+  {% if repo_name contains 'http://' or repo_name contains 'https://' %}
+    {% assign repo_url = repo_name %}
+  {% elsif repo_name contains '/' %}
+    {% comment %} Format: account/repo {% endcomment %}
+    {% assign repo_url = 'https://github.com/' | append: repo_name %}
+  {% else %}
+    {% comment %} Format: DocOps/repo {% endcomment %}
+    {% assign repo_url = 'https://github.com/DocOps/' | append: repo_name %}
+  {% endif %}
+  
+  {% comment %} Append path if present {% endcomment %}
+  {% if project.path %}
+    {% assign repo_url = repo_url | append: '/tree/main/' | append: project.path %}
+  {% endif %}
+{% endif %}

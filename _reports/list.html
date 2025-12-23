@@ -1,0 +1,22 @@
+---
+layout: projects
+permalink: /projects/list/
+---
+{% assign projects = site.data.docops-lab-projects.projects %}
+<dl class="horizontal">
+  <dt>Project Count:</dt>
+  <dd>{{ projects | size }}</dd>
+</dl>
+
+<ul>
+{% for p in projects %}
+  {% if p.page %}
+    {% assign href = "/projects/" | append: p.slug | append: "/" %}
+  {% else %}
+    {% assign href = "/projects/#" | append: p.slug %}
+  {% endif %}
+  <li>
+    <a href="{{ href }}">{{ p.name }}</a>
+  </li>  
+{% endfor %}
+</ul>

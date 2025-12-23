@@ -1,0 +1,106 @@
+:page-image: blog-neo-kungfu.png
+:page-image-alt: Neo from The Matrix announces downloading a new skill: 'I know kung fu!'
+:page-tags: ["AI agents", "documentation", "AsciiDoc", "Markdown", "RAG", "SSOT"]
+:page-date: 2025-10-25
+= Building Docs for AI Agents from Single-Sourced Content
+include::../README.adoc[tags=globals]
+
+I build alternate versions of my developer documentation, specially for consumption by LLM-backed coding agents.
+
+These documents begin life as AsciiDoc files oriented toward human users, but I selectively transclude content into AI-specific documentation files.
+Then the files are converted to Markdown (via HTML) for better compatibility with LLMs.
+
+I then use a tool that lets me sync those agent-oriented docs from a central source into all my code repositories.
+This way any LLM agents have ready access to a library of specific skills or protocols they may be called upon to use, without overwhelming them with entire sets of remote, HTML-laden documents in every session.
+
+If this sounds convoluted, hear me out.
+
+
+[[source-content]]
+== Source Content
+
+The source content for my AI-agent-oriented docs lives in the same AsciiDoc files I use for human developer documentation.
+
+In my experience, LLMs are more adept at consuming examples and bulleted lists, and they prefer these in Markdown format with some HTML tags.
+
+However, complex tech docs are best authored in a structured format like AsciiDoc, reStructuredText, DITA, or MadCap Flare.
+For me, this means authoring in AsciiDoc, converting to HTML, and then reverting to Markdown.
+
+.Why not just write the AI docs in Markdown?
+****
+If all your docs are already sourced in pure Markdown of one flavor or another, you have a head start in this process.
+You can basically just show the source files to your LLM agent... so long as your docs do not need to be assembled.
+
+But for structured authoring with strict single sourcing and transclusion, source files are incomplete until they are rendered to another format.
+
+Assuming you wish to source your AI-agent docs along with people docs, you will probably want to render each document, and you further want to slim down your docs.
+
+Most advanced static-site generators (SSGs) and doc generators can render complex docs from Markdown-like sources, but conditional transclusion usually requires mixing in preprocessor templates.
+Whereas formats like AsciiDoc, reStructuredText, DITA, and Flare support this feature natively.
+
+And because we love AsciiDoc at DocOps Lab, we're usually going to find a way to avoid actually having to author in (or even read) Markdown.
+****
+
+Assuming you want to selectively include content for AI agents, use AsciiDoc tagging to indicate sections or blocks to include or exclude.
+
+For example, my original, people-focused documentation on how to interact with Git does not assume much prior knowledge of Git commands.
+Whereas LLMs definitely know how to use Git; they are basically experts.
+So all I need to convey is the specific procedures preferred for DocOps Lab projects.
+
+Here is how I tag the relevant content in my AsciiDoc source files:
+
+.Original AsciiDoc source snippet
+[source,asciidoc]
+--------
+// tag::repo-state[]
+include::../_docs/task/development.adoc[tags="repo-state"]
+// end::repo-state[]
+--------
+
+From there it is just a matter of creating a set of AsciiDoc files that use the `include::` directive to pull in the tagged content.
+This way I can skip verbose introductory or beginner-oriented content that is unnecessary for LLMs.
+
+.Using include directive to embed single-sourced content
+[source,asciidoc]
+--------
+include::../_docs/agent/skills/git.adoc[tags=basics-snippet]
+
+\include::../task/development.adoc[tag=repo-state]
+--------
+
+
+[[generating-ai-agent-docs]]
+== Generating AI-Agent Docs
+
+The best way to get Markdown from AsciiDoc files is to perform an HTML conversion and then downgrade to Markdown.
+
+There are numerous tools for carrying this latter step, not the least of them the link:https://pandoc.org[beloved Pandoc].
+I have modified a Ruby library called link:https://github.com/xijo/reverse_markdown[ReverseMarkdown] to accommodate AsciiDoc's richer semantics.
+My extension is available as link:{this_repo_base_url}/blob/main/scripts/mark_down_grade.rb[`scripts/mark_down_grade.rb`] in this very repo.
+
+Here I include a window into the current state of one such document (link:{this_repo_base_url}/blob/main/gems/docopslab-dev/docs/agent/skills/git.md[source], link:{docopslab_www_base_url}/docs/agent/git[rendered]), which may change over time as I refine the AI-agent docs:
+
+[source,markdown]
+--------
+include::../gems/docopslab-dev/docs/agent/skills/git.md[]
+--------
+
+I am quite happy with the twice-converted Markdown output.
+Having spent a decade publishing AsciiDoc to HTML and PDF, this experience of publishing to Markdown has been fun.
+
+
+[[distribution]]
+== Distribution
+
+This is the extra-credit section of the blog entry.
+It only pertains to organizations or projects that maintain multiple repos or authors who need to lint textual content across multiple projects with a single voice.
+
+This matter of AI-oriented docs came about as a side effect of my need to centrally maintain a series of helper utilities like code and text linters backed by customizable libraries.
+
+In order to make sure all of my many concurrent projects have access to the latest customizations and configurations of the tools they all depend on, I built a common dependency across all my repos, just for managing these shared assets.
+
+The specifics of this tool are not all that important; I will leave them for a separate post.
+The trick is to use whatever resources are available to you to ensure your docs and helper tooling are consistent across your team and accessible to all AI agents.
+
+Once you have a library of topical documents for your AI agents to use, make sure they are aware of them by indicating their location in your project's link:https://agents.md[`AGENTS.md`] or link:https://claudecode.io/tutorials/claude-md-setup[`CLAUDE.md`] file.
+

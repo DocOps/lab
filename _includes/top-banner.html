@@ -1,0 +1,46 @@
+<!-- Top Banner with Sticky Navigation -->
+{% assign nav_data = site.data.top-nav %}
+{% assign banner = nav_data.banner %}
+
+<header class="top-banner{% if banner.sticky %} sticky-banner{% endif %}{% if banner.hide_on_scroll %} hide-on-scroll{% endif %}" 
+        id="top-banner"
+        {% if banner.hide_threshold %}data-hide-threshold="{{ banner.hide_threshold }}"{% endif %}
+        {% if banner.show_on_footer %}data-show-on-footer="true"{% endif %}>
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="{{ nav_data.brand.url }}" class="banner-brand-link">
+          <span class="banner-brand-name">{{ nav_data.brand.name }}</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        {% include nav.html variant="banner" show_brand=false show_icons=true show_external=true %}
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+
+      {%- unless site.search.disabled %}
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div>
+      {%- endunless -%}
+      
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      {% include nav.html variant="mobile" show_brand=false show_icons=true show_external=true %}
+    </div>
+    
+  </div>
+</header>

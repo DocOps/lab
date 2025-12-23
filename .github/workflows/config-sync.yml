@@ -1,0 +1,85 @@
+name: Config Sync
+
+on:
+  workflow_call:
+    inputs:
+      ref_override:
+        description: "Override config-packs ref for hotfixes (maps to CONFIG_PACKS_REF)"
+        type: string
+        required: false
+      enable_cache:
+        description: "Enable bundler and other caching"
+        type: boolean
+        default: true
+      create_pr:
+        description: "Create PR if tracked files change"
+        type: boolean
+        default: true
+    secrets:
+      GITHUB_TOKEN:
+        description: "GitHub token for PR creation"
+        required: false
+
+jobs:
+  config-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN || github.token }}
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: ${{ inputs.enable_cache }}
+
+      - name: Set config packs ref override
+        if: inputs.ref_override
+        run: echo "CONFIG_PACKS_REF=${{ inputs.ref_override }}" >> $GITHUB_ENV
+
+      - name: Sync configurations
+        run: |
+          bundle exec rake labdev:sync:configs
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changed files:"
+            git diff --name-only
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true' && inputs.create_pr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN || github.token }}
+          commit-message: "chore: sync config packs from DocOps Lab"
+          title: "Config Sync: Update development tool configurations"
+          body: |
+            This PR updates development tool configurations from the DocOps Lab config packs.
+            
+            **Changes:**
+            - Config files synced from `${{ inputs.ref_override || 'latest' }}` ref
+            - Base configurations updated in `.config/.vendor/docopslab/`
+            
+            Please review the changes and merge to apply the updated configurations.
+          branch: config-sync/automated-update
+          delete-branch: true
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.changes.outputs.changed }}" = "true" ]; then
+            echo "✅ Config sync completed with changes"
+            if [ "${{ inputs.create_pr }}" = "true" ]; then
+              echo "📝 Pull request created for review"
+            fi
+          else
+            echo "✅ Config sync completed - no changes needed"
+          fi

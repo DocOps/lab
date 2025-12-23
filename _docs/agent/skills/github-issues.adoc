@@ -1,0 +1,12 @@
+---
+permalink: /docs/agent/github-issues/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+= GitHub Issues Management for AI Agents
+
+AI agents assisting in DocOps Lab development tasks should use the Issuer and `gh` CLI tools to manage GitHub issues in project repositories.
+
+include::../../task/github-issues-usage.adoc[tags="github-issues-management"]
+
+include::../../reference/github-issues.adoc[tags="issue-types,issue-labels"]

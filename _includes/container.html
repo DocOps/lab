@@ -1,0 +1,29 @@
+<!-- Container Section -->
+<section id="{{ include.id | default: 'container' }}" class="container-section {{ include.class }}">
+  <div class="container">
+  {% if include.title or include.desc %}
+  <div class="section-header {% if include.text_center %}text-center{% endif %}">
+    {% if include.title %}
+    <h2 class="section-heading">{{ include.title }}</h2>
+    {% endif %}
+    {% if include.desc %}
+    <div class="section-description">{{ include.desc | asciidocify }}</div>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if include.content %}
+  <div class="section-content">
+    {{ include.content | asciidocify }}
+  </div>
+  {% endif %}
+
+  {% if include.image %}
+  <div class="section-image text-center">
+    <img src="{{ include.image.path | prepend: site.baseurl }}" 
+     alt="{{ include.image.alt | default: include.title }}"
+     class="{{ include.image.class | default: 'img-responsive' }}">
+  </div>
+  {% endif %}
+  </div>
+</section>

@@ -1,0 +1,18 @@
+---
+layout: document
+type: template
+docs-group: technical
+permalink: /docs/universal-attributes/
+title: DocOps Lab Universal Project Attributes
+order: 82
+tags: ["ai", "agents"]
+description: "Current status of all project info as AsciiDoc attributes"
+---
+= Universal Project Attributes
+
+These are the current URLs of all live DocOps Lab Projects, formatted as copy-pastable to a given project's `README.adoc`.
+
+[source,asciidoc,subs=none]
+----
+include::../partials/built/_docopslab-universal-attributes.adoc[]
+----

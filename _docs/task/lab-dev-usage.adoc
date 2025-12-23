@@ -1,0 +1,20 @@
+---
+title: DocOps Lab Dev-tooling Usage
+docs-group: technical
+description: "Using docopslab-dev tooling with DocOps Lab project codebases"
+order: 35
+---
+include::../_local_settings.adoc[]
+= Dev-tooling Usage
+
+include::../partials/_docopslab-dev-context-notice.adoc[]
+
+[NOTE]
+For full setup instructions, see link:/docs/lab-dev-setup[DocOps Lab Dev-tooling Setup].
+
+[NOTE]
+For configuration details, see {xref_docs_lab-dev-config_link}.
+
+include::../../gems/docopslab-dev/README.adoc[tags="usage",leveloffset="-1"]
+
+include::../../gems/docopslab-dev/README.adoc[tags="workflow"]

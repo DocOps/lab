@@ -1,0 +1,1234 @@
+// Import mixins for use in this file
+@use "mixins";
+
+// Global AsciiDoc content styling - applies to all articles containing AsciiDoc content
+article {
+  // Typography
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  h1 { font-size: 2rem; }
+  h2 {
+    font-size: 1.95rem;
+    margin-top: 4rem;
+  }
+  h3 { font-size: 1.25rem; }
+  h4 { font-size: 1.2rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+
+  #toc {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--card-background);
+    
+    ul {
+        list-style: none;
+      }
+    >ul {
+      padding-left: 0;
+    }
+  }  
+
+  p {
+    margin-bottom: 1rem;
+    color: var(--text-light);
+  }
+
+  // Lists
+  ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      color: var(--text-light);
+    }
+  }
+
+  .ulist {
+    li {
+      margin-bottom: -0.5rem;
+
+      p {
+        margin: .5rem 0;
+      }
+    }
+    ul.square {
+      list-style-type: square;
+    }
+  }
+
+  .dlist {
+    dd {
+      margin-left: 1rem;
+
+      p:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  details {
+    margin-bottom: 2.5rem;
+    >.content {
+      padding: 1rem;
+    }
+  }
+
+  mark {
+    //background-color: rgba(255, 255, 0, 0.6);
+    padding: .2rem .5rem;
+    border-radius: .3rem;
+    // let's make it go from 60% opacity on the left to 85% opacity on the right
+    background: linear-gradient(to right, rgba(255, 255, 0, 0.5), rgba(255, 255, 0, 0.80));
+  }
+
+  .icon {
+    &.icon-small i {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: inline-block;
+    }
+    &.icon-2rem i::before {
+      width: 2rem;
+      height: 2rem;
+      display: inline-block;
+    }
+    &.icon-large i::before {
+      width: 3rem;
+      height: 3rem;
+    }
+    &.icon-xl i::before {
+      width: 4rem;
+      height: 4rem;
+    }
+    &.icon-xxl i::before {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+
+  .line-through,
+  .strike {
+    text-decoration: line-through;
+    // color just the line-through yellow -- not the text just the LINE
+    text-decoration-color: var(--yaml-yellow);
+    text-decoration-thickness: 2px;
+  }
+
+  // Code styling - use dark theme for all code
+  code:not(.literalblock code) {
+    background: var(--hljs-bg) !important;
+    color: var(--code-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.875em;
+  }
+
+  .literalblock pre,
+  .listingblock pre {
+    max-height: calc(100vh - 200px);
+    background: var(--pre-background);
+    border: 1px solid var(--text-secondary);
+    border-radius: 8px;
+    padding: 0; // let the inner code carry the padding so themes cover the padded area
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    color: var(--code-color);
+
+    code {
+      background: none;
+      color: inherit;
+      padding: 1rem; // move padding to code so HLJS theme background covers it
+      display: block;
+      border-radius: 8px;
+    }
+  }
+
+  // Blockquotes
+  blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    background: var(--card-background);
+    font-style: italic;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Tables
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      font-weight: 600;
+      color: var(--text-color);
+      background: var(--card-background);
+    }
+
+    .halign-center {
+      text-align: center;
+    }
+  }
+
+  .exampleblock {
+    margin: 2rem 0 2rem 0;
+    padding: .5rem 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    background-color: var(--example-background);
+
+    > .title {
+      display: ruby-text;
+      margin: 0;
+      margin-top: -1.5rem;
+      margin-bottom: -2rem;
+      font-weight: 600;
+      font-size: 1.125rem;
+      background: var(--card-background);
+      padding: 0.25rem 1rem;
+      border-radius: 1rem;
+    }
+
+    .content {
+      .paragraph:first-child p {
+        margin-top: 0;
+      }
+
+      pre {
+        background-color: var(--example-background);
+        color: var(--code-color);
+        border: none;
+        padding: 0;
+      }
+    }
+  }
+
+  .exampleblock,
+  .sidebarblock {
+    .exampleblock {
+      // when an exampleblock is set inside a sidebar or another example block, it should have some different bg coloring so it contrasts
+      background-color: var(--example-background);
+
+      .title {
+        box-shadow: none;
+        background-color: var(--example-background);
+        border-bottom: 0;
+        font-size: 1.125rem;
+      }
+    }
+  }
+
+  .olist {
+    .literalblock,
+    .listingblock {
+      margin-top: -0.5rem;
+    }
+  }
+
+  // AsciiDoc literal blocks with retro terminal styling
+  .literalblock {
+    background-color: transparent;
+    border-radius: var(--border-radius);
+    margin: 1.5rem 0;
+
+    .title {
+      background: var(--terminal-background);
+      color: var(--terminal-text);
+      font-weight: 700;
+      display: inline;
+      padding: .2rem .5rem 0 .5rem;
+      border: 2px solid var(--terminal-border);
+      border-bottom: 0;
+      border-radius: .3rem .3rem 0 0;
+      position: relative;
+      top: .3em;
+      z-index: 2;
+    }
+    
+    .content {
+      background-color: transparent;
+      
+      pre {
+        @include mixins.terminal-block;
+        border-radius: var(--border-radius);
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-x: visible;
+      }
+    }
+    .content:not(:first-child) pre {
+      border-top-left-radius: 0 !important;
+    }
+    
+    // Prompt styling - must come after base terminal styling to override
+    &.prompt {
+      .content pre {
+        // Override the mixin's padding for prompt blocks
+        position: relative;
+        padding-left: 3rem !important; // space for the prompt - using !important to override mixin
+        white-space: pre-wrap; // allow wrapping
+        word-break: keep-all; // prevent breaking words in the middle
+        
+        // Add the prompt symbol
+        &::before {
+          content: "$: ";
+          position: absolute;
+          top: 1rem; // align with mixin's padding
+          left: 0.75rem; // space from the left edge
+          color: var(--text-secondary);
+          font-family: var(--font-mono);
+          font-weight: 600;
+          pointer-events: none; // make it non-selectable
+          user-select: none;
+        }
+      }
+    }
+  }
+
+  // Dark mode styles
+  .dark-mode & {
+    code {
+      background: var(--hljs-bg) !important;
+      color: var(--code-color);
+    }
+
+    // Enhanced inline code styling for dark mode
+    p code, 
+    li code, 
+    dt code, 
+    dd code,
+    td code,
+    th code,
+    blockquote code {
+      background: var(--code-background);
+      color: var(--code-color);
+      border-color: var(--text-secondary);
+    }
+
+    pre:not(.literalblock pre) {
+      background: var(--pre-background);
+      border-color: var(--text-secondary);
+      color: var(--code-color);
+    }
+
+    blockquote {
+      background: var(--card-background);
+    }
+
+    table th {
+      background: var(--card-background);
+    }
+
+    table th, table td {
+      border-bottom-color: var(--text-secondary);
+    }
+
+    // Retro terminal styling for literal blocks in dark mode
+    .literalblock {
+      background-color: transparent;
+      border-radius: var(--border-radius);
+      
+      .content {
+        background-color: transparent;
+        
+        pre {
+          @include mixins.terminal-block;
+          border-radius: var(--border-radius);
+        }
+        
+      }
+      
+      // Ensure prompt styling works in dark mode too
+      &.prompt .content pre::before {
+        color: var(--text-secondary);
+      }
+      &.small {
+        .content pre {
+          font-size: 0.9rem;
+        }
+      }
+      &.tiny {
+        .content pre {
+          font-size: 0.75rem;
+        }
+      }
+    }
+    
+    .listingblock .content pre:not(.literalblock pre) {
+      background-color: var(--pre-background);
+      color: var(--code-color);
+    }
+
+    // Override any other pre elements (except literal blocks)
+    pre[class*="language-"]:not(.literalblock pre),
+    pre code:not(.literalblock code) {
+      background-color: var(--pre-background);
+      color: var(--code-color);
+    }
+  }
+
+  // AsciiDoc callouts styling
+  .conum {
+    display: inline-block;
+    color: var(--callout-text);
+    background-color: var(--callout-background);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-weight: 1000;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+    vertical-align: baseline;
+    
+    &::before {
+      content: attr(data-value);
+    }
+  }
+
+  // Hide the fallback bold text that appears after callouts
+  .conum + b {
+    display: none;
+  }
+
+  // Callout list styling (the numbered explanations below code blocks)
+  .colist {
+    margin-top: 0;
+    padding-top: 0;
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: var(--shadow);
+
+    table {
+      margin-bottom: 0;
+      border: 0;
+
+      td {
+        border: 0;
+      }
+
+      td:first-child {
+        width: 2rem;
+      }
+      td:last-child {
+        color: var(--text-light);
+        font-size: .9rem;
+        margin-bottom: 0;
+      }
+
+    }
+
+  }
+
+  .listingblock {
+
+    &.wrap {
+      // make sure lines wrap to the same indentation point that their first/initial char is indented to
+      pre {
+        white-space: pre-wrap; // allow wrapping
+        word-break: keep-all; // prevent breaking words in the middle
+        overflow:auto;
+      }
+    }
+    
+    > .title {
+      color: var(--yaml-yellow);
+      font-weight: 600;
+      font-size: 1.125rem;
+      background: var(--hljs-bg);
+      color: var(--yaml-yellow);
+      padding: 0.4rem 1rem 0.1rem 1rem;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid var(--text-secondary);
+      border-bottom: none;
+      margin: 0 0 -1px 0.5rem;
+      display: inline-block;
+      position: relative;
+      z-index: 2;
+    }
+
+    .content {
+      padding: 0;
+      
+      pre {
+        margin-top: 0;
+        position: relative;
+        z-index: 1;
+        padding: 0; // ensure no extra padding on pre inside listing blocks
+      }
+
+      // When HLJS has highlighted the code, ensure padding and radius are on the code element
+      pre code.hljs {
+        padding: 1rem;
+        border-radius: 8px;
+        display: block;
+      }
+
+      // Fallback for non-HLJS code blocks (no language specified)
+      pre code:not(.hljs) {
+        padding: 1rem;
+        border-radius: 8px;
+        display: block;
+        background-color: var(--hljs-bg);
+        color: var(--hljs-fg);
+      }
+
+      // Fallback for bare pre elements (AsciiDoc with no source lang generates no code child)
+      pre:not(:has(code)) {
+        padding: 1rem;
+        background-color: var(--hljs-bg);
+        color: var(--hljs-fg);
+      }
+
+      // Extra top space to avoid collisions when first line is long
+      pre.long-first-line code,
+      pre.long-first-line code.hljs {
+        padding-top: calc(1rem + 2.5rem) !important;
+      }
+    }
+  }
+  // Code language labels
+  .code-lang-label {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--code-label-background);
+    color: var(--code-label-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 10;
+  } 
+
+  // Code copy button
+  .code-copy-btn {
+    position: absolute;
+    margin-right: 0.3rem;
+    top: 0.5rem;
+    // right position will be set dynamically by JavaScript
+    background: var(--code-label-background);
+    color: var(--code-label-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    
+    // Lucide icon styling
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+  }
+
+  // Add extra top padding when first line might collide with label
+  pre.long-first-line {
+    padding-top: 2.5rem; // push code down relative to absolute-positioned controls
+
+    .code-lang-label {
+      top: 0.25rem; // Move label closer to top edge when we have extra padding
+    }
+    
+    .code-copy-btn {
+      top: 0.25rem; // Move copy button closer to top edge when we have extra padding
+    }
+  }
+
+  // AsciiDoc admonitions with table-based structure
+  .admonitionblock {
+    margin: 2rem 0;
+    border-radius: 8px;
+    position: relative;
+    border: 1px solid;
+    border-left: 4px solid;
+    background: var(--card-background);
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+      border: none;
+      
+      tr {
+        border: none;
+        
+        td {
+          border: none;
+          vertical-align: middle;
+          
+          &.icon {
+            width: 80px;
+            padding: 1.5rem 1rem 1.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            
+            // Replace FontAwesome icon with Lucide SVG mask
+            .fa {
+              position: relative;
+              transition: all 0.2s ease;
+              
+              &::before {
+                content: "";
+                display: block;
+                width: 24px;
+                height: 24px;
+                margin: 0 auto 0.5rem auto;
+                mask-size: contain;
+                mask-repeat: no-repeat;
+                mask-position: center;
+                background-color: currentColor;
+              }
+              
+              &::after {
+                content: attr(title);
+                display: block;
+                font-weight: 700;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: currentColor;
+                text-align: center;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+              }
+            }
+          }
+          
+          &.content {
+            padding: 1.5rem 1.5rem 1.5rem 0;
+            
+            .paragraph:first-child p {
+              margin-top: 0;
+            }
+            
+            .paragraph:last-child p {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+
+    // Note admonition
+    &.note {
+      border-left-color: var(--note-border);
+      color: var(--note-color);
+      
+      .icon {
+        .fa::before {
+          mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'/%3e%3c/svg%3e");
+        }
+      }
+      // for meta notes, use the metablog green color INCLUDING as CHILDREN OF .dark-mode
+      &.meta {
+        border-left-color: var(--secondary-color);
+        color: var(--secondary-color);
+      }
+    }
+    &.note.meta {
+      .icon .fa::after {
+        content: "meta";
+      }
+    }
+    &.note.no-label {
+        // No label styling
+      .icon .fa::after {
+        display: none;
+      }
+    }
+
+    // Tip admonition  
+    &.tip {
+      border-left-color: var(--tip-border);
+      color: var(--tip-color);
+      
+      .icon .fa::before {
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z'/%3e%3c/svg%3e");
+      }
+    }
+
+    // Important admonition
+    &.important {
+      border-left-color: var(--important-border);
+      color: var(--important-color);
+      
+      .icon .fa::before {
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.992-.833-2.732 0L3.232 16.5c-.77.833.192 2.5 1.732 2.5z'/%3e%3c/svg%3e");
+      }
+    }
+
+    // Warning admonition
+    &.warning {
+      border-left-color: var(--warning-border);
+      color: var(--warning-color);
+      
+      .icon .fa::before {
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 8v4m0 4h.01M3 12a9 9 0 1118 0 9 9 0 01-18 0z'/%3e%3c/svg%3e");
+      }
+    }
+
+    // Caution admonition  
+    &.caution {
+      border-left-color: var(--caution-border);
+      color: var(--caution-color);
+      
+      .icon .fa::before {
+        mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3e%3cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016zM12 9v2m0 4h.01'/%3e%3c/svg%3e");
+      }
+    }
+  }
+
+  // Pullquote styling for AsciiDoc quoteblock
+  .quoteblock {
+
+    &:has(> .attribution) {
+      blockquote {
+        padding-bottom: 2.5rem; // Make room for attribution
+      }
+
+      .attribution {
+        position: relative;
+        bottom: 3.5rem;
+        font-style: normal;
+        font-weight: 600;
+        color: var(--text-color);
+        float: right;
+        margin-right: 1.5rem;
+      }
+    }
+    
+    &.pullquote {
+      margin: 2rem 0;
+      position: relative;
+      
+      blockquote {
+        margin: 0;
+        padding: 1.5rem 1.5rem 1.5rem 3.5rem;
+        border-left: 4px solid var(--tip-border); // Same as TIP
+        background: var(--pullquote-background); // Lighter green background
+        color: var(--tip-color); // Same as TIP
+        font-style: italic;
+        font-size: 1.125rem;
+        position: relative;
+        
+        &::before {
+          content: "\201C"; // Opening curly quote
+          position: absolute;
+          left: 1rem;
+          top: 1rem;
+          font-size: 4rem;
+          line-height: 1;
+          color: var(--pullquote-icon); // Lighter green for the quote
+        }
+
+        p {
+          font-weight: 500;
+        }
+        
+        .paragraph p:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .sidebarblock { 
+    border: 2px solid var(--border-color);
+    padding: 2rem 3rem;
+    border-radius: 2rem 0 0 2rem;
+    // bright right border
+    border-right: 8px solid var(--primary-color);
+    background: var(--tag-bg);
+    position: relative;
+    margin: 2rem 0 2rem 2rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+
+    .title {
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: var(--text-light);
+      border-bottom: 2px solid var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    // Base paragraph styling
+    p {
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .content {
+      .paragraph:first-child p {
+        margin-top: 0;
+      }
+      
+      .paragraph:last-child p {
+        margin-bottom: 0;
+      }
+    }
+
+    // Ensure proper paragraph styling for stashed sidebars
+    .paragraph p {
+      margin-bottom: 1rem;
+    }
+    
+    .paragraph:last-child p {
+      margin-bottom: 0;
+    }
+
+    // Hidden content wrapper
+    .sidebar-hidden-content {
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 1000px;
+      opacity: 1;
+      
+      &.hide {
+        max-height: 0;
+        opacity: 0;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    // Button controls container
+    .sidebar-controls {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    // Toggle and stash buttons
+    .sidebar-toggle-btn,
+    .sidebar-stash-btn {
+      background: var(--border-color);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 0.25rem;
+      cursor: pointer;
+      color: var(--text-light);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+
+      &:hover {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .sidebar-toggle-btn {
+      background: var(--asciidoc-teal);
+      border-color: var(--asciidoc-teal);
+      color: white;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .sidebar-stash-btn {
+      background: var(--ruby-red);
+      border-color: var(--ruby-red);
+      color: white;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    // Expanded state
+    &.expanded {
+      .sidebar-hidden-content {
+        max-height: 1000px;
+        opacity: 1;
+      }
+    }
+
+    // Continue reading link styling
+    .sidebar-continue-reading {
+      margin-top: 1rem;
+      text-align: center;
+      
+      .continue-reading-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.8rem;
+        transition: all 0.2s ease;
+        border: 1px solid var(--primary-color);
+        border-width: 0 0 1px 0;
+        
+        &:hover {
+          background: var(--card-background);
+          text-decoration: none;
+        }
+        
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+
+    // Bottom collapse button styling
+    .sidebar-bottom-collapse {
+      margin-top: 1.5rem;
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      
+      .bottom-toggle {
+        background: var(--asciidoc-teal);
+        border: 1px solid var(--asciidoc-teal);
+        border-radius: 4px;
+        padding: 0.5rem;
+        cursor: pointer;
+        color: white;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        
+        &:hover {
+          opacity: 0.8;
+        }
+        
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+    // handle making this collapsible and stashable
+  }
+
+  .dl-horizontal {
+    // make the dd content appear immediately to the right of the dt, always at a minimum let margin
+    dt {
+      float: left;
+      width: 300px;
+      color: var(--text-color);
+    }
+    dd {
+      margin-left: 320px;
+      clear: left;
+      margin: 0 0 1rem 0;
+      color: var(--text-light);
+    }
+  }
+
+  // Dark mode styles for admonitions
+  .dark-mode & {
+    .admonitionblock {
+      background: var(--card-background);
+      
+      &.note {
+        background: var(--note-background);
+        border-left-color: var(--note-border);
+        color: var(--note-color);
+        &.meta {
+          border-left-color: var(--secondary-color);
+          color: var(--secondary-color);
+        }
+      }
+      
+      &.tip {
+        background: var(--tip-background);
+        border-left-color: var(--tip-border);
+        color: var(--tip-color);
+      }
+      
+      &.important {
+        background: var(--important-background);
+        border-left-color: var(--important-border);
+        color: var(--important-color);
+      }
+      
+      &.warning {
+        background: var(--warning-background);
+        border-left-color: var(--warning-border);
+        color: var(--warning-color);
+      }
+      
+      &.caution {
+        background: var(--caution-background);
+        border-left-color: var(--caution-border);
+        color: var(--caution-color);
+      }
+    }
+
+    .code-lang-label { 
+      // Language-specific brand colors (for dark mode)
+      &[data-lang="asciidoc"] {
+        background: var(--asciidoc-teal);
+      }
+      
+      &[data-lang="ruby"] {
+        background: var(--ruby-red);
+      }
+      
+      &[data-lang="liquid"],
+      &[data-lang="twig"] {
+        background: var(--liquid-blue);
+      }
+      
+      &[data-lang="yaml"],
+      &[data-lang="yml"] {
+        background: var(--yaml-yellow);
+        color: var(--yaml-gray-text);
+      }
+      
+      &[data-lang="html"],
+      &[data-lang="html5"] {
+        background: var(--html5-orange);
+      }
+      
+      &[data-lang="javascript"],
+      &[data-lang="js"] {
+        background: var(--javascript-yellow);
+        color: #000000;
+      }
+      
+      &[data-lang="python"],
+      &[data-lang="py"] {
+        background: var(--python-teal);
+        color: var(--python-yellow-text);
+      }
+    }
+    
+    .code-copy-btn {
+    // Use same brand colors as language labels
+      &[data-lang="asciidoc"] {
+        background: var(--asciidoc-teal);
+      }
+      
+      &[data-lang="ruby"] {
+        background: var(--ruby-red);
+      }
+      
+      &[data-lang="liquid"],
+      &[data-lang="twig"] {
+        background: var(--liquid-blue);
+      }
+      
+      &[data-lang="yaml"],
+      &[data-lang="yml"] {
+        background: var(--yaml-yellow);
+        color: var(--yaml-gray-text);
+      }
+      
+      &[data-lang="html"],
+      &[data-lang="html5"] {
+        background: var(--html5-orange);
+      }
+      
+      &[data-lang="javascript"],
+      &[data-lang="js"] {
+        background: var(--javascript-yellow);
+        color: #000000;
+      }
+      
+      &[data-lang="python"],
+      &[data-lang="py"] {
+        background: var(--python-teal);
+        color: var(--python-yellow-text);
+      }
+      
+    }
+    
+    .quoteblock.pullquote blockquote {
+      background: var(--tip-background); // Same as TIP dark mode
+      border-left-color: var(--tip-border);
+      color: var(--tip-color);
+
+      &::before {
+        color: var(--tip-border);
+      }
+    }
+  }
+
+  #footnotes {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    
+    .title {
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+  }
+
+  // MetaBlog-specific styling - enhanced code fonts
+  &.metablog {
+    
+    // Define predictable CSS variables for metablog fonts
+    // Primary: Clean, readable programming fonts (no ligatures)
+    --metablog-mono-primary: "JetBrains Mono", "Source Code Pro";
+    // Secondary: High-quality system fonts (always available)
+    --metablog-mono-system: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono";
+    // Final fallback: Reliable cross-platform
+    --metablog-mono-fallback: Consolas, "Courier New", monospace;
+    
+    // Complete controlled stack - NO Inconsolata, PT Mono, or Ubuntu Mono
+    --metablog-mono-stack: var(--metablog-mono-primary), var(--metablog-mono-system), var(--metablog-mono-fallback);
+    
+    // Add debug attribute to help identify font usage
+    &::before {
+      content: "MetaBlog Enhanced Fonts Active - Stack: " attr(data-font-debug);
+      display: none; /* Hidden but available for debugging */
+    }
+    
+    // Literal blocks (terminal-style) - use primary metablog fonts
+    .literalblock pre,
+    .literalblock pre code {
+      font-family: var(--metablog-mono-stack) !important;
+      font-weight: 400;
+      font-size: 0.9rem; /* Slightly larger to compensate for font differences */
+    }
+    
+    // Listing blocks (code samples) - use slightly different stack for distinction  
+    .listingblock pre,
+    .listingblock pre code,
+    .listingblock pre code.hljs {
+      font-family: var(--metablog-mono-stack) !important;
+      font-weight: 400;
+      font-size: 0.9rem; /* Slightly larger to compensate for font differences */
+    }
+    
+    // Inline code also gets the special treatment
+    code:not(.literalblock code):not(.listingblock code) {
+      font-family: var(--metablog-mono-stack) !important;
+      font-size: 0.875rem; /* Keep inline code slightly smaller */
+    }
+  }
+}
+
+// Sidebar till container - structural styling only
+#sidebar-till {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  border-top: 2px solid var(--border-color);
+
+  h3 {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .sidebarblock {
+    margin-top: 1.5rem;
+    
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+// Sidebar moved placeholder 
+.sidebar-moved {
+  padding: 1rem;
+  margin: 1rem 0;
+  background: var(--card-background);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--border-radius);
+  text-align: center;
+  color: var(--text-light);
+
+  .sidebar-moved-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-goto-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .sidebar-undo-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 0.75rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: var(--primary-color-dark, var(--primary-color));
+      opacity: 0.9;
+    }
+  }
+}

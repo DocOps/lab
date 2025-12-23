@@ -1,0 +1,83 @@
+---
+title: DocOps Lab Product Change Tracking and Docs (General)
+docs-group: technical
+description: "Integration and deployment/delivery process for DocOps Lab sites and artifacts."
+order: 38
+---
+include::../_local_settings.adoc[]
+= Product Change Tracking and Documentation
+
+All DocOps Lab products use DocOps Lab's ReleaseHx utility to generate release notes and changelogs.
+
+However, each product implements ReleaseHx in a customized manner, so always refer to any given project's documentation for specific protocols.
+Check for a file like `docs/content/_doc/release-history-management.adoc` file or else fall back to `README.adoc` (search for `ReleaseHx`).
+
+
+[[contributor]]
+== Product Contributor Documentation Responsibilities 
+// tag::contribute-docs[]
+Each contributor of product code or docs changes is responsible for preparing that change to be included in release documentation, _when applicable_.
+
+[[github-issues]]
+=== GitHub Issues Labels
+
+GitHub Issues are use specific labels to indicate documentation expectations.
+
+include::../reference/github-issues.adoc[tag="docs-labels"]
+
+Issues labeled `changelog` will automatically appear in the Changelog section of the Release History document.
+Release notes must be manually entered.
+
+[[change-documentation]]
+=== Change Documentation
+
+When a change to the product affects user-facing functionality, the documentation needs to change.
+
+For early product versions, most documentation appears in the root `README.adoc` file.
+When a product has a `docs/content/` path, documentation changes usually have a home in an AsciiDoc (`.adoc`) file in a subdirectory.
+
+Reference matter should be documented where it is defined, such as in `specs/data/*.yml` files.
+
+[[release-note-entry]]
+=== Release Note Entry
+
+User-facing product changes that deserve explanation (not just notice) require a release note.
+
+Add a release note for a given issue by appending it to the issue body following a `## Release Note` heading.
+
+.Example
+[source,markdown]
+----
+## Release Note
+
+The content of the release note goes here, in Markdown format.
+Try to keep it to one paragraph with minimal formatting.
+----
+
+// end::contribute-docs[]
+
+
+[[release-history-management]]
+== Release History Document Creation
+
+// tag::releasehx[]
+ReleaseHx automatically generates release notes and changelogs from GitHub Issues and PRs when properly labeled.
+
+[NOTE]
+Every DocOps Lab project implements ReleaseHx differently as a way of "`eating our own dog food`".
+
+Refer to any given project's documentation for specific instructions on how to prepare changes for inclusion in release notes and changelogs.
+
+The general procedure is as follows:
+
+. Generate a draft release history in YAML.
++
+ bundle exec rhx <version> --yaml --fetch
+
+. Edit the generated YAML to ensure clarity and completeness.
+
+. Generate the Markdown version.
++
+ bundle exec rhx <version> --md docs/release/<version>.md
+
+// end::releasehx[]

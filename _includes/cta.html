@@ -1,0 +1,25 @@
+<!-- Call to Action Section -->
+<section id="{{ include.id | default: 'cta' }}" class="cta-section {{ include.class }}">
+  <div class="container">
+  {% if include.title %}
+  <h2 class="cta-title">{{ include.title }}</h2>
+  {% endif %}
+  
+  {% if include.desc %}
+  <div class="cta-description section-description">
+    {{ include.desc | asciidocify }}
+  </div>
+  {% endif %}
+  
+  {% if include.buttons %}
+  <div class="cta-buttons">
+    {% for button in include.buttons %}
+    <a href="{{ button.url }}" class="btn {% if button.style %}btn-{{ button.style }}{% endif %}">
+      {% if button.icon %}<i data-lucide="{{ button.icon }}"></i>{% endif %}
+      {{ button.text }}
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+  </div>
+</section>

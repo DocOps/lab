@@ -1,0 +1,44 @@
+---
+layout: default
+---
+<div class="project-profile-page">
+  <div class="container mx-auto px-4 py-8 max-w-4xl">
+  <!-- Dynamic Breadcrumb Navigation -->
+  {% include breadcrumb-nav.html %}
+
+  <!-- Page Header with Icon -->
+  <header class="project-page-header mb-6 relative">
+    <div class="header-content flex items-start justify-between">
+      <div class="header-text flex-1">
+    <h1 class="text-3xl font-bold mb-2">{{ page.title }}</h1>
+    {% if page.category %}
+    <div class="project-category mb-2">
+      A DocOps Lab <a href="/projects/by-type/#type-{{ page.category }}" class="meta-label" style="padding: .25rem;">{{ page.category }}</a> project
+    </div>
+    {% endif %}
+      </div>
+      
+    <!-- Project Icon -->
+    {% assign projects = site.data.docops-lab-projects.projects %}
+    {% assign project = projects | where: 'slug', page.slug | first %}
+    {% unless project %}{% assign project = projects | where: 'name', page.slug | first %}{% endunless %}
+    {% if project %}
+    {% assign type_meta = site.data.docops-lab-projects['$meta']['types'] | where: 'slug', project.type | first %}
+    {% assign fallback_icon = type_meta.icon | default: 'layers' %}
+    <div class="project-header-icon ml-6">
+      <i data-lucide="{{ page.icon | default: project.icon | default: fallback_icon }}" class="w-100 h-100 text-gray-600"></i>
+    </div>
+    {% endif %}
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="project-content prose prose-lg max-w-none">
+    {{ content }}
+  </main>
+
+  <footer>
+    {% include footer.html %}
+  </footer>
+  </div>
+</div>

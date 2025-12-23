@@ -1,0 +1,29 @@
+---
+layout: null
+permalink: /search.json
+---
+{%- if site.search and site.search.disable != true -%}
+{%- assign excludes = site.search.exclude -%}
+{%- assign indexed = "" | split: "," -%}
+{%- for coll in site.collections -%}
+  {%- unless coll.metadata.indexed and coll.metadata.indexed == false %}
+    {%- assign indexed = indexed | concat: coll.docs -%}
+  {%- endunless -%}
+{%- endfor -%}
+[
+{%- assign count = 0 -%}
+{%- for doc in indexed -%}
+  {%- assign exclude = doc.url | path_strings_compare: excludes %}
+  {%- unless doc.indexed == false or doc.draft or exclude -%}
+    {%- if count > 0 -%},{%- endif -%}
+    {
+      "id": {{ count }},
+      "url": {{ doc.url | default: '' | relative_url | jsonify }},
+      "title": {{ doc.title | default: doc.url | jsonify }},
+      "content": {{ doc.content | default: '' | strip_html | normalize_whitespace | jsonify }}
+    }
+    {%- assign count = count | plus: 1 -%}
+  {%- endunless -%}
+{%- endfor -%}
+]
+{%- endif -%}

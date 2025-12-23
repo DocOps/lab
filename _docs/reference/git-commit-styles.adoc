@@ -1,0 +1,69 @@
+---
+title: DocOps Lab Git Commits Style Guide
+docs-group: technical
+description: "Protocols for authoring Git commits for DocOps Lab projects"
+order: 66
+---
+include::../_local_settings.adoc[]
+= Git Commits Style Guide
+// tag::commit-styles[]
+This document outlines the protocols for authoring Git commit messages in DocOps Lab projects.
+
+
+[[general-style]]
+== General Style (Conventional Commits)
+
+DocOps Lab _loosely_ follows the link:https://www.conventionalcommits.org/en/v1.0.0/[Conventional Commits] specification for Git commit messages.
+
+Enforcement is not strict, but using Conventional Commits style is encouraged for consistency and clarity.
+
+[NOTE]
+Most DocOps Lab projects do not base Changelog/Release Notes generation on commit messages.
+
+The basic outline for a Conventional Commit message is:
+
+....
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+....
+
+
+[[commit-description]]
+== Commit Description
+
+The commit description should be concise and to the point, summarizing the change in 50 characters or less.
+
+Use the _past tense_ rather than imperative mood (e.g., "Added feature X" instead of "Add feature X").
+
+
+[[commit-types]]
+== Commit Types
+// tag::commit-types[]
+* Use present-tense descriptive verbs ("`adds widget`", not "`added`" or "`add`")
+* `feat: ...` for new features OR improvements
+* `fix: ...` for bugfixes
+* `chore: ...` for version bumps and sundry tasks with no product impact
+* `docs: ...` for documentation changes
+* `test: ...` for test code changes
+* `refactor: ...` for code restructuring with no functional changes
+* `style: ...` for formatting, missing semi-colons, etc; no functional changes
+* `perf: ...` for performance improvements
+* `auto: ...` for changes to CI/CD pipelines and build system
+// end::commit-types[]
+
+
+[[commit-body-conventions]]
+== Commit Body Conventions
+// tag::body-conventions[]
+* Use the body to explain what and why vs. how.
+* Reference issues and pull requests as needed.
+* Use bullet points (`- text`) and paragraphs as needed for clarity.
+* Do not hard-wrap lines, but _do_:
+** use 1-sentence per line
+** keep sentences short
+// end::body-conventions[]
+
+// end::commit-styles[]

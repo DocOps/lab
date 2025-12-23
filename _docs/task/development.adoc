@@ -1,0 +1,381 @@
+---
+title: DocOps Lab Development Process (General)
+docs-group: technical
+slug: development
+description: "General development process for DocOps Lab projects"
+order: 31
+---
+include::../_local_settings.adoc[]
+= Development Process (General)
+
+DocOps Lab projects follow a consistent, if always progressing, architecture and development/release process.
+
+This guide focuses on contributing code to projects and products, be it functional code, data, or documentation.
+
+More generally, dev contributors will most likely need to use the `docopslab-dev` tool to coordinate development and testing tasks.
+Each repository has its own `Rakefile` with custom tasks, but each also incorporates the common (upstream) `docopslab-dev` library for extending the rake tasks.
+
+
+[[prerequisites]]
+== Prerequisites
+
+include::../partials/_prerequisites.adoc[tags="general"]
+
+
+// tag::repo-state[]
+[[repo-state]]
+== Repository State
+
+Development is done on development _trunk_ branches named like `dev/x.y`, where `x` is the major version and `y` is the minor.
+
+To start development on a new release version:
+
+....
+git checkout main
+git pull origin main
+git checkout -b dev/1.2
+git checkout -b chore/bump-version-1.2.0
+git commit -am "Bumped version attributes in README"
+git checkout dev/1.2
+git merge chore/bump-version-1.2.0
+git push -u origin dev/1.2
+....
+// end::repo-state[]
+
+
+// tag::git-branching[]
+[[development-procedures]]
+== Development Procedures
+
+Work on feature or fix branches off the corresponding `dev/x.y` trunk.
+
+....
+git checkout dev/1.2
+git checkout -b feat/add-widget
+… implement …
+git add .
+git commit -m "feat: add widget"
+git push -u origin feat/add-widget
+gh pr create --base dev/1.2 --title "feat: add widget" --body "Adds a new widget to the dashboard."
+....
+
+Branch naming conventions::
+
+* `feat/...` for new features OR improvements
+* `fix/...` for bugfixes
+* `chore/...` for version bumps and sundry tasks with no product impact
+* `epic/...` for large features or changes that span releases
+
+[[commit-message-conventions]]
+=== Commit Message Conventions
+
+Description (first line) conventions::
+
+include::../reference/git-commit-styles.adoc[tag=commit-types]
+
+Body conventions::
+
+include::../reference/git-commit-styles.adoc[tags=body-conventions]
+
+ifndef::audience-agent[]
+See {xref_docs_git-commit-styles_link} for detailed commit message conventions.
+endif::audience-agent[]
+
+[[merging-changes]]
+=== Merging Changes
+
+Squash-merge branches back into `dev/x.y`:
+
+....
+git checkout dev/1.2
+git checkout -b feat/add-widget
+… implement …
+git add .
+git commit -m "feat: add widget"
+git merge --squash feat/add-widget
+git commit -m "feat: add widget"
+git push origin dev/1.2
+....
+
+Delete merged branches.
+
+
+[[dev-branch-rules]]
+== Dev Branch Rules
+
+* Always branch from `dev/x.y`.
+* Always squash-merge into `dev/x.y`.
+* Never merge directly into `main`.
+// end::git-branching[]
+
+
+[[documentation-practices]]
+== Documentation Practices
+
+A critical part of development at DocOps Lab is writing and maintaining good documentation.
+After all, docs are our business.
+
+[[standard-user-docs]]
+=== Standard (User) Docs
+
+Standard documentation is mainly done in AsciiDoc.
+
+AsciiDoc files are found in the `_docs/` or `docs/` directory.
+
+A `_docs/` directory exists for internal documentation.
+These files may be published in some form, but they should be distinct from docs intended to help end users.
+
+A `docs/` directory exists for user-facing documentation files.
+These are published distinctly.
+
+[TIP]
+For complete documentation styles guidance, see {xref_docs_asciidoc-styles_link}.
+
+Initially, all developer and user-facing documentation is maintained in the `README.adoc` file, simply for convenience.
+Prior to a 1.0.0 release, most user-facing and usually some developer-facing documentation should be moved from the README to the `docs/` and `_docs/` directories.
+
+In GitHub Issues, use `needs:docs` to designate work items that will require standard internal or user-facing documentation.
+
+[[inline-documentation]]
+=== Inline Documentation
+
+Some documentation can be accessed through the product (such as `--help` menus), which is also often sourced inside product files (rather than dedicated doc files).
+
+[[apis]]
+==== APIs
+
+* Use link:https://yardoc.org/[YARD] for Ruby code documentation.
+* Document all public methods and classes.
+* API docs are published at `\https://gemdocs.org/PROJECT_NAME/`.
+
+[[clis]]
+==== CLIs
+
+Most DocOps Lab CLIs provide `--help` and even `--man` flags, for a basic menu or a manpage related to the given command.
+
+These will be designated and documented in the project's `README.adoc` file.
+
+[[release-history]]
+=== Release History
+
+DocOps Lab projects use ReleaseHx to maintain release notes and changelogs.
+
+Each project should have a `.config/releasehx.yml` file.
+
+There are also labels available to designate a GitHub issue's status in the documentation announcing the release it belongs to.
+
+* Use `needs:note` to designate an issue that should be detailed for end users.
+* Use `changelog` to designate an issue that should be included in the changelog (just the summary).
+
+// tag::release-notes-advice[]
+Release notes are added to the main GitHub issue body as appended Markdown.
+At the end of the note body, add:
+
+[source,markdown]
+----
+## Release Note
+
+One or two sentences summarizing the change for end users.
+Markdown formatting *will* be converted to AsciiDoc during drafting.
+----
+
+// end::release-notes-advice[]
+
+See {xref_docs_release_link} for more on generating the release history.
+
+
+[[test-development-process]]
+== Test Development Process
+
+All DocOps Lab projects should include comprehensive test suites following consistent patterns.
+
+[NOTE]
+Testing itself is documented in {xref_docs_testing_link}, but this section focuses on creating and maintaining tests as part of development.
+
+[[adding-tests-for-new-features]]
+=== Adding Tests for New Features
+
+When implementing new functionality:
+
+. *Create corresponding tests* alongside feature implementation
+. *Follow existing patterns* established in `spec_helper.rb`
+. *Use descriptive test names* that clearly indicate what is being tested
+. *Group related tests* in logical contexts and describe blocks
+. *Add cleanup procedures* for any temporary files or resources
+
+[[test-file-template]]
+=== Test File Template
+
+Use this template for new test files:
+
+[source,ruby]
+----
+require_relative 'spec_helper'
+
+RSpec.describe YourModule do
+  let(:temp_dir) { create_temp_dir }
+  let(:sample_data) { create_temp_yaml_file(your_sample_data) }
+  
+  after do
+    FileUtils.rm_rf(temp_dir) if Dir.exist?(temp_dir)
+    File.unlink(sample_data) if File.exist?(sample_data)
+  end
+  
+  describe "core functionality" do
+    context "when given valid input" do
+      it "processes data correctly" do
+        result = YourModule.process(sample_data)
+        expect(result).to be_a(Hash)
+        expect(result).to have_key('expected_field')
+      end
+    end
+    
+    context "when given invalid input" do
+      it "handles errors gracefully" do
+        expect { YourModule.process(nil) }.to raise_error(ArgumentError)
+      end
+    end
+  end
+end
+----
+
+[[test-data-integration]]
+=== Test Data Integration
+
+Projects should leverage demo data for realistic testing:
+
+*Demo Directory Usage*::
+Utilize rich sample data from `../projectname-demo/` directories.
+Validate configuration files, mapping files, and sample data sets.
+
+*Helper Methods*::
+Implement helper methods in `spec_helper.rb` for:
++
+* `create_temp_yaml_file(content)` - Generate temporary YAML files
+* `create_temp_json_file(content)` - Generate temporary JSON files  
+* `create_temp_dir` - Create temporary directories
+* `sample_*_data` - Provide realistic test data structures
+
+*Cleanup Procedures*::
+Ensure all tests clean up after themselves:
++
+[source,ruby]
+----
+after do
+  FileUtils.rm_rf(temp_dir) if Dir.exist?(temp_dir)
+  File.unlink(temp_file) if File.exist?(temp_file)
+end
+----
+
+[[test-maintenance-best-practices]]
+=== Test Maintenance Best Practices
+
+[[standard-rake-testing-tasks]]
+==== Standard Rake Testing Tasks
+
+include::../reference/testing.adoc[tag=standard-rake-tasks]
+
+[[test-organization]]
+==== Test Organization
+
+*Unit Tests*::
+Test individual methods and classes in isolation.
+Focus on edge cases, error conditions, and expected behavior.
+
+*Integration Tests*::
+Test workflows that span multiple components.
+Validate data flow through processing pipelines.
+
+*Validation Tests*::
+Test configuration loading, file format compliance.
+Validate that all demo/example files are syntactically correct.
+
+[[performance-considerations]]
+==== Performance Considerations
+
+* Use temporary files/directories that are automatically cleaned up.
+* Avoid testing with large datasets unless specifically testing performance.
+* Use mocking/stubbing for external API calls and expensive operations.
+* Group related tests to minimize setup/teardown overhead.
+
+[[error-testing]]
+==== Error Testing
+
+* Test both expected errors and edge cases.
+* Verify error messages are helpful and actionable.
+* Test error recovery and graceful degradation.
+* Validate that errors don't leave systems in inconsistent states.
+
+[[continuous-integration]]
+=== Continuous Integration
+
+[[pre-commit-testing]]
+==== Pre-commit Testing
+
+Before committing changes:
+
+....
+rake pr_test  # Run comprehensive test suite
+....
+
+[[pull-request-validation]]
+==== Pull Request Validation
+
+Ensure all pull requests:
+
+. *Pass the complete test suite* (`rake pr_test`)
+. *Include tests for new functionality*
+. *Update existing tests* when modifying behavior
+. *Maintain or improve test coverage*
+. *Include integration tests* for workflow changes
+
+[[release-testing]]
+=== Release Testing
+
+Before any release:
+
+. Ensure any new tests are added.
+
+. Run automated tests.
++
+....
+rake install_local    # Build and install locally
+rake pr_test          # Complete validation
+....
+
+. Manually test key workflows.
+
+. Update or add any documentation.
+
+[[common-problems]]
+==== Common Problems
+
+Test File Cleanup::
+Tests should automatically clean up temporary files.
+Manual cleanup: `rm -rf /tmp/projectname_test_*`
+
+Missing Dependencies::
+Ensure `bundle install` has been run.
+Check that all required gems are in Gemfile.
+
+Demo Data Access::
+Verify that demo directories exist and are accessible.
+Ensure tests are run from the correct working directory.
+
+[[debug-mode]]
+==== Debug Mode
+
+Run tests with verbose output for troubleshooting:
+
+....
+bundle exec rspec --format documentation --backtrace
+rake pr_test  # Often includes verbose options
+....
+
+
+[[ai-usage-policy]]
+== AI Usage Policy
+
+include::../policy/generative-ai-usage.adoc[tags=tldr]
+
+For the complete policy, see {xref_docs_generative-ai-usage_link}.

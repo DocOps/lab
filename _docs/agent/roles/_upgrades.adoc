@@ -1,0 +1,40 @@
+// tag::planner-architect[]
+Planner/Architect:: Add technical planning and architecture design capabilities (`.agent/docs/roles/planner-architect.md`)
+// end::planner-architect[]
+
+// tag::product-manager[]
+Product Manager:: Add product requirement definition and stakeholder communication capabilities (`.agent/docs/roles/product-manager.md`)
+// end::product-manager[]
+
+// tag::project-manager[]
+Project Manager:: Add work-ticket coordination and task planning capabilities (`.agent/docs/roles/project-manager.md`)
+// end::project-manager[]
+
+// tag::tech-writer[]
+Technical Writer:: Add documentation authoring and quality control capabilities (`.agent/docs/roles/tech-writer.md`)
+// end::tech-writer[]
+
+// tag::product-engineer[]
+Product Engineer:: Add code implementation and bugfixing capabilities (`.agent/docs/roles/product-engineer.md`)
+// end::product-engineer[]
+
+// tag::devops-release-engineer[]
+DevOps/Release Engineer:: Add deployment and release management capabilities (`.agent/docs/roles/devops-release-engineer.md`)
+// end::devops-release-engineer[]
+
+// tag::qa-testing-engineer[]
+QA/Test Engineer:: Add QA and testing capabilities (`.agent/docs/roles/qa-testing-engineer.md`)
+// end::qa-testing-engineer[]
+
+// tag::docops-engineer[]
+DocOps Engineer:: Add documentation tooling and deployment capabilities (`.agent/docs/roles/docops-engineer.md`)
+// end::docops-engineer[]
+
+// tag::tech-docs-manager[]
+Technical Documentation Manager:: Add (inter-)project documentation management, planning, and oversight capabilities (`.agent/docs/roles/tech-docs-manager.md`)
+// end::tech-docs-manager[]
+
+// tag::upgrade-instruction[]
+
+To upgrade, reference the appropriate role documentation and announce the skill adoption to the Operator.
+// end::upgrade-instruction[]

@@ -1,0 +1,321 @@
+# Defines the structure and semantics of the labdev: subtasks.
+# Provides documentation for non-alias, non-inert subtasks and sub-subtasks
+# Namespacing adheres to this model:
+#   labdev:<verb>:<scope|object|class>
+# The 1st-tier subtask is always an action word.
+# The 2nd-tier subtask is what is being acted upon:
+#   - a class such as 'styles' or 'script'
+#   - a tool such as 'vale' or 'htmlproofer'
+#   - a collection such as 'scripts' or 
+#   - a format category such as 'html' or 'ruby' or 'docs'
+#   - a scope such as 'local'
+#   - 'all' to indicate running all subtasks
+# If there is a 3rd-tier subtask, it is a scope (local, upstream)
+# Scopes default to "all" or "both" when unlisted.
+# Use _alias: <primary:task> to indicate when a subtask is an alias of a task.
+labdev:
+  check:
+    _desc: Run assessments on the project environment and managed assets
+    env:
+      _desc: Assess the local environment and configuration
+    updates:
+      _desc: Check for updates to managed assets from upstream
+    all:
+      _alias: "labdev:check"
+  init:
+    all:
+      _desc: Bootstrap the development environment for this project
+    docs:
+      _desc: Sync agent documentation files to project
+  run: 
+    # there is no labdev:run:all
+    script:
+      _desc: Run a script with automatic discovery (local first, then vendor)
+      _args:
+        script:
+          summ: The script to be executed.
+          docs: |
+            The script to be executed in the environment.
+            Use `labdev:show:scripts` to see the available scripts.
+          required: true
+        opts:
+          summ: Additional arguments to pass to the script.
+          docs: |
+            Use like:
+             bundle exec rake 'labdev:run:script["script","--option1 --option2"]'
+          required: false
+      _test: 
+        - bundle exec rake 'labdev:run:script[build]'
+        - bundle exec rake 'labdev:run:script[build,--no-color]'
+    rubocop:
+      _desc: Run the base rubocop command and options.
+      _args:
+        opts:
+          summ: Additional arguments to pass to the rubocop command.
+          docs: |
+            Use like:
+             bundle exec rake 'labdev:run:rubocop["--auto-correct --only Layout/LineLength"]
+          required: false
+      _test:
+        - bundle exec rake 'labdev:run:rubocop'
+        - bundle exec rake 'labdev:run:rubocop["--only Style/StringLiterals"]'
+    vale:
+      _desc: Run the base vale command and options.
+      _args:
+        opts:
+          summ: Additional arguments to pass to the vale command.
+          docs: |
+            Use like:
+             bundle exec rake 'labdev:run:vale["--minAlertLevel=warning"]'
+          required: false
+      _test:
+        - bundle exec rake 'labdev:run:vale'
+        - bundle exec rake 'labdev:run:vale["--no-wrap --minAlertLevel=error"]'
+    # Removed from 0.1.0 for incongruent options between CLI and API
+    # htmlproofer:
+    #   _desc: Run the base htmlproofer command and options.
+    #   _args:
+    #     opts:
+    #       summ: Additional arguments to pass to the htmlproofer command.
+    #       docs: |
+    #         Use like:
+    #          bundle exec rake 'labdev:run:htmlproofer["--check-html --disable-external"]'
+    #       required: false
+    #   _test:
+    #     - bundle exec rake 'labdev:run:htmlproofer'
+    #     - bundle exec rake 'labdev:run:htmlproofer["--disable-external --check-favicon"]'
+    shellcheck:
+      _desc: Run the base shellcheck command and options.
+      _args:
+        opts:
+          summ: Additional arguments to pass to the shellcheck command.
+          docs: |
+            Use like:
+             bundle exec rake 'labdev:run:shellcheck["--enable=all --format=gcc"]'
+          required: false
+      _test:
+        - bundle exec rake 'labdev:run:shellcheck'
+        - bundle exec rake 'labdev:run:shellcheck["--enable=all --format=gcc"]'
+    actionlint:
+      _desc: Run the base actionlint command and options.
+      _args:
+        opts:
+          summ: Additional arguments to pass to the actionlint command.
+          docs: |
+            Use like:
+             bundle exec rake 'labdev:run:actionlint["-oneline -verbose"]'
+          required: false
+      _test:
+        - bundle exec rake 'labdev:run:actionlint'
+        - bundle exec rake 'labdev:run:actionlint["-oneline -verbose"]'
+  sync:
+    _desc: Sync all managed files (configs, scripts, docs, styles, etc)
+    all:
+      _alias: "labdev:sync"
+    configs:
+      _desc: Sync configuration files from config pack
+    scripts:
+      _desc: Update non-local (`.vendor/`) scripts from upstream
+    docs:
+      _desc: Sync files to untracked local paths
+      # _args:
+      #   force:
+      # GET RID OF docs[force], this makes no sense, we always overwrite
+    styles:
+      _desc: Sync Vale styles from gem source to project
+      local:
+        _desc: Sync only custom Vale styles from gem (no remote packages)
+      all:
+        _desc: Sync custom styles from gem and download remote packages
+    hooks:
+      _desc: Update git hooks from templates (interactive)
+    vale:
+      _desc: Sync Vale config and all styles (custom + remote packages)
+      local:
+        _desc: Sync Vale config and custom styles only (no remote packages)
+      all:
+        _desc: Sync Vale config, custom styles, and remote packages
+  lint:
+    all:
+      _desc: Run all enabled linters
+    ruby:
+      _desc: Run RuboCop on Ruby files
+      _args:
+        path:
+          summ: Optional path to specific file(s) to lint
+          required: false
+        rule:
+          summ: Optional specific rule to check
+          required: false
+        opts:
+          summ: Additional options to pass to RuboCop
+          required: false
+      _test:
+        - bundle exec rake labdev:lint:ruby
+        - bundle exec rake 'labdev:lint:ruby[lib/file.rb]'
+        - bundle exec rake 'labdev:lint:ruby[,Style/StringLiterals]'
+        - bundle exec rake 'labdev:lint:ruby[lib/file.rb,Style/StringLiterals,--autocorrect]'
+    bash:
+      _desc: Run ShellCheck on Bash files
+      _args:
+        path:
+          summ: Optional path to specific file(s) to lint
+          required: false
+        rule:
+          summ: Optional specific rule to check
+          required: false
+        opts:
+          summ: Additional options to pass to ShellCheck
+          required: false
+      _test:
+        - bundle exec rake labdev:lint:bash
+        - bundle exec rake 'labdev:lint:bash[scripts/build.sh]'
+        - bundle exec rake 'labdev:lint:bash[,SC2086]'
+        - bundle exec rake 'labdev:lint:bash[scripts/build.sh,SC2086,--enable=all]'
+    html:
+      _desc: Run HTMLProofer on generated HTML
+      _docs: |
+        HTML linting does not accept additional arguments at this time.
+        Invoke htmlproofer directly to enable CLI options.
+    adoc:
+      _desc: Run Vale on raw AsciiDoc syntax
+      _args:
+        path:
+          summ: Optional path to specific file(s) to lint
+          required: false
+        rule:
+          summ: Optional specific Vale rule name to check
+          required: false
+        opts:
+          summ: Additional options to pass to Vale
+          required: false
+      _test:
+        - bundle exec rake labdev:lint:adoc
+        - bundle exec rake 'labdev:lint:adoc[README.adoc]'
+        - bundle exec rake 'labdev:lint:adoc[,DocOpsLab-AsciiDoc.ExplicitSectionIDs]'
+        - bundle exec rake 'labdev:lint:adoc[README.adoc,DocOpsLab-AsciiDoc.ExplicitSectionIDs,--minAlertLevel=warning]'
+        - bundle exec rake 'labdev:lint:adoc[README.adoc,,--minAlertLevel=suggestion]'
+    asciidoc:
+      _alias: "labdev:lint:adoc"
+    text:
+      _desc: Run Vale on rendered prose (grammar/style)
+      _args:
+        path:
+          summ: Optional path to specific file(s) to lint
+          required: false
+        rule:
+          summ: Optional specific Vale rule to check
+          required: false
+        opts:
+          summ: Additional options to pass to Vale
+          required: false
+      _test:
+        - bundle exec rake labdev:lint:text
+        - bundle exec rake 'labdev:lint:text[_docs/task/development.adoc]'
+        - bundle exec rake 'labdev:lint:text[,DocOpsLab-Authoring.ExNotEg]'
+        - bundle exec rake 'labdev:lint:text[_docs/task/development.adoc,DocOpsLab-Authoring.ExNotEg,--minAlertLevel=warning]'
+        - bundle exec rake 'labdev:lint:text[_docs/task/development.adoc,,--minAlertLevel=suggestion]'
+    docs:
+      _desc: Run Vale on documentation (markup & prose)
+      _args:
+        path:
+          summ: Optional path to specific file(s) to lint
+          required: false
+        rule:
+          summ: Optional specific Vale rule to check
+          required: false
+        opts:
+          summ: Additional options to pass to Vale
+          required: false
+      _test:
+        - bundle exec rake labdev:lint:docs
+        - bundle exec rake 'labdev:lint:docs[_docs/reference/testing.adoc]'
+    workflows:
+      _desc: Run actionlint on GitHub Actions workflows
+      _args:
+        path:
+          summ: Optional path to specific file(s) to check
+          required: false
+        opts:
+          summ: Additional options to pass to actionlint
+          required: false
+    spellcheck:
+      _desc: Generate spellcheck report on content files
+      _args:
+        path:
+          summ: Optional path to specific file to spellcheck
+          required: false
+        opts:
+          summ: Additional options (currently unused)
+          required: false
+      _test:
+        - bundle exec rake labdev:lint:spellcheck
+        - bundle exec rake 'labdev:lint:spellcheck[README.adoc]'
+    logs:
+      _desc: Parse build tool logs for issues and warnings
+      _args:
+        type:
+          summ: Type of log to parse (jekyll-asciidoc)
+          required: true
+        path:
+          summ: Path to the log file to analyze
+          required: true
+        outdir:
+          summ: Optional directory for generated reports
+          required: false
+      _test:
+        - bundle exec rake 'labdev:lint:logs[jekyll-asciidoc,.agent/build.log]'
+  heal:
+    all:
+      _desc: Perform all available auto-fixes on all applicable files
+    ruby:
+      _desc: Auto-fix Ruby issues
+      _args:
+        path:
+          summ: Optional path to specific file(s) to auto-fix
+          docs: |
+            If no path is provided, all Ruby files will be auto-fixed.
+          required: false
+    adoc:
+      _desc: Auto-fix AsciiDoc issues
+      _args:
+        path:
+          summ: Optional path to specific file(s) to auto-fix
+          docs: |
+            If no path is provided, all AsciiDoc files will be auto-fixed.
+          required: false
+  show:
+    scripts:
+      _desc: List available script templatest
+    hooks:
+      _desc: List available hook templates
+    rule:
+      _desc: Show details about a specific linting rule
+      _args:
+        tool:
+          summ: The linter tool for the rule.
+          required: true
+        rule:
+          summ: The specific rule to show details for.
+          required: true
+      _test:
+        - bundle exec rake 'labdev:show:rule[rubocop,Layout/LineLength]'
+        - bundle exec rake 'labdev:show:rule[vale,DocOpsLab-Authoring.ExNotEg]'
+  # ADDING:
+  help:
+    _desc: Show help information about labdev tasks
+    _docs: |
+      Default behavior is to show general help information.
+
+      Use like:
+       bundle exec rake 'labdev:help[lint:ruby]'
+    _args:
+      task_string:
+        summ: (Optional) The specific task to show help for.
+        docs: |
+          If no task is specified, shows general help information.
+
+          When a task_string is passed, shows all docstrings from this file for that task.
+        required: false
+    _test: []
+

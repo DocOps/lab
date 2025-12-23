@@ -1,0 +1,202 @@
+---
+title: DocOps Lab CLI Style Guide
+docs-group: technical
+description: "Style guide and best practices for writing Ruby and Bash CLI utilities"
+order: 68
+---
+include::../_local_settings.adoc[]
+= Command-line Interface Styles
+
+DocOps Lab tooling revolves around command-line interfaces (CLIs).
+
+
+// tag::ruby-clis[]
+[[ruby-application-clis]]
+== Ruby Application CLIs
+
+These are the main interfaces we provide for users of our Ruby-based applications.
+
+Most of our Ruby CLIs are built with the Thor CLI framework.
+
+[[ruby-cli-models]]
+=== Ruby CLI Models
+
+Thor-based CLIs generally follow this model:
+
+ cliapp [subcommand] [arguments] [options]
+
+Where both `subcommand` and `arguments` are optional, as of course are options.
+
+[[cligraphy-the-future]]
+=== CliGraphy (the Future)
+
+Eventually, DocOps Lab will integrate our language-agnostic CliGraphy  proper extension of Thor for defining Ruby CLIs.
+At that point, our CLIs will be _defined_ before they are programmed, using CliGraphy to model the command-line interface in a structured way.
+
+CliGraphy definitions will be coded in YAML-formatted documents, similar to an OpenAPI documents (OAD).
+This particular form of CFGYML will be called CLI YAML-based Modeling Language (CLIYML).
+
+// end::ruby-clis[]
+
+
+// tag::rake-clis[]
+[[rake-clis]]
+== Rake CLIs
+
+We use Rake for internal repo tasks and chores, including build operations, test-suite execution, unconventional testing, code linting and cleanup, etc.
+
+Users of our released products should never be asked to use `rake` commands during the normal course of daily operations, if ever.
+
+Rake is less versatile than Thor, but it is simpler for executing straightforward methods and series of methods.
+It likewise requires (and permits) considerably less application-specific creativity and customization.
+
+Innovative UIs are not justified for internal tooling.
+Our developer-facing utilities are fairly robust, but the UI for executing them need not be.
+
+At DocOps Lab, we save inventive interfaces for domain-optimized operations.
+
+[[rake-cli-model]]
+=== Rake CLI Model
+
+ rake domain:action:target[option1,option2]
+
+Where both `domain`` and `target` are optional, as of course are arguments that go in the braces.
+
+Think of the domain as a component "`scope`" within the codebase or project.
+
+Domains either indicate a distinct module or component within the codebase or general tasks using upstream dependencies.
+
+No domain means local, project-specific tasks.
+
+.Example 3-part task with an optional argument
+ rake labdev:lint:docs[README.adoc]
+
+In the above case, the domain is from the `docopslab-dev` library/gem.
+
+.Example 3-part task with a local domain reference
+ rake gemdo:build
+
+The above command has a local domain `gemdo` for referencing commands that affect a gem that happens to be embedded in a larger repo.
+A code repo containing more than one gem might use:
+
+....
+rake gemdo:build:gemname
+....
+
+// end::rake-clis[]
+
+
+// tag::bash-clis[]
+[[bash-clis]]
+== Bash CLIs
+
+Bash scripts are often used for simple CLIs that wrap around more complex operations.
+Most repo-wide chores that do not require specialized Ruby-based tools like Asciidoctor or other gems are handled with Bash scripts
+(The significant exception to this are multi-repo libraries like the link:{xref_docs_lab-dev-setup_url}[DocOps Lab Devtool].)
+
+The one truly major Bash CLI we maintain is `docksh`, our Docker shell utility for launching properly configured containers for development, testing, and deployment (sourced in `box`).
+
+[[bash-cli-model]]
+=== Bash CLI Model
+
+Base CLIs are relatively open ended.
+Developers should consider how the script might change, but unless it is intended to be elaborate from the start, there is not much reason to fuss over complicated structures.
+
+TIP: See {xref_docs_bash-styles_link} for details about implementing Bash CLIs.
+
+Let's examine our typical Bash script CLI structure:
+
+ ./bashscript.sh [arguments] [options]
+
+If a Bash script is likely to eventually need to encompass multiple arguments or options, consider making it a Rake task and invoking Ruby scripts, instead. 
+
+// end::bash-clis[]
+
+
+// tag::general-cli-principles[]
+[[general-cli-principles]]
+== General CLI Principles
+
+Most of our user-facing applications are Ruby gems, and most of those are intended to be used via three primary interfaces:
+
+. An application specific, openly designed CLI utility.
+. An application configuration file.
+. Subject-matter content or domain-specific data of some kind.
+
+By way of these three interfaces, users can operate the application in a way that is optimized for their particular use case.
+
+CLIs should allow for runtime configuration overrides and even runtime content/data overrides.
+But most of all they should focus on conveniently putting power in users' hands.
+
+This means leaving the CLI model open to the task at hand, but it also means adhering to some conventions that apply generally to both Ruby and Bash CLIs.
+
+[[dont-cli]]
+=== When NOT to Use a CLI
+
+Even when an application offers a mature, well-designed CLI, there are times when either an application programming interface (API) or a domain-specific language (DSL) is preferable.
+Typically we want to keep complicated shell commands out of core products and CI/CD pipelines, in favor of native or RESTful APIs or else config-driven or DSL-driven utilities.
+
+[[semantic-cli-namespaces]]
+=== Semantic CLI Namespaces
+
+When designing CLIs, consider the namespaces of the elements we use: subcommands, arguments, and options/flags.
+
+Subcommands should be verbs or nouns that declare operations or contexts.
+At each position, these elements should be organizable into meaningful categories.
+
+Arguments should be meaningful nouns that represent the primary _subject or subjects_ of the command.
+
+[[general-cli-conventions]]
+=== General CLI Conventions
+
+The definitive reference on CLI design is the link:https://clig.dev/[CLI Guidelines] project.
+
+[[option-format]]
+==== Option format
+
+Use spaces rather than `=` to assign values to options.::
+Flag forms such as `--option-name value` are preferred over `--option-name=value`.
+
+Provide long- and short- form flag aliases for common options.::
+For ex: `-h` and `--help`, `-c` and `--config`.
+
+Use `--no-` prefix for negated boolean flags when applicable.::
+For ex: `--no-cache` to disable caching.
+
+[[command-structure]]
+==== Command structure
+
+Use subcommand only with apps that perform categorically diverse operations,::
+Prefer flag combinations when possible.
+Subcommands signal a shift in execution context, and thus they can be greatly helpful when needed.
+Otherwise, reserve the first argument slot for something a meaningful arbitrary argument.
++
+.A CLI with very handy subcommands
+ git fetch
+ git commmit
+ git merge
++
+.No subdomain needed
+ rhx 1.2.1 --config test-config.yml --mapping apis/jira.yml --verbose --fetch --yaml
+ rhx 1.2.1 --config test-config.yml --html
++
+And yes, of course you can combine fixed subdomains with arbitrary arguments.
++
+ git diff README.adoc
+
+Avoid using Unix-style argument structures.::
+Arbitrary arguments should come _before_ options, even if that is counter-intuitive.
+Typically in our apps, users are modifying commands that get executed on the same target, so if the target is an arbitrary file path or version number, it should closely follow the command as an early argument.
++
+.Preferred argument order
+ cliname targetfile --option1 value1 --option2 value2 --verbose --force
++
+This structure lets users more conveniently change the parts of the command-line that will need more frequent changing.
+
+Accommodate Unix-style CLIs by adding named options for every arbitrary argument supported.::
+The trick is to enable those cases where the subject path or code _is_ what gets changed most often.
++
+ rhx --yaml --version 1.2.6
+ rhx --yaml --version 1.3.1
+
+// end::general-cli-principles[]

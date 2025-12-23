@@ -1,0 +1,31 @@
+---
+layout: projects
+title: "Projects by Wave"
+permalink: /projects/by-wave/
+group_by: wave
+icon: waves
+---
+
+<div class="projects-report">
+
+  {% assign all_projects = site.data.docops-lab-projects.projects | where_exp: "project", "project.wave != nil" | sort: 'slug' %}
+  {% assign wave_definitions = site.data.docops-lab-projects['$meta']['waves'] %}
+  
+  {% for wave_def in wave_definitions %}
+  {% assign wave_projects = all_projects | where: 'wave', wave_def.id %}
+  {% if wave_projects.size > 0 %}
+  <section class="wave-section" id="wave-{{ wave_def.id }}">
+    <h2>{{ wave_def.head }}</h2>
+    <p class="wave-description">{{ wave_def.desc }}</p>
+    <p class="wave-date"><strong>Target Date:</strong> {{ wave_def.date }}</p>
+    <div class="projects-profiles">
+      {% for project in wave_projects %}
+    {% include project-profile.html project=project projects=all_projects show_tags=true scope="mini" %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+  {% endfor %}
+</div>
+
+{% include dependency-popover.html %}

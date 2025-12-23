@@ -1,0 +1,331 @@
+= MarkDownGrade Library
+:toc:
+
+Extensions for the link:https://github.com/xijo/reverse_markdown[ReverseMarkdown] gem to improve HTML-to-Markdown conversion, particularly for AsciiDoc-generated HTML.
+
+
+== Features
+
+Code blocks with language indicators::
+Supports `<code class="language-ruby" data-lang="ruby">` and many aliases (js→javascript, yml→yaml, sh→bash)
+
+Nested lists::
+Properly converts nested `<ol>` and `<ul>` within list items with correct indentation
+
+Definition lists::
+Renders `<dt>/<dd>` as `**Term**:` with indented content
+
+Sidebar blocks::
+Converts `<div class="sidebarblock">` with optional titles to h4 headings
+
+Admonitions::
+Flattens AsciiDoc admonition HTML structure into Markdown blockquotes with bold labels
+
+HTML tables:: Preserves standard HTML tables verbatim
+
+
+== Usage
+
+=== In Ruby Code
+
+[source,ruby]
+----
+require_relative 'scripts/mark_down_grade'
+
+# Setup extensions with default options
+MarkDownGrade.bootstrap!
+
+# Or customize behavior
+MarkDownGrade.bootstrap!(
+  preserve_heading_ids: false,    # Don't include <a id="..."> anchors
+  strip_internal_links: true      # Convert internal links to plain text
+)
+
+# Convert HTML to Markdown
+html = File.read('document.html')
+markdown = ReverseMarkdown.convert(html, github_flavored: true)
+----
+
+=== Options
+
+`preserve_heading_ids`:: (default: `true`) Include `<a id="...">` anchors before headings to preserve section IDs
+`strip_internal_links`:: (default: `false`) Strip `href` from internal anchor links (`#section-id`), keeping only the link text. External links are preserved.
+
+=== Convenience Method
+
+[source,ruby]
+----
+require_relative 'scripts/mark_down_grade'
+
+# Setup happens automatically
+markdown = MarkDownGrade.convert(html, github_flavored: true)
+----
+
+=== Rake utility for ad-hoc HTML → Markdown
+
+[source,bash]
+----
+# Default: converts _site/metablog/tech-blogging-in-asciidoc/index.html
+bundle exec rake util:html_to_md
+
+# Custom source and destination
+bundle exec rake "util:html_to_md[_site/path/to/page/index.html,.agent/converted/page.md]"
+----
+
+This task targets the article/post content (e.g., `div.post-content`, `article.blog-post`, or `div.document-body`) and strips site chrome (nav, banners, footers) before conversion.
+
+
+== Features
+
+=== Enhanced Code Block Language Detection
+
+Extends the standard `Pre` converter to recognize additional language patterns:
+
+.Raw AsciiDoc
+[source,asciidoc]
+--------
+[,ruby]
+----
+def hello
+  puts "world"
+end
+----
+--------
+
+.Converted HTML
+[source,html]
+----
+<pre><code class="language-ruby">
+def hello
+  puts "world"
+end
+</code></pre>
+----
+
+.MarkDownGrade Output
+[source,markdown]
+------
+```ruby
+def hello
+  puts "world"
+end
+```
+------
+
+=== Nested Lists with Proper Indentation
+
+AsciiDoc's multi-level ordered and unordered lists are converted to properly indented Markdown lists:
+
+.Raw AsciiDoc
+[source,asciidoc]
+--------
+. Top-level item one
+.. Nested item A
+.. Nested item B
+. Top-level item two
+--------
+
+.Converted HTML
+[source,html]
+----
+<ol>
+<li>
+<p>Top-level item one</p>
+<ol type="a">
+<li><p>Nested item A</p></li>
+<li><p>Nested item B</p></li>
+</ol>
+</li>
+<li><p>Top-level item two</p></li>
+</ol>
+----
+
+.MarkDownGrade Output
+[source,markdown]
+----
+1. Top-level item one
+
+   1. Nested item A
+   2. Nested item B
+2. Top-level item two
+----
+
+=== Definition Lists rendered as Markdown Terms
+
+Preserves HTML definition list structure while converting nested elements:
+
+.Raw AsciiDoc
+[source,asciidoc]
+--------
+Branch naming::
+* `feat/…` for features
+* `fix/…` for bugfixes
+--------
+
+.Converted HTML
+[source,html]
+----
+<dl>
+<dt class="hdlist1">Branch naming</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li><p><code>feat/…</code> for features</p></li>
+<li><p><code>fix/…</code> for bugfixes</p></li>
+</ul>
+</div>
+</dd>
+</dl>
+----
+
+.MarkDownGrade Output
+[source,markdown]
+----
+**Branch naming**:
+   - `feat/…` for features
+   - `fix/…` for bugfixes
+----
+
+=== Sidebar Blocks with h4 Titles
+
+Keeps the outer `<div class="sidebarblock">` but converts the optional `.title` to an h4 heading; the rest is converted to Markdown.
+
+.Raw AsciiDoc
+[source,asciidoc]
+--------
+.Sidebar title
+Sidebar body.
+--------
+
+.Converted HTML
+[source,html]
+----
+<div class="sidebarblock">
+  <div class="content">
+    <div class="title">A sidebar title</div>
+    <div class="paragraph"><p>Sidebar body.</p></div>
+  </div>
+</div>
+----
+
+.MarkDownGrade Output
+[source,markdown]
+----
+<div class="sidebarblock">
+#### A sidebar title
+
+Sidebar body.
+</div>
+----
+
+=== Admonitions as blockquotes
+
+AsciiDoc admonitions (table-based HTML) are flattened and rendered as Markdown blockquotes with a bold label.
+
+.Raw AsciiDoc
+[source,asciidoc]
+--------
+[NOTE]
+====
+.Optional inline title
+First paragraph.
+
+Second paragraph.
+====
+--------
+
+.Converted HTML
+[source,html]
+----
+<div class="admonitionblock note">
+  <table>
+    <tr>
+      <td class="icon">
+        <div class="title">Note</div>
+      </td>
+      <td class="content">
+        <div class="title">Optional inline title</div>
+        <div class="paragraph"><p>First paragraph.</p></div>
+        <div class="paragraph"><p>Second paragraph.</p></div>
+      </td>
+    </tr>
+  </table>
+</div>
+----
+
+.MarkDownGrade Output
+[source,markdown]
+----
+> **NOTE:** Optional inline title
+>
+> First paragraph.
+>
+> Second paragraph.
+----
+
+=== HTML table passthrough
+
+Standard HTML tables (not part of admonitions) are preserved verbatim.
+
+=== Internal Link Stripping
+
+When converting documentation for LLM consumption, internal anchor links can be stripped to plain text while preserving external links.
+
+.Raw HTML
+[source,html]
+----
+<h2 id="section-one">Section One</h2>
+<p>See <a href="#section-two">Section Two</a> and 
+   <a href="https://example.com">external docs</a>.</p>
+<h2 id="section-two">Section Two</h2>
+----
+
+.MarkDownGrade Output (default)
+[source,markdown]
+----
+<a id="section-one"></a>
+## Section One
+
+See [Section Two](#section-two) and [external docs](https://example.com).
+
+<a id="section-two"></a>
+## Section Two
+----
+
+.MarkDownGrade Output (strip_internal_links: true, preserve_heading_ids: false)
+[source,markdown]
+----
+## Section One
+
+See Section Two and [external docs](https://example.com).
+
+## Section Two
+----
+
+
+== API Reference
+
+=== `MarkDownGrade.bootstrap!(options = {})`
+
+Registers all custom converters with ReverseMarkdown.
+Call this before using `ReverseMarkdown.convert`.
+
+==== Options
+
+`preserve_heading_ids`:: (Boolean, default: `true`) When `true`, includes `<a id="...">` anchor tags before headings to preserve section IDs for cross-referencing
+`strip_internal_links`:: (Boolean, default: `false`) When `true`, converts internal anchor links (`<a href="#...">text</a>`) to plain text, while preserving external links as Markdown links
+
+=== `MarkDownGrade.convert(html, options = {})`
+
+Convenience method that:
+
+. Ensures setup is complete
+. Calls `ReverseMarkdown.convert` with provided options
+. Returns converted Markdown
+
+Options are passed through to ReverseMarkdown (e.g., `github_flavored: true`).
+
+
+== License
+
+MIT License (consistent with ReverseMarkdown)

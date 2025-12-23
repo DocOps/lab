@@ -1,0 +1,8 @@
+# DocOps Lab RuboCop Configuration
+
+inherit_from: .vendor/docopslab/rubocop.yml
+
+# Add project-specific overrides below:
+# AllCops:
+#   Exclude:
+#     - scripts/**

@@ -1,0 +1,23 @@
+---
+layout: projects
+title: "Live Projects"
+permalink: /projects/live/
+group_by: done
+icon: activity
+---
+
+<div class="projects-report">
+  
+  {% assign live_projects = site.data.docops-lab-projects.projects | where: 'done', 'live' | sort: 'slug' %}
+  
+  <section class="live-section">
+    <div class="projects-profiles">
+      {% for project in live_projects %}
+    {% include project-profile.html project=project projects=all_projects show_tags=true scope="mini" %}
+      {% endfor %}
+    </div>
+  </section>
+
+</div>
+
+{% include dependency-popover.html %}

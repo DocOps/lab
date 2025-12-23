@@ -1,0 +1,208 @@
+---
+title: DocOps Lab Contributor's Guide
+docs-group: contributing
+description: Guidelines, protocols, and best practices for contributing to DocOps Lab projects.
+icon: list-check
+order: 23
+:toc: macro
+---
+include::../_local_settings.adoc[]
+= DocOps Lab Contributor's Guide
+
+DocOps Lab encourages contributions from anyone interested in improving our projects.
+We are even open to initiatives around new projects that align with {xref_docs_mission_link} and values.
+
+This guide outlines the process for contributing code, documentation, and other improvements to our repositories and community.
+
+[NOTE]
+Just like DocOps Lab software is aimed at non-developers, so too do we want to make contributing as accessible as possible.
+We welcome contributions from people of all skill levels, including those who may be new to coding or open source.
+
+See {xref_docs_development_link} for detailed contribution procedures.
+This document focuses on a more general approach to the contribution process, whereas that guide is highly technical and focused on actually working with DocOps Lab codebases.
+
+[TIP]
+Each DocOps Lab project repository should have a *Contributing* Section in its `README.adoc` file.
+Always consult that once you're familiar with general policies and actually ready to push code.
+
+toc::[]
+
+
+[[getting-started]]
+== Getting Started
+
+Contributors are welcome to use any valid toolchain to develop and commit code and docs to DocOps Lab projects.
+
+This section provides an overview of the broad technological strategies for contributing.
+
+For details on the very concept of contributing to open-source projects, see GitHub's see link:https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-open-source[GitHub's official contribution guide].
+
+
+[[quick-and-dirty-changes]]
+=== Option {counter:option}: Web UI for Quick and Dirty Changes
+
+Use GitHub's Web interface and optionally Copilot to fork the prime repo (`DocOps/<repo-id>`) and make a change.
+Run the tests until it's right, then issue a pull request (PR) to the prime repository.
+
+This method is suitable for small changes, such as fixing typos or making minor code adjustments in one or a few files.
+It is also the easiest method for total beginners.
+
+We recommend following this link:https://medium.com/anitab-org-open-source/contributing-using-github-web-ui-225a60390318[thorough guide to GitHUb Web UI contributions].
+
+[[install-the-development-environment]]
+=== Option {counter:option}: Install the Development Environment
+
+For more substantial contributions, set up a local development environment suitable to the project you want to work on.
+
+A base Dockerized Ruby environment should be suitable, as well.
+The latest {xref_projects_docops-box_link} to create a base image that should suffice for developing any DocOps Lab codebase.
+
+_If you are initializing a *new DocOps Lab project*_, see {xref_docs_lab-dev-setup_link} for comprehensive setup details.
+
+[[cloud-environment]]
+=== Option {counter:option}: Use a Cloud Environment
+
+Also for larger contributions, consider using a cloud-based development environment like GitHub Codespaces or Gitpod.
+We do not specifically instruct this or provide template spaces at this time, but we may do so upon request.
+
+
+[[contributing-code]]
+== Contributing Code (Including Docs)
+
+All contributions of functional code, data, or documentation (which is also code) must go through the poorly named "`Pull Request`" (PR) process via GitHub.
+
+This process allows for review, discussion, and testing before changes are merged into the main codebase.
+
+[NOTE]
+See the separate {xref_docs_generative-ai-usage_link} document for LLM-specific policy info.
+
+[[contributing-product-code]]
+=== Contributing Product Code
+
+Code contributions need not be perfect or expert level, but contributors should have reason to believe a contribution is correct and useful before issuing a PR.
+
+Prospective contributions are encouraged to open an issue in the repository to discuss the proposed change before starting work.
+
+They are also encouraged to read the project's `README.adoc` to understand the contribution needs and flow plus localized coding standards.
+
+[[contributing-documentation-code]]
+=== Contributing Documentation Code
+
+Documentation contributions are welcome and encouraged.
+This includes improving existing documentation, adding new content, or fixing typos and formatting issues.
+
+While opening a Bug issue to report a problem with the existing docs is always welcome, critics can become contributors by forking the repository, making changes, and issuing a PR.
+
+Documentation is a great place to get started with open-source contributions, and DocOps Lab is committed to being helpful and encouraging to anyone trying to lend a hand.
+
+Be sure to check any relevant README files, including a `docs/README.adoc` file if present or the "`Documentation`" section of the main `README.adoc` in the project root.
+
+[[contributing-test-code]]
+=== Contributing Test Code
+
+Tests are also code.
+They can assess:
+
+* product source
+* product executables
+* documentation source
+* converted docs output
+
+Contributors are welcome to add tests for existing code or docs, or to improve existing tests.
+
+This includes unit tests, integration tests, and end-to-end tests.
+It also includes demo environments and sample data used for testing.
+
+Look for a `specs/tests/README.adoc` file or similar in the repository for local guidance on testing frameworks and practices.
+
+
+[[contributor-license-agreement-cla]]
+== Contributor License Agreement (CLA)
+
+All contributions to DocOps Lab projects must comply with our link:{xref_docs_cla_url}[CLA].
+
+This Agreement ensures that contributions are made under a consistent license, protecting both contributors and the project.
+
+All contributors should read the whole Agreement, which is very brief and simple, but here is a listing of the key points that pertain to contributors' rights and responsibilities:
+
+[%collapsible,title="Key Points of the DocOps Lab CLA"]
+====
+======
+include::cla.adoc[tags=tldr]
+======
+
+Read the FULL AGREEMENT at link:{xref_docs_cla_url}[CLA].
+====
+
+
+[[code-of-conduct]]
+== Community Decorum (Code of Conduct)
+
+DocOps Lab commits to and requires contributors foster a welcoming and inclusive environment for all participants.
+
+Our social guidelines are simple, direct, and included here in their entirety to emphasize their importance.
+
+[[purpose]]
+=== Purpose
+
+DocOps Lab is a community of people collaborating on free and open projects.
+We want our workspaces -- virtual and IRL -- to be welcoming, respectful, and productive for all contributors.
+
+[[standards]]
+=== Standards
+
+Positive behavior includes::
+* Offering help and guidance
+* Respecting different skills, backgrounds, and viewpoints
+* Giving and accepting constructive feedback gracefully
+* Focusing on collaboration and shared goals
+
+Unacceptable behavior includes::
+* Personal attacks or insults
+* Harassment or unwanted attention
+* Dismissing or undermining others`' contributions
+* Disruptive, aggressive, or exclusionary conduct
+* Violating project policies or guidelines
+
+[[responsibilities]]
+=== Responsibilities
+
+Maintainers::
+Responsible for clarifying standards, addressing issues, and applying actions fairly.  
+
+Contributors::
+Responsible for following this Code of Conduct in all project spaces, including GitHub repos, issue trackers, and community forums.
+
+Users/participants::
+Expected to follow this Code of Conduct in all project spaces, including GitHub repos, issue trackers, and community forums.
+
+[[enforcement]]
+=== Enforcement
+
+Reporting::
+Concerns may be reported privately to DocOps Lab maintainers via https://github.com/DocOps/lab[the Lab repository] or by direct message to an admin.
+
+Process::
+Reports will be reviewed promptly and addressed in a way that seeks fairness, confidentiality, and community health.  
+
+Extra-organizational Handling::
+DocOps Lab encourages contributors and participants to seek appropriate mediation or intervention from outside DocOps Lab.
+Anyone uncomfortable with this Enforcement process .
+
+Consequences::
+Responses to violations may range from a _discussion_ or _warning_ to _suspension from participation_ or even _removal of access_ in serious cases.
+
+Escalation::
+Actions involving potential liability or criminality will be referred accordingly.
+
+[[scope]]
+=== Scope
+
+This Code of Conduct applies to all DocOps Lab spaces.
+That means any online forums and any in-person events organized by the project.
+
+[[commitment]]
+=== Commitment
+
+DocOps Lab is committed to fostering a respectful, collaborative environment.
+Your voluntary participation helps keep this community healthy and open to all.

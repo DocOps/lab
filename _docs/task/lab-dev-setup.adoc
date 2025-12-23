@@ -1,0 +1,18 @@
+---
+title: DocOps Lab Dev-tooling Setup
+docs-group: technical
+description: "Environment and Bootstrapping for new DocOpsLab project codebases or establishing a complete dev environment"
+order: 33
+---
+include::../_local_settings.adoc[]
+= Dev-tooling Setup
+
+include::../partials/_docopslab-dev-context-notice.adoc[]
+
+include::../../gems/docopslab-dev/README.adoc[tags="globals,setup",leveloffset="-1"]
+
+[NOTE]
+For configuration details, see {xref_docs_lab-dev-config_link}.
+
+[NOTE]
+See {xref_docs_lab-dev-usage_link} for operational details.

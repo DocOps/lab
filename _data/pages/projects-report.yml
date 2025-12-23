@@ -1,0 +1,49 @@
+nav:
+  top:
+    - text: Home
+      url: /
+    - text: Projects
+      url: /projects/
+      active: true
+    - text: Documentation
+      url: /docs/
+
+sections:
+  header:
+    file: page-header.html
+    properties:
+      title: DocOps Lab Projects
+      subtitle: Complete overview of all projects organized by type and development wave
+      breadcrumbs:
+        - text: Home
+          url: /
+        - text: Projects
+          active: true
+
+  featured:
+    file: project-cards.html
+    properties:
+      title: Featured Projects
+      desc: Our flagship projects marked for special attention
+      size: large
+    nodes: site.data.projects.projects | featured_projects
+
+  by-type:
+    file: projects-by-type.html
+    properties:
+      title: Projects by Type
+      desc: All projects organized by their primary category
+    nodes: site.data.projects['$meta'].types
+
+  by-wave:
+    file: projects-by-wave.html
+    properties:
+      title: Development Timeline
+      desc: Projects organized by their target release waves
+    nodes: site.data.projects['$meta'].waves
+
+  statistics:
+    file: project-stats.html
+    properties:
+      title: Project Statistics
+      class: bg-light

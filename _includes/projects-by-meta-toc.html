@@ -1,0 +1,12 @@
+{% assign metas = include.metas %}
+{% assign meta_string = include.meta_string %}
+{% assign icon = include.icon | default: "circle" %}
+
+<div class="meta-toc-grid">
+{% for meta in metas %}
+  <a href="#{{ meta_string }}-{{ meta | slugify }}" class="meta-toc-link toc-link-{{ meta | downcase | replace: ' ', '-' }}">
+    <i data-lucide="{{ icon }}" class="toc-icon"></i>
+    {{ meta }}
+  </a>
+{% endfor %}
+</div>

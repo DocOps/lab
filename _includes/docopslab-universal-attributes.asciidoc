@@ -1,0 +1,9 @@
+{%- assign projects = site.data.docops-lab-projects.projects | where: 'done', 'live' %}
+// tag::universals[]
+:docopslab_hub_url: https://github.com/DocOps
+:docopslab_domain: docopslab.org
+{%- for p in projects %}
+:docopslab_{{ p.slug }}_repo_url: https://github.com/DocOps/{{ p.repo | default: p.slug }}{% if p.path %}/{{ p.path }}{% endif %}
+:docopslab_{{ p.slug }}_site_url: https://{{ p.slug }}.docopslab.org
+{%- endfor %}
+// end::universals[]

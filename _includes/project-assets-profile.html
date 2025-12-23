@@ -1,0 +1,62 @@
+{% comment %}
+Project Assets Profile Partial
+Renders different types of project assets (libs, subjects, packs) in a consistent format.
+
+Parameters:
+- project: The project object containing the assets
+- type: The type of assets to render ("libs", "subjects", "packs")
+{% endcomment %}
+
+{% assign asset_type = include.type %}
+{% assign project = include.project %}
+{% assign assets = project[asset_type] %}
+
+{% if assets %}
+  {% comment %} Set up type-specific configurations {% endcomment %}
+  {% case asset_type %}
+    {% when "libs" %}
+      {% assign title_suffix = "Code Libraries" %}
+    {% when "subjects" %}
+      {% assign title_suffix = "Subjects" %}
+    {% when "packs" %}
+      {% assign title_suffix = "Packs" %}
+  {% endcase %}
+  {% if project.page %}
+    {% assign project_link = "/projects/" | append: project.slug %}
+  {% else %}
+    {% assign project_link = "/projects/#" | append: project.slug %}
+  {% endif %}
+
+  <div class="project-profile project-card profile-mini" id="{{ project.slug }}-{{ asset_type }}">
+    <div class="project-header">
+      <h3>
+        <i data-lucide="{{ project.icon | default: 'layers' }}" class="project-icon"></i>
+        <a href="{{ project_link }}">{{ project.name }}</a> {{ title_suffix }}
+      </h3>
+    </div>
+    <ul>
+      {% if asset_type == "libs" %}
+        {% for lib in assets %}
+          <li id="{{ lib }}">{{ lib }}</li>
+        {% endfor %}
+      {% elsif asset_type == "subjects" %}
+        {% for subject in assets %}
+          <li id="{{ subject.slug }}">{{ subject.name }}{% if subject.desc or subject.line %}: {{ subject.line | default: subject.desc | truncate: 60 }}{% endif %}</li>
+        {% endfor %}
+      {% elsif asset_type == "packs" %}
+        {% for pack in assets %}
+          <li id="{{ pack[0] }}">
+            {{ pack[0] }}{% if pack[0].desc or pack[0].line %}: {{ pack[0].line | default: pack[0].desc | truncate: 60 }}{% endif %}
+            {% if pack[1].libs %}
+            <ul>
+              {% for lib in pack[1].libs %}
+                <li id="{{ lib }}">{{ lib }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+  </div>
+{% endif %}

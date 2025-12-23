@@ -1,0 +1,22 @@
+{%- if page.tokens %}
+{%-   assign tokens = page.tokens | split: ',' %}
+<div class="token-swap-form">
+{%-   if page.tokens_message %}
+    <p>{{ page.tokens_message }}</p>
+{%-   endif %}
+{%-   for token in tokens %}
+{%-     assign token_name = 'token_' | append: token | strip %}
+{%-     assign field_type = page[token_name] | default: 'text' %}
+{%-     assign field_label = token_name | append: '_label'] |  %}
+{%-     assign field_label = page[field_label] | default: token | capitalize %}
+{%-     assign token_value = token_name | append: '_default' %}
+{%-     assign token_value = page[token_value] | default: site[token_name] %}
+  <label for="{{token_name}}">{{ field_label }}:</label>
+  <input type="{{ field_type }}" id="{{token_name}}" value="{{ token_value }}" />
+{%-   endfor %}
+</div>
+{%- else %}
+<div class="admonitionblock warning">
+  <p>Page tokens expected but not found.</p>
+</div>
+{%- endif %}

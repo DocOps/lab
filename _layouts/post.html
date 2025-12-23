@@ -1,0 +1,199 @@
+---
+layout: default
+---
+
+{% comment %} Determine if this is a metablog post {% endcomment %}
+{% if page.collection == "metablog" %}
+  {% assign is_metapost = true %}
+{% endif %}
+{% assign metapost_class = '' %}
+{% if is_metapost %}
+  {% assign metapost_class = ' metablog' %}
+{% else %}
+  {% assign has_metapost = site.metablog | find: "subject-post", page.slug %}
+{% endif %}
+
+<div class="blog-post-container{{ metapost_class }}">
+  <div class="container">
+    <article class="blog-post{{ metapost_class }}">
+    <header class="post-header{{ metapost_class }}">
+      <h1 class="post-title{{ metapost_class }}">
+        {{ page.title }}
+        {% if page.icon %}
+        <i data-lucide="{{ page.icon }}"></i>
+        {% endif %}
+      </h1>
+      
+      {% if is_metapost %}
+      <h2 class="blog-title{{ metapost_class }}">
+        <i data-lucide="microscope"></i>
+        A Dr Meta's MetaBlog entry
+      </h2>
+      
+      {% comment %} Subject post reference for metablog posts {% endcomment %}
+      {% if page.subject-post %}
+        {% assign subject_post = site.blog | where: "slug", page.subject-post | first %}
+        <div class="meta-subject-reference">
+          <div class="subject-post-link">
+            <i data-lucide="microscope"></i>
+            <span>Meta-commentary on:</span>
+            <a href="{{ subject_post.url | relative_url }}" class="subject-post-title">{{ subject_post.title }}</a>
+            <time class="subject-post-date" datetime="{{ subject_post.date | date_to_xmlschema }}">
+              ({{ subject_post.date | date: "%B %d, %Y" }})
+            </time>
+          </div>
+        </div>
+      {% endif %}
+      {% else %}
+      <h2 class="blog-title">
+        <img src="{{ '/assets/images/favicons/favicon-raw-transparent.png' | relative_url }}" alt="DocOps Lab Favicon" class="blog-favicon-logo">
+        A DocOps Lab Blog entry
+      </h2>
+      {% endif %}
+      
+      <div class="post-meta{{ metapost_class }}">
+        {% comment %} Show date for regular posts, but not for metaposts {% endcomment %}
+        {% unless is_metapost %}
+        <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
+          <i data-lucide="calendar"></i>
+          {{ page.date | date: "%B %d, %Y" }}
+        </time>
+        {% endunless %}
+        
+        {% if page.author %}
+        <span class="post-author{{ metapost_class }}">
+          <i data-lucide="user"></i>
+          {{ page.author }}
+        </span>
+        {% endif %}
+        {% if page.tags and page.tags.size > 0 %}
+        <div class="post-tags{{ metapost_class }}">
+          <i data-lucide="tag"></i>
+          {% for tag in page.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if page.version or has_metapost %}
+          {% if page.version %}
+          <div class="post-version">
+            <span class="version-param"><i data-lucide="milestone"></i><span class="tag">POST VERSION:</span> <strong><code>{{ page.version }}</code></strong></span>
+          </div>
+          {% endif %}
+          {% if has_metapost %}
+          <div class="post-metablog">
+            <a href="{{ has_metapost.url | relative_url }}" class="btn-metablog">
+              <i data-lucide="microscope"></i>
+              Meta-Analysis Available
+            </a>
+          </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </header>
+    
+    <div class="post-content{{ metapost_class }}">
+      {% if page.image %}
+      <figure class="post-image">
+        <img src="/assets/images/{{ page.image }}" alt="{{ page.image-alt | default: page.title }}" class="post-image-img">
+        {% if page.image-caption or page.image-source or page.image-source-credit %}
+        <figcaption class="post-image-caption">
+          {{ page.image-caption | asciidocify }}
+          {% if page.image-source-url %}
+          <a href="{{ page.image-source-url }}" class="image-source" target="_blank" rel="noopener noreferrer">
+            {{ page.image-source-credit | default: "Image Source" }}
+            {% if page.image-source-permission %}
+            ({{ page.image-source-permission }})
+            {% endif %}
+          </a>
+          {% endif %}
+        </figcaption>
+        {% endif %}
+      </figure>
+      {% endif %}
+      {{ content }}
+    </div>
+    
+    {% comment %} Bottom metablog banner only for regular posts {% endcomment %}
+    {% unless is_metapost %}
+      {% if has_metapost %}
+      <div class="metablog-banner metablog-banner-bottom">
+        <div class="banner-content">
+          <div class="banner-text">
+            <a href="{{ has_metapost.url | relative_url }}" class="btn-metablog">
+              <i data-lucide="microscope"></i>
+              Check out Dr. Meta's technical overview of how this post was coded.
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    {% endunless %}
+    
+    <footer class="post-footer{{ metapost_class }}">
+      {% comment %} Special footer content for metaposts {% endcomment %}
+      {% if is_metapost and page.subject-post and subject_post %}
+      <div class="post-meta{{ metapost_class }}">
+        <time class="post-date{{ metapost_class }}" datetime="{{ subject_post.date | date_to_xmlschema }}">
+          <a href="{{ subject_post.url | relative_url }}" class="btn-secondary">
+            <i data-lucide="arrow-left"></i>
+            Back to {{ subject_post.title }}
+          </a>
+        </time>
+      </div>
+      <div class="back-to-subject"></div>
+      {% endif %}
+      
+      <div class="post-navigation">
+        {% if page.next.url %}
+        <a href="{{ page.next.url | relative_url }}" class="nav-link nav-prev">
+          <i data-lucide="arrow-left"></i>
+          <div class="nav-text">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">{{ page.next.title }}</span>
+          </div>
+        </a>
+        {% endif %}
+        
+        {% if page.previous.url %}
+        <a href="{{ page.previous.url | relative_url }}" class="nav-link nav-next">
+          <div class="nav-text">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">{{ page.previous.title }}</span>
+          </div>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        {% endif %}
+      </div>
+      
+      {% comment %} Different back links based on post type {% endcomment %}
+      {% if is_metapost %}
+      <div class="back-to-metablog">
+        <a href="{{ '/metablog/' | relative_url }}" class="btn-secondary">
+          <i data-lucide="microscope"></i>
+          Back to MetaBlog
+        </a>
+      </div>
+      {% else %}
+      <div class="back-to-blog">
+        <a href="{{ '/blog/' | relative_url }}" class="btn-secondary">
+          <i data-lucide="arrow-left"></i>
+          Back to Blog
+        </a>
+      </div>
+      {% endif %}
+    </footer>
+    </article>
+  </div>
+</div>
+
+{% comment %} Different footer wrapper class for metaposts {% endcomment %}
+{% if is_metapost %}
+<footer class="footer-section">
+{% include footer.html %}
+</footer>
+{% else %}
+<footer>
+  {% include footer.html %}
+</footer>
+{% endif %}

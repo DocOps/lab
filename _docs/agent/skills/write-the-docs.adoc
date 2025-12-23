@@ -1,0 +1,9 @@
+---
+permalink: /docs/agent/write-the-docs/
+indexed: false
+origins: [product-change-docs]
+---
+include::../_agent_settings.adoc[]
+= Documenting Product Changes
+
+include::../../task/product-change-docs.adoc[tag="contribute-docs", leveloffset=-1 ]

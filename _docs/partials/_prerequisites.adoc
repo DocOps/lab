@@ -1,0 +1,59 @@
+// tag::general[]
+[[technologies-overview]]
+=== Technologies Overview
+
+DocOps Lab projects are primarily Ruby gems, usually with associated Docker images that provide proper environments for the CLI associated with the project gem.
+
+Ruby is used mainly because of its excellent AsciiDoc tooling through Asciidoctor, with an accompanying preference for Jekyll static-site generator and Liquid templating language, all of which are Ruby native.
+
+Docker is employed by internal developers and end users of DocOps Lab tooling alike, to reduce if not eliminate the Ruby maintenance overhead.
+
+[[required-tools]]
+=== Required Tools
+
+If you are brand new to the world of code, Git, and GitHub, DocOps Lab will soon have resources aimed precisely at your experience level.
+For now, some experience with these tools is assumed.
+
+Must-haves::
+* Docker, natively installed:
+include::../../gems/docopslab-dev/README.adoc[tags="docker-installs"]
+* Git, natively installed
+* Ruby runtime {docopslab_ruby_version}, natively or via Docker (recommended)
+* link:https://github.com/signup[GitHub account]
+
+Should-haves::
+* link:https://cli.github.com[GitHub CLI] (`gh`)
+* a code editor that supports Ruby, AsciiDoc, and YAML +
+(Try link:https://code.visualstudio.com[VS Code] if you don't have a preference yet.)
+
+[[ruby-environment]]
+=== Ruby Environment
+
+Ruby dependencies are managed through Bundler using each project's `Gemfile`/`.gemspec` definitions.
+
+A proper Ruby environment and all common (cross-project) development dependencies are supplied in the `docopslab/dev` Docker image.
+Containers run from this image provide unified linting, git hooks, and development tooling used by most DocOps Lab codebases.
+
+These quality-control tools are also built into all GitHub repos via GH Actions workflows, local availability is not required just to work on or contribute to a DocOps Lab codebase.
+
+See {xref_docs_lab-dev-setup_link} for comprehensive setup details if you are initializing a new DocOps Lab project.
+// end::general[]
+
+// tag::release[]
+[[required-credentials]]
+=== Required Credentials
+
+Use environment variables to store sensitive credentials securely.
+These credentials are only needed during the release process, not the development phase.
+
+* RubyGems API Key
+** Location: https://rubygems.org/profile/edit
+** Set as: `RUBYGEMS_API_KEY`
+* Docker Hub Credentials
+** Organization: `docopslab`
+** DockerHub account with write permissions for `docopslab` images
+** Set as: `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`
+* GitHub Token (some projects only)
+** Scope: `repo`
+** Set as: `DOCOPSLAB_GITHUB_TOKEN` or `GITHUB_TOKEN`
+// end::release[]

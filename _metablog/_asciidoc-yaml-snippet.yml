@@ -1,0 +1,7 @@
+properties:
+# tag::arbitrary-tagname[]
+  - key: tagged-content
+    description: |
+      This exemplifies demarcated tagging in YAML, for inclusion into AsciiDoc files.
+    status: awesome!
+# end::arbitrary-tagname[]

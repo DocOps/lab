@@ -1,0 +1,52 @@
+---
+title: Fix Jekyll-AsciiDoc Build Errors
+docs-group: technical
+description: "Analyzing and addressing Asciidoctor errors that surface in Jekyll build operations"
+order: 48
+type: troubleshooter
+---
+= Fix Jekyll-AsciiDoc Build Errors
+
+When Asciidoctor errors are encountered during the conversion stage of a Jekyll build operation, use this procedure to clarify and fix them.
+
+
+[[procedure-overview]]
+== Procedure Overview
+
+.PREREQUISITE
+[IMPORTANT]
+====
+This procedure requires the link:{xref_docs_lab-dev-setup_url}[`docopslab-dev` utility].
+====
+
+// tag::procedure[]
+. Perform a basic Jekyll build that writes verbose output to a local file.
++
+.Example with config option
+[.prompt]
+ bundle exec jekyll build --verbose --config configs/jekyll.yml > .agent/scratch/jekyll-build.log 2>&1
++
+Note the `2>&1` at the end of the command, which ensures that both standard output and error messages are captured in the log file.
+
+. Run the analysis task on the exported file.
++
+[.prompt]
+ bundle exec rake 'labdev:lint:logs[jekyll-asciidoc,.agent/scratch/jekyll-build.log]'
+
+. Open the YAML file relayed in the response message (example: `Jekyll AsciiDoc issues report generated: .agent/reports/jekyll-asciidoc-issues-20251214_085323.yml`).
+
+. Follow the instructions in the report to address the issues found.
+// end::procedure[]
+
+
+[[error-report]]
+== The Error Report
+
+The report is a YAML file that lists the errors associated with their actual locations in the AsciiDoc source.
+
+The report contains instructions so that it may be fed in its entirety to an LLM assistant to address the errors.
+
+.Default instructions
+....
+include::../../gems/docopslab-dev/assets/templates/jekyll-asciidoc-fix.prompt.yml[]
+....
