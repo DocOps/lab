@@ -2,9 +2,9 @@
 
 This document is intended for AI agents operating within a DocOps Lab environment.
 
-This guide pertains to the `docopslab-dev` environment. For complete documentation, see the [project’s README](https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc).
+This guide pertains to the `docopslab-dev` environment. For complete documentation, see the [project’s README]({xref_projects_docops-box_url}).
 
-> **IMPORTANT:** The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects. For your own applications of DocOps Labs products like ReleaseHx and Issuer, see [DocOps Box](https://github.com/DocOps/box) for a full-featured docs-focused workspace, runtime, and production environment.
+> **IMPORTANT:** The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects. For your own applications of DocOps Labs products like ReleaseHx and Issuer, see [DocOps Box](/box) for a full-featured docs-focused workspace, runtime, and production environment.
 
 This gem mainly supplies rake tasks for performing common development operations across unified configurations and sub-libraries.
 
@@ -179,7 +179,7 @@ Your configurations will inherit from the base configurations and source librari
 Projects using `docopslab-dev` will have a configuration structure like the following:
 
 ```tree
-config/
+.config/
 ├── docopslab-dev.yml # Project manifest (tracked)
 ├── actionlint.yml # Project config (tracked; inherits from base)
 ├── htmlproofer.local.yml # Project config (tracked; inherits from base)

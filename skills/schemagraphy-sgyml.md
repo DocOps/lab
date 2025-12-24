@@ -13,6 +13,6 @@ It is a specialized YAML preprocessing syntax that provides:
 
 SchemaGraphy Schemas and the SGYML and tooling to support them are in a nascent stage, still under development.
 
-Check [SchemaGraphy](/projects/schemagraphy/) for the latest information on SchemaGraphy and SGYML.
+Check {xref\_projects\_schemagraphy\_link} for the latest information on SchemaGraphy and SGYML.
 
 > **TIP:** If the codebase you are working on uses SGYML or SchemaGraphy Schemas, check for a path `../schemagraphy/` (relative to the project root).

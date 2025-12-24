@@ -83,7 +83,7 @@ These files are common to Ruby-based DocOps Lab projects. The `Gemfile` and `Gem
    Ruby Rakefile for defining tasks and automation scripts.
 
 **`scripts/`** :
-   Custom scripts for automating tasks related to development, testing, and deployment. See [scripts] below.
+   Custom scripts for automating tasks related to development, testing, and deployment.
 
 **`.github/workflows/`** :
    GitHub Actions workflows for CI/CD, defining automated build, test, and deployment processes.

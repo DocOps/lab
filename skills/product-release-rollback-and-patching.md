@@ -14,8 +14,8 @@ Table of Contents
 If a release must be rolled back and retracted, you must revert the changes and “yank” the artifacts.
 
 ```
-git tag -d v<$tok.majmin>.<$tok.patch>
-git push origin :refs/tags/v<$tok.majmin>.<$tok.patch>
+git tag -d v<major.minor>.<patch>
+git push origin :refs/tags/v<major.minor>.<patch>
 git revert -m 1 <merge-commit>
 git push origin main
 ```
@@ -23,9 +23,9 @@ git push origin main
 Retract or yank the artifacts (DockerHub, RubyGems, etc) and nullify the GH release.
 
 ```
-gh release delete v<$tok.majmin>.<$tok.patch>
-gem yank --version <$tok.majmin>.<$tok.patch> <gemname>
-docker rmi <image>:<$tok.majmin>.<$tok.patch>
+gh release delete v<major.minor>.<patch>
+gem yank --version <major.minor>.<patch> <gemname>
+docker rmi <image>:<major.minor>.<patch>
 ```
 
 Be sure to un-publish any additional artifacts specific to the project.

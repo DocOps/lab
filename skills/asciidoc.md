@@ -464,6 +464,6 @@ BasedOnStyles = RedHat, DocOpsLab-Authoring, DocOpsLab-AsciiDoc
 
 This dual-mode system provides a robust workflow for both developing and consuming the centralized Vale styles.
 
-> **NOTE:** For full Vale configuration settings (“keys”) reference, see [the Vale documentation](https://vale.sh/docs/configuration).
+> **NOTE:** For full Vale configuration settings (“keys”) reference, see [the Vale documentation](https://vale.sh/docs/vale-ini).
 > **NOTE:** For information on managing DocOps Lab’s Vale styles, see [the `docopslab-dev` gem README](https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc).
 
