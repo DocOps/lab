@@ -704,11 +704,11 @@ Ensure you have the necessary credentials for GitHub and any artifact registries
 <div class="literalblock">
 <div class="content">
 <pre>bundle update releasehx
-bundle exec releasehx &lt;$tok.majmin&gt;.&lt;$tok.patch&gt; --md docs/release/&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;.md</pre>
+bundle exec releasehx &lt;major.minor&gt;.&lt;patch&gt; --md docs/release/&lt;major.minor&gt;.&lt;patch&gt;.md</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Edit the Markdown file at <code>docs/release/&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;.md</code>.</p>
+<p>Edit the Markdown file at <code>docs/release/&lt;major.minor&gt;.&lt;patch&gt;.md</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -743,8 +743,8 @@ This step may vary significantly depending on project&#8217;s implementation of 
 <p>Create and push the release tag.</p>
 <div class="literalblock">
 <div class="content">
-<pre>git tag -a v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt; -m "Release &lt;$tok.majmin&gt;.&lt;$tok.patch&gt;"
-git push origin v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;</pre>
+<pre>git tag -a v&lt;major.minor&gt;.&lt;patch&gt; -m "Release &lt;major.minor&gt;.&lt;patch&gt;"
+git push origin v&lt;major.minor&gt;.&lt;patch&gt;</pre>
 </div>
 </div>
 </dd>
@@ -766,11 +766,11 @@ git push origin v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>gh release create v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt; --title "Release &lt;$tok.majmin&gt;.&lt;$tok.patch&gt;" --notes-file docs/releases/&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;.md --target main</pre>
+<pre>gh release create v&lt;major.minor&gt;.&lt;patch&gt; --title "Release &lt;major.minor&gt;.&lt;patch&gt;" --notes-file docs/releases/&lt;major.minor&gt;.&lt;patch&gt;.md --target main</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Or else use the GitHub web interface to manually register the release, and copy/paste the contents of <code>docs/releasehx/&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;.md</code> into the release notes field.
+<p>Or else use the GitHub web interface to manually register the release, and copy/paste the contents of <code>docs/releasehx/&lt;major.minor&gt;.&lt;patch&gt;.md</code> into the release notes field.
 (<code>role: project-manager; with: devops-release-engineer</code>)</p>
 </div>
 </div>
@@ -782,7 +782,7 @@ git push origin v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;</pre>
 <dd>
 <p>Build and publish the final artifacts.</p>
 <div class="paragraph">
-<p>Use the <code>publish.sh</code> script with <a href="#required-credentials">proper credentials</a> in place.</p>
+<p>Use the <code>publish.sh</code> script with proper credentials in place.</p>
 </div>
 </dd>
 </dl>
@@ -812,7 +812,7 @@ git push origin v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;</pre>
 <div class="ulist checklist">
 <ul class="checklist">
 <li>
-<p><input type="checkbox" data-item-complete="0"> Cut a <em>release</em> branch for patching (<code>release/&lt;$tok.majmin&gt;</code>).</p>
+<p><input type="checkbox" data-item-complete="0"> Cut a <em>release</em> branch for patching (<code>release/&lt;major.minor&gt;</code>).</p>
 </li>
 <li>
 <p><input type="checkbox" data-item-complete="0"> Update <code>:next_prod_vrsn:</code> in docs.</p>

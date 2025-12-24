@@ -482,8 +482,8 @@
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>git tag -d v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;
-git push origin :refs/tags/v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;
+<pre>git tag -d v&lt;major.minor&gt;.&lt;patch&gt;
+git push origin :refs/tags/v&lt;major.minor&gt;.&lt;patch&gt;
 git revert -m 1 &lt;merge-commit&gt;
 git push origin main</pre>
 </div>
@@ -493,9 +493,9 @@ git push origin main</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>gh release delete v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;
-gem yank --version &lt;$tok.majmin&gt;.&lt;$tok.patch&gt; &lt;gemname&gt;
-docker rmi &lt;image&gt;:&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;</pre>
+<pre>gh release delete v&lt;major.minor&gt;.&lt;patch&gt;
+gem yank --version &lt;major.minor&gt;.&lt;patch&gt; &lt;gemname&gt;
+docker rmi &lt;image&gt;:&lt;major.minor&gt;.&lt;patch&gt;</pre>
 </div>
 </div>
 <div class="paragraph">

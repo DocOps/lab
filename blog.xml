@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://docopslab.org/blog.xml" rel="self" type="application/atom+xml" /><link href="https://docopslab.org/" rel="alternate" type="text/html" /><updated>2025-12-23T16:30:09+00:00</updated><id>https://docopslab.org/blog.xml</id><title type="html">DocOps Lab | Blog</title><subtitle>Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.</subtitle><author><name>DocOps Lab</name><email>lab@docopslab.org</email></author><entry><title type="html">Release the Lab!</title><link href="https://docopslab.org/blog/release-the-lab/" rel="alternate" type="text/html" title="Release the Lab!" /><published>2025-12-22T15:00:00+00:00</published><updated>2025-12-22T15:00:00+00:00</updated><id>https://docopslab.org/blog/release-the-lab</id><content type="html" xml:base="https://docopslab.org/blog/release-the-lab/"><![CDATA[<div class="paragraph">
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://docopslab.org/blog.xml" rel="self" type="application/atom+xml" /><link href="https://docopslab.org/" rel="alternate" type="text/html" /><updated>2025-12-24T00:02:54+00:00</updated><id>https://docopslab.org/blog.xml</id><title type="html">DocOps Lab | Blog</title><subtitle>Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.</subtitle><author><name>DocOps Lab</name><email>lab@docopslab.org</email></author><entry><title type="html">Tell Me About Your ‘Tech(nique)’ Stack</title><link href="https://docopslab.org/blog/tech-nique-stack/" rel="alternate" type="text/html" title="Tell Me About Your ‘Tech(nique)’ Stack" /><published>2025-12-26T00:00:00+00:00</published><updated>2025-12-26T00:00:00+00:00</updated><id>https://docopslab.org/blog/tech-nique-stack</id><content type="html" xml:base="https://docopslab.org/blog/tech-nique-stack/"><![CDATA[]]></content><author><name>DocOps Lab</name><email>lab@docopslab.org</email></author></entry><entry><title type="html">Release the Lab!</title><link href="https://docopslab.org/blog/release-the-lab/" rel="alternate" type="text/html" title="Release the Lab!" /><published>2025-12-22T15:00:00+00:00</published><updated>2025-12-22T15:00:00+00:00</updated><id>https://docopslab.org/blog/release-the-lab</id><content type="html" xml:base="https://docopslab.org/blog/release-the-lab/"><![CDATA[<div class="paragraph">
 <p>Today I release a major update to the DocOps Lab website, reporting for the first time on all the projects underway or planned, including their statuses.</p>
 </div>
 <div class="paragraph">
-<p>The site is heavily data driven, mainly based on a complex <a href="https://github.com/DocOps/blob/main/_data/docops-lab-projects.yml">YAML file</a> maintained for the past 2+ years to track projects, their relationships, progress, and so forth.
+<p>The site is heavily data driven, mainly based on a complex <a href="https://github.com/DocOps/lab/blob/main/_data/docops-lab-projects.yml">YAML file</a> maintained for the past 2+ years to track projects, their relationships, progress, and so forth.
 Now it informs a static website built with Jekyll and Asciidoctor, which is hosted on GitHub Pages.</p>
 </div>
 <div class="paragraph">
-<p>Check out the <a href="https://github.com/DocOps">Git repository and README</a> for more details.
+<p>Check out the <a href="https://github.com/DocOps/lab">Git repository and README</a> for more details.
 Also <a href="/metablog/lab-projects-source-site/">this MetaBlog post</a> explores the source data and site generation in more detail.</p>
 </div>
 <div class="paragraph">
@@ -145,11 +145,179 @@ I have modified a Ruby library called <a href="https://github.com/xijo/reverse_m
 My extension is available as <a href="https://github.com/DocOps/lab/blob/main/scripts/mark_down_grade.rb"><code>scripts/mark_down_grade.rb</code></a> in this very repo.</p>
 </div>
 <div class="paragraph">
-<p>Here I include a window into the current state of one such document (<a href="https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/docs/agent/skills/git.md">source</a>, <a href="https://docopslab.org/docs/agent/git">rendered</a>), which may change over time as I refine the AI-agent docs:</p>
+<p>Here I include a window into the current state of one such document (<a href="https://github.com/DocOps/lab/blob/agent-docs/skills/git.md">source</a>, <a href="https://docopslab.org/docs/agent/git">rendered</a>), which may change over time as I refine the AI-agent docs:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">Unresolved directive in single-sourcing-for-ai-agents.adoc - include::../gems/docopslab-dev/docs/agent/skills/git.md[]</code></pre>
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown"># AI Agent Instructions for Git Operations
+
+This document is intended for AI agents operating within a DocOps Lab environment.
+
+You are an AI agent that helps with git operations.
+
+This document describes protocols for committing and pushing changes to a git DocOps Lab Git repository and interacting with GitHub on behalf of a DocOps Lab contributor.
+
+Table of Contents
+
+- The Basics
+- Repository State
+- Development Procedures
+- Commit Message Conventions
+      - Merging Changes
+- Dev Branch Rules
+- Commit Messages
+- General Style (Conventional Commits)
+      - Commit Description
+      - Commit Types
+      - Commit Body Conventions
+- Use `gh` the GitHub CLI Tool
+
+## The Basics
+
+1. Follow proper branching procedures as outlined in Repository State.
+2. Commit messages should be concise and easy for users to edit.  
+See Commit Messages for guidance.
+3. Always prompt user to approve commits before pushing.
+4. Use `gh` for interacting with GitHub whenever possible.  
+See Use `gh` the GitHub CLI Tool for more information.
+
+## Repository State
+
+Development is done on development _trunk_ branches named like `dev/x.y`, where `x` is the major version and `y` is the minor.
+
+To start development on a new release version:
+
+```
+git checkout main
+git pull origin main
+git checkout -b dev/1.2
+git checkout -b chore/bump-version-1.2.0
+git commit -am "Bumped version attributes in README"
+git checkout dev/1.2
+git merge chore/bump-version-1.2.0
+git push -u origin dev/1.2
+```
+
+## Development Procedures
+
+Work on feature or fix branches off the corresponding `dev/x.y` trunk.
+
+```
+git checkout dev/1.2
+git checkout -b feat/add-widget
+… implement …
+git add .
+git commit -m "feat: add widget"
+git push -u origin feat/add-widget
+gh pr create --base dev/1.2 --title "feat: add widget" --body "Adds a new widget to the dashboard."
+```
+
+**Branch naming conventions** :
+   - `feat/…​` for new features OR improvements
+   - `fix/…​` for bugfixes
+   - `chore/…​` for version bumps and sundry tasks with no product impact
+   - `epic/…​` for large features or changes that span releases
+
+### Commit Message Conventions
+
+**Description (first line) conventions**:
+   - Use present-tense descriptive verbs (“adds widget”, not “added” or “add”)
+   - `feat: …​` for new features OR improvements
+   - `fix: …​` for bugfixes
+   - `chore: …​` for version bumps and sundry tasks with no product impact
+   - `docs: …​` for documentation changes
+   - `test: …​` for test code changes
+   - `refactor: …​` for code restructuring with no functional changes
+   - `style: …​` for formatting, missing semi-colons, etc; no functional changes
+   - `perf: …​` for performance improvements
+   - `auto: …​` for changes to CI/CD pipelines and build system
+
+**Body conventions** :
+   - Use the body to explain what and why vs. how.
+   - Reference issues and pull requests as needed.
+   - Use bullet points (`- text`) and paragraphs as needed for clarity.
+   - Do not hard-wrap lines, but _do_:
+
+      - use 1-sentence per line
+      - keep sentences short
+
+### Merging Changes
+
+Squash-merge branches back into `dev/x.y`:
+
+```
+git checkout dev/1.2
+git checkout -b feat/add-widget
+… implement …
+git add .
+git commit -m "feat: add widget"
+git merge --squash feat/add-widget
+git commit -m "feat: add widget"
+git push origin dev/1.2
+```
+
+Delete merged branches.
+
+## Dev Branch Rules
+
+- Always branch from `dev/x.y`.
+- Always squash-merge into `dev/x.y`.
+- Never merge directly into `main`.
+
+## Commit Messages
+
+This document outlines the protocols for authoring Git commit messages in DocOps Lab projects.
+
+### General Style (Conventional Commits)
+
+DocOps Lab _loosely_ follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for Git commit messages.
+
+Enforcement is not strict, but using Conventional Commits style is encouraged for consistency and clarity.
+
+&gt; **NOTE:** Most DocOps Lab projects do not base Changelog/Release Notes generation on commit messages.
+
+The basic outline for a Conventional Commit message is:
+
+```
+&lt;type&gt;[optional scope]: &lt;description&gt;
+
+[optional body]
+
+[optional footer(s)]
+```
+
+### Commit Description
+
+The commit description should be concise and to the point, summarizing the change in 50 characters or less.
+
+Use the _past tense_ rather than imperative mood (e.g., "Added feature X" instead of "Add feature X").
+
+### Commit Types
+
+- Use present-tense descriptive verbs (“adds widget”, not “added” or “add”)
+- `feat: …​` for new features OR improvements
+- `fix: …​` for bugfixes
+- `chore: …​` for version bumps and sundry tasks with no product impact
+- `docs: …​` for documentation changes
+- `test: …​` for test code changes
+- `refactor: …​` for code restructuring with no functional changes
+- `style: …​` for formatting, missing semi-colons, etc; no functional changes
+- `perf: …​` for performance improvements
+- `auto: …​` for changes to CI/CD pipelines and build system
+
+### Commit Body Conventions
+
+- Use the body to explain what and why vs. how.
+- Reference issues and pull requests as needed.
+- Use bullet points (`- text`) and paragraphs as needed for clarity.
+- Do not hard-wrap lines, but _do_:
+
+   - use 1-sentence per line
+   - keep sentences short
+
+## Use `gh` the GitHub CLI Tool
+
+For interacting with GitHub, always prefer using the [GitHub CLI (`gh`)](https://cli.github.com/) tool for issues, PRs, and other GH operations.</code></pre>
 </div>
 </div>
 <div class="paragraph">
