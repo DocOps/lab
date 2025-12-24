@@ -4,7 +4,7 @@ This document is intended for AI agents operating within a DocOps Lab environmen
 
 This guide pertains to the `docopslab-dev` environment. For complete documentation, see the [project’s README]({xref_projects_docops-box_url}).
 
-> **IMPORTANT:** The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects. For your own applications of DocOps Labs products like ReleaseHx and Issuer, see [DocOps Box](/box) for a full-featured docs-focused workspace, runtime, and production environment.
+> **IMPORTANT:** The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects. For your own applications of DocOps Labs products like ReleaseHx and Issuer, see [DocOps Box](https://docopslab.org/projects/docops-box) for a full-featured docs-focused workspace, runtime, and production environment.
 
 This gem mainly supplies rake tasks for performing common development operations across unified configurations and sub-libraries.
 

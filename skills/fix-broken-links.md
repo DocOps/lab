@@ -253,7 +253,7 @@ For links to resources not yet available:
 
 ```asciidoc
 // FIXME-PREPUB: Update when DocOps/box repository is published
-See the link:https://github.com/DocOps/box[DocOps Box repository] for details.
+See the link:https://github.com/DocOps/docops-box[DocOps Box repository] for details.
 ```
 
 ## Validation and Testing
