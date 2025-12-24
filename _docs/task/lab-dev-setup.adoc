@@ -5,6 +5,7 @@ description: "Environment and Bootstrapping for new DocOpsLab project codebases 
 order: 33
 ---
 include::../_local_settings.adoc[]
+:docopslab_lab_www_url: ''
 = Dev-tooling Setup
 
 include::../partials/_docopslab-dev-context-notice.adoc[]

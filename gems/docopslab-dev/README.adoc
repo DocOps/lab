@@ -16,7 +16,7 @@ Internal development tooling for working on DocOps Lab codebases.
 [IMPORTANT]
 ====
 The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects.
-For your own applications of DocOps Labs products like ReleaseHx and Issuer, see link:/box[DocOps Box] for a full-featured docs-focused workspace, runtime, and production environment.
+For your own applications of DocOps Labs products like ReleaseHx and Issuer, see link:https://docopslab.org/projects/docops-box[DocOps Box] for a full-featured docs-focused workspace, runtime, and production environment.
 ====
 // end::docopsbox[]
 
@@ -198,7 +198,7 @@ This process is part of the `init` operation, but on its own it ensures local co
 
 // end::setup[]
 
-
+// tag::ai-prompt[]
 [[using]]
 == Using the Library
 // tag::usage[]
@@ -279,6 +279,7 @@ See <<more-example-commands>> for additional common commands.
 [.prompt]
  bundle exec rake labdev:lint:spellcheck
 
+// end::ai-prompt[]
 
 [[configuration]]
 == Configuration
