@@ -15,10 +15,6 @@ on:
         description: "Create PR if tracked files change"
         type: boolean
         default: true
-    secrets:
-      GITHUB_TOKEN:
-        description: "GitHub token for PR creation"
-        required: false
 
 jobs:
   config-sync:
@@ -28,7 +24,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN || github.token }}
+          token: ${{ github.token }}
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

@@ -27,10 +27,6 @@ on:
         description: "Output directory (relative to source_dir)"
         type: string
         default: "_site"
-    secrets:
-      GITHUB_TOKEN:
-        description: "GitHub token for Pages deployment"
-        required: false
 
 # Set permissions for GitHub Pages deployment
 permissions:
