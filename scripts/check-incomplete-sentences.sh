@@ -48,7 +48,8 @@ scan_pattern() {
   echo -e "${YELLOW}Checking: ${description}${NC}"
   
   # Use a temp file for results to avoid subshell issues
-  local temp_results=$(mktemp)
+  local temp_results
+  temp_results=$(mktemp)
   
   # Build and execute grep command
   if [[ -n "$exclude_pattern" ]]; then
