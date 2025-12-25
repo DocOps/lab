@@ -15,11 +15,6 @@ if [ -f "Gemfile" ] && { [ "$1" = "rake" ] || [[ "$1" == labdev:* ]] || [ "$1" =
   # Force per-project install path to .bundle/
   bundle config set --local path '.bundle' >/dev/null
 
-  # Optional: respect without groups if the project hasn't set them
-  if ! bundle config list | grep -q 'without'; then
-    bundle config set --local without 'development:test' >/dev/null || true
-  fi
-
   # Only install if needed
   if ! bundle check >/dev/null 2>&1; then
     # Fallback to jobs/retry env if provided
