@@ -6,6 +6,7 @@
 ignore_urls:
   # exclude all links at medium.com
   - /medium.com/
+  - /www.4ipcouncil.com/
 
 # Project-specific file ignores (will be merged with base ignores)  
 # ignore_files:

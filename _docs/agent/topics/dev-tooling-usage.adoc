@@ -2,6 +2,7 @@
 permalink: /docs/agent/dev-tooling-usage/
 ---
 include::../_agent_settings.adoc[]
+:docopslab_lab_www_url:
 = AI Agent Instructions for In-house Dev-Tooling Usage
 
 include::../../partials/_docopslab-dev-context-notice.adoc[]

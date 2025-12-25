@@ -5,7 +5,7 @@ description: "Using docopslab-dev tooling with DocOps Lab project codebases"
 order: 35
 ---
 include::../_local_settings.adoc[]
-:docopslab_lab_www_url: ''
+:docopslab_lab_www_url:
 = Dev-tooling Usage
 
 include::../partials/_docopslab-dev-context-notice.adoc[]

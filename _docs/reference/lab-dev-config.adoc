@@ -4,7 +4,7 @@ docs-group: technical
 description: "Configuring the `docopslab-dev.yml` manifest for DocOps Lab development tooling"
 order: 34
 ---
-:docopslab_lab_www_url: ''
+:docopslab_lab_www_url:
 = Dev-tooling Configuration
 
 include::../partials/_docopslab-dev-context-notice.adoc[]
