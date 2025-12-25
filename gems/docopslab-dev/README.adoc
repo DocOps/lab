@@ -6,6 +6,7 @@
 :vale_on: pass:[<!-- vale on -->]
 :docopslab_hub_url: https://github.com/DocOps
 :docopslab_lab_hub_base_url: {docopslab_hub_url}/lab
+:docopslab_lab_www_url: https://docopslab.org
 :project_manifest_path: .config/docopslab-dev.yml
 // end::globals[]
 
@@ -16,7 +17,7 @@ Internal development tooling for working on DocOps Lab codebases.
 [IMPORTANT]
 ====
 The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects.
-For your own applications of DocOps Labs products like ReleaseHx and Issuer, see link:https://docopslab.org/projects/docops-box[DocOps Box] for a full-featured docs-focused workspace, runtime, and production environment.
+For your own applications of DocOps Labs products like ReleaseHx and Issuer, see link:{docopslab_lab_www_url}/projects/docops-box[DocOps Box] for a full-featured docs-focused workspace, runtime, and production environment.
 ====
 // end::docopsbox[]
 
@@ -872,12 +873,7 @@ When running within the `DocOps/lab` monorepo, the `labdev:sync:styles` task ope
 * It also runs `vale sync` to download any remote packages like `RedHat` or `proselint` into that same directory.
 * This allows you to edit the custom styles in the gem and see your changes immediately when you run the linter.
 
-The `.config/vale.ini` for this mode should use the project's local defaults for `.config/vale.local.ini`.:
-
-[[implementation]]
-=== Implementation Notes
-
-
+The `.config/vale.ini` for this mode should use the project's local defaults for `.config/vale.local.ini`.
 
 [[build-artifacts]]
 === Building docopslab-dev Artifacts
@@ -891,6 +887,69 @@ To build the `docopslab/dev` Docker image:
 
 [.prompt]
  bundle exec rake gemdo:build_docker
+
+[[publish-artifacts]]
+=== Publish Artifacts
+
+For general DocOps Lab release procedures, see link:{xref_docs_release_url}[Release Process (General)].
+
+The `docopslab-dev` gem and `docopslab/dev` Docker image follow that process with these specific considerations:
+
+[[publishing-requirements]]
+==== Publishing Requirements
+
+[%interactive]
+- [ ] RubyGems.org account with MFA enabled
+- [ ] Docker Hub account with push access to `docopslab` organization
+- [ ] Clean local build environment (no uncommitted changes)
+- [ ] All tests passing (`bundle exec rspec`)
+- [ ] Version bumped in `lib/docopslab/dev/version.rb`
+- [ ] Agent documentation generated (`bundle exec rake gemdo:generate_agent_docs`)
+
+[[publishing-the-gem]]
+==== Publishing the Gem
+
+Build and publish to RubyGems.org:
+
+ cd gems/docopslab-dev
+ bundle exec rake build
+ gem push pkg/docopslab-dev-<version>.gem
+
+RubyGems.org will prompt for MFA code during push.
+You must have valid auhtentication for an account with permissions to publish this gem.
+
+[[publishing-the-docker-image]]
+==== Publishing the Docker Image
+
+Build and push to Docker Hub:
+
+ cd gems/docopslab-dev
+ docker build -t docopslab/dev:<version> -t docopslab/dev:latest .
+ docker push docopslab/dev:<version>
+ docker push docopslab/dev:latest
+
+Both version-specific and `:latest` tags should be published.
+
+[[testing-published-artifacts]]
+==== Testing Published Artifacts
+
+Verify the gem installation from RubyGems.org:
+
+ gem install docopslab-dev
+ lab-dev --version
+
+Verify the Docker image from Docker Hub:
+
+ docker pull docopslab/dev:latest
+ docker run --rm docopslab/dev:latest lab-dev --version
+
+Test in a fresh project directory to ensure all dependencies install correctly:
+
+ mkdir /tmp/test-lab-dev
+ cd /tmp/test-lab-dev
+ echo 'source "https://rubygems.org"' > Gemfile
+ echo 'gem "subtxt"' >> Gemfile
+ docker run --rm -v "$PWD:/workspace" -w /workspace docopslab/dev:latest bundle exec subtxt --help
 
 
 [[legal]]
