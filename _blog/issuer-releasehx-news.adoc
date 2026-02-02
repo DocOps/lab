@@ -1,0 +1,203 @@
+include::../README.adoc[tag=globals]
+:page-date: 2026-02-01
+:page-tags: ["announcement", "Issuer", "ReleaseHx", "automation"]
+:page-author: Brian Dominick
+:page-image: blog-issues-meme.jpg
+:page-image-alt: Meme of cat sticking out tongue. "Yes I've got issues. Thank you for noticing."
+:page-image-source-url: https://imgflip.com/i/1il6li
+:page-image-source-credit: imgflip.com
+:page-image-source-permission: fair-use
+:page-excerpt: From work-ticket creation to release notes, DocOps Lab has you covered with two new apps that assist the bulk posting of issues and later generate precisely formatted release histories from them.
+:issuer-repo-url: https://github.com/DocOps/issuer
+:releasehx-repo-url: https://github.com/DocOps/releasehx
+= DocOps Lab Has Issues: Announcing Issuer and ReleaseHx
+
+{page-excerpt}
+
+*Issuer* and *ReleaseHx* are fully Dockerized and available now on *GitHub*.
+
+// more
+
+Step 1: Manager bulk creates Jira work items or GitHub issues.::
+link:{issuer-repo-url}[*Issuer*] lets you author in YAML and create dozens or even hundreds of work tickets/issues in popular cloud platforms.
+Use generative AI in a code editor to author in YAML and Markdown, then post and even assign tickets with one command.
+
+Step 2: Develop features, fix bugs, and write docs.::
+Use your favorite tools to code the product and the docs.
+
+Step 3: Generate release notes and/or changelog from those issue tickets.::
+With link:{releasehx-repo-url}[*ReleaseHx*]:
+Draft release notes and changelog entries from custom fields or demarcated text in cloud-based issues, saving them as Markdown, AsciiDoc, or YAML files for further editing.
+Then convert once more or publish as-is in your static-site generator of choice or upload to GitHub as release-announcement content.
+
+
+[[issuer]]
+== Issuer
+
+Issuer is a no-nonsense utility for bulk creating issue tickets.
+It uses a generalized, YAML-based format and straightforward commands.
+
+[source,yaml]
+.Example issue-creation YAML (`v1.0.0-issues.yml`)
+----
+include::https://raw.githubusercontent.com/DocOps/issuer/refs/heads/main/examples/basic-example.yml[lines=2..]
+----
+
+.Example Issuer command to bulk-create issues
+[.prompt]
+ issuer v1.0.0-issues.yml
+
+With a properly stored API token, that's all it takes to generate scores of issue items all at once.
+
+There is of course much more to the tool.
+If you wish to get started with it and get stuck or have any questions or suggestions, link:{issuer-repo-url}/issues[post an issue] the old-fashioned way and I'll be happy to chat with you.
+
+
+[[releasehx]]
+== ReleaseHx
+
+When you are ready to produce release notes or a changelog, switch to ReleaseHx.
+This utility is far more powerful than Issuer at this time, as it enables advanced templating and an extraordinary amount of configurable flexibility in its operations.
+
+Once configured, ReleaseHx generates reports in a wide range of shapes (release notes, changelog, or a hybrid of your design) and formats (Markdown, AsciiDoc, HTML, or PDF).
+Most notably, it can generate an interim YAML file for further editing and even ongoing updates as additional release notes are drafted in Jira or GitHub by your team.
+
+This time the work is done in the reverse order; start with a command and _generate_ the YAML (or other) output.
+
+.Example ReleaseHx command to generate release notes
+[.prompt]
+ rhx 1.2.1 --yaml
+
+[source,yaml]
+.Example RHYML output file
+include::https://raw.githubusercontent.com/DocOps/releasehx/refs/heads/main/README.adoc[tags=basic-rhyml-example]
+
+This utility also checks your cloud platform for updated issues, and it can even append issues to the YAML file when your colleagues add them.
+
+.Ping the cloud for updated issues
+[.prompt]
+....
+rhx 1.2.1 --check
+Release Note Check Report
+
+• Release Code:       1.2.1
+• Issues Fetched:     23
+• Viable Issues:      21
+• Notables:           9 (labeled 'needs:note')
+• Notes Present:      9
+
+No missing release notes!
+....
+
+.Bring in the new notes
+[.prompt]
+ rhx 1.2.1 --append
+ Appended 2 new issues to _drafts/1.2.1.yml
+
+You can even use multiple issue projects in a single release by altering the configuration and re-running with `--append`.
+
+.Add issues from another repo/project
+[.prompt]
+ rhx 1.2.1 --append --config frontend/releasehx-settings.yml
+ Appended 3 new issues to _drafts/1.2.1.yml
+
+
+[[get-apps]]
+== Get ReleaseHx and/or Issuer
+
+These utilities are separate for good reasons, but they can both be installed and used by way of a common Docker image.
+
+[.prompt]
+ docker pull docopslab/issuer-rhx:latest
+
+Executing commands with either app is thus:
+
+[.prompt.small]
+ docker run --rm -v $(pwd):/work docopslab/issuer-rhx:latest issuer v1.1.0-issues.yml
+ docker run --rm -v $(pwd):/work docopslab/issuer-rhx:latest rhx 1.2.1 --yaml
+
+[TIP]
+========
+Establish permanent aliases the base `docker run` commands to `issuer` and `rhx` in your shell, and you can use them just like any other command-line utility.
+
+[%collapsible,title="Show instructions on setting shell aliases."]
+====
+In Bash, use your `~/.bashrc` or `~/.bash_aliases` file.
+
+In Zsh, use your `~/.zshrc` file.
+
+[source,shell]
+----
+alias issuer='docker run --rm -v $(pwd):/work docopslab/issuer-rhx:latest issuer'
+alias rhx='docker run --rm -v $(pwd):/work docopslab/issuer-rhx:latest rhx'
+----
+
+.Now just run
+ issuer v1.1.0-issues.yml
+ rhx 1.2.1 --yaml
+====
+
+========
+
+Both are Ruby apps with their own Ruby APIs, all documented in their respective READMEs.
+But for non-Ruby users, the Docker image is the easiest way to get started.
+
+
+.System-wide Ruby install
+[.prompt]
+ gem install issuer && gem install releasehx
+
+.Project-specific Ruby install via `Gemfile`
+[source,ruby]
+gem 'issuer'
+gem 'releasehx'
+
+.Then run...
+[.prompt]
+ bundle install
+
+
+[[demo-repository]]
+== Demo Repository
+
+DocOps Lab maintains a demonstration repository full of examples and sample files for ReleaseHx.
+
+.Clone the repo
+[.prompt,subs=+attributes]
+ git clone {docopslab_hub_url}/releasehx-demo.git
+
+.Change into the directory
+[.prompt]
+ cd releasehx-demo
+
+.Pull the combined image (if you haven't already)
+[.prompt]
+ docker pull docopslab/issuer-rhx:latest
+
+
+[[whats-next]]
+== What's Next for these Utilities?
+
+Both utilities are in active development, and each does far more than I've described above.
+Nevertheless, I have a number of features planned for them, as you can glean from their respective GitHub Issues boards.
+
+[[issuer-after-1-0]]
+=== Issuer After 1.0
+
+The biggest idea I have would be a massive *extension of Issuer and the IMYML file format* it introduces.
+
+What if you could not only create issues in YAML but actually _maintain_ them in Git-tracked YAML, with the help of Copilot or your favorite IDE with generative AI support?
+I have not field tested this in any way, but I am strongly tempted to give it a try.
+I have published a link:{issuer-repo-url}/tree/r-n-d/extended-imyml/specs/docs/advanced-imyml-proposal.adoc[draft Specification/proposal] for the format and tooling, but it's going to be way on the back burner until there is active interest.
+
+[[releasehx-1-0]]
+=== ReleaseHx 1.0
+
+Unlike Issuer, ReleaseHx is already overpowered for a newly launched tool, so I know there will be plenty of work maintaining its current features.
+
+{releasehx-repo-url}/issues[Bug reports are quite welcome.]
+
+Some additional powers it will gain include:    
+
+* Support for other platforms
+* Inferring Git merge hashes from issue IDs in commit messages

@@ -229,11 +229,11 @@ projects:
       A Docker image preconfigured with Issuer and ReleaseHx CLIs and their dependencies.
       For managing issue tickets and release notes/changelogs in Jira, GitHub, and GitLab.
     line: Docker image preconfigured with Issuer and ReleaseHx CLIs for ticket and change management
-    vrsn: "0.2.1/0.1.0"
+    vrsn: 0.3.0-0.1.2
     tags: [issues,release history,changelog,CLI,API,Dockerized]
     tech: [Docker,Bash,Ruby,GitHub Issues,GitLab Issues,Jira]
     wave: 0
-    done: 90%
+    done: 100%
     icon: logs
     deps: [issuer, releasehx]
 
@@ -474,11 +474,11 @@ projects:
       Includes a Ruby API and CLI, `releasehx`/`rhx`.
       Includes SchemaGraphy prototype.
     line: Manage product release notes and changelog with CLI and Ruby API
-    vrsn: 0.1.0
+    vrsn: 0.1.2
     tags: [issues,release history,changelog,product management,versioning,CLI,API,Dockerized]
     tech: [YAML,Ruby,AsciiDoc,GitHub Issues,GitLab Issues,Jira,Liquid,ERB,JMESPath,JSONPath]
     wave: 0
-    done: 90%
+    done: 100%
     icon: history
     page: true
 
@@ -491,7 +491,7 @@ projects:
       A CLI for bulk creating issues in cloud-based systems like Jira and GitHub Issues.
       Introduces an open standard called IMYML for defining individual issue entries and default settings such as global labels, milestones, and assignees.
     line: Bulk create issues in Jira and GitHub from YAML definitions
-    vrsn: 0.2.1
+    vrsn: 0.3.0
     tags: [issues,issue management,CLI,automation,Dockerized,API]
     tech: [YAML,IMYML,GitHub Issues,Jira,Ruby]
     wave: 0
@@ -1019,7 +1019,7 @@ projects:
     tags: [website,documentation,landing page]
     tech: [AsciiDoc,YAML,Liquid,Git,Jekyll,HTML,CSS/Sass,JavaScript]
     wave: 0
-    done: 90%
+    done: 100%
     icon: flask-conical
 
 ## jekyll-samples-site:
@@ -1052,7 +1052,7 @@ projects:
     tags: [tutorial,issues,release history,changelog]
     tech: [YAML,Liquid]
     wave: 0
-    done: 90%
+    done: 100%
     icon: rocket
     deps: [releasehx]
 
