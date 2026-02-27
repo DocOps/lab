@@ -21,7 +21,6 @@ NC='\033[0m' # No Color
 DEFAULT_PATHS=(
   "_docs/"
   "_blog/"
-  "_metablog/"
   "README.adoc"
   "gems/"
   "scripts/"
@@ -48,8 +47,7 @@ scan_pattern() {
   echo -e "${YELLOW}Checking: ${description}${NC}"
   
   # Use a temp file for results to avoid subshell issues
-  local temp_results
-  temp_results=$(mktemp)
+  local temp_results=$(mktemp)
   
   # Build and execute grep command
   if [[ -n "$exclude_pattern" ]]; then

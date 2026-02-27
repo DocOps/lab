@@ -1,0 +1,338 @@
+---
+title: Vibe Coding vs AI-assisted Programming
+---
+:page-image: blog-roomba-dog-mess.jpg
+:page-image-alt: A small dog rides a roomba that is spreading spoilage around an otherwise clean floor
+:page-image-url: https://www.reddit.com/r/Bossfight/comments/94ro7p/roomba_rider_spreader_of_the_mess/
+:page-tags: ["AI", "programming"]
+:page-date: 2026-02-12
+:page-author: Brian Dominick
+:page-excerpt: Vibe coding has its place, but as of now I am not among the developers who think good software can be reliably produced when "`nobody touches the code`".
+include::../README.adoc[tags=globals]
+
+Let me say at the outset that vibe coding has its place.
+Let me also say that if you are vibe coding _production_ software, you are probably doing a disservice... even if you are also providing a legitimate service.
+
+Now, how I define "`vibe coding`" makes all the difference, but that's what half of this article is about.
+For now, let's just say that vibe coding is a term I use to describe the practice of using LLMs to generate code without much intervention or oversight.
+It's prompting and leaving the LLM to do most design and implementation work, with minimal if any human review and only re-prompts to fix bugs or deviatons.
+
+If you already know you are not vibe coding, this article might not have much value to you.
+This is more of a warning about what vibe coders are missing, at least in circumstances where it would matter, along with some advice for AI-__assisted__ software development.
+
+.Jargon glossary
+****
+Here is what the author means by some of the terms of art that appear in this article, in the specific context of this article.
+
+include::_ai-jargon-glossary.adoc[tags="ai,llm,genai,llm-client,agent,prompt"]
+****
+
+
+[[context]]
+== Context and Purpose Matter
+
+I am going to make some bold statements about the difference between vibe coding and AI-assisted programming.
+Therefore, I wish to differentiate up front between the kinds of software that each might be legitimate for.
+
+[[what-i-have-vibe-coded]]
+=== What I Have Vibe Coded
+
+I will state a few times in this article that I am not criticizing vibe coding, per se.
+I'm not opposed to it, and in fact I do it in certain cases.
+
+Short-lived/rarely used automation scripts::
+I have vibe coded a number of scripts that automate tasks for me, such as file management, data manipulation, and even some aspects of my development workflow.
+These scripts are typically not intended for long-term maintenance or use by others, and they often serve a specific, one-off purpose.
+They are either used just once or only occasionally.
+
+Rapid MVP development and UI prototyping::
+If your main objective is to find out if a certain interface will make sense in a real-world environment, speed-to-test or time-to-market will prove more important than engineering excellence.
++
+Minimum viable products are expected to be fairly rough, under the supposition that early adopters will put up with or work around some flaws and frustrations to make use of a truly groundbreaking product.
++
+In these cases, I often ask an LLM to make something I can test right away, even if I know it will be a mess and I will have to rewrite it later.
+
+Sample content generation::
+One place I used to get stuck is making dummy, test, or demonstrative content to use in testing or showcasing my software.
+My phony content was either too brief, too generic, or too unrealistic to be useful.
++
+Now I often ask an LLM to generate sample data or content that fits my specific needs, providing some context and letting it fill in the details.
+It doesn't always do much better than I would, but it never does worse.
+
+Integration/unit tests::
+I have never been good at writing tests, and I have often neglected them altogether.
+Now I ask LLMs to draft tests for my code; their output is almost always better than mine would be, if only because the tests exist and catch the most egregious regressions or gaps.
++
+Eventually, I review and modify these tests, typically but not always prior to release, often with maintainability in mind.
+However, I have not yet made it a requirement to review and modify them as I go.
+
+There are surely numerous other cases in which vibe coding makes sense.
+I may even add some to this post in the future.
+
+[[times-im-tempted]]
+=== Times I'm Tempted but Resist Vibe Coding
+
+What I do not vibe code, by my definition of the term, is any software that I release to the world or expect/invite others to help maintain.
+
+Shippable software::
+I have not yet vibe coded any software that I have released to the public, and I do not intend to.
++
+If advances in LLMs and coding agents make it possible to produce shippable software with little to no intervention, I will try to remember to return here and report it.
+But the place to check will be the {xref_docs_generative-ai-usage_link} policy document.
+
+[[production-software-sidebar]]
+.Vibe-coded production software: a contradiction in terms
+****
+If a piece of software can be simply prompted up front to solve a purpose, anyone can prompt a _better_ solution to their particular problem.
+
+This is why vibe coding tends to be suitable only to local automation scripts rather than production apps meant for others to use.
+If you have not met and investigated the woes of your intended users, or if you have not repeatedly encountered their same problems in numerous contexts of your own, you have little hope of designing or prompting a solution that will meet their needs.
+
+Truly, an LLM might help you anticipate users' needs during the design or even the implementation of a briefly prompted coding project.
+After all, most LLMs have been trained on forum and even tech-support content that reflects users' needs and frustrations on a huge array of matters.
+LLMs even show signs of anticipating problems across domains, from interface issues to security vulnerabilities.
+
+But again, any user that has a need that can be met by an LLM whipping up a solution on the spot, can also whip up a better solution on the spot with their own LLM and their more specific description of their use case.
+All the advantages of using an LLM to code for you, without much intervention, are also advantages for anyone else who can use an LLM to code for themselves.
+
+If you're going to bother shipping an application, it should be too complicated for an LLM to infer from a simple prompt, and it should be designed to meet the needs of users you will never meet, based on the experience of real-world users struggling with a problem best met by an interface intended for repeatable solutions across varied problems.
+
+And anything that will truly meet the complex needs of downstream users with variant use cases will require a level of design and engineering that is well beyond the capabilities of LLMs without skilled human guidance.
+****
+
+Contributions to open-source projects::
++
+--
+Open source software that is almost able to do what I need begs to be modified to fill the gap.
+If I do not already know the language, I am tempted to ask an LLM to generate the necessary patch or changes, which is often fairly simple and straightforward.
+
+This is nevertheless a pretty bad idea in most cases, even if I can't always explain exactly where a vibe-coding project might fall short.
+The problem lies in the unknown unknowns of the codebase and the language, which can lead to a patch that seems to work but is actually flawed in ways that are not immediately apparent, leading to more awkward headaches or interactions for maintainers.
+
+There are surely exceptions to this, especially for projects that are impeccably documented and where the patch is more or less a drop-in, parallel rendition of a solution that is already exemplified by tried-and-true code.
+Plugins and extensions for well-documented platforms are another example of places where you might vibe code production code.
+--
+
+
+[[which-is-which]]
+== Which is Which
+
+I started with examples of good and bad use cases for vibe coding, but now I want to dig into the values imbued in the distinction.
+
+[[programming]]
+=== (How) You Know if You are Programming
+
+:programmer: You can and sometimes do write code without assistance.
+:maintainability: You assess for maintainability every step of the way.
+:intervention: You intervene heavily at every stage, including planning and documentation.
+:documentation: You continuously document the code for both future humans and future LLMs/agents.
+:methodology: You practice (and instruct all coding agents to practice) particular programming methodologies.
+:review: A programmer or subject-matter expert reviews all code changes and output.
+:testing: You write and regularly implement tests for your code.
+:linting: You aggressively lint for style and quality.
+
+For me, the distinctions between "`vibe coding`" and "`AI-enhanced software development`" or "`AI-assisted programming`" are straightforward and clear, at least in the aggregate.
+
+Programming with AI assistance means:
+
+. {programmer}
+. {maintainability}
+. {intervention}
+. {documentation}
+. {methodology}
+. {review}
+. {testing}
+. {linting}
+
+[[annotated-breakdown]]
+==== Annotated Breakdown 
+
+{counter:annotated}. {programmer}::
+You are a programmer.
+Even if you learned to code in the LLM era with the help of LLMs, you cannot bridge the gap between what LLMs do and what programmers do, each at their best.
++
+I'm not going to define what it means to be a "`programmer`" or an "`engineer`".
+I consider myself to mostly be the former but sometimes represent myself as the latter because I do develop production software and I do at least _try_ to think like an engineer.
+
+{counter:annotated}. {maintainability}::
+This means keeping front-of-mind awareness of the fact that colleagues and contributors will need to modify the code down the line.
+LLMs are capable of doing this, but they seldom do it by default.
++
+Furthermore, without pro-active influence of preferences and constraints, LLMs will tend to target a "`lowest common denominator`" when it comes to style, conventions, and even major architectural decisions.
+This may sound appealing, but the arbitrary nature of LLMs means that across sessions and across models, these choices will drift or change radically.
++
+Truthfully, most of the points on this list revolve around "`maintainability`".
+
+{counter:annotated}. {intervention}::
+Even the best coding-oriented LLMs produce flawed plans, code, and docs.
+If you do not review every change and at least tweak the output, there is going to be a gap between the quality you _could_ produce and the quality of an LLM's output, beyond the scale of a single block or function.
++
+Even in the smallest production apps with the best prompt context preparation, the very best LLMs will produce output that can and should be improved.
+
+[[intervention-problem-sidebar]]
+.The problem with intervention and LLM-backed coding
+****
+Usually, the most straightforward way to fix minor problems introduced by LLMs is to just change the code yourself.
+However, if you do this, the LLM will not know that you have made the change.
+
+With inline coding assistants, this is expected and accommodated.
+But when using a web UI or an agentic coding bot, the stateless nature of the interaction means that the LLM will not know about your changes, and it will not be able to learn from them or adjust its future output accordingly.
+
+You can always instruct an agent to scan for your changes, but this process tends to be imperfect.
+Most agents will notice when they try to make changes on top of your intervening amendments, at which point they will sync up rather reliably, but this can waste precious cycles and still doesn't always work.
+
+You can show "`diffs`" to a web UI if you track them carefully, or you can paste or upload files into the prompt context.
+In either case this is an extra step that adds friction to the process; in fact, pasting and prompting is no better than asking an agent to detect the diffs.
+
+At first, the extra step of notifying the agent and even explaining my changes was frustrating and felt duplicative.
+But I have come to appreciate it, especially since it can be accomplished with documentation or code comments, which the agent can be pointed to.
+
+The alternative is just to prompt the LLM client to perform the change based on your natural-language description.
+This is often the best option; it is essentially the same as writing up your own changes to convey to the client.
+
+On the other hand, I tend not to do a lot of round trips with web UIs that are not integrated with my codebase.
+This just does not seem like a good use of that interface, so I tend to use them only for discussion and one-way generation of draft files.
+****
+
+{counter:annotated}. {documentation}::
+A lot of people think that since LLMs can obtain a near-perfect "`grasp`" of a decent chunk of a codebase, they can write flawless docs.
+I have not found this to be so.
++
+Even if the LLM can write technically accurate documentation, it will not necessarily write maintainable documentation.
+Whether the problem is <<linting,poor or inconsistent style>>, lack of clarity, or just a failure to understand the needs of future readers, LLMs always need at least a little help writing docs.
+
+{counter:annotated}. {methodology}::
+Having preferences for methodologies, styles, and conventions is not just a matter of aesthetics; it is a matter of maintainability and consistency.
+Without these, you are basically just asking an LLM to generate code that works, then hoping that it is good and consistent enough to maintain and build upon.
+(It will not be.)
+
+{counter:annotated}. {review}::
+All contributors to shared codebases require (and participate in) code and docs reviews.
+This goes for LLMs and agents as much as it goes for human contributors.
++
+Vibe coding requires assessment of the output of the vibe-coded script or app, but review of the source code does not offer much advantage.
+Sometimes it can be helpful to prompt a second LLM or even the same client in a given session to "`double check`" or "`clean up`" or even "`refactor`" code as needed.
++
+Human review of source code and docs suggests a sense of craft that LLMs frankly never exhibit, even if prompted to.
+
+{counter:annotated}. {testing}::
+Even if you do not perform test-driven development (TDD), maintaining tests for your code is a differentiator between vibing and programming.
++
+Testing is not just a sign that you care about future development.
+When done right, it also provides an objective avenue for LLMs and human collaborators to understand the codebase.
+Poorly written tests can teach as much about the codebase as good tests, which can teach as much as source code itself.
+
+[[linting]]
+{counter:annotated}. {linting}::
+Enforcing style and quality standards, from code syntax to documentation grammar, are critical for maintaining a codebase that is approachable and maintainable by a team of humans and LLMs alike.
+The variances in style and syntax-preference even just across sessions can be dramatic.
+You need a way to detect and hopefully automatically fix deviations that would frustrate or misguide later users.
++
+In my case, because I strongly prefer AsciiDoc over Markdown as my lightweight markup format for documentation, I have no choice but to prompt LLMs away from their heavily Markdown-oriented training and toward AsciiDoc, which is a more complex format.
+In fact, LLMs want to write Markdown so badly, I find myself regularly undoing their sloppy syntax.
+
+[[vibe-coding]]
+=== You are Vibe Coding When...
+
+Remember, this is _not_ an anti-vibe-coding article.
+There are plenty of cases where vibe coding is advisable.
+
+* *You don't know how to program.*
+Honestly, this is the most understandable case.
+Programming is hugely advantageous, and the hardest thing about it is learning how to do it effectively.
+Skipping that stage would be tempting for anyone who can find huge advantage.
+
+* *Maintainability and consistency do not matter.*
+Again, there are countless legitimate cases in this category.
+Many repeatable tasks are simple.
+The less concerned about how _others_ will use your code, the more sense it makes to vibe code.
+
+* *You don't touch the code.*
+If you aren't modifying the code as you go, or at least modifying your instructions based on what you see in the output, well, you're certainly vibe coding at that point.
+
+[[when-vibe-coding]]
+==== When You Vibe Code...
+
+If you do _not_ intend to share the results of your vibe-coding sessions with the world or with colleagues or co-contributors, vibe code however you wish.
+
+But when you are relying primarily on LLMs to code for public or _collaborative_ projects, please consider the following guidelines:
+
+. *Use a fully integrated agent* (rather than a web UI or a TUI agent).
+IDEs like link:https://code.visualstudio.com/docs/copilot/overview[VS Code with the Copilot extension] or an AI-backed application such as link:https://cursor.com[Cursor] are great for beginners.
+If you truly want to work on the command line, consider an AI-aware terminal client like link:https://www.warp.dev[Warp] or link:https://www.waveterm.dev[Wave].
++
+The TUI-like shell programs such as Codex, Claude Code, and Gemini are far more restricting in how you interact with authored code and take _more_ rather than less mastery of shell operations.
+
+. *Start with a written specification* (Markdown or AsciiDoc).
+Keep this document updated and re-refer the coding agent to it when it changes.
+Have the agent update it based on changes from your chat.
+You can have an LLM help you write it, but make sure you're fully in charge of this step.
+
+. *Prompt the LLM/agent to ask you for clarification as it goes.*
+
+. *Have the LLM/agent generate a report in Markdown as it goes.*
+This report should include a changelog, a list of files and functions created or modified, and any other relevant information about the code being generated.
+
+. *Actually review the report and have the agent make changes.*
+
+. *Have the LLM/agent review its own work.*
+_Better yet_, use a second LLM/agent to review the work of the first.
+
+. *Have a second LLM/agent write unit tests based on the specification*, and run those tests separately without telling the main agent they exist.
+(This way neither agent is inadvertently biasing its work just to make tests pass, which is a not-uncommon anti-pattern of coding agents.)
+
+. *Provide explicit prompts that insist the output be maintainable and presentable.*
+Most agents do not assume they are writing shippable code by default.
+
+[[vibe-prompt-detail]]
+==== Vibe Prompt Detail
+
+When I prompt for real vibe coding, my prompts are pretty substantial.
+They generally take at least as long as it would take me to pre-comment the script I am describing.
+
+Detailed prompts include namespace preferences, language and framework designations, and even instructions on the depth and functionality of the code to be generated.
+This is still vibe coding because I am not thoroughly reviewing the code as it is generated, even if I am at least somewhat concerned with maintainability, usually in case I later choose to integrate with production code.
+
+[[inline-assistance-sidebar]]
+.Inline coding with LLM-assisted auto-complete
+****
+Another way I program with AI help, which sometimes constitutes vibe coding but I also use for production coding, is by taking advantage of an IDE-integrated LLM auto-complete client.
+
+For me, this usually means creating an outline with comments where entire blocks of code will go.
+Sometimes I have an LLM client draft the outline based on my description of the app.
+
+I mostly program in Ruby and Bash.
+When writing Ruby, I tend to comment the class and method definitions in natural language, including at least a general declaration of inputs and outputs.
+For Bash scripts, I usually write comments for each major step or function.
+
+To most programming languages, I bring a lot of preferences, assumptions, and habits to the process, and I tend to only tolerate great variance from those expectations in cases when the script is not intended for long-term maintenance.
+
+While lots of these real-time, inline coding assistants carry a great deal of context from recently focused files and adjacent or key files from the codebase, they tend to be _much_ better at generating code for single-file scripts than for files that are intended to be one small component of a complex codebase.
+
+Any vibe-coding that is done here is usually for subordinate or helper methods or functions, or else for one-off scripts.
+If there is ever any production code I do not thoroughly examine in its initial or applied state, that would be helpers and utilities not central to the novelty of my application.
+
+Such code blocks tend to get far more careful review once they are moved upstream and turned into dependencies for multiple codebases.
+At that point their architecture and API are maybe an order of magnitude more critical.
+****
+
+Two methods that work well with both vibe coding _and_ programming are *assisted prompt generation* and *docs-driven development*.
+
+If you _use an LLM to help formulate prompts_, and you edit its drafts to better represent your intentions, you may improve the quality and alignment.
+This approach is all the more effective if you expect a single agent session to produce an entire application from start to finish.
+
+For more complex coding projects, _docs can lead development_.
+A full development specification ("`spec`") or product requirements document (PRD) can provide alignment between your intentions and the LLM's output.
+This practice can drastically decrease the amount of intervention or back-and-forth with coding agents.
+
+A primary agent can even delegate any subordinate or dependent tasks to sub-agents or background agents.
+
+[[resources]]
+=== Resources
+
+Here are some articles sharing good advice on practical coding with LLMs, fully vibed or just assisted.
+
+* https://www.godaddy.com/resources/news/i-accidentally-trained-my-ai-agent-to-write-better-code-than-me-10-tips-so-you-can-too[I Accidentally Trained My AI Agent To Write Better Code Than Me: 10 Tips So You Can Too]
+
+* https://liveandletlearn.net/post/10-tips-writing-software-llm-agents/[10 Tips for Writing Software with LLM Agents]
+

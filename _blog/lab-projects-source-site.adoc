@@ -1,6 +1,11 @@
+---
+title: Single Sourcing and Rendering DocOps Lab Project Profiles
+---
 include::../README.adoc[tag=globals]
+:page-metablog: true
+:page-redirect_from: /metablog/lab-projects-source-site/
 :page-tags: ["Jekyll", "YAML", "Liquid", "single-sourcing", "metadata"]
-:page-date: 2024-08-25
+:page-date: 2025-09-25
 :page-author: Dr Meta
 :page-published: true
 :page-excerpt: Sourcing complex profile metadata from YAML and rendering it with Liquid templates.
@@ -10,7 +15,6 @@ include::../README.adoc[tag=globals]
 :page-liquid: true
 :more-than-rest: Defining relatively complex interfaces in YAML can apply to much more than just REST APIs.
 :toc: macro
-= Single Sourcing and Rendering DocOps Lab Project Profiles
 
 Much of this website consists of representations of DocOps Lab projects, in different orders and forms.
 
@@ -50,7 +54,7 @@ include::../README.adoc[tag=projects]
 [[data-structure]]
 == Data Structure
 
-The link:{this_repo_base_url}/blob/main/_data/docops-lab-projects.yml[`docops-lab-projects.yml` file] is basically a large array of tabular data.
+The link:{docopslab_hub_url}/blob/main/_data/docops-lab-projects.yml[`docops-lab-projects.yml` file] is basically a large array of tabular data.
 Each project's record has a number of parameters.
 
 [source,yaml,subs=attributes]

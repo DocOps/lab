@@ -104,7 +104,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
   <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
-  {% if page.collection == 'metablog' %}
+  {% if page.collection == 'metablog' or page.metablog %}
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700&family=Source+Code+Pro:ital,wght@0,400;0,500;0,700&display=swap" rel="stylesheet">
 
   <!-- Font Detection Script for MetaBlog -->
@@ -248,6 +248,11 @@
   
   {% if site.plugins contains 'jekyll-seo-tag' %}
       {% seo %}
+  {% endif %}
+
+  {% comment %} RSS feed discovery link for blog pages {% endcomment %}
+  {% if page.collection == 'blog' or page.layout == 'blog' or page.layout == 'metablog' %}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }} Blog" href="{{ '/feeds/docops-lab-blog.xml' | absolute_url }}">
   {% endif %}
 </head>
 <body class="{% if page.layout %}layout-{{ page.layout }} {% endif %}{% if page.dark_mode %}dark-mode {% endif %}{% if page.forced_mode %}{{ page.forced_mode }}-forced {% endif %} has-sticky-banner">

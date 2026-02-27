@@ -245,6 +245,12 @@ article {
     }
   }
 
+  .dlist {
+    dt {
+      margin-top: 1rem;
+    }
+  }
+
   // AsciiDoc literal blocks with retro terminal styling
   .literalblock {
     background-color: transparent;

@@ -1,7 +1,7 @@
 {% assign is_metablog = include.metablog | default: page.metablog | default: collection.metablog | default: false %}
 {% if is_metablog %}
-  {% assign collection = site.collections | find: "label", "metablog" %}
-  {% assign posts = site.metablog %}
+  {% assign posts = site.blog | where: "metablog", true %}
+  {% assign collection = page %}
   {% assign metablog_class = "metablog" %}
 {% else %}
   {% assign collection = site.collections | find: "label", "posts" %}
@@ -35,20 +35,22 @@
   <div class="blog-posts {{ metablog_class }}">
     {% if posts.size > 0 %}
       {% for post in posts %}
-        {% comment %} For metablog posts, get the subject post {% endcomment %}
         {% if is_metablog %}
-          {% assign subject_post = site.posts | where: "slug", post.subject-post | first %}
+          {% assign subject_post = site.blog | where: "slug", post.subject-post | first %}
+        {% else %}
+          {% if post.metablog %}
+            {% assign metablog_class = "metablog" %}
+          {% else %}
+            {% assign metablog_class = "" %}
+          {% endif %}
         {% endif %}
         
         <article class="blog-post-preview {{ metablog_class }}">
-          {% comment %} Regular blog posts can have images {% endcomment %}
-          {% unless is_metablog %}
-            {% if post.image %}
-            <div class="post-preview-image">
-              <img src="/assets/images/{{ post.image | relative_url }}" alt="{{ post.image-alt | default: post.title }}" class="post-image">
-            </div>
-            {% endif %}
-          {% endunless %}
+          {% if post.image %}
+          <div class="post-preview-image">
+            <img src="/assets/images/{{ post.image | relative_url }}" alt="{{ post.image-alt | default: post.title }}" class="post-image">
+          </div>
+          {% endif %}
           
           <header class="post-preview-header {{ metablog_class }}">
             <h2 class="post-preview-title {{ metablog_class }}">
@@ -77,10 +79,8 @@
                 </time>
               {% endif %}
 
-              
-              {% comment %} Check if regular blog post has metablog entry {% endcomment %}
               {% unless is_metablog %}
-                {% assign meta_post = site.metablog | find: "subject-post", post.slug %}
+                {% assign meta_post = site.blog | where: "metablog", true | find: "subject-post", post.slug %}
                 {% if meta_post %}
                 <span class="metablogged-indicator">
                   <span class="metablogged-label">
@@ -92,8 +92,6 @@
             </div>
           </header>
           
-          {% comment %} Show content preview for regular posts only {% endcomment %}
-          {% unless is_metablog %}
           <div class="post-preview-content">
             {% if post.excerpt %}
               {{ post.excerpt | strip_html | truncatewords: 50 }}
@@ -101,7 +99,6 @@
               {{ post.content | strip_html | truncatewords: 50 }}
             {% endif %}
           </div>
-          {% endunless %}
           
           {% if post.tags and post.tags.size > 0 %}
           <div class="post-preview-tags {{ metablog_class }}">
@@ -126,23 +123,6 @@
         <h3>{{ collection.no_posts_title | default: 'No posts yet' }}</h3>
       </div>
     {% endif %}
-
-    {% unless is_metablog %}
-      <article class="blog-post-preview metablog-link">
-        <div class="post-preview-content">
-          <h3 class="post-preview-title">
-            <a href="/metablog/" class="metablog-link">
-              <i data-lucide="microscope"></i>
-              Explore the Meta-Layer
-            </a>
-          </h3>
-          <p class="post-preview-description">
-            Dive into Dr. Meta's insights, commentary, and deeper technical explorations of our blog posts.
-          </p>
-        </div>
-      </article>
-
-    {% endunless %}
   </div>
   
   {% if posts.size > 5 %}

@@ -1,0 +1,24 @@
+---
+permalink: /feeds/docs-blogs.opml
+---
+{%- assign blogs = site.data.tech-docs-serials.services | where_exp: 'b', 'b.feed' -%}
+<opml version="2.0">
+  <head>
+    <title>Technical Documentation Blogs</title>
+    <dateCreated>2026-02-21T10:00:00Z</dateCreated>
+    <dateModified>{{ site.time | date: "%Y-%m-%dT%H:%M:%SZ" }}</dateModified>
+    <ownerName>{{ site.data.meta.org.name }}</ownerName>
+    <ownerEmail>{{ site.data.meta.org.email }}</ownerEmail>
+  </head>
+  <body>
+  {% for blog in blogs %}
+  <outline text="{{ blog.name }}"
+           title="{{ blog.name }}"
+           xmlUrl="{{ blog.feed }}"
+           type="{{ blog.type | default: 'RSS' | downcase }}"
+           htmlUrl="{{ blog.site }}"
+           description="{{ blog.desc | strip_newlines | escape }}">
+  </outline>
+  {% endfor %}
+  </body>
+</opml>

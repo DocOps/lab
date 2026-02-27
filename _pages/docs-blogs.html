@@ -1,0 +1,239 @@
+---
+layout: default
+title: "Tech Docs Streams"
+tagline: "A curated directory of technical documentation blogs, newsletters, and podcasts"
+permalink: /docs-blogs/
+---
+
+{%- assign blogs = site.data['tech-docs-serials'].services | sort_natural: 'name' -%}
+{%- assign tag_config = site.data['tech-docs-serials']['$config'].tags -%}
+
+<div class="container docs-blogs-directory">
+  <header class="page-header">
+    <h1>{{ page.title }}</h1>
+    <p class="tagline">{{ page.tagline }}</p>
+    <p class="page-nav">
+      <a href="{{ '/docs-blogs/latest/' | relative_url }}">Latest posts</a>
+      &middot;
+      <a href="{{ '/feeds/docs-blogs.opml' | relative_url }}" title="Subscribe to all feeds via OPML">Download OPML</a>
+      &middot;
+      <span class="blog-count">{{ blogs.size }} resources</span>
+    </p>
+  </header>
+
+  <div class="view-controls" role="toolbar" aria-label="Sort blogs by">
+    <button class="view-btn active" data-view="alpha" type="button">A–Z</button>
+    <button class="view-btn" data-view="kind" type="button">By kind</button>
+    <button class="view-btn" data-view="tag" type="button">By tag</button>
+    <button class="view-btn" data-view="random" type="button">Random</button>
+  </div>
+
+  <!-- Tag picker bar: built and shown only in the "By tag" view -->
+  <div class="tag-picker-bar" id="tag-picker-bar" hidden></div>
+
+  <!-- Stream "kinds" picker -->
+  <div class="kind-picker-bar meta-toc-grid" id="kind-picker-bar" hidden style="display: none;">
+    <a class="kind-pick-btn meta-toc-link" data-kind="blogs" type="button" href="#blog-section">Blogs</a>
+    <a class="kind-pick-btn meta-toc-link" data-kind="podcasts" type="button" href="#podcast-section">Podcasts</a>
+    <a class="kind-pick-btn meta-toc-link" data-kind="newsletters" type="button" href="#newsletter-section">Newsletters</a>
+  </div>
+
+  <!-- Card data rendered once, alphabetically -->
+  <div class="blog-cards" id="blog-cards-container">
+    {%- for blog in blogs -%}
+    {%- assign blog_kind = blog.kind | default: 'blog' -%}
+    {%- assign blog_tags_json = blog.tags | jsonify | default: '[]' -%}
+    <div class="card blog-card"
+         data-name="{{ blog.name | escape }}"
+         data-kind="{{ blog_kind | escape }}"
+         data-tags="{{ blog_tags_json | escape }}">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--{{ blog_kind }}" title="{{ blog_kind }}"><i data-lucide="{%- if blog_kind == 'podcast' -%}podcast{%- elsif blog_kind == 'newsletter' -%}newspaper{%- else -%}rss{%- endif -%}"></i></span>&nbsp;
+          {%- if blog.site -%}
+          <a href="{{ blog.site }}" rel="noopener" target="_blank">{{ blog.name }}</a>
+          {%- else -%}
+          {{ blog.name }}
+          {%- endif -%}
+          {%- if blog.feed -%}
+           &nbsp;<a class="feed-link" href="{{ blog.feed }}" rel="noopener" target="_blank" title="RSS/Atom feed">{{ blog.type | default: 'RSS' }}</a>
+          {%- endif -%}
+        </h2>
+        {%- if blog.desc and blog.desc != '' -%}
+        <p class="blog-desc">{{ blog.desc | asciidocify }}</p>
+        {%- endif -%}
+        {%- if blog.tags and blog.tags.size > 0 -%}
+        <ul class="blog-tags">
+          {%- for tag in blog.tags -%}
+          <li class="blog-tag"><button class="tag-filter-btn" data-tag="{{ tag | escape }}" type="button">{{ tag }}</button></li>
+          {%- endfor -%}
+        </ul>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- endfor -%}
+  </div>
+
+</div>
+
+<footer>
+{% include footer.html %}
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var container  = document.getElementById('blog-cards-container');
+  var tagPickBar = document.getElementById('tag-picker-bar');
+  var viewBtns   = document.querySelectorAll('.view-btn');
+  var cards      = Array.from(container.querySelectorAll('.blog-card'));
+  var activeView = 'alpha';
+  var selectedTag = null;
+  var tagIdx = null;
+
+  function getKind(card) { return card.dataset.kind || 'blog'; }
+  function getName(card) { return card.dataset.name || ''; }
+  function getTags(card) {
+    try { return JSON.parse(card.dataset.tags || '[]'); } catch (e) { return []; }
+  }
+
+  function sortedByName(arr) {
+    return arr.slice().sort(function (a, b) {
+      return getName(a).localeCompare(getName(b), undefined, { sensitivity: 'base' });
+    });
+  }
+
+  function clearContainer() {
+    while (container.firstChild) { container.removeChild(container.firstChild); }
+  }
+
+  // --- Views ---
+
+  function showAlpha() {
+    tagPickBar.style.display = 'none';
+    clearContainer();
+    sortedByName(cards).forEach(function (c) { container.appendChild(c); });
+  }
+
+  function showRandom() {
+    tagPickBar.style.display = 'none';
+    clearContainer();
+    var shuffled = cards.slice();
+    for (var i = shuffled.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = t;
+    }
+    shuffled.forEach(function (c) { container.appendChild(c); });
+  }
+
+  function showKind() {
+    tagPickBar.style.display = 'none';
+    showKindPicker();
+    clearContainer();
+    var groups = {}, order = [];
+    cards.forEach(function (card) {
+      var k = getKind(card);
+      if (!groups[k]) { groups[k] = []; order.push(k); }
+      groups[k].push(card);
+    });
+    order.sort();
+    order.forEach(function (k) {
+      var h = document.createElement('h2');
+      h.className = 'blog-group-heading';
+      h.id = k + '-section';
+      h.textContent = k.charAt(0).toUpperCase() + k.slice(1) + 's';
+      container.appendChild(h);
+      sortedByName(groups[k]).forEach(function (c) { container.appendChild(c); });
+    });
+  }
+
+  function buildTagIndex() {
+    var idx = {};
+    cards.forEach(function (card) {
+      getTags(card).forEach(function (tag) {
+        idx[tag] = (idx[tag] || 0) + 1;
+      });
+    });
+    return idx;
+  }
+
+  function filterByTag(tag) {
+    selectedTag = tag;
+    tagPickBar.querySelectorAll('.tag-pick-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.tag === tag);
+    });
+    clearContainer();
+    sortedByName(cards.filter(function (card) {
+      return getTags(card).indexOf(tag) !== -1;
+    })).forEach(function (c) { container.appendChild(c); });
+  }
+
+  function renderTagPicker(activeTag) {
+    tagPickBar.innerHTML = '';
+    Object.keys(tagIdx).sort().forEach(function (tag) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tag-pick-btn' + (tag === activeTag ? ' active' : '');
+      btn.dataset.tag = tag;
+      btn.innerHTML = tag + ' <span class="tag-count">' + tagIdx[tag] + '</span>';
+      btn.addEventListener('click', function () { filterByTag(tag); });
+      tagPickBar.appendChild(btn);
+    });
+    tagPickBar.style.display = 'flex';
+  }
+
+  function hideTagPickerBar() {
+    tagPickBar.style.display = 'none';
+    selectedTag = null;
+  }
+
+  function showTag(jumpTo) {
+    if (!tagIdx) { tagIdx = buildTagIndex(); }
+    var pick = (jumpTo && tagIdx[jumpTo]) ? jumpTo
+             : (selectedTag && tagIdx[selectedTag]) ? selectedTag
+             : Object.keys(tagIdx).sort()[0];
+    renderTagPicker(pick);
+    filterByTag(pick);
+  }
+
+  function showKindPicker() {
+    document.getElementById('kind-picker-bar').style.display = 'flex';
+  }
+
+  function hideKindPicker() {
+    document.getElementById('kind-picker-bar').style.display = 'none';
+  }
+
+  // --- Activation ---
+
+  function activateView(view, tagName) {
+    activeView = view;
+    viewBtns.forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.view === view);
+    });
+    switch (view) {
+      case 'kind':   showKind(); hideTagPickerBar(); break;
+      case 'tag':    showTag(tagName || null); hideKindPicker(); break;
+      case 'random': showRandom(); hideTagPickerBar(); hideKindPicker(); break;
+      case 'alpha': showAlpha(); hideTagPickerBar(); hideKindPicker(); break;
+      default:       showAlpha(); hideTagPickerBar();  hideKindPicker(); break;
+    }
+  }
+
+  viewBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () { activateView(btn.dataset.view); });
+  });
+
+  // Event delegation: clicking a card tag pill jumps to By Tag filtered to that tag
+  container.addEventListener('click', function (e) {
+    var btn = e.target.closest('.tag-filter-btn');
+    if (!btn) { return; }
+    e.stopPropagation();
+    activateView('tag', btn.dataset.tag);
+  });
+
+  // Re-sort on load to fix Liquid case-sensitive initial order
+  showAlpha();
+}());
+</script>

@@ -1,4 +1,7 @@
-:page-tags: ["programming", "documentation", "DocOps", "automation", "builds"]
+---
+title: TRUE Single Sourcing with YAML and AsciiDoc
+---
+:page-tags: ["single-sourcing", "YAML", "AsciiDoc", "docs-as-code", "writing", "metadata"]
 :page-date: 2025-06-25
 :page-published: true
 :page-excerpt: Documentation and application should derive all key data from a true single source of truth (TSST) defined once and conveyed across all product and documentation builds.
@@ -10,7 +13,6 @@
 // end::more-than-rest[]
 :toc: macro
 include::../README.adoc[tag=globals]
-= TRUE Single Sourcing with YAML and AsciiDoc
 
 {page-excerpt}
 

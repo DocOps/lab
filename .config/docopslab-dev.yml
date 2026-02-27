@@ -39,8 +39,8 @@ tools:
     paths:
       lint: ['.']
       skip:
-        - _metablog/_asciidoc-snippets.adoc
-        - _metablog/_asciidoc-crazy-table-snippet.adoc
+        - _blog/_asciidoc-snippets.adoc
+        - _blog/_asciidoc-crazy-table-snippet.adoc
         - _docs/partials/built/*
         - _projects/*
       exts: ['adoc']

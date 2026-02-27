@@ -87,7 +87,7 @@ include::../../task/release.adoc[tag="step-history"]
 Merge the dev branch to `main``::
 Merge the development branch into the main branch.
 +
-include::../../task/release.adoc[tag="step-merge"])
+include::../../task/release.adoc[tag="step-merge"]
 
 Tag the release::
 Create and push the release tag.

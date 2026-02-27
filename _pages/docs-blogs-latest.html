@@ -1,0 +1,55 @@
+---
+layout: default
+title: "Latest from Tech Docs Blogs"
+tagline: "Recent posts from the tech docs community"
+permalink: /docs-blogs/latest/
+---
+
+<div class="container docs-blogs-latest">
+  <header class="page-header">
+    <h1>{{ page.title }}</h1>
+    <p class="tagline">{{ page.tagline }}</p>
+    <p class="page-nav">
+      <a href="{{ '/docs-blogs/' | relative_url }}">Browse all blogs</a>
+      &middot;
+      <a href="{{ '/feeds/docs-blogs.opml' | relative_url }}" title="Subscribe via OPML in your feed reader">Download OPML</a>
+      &middot;
+      <a href="{{ '/feeds/aggregate.xml' | relative_url }}" title="Subscribe to the aggregated RSS feed">Aggregated RSS</a>
+    </p>
+  </header>
+
+  {%- assign posts = site.data.combined_posts -%}
+  {%- if posts and posts.size > 0 -%}
+  <p class="post-count">{{ posts.size }} recent posts</p>
+  <ul class="blog-latest-list">
+    {%- for post in posts -%}
+    <li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="{{ post.url }}" rel="noopener" target="_blank">{{ post.title }}</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="{{ post.blog_url | default: '#' }}" rel="noopener" target="_blank">{{ post.blog_title }}</a>
+          {%- if post.published -%}
+          <span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="{{ post.published | date: '%Y-%m-%dT%H:%M:%SZ' }}">{{ post.published | date: '%B %-d, %Y' }}</time>
+          {%- endif -%}
+        </p>
+        {%- if post.summary and post.summary != '' -%}
+        <p class="post-summary">{{ post.summary | strip_html | truncate: 280 }}</p>
+        {%- endif -%}
+      </article>
+    </li>
+    {%- endfor -%}
+  </ul>
+  {%- else -%}
+  <div class="no-posts-notice">
+    <p>
+      No aggregated posts yet.
+      Feed data is refreshed every six hours by a scheduled workflow.
+      Check back soon, or <a href="{{ '/docs-blogs/' | relative_url }}">browse the full blog directory</a>.
+    </p>
+  </div>
+  {%- endif -%}
+</div>

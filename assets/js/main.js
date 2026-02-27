@@ -223,6 +223,9 @@ function initSmoothScrolling() {
 
 // Scroll to anchor with offset to account for fixed banner
 function scrollToAnchorWithOffset(hash) {
+  // Validate hash is not empty and is a valid selector
+  if (!hash || hash === '#' || hash.length < 2) return;
+  
   const target = document.querySelector(hash);
   if (!target) return;
   

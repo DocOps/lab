@@ -1,0 +1,85 @@
+name: Aggregate External Blog Feeds
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      force_refresh:
+        description: 'Force refresh (ignore cache)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aggregate
+  cancel-in-progress: true
+
+jobs:
+  aggregate-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache aggregated feed data
+        id: cache-feeds
+        uses: actions/cache@v4
+        with:
+          path: |
+            _data/combined_posts.json
+            feeds/aggregate.xml
+          key: feed-cache-${{ hashFiles('_data/tech-docs-serials.yml') }}-${{ github.run_id }}
+          restore-keys: |
+            feed-cache-${{ hashFiles('_data/tech-docs-serials.yml') }}-
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3 --with aggregate
+
+      - name: Run feed aggregator
+        if: steps.cache-feeds.outputs.cache-hit != 'true' || github.event.inputs.force_refresh == 'true'
+        env:
+          OPML_URL: https://docopslab.org/feeds/docs-blogs.opml
+        run: ruby scripts/aggregate_feeds.rb
+
+      - name: Build Jekyll site
+        run: bundle exec rake build_site
+
+      - name: Deploy to gh-pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Checkout gh-pages in detached state
+          git fetch origin gh-pages
+          git checkout --orphan gh-pages-temp
+          git rm -rf .
+          
+          # Copy built site
+          cp -r _site/* .
+          cp -r _site/.* . 2>/dev/null || true
+          
+          # Commit and push
+          git add -A
+          git commit -m "Deploy aggregated site from ${{ github.sha }} at $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "No changes"
+          git push -f origin gh-pages-temp:gh-pages
+
+      - name: Create deployment summary
+        run: |
+          echo "## 📡 Aggregated Feed Data & Deployed!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Cache Status:** ${{ steps.cache-feeds.outputs.cache-hit == 'true' && 'Used cached data' || 'Fetched fresh data' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Site URL:** https://docopslab.org" >> $GITHUB_STEP_SUMMARY
+          echo "**Latest Posts:** https://docopslab.org/docs-blogs/latest/" >> $GITHUB_STEP_SUMMARY
+          echo "**Aggregate Feed:** https://docopslab.org/feeds/aggregate.xml" >> $GITHUB_STEP_SUMMARY
+          echo "**Deployed at:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY

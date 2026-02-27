@@ -11,6 +11,8 @@ Metrics/ClassLength:
 
 Metrics/ModuleLength:
   Max: 350
+  Exclude:
+    - 'gems/docopslab-dev/lib/docopslab/dev/linters.rb'  # Linters module is large by nature
 
 Metrics/MethodLength:
   Max: 100

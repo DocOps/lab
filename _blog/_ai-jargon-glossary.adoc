@@ -1,0 +1,80 @@
+// LIST OF ALL TERMS:
+//  ai,llm,genai,llm-client,agent,bot,context-window,prompt,request,mcp,rag,skills,token,vibe-coding
+// tag::ai[]
+AI or artificial intelligence::
+A broad term for computer systems that can perform tasks that typically require human intellect or reasoning, such as understanding natural language, recognizing patterns, learning from data, and making decisions.
+Critics note that existing AIs are not truly "`intelligent`" in the human sense, but rather sophisticated pattern recognition and generation tools.
+
+// end::ai[]
+// tag::llm[]
+LLM::
+Large Language Model, a kind of "`artificial intelligence`" that interprets and generates text and other media based on patterns and associations gleaned from heavily processing extremely large datasets.
+
+// end::llm[]
+// tag::genai[]
+generative AI (GenAI)::
+A kind of "`artificial intelligence`" that generates content such as text, images, audio, or video based on input prompts.
+LLMs are a subset of generative AI, which is sometimes expressed as "`GAI`" or "`genAI`" (not to be confused with AGI: artificial general intelligence).
+
+// end::genai[]
+// tag::llm-client[]
+LLM client::
+A software application that uses an LLM to perform tasks such as answering questions, generating content in response to prompts, or assisting with various activities.
+LLM clients can be chatbots, virtual assistants, code generators, or any other type of application that interacts with an LLM to leverage its capabilities.
+
+// end::llm-client[]
+// tag::agent[]
+LLM agent::
+A type of LLM client that can perform actions on behalf of a user, such as making API calls, executing commands, interacting with other software, or carrying out a series of such tasks to achieve a goal.
+
+// end::agent[]
+// tag::bot[]
+bot::
+A general term used for LLM/client combinations.
+
+// end::bot[]
+// tag::context-window[]
+context window::
+The total amount of input data (text, code, etc) that an LLM processes during a given request.
+
+// end::context-window[]
+// tag::prompt[]
+prompt::
+The user-input text or data that an LLM client sends to the LLM to generate a response.
+The prompt is the user's real-time contribution to the context.
+
+// end::prompt[]
+// tag::request[]
+request::
+The entire interaction between an LLM client and the LLM, including the prompt and the generated response.
+
+// end::request[]
+// tag::mcp[]
+MCP server::
+For "`model context protocol`", an interface that allows LLMs to invoke tools or consume resources specifically delivered for AI usage by the MCP providers.
+MCP servers can deliver content in formats optimized for LLM consumption, such as JSON or Markdown, and can also provide interactive access to utilities and APIs specially designed for LLM clients.
+
+// end::mcp[]
+// tag::rag[]
+RAG::
+Retrieval-augmented generation, a technique where an LLM is provided with relevant information fetched from a database or knowledge base to enhance its response generation.
+
+// end::rag[]
+// tag::skills[]
+skills::
+In the context of LLM agents, a _skill_ is any specific procedure or approach an agent can onboard in order to better carry out tasks it informs.
+Skills are defined in Markdown documents and invoked on an as-needed basis.
+
+// end::skills[]
+// tag:token[]
+token::
+A unit of text that an LLM processes. 
+Tokens can be as short as one character or as long as one word, depending on the language and the specific "`tokenization`" method.
+The number of tokens in a prompt or response can affect LLM cost and performance.
+
+// end::token[]
+// tag::vibe-coding[]
+vibe coding::
+A term used to describe the practice of using LLMs to generate code with minimal human intervention or oversight, typically without much concern for maintainability or best practices.
+
+// end::vibe-coding[]

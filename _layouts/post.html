@@ -2,15 +2,14 @@
 layout: default
 ---
 
-{% comment %} Determine if this is a metablog post {% endcomment %}
-{% if page.collection == "metablog" %}
+{% if page.metablog %}
   {% assign is_metapost = true %}
 {% endif %}
 {% assign metapost_class = '' %}
 {% if is_metapost %}
   {% assign metapost_class = ' metablog' %}
 {% else %}
-  {% assign has_metapost = site.metablog | find: "subject-post", page.slug %}
+  {% assign has_metapost = site.blog | where: "metablog", true | find: "subject-post", page.slug %}
 {% endif %}
 
 <div class="blog-post-container{{ metapost_class }}">
@@ -30,7 +29,6 @@ layout: default
         A Dr Meta's MetaBlog entry
       </h2>
       
-      {% comment %} Subject post reference for metablog posts {% endcomment %}
       {% if page.subject-post %}
         {% assign subject_post = site.blog | where: "slug", page.subject-post | first %}
         <div class="meta-subject-reference">
@@ -52,7 +50,6 @@ layout: default
       {% endif %}
       
       <div class="post-meta{{ metapost_class }}">
-        {% comment %} Show date for regular posts, but not for metaposts {% endcomment %}
         {% unless is_metapost %}
         <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">
           <i data-lucide="calendar"></i>
@@ -114,7 +111,6 @@ layout: default
       {{ content }}
     </div>
     
-    {% comment %} Bottom metablog banner only for regular posts {% endcomment %}
     {% unless is_metapost %}
       {% if has_metapost %}
       <div class="metablog-banner metablog-banner-bottom">
@@ -129,9 +125,31 @@ layout: default
       </div>
       {% endif %}
     {% endunless %}
+
+    {% if page.tags %}
+    <div class="related-posts">
+
+      {% assign related = page.related_posts.related_posts %}
+
+      {% if related.size > 0 %}
+        <h2>Related posts</h2>
+        <ul>
+          {% for item in related %}
+            {% assign post = item.post %}
+            {% if post.published != false and post.draft != true %}
+            <li>
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No related posts found.</p>
+      {% endif %}
+    </div>
+    {% endif %}
     
     <footer class="post-footer{{ metapost_class }}">
-      {% comment %} Special footer content for metaposts {% endcomment %}
       {% if is_metapost and page.subject-post and subject_post %}
       <div class="post-meta{{ metapost_class }}">
         <time class="post-date{{ metapost_class }}" datetime="{{ subject_post.date | date_to_xmlschema }}">
@@ -166,28 +184,17 @@ layout: default
         {% endif %}
       </div>
       
-      {% comment %} Different back links based on post type {% endcomment %}
-      {% if is_metapost %}
-      <div class="back-to-metablog">
-        <a href="{{ '/metablog/' | relative_url }}" class="btn-secondary">
-          <i data-lucide="microscope"></i>
-          Back to MetaBlog
-        </a>
-      </div>
-      {% else %}
       <div class="back-to-blog">
         <a href="{{ '/blog/' | relative_url }}" class="btn-secondary">
           <i data-lucide="arrow-left"></i>
           Back to Blog
         </a>
       </div>
-      {% endif %}
     </footer>
     </article>
   </div>
 </div>
 
-{% comment %} Different footer wrapper class for metaposts {% endcomment %}
 {% if is_metapost %}
 <footer class="footer-section">
 {% include footer.html %}

@@ -109,6 +109,7 @@ Aside from the docopslab.org website, which will take up most of this README, th
 * the `docopslab-dev` Ruby gem package
 * the `docopslab/dev` Docker image
 * the `agent/docs/` library of Markdown files generated from link:link:{this_repo_url}/blob/main/gems/docopslab-dev/docs/agent/[AsciiDoc sources]
+* a `feeds/` directory contains generated RSS and OPML feeds for the DocOps Lab Blog and a collection of third-party streams sourced in `_data/tech-docs-serials.yml`
 
 [[the-site]]
 === The Site
@@ -116,31 +117,6 @@ Aside from the docopslab.org website, which will take up most of this README, th
 The site has a link:{docopslab_www_base_url}[landing page] which leads mainly to a showcasing of link:{docopslab_www_base_url}/projects/[*DocOps Lab projects*] with a modern, professional interface featuring project cards, dependency visualization, and custom DocOps-themed icons.
 
 It also includes link:{docopslab_www_base_url}/docs/[*technical documentation*] that is common across projects, as well as a link:{docopslab_www_base_url}/blog/[*blog*] for updates and topical writings.
-
-[[blog-versioning]]
-==== Blog Versioning
-
-This site hosts _two_ blogs: the link:{docopslab_www_base_url}/blog[DocOps Lab Blog] and the link:{docopslab_www_base_url}/metablog[DocOps Lab MetaBlog].
-
-Each blog post tracks its own version in the `:page-version:` attribute.
-The version follows link:https://semver.org[Semantic Versioning], with a `MAJOR.MINOR.PATCH` structure.
-
-A version bump is required whenever the rendered content of the post changes, whether through direct edits to the post file or through modifications to any AsciiDoc includes used by that post, _if those changes affect the post content_.
-
-Includes do not carry their own versions; the post's version is the sole authority. 
-Version numbers should change even for small mechanical edits so that the version always reflects the current state of the published text.
-
-MAJOR::
-Substantial reframing or rewriting.
-Prior understanding may no longer apply.
-
-MINOR::
-Additive content or clarifications that do not contradict earlier versions.
-
-PATCH::
-Typos, grammar cleanup, mechanical style adjustments, or any small textual edits.
-
-Mere changes of style or layout do _not_ cause version bumps.
 
 [[repository-structure]]
 === Repository Structure
@@ -202,7 +178,7 @@ At a minimum, this should be a subset of the `README.adoc` file.
 Product user docs:: `https://<project>.docopslab.org/docs/`
 
 Product developer docs::
-`+++https://<project>.docopslab.org/docs/api/(<apiname>/)+++`
+`https://<project>.docopslab.org/docs/api/(<apiname>/)`
 +
 The final `<apiname>` directory is only applicable when the product contains multiple distinct APIs.
 
@@ -504,6 +480,9 @@ Use `{xref_<collection-label>_<page-slug>_link}` as a shortcode for the entire l
 | /projects/
 | All projects listing
 
+| /slides/internal/
+| Internal presentation slides
+
 | /docs/
 | Documentation
 
@@ -629,7 +608,7 @@ lucide.createIcons({
 == Licensing
 
 All original textual content is released under the Creative Commons Attribution 4.0 International (CC BY 4.0) license.
-Content includes anything sourced under `_docs/`, `_blog/`, `_metablog/`, and `_data/`.
+Content includes anything sourced under `_docs/`, `_blog/`, and `_data/`.
 
 Images, including original graphics, are either copyleft or published under Fair Use and attributed to their best-known source.
 

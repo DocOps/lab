@@ -1,0 +1,277 @@
+---
+title: How to Train Your Agent
+---
+include::../README.adoc[tag="globals"]
+:page-date: 2026-01-02
+:page-tags: ["AI", "single-sourcing", "AsciiDoc", "writing"]
+:page-author: Brian Dominick
+:page-image: blog-dragon-training.jpg
+:page-image-alt: The Game of Thrones character Daenerys Targaryen controls her dragon, Drogon.
+:page-excerpt: LLMs still produce frustrating slop unless they are reined in by techniques that revolve around good documentation. Here's how to train your agents to be good to your code and docs.
+:toc: macro
+
+I don't know if there's a name for that thing that happens where every new problem you encounter in your professional domain seems perfectly suited for your current specialty or your preferred tech stack.
+It's some form of confirmation bias, to be sure.
+
+Whatever it is called, I am both wary of and susceptible to this phenomenon.
+And it happened to me earl last year when I "`realized`" that to use LLMs and agents on serious projects, one of the major needs is good technical documentation.
+I have been using LLMs with the link:https://specdriven.ai["`Spec-driven development`" approach] for all 3 years that I've been using them, but in 2025 that concept link:https://www.youtube.com/watch?v=8rABwKRsec4[rose to the forefront].
+That's just how I've always coded, especially since I started focusing on developing tools for documentation and authoring.
+
+But it's not just specifications, is it?
+Surely one document is never going to enable high-quality product code.
+Before you know it, every project needs a curated, streamlined _library_ of documents.
+
+A good prompt for a complex coding task includes rich context, which is how MCP servers and skills came about.
+These, too, are largely dependent on documentation.
+And once this level of complexity is introduced, and especially when working across codebases on multiple simultaneous projects.
+
+.Jargon glossary
+****
+Here is what the author means by some of the terms of art that appear in this article, in the specific context of this article.
+
+include::_ai-jargon-glossary.adoc[tags="ai,llm,genai,llm-client,agent,context-window,prompt,mcp,skills,token,vibe-coding"]
+****
+
+I settled on a strategy of organizing resources into skills, roles, missions, and topics.
+The concept of "`skills`" was introduced in 2025 by Anthropic, but the rest of these categories are my own twist on the concept.
+
+These resources are all represented by Markdown docs available to LLM-backed coding agents like Copilot, Warp, and Cursor.
+(I will talk about MCP serves in a separate blog entry somewhere down the line, but for now I have not concluded much about this new protocol.)
+
+An additional twist is that I single source all of this content, alongside (and secondary to) my people-facing docs, and I do it all using AsciiDoc that gets converted to Markdown at build time, as I described in {xref_blog_single-sourcing-for-ai-agents_link}.
+
+In this post, I want to talk about _what_ to provide for AI agents, and you can refer to the link:{xref_blog_single-sourcing-for-ai-agents_url}[other post] for _how to deliver_ it.
+
+
+[[taming-dragon]]
+== Taming the Dragon
+
+LLMs are too powerful.
+The most useful task at the LLM operator's disposal is to _constrain_ the generative AI's behavior.
+
+Part of this is handled by the client/agent you choose in order to interface with the LLM during a session.
+
+The rest is the additional context you provide it.
+It may at first seem like instructions such as "`Use Java`" or "`Use Semantic Versioning`" or "`Use Next.js framework`" that you are contributing something, but what you are really doing is _reducing the likelihood of variance_ in the LLM's output.
+And reduced variance means greater consistency and a higher likelihood of success.
+
+Being opinionated about how the LLM (or your coworkers) should work is one thing.
+Unless you document that opinion, you cannot expect anyone to follow it consistently -- _especially_ an LLM, _especially_ across sessions.
+
+[[agents-md]]
+=== AGENTS.md
+
+I recommend standardizing on an `AGENTS.md` file per project, rather than any of the model- or agent-specific options like `CLAUDE.md` or `copilot-instructions.md`.
+This file should contain the high-level instructions for how to approach the project, including any constraints on languages, frameworks, styles, or other conventions.
+
+The `AGENTS.md` file seems like it should be for guiding the agent or LLM, but in truth you are _toning it down_ from the solution space that LLMs tend to explore by default, which is either wide open or strongly biased toward certain technologies like Python and Markdown.
+
+Everything in your `AGENTS.md` should be correcting something that agents or LLMs are susceptible to doing a wrong or less-preferred way.
+Do not waste tokens teaching them things they already do; encourage them to do things _your way_.
+
+I currently source a common/upstream link:{docopslab_lab_hub_base_url}/blob/main/_docs/templates/AGENTS.markdown[`AGENTS.markdown` template].
+It is filled with tags and tokens indicating where customization should be carried out for each repo into which an instance is placed.
+This is a per-codebase document, not something to sync across projects.
+
+[[linters]]
+=== Linters
+
+One of the best ways to constrain LLM output is to use linters and formatters.
+
+These are tools you can customize to enforce your particular conventions and styles, for both programmatic code and textual content.
+You can even lint the markup syntax of your raw docs-as-code source files.
+
+While you can show the LLM your linting configuration files up front as instruction, most models will still deviate considerably, or else your style guide and spelling preferences and so forth will overwhelm the context window.
+
+More usefully, linters and formatters are _automated checks_ that can be run after the LLM produces output.
+Some linters can auto-correct deviations of style and formatting, but LLM agents are pretty good at following up on linter reports and correcting their errors.
+
+Forcing or even automating conformity is so advantageous, I cannot imagine working with LLMs on code or docs without the advantage of good linters.
+
+
+[[training-dragon]]
+== Training the Dragon
+
+The rest of what you are doing with an agent/LLM is powering them up.
+This is where you can introduce specific or peculiar conventions that you need the LLM to follow throughout a session, a lot of which needs to be available across sessions.
+
+It's too much to just put all your internal and user-facing product docs, and all the docs for all the development tools and dependency libraries you use, into one big Markdown file to dump into the context window at the top of every session.
+
+This will be too big, even for small projects once they reach maturity (I would argue, long before they're ready for general availability release).
+
+[[no-one-else-can-train-your-dragon]]
+.No one else can train your dragon
+****
+This is the hard part.
+You or your team must create the documentation that your LLM agents will need to perform well.
+The whole point is that anyone else's attempt at this would be incompatible, in more ways than one.
+
+As I built my agent-facing library, there were general points and lessons and best practices built in throughout for reinforcement, but more importantly the docs attempt to influence LLMs _away from their own tendencies_ where I disagree with their typical or occasional behavior.
+
+For now, you have to roll up your sleeves and incorporate lessons from all the kinds of "`tweak this`" messages you've used on LLMs over the past year or so.
+These are the ways bots need to be adjusted to work well with _your_ tech stack, _your_ framework, _your_ conventions, _your_ styles, and so forth.
+
+You will also need a way to distribute and sync this between projects, and to modify or override some of it in particular projects, when the standard conventions do not translate or apply.
+Cross-project orchestration is out of scope for this post, but it I touched on it{xref_blog_single-sourcing-for-ai-agents_url}#distribution[here].
+****
+
+Instead, you need to _organize_ your documentation into a taxonomy of resources that the LLM can access as needed.
+The good news is that LLMs are pretty good at selectively ingesting and applying relevant context from multiple documents.
+The hard work is in establishing the library of assets; prompting then becomes as easy as saying:
+
+.Prompt pointing to AGENTS.md
+====
+_Read the `AGENTS.md` file, then pick a role and skillset appropriate to the task set forth in `.agent/docs/team/add-fancy-feature.md`._
+====
+
+Most agents consume the `AGENTS.md` automatically, but I use lots of agents and I work on multi-repo sessions from a parent directory, so an explicit directive has become part of all my initial prompts.
+
+It can be even simpler to work this way if you provide a mission template of sorts.
+
+.Mission prompt
+====
+_Read `.agent/docs/missions/conduct-release.md` then carry out the 1.2.0 release of the product in this repo._
+====
+
+What follows is the particular taxonomy I use to organize my agent-facing documentation.
+I use all of these as general/standardized documents for all my projects, with project-specific variations as needed.
+
+Most of the documents reference the system they are part of, so bots can determine on the fly if they need to review other documents in the collection or override the advice with local versions.
+
+[[agent-roles]]
+=== Roles
+
+These documents are relatively original, whereas skills, missions, and topics all tend to draw directly on resources written for _people_.
+In my case, I could never afford to hire a person to fulfill any of these roles, and in truth they're somewhat over-specialized, on purpose.
+
+Here is the current roster of roles I am providing docs for:footnote:[This list is static yet subject to change.
+The full current, built library is always at {this_repo_base_url}/tree/agent-docs/roles, and they're published in rich-text form at link:{docopslab_www_base_url}/docs/agent/[in the Lab docs site].]
+
+[cols="12,2,1,2"]
+|===
+| Product Manager
+| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/product-manager.adoc?plain[AsciiDoc]
+| link:/docs/agent/product-manager[HTML]
+| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/product-manager.md[Markdown]
+
+| Project Manager
+| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/project-manager.adoc?plain[AsciiDoc]
+| link:/docs/agent/project-manager[HTML]
+| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/project-manager.md[Markdown]
+
+| Software Planner/Architect
+| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/planner-architect.adoc?plain[AsciiDoc]
+| link:/docs/agent/planner-architect[HTML]
+| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/planner-architect.md[Markdown]
+
+| Product Engineer
+| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/product-engineer.adoc?plain[AsciiDoc]
+| link:/docs/agent/product-engineer[HTML]
+| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/product-engineer.md[Markdown]
+
+| QA/Testing Engineer
+| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/qa-engineer.adoc?plain[AsciiDoc]
+| link:/docs/agent/qa-engineer[HTML]
+| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/qa-engineer.md[Markdown]
+
+| DevOps/Release Engineer
+| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/devops-engineeer.adoc?plain[AsciiDoc]
+| link:/docs/agent/devops-engineer[HTML]
+| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/devops-engineer.md[Markdown]
+
+| DocOps Engineer
+| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/docops-engineeer.adoc?plain[AsciiDoc]
+| link:/docs/agent/docops-engineer[HTML]
+| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/docops-engineer.md[Markdown]
+
+| Tech Docs Manager
+| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/tech-docs-manager.adoc?plain[AsciiDoc]
+| link:/docs/agent/tech-docs-manager[HTML]
+| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/tech-docs-manager.md[Markdown]
+
+| Tech Writer
+| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/tech-writer.adoc?plain[AsciiDoc]
+| link:/docs/agent/tech-writer[HTML]
+| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/tech-writer.md[Markdown]
+|===
+
+While I am competent in most of these rolesfootnote:[QA/Testing Engineer and DevOps/Release Engineer are true exceptions in my experience; these documents were produced with considerable LLM assistance.], I of course prefer it if my agents are superstars in each given specialty.
+
+I would never publish these as job descriptions and expect people to conform to them, but for LLMs, this is _exactly_ the kind of context they need to perform well.
+They set expectations far more clearly and reliably than if you were to just say, "`Be a good project manager`" or "`Act like a senior software engineer`".
+And role docs are far more efficient than if all the attributes and expectations are buried in a larger document set or in skills alone.
+
+[[agent-skills]]
+=== Skills
+
+This is where we get down and dirty, implementing procedural knowledge that the agent can apply directly to the task at hand.
+
+Skills tend to be distillations of internal docs I wrote for myself and prospective collaborators.
+I want contributors to DocOps Lab projects to be reassured that they can follow established conventions and procedures.
+The more documentation I provide authors and developers, the more likely they are to contribute successfully and hopefully repeatedly.
+
+Maybe more appealing still is offering that level of confidence for contributors' using their own LLM agents.
+In that case, the existence of massive amounts of detailed docs is reassuring, but the specificity of agent-oriented docs is even better.
+
+To review the current set of skills docs: link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/skills[AsciiDoc], link:{docopslab_lab_hub_base_url}/docs/agent/#skills[HTML], link:{docopslab_lab_hub_base_url}/tree/agent-docs/skills/[Markdown].
+
+[[agent-missions]]
+=== Missions
+
+The other kind of procedural documentation I provide for agents is the docs I call "`missions`".
+
+These are for _big_ operations that need to be applied across projects with consistency and competency.
+They typically require numerous skills and topics as well as multiple roles.
+
+I only have developed two missions so far: `conduct-release.md` and `setup-new-project.md`.
+These are series of tasks that I must repeat often enough that I don't want to do it myself, but the procedures are complex and variant enough that I cannot script them or write one document that covers all cases.
+
+Again, this is an ideal slot for generative AI to fill.
+With proper guidance and monitoring, an LLM agent can carry out these kinds of missions with a high degree of success.
+
+[[agent-topics]]
+=== Topics
+
+I organize topics documents similarly to how I organize user documents.
+This is a 3-category framework that compromises between link:https://www.heretto.com/blog/dita-task[DITA's typing system] and the newly popular link:https://diataxis.fr[Diátaxis].footnote:[DocOps Labs' hybrid "`Ditataxis`" framework will be released in 2026 as part of the link:{xref_projects_ayl-docstack_url}[AYL DocStack] project.]
+
+The choice of just three main categories -- _Concepts_, _Tasks_, and _References_ (dropping Diátaxis's _Tutorials_ grouping) -- maps well onto the way LLMs seem to understand content.
+
+(Mainly, I think LLMs do not care that much about the form topics take.
+However, as with human users, dividing them up aids the decision of which document to consume at which time.)
+
+Task::
+A lot of what you'll find in Skills and Missions for AI bots would fall under _tasks_ in human-facing documentation.
+And that's mainly where the agent-oriented docs draw from.
+
+Concept::
+LLMs do need to understand concepts, but they tend not to need the same depth of explanation that people do, especially when thorough reference content is available from which they can abstract and infer.
+For the most part, only feed conceptual docs to LLMs when the subject matter differs significantly from domain-wide understandings.
+
+References::
+Critical but somewhat tricky for LLMs are large, structured documents intended for lookup rather than straight reading.
+Reference docs may best be consumed using MCP tools that will serve up precise snippets on demand.
+Agents can query your reference docs this way, and this may prove one of the best applications of MCP technology.
+It can save from overwhelming and diluting the context window with too much unrelated matter.
+
+
+[[conclusion]]
+== Train Your Agents or They Will Train You
+
+There are a few categories of my work that I do not care to become an expert in.
+Interestingly enough, one of those is the line-by-line coding of software, even though I have been programming for more than 25 years now.
+
+I have never been a gifted coder who writes the most elegant or efficient syntax.
+Fortunately, LLMs are "`naturally`" better at this skill than I am.
+
+Yet after decades of programming, however meagerly, I have developed style preferences and conventions that need to be consistent across my projects.
+
+If you leave it up to any series of LLM sessions, you will end up with either (a) a hodge-podge of styles and strategies or (b) a generic, lowest-common-denominator approach that lacks forward focus or context-specific innovation.
+Your code and docs will either look like 5 or 10 professionals contributed without communicating, or else they will completely lack distinction or creativity.
+
+To wrangle and shape the results of any amount of "`vibe coding`" prompted drafting, LLM clients and agents need exceptional guidance and well-defined guardrails.
+I have found these to come in the form of curated, link:{docopslab_www_base_url}/docs/agent/[agent-focused documentation] and rigorous application of link:{docopslab_hub_base_url}/#linters[linters].
+
+MCP servers may be added to the list soon.
+Stay tuned for more on that front.

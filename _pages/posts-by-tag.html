@@ -1,0 +1,26 @@
+---
+layout: blog
+permalink: /blog/posts-by-tag/
+title: Blog Posts by Tag
+---
+{% assign all_tags = "" | split: "," %}
+{% for post in site.blog %}
+  {% if post.tags %}
+    {% assign all_tags = all_tags | concat: post.tags %}
+  {% endif %}
+{% endfor %}
+{% assign all_tags = all_tags | uniq | sort_natural %}
+
+<div class="blog-posts">
+{% for tag in all_tags %}
+<div class="tag-section">
+<h2>{{ tag }}</h2>
+{% assign tagged_posts = site.blog | where_exp: "post", "post.tags contains tag" %}
+<ul>
+  {% for post in tagged_posts %}
+  <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
+</div>
+{% endfor %}
+</div>

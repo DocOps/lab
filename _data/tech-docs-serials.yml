@@ -1,0 +1,462 @@
+## Directory of blogs and resources focused on technical writing, docs-as-code and DocOps.
+# $schema:
+#   properties:
+#     services:
+#       type: ArrayTable
+#       properties:
+#         _meta:
+#           req: [name, desc]
+#           acc: [kind, tags, site, feed]
+#         name:
+#           type: String
+#           desc: The name of the service.
+#         line:
+#           type: String
+#           desc: The tagline of the service.
+#         kind:
+#           type: String
+#           desc: The type (or medium) of the service.
+#           options: [blog, newsletter, podcast]
+#           default: blog
+#         site:
+#           type: URL
+#           desc: The main website for the service.
+#         feed:
+#           type: URL
+#           desc: The RSS or Atom feed URL for the service.
+#         type:
+#           type: String
+#           desc: The feed type (RSS or Atom).
+#         tags:
+#           type: Array
+#           items:
+#             type: Slug
+#           desc: |
+#             A list of tags categorizing the blog's content.
+#             Must align with a slug in the `$config.tags` table.
+#         desc:
+#           type: String
+#           desc: A brief description of the blog or newsletter.
+#     
+#     $config:
+#       desc: Contextual data for the main file.
+#       properties:
+#         tags:
+#           type: ArrayTable
+#           properties:
+#             _meta:
+#               req: [slug]
+#               acc: [name]
+#             slug:
+#               type: Slug
+#               desc: An identifier for the tag.
+#             name:
+#               type: String
+#               desc: |
+#                 A human-friendly name for the tag.
+#               default: $this.slug 
+#             head:
+#               type: String
+#               desc: The text used in category headings
+# Rules for inclusion:
+# - topical: at least a significant portion of subject matter is relevant
+#            to the technical documentation domain
+# - focused: at least half of content is about writing or technology, 
+#            as opposed to personal topics or fiction
+# - serialized: new, dated content is released periodically and 
+#               archived/displayed chronologically
+# - active: new content has been released within the past year
+# - public: content is freely accessible without a paywall or 
+#           membership requirement
+# - English: content is in or translated to English
+
+services:
+
+- name: AmanHimself.dev
+  site: https://amanhimself.dev
+  feed: https://amanhimself.dev/rss.xml
+  type: RSS
+  tags: [technical-writing, ai, tools, blogging, best-practices]
+  desc: |
+    Aman blogs about writing, blogging, and coding, including nitty-gritty insights into the hows and whyfors.
+
+- name: "BufferBuffer: (mis)adventures of a technical writer"
+  site: https://bufferbuffer.com
+  tags: [technical-writing, humor, careers, best-practices]
+  desc: |
+    Personal blog chronicling the adventures and misadventures of a technical writer; posts blend practical insights with humor and hard-won lessons about the tech writing profession.
+
+- name: Cherryleaf Blog
+  site: https://www.cherryleaf.com/blog/
+  feed: https://www.cherryleaf.com/blog/feed/
+  type: RSS
+  tags: [tech-comm, content-strategy, careers, ai]
+  desc: |
+    Blog from UK-based technical communication consultancy Cherryleaf covering a wide range of topics including content strategy, documentation tools, tech comm careers, and emerging trends like AI.
+
+- name: Cherryleaf Podcast
+  kind: podcast
+  site: https://www.cherryleaf.com/podcast/
+  tags: [tech-comm, content-strategy, careers, ai]
+  desc: |
+    Podcast from UK-based technical communication consultancy Cherryleaf covering a wide range of topics including content strategy, tools, careers, and industry trends (often featuring interviews with tech comm experts).
+
+- name: ClickHelp Technical Writing Blog
+  site: https://clickhelp.com/clickhelp-technical-writing-blog
+  feed: https://clickhelp.com/clickhelp-technical-writing-blog/feed
+  type: RSS
+  tags: [tech-comm, saas, best-practices, industry-news]
+  desc: |
+    Blog maintained by ClickHelp (a SaaS platform for topic-based help) covering industry news, how-to articles, general best practices, and occasional product announcements relevant to technical writers.
+
+- name: Code, Content, and Career Newsletter
+  kind: newsletter
+  site: https://newsletter.bphogan.com
+  feed: https://newsletter.bphogan.com/rss
+  type: RSS
+  tags: [technical-writing, docs-as-code, careers, programming]
+  desc: |
+    A monthly newsletter by Brian Hogan, with “opinions and advice about software, technical content creation, and career development” for those who write about technology.
+
+- name: CoffeeCup.tech
+  site: https://coffeecup.tech/blog
+  feed: https://coffeecup.tech/blog/rss.xml
+  type: Atom
+  tags: [technical-writing, ai, tools]
+  desc: |
+    Blog of writer Florence Venisse, chronicling experiments and exploration of technology related to technical content.
+
+- name: CyberText Newsletter
+  kind: newsletter
+  site: https://cybertext.wordpress.com
+  feed: https://cybertext.wordpress.com/feed
+  type: RSS
+  tags: [tech-comm, tools, careers]
+  desc: |
+    Long-running newsletter and blog from CyberText Consulting offering practical advice on documentation tools (e.g. Word, Flare), career development, and web communication for technical writers.
+
+- name: Dachary Carey
+  site: https://dacharycarey.com
+  feed: https://dacharycarey.com/index.xml
+  type: Atom
+  tags: [technical-writing, ai, programming, audits, case-studies]
+  desc: |
+    Personal blog of Dachary Carey, a technical writer and software developer.
+    Posts cover a range of topics including documentation audits, case studies of docs sites/architecture, AI in technical writing, and programming docs tools.
+
+- name: Damilola Oladele
+  site: https://damilola-oladele.dev
+  feed: https://damilola-oladele.dev/feed.xml
+  type: Atom
+  tags: [technical-writing, open-source, community, mentoring]
+  desc: |
+    Software developer and technical writer sharing posts on documentation best practices, open source contributions, community building and mentoring in tech.
+
+- name: Daniel D. Beck
+  site: https://ddbeck.com/writing
+  feed: https://ddbeck.com/feed.xml
+  type: Atom
+  tags: [docs-as-code, git, ssg, github, careers]
+  desc: |
+    Docs-as-code practitioner sharing tutorials and insights on documentation automation, static site generators, Git/GitHub workflows, and occasional career tips for technical writers.
+
+- name: DocOps Lab Blog
+  site: https://docopslab.org/blog/
+  feed: https://docopslab.org/feeds/docops-lab-blog.xml
+  type: RSS
+  tags: [docops, docs-as-code, tools, content-strategy]
+  desc: |
+    The DocOps Lab’s own blog covering documentation operations, docs-as-code practices, tooling reviews, and content strategy insights for technical writing teams.
+
+- name: Docs by Design
+  site: https://docsbydesign.com
+  feed: https://docsbydesign.com/feed
+  type: RSS
+  tags: [technical-writing, api-docs, document-design]
+  desc: |
+    Bob Watson’s blog pondering technical writing, API documentation, and broader topics in designing and delivering documentation effectively.
+
+- name: docs goblin
+  site: https://docsgoblin.com/blog/blog.html
+  tags: [technical-writing, docs-as-code, ai]
+  desc: |
+    Personal blog by a technical writer exploring “doc tooling, AI‑augmenting tech writers, information architecture, and other assorted topics” in modern documentation.
+
+- name: edmar.sh
+  kind: newsletter
+  site: https://edmar.sh
+  tags: [technical-writing, best-practices]
+  desc: |
+    Community-oriented site and monthly newsletter discussing technical content and documentation best practices, with a focus on knowledge sharing among tech writers.
+
+- name: Everything Technical Writing
+  site: https://www.everythingtechnicalwriting.com
+  feed: https://www.everythingtechnicalwriting.com/rss
+  type: RSS
+  tags: [technical-writing, careers, best-practices, open-source]
+  desc: |
+    A one-stop blog for all things technical writing with tips, tricks, and techniques for thriving as a technical writer in software. 
+    Includes career guidance, expert interviews, and insights into open-source documentation.
+
+- name: ffeathers
+  site: https://ffeathers.wordpress.com
+  feed: https://ffeathers.wordpress.com/feed
+  type: RSS
+  tags: [technical-writing, community]
+  desc: |
+    Sarah Maddox’s technical writing (and occasional fiction) blog offering practical insights on technical communication, documentation community events, and writing in the tech world (with a dash of whimsy).
+
+- name: Heroic Technical Writing
+  site: https://heroictechwriting.com
+  feed: https://heroictechwriting.com/feed
+  type: RSS
+  tags: [tech-comm, careers, professional-development]
+  desc: |
+    Bart Leahy’s blog providing advice and insights on the business and personal aspects of technical communication, including career growth, professional development, and proposal writing.
+  
+- name: Hire This One
+  site: https://hirethis.one/blog
+  feed: https://hirethis.one/rss.xml
+  type: RSS
+  tags: [technical-writing, careers, best-practices]
+  desc: |
+    Attached to the demo/portfolio site of an aspiring tech writer named Sam, this blog features posts about breaking into the field and trying out new tech. 
+
+- name: I'd Rather Be Writing
+  site: https://idratherbewriting.com
+  feed: http://feeds.feedburner.com/idratherbewriting
+  type: Atom
+  tags: [technical-writing, api-docs, docs-as-code, ai]
+  desc: |
+    Widely read blog by Tom Johnson, covering API documentation, reference guides, AI-assisted authoring, and trends in technical writing.
+
+- name: I'd Rather Be Writing Podcast
+  site: https://www.youtube.com/@idratherbewriting
+  tags: [ai,api-docs,tools,book-reviews]
+  desc: |
+    Video podcast from Tom Johnson and Fabrizio Ferri Benedetti, covering topics related to API documentation, AI in technical writing, and interviews with industry experts.
+
+- name: James Tasse
+  site: https://jamestasse.tech/blog
+  feed: https://jamestasse.tech/rss.xml
+  type: RSS
+  tags: [technical-writing, tools, ai]
+  desc: |
+    Mostly covering the involvement of AI in technical writing, James takes a highly technical and analytical approach to tooling and content.
+
+- name: Just Write Click
+  site: https://justwriteclick.com
+  feed: https://justwriteclick.com/feed
+  type: RSS
+  tags: [docs-as-code, open-source, ssg, tools, content-strategy]
+  desc: |
+    Anne Gentle’s blog (author of *Docs Like Code*) about treating docs like code.
+    Covers continuous publishing, static site generators (Sphinx, Hugo, etc), open-source documentation collaboration, and innovative content strategy techniques for technical writing teams.
+
+- name: Kevin R. Kuhl
+  site: https://www.kevinrkuhl.com/blog/
+  feed: https://www.kevinrkuhl.com/blog/index.xml
+  type: RSS
+  tags: [technical-writing, tools, docs-as-code, ai]
+  desc: |
+    Filled with commentary on other writings, this traditional blog is a welcome blast from the past style.
+    Kevin looks at all kinds of technology, old and new, from the perspective of a professional tech writer.
+
+- name: Knowledgebase Ninjas Podcast
+  kind: podcast
+  site: https://document360.com/podcast/
+  tags: [tech-comm, kb, ai, saas, best-practices]
+  desc: |
+    Weekly interview podcast by Document360. Host Gowri Ramkumar chats with documentation experts about building better knowledge bases, the challenges of SaaS documentation, the role of AI in tech writing, and practical insights for technical communicators.
+
+- name: KnowledgeOwl — The Owlery
+  site: https://blog.knowledgeowl.com/
+  tags: [kb, ia, search, governance]
+  desc: |
+    Blog from KnowledgeOwl (a knowledge base and documentation platform) covering knowledge base management, information architecture, search optimization, and content governance in documentation teams.
+
+- name: Kyle Blank Rollins
+  site: https://www.kyleblankrollins.com/blog.html
+  tags: [technical-writing, professional-development]
+  desc: |
+    Personal blog featuring articles on professional growth (from academia to industry) and occasional technical-writing topics, as the author navigates career development and research.
+
+- name: Leading Technical Communication
+  site: https://larrykunz.wordpress.com
+  feed: https://larrykunz.wordpress.com/feed
+  type: RSS
+  tags: [tech-comm, leadership]
+  desc: |
+    Larry Kunz’s blog featuring thought-provoking articles and advice on leadership and management within the technical communication field.
+
+- name: leu escrivi!
+  site: https://escrivi.org
+  feed: https://escrivi.org/rss.xml
+  type: RSS
+  tags: [technical-writing, ai]
+  desc: |
+    Blog of France-based documentation engineer Ariel Kaiser, covering technical writing, docs tooling, and the impact and uses of AI.
+
+- name: Little Language Models (Little Helper)
+  site: https://littlelanguagemodels.com/articles
+  tags: [ia, content-modeling, content-strategy]
+  desc: |
+    Blog from the Vienna-based information-architecture consultancy Little Helper; posts explore information architecture, content modeling, and building frustration-free content experiences via structured content design.
+
+- name: Liz Argall
+  site: https://lizargall.github.io/blog
+  feed: https://lizargall.github.io/blog/rss.xml
+  type: RSS
+  tags: [technical-writing, community, mentoring]
+  desc: |
+    The blog of an international community-building tech writer and mentor/coach.
+    Posts ponder aspects of the craft like communication and collaboration.
+
+- name: Paligo Blog
+  site: https://paligo.net/blog/
+  feed: https://paligo.net/feed
+  type: RSS
+  tags: [tech-comm, content-management, content-strategy, ai, ia]
+  desc: |
+    Company blog of the Paligo CCMS, providing technical communication professionals with expert guidance on creating efficient, scalable documentation systems.
+    Topics include structured content (CCMS) workflows, information architecture, knowledge management, AI-ready documentation, and strategies to improve content quality.
+
+- name: Passo Uno
+  site: https://passo.uno
+  feed: https://passo.uno/posts/index.xml
+  type: Atom
+  tags: [technical-writing, ai, industry-news]
+  desc: |
+    Personal site of Fabrizio Ferri Benedetti (UX/technical writer) featuring editorial pieces and in-depth discussions about the current state of technical writing, documentation “experiments”, and the impact of AI on our industry.
+
+- name: Read the Docs (Company Blog)
+  site: https://about.readthedocs.com/blog/
+  feed: https://about.readthedocs.com/feeds/atom.xml
+  type: Atom
+  tags: [open-source, ssg, community]
+  desc: |
+    Blog from Read the Docs (a popular documentation hosting platform) covering platform updates, open source doc projects, static site generator news, and community announcements in the docs-as-code ecosystem.
+
+- name: Sarah Deaton
+  site: https://sdeaton.com
+  feed: https://sdeaton.com/rss.xml
+  type: RSS
+  tags: [ai]
+  desc: |
+    Sarah's deep and practical analysis of AI tools and techniques as they apply to content and software.
+
+- name: Tech Docs
+  site: https://blog.techdocs.studio
+  tags: [technical-writing, docs-as-code, tools, content-strategy]
+  desc: |
+    David Garcia’s blog about documentation systems and “what breaks them” – discussing the tooling, infrastructure, and content strategy behind successful docs-as-code implementations.
+
+- name: technicalwriting.dev
+  site: https://technicalwriting.dev
+  # feed: https://technicalwriting.dev/rss.xml
+  tags: [technical-writing, docs-as-code, ssg, open-source, ai]
+  desc: |
+    Individual blog of a tech writer focusing on developer documentation and tooling, specializing in Sphinx-based docs and static site generators for code projects.
+    Includes explorations of AI tools in documentation.
+
+- name: Technical Writing Uncensored
+  kind: podcast
+  site: https://www.youtube.com/@UncensoredTechWriter
+  feed: https://www.youtube.com/feeds/videos.xml?channel_id=UCdzER3fTHLN8mseLA_wtntg
+  tags: [tech-comm, best-practices, careers]
+  desc: |
+    Hosted by Diana Payton, this interview-driven video podcast highlights some of the best minds in technical content.
+    Episodes offer candid takes on documentation culture, skills needed for success, and unfiltered advice for tech writers.
+
+- name: TechWhirl
+  site: https://techwhirl.com
+  feed: https://techwhirl.com/feed
+  type: RSS
+  tags: [content-management, tech-comm, industry-news]
+  desc: |
+    Online resource for anyone interested in content management and technical communication; publishes interviews, analysis, and commentary on creating and managing information assets.
+
+- name: The Not-Boring Tech Writer
+  kind: podcast
+  site: https://thenotboringtechwriter.com
+  tags: [tech-comm, careers, best-practices, community]
+  desc: |
+    A KnowledgeOwl-sponsored podcast (hosted by Kate Mueller) that explores the craft of technical writing in an engaging way.
+    Episodes feature interviews with tech writers and documentarians, touching on topics like breaking into the field, knowledge base and community management, documentation best practices, and personal career stories.
+
+- name: This is important
+  site: https://www.thisisimportant.net
+  feed: https://www.thisisimportant.net/feed
+  type: Atom
+  tags: [technical-writing, accessibility]
+  desc: |
+    Blog by Sarah Moir exploring technical writing, documentation, data analysis, ethics in tech and inclusivity.
+    Includes both a general feed and a category-specific feed for tech-writing posts.
+
+- name: Write the Docs Newsletter
+  kind: newsletter
+  site: https://www.writethedocs.org/blog/archive/tag/newsletter/
+  feed: https://www.writethedocs.org/blog/archive/tag/newsletter/atom.xml
+  type: Atom
+  tags: [tech-comm, community, events]
+  desc: |
+    Newsletter and blog from the Write the Docs community covering technical communication best practices, documentation culture, upcoming community events, and industry news.
+
+
+$config:
+  tags:
+    - slug: accessibility
+    - slug: ai
+      name: AI
+    - slug: api-docs
+      name: API documentation
+    - slug: audits
+    - slug: best-practices
+      name: best practices
+    - slug: blogging
+    - slug: book-reviews
+      name: book reviews
+    - slug: careers
+    - slug: case-studies
+      name: case studies
+    - slug: community
+    - slug: content-management
+      name: content management
+    - slug: content-modeling
+      name: content modeling
+    - slug: content-strategy
+      name: content strategy
+    - slug: document-design
+      name: document design
+    - slug: docs-as-code
+      name: docs-as-code
+    - slug: events
+    - slug: git
+      name: Git
+    - slug: github
+      name: GitHub
+    - slug: governance
+    - slug: humor
+    - slug: ia
+      name: documentation information architecture
+    - slug: industry-news
+      name: industry news
+    - slug: kb
+      name: knowledge bases
+    - slug: leadership
+    - slug: mentoring
+    - slug: open-source
+      name: open source
+    - slug: professional-development
+      name: professional development
+    - slug: programming
+    - slug: saas
+      name: SaaS
+    - slug: search
+    - slug: ssg
+      name: static site generators
+    - slug: tech-comm
+      name: technical communication
+    - slug: technical-writing
+      name: technical writing
+    - slug: tools

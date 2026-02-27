@@ -57,7 +57,7 @@ For more substantial contributions, set up a local development environment suita
 A base Dockerized Ruby environment should be suitable, as well.
 The latest {xref_projects_docops-box_link} to create a base image that should suffice for developing any DocOps Lab codebase.
 
-_If you are initializing a *new DocOps Lab project*_, see {xref_docs_lab-dev-setup_link} for comprehensive setup details.
+_If you are initializing a **new DocOps Lab project**_, see {xref_docs_lab-dev-setup_link} for comprehensive setup details.
 
 [[cloud-environment]]
 === Option {counter:option}: Use a Cloud Environment

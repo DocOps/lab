@@ -1,3 +1,6 @@
+---
+title: Why DocOps Lab Chooses GitHub over GitLab
+---
 :page-description: Why DocOps Lab reluctantly chooses GitHub over GitLab for open source projects
 :page-image: blog-github-vs-gitlab.png
 :page-author: Brian Dominick
@@ -8,7 +11,7 @@
 :github-icon: icon:github[title="github",role="icon-2rem"]
 :gitlab-icon: icon:gitlab[title="gitlab",role="icon-2rem"]
 :page-date: 2025-09-06
-= Why DocOps Lab Chooses GitHub over GitLab
+:page-tags: ["GitHub", "open-source", "docs-as-code", "policy"]
 
 I quite like GitLab for a number of reasons, but before I ever knew it existed, I was already deeply embedded in GitHub's ecosystem.
 The *TL;DR* of this blog post is that GitHub's network effects and ubiquity outweigh GitLab's technical advantages for my own open source projects.

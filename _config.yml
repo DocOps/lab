@@ -20,7 +20,6 @@ excerpt_separator: "\n// more\n"
 # Plugins
 plugins:
   - jekyll-asciidoc
-  - jekyll-feed
   - jekyll-sitemap
 
 # AsciiDoc settings
@@ -60,19 +59,6 @@ collections:
     output: true
     permalink: /:collection/:slug/
     special_term: "DocOps Lab Docs"
-  metablog:
-    output: true
-    permalink: /metablog/:name/
-    metablog: true
-    force_mode: dark
-    intro_text: |
-      Welcome to the meta-layer!
-      Here Dr. Meta provides blog source-code analysis and deeper technical exploration of concepts introduced in the main DocOps Lab Blog posts.
-    intro_text_icon: layers
-    posts_label: "meta-posts"
-    read_more_text: "Read meta-analysis"
-    no_posts_icon: "microscope"
-    no_posts_title: "No meta-posts yet"
   projects:
     output: true
     permalink: /projects/:name/
@@ -87,13 +73,6 @@ defaults:
       layout: "post"
       permalink: /blog/:name/
       excerpt: ""
-  - scope:
-      path: "_metablog"
-      type: "metablog"
-    values:
-      layout: "post"
-      metablog: true
-      highlighter_dark_theme: an-old-hope
   - scope:
       path: "index"
     values:
@@ -171,7 +150,7 @@ search:
     - /feed.xml
     - /robots.txt
     - /sitemap.xml
-    - /blog.xml
+    - /feeds/docops-lab-blog.xml
     - /search.json
     - /projects/by-*
 
@@ -179,7 +158,6 @@ search:
 # Exclude from processing
 exclude:
   - '*.md'
-  - '*.mmd'
   - artifacts/
   - README.adoc
   - Gemfile
@@ -200,7 +178,7 @@ exclude:
 include:
   - _pages
   - _reports
-  - _metablog/_asciidoc-snippets.adoc
+  - _blog/_asciidoc-snippets.adoc
 
 # Theme settings (for future gem extraction)
 theme_config:
@@ -209,11 +187,6 @@ theme_config:
   dark_mode: true
   parallax: true
   scrollspy: true
-
-feed:
-  collections:
-    blog:
-      path: /blog.xml
 
 doc_groups_order:
   - contributing

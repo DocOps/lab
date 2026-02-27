@@ -1,8 +1,10 @@
+---
+title: Building Docs for AI Agents from Single-Sourced Content
+---
 :page-image: blog-neo-kungfu.png
 :page-image-alt: Neo from The Matrix announces downloading a new skill: 'I know kung fu!'
-:page-tags: ["AI agents", "documentation", "AsciiDoc", "Markdown", "RAG", "SSOT"]
+:page-tags: ["AI", "single-sourcing", "AsciiDoc", "Markdown"]
 :page-date: 2025-10-25
-= Building Docs for AI Agents from Single-Sourced Content
 include::../README.adoc[tags=globals]
 
 I build alternate versions of my developer documentation, specially for consumption by LLM-backed coding agents.

@@ -47,6 +47,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Restore cached aggregate feed data
+        id: cache-feeds
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            _data/combined_posts.json
+            feeds/aggregate.xml
+          key: feed-cache-${{ hashFiles('_data/tech-docs-serials.yml') }}-
+          restore-keys: |
+            feed-cache-${{ hashFiles('_data/tech-docs-serials.yml') }}-
+            feed-cache-
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -54,7 +66,18 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-        run: bundle install
+        run: bundle install --with aggregate
+
+      - name: Run feed aggregator (use cached data if available)
+        env:
+          OPML_URL: https://docopslab.org/feeds/docs-blogs.opml
+        run: |
+          if [ ! -f "_data/combined_posts.json" ] || [ ! -f "feeds/aggregate.xml" ]; then
+            echo "⚠️ No cached feed data found, fetching fresh data..."
+            ruby scripts/aggregate_feeds.rb
+          else
+            echo "✅ Using cached feed data from previous aggregate workflow run"
+          fi
 
       - name: Build site and gem
         run: |

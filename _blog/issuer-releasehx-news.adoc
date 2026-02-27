@@ -1,6 +1,9 @@
+---
+title: "DocOps Lab Has Issues: Announcing Issuer and ReleaseHx"
+---
 include::../README.adoc[tag=globals]
 :page-date: 2026-02-01
-:page-tags: ["announcement", "Issuer", "ReleaseHx", "automation"]
+:page-tags: ["projects", "automation", "YAML", "GitHub", "announcements"]
 :page-author: Brian Dominick
 :page-image: blog-issues-meme.jpg
 :page-image-alt: Meme of cat sticking out tongue. "Yes I've got issues. Thank you for noticing."
@@ -10,7 +13,6 @@ include::../README.adoc[tag=globals]
 :page-excerpt: From work-ticket creation to release notes, DocOps Lab has you covered with two new apps that assist the bulk posting of issues and later generate precisely formatted release histories from them.
 :issuer-repo-url: https://github.com/DocOps/issuer
 :releasehx-repo-url: https://github.com/DocOps/releasehx
-= DocOps Lab Has Issues: Announcing Issuer and ReleaseHx
 
 {page-excerpt}
 
@@ -32,10 +34,9 @@ Then convert once more or publish as-is in your static-site generator of choice 
 
 
 [[issuer]]
-== Issuer
+== Issuer v0.3.0
 
-Issuer is a no-nonsense utility for bulk creating issue tickets.
-It uses a generalized, YAML-based format and straightforward commands.
+Issuer is a no-nonsense utility with a straightforward YAML-based format and simple commands.
 
 [source,yaml]
 .Example issue-creation YAML (`v1.0.0-issues.yml`)
@@ -54,7 +55,7 @@ If you wish to get started with it and get stuck or have any questions or sugges
 
 
 [[releasehx]]
-== ReleaseHx
+== ReleaseHx 0.1.2
 
 When you are ready to produce release notes or a changelog, switch to ReleaseHx.
 This utility is far more powerful than Issuer at this time, as it enables advanced templating and an extraordinary amount of configurable flexibility in its operations.
@@ -70,7 +71,7 @@ This time the work is done in the reverse order; start with a command and _gener
 
 [source,yaml]
 .Example RHYML output file
-include::https://raw.githubusercontent.com/DocOps/releasehx/refs/heads/main/README.adoc[tags=basic-rhyml-example]
+include::../../releasehx/README.adoc[tags=basic-rhyml-example]
 
 This utility also checks your cloud platform for updated issues, and it can even append issues to the YAML file when your colleagues add them.
 
@@ -188,7 +189,7 @@ The biggest idea I have would be a massive *extension of Issuer and the IMYML fi
 
 What if you could not only create issues in YAML but actually _maintain_ them in Git-tracked YAML, with the help of Copilot or your favorite IDE with generative AI support?
 I have not field tested this in any way, but I am strongly tempted to give it a try.
-I have published a link:{issuer-repo-url}/tree/r-n-d/extended-imyml/specs/docs/advanced-imyml-proposal.adoc[draft Specification/proposal] for the format and tooling, but it's going to be way on the back burner until there is active interest.
+I have published a link:{issuer-repo-url}/tree/[draft Specification/proposal] for the format and tooling, but it's going to be way on the back burner until there is active interest.
 
 [[releasehx-1-0]]
 === ReleaseHx 1.0

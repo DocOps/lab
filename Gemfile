@@ -12,10 +12,16 @@ gem 'sass'
 
 group :jekyll_plugins do
   gem 'jekyll-asciidoc',           '~> 3.0'
-  gem 'jekyll-feed',               '~> 0.12'
   gem 'jekyll-redirect-from',      '~> 0.16'
   gem 'jekyll-seo-tag',            '~> 2.8'
   gem 'jekyll-sitemap',            '~> 1.4'
+end
+
+group :aggregate do
+  gem 'feedjira',  '~> 3.2'
+  gem 'httparty',  '~> 0.21'
+  gem 'nokogiri',  '~> 1.16'
+  gem 'rss',       '~> 0.3'
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

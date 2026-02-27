@@ -5,7 +5,8 @@ description: "Integration and deployment/delivery process for DocOps Lab sites a
 order: 38
 ---
 // tag::attributes[]
-:docs-change-note: This step may vary significantly depending on project's implementation of ReleaseHx.
+:tok_majmin: <$tok.majmin>
+:tok_patch: <$tok.patch>
 // end::attributes[]
 :page-tokens: majmin,patch
 :page-token_majmin: text
@@ -15,8 +16,6 @@ order: 38
 :page-token_patch_default: 0
 :page-token_patch_label: Patch Version
 :page-tokens_message: This page supports fixing the version numbers used in the release procedure steps. Adjust as needed.
-:tok_majmin: <$tok.majmin>
-:tok_patch: <$tok.patch>
 include::../_local_settings.adoc[]
 = Release Process (General)
 
@@ -57,7 +56,7 @@ Deployment platforms must be initialized for each new project, as instructed in 
 // tag::conditions[]
 [%interactive]
 - [ ] All target issues are closed.
-- [ ] CI builds and tests pass on `dev/x.y`.
+- [ ] CI builds and tests pass on `dev/{tok_majmin}`.
 - [ ] Documentation updated and merged.
 // end::conditions[]
 
@@ -67,17 +66,20 @@ Deployment platforms must be initialized for each new project, as instructed in 
 // tag::step-history[]
 Generate release notes and changelog using ReleaseHx.
 
+[NOTE]
+Most projects use ReleaseHx in a unique manner, for diverse testing of its output options.
+See the project's `README.adoc`; seek for `releasehx`.
+
+The default procedure if not otherwise specified:
+
 [subs=+attributes]
 ....
 bundle update releasehx
-bundle exec releasehx {tok_majmin}.{tok_patch} --md docs/release/{tok_majmin}.{tok_patch}.md
+bundle exec rhx {tok_majmin}.{tok_patch} --md docs/release/{tok_majmin}.{tok_patch}.md
 ....
 
 Edit the Markdown file at `docs/release/{tok_majmin}.{tok_patch}.md`.
 
-NOTE: {docs-change-note}
-
-See the project's `README.adoc`; seek for `releasehx`.
 // end::step-history[]
 
 [[step-2-merge-to-main]]
@@ -115,14 +117,14 @@ Use the GitHub CLI to create a release:
 gh release create v{tok_majmin}.{tok_patch} --title "Release {tok_majmin}.{tok_patch}" --notes-file docs/releases/{tok_majmin}.{tok_patch}.md --target main
 ....
 
-Or else use the GitHub web interface to manually register the release, and copy/paste the contents of `docs/releasehx/{tok_majmin}.{tok_patch}.md` into the release notes field.
+Or else use the GitHub web interface to manually register the release, and copy/paste the contents of `docs/release/{tok_majmin}.{tok_patch}.md` into the release notes field.
 // end::step-announce[]
 
 [[release-step-artifacts]]
 === Step 5. Publish Remaining Artifacts
 
 // tag::step-artifacts[]
-Use the `publish.sh` script with proper credentials in place.
+Use the `publish.sh` script with <<required-credentials,proper credentials>> in place.
 
 ....
 ./scripts/publish.sh

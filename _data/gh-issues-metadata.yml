@@ -1,0 +1,284 @@
+# RHYML-ready issue metadata
+tags:
+  # DocOps supports all EXCEPT where:
+  #  cat=='type' OR
+  #  (tags.include?'github' && !tags.include?'docopslab')
+
+  # PROJECT-SPECIFIC LABELS
+
+  # PROJECT-SPECIFIC COMPONENTS
+  - key: "component"
+    cue: "component:<part>"
+    cat: project-specific
+    txt: Any number of these labels may be defined to represent project/product subdivisions.
+    hue: "#f29513"
+    docs:
+      text: |
+        Every repo's issue board will have its own set of these, though some common _components_ will likely be universal, such as `component:docs`.
+    tags: [docopslab,dynamic]
+    rbac: [maintainer]
+  # TYPICAL DOCOPSLAB PROJECT COMPONENTS
+  - key: "component_cicd"
+    tag: "component:cicd"
+    cat: project-specific
+    txt: Related to CI/CD pipelines and processes
+  - key: "component_automation"
+    tag: "component:automation"
+    cat: project-specific
+    txt: Related to automation tasks and scripts
+  - key: "component_cli"
+    tag: "component:cli"
+    cat: project-specific
+    txt: Related to the command-line interface
+  - key: "component_docker"
+    tag: "component:docker"
+    cat: project-specific
+    txt: Related to Docker images and containers
+
+  # PROJECT-SPECIFIC ASPECTS
+  - key: "aspect"
+    cue: "aspect:<topic>"
+    cat: project-specific
+    txt: Any number of these labels may be defined to indicate specific topics or notable concerns
+    docs:
+      text: |
+        Aspects differ from _parts_/_components_ in that either:
+        
+        . they cut across multiple components or the entire project, or
+        . they reference specialized or specific topics within the domain of a named component.
+
+        They tend to flag that a given issue may require specialist attention during execution and review.
+    tags: [docopslab,dynamic]
+    rbac: [maintainer]
+  # TYPICAL DOCOPSLAB PROJECT ASPECTS
+  - key: "aspect_github"
+    tag: "aspect:github"
+    cat: project-specific
+    txt: Affects GitHub integration or functionality
+  - key: "aspect_asciidoctor"
+    tag: "aspect:asciidoctor"
+    cat: project-specific
+    txt: Involves Asciidoctor processing or extension
+  - key: "aspect_jekyll"
+    tag: "aspect:jekyll"
+    cat: project-specific
+    txt: Involves Jekyll processing or extension
+
+  # DOCUMENTATION LABELS
+
+  - key: "component_docs"
+    tag: "component:docs"
+    cat: documentation
+    txt: |
+      Pertains to documentation infrastructure / layout / deployment; not core content
+    docs:
+      text: |
+        The `part:docs` tag is the only _part_/_component_ label present for _all_ DocOps Lab projects' Issues by default.
+        It is the only component common to every project.
+  - key: "documentation"
+    tag: "documentation"
+    cat: documentation
+    txt: Primarily affects documentation content; may require SME review
+    docs:
+      text: |
+        The notice that a given work item is `documentation` focused is properly handled as a _tag_ (label) rather than as a _type_.
+        Changes to docs content, even when unassociated with a product change, can still be features, bugfixes, improvements, and even epics.
+
+        Therefore, an issue of `Bug` type and tagged with `documentation` should indicate a problem in the documentation.
+        Meanwhile, an issue of `Bug` type _not tagged_ `documentation` should be a matter of bringing the product into alignment with accurate docs.
+  - key: "user_docs_needed"
+    tag: "needs:docs"
+    cat: documentation
+    txt: Requires documentation updates for resolution; check for sub-issues
+  - key: "release_note_needed"
+    tag: "needs:release-note"
+    cat: documentation
+    txt: Affects users significantly or deserves explanation
+    docs:
+      text: |
+        Changes to the product _or_ the docs are noteworthy to end-users when they are something of a big deal or when they are not self-explanatory.
+
+        The Changelog will always exist for matters of minor note that happen to be simple to explain.
+        Everything else that has an impact on users gets a release note, and thus `needs:release-note`.
+
+        This tag becomes redundant once a release note has been attached to or embedded in an issue and should be removed.
+      note: Remove this label once a release note has been embedded/attached.
+  - key: "changelog"
+    tag: "changelog"
+    cat: documentation
+    txt: Heading should appear in Changelog even if no release note is associated
+    docs:
+      text: |
+        Flags the issue as user-affecting yet minor and straightforward.
+        Redundant if `needs:release-note` or if a release note is present.
+
+  # ADMONITION LABELS
+
+  - key: "breaking"
+    tag: "BREAKING"
+    cat: admonition
+    txt: Causes backward-incompatible change
+  - key: "deprecation"
+    tag: "DEPRECATION"
+    cat: admonition
+    txt: Announces future discontinuation of feature
+  - key: "vulnerability"
+    tag: "VULNERABILITY"
+    cat: admonition
+    txt: Reports or addresses a potential security issue
+  - key: "removal"
+    tag: "REMOVAL"
+    cat: admonition
+    txt: Involves discontinuing support for or outright removal of a feature
+
+  # VALUE-ADD LABELS
+
+  - key: "security"
+    tag: "adds:security"
+    cat: value-add
+    txt: Improves security
+  - key: "performance"
+    tag: "adds:performance"
+    cat: value-add
+    txt: Improves performance
+  - key: "a11y"
+    tag: "adds:accessibility"
+    cat: value-add
+    txt: Improves accessibility
+
+  # META FLAGS
+
+  - key: "needs_triage"
+    tag: "needs:triage"
+    cat: meta
+    txt: Awaiting initial categorization and assessment
+  - key: "needs_review"
+    tag: "needs:review"
+    cat: meta
+    txt: Awaiting attention from maintainers or senior contributors
+  - key: "discussion"
+    tag: "needs:discussion"
+    cat: meta
+    txt: Requires or warrants maintainer/team engagement before proceeding
+    rbac: [maintainer]
+  - key: "approved"
+    tag: "approved"
+    cat: meta
+    txt: "Approved by maintainers; ready to be assigned"
+    docs:
+      text: |
+        The `approved` label indicates that the issue has been reviewed and given the green light by project maintainers.
+        This label is required for assignment to a contributor or inclusion in a release milestone.
+        It is also redundant once it has been assigned but should be kept regardless.
+    rbac: [maintainer]
+  - key: "origin_issuer"
+    tag: "origin:issuer"
+    cat: meta
+    txt: Created via the Issuer tool
+  - key: "origin_user"
+    tag: "origin:user"
+    cat: meta
+    txt: Submitted directly by a user
+  - key: "origin_copilot"
+    tag: "origin:copilot"
+    cat: meta
+    txt: Created by GitHub Copilot
+
+  # GITHUB STANDARDS
+
+  - key: "duplicate"
+    tag: "duplicate"
+    cat: meta
+    txt: Replicates an existing issue
+    tags: [github,docopslab]
+    docs:
+      note: Requires closing with reference to primary (duplicated) item
+  - key: "good_first_issue"
+    tag: "good first issue"
+    cat: meta
+    txt: Good for newcomers
+    tags: [github]
+  - key: "invalid"
+    tag: "invalid"
+    cat: meta
+    txt: This doesn't seem right
+    tags: [github]
+    docs:
+      note: |
+        DoOps Lab does not support a version of this label.
+        It is easily handled by `wont:fix` or `wont:review` plus an explanatory comment.
+    rbac: [maintainer]
+  - key: "wont_fix"
+    tag: "wontfix"
+    cat: meta
+    txt: This will not be worked on
+    tags: [github]
+    rbac: [maintainer]
+  - key: "needs_help"
+    tag: "help wanted"
+    cat: meta
+    txt: Extra attention is needed
+    tags: [github]
+
+  # DOCOPS LAB ALTERNATES
+
+  - key: "needs_help"
+    tag: "needs:help"
+    cat: meta
+    txt: Assignee/maintainers may be in over their heads
+    docs:
+      note: !warning |
+        Maintainers should never add this label to someone else's issue without discussion and consent.
+  - key: "wont_fix"
+    tag: "wont:fix"
+    cat: meta
+    txt: Rejected or abandoned by maintainer
+    rbac: [maintainer]
+  - key: "wont_review"
+    tag: "wont:review"
+    cat: meta
+    txt: This issue/thread won't be reviewed by maintainers
+    rbac: [maintainer]
+  - key: "user_request"
+    tag: "user request"
+    cat: meta
+    txt: Indicates the issue originated with a user
+  - key: "user_question"
+    tag: "user question"
+    cat: meta
+    txt: For Topic issues, to indicate a user needs support.
+    
+# GITHUB TYPE LABELS (Not used or endorsed by DocOps Lab)
+# These should be an additional metadata element ("type").
+# Types are currently supported by GitHub Issues.
+  - tag: bug
+    cat: type
+    txt: Something isn't working
+    tags: [github,deprecated]
+  - tag: enhancement
+    cat: type
+    txt: New feature or request
+    tags: [github,deprecated]
+
+tag_categories:
+  - slug: "project-specific"
+    head: Project-specific
+    summ: Labels specific to the project's components or parts.
+  - slug: "documentation"
+    head: Documentation-related
+    summ: Labels related to documentation tasks and needs.
+  - slug: "priority"
+    head: Priority-setting
+    summ: Labels indicating the priority level of the issue.
+  - slug: "admonition"
+    head: Admonition
+    summ: Labels that signal important notices about the issue.
+  - slug: "value-add"
+    head: Value-additive
+    summ: Labels indicating enhancements that add value to the project.
+  - slug: "meta"
+    head: Meta-flagging
+    summ: Labels used for organizational or tracking purposes.
+  - slug: "type"
+    head: GitHub Issue Types (Deprecated)
+    summ: Deprecated type labels managed by GitHub.

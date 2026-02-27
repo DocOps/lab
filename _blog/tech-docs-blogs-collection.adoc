@@ -1,0 +1,125 @@
+---
+title: Collecting and Aggregating Blogs about Tech Docs
+---
+:page-metablog: true
+:page-tags: ["automation", "blogging", "announcements", "docs-as-code", "YAML", "Jekyll"]
+:page-date: 2026-02-27
+:page-author: Dr Meta
+:blog-love: I love reading blogs about technical documentation, so much so that I created a collection and aggregated feed of them plus podcasts and newsletters.
+:page-excerpt: {blog-love} Here's how I did it (and how you can contribute).
+:page-image: blog-chickens-feeding.jpg
+:page-image-alt: Hens being hand-fed by a person.
+:page-image-source-url: https://stock.adobe.com/images/hand-feeding-several-chicken-on-a-farm/424299732
+:page-image-source-credit: Adobe Stock
+:page-image-source-permission: Fair Use
+:page-version: 1.0.0
+:toc: macro
+:serials-source-file: https://github.com/DocOps/lab/blob/main/_data/tech-docs-serials.yml
+:serials-collection-web-url: /docs-blogs/
+:serials-collection-opml-url: /feeds/docs-blogs.opml
+:serials-aggregator-web-url: /docs-blogs/latest/
+:serials-aggregator-rss-url: /feeds/aggregate.xml
+:docops-lab-blog-feed-url: /feeds/docops-lab-blog.xml
+include::../README.adoc[tag=globals]
+
+{page-excerpt}
+
+
+[[summary]]
+== What I've Done
+
+I've collected a number of my favorite blogs, podcasts, and newsletters about technical documentation and presented the in these forms:
+
+* A link:{serials-collection-web-url}[web page with annotated links] to all the services.
+* an link:{serials-collection-opml-url}[OPML listing] of all the feeds, which you can import into your feed reader of choice.
+* A link:{serials-aggregator-web-url}[web page aggregating all the feeds] into one.
+* An link:{serials-aggregator-rss-url}[RSS feed that aggregates all the feeds] into one, which you can also subscribe to.
+
+I've also added a proper link:/feeds/docops-lab-blog.xml[RSS feed for the DocOps Lab Blog], which is also included in the above collection and aggregator.
+
+If all you're interested in is the content, check out the links above and subscribe to any or all of it.
+
+Instead of a clunky, opaque database backend, I've sourced all the data for the collection as a link:{serials-source-file}[YAML file] in the repository.
+
+If you wish to submit a feed, check out <<contributing>> below.
+
+
+[[execution]]
+== The Execution
+
+Some few may be interested in how I did this without using an application server and database or JavaScript, so I thought I'd lay it out.
+
+Feel free to copy any of this and make it your own, with a modified or totally alternate listing of the serialized content of your choice.
+
+[[background]]
+=== Background
+
+Back in early and middle 2000s, when blogs were all the rage and podcasts were emergent, I created a few different tools that collected all or some of the output from their attendant "`feeds`" in order to create a one-stop shop for content from multiple outlets.
+
+Such "`aggregators`" were pretty popular at the time, and there was lots of software to produce them with.
+The only reason to make your own, which many developers did, was to make it fit your specific technological circumstances.
+
+This bespoke development wasn't so much about customizing the feeds or the look and feel, as other emergent technologies made this possible for some of the open-source and commercial aggregators that existed.
+It was more about the fact that I wanted to use the tools I was already using for serving application-driven websites.
+Basically, I wanted them to use my database backend, my app server, and my HTML templating system.
+
+For similar reasons, I have harked back to my industrious days of coding feeds and aggregators in order to create and publish a collection of blogs about technical documentation, and an aggregated feed of them -- all because I want to do it _my way_, which I fully realize might be nobody else's way.
+
+[[goals]]
+=== Goals
+
+I wanted to do this project in a way that demonstrates the power of DocOps -- a solution consistent with the practices I advocate for in my work on documentation operations.
+
+That means:
+
+* No relational databases (YAML instead)
+* Everything in Git
+* No unnecessary JavaScript (see <<js-note,note>> below)
+* No application server
+* Static-site generation (SSG)
+* CI/CD automation
+
+The aggregator is the only really tricky part of this project.
+The standard way to pull the latest posts from dozens of feeds together this would be either:
+
+[upperalpha]
+. Dynamic web application with a database backend that collects posts centrally, or
+. Client-side JavaScript that forces every visiting browser to request every feed and construct the page on the fly
+
+I wanted the power of the first option without the overhead of a database or application server.
+Neither of these opaque maintenance headaches are in use for any of my other offerings, and I surely did not want to start running them now.
+
+The JavaScript option (B) was a non-starter, as it would be a terrible user experience, obscene overkill, and prone to breaking.
+I've seen this done, and it's ugly.
+
+[[tools]]
+=== The Tools
+
+Since this site already runs on Jekyll SSG and GitHub Actions, I used these resources to collect and build the aggregator.
+
+The collection listing itself is a simple YAML file that contains the metadata for each feed, including the URL of the feed itself.
+
+The aggregator is where the real work is done, since it must be kept up to date with the latest content from scores of feeds.
+Here's how it works:
+
+. A single YAML file gets maintained with metadata for each service.
+. A GitHub Action runs on a schedule to pull the latest content from each service and combine it into a single feed source.
+. The Action commits the resulting JSON source file to the repository.
+. Then the Jekyll SSG builds the aggregator page and feed from that source file, which is committed back to the repository and published on GitHub Pages.
+
+This flow is somewhat unconventional, as it uses a cron job to pull content from external sources and commit it to the repository, which is probably an uncommon use of GitHub Actions.
+It only runs hourly, as I think it would get costly (well, start costing) to run it every minute or however often might be needed for truly breaking news.
+
+[[js-note]]
+[NOTE]
+I did end up using JavaScript for the link:{serials-collection-web-url}[browseable collections page].
+This is merely a superficial layer to reorganize the generated content -- it does not perform any content gathering.
+This front-end feature was fully vibe coded and will probably be replaced by a multi-page solution in the future.
+
+
+[[contributing]]
+== Contributing Your Favorite Resources
+
+If you have a favorite blog, podcast, or newsletter about technical documentation that is not included in the collection, please submit it for consideration.
+
+Open a pull request to the repository with the feed's metadata added to the link:{serials-source-file}[YAML file] that contains the collection listing.
