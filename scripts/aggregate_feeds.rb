@@ -84,8 +84,8 @@ module AggregateFeeds
   def self.write_rss results
     rss = RSS::Maker.make('2.0') do |maker|
       maker.channel.title       = "Latest #{MAX_POSTS} posts from the DocOps Lab tech docs blog directory"
-      maker.channel.link        = "https://docopslab.org/docs-blogs/latest/"
-      maker.channel.description = "Aggregated feed of the latest posts from technical writing and documentation blogs"
+      maker.channel.link        = 'https://docopslab.org/docs-blogs/latest/'
+      maker.channel.description = 'Aggregated feed of the latest posts from technical writing and documentation blogs'
       maker.channel.language    = 'en'
       maker.channel.lastBuildDate = Time.now.to_s
 
