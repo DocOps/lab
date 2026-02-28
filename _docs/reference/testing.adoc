@@ -194,7 +194,7 @@ See <<config-htmlproofer>>.
 
 Code-block testing::
 Extracts and executes code blocks from documentation to ensure accuracy and functionality.
-This is performed using the Sourcerer library, which is presently part of the ReleaseHx gem but will soon be released as a standalone gem.
+This is performed using the AsciiSourcerer library, which is presently part of the ReleaseHx gem but will soon be released as a standalone gem.
 
 [[config-htmlproofer]]
 ==== Docs Link Testing with HTMLProofer

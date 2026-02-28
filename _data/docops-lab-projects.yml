@@ -253,7 +253,7 @@ projects:
     line: A framework for defining, validating, and parsing data and text objects using YAML and AsciiDoc.
     memo: Currently a module in ReleaseHx 0.1.0. (Needs spin-off.)
     star: true
-    deps: [sourcerer]
+    deps: [asciisourcerer]
     done: 40%
     vrsn: V1-beta
     wave: 2
@@ -412,9 +412,9 @@ projects:
 
 # APIs
 
-## Sourcerer:
-  - name: Sourcerer
-    slug: sourcerer
+## AsciiSourcerer:
+  - name: AsciiSourcerer
+    slug: asciisourcerer
     type: ruby-api
     desc: |
       A library for pre-build and build-time documentation processing for strict single sourcing of application docs.
@@ -426,8 +426,8 @@ projects:
     tech: [Ruby,AsciiDoc,Asciidoctor,YAML,Liquid,Jekyll]
     wave: 1
     done: 100%
+    live: true
     icon: gem
-    memo: Currently a module in ReleaseHx 0.1.0. (Needs spin-off.)
 
 ## SchemaGraphy REST:
   - name: SchemaGraphy REST
@@ -529,7 +529,7 @@ projects:
     wave: 2
     done: 15%
     icon: droplets
-    deps: [schemagraphy, Sourcerer, cligraphy]
+    deps: [schemagraphy, asciisourcerer, cligraphy]
 
 ## adocBook:
   - name: adocBook
@@ -689,7 +689,7 @@ projects:
     wave: 1
     done: 80%
     icon: test-tube-diagonal
-    deps: [schemagraphy, sourcerer]
+    deps: [schemagraphy, asciisourcerer]
     page: true
 
 ## jekyll-asciidoc-ui:
@@ -1191,8 +1191,7 @@ $meta:
 #  the SchemaGraphy project, which is a ways from completion.
 # The first and next major release will be the ReleaseHx utility, which has
 #  SchemaGraphy built into it and needing to be spun off sometime after
-#  ReleaseHx 0.1.0 goes GA.
-# That gem also introduces Sourcerer, which is also a major dependency.
+#  ReleaseHx 0.1.0 goes GA and before 1.0.
 
 # RULES FOR THIS FILE
 # 1. Each project should have a unique name and slug.
