@@ -17,7 +17,7 @@ The URL structure is as follows:
    `https://<project>.docopslab.org/docs/`
 
 **Product developer docs** :
-   `https://.docopslab.org/docs/api/(/)`
+   `https://<project>.docopslab.org/docs/api/(<apiname>/)`
 
    The final `<apiname>` directory is only applicable when the product contains multiple distinct APIs.
 

@@ -110,7 +110,7 @@ The following tasks apply to most stages.
    Ensure the "Definition of Done" is met.
 
    - [ ] All target issues are closed.
-   - [ ] CI builds and tests pass on `dev/x.y`.
+   - [ ] CI builds and tests pass on `dev/<$tok.majmin>`.
    - [ ] Documentation updated and merged. (`role: devops-release-engineer; upto: project-manager; with: Operator`)
 
 **Manual double-checks** :
@@ -127,30 +127,37 @@ The following tasks apply to most stages.
 
    Generate release notes and changelog using ReleaseHx.
 
+> **NOTE:** Most projects use ReleaseHx in a unique manner, for diverse testing of its output options. See the project’s `README.adoc`; seek for `releasehx`.
+
+The default procedure if not otherwise specified:
+
 ```
 bundle update releasehx
-bundle exec releasehx <major.minor>.<patch> --md docs/release/<major.minor>.<patch>.md
+bundle exec rhx <$tok.majmin>.<$tok.patch> --md docs/release/<$tok.majmin>.<$tok.patch>.md
 ```
 
-Edit the Markdown file at `docs/release/<major.minor>.<patch>.md`.
+Edit the Markdown file at `docs/release/<$tok.majmin>.<$tok.patch>.md`.
 
-> **NOTE:** This step may vary significantly depending on project’s implementation of ReleaseHx.
-
-See the project’s `README.adoc`; seek for `releasehx`. (`role: devops-release-engineer; upto: tech-writer; with: Operator; read: .agent/docs/skills/release-history.md`)
+(`role: devops-release-engineer; upto: tech-writer; with: Operator; read: .agent/docs/skills/release-history.md`)
 
 ### Stage 3: Merge and Tag
 
 **Merge the dev branch to `main``** :
    Merge the development branch into the main branch.
 
-   include::../../task/release.adoc[tag="step-merge"])
+   ```
+   git checkout main
+   git pull origin main
+   git merge --no-ff dev/<$tok.majmin>
+   git push origin main
+   ```
 
 **Tag the release** :
    Create and push the release tag.
 
    ```
-   git tag -a v<major.minor>.<patch> -m "Release <major.minor>.<patch>"
-   git push origin v<major.minor>.<patch>
+   git tag -a v<$tok.majmin>.<$tok.patch> -m "Release <$tok.majmin>.<$tok.patch>"
+   git push origin v<$tok.majmin>.<$tok.patch>
    ```
 
 ### Stage 4: Release Announcement
@@ -161,10 +168,10 @@ See the project’s `README.adoc`; seek for `releasehx`. (`role: devops-release-
    Use the GitHub CLI to create a release:
 
 ```
-gh release create v<major.minor>.<patch> --title "Release <major.minor>.<patch>" --notes-file docs/releases/<major.minor>.<patch>.md --target main
+gh release create v<$tok.majmin>.<$tok.patch> --title "Release <$tok.majmin>.<$tok.patch>" --notes-file docs/releases/<$tok.majmin>.<$tok.patch>.md --target main
 ```
 
-Or else use the GitHub web interface to manually register the release, and copy/paste the contents of `docs/releasehx/<major.minor>.<patch>.md` into the release notes field. (`role: project-manager; with: devops-release-engineer`)
+Or else use the GitHub web interface to manually register the release, and copy/paste the contents of `docs/release/<$tok.majmin>.<$tok.patch>.md` into the release notes field. (`role: project-manager; with: devops-release-engineer`)
 
 ### Stage 5: Artifact Publication
 
@@ -187,7 +194,7 @@ This step concludes the release process. (`role: devops-release-engineer; with: 
 **Post-release tasks** :
    Perform necessary cleanup and preparation for the next cycle.
 
-   - [ ] Cut a _release_ branch for patching (`release/<major.minor>`).
+   - [ ] Cut a _release_ branch for patching (`release/<$tok.majmin>`).
    - [ ] Update `:next_prod_vrsn:` in docs.
    - [ ] Create next development branch (`dev/<next>`).
    - [ ] Notify stakeholders. (`role: project-manager; with: devops-release-engineer`)

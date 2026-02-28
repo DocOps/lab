@@ -20,7 +20,7 @@ Tagging System for Content Synchronization:
 Project-specific content (architecture, reading order, scenarios) remains untagged.
 -->
 
-
+<!-- tag::stay[] -->
 ## TEMPLATE NOTICES
 
 This document is a TEMPLATE.
@@ -39,6 +39,7 @@ Search for characters like `<%` and change those placeholders to suit the specif
 
 **IMPORTANT:** _Remove this entire section of the document before committing it to Git._
 
+<!-- end::stay[] -->
 
 <!-- tag::universal-agency[] -->
 ## AI Agency
@@ -59,7 +60,17 @@ In particular, you values:
 
 ### Operations Notes
 
-**IMPORTANT**:
+#### Tools
+
+You need not have access to specific MCP or other *tools* like SKILLS or TEAMS or anything non-standard/semi-proprietary, to perform all of the operations that such interfaces enable.
+Make use of the available resources and prompt the Operator to carry out any actions that require tools you cannot access.
+
+When available, use MCP tools or CLIs to accomplish tasks, with REST/GraphQL APIs as a distant third preference.
+For instance, the GitHub MCP server for managing GitHub Issues and Pull Requests, or else the `gh` CLI tool, rather than having the user carry out mundane tasks via the Web UI.
+But unless you are working on the GitHub REST API itself, **do not** use the GitHub API to carry out tasks that can be done with MCP or CLI.
+
+#### Local Agent Documentation
+
 This document is augmented by additional agent-oriented files at `.agent/docs/`.
 Be sure to `tree .agent/docs/` and explore the available documentation:
 
@@ -68,13 +79,23 @@ Be sure to `tree .agent/docs/` and explore the available documentation:
 - **roles/**: Agent specializations and behavioral guidance (Product Manager, Tech Writer, DevOps Engineer, etc.)
 - **missions/**: Cross-project agent procedural assignment templates (new project setup, conduct-release, etc.)
 
-**NOTE:** Periodically run `bundle exec rake labdev:sync:docs` to generate/update the library.
+> **NOTE:** Periodically run `bundle exec rake labdev:sync:docs` to generate/update the library.
 
 For any task session for which no mission template exists, start by selecting an appropriate role and relevant skills from the Agent Docs library.
 
 **Local Override Priority**: Always check `docs/{_docs,topics,content/topics}/agent/` for project-specific agent documentation that may override or supplement the universal guidance.
 
-### Ephemeral/Scratch Directory
+#### Documentation Discovery / Access Patterns
+
+When you need to find third-party documentation on the Web, follow these suggestions:
+
+1. Check for `llms.txt` first (ex: https://example.com/llms.txt).
+2. Try appending `.md` to documentation URLs for Markdown versions.
+3. Avoid JavaScript-heavy or rate-limited documentation sites, check the GitHub repo for docs souces.
+  - Check for `/docs`, `/examples`, or `/manual` directories in GitHub repos.
+  - Use raw.githubusercontent.com URLs when browsing Markdown or AsciiDoc docs sources.
+
+#### Ephemeral/Scratch Directories
 
 There should always be an untracked `.agent/` directory available for writing paged command output, such as `git diff > .agent/tmp/current.diff && cat .agent/tmp/current.diff`.
 Use this scratch directory as you may, but don't get caught up looking at documents you did not write during the current session or that you were not pointed directly at by the user or other docs.
@@ -86,6 +107,32 @@ Typical subdirectories include:
 - `logs/`: Persistent logs across sessions (ex: task run history)
 - `reports/`: Persistent reports across sessions (ex: spellcheck reports)
 - `team/`: Shared (Git-tracked) files for multi-agent/multi-operator collaboration
+
+#### Teamwork and Collaboration
+
+When working with other agents or human operators, be collaborative and communicative:
+
+- Share your thought process and reasoning when proposing solutions.
+- Ask for feedback and input from others, especially on complex or risky changes.
+- Be open to suggestions and alternative approaches.
+- Track actual work:
+  - Use each codebase's Git repository.
+  - Maintain a document like `.agent/tmp/refactor-session-notes.md` or `agent/team/refactor-session-notes.md`.
+
+#### Inter-agent Delegation
+
+When you lack inter-agent delegation tools (*sub-agents*, *background agents*, etc), communicate with your Operator about how to spin up additional agents or chats, and exchange content through the shared/tracked `.agent/team/` path.
+
+- Delegate tasks or even projects to other agents when appropriate:
+  - If you identify a task that would require upgrading with roles/skills not needed for your current work.
+  - If the task is too much of an aside and would clutter your context window with content that is superfluous or potentially confusing to your current work.
+- Use the `.agent/team/` directory to share files and information with other agents or human collaborators.
+  - IMYML files for issue tracking
+  - Markdown or AsciiDoc files or other formats as needed for conveying info and updates
+  - Use a project- or epic-based file or sub-folder naming system (`refactor-issues.imyml.yml`. `refactor-plan.adoc`, `refactor-updates.md`).
+- Frequently check the `.agent/team/` directory for updates from others that may be relevant to your work.
+  - Check modification timestamps or Git commit logs to determine what to consume.
+  - Avoid consuming outdated or unrelated content.
 
 ### AsciiDoc, not Markdown
 
