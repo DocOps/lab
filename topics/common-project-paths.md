@@ -23,7 +23,7 @@ Table of Contents
 Only two files are required in _every_ DocOps Lab project, though most projects should contain most of these files, depending on the nature of the codebase. A `docs/` or `_docs/` directory is close to the third universal requirement, necessary by the time a project reaches version 1.0.0.
 
 **`README.adoc`** :
-   Project documentation in AsciiDoc format, providing an overview and instructions. DocOps Lab READMEs typically include single-sourcing data for the product as AsciiDoc attributes. See the Sourcerer project.
+   Project documentation in AsciiDoc format, providing an overview and instructions. DocOps Lab READMEs typically include single-sourcing data for the product as AsciiDoc attributes. See the [AsciiSourcerer project](https://github.com/DocOps/asciisourcerer).
 
 **`LICENSE`** :
    The project’s license file, specifying the terms under which the code can be used and distributed. Almost always **MIT License**.
