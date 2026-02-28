@@ -337,6 +337,14 @@ services:
   desc: |
     Blog from Read the Docs (a popular documentation hosting platform) covering platform updates, open source doc projects, static site generator news, and community announcements in the docs-as-code ecosystem.
 
+- name: Robert Delwood
+  site: https://robertdelwood.medium.com
+  feed: https://medium.com/feed/@robertdelwood
+  type: RSS
+  tags: [technical-writing, api-docs, programming, automation]
+  desc: |
+    The Medium "stories" of a professional API documentation writer, programmer, and former NASA engineer.
+
 - name: Sarah Deaton
   site: https://sdeaton.com
   feed: https://sdeaton.com/rss.xml
