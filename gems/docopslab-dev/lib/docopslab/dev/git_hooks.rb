@@ -128,11 +128,12 @@ module DocOpsLab
         private
 
         def hooks_template_dir
-          HOOKS_SOURCE_DIR
+          Library.ensure_available!
+          Library.resolve('hooks') || raise('Library hooks directory not found; run `labdev:sync:library`.')
         end
 
         def hooks_dir
-          HOOKS_DIR
+          Dev.hooks_dir
         end
       end
     end

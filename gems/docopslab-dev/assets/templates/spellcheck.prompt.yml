@@ -6,11 +6,12 @@
 # 2. For fix?: 'fix': Replace the term in the file with inferred corrected spelling
 # 3. For fix?: 'fix("word")': Replace the term with the word value verbatim
 # 4. For fix?: 'no' or 'n': Ignore this issue for now
-# 5. For fix?: 'pass': Wrap the affected text in {vale_off} and {vale_on} comment attributes
+# 5. For fix?: 'pass': Wrap the affected text in pass:[<!-- vale DocOpsLab-Authoring.Spelling = NO -->] and pass:[<!-- vale DocOpsLab-Authoring.Spelling = YES -->] comment attributes
 #               and make sure the attributes are defined in .adoc file header (offer to user):
 #               :vale_off: <!-- vale off -->
 #               :vale_on:  <!-- vale on -->
 # The spelling dictionary is the 'filters:' sequence in the Spelling.yml file
 # When adding to dictionary, maintain alphabetical order within sections
-# DO NOT TAKE INITIATIVE. STick to the instructed changes except where prompted with `fix?: 'fix'`.
+# DO NOT TAKE INITIATIVE. Stick to the instructed changes except where prompted with `fix?: 'fix'`.
+# If it is simpler (and safe) for you to use grep or sed to make fix() changes, do so.
 # DO NOT correct neigboring words in text nor add nor alter words in the dictionary other than those named.

@@ -14,7 +14,7 @@ module DocOpsLab
           FileUtils.mkdir_p('.config')
 
           # Copy template from gem
-          FileUtils.cp(MANIFEST_DEF_PATH, MANIFEST_PATH)
+          FileUtils.cp(Dev.manifest_def_path, MANIFEST_PATH)
           puts "✅ Created #{MANIFEST_PATH}"
         end
 
@@ -24,7 +24,10 @@ module DocOpsLab
             return false
           end
 
-          FileUtils.cp(GITIGNORE_STUB_SOURCE_PATH, '.gitignore')
+          Library.ensure_available!
+          stub = Library.resolve('templates/gitignore') ||
+                 raise('Library templates/gitignore not found; run `labdev:sync:library`.')
+          FileUtils.cp(stub, '.gitignore')
           puts '✅ Created .gitignore file'
           true
         end
@@ -35,7 +38,10 @@ module DocOpsLab
             return false
           end
 
-          FileUtils.cp(GEMFILE_STUB_SOURCE_PATH, 'Gemfile')
+          Library.ensure_available!
+          stub = Library.resolve('templates/Gemfile') ||
+                 raise('Library templates/Gemfile not found; run `labdev:sync:library`.')
+          FileUtils.cp(stub, 'Gemfile')
           puts '✅ Created Gemfile'
           true
         end
@@ -46,7 +52,10 @@ module DocOpsLab
             return false
           end
 
-          FileUtils.cp(RAKEFILE_STUB_SOURCE_PATH, 'Rakefile')
+          Library.ensure_available!
+          stub = Library.resolve('templates/Rakefile') ||
+                 raise('Library templates/Rakefile not found; run `labdev:sync:library`.')
+          FileUtils.cp(stub, 'Rakefile')
           puts '✅ Created Rakefile'
           true
         end

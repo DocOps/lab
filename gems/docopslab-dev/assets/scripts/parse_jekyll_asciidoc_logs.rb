@@ -5,6 +5,7 @@ require 'yaml'
 require 'time'
 require 'fileutils'
 require 'erb'
+require 'docopslab-dev'
 
 # Jekyll-AsciiDoc Log Parser
 #
@@ -23,6 +24,12 @@ module JekyllAsciiDocLogParser
     blue: 34,
     cyan: 36
   }.freeze
+
+  # Search paths for AI prompts, relative to project root or library cache
+  PROMPT_SEARCH_PATHS = [
+    File.join('.config', 'prompts'),
+    DocOpsLab::Dev.library_path('templates')
+  ].freeze
 
   # Represents a single log issue
   class LogIssue
@@ -343,8 +350,15 @@ module JekyllAsciiDocLogParser
     def ai_prompt agent_prompt=nil
       return agent_prompt if agent_prompt
 
-      template_path = File.join(TEMPLATES_DIR, 'jekyll-asciidoc-fix.prompt.yml')
-      File.read(template_path) if File.exist?(template_path)
+      prompt_filename = 'jekyll-asciidoc-fix.prompt.yml'
+
+      PROMPT_SEARCH_PATHS.each do |base_path|
+        full_path = File.join(base_path, prompt_filename)
+        return File.read(full_path) if File.exist?(full_path)
+      end
+
+      # No prompt found
+      nil
     end
 
     def yaml_template

@@ -23,10 +23,13 @@ labdev:
     all:
       _alias: "labdev:check"
   init:
+    _desc: Initialize development environment assets for this project
     all:
       _desc: Bootstrap the development environment for this project
     docs:
       _desc: Sync agent documentation files to project
+    templates:
+      _desc: Bootstrap cast targets from prime templates (init-only; skips existing files)
   run: 
     # there is no labdev:run:all
     script:
@@ -87,15 +90,19 @@ labdev:
     shellcheck:
       _desc: Run the base shellcheck command and options.
       _args:
+        path:
+          summ: Optional path to a specific file, directory, or glob to check.
+          required: false
         opts:
           summ: Additional arguments to pass to the shellcheck command.
           docs: |
             Use like:
-             bundle exec rake 'labdev:run:shellcheck["--enable=all --format=gcc"]'
+             bundle exec rake 'labdev:run:shellcheck[scripts/build.sh,"--enable=all --format=gcc"]'
           required: false
       _test:
         - bundle exec rake 'labdev:run:shellcheck'
-        - bundle exec rake 'labdev:run:shellcheck["--enable=all --format=gcc"]'
+        - bundle exec rake 'labdev:run:shellcheck[scripts/build.sh]'
+        - bundle exec rake 'labdev:run:shellcheck[scripts/,"--enable=all --format=gcc"]'
     actionlint:
       _desc: Run the base actionlint command and options.
       _args:
@@ -111,16 +118,26 @@ labdev:
   sync:
     _desc: Sync all managed files (configs, scripts, docs, styles, etc)
     all:
-      _alias: "labdev:sync"
+      _desc: Check library freshness then sync all managed assets (configs, scripts, docs, templates, hooks, styles)
     configs:
       _desc: Sync configuration files from config pack
     scripts:
       _desc: Update non-local (`.vendor/`) scripts from upstream
     docs:
       _desc: Sync files to untracked local paths
-      # _args:
-      #   force:
-      # GET RID OF docs[force], this makes no sense, we always overwrite
+    templates:
+      _desc: Sync canonical blocks from prime templates into manifest cast targets
+      _args:
+        path:
+          summ: Optional target file path to restrict the sync to a single entry.
+          required: false
+        dry:
+          summ: Pass 'dry' to preview changes without writing files.
+          required: false
+      _test:
+        - bundle exec rake labdev:sync:templates
+        - bundle exec rake 'labdev:sync:templates[AGENTS.md]'
+        - bundle exec rake 'labdev:sync:templates[AGENTS.md,dry]'
     styles:
       _desc: Sync Vale styles from gem source to project
       local:
@@ -129,6 +146,22 @@ labdev:
         _desc: Sync custom styles from gem and download remote packages
     hooks:
       _desc: Update git hooks from templates (interactive)
+    library:
+      _desc: Fetch the remote library (if stale) and sync content to manifest-configured paths
+      _test:
+        - bundle exec rake labdev:sync:library
+      stage:
+        _desc: Stage a local library directory into the cache and sync to project paths (bypasses remote fetch)
+        _args:
+          path:
+            summ: |
+              Optional path to the local library directory to stage.
+              Defaults to manifest library.local_path, then .library/ in the
+              current directory, then ../lab/.library/ for downstream projects.
+            required: false
+        _test:
+          - bundle exec rake labdev:sync:library:stage
+          - bundle exec rake 'labdev:sync:library:stage[../lab/.library]'
     vale:
       _desc: Sync Vale config and all styles (custom + remote packages)
       local:
@@ -286,9 +319,13 @@ labdev:
           required: false
   show:
     scripts:
-      _desc: List available script templatest
+      _desc: List available script templates
     hooks:
       _desc: List available hook templates
+    library:
+      _desc: Show the current library cache status and version
+      _test:
+        - bundle exec rake labdev:show:library
     rule:
       _desc: Show details about a specific linting rule
       _args:
@@ -301,13 +338,90 @@ labdev:
       _test:
         - bundle exec rake 'labdev:show:rule[rubocop,Layout/LineLength]'
         - bundle exec rake 'labdev:show:rule[vale,DocOpsLab-Authoring.ExNotEg]'
+  skim:
+    _desc: Skim source files for machine-oriented structured outlines (AsciiDoc + Markdown autodetect)
+    _args:
+      path:
+        summ: |
+          File path, directory, or glob of source files.
+          Format auto-detected from extension.
+        required: true
+      form:
+        summ: |
+          Output shape: tree, flat, or tree,flat (comma-separated).
+          Defaults to tree for AsciiDoc, flat for Markdown.
+          When form is explicitly passed, output defaults to JSON.
+        required: false
+      syntax:
+        summ: |
+          Override output format: json or yaml.
+          Default: yaml when form is omitted; json when form is explicitly passed.
+        required: false
+    _test:
+      - bundle exec rake 'labdev:skim[README.adoc]'
+      - bundle exec rake 'labdev:skim[.,flat]'
+      - bundle exec rake 'labdev:skim[.,tree]'
+      - bundle exec rake 'labdev:skim[*.adoc,,json]'
+      - bundle exec rake 'labdev:skim[.,both]'
+    adoc:
+      _desc: Skim AsciiDoc source files using Sourcerer::SourceSkim
+      _args:
+        path:
+          summ: File path, directory, or glob of AsciiDoc source files.
+          required: true
+        form:
+          summ: |
+            Output shape: tree, flat, or tree,flat (comma-separated).
+            Defaults to tree. When form is explicitly passed, output defaults to JSON.
+          required: false
+        syntax:
+          summ: |
+            Override output format: json or yaml.
+            Default: yaml when form is omitted; json when form is explicitly passed.
+          required: false
+      _test:
+        - bundle exec rake 'labdev:skim:adoc[README.adoc]'
+        - bundle exec rake 'labdev:skim:adoc[.,flat]'
+        - bundle exec rake 'labdev:skim:adoc[*.adoc,,yaml]'
+    md:
+      _desc: Skim Markdown source files using Sourcerer::SourceSkim. Supports upstream:local overlay path syntax.
+      _docs: |
+        Accepts a single path or an upstream:local overlay pair (colon-separated).
+
+        With two paths, local files shadow upstream files sharing the same relative path,
+        and local-only files are appended. This is useful when a project maintains local
+        additions or overrides alongside a synced upstream docs library.
+
+        Examples:
+          Single path:   .agent/docs/
+          Overlay pair:  .agent/docs/:_docs/agent/
+      _args:
+        path:
+          summ: |
+            File path, directory, or glob of Markdown source files.
+            Optionally provide two directories as upstream:local to merge with local overrides taking precedence.
+          required: true
+        form:
+          summ: |
+            Output shape: tree, flat, or tree,flat (comma-separated).
+            Defaults to flat for Markdown. When form is explicitly passed, output defaults to JSON.
+          required: false
+        syntax:
+          summ: |
+            Override output format: json or yaml.
+            Default: yaml when form is omitted; json when form is explicitly passed.
+          required: false
+      _test:
+        - bundle exec rake 'labdev:skim:md[.agent/docs/]'
+        - bundle exec rake 'labdev:skim:md[.agent/docs/,flat,json]'
+        - bundle exec rake 'labdev:skim:md[.agent/docs/:_docs/agent/,flat,json]'
   # ADDING:
   help:
     _desc: Show help information about labdev tasks
     _docs: |
       Default behavior is to show general help information.
 
-      Use like:
+      Use like: 
        bundle exec rake 'labdev:help[lint:ruby]'
     _args:
       task_string:

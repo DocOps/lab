@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # DocOps Lab Dev Container entrypoint script
-# Handles command routing, bundle management, and rake aliasing
+# Handles command routing, bundle management, and rake task shortcuts
 
 set -euo pipefail
 
@@ -11,7 +11,7 @@ fi
 
 # If running inside a project with a Gemfile, ensure per-project bundler config
 # Only configure bundler if we're about to use it
-if [ -f "Gemfile" ] && { [ "$1" = "rake" ] || [[ "$1" == labdev:* ]] || [ "$1" = "bundle" ]; }; then
+if [ -f "Gemfile" ] && { [ "$1" = "rake" ] || [[ "$1" == :* ]] || [[ "$1" == labdev:* ]] || [ "$1" = "bundle" ]; }; then
   # Force per-project install path to .bundle/
   bundle config set --local path '.bundle' >/dev/null
 
@@ -35,12 +35,25 @@ if [ "$1" = "rake" ]; then
   fi
 fi
 
-# labdev:* tasks -> rake tasks
-if [[ "$1" == labdev:* ]]; then
+# Shortcut: :task-name runs labdev:task-name (PREFERRED SYNTAX)
+# This takes priority over labdev:* for consistency
+if [[ $# -gt 0 ]] && [[ "$1" == :* ]]; then
+  task="${1#:}"
+  shift
+  if [ -f "Gemfile" ]; then
+    exec bundle exec rake "labdev:$task" "$@"
+  else
+    exec rake -r docopslab/dev "labdev:$task" "$@"
+  fi
+fi
+
+# labdev:* tasks -> rake tasks (BACKWARD COMPATIBILITY)
+if [[ $# -gt 0 ]] && [[ "$1" == labdev:* ]]; then
   # Special handling for init tasks - create minimal Rakefile if needed
   if [[ "$1" == labdev:init:all ]] && [ ! -f "Rakefile" ]; then
-    echo "# frozen_string_literal: true\n\nrequire 'docopslab/dev'" > Rakefile
-    exec rake "$@"
+    echo "# frozen_string_literal: true
+
+require 'docopslab/dev'" > Rakefile
   fi
   
   # Other labdev tasks need a project context
@@ -51,5 +64,5 @@ if [[ "$1" == labdev:* ]]; then
   fi
 fi
 
-# Otherwise execute directly
+# Otherwise execute directly (bash, git, etc.)
 exec "$@"

@@ -30,7 +30,13 @@ RUN apt-get update && \
       python3-pip \
       yamllint \
       pre-commit \
-    && rm -rf /var/lib/apt/lists/*
+    && export GH_VERSION=$(curl -fsSL https://api.github.com/repos/cli/cli/releases/latest | \
+                           grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/') && \
+       curl -fsSL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.deb" \
+           -o /tmp/gh.deb && \
+       dpkg -i /tmp/gh.deb && \
+       rm -f /tmp/gh.deb && \
+    rm -rf /var/lib/apt/lists/*
 
 # Vale
 RUN set -euo pipefail; \
@@ -61,7 +67,10 @@ RUN gem install --no-document bundler -v 2.7.2
 
 # Install our gem’s dependencies into the image (system path)
 RUN cd /tmp/docopslab-dev && \
-    bundle install --jobs 4 --retry 3
+    (bundle install --jobs 4 --retry 3 || \
+     (sed -i "s|gem 'asciisourcerer', path: '../../../asciisourcerer'|gem 'asciisourcerer'|g" Gemfile && \
+      bundle update asciisourcerer && \
+      bundle install --jobs 4 --retry 3))
 
 # Common global tools we want available for everyone (system path)
 RUN gem install --no-document asciidoctor rake

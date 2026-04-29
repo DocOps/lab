@@ -1,0 +1,22 @@
+categories:
+  - dest: README.adoc
+    source: gems/docopslab-dev/docs/library-readme.adoc
+
+  - dest: config-packs
+    source: gems/docopslab-dev/assets/config-packs
+
+  - dest: hooks
+    source: gems/docopslab-dev/assets/hooks
+
+  - dest: scripts
+    source: gems/docopslab-dev/assets/scripts
+
+  - dest: templates
+    source: gems/docopslab-dev/assets/templates
+
+  - dest: docs/agent
+    source: gems/docopslab-dev/docs/agent
+    prebuild: gemdo:gen_agent_docs
+  
+  - dest: templates/AGENTS.markdown
+    source: _docs/templates/AGENTS.markdown

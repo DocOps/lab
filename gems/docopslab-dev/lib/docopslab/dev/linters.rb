@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'open3'
+require 'pathname'
+require 'sourcerer/util/pathifier'
 
 module DocOpsLab
   module Dev
@@ -9,9 +11,9 @@ module DocOpsLab
         def run_rubocop context, file_path=nil, opts_string=''
           context.generate_rubocop_config if context.respond_to?(:generate_rubocop_config)
 
-          rubocop_config_file = CONFIG_PATHS[:rubocop]
+          rubocop_config_file = Paths::CONFIG_FILES[:rubocop]
           unless File.exist?(rubocop_config_file)
-            rubocop_config_file = RUBOCOP_CONFIG_PATH # Fallback to vendor config
+            rubocop_config_file = File.join(Paths.config_vendor_dir, 'rubocop.yml') # Fallback to vendor config
           end
 
           unless File.exist?(rubocop_config_file)
@@ -57,9 +59,9 @@ module DocOpsLab
         end
 
         def run_rubocop_with_filter _context, filter_name
-          rubocop_config_file = CONFIG_PATHS[:rubocop]
+          rubocop_config_file = Paths::CONFIG_FILES[:rubocop]
           unless File.exist?(rubocop_config_file)
-            rubocop_config_file = RUBOCOP_CONFIG_PATH # Fallback to vendor config
+            rubocop_config_file = File.join(Paths.config_vendor_dir, 'rubocop.yml') # Fallback to vendor config
           end
 
           unless File.exist?(rubocop_config_file)
@@ -88,7 +90,16 @@ module DocOpsLab
           puts "🐚 Running ShellCheck on #{running_on}"
 
           shell_scripts = if scope == :file
-                            File.exist?(file_path) ? [file_path] : []
+                            result = Sourcerer::Util::Pathifier.match(file_path)
+                            if result.type == :file
+                              result.enum.to_a
+                            else
+                              result.enum.select do |f|
+                                ext = File.extname(f)
+                                ext.match?(/\.(sh|bash)$/) ||
+                                  (ext.empty? && FileUtilities.shell_shebang?(f))
+                              end.sort
+                            end
                           else
                             context.find_shell_scripts
                           end
@@ -109,7 +120,14 @@ module DocOpsLab
               success = false
               passed = false
             end
-            cmd = "shellcheck --severity=warning #{opts_string} --rcfile=.config/shellcheckrc #{script}".strip
+            # Relativize absolute paths so the command works both natively and inside
+            # Docker (which mounts $(pwd) as /workspace and sets -w /workspace).
+            script_arg = if script.start_with?('/')
+                           Pathname.new(script).relative_path_from(Pathname.new(Dir.pwd)).to_s
+                         else
+                           script
+                         end
+            cmd = "shellcheck --severity=warning #{opts_string} --rcfile=.config/shellcheckrc #{script_arg}".strip
             shellcheck = context.run_with_fallback('shellcheck', cmd)
             unless shellcheck
               success = false
@@ -183,7 +201,7 @@ module DocOpsLab
           puts '  ✅ Vale config up to date' unless context.generate_vale_config(style_override: style_override)
 
           # Use the generated config file
-          config_file = CONFIG_PATHS[:vale]
+          config_file = Paths::CONFIG_FILES[:vale]
 
           unless File.exist?(config_file)
             puts "❌ No Vale config found. Run 'labdev:sync:all' to generate one."
@@ -207,7 +225,32 @@ module DocOpsLab
 
           # Find AsciiDoc files to check, excluding vendor/ignored directories
           if scope == :file
-            asciidoc_files = [file_path]
+            path_result = Sourcerer::Util::Pathifier.match(file_path)
+            if path_result.type == :file
+              asciidoc_files = [file_path]
+            else
+              # Directory or glob: enumerate files and apply ext/skip filters from manifest,
+              # so that skip patterns (ex: in docopslab-dev.yml) are respected even when a
+              # specific directory or glob is passed via the task argument.
+              path_config = context.get_path_config('vale')
+              skip_paths = path_config[:skip] || []
+              exts = path_config[:exts] || []
+              asciidoc_files = path_result.enum.select do |f|
+                normalized = f.sub(%r{^\./}, '')
+                if exts && !exts.empty?
+                  ext = File.extname(f).delete_prefix('.')
+                  next false unless exts.include?(ext)
+                end
+                next false if skip_paths.any? { |p| FileUtilities.file_matches_ignore_pattern?(normalized, p) }
+
+                true
+              end.sort
+              if asciidoc_files.empty?
+                puts "📄 No AsciiDoc files found to check in #{file_path}"
+                return true
+              end
+              puts "📄 Found #{asciidoc_files.length} AsciiDoc file(s) to check in #{file_path}"
+            end
           else
             asciidoc_files = context.find_asciidoc_files
             if asciidoc_files.empty?
@@ -364,18 +407,25 @@ module DocOpsLab
           results.values.all?
         end
 
-        def run_rubocop_auto_fix _context, path: nil
+        def run_rubocop_auto_fix context, path: nil
           puts '👮 Running RuboCop auto-correction...'
 
-          unless File.exist?(RUBOCOP_CONFIG_PATH)
+          context.generate_rubocop_config if context.respond_to?(:generate_rubocop_config)
+
+          rubocop_config_file = Paths::CONFIG_FILES[:rubocop]
+          unless File.exist?(rubocop_config_file)
+            rubocop_config_file = File.join(Paths.config_vendor_dir, 'rubocop.yml') # Fallback to vendor config
+          end
+
+          unless File.exist?(rubocop_config_file)
             puts "❌ No RuboCop config found. Run 'labdev:init' to create one."
             return false
           end
 
-          puts "📄 Using config: #{RUBOCOP_CONFIG_PATH}"
+          puts "📄 Using config: #{rubocop_config_file}"
 
           # Build command with optional path
-          cmd = "bundle exec rubocop --config #{RUBOCOP_CONFIG_PATH} --autocorrect-all"
+          cmd = "bundle exec rubocop --config #{rubocop_config_file} --autocorrect-all"
           if path
             cmd += " #{path}"
             puts "📄 Targeting path: #{path}"

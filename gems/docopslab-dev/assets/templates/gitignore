@@ -36,9 +36,15 @@ tmp/
 # Logs
 *.log
 
+# tag::universal-docopslab-dev-configs[]
 # Generated config files (merged from base + local)
 .config/vale.ini
 .config/htmlproofer.yml
+# end::universal-docopslab-dev-configs[]
+# tag::universal-docopslab-agent[]
+.agent/*
+!.agent/team/
+# end::universal-docopslab-agent[]
 
 # Gem content paths
 gems/**/pkg/

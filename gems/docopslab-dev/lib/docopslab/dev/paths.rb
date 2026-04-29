@@ -9,23 +9,6 @@ module DocOpsLab
         File.expand_path('../../..', __dir__)
       end
 
-      # Asset directories in gem
-      def self.gem_assets
-        File.join(gem_root, 'assets')
-      end
-
-      def self.gem_config_packs
-        File.join(gem_assets, 'config-packs')
-      end
-
-      def self.gem_hooks
-        File.join(gem_assets, 'hooks')
-      end
-
-      def self.gem_scripts
-        File.join(gem_assets, 'scripts')
-      end
-
       # Config vendor directory (where config packs are synced to)
       def self.config_vendor_dir
         '.config/.vendor/docopslab'

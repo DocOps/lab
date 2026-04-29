@@ -20,12 +20,10 @@ Gem::Specification.new do |spec|
   spec.metadata['changelog_uri'] = 'https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
-  spec.files = Dir.glob('{lib,config-packs,hooks,docs,assets}/**/*') +
+  spec.files = Dir.glob('{lib,docs}/**/*') +
                %w[README.adoc LICENSE docopslab-dev.gemspec] +
                Dir.glob('specs/data/*')
 
-  spec.bindir = 'exe'
-  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
   # Core runtime dependencies
@@ -34,6 +32,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'yaml', '~> 0.2'
 
   # Code quality and linting
+  spec.add_dependency 'asciisourcerer', '~> 0.2'
   spec.add_dependency 'debride',        '~> 1.13'
   spec.add_dependency 'fasterer',       '~> 0.11'
   spec.add_dependency 'flog',           '~> 4.8'

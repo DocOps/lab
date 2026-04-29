@@ -8,16 +8,22 @@ require 'pathname'
 require 'shellwords'
 require_relative 'dev/version' # includes RUBY_TARGET
 require_relative 'dev/paths'
+require_relative 'dev/manifest'
 require_relative 'dev/spell_check'
 require_relative 'dev/log_parser'
+require_relative 'dev/skim'
 require_relative 'dev/tasks'
 require_relative 'dev/git_hooks'
 require_relative 'dev/tool_execution'
+require_relative 'dev/git_branch'
 require_relative 'dev/linters'
 require_relative 'dev/config_manager'
 require_relative 'dev/file_utils'
 require_relative 'dev/script_manager'
+require_relative 'dev/library'
 require_relative 'dev/sync_ops'
+require_relative 'dev/data_utils'
+require_relative 'dev/cast_ops'
 require_relative 'dev/checkers'
 require_relative 'dev/initializer'
 require_relative 'dev/auto_fix_asciidoc'
@@ -37,45 +43,74 @@ module DocOpsLab
       end
     end
 
-    # Path constants
-    # Project paths (local/runtime)
+    # Path constants (Backwards compatibility)
     MANIFEST_PATH = '.config/docopslab-dev.yml'
-    CONFIG_VENDOR_DIR = Paths.config_vendor_dir
-    HOOKS_DIR = '.git/hooks'
-
-    # Runtime/generated config files (merged from base + local)
-    CONFIG_PATHS = Paths::CONFIG_FILES
-
-    # Shorthand for rubocop (most commonly referenced)
-    RUBOCOP_CONFIG_PATH = CONFIG_PATHS[:rubocop]
-
-    # Gem source paths (assets bundled with gem)
-    MANIFEST_DEF_PATH = File.join(GEM_ROOT, 'specs', 'data', 'default-manifest.yml')
-    TOOLS_DEF_PATH = File.join(GEM_ROOT, 'specs', 'data', 'tools.yml')
-    CONFIG_PACKS_SOURCE_DIR = Paths.gem_config_packs
-    SCRIPTS_SOURCE_DIR = Paths.gem_scripts
-    HOOKS_SOURCE_DIR = Paths.gem_hooks
-    TEMPLATES_DIR = File.join(GEM_ROOT, 'assets', 'templates')
-    GITIGNORE_STUB_SOURCE_PATH = File.join(TEMPLATES_DIR, 'gitignore')
-    GEMFILE_STUB_SOURCE_PATH = File.join(TEMPLATES_DIR, 'Gemfile')
-    RAKEFILE_STUB_SOURCE_PATH = File.join(TEMPLATES_DIR, 'Rakefile')
-
-    # Cached data
-    @manifest = nil
-    @tools_data = nil
+    XDG_CACHE_SUBPATH = 'docopslab/dev/library'
 
     class << self
       attr_accessor :manifest, :tools_data
+      attr_writer :manifest_path, :xdg_cache_subpath
 
-      # Common Utility
+      def manifest_path
+        @manifest_path || MANIFEST_PATH
+      end
+
+      def xdg_cache_subpath
+        @xdg_cache_subpath || XDG_CACHE_SUBPATH
+      end
+
+      # Upstream library defaults
+      def default_library_repo
+        'DocOps/lab'
+      end
+
+      def default_library_branch
+        'labdev-library'
+      end
+
+      # Project paths (local/runtime)
+      def config_vendor_dir
+        Paths.config_vendor_dir
+      end
+
+      def hooks_dir
+        '.git/hooks'
+      end
+
+      # Runtime/generated config files (merged from base + local)
+      def config_paths
+        Paths::CONFIG_FILES
+      end
+
+      # Shorthand for rubocop (most commonly referenced)
+      def rubocop_config_path
+        config_paths[:rubocop]
+      end
+
+      # Gem data paths (bundled with gem in specs/data/)
+      def manifest_def_path
+        File.join(GEM_ROOT, 'specs', 'data', 'default-manifest.yml')
+      end
+
+      def tools_def_path
+        File.join(GEM_ROOT, 'specs', 'data', 'tools.yml')
+      end
+
+      # Asset paths are resolved at runtime from the remote library cache.
+      # Use Library.resolve('config-packs/...'), Library.resolve('templates/...') etc.
+      def library_path subpath=nil
+        return Library::Cache.current_path unless subpath
+
+        File.join(Library::Cache.current_path, subpath)
+      end
 
       def load_manifest force_reload: false
         return @manifest if @manifest && !force_reload
 
-        @manifest = YAML.load_file(MANIFEST_PATH) if File.exist?(MANIFEST_PATH)
+        @manifest = YAML.load_file(manifest_path) if File.exist?(manifest_path)
         @manifest
       rescue StandardError => e
-        warn "Failed to load manifest: #{e.message}"
+        warn "Failed to load manifest at #{manifest_path}: #{e.message}"
         nil
       end
 
@@ -83,8 +118,8 @@ module DocOpsLab
         return @tools_data if @tools_data
 
         @tools_data = begin
-          if File.exist?(TOOLS_DEF_PATH)
-            YAML.load_file(TOOLS_DEF_PATH)
+          if File.exist?(tools_def_path)
+            YAML.load_file(tools_def_path)
           else
             []
           end
@@ -205,6 +240,10 @@ module DocOpsLab
         SyncOps.sync_docs(self, force: force)
       end
 
+      def sync_templates force: false
+        SyncOps.sync_templates(self, force: force)
+      end
+
       # Checkers & Finders
 
       def tool_available? tool_name
@@ -317,8 +356,9 @@ module DocOpsLab
       end
 
       def run_vale file_path=nil, opts_string='', output_format: :cli, filter: nil, style_override: nil
-        Linters.run_vale self, file_path, opts_string, output_format: output_format, filter: filter,
-style_override: style_override
+        Linters.run_vale(
+          self, file_path, opts_string,
+          output_format: output_format, filter: filter, style_override: style_override)
       end
 
       def lint_file file_path
@@ -357,12 +397,12 @@ style_override: style_override
           puts "❌ Vale rule file not found: #{style_path}"
           return
         end
-        config = File.read(CONFIG_PATHS[:vale])
+        config = File.read(Paths::CONFIG_FILES[:vale])
         config.lines.each do |line|
           next unless line.strip.start_with?("#{package}.#{rule_name} =")
 
           rule_setting = line.strip.split('=', 2).last.strip
-          puts "⚙️  Rule setting from #{CONFIG_PATHS[:vale]}: '#{rule_setting}'"
+          puts "⚙️  Rule setting from #{Paths::CONFIG_FILES[:vale]}: '#{rule_setting}'"
           break
         end
         unless File.exist?(style_path)
@@ -376,7 +416,7 @@ style_override: style_override
 
       def print_cop rule
         puts "📄 RuboCop cop documentation for: #{rule}"
-        cmd = "bundle exec rubocop --show-cops #{rule} --config #{RUBOCOP_CONFIG_PATH}"
+        cmd = "bundle exec rubocop --show-cops #{rule} --config #{File.join(Paths.config_vendor_dir, 'rubocop.yml')}"
         success = system(cmd)
         puts '❌ Failed to retrieve RuboCop cop documentation' unless success
       end

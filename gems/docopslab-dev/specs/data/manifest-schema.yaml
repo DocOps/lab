@@ -5,7 +5,7 @@ $schema:
     version: v1
   properties:
     _meta:
-      req: [source,tools]
+      req: [source,tools,docs,library,attributes,templates]
     source:
       type: Map
       properties:
@@ -26,7 +26,7 @@ $schema:
           default: config-packs
     tools:
       type: ArrayTable
-      desc: List of config targets to sync & tools to permit.
+      desc: Registry of config targets to sync & tools to permit.
       properties:
         _meta:
           req: [tool,files]
@@ -43,7 +43,7 @@ $schema:
           default: false
         files:
           type: ArrayTable
-          desc: List of upstream/local file pairs
+          desc: Manifest of upstream/local file pairs
           properties:
             _meta:
               req: [upstream,local]
@@ -61,3 +61,141 @@ $schema:
               type: Boolean
               desc: Whether this file mapping is active
               default: true
+          paths:
+            desc: Additional path-based config for tools that support it
+            type: Map
+            properties:
+              lint:
+                type: ArrayList
+                desc: List of paths to include in linting (relative to project root)
+              skip:
+                type: ArrayList
+                desc: List of paths to exclude from linting (relative to project root)
+              exts:
+                type: ArrayList
+                desc: |
+                  List of file extensions to include in linting (ex: ['adoc', 'md'])
+    docs:
+      type: ArrayTable
+      desc: Registry of documentation targets to sync.
+      properties:
+        _meta:
+          req: [source,target]
+        source:
+          type: Path
+          desc: Upstream path, relative to the library source path (usually `library/`) (supports globs)
+        target:
+          type: Path
+          desc: Local destination path within the project repo (directory if source is glob)
+        synced:
+          type: Boolean
+          desc: |
+            Whether to auto-sync this file from upstream.
+            WARNING: This overwrites local changes.
+          default: true
+    templates:
+      type: ArrayTable
+      desc: Registry of templates used to sync local file content.
+      properties:
+        _meta:
+          req: [source,target]
+        source:
+          type: Path
+          desc: Upstream path to a template file, relative to the library source path (usually `library/`).
+          docs: |
+            The base path for this value is established by the `library.source.path` property.
+        target:
+          type: Path
+          desc: |
+            Local destination path within the project repo, including filename and extension.
+        synced:
+          type: Boolean
+          desc: |
+            Whether to auto-sync this file from upstream.
+            If properly conigured, local modifications outside canonical blocks.
+          default: true
+        data:
+          type: Map
+          desc: Optional data to render the template with.
+
+    library:
+      type: Map
+      desc: |
+        Configuration for remote library fetch and host-wide cache.
+        This feature is for using an alternate library on a per-repo basis.
+        It can be used to cache and use non-standard libraries stored in a distinct path on the host.
+      properties:
+        _meta:
+          acc: [enabled,source,sync,catalog]
+        enabled:
+          type: Boolean
+          desc: Whether library sync operations are active.
+          default: true
+        source:
+          type: Map
+          desc: Remote source configuration for the library.
+          properties:
+            _meta:
+              req: [repo,ref]
+            type:
+              type: Slug
+              desc: Fetch strategy (git-branch | git-repo | http-archive)
+              default: git-branch
+            repo:
+              type: String
+              desc: |
+                Git repository to fetch library from, either on Git (`owner/name`) or a local path on host (value starting: `~` for relative to home, `.` for relevant to present directory, or `/` for asbolute paths).
+              default: DocOps/lab
+            ref:
+              type: String
+              desc: Branch or tag to fetch from.
+              default: labdev-library
+            path:
+              type: Path
+              desc: Path within the repository to the library root. Defaults to the branch root if omitted.
+        sync:
+          type: Map
+          desc: Caching and sync behaviour.
+          properties:
+            _meta:
+              req: []
+            mode:
+              type: Slug
+              desc: Fetch mode. Currently only latest-only is supported.
+              default: latest-only
+            cache_root:
+              type: Path
+              desc: |
+                Override the XDG-derived cache root for the library snapshot.
+                Defaults the the host's `$XDG_CACHE_HOME/docopslab/dev/library` (usually `~/.cache/docopslab/dev/library`).
+
+            local_path:
+              type: Path
+              desc: |
+                Local directory pointing to the active library snapshot (e.g. `library/current`).
+                When set and the catalog is present, this acts as the primary cache source and
+                the remote SHA check is skipped entirely; intended for the library maintainer's
+                own repo (monorepo use). Its parent directory is used as the effective cache root.
+                Downstream consumer projects omit this and rely on the XDG cache or `sync.cache_root`.
+        catalog:
+          type: Map
+          desc: Optional asset-level overrides; replaces any external library index file.
+          properties:
+            _meta:
+            overrides:
+              type: ArrayTable
+              desc: Per-asset path override entries applied after cache resolution.
+              properties:
+                _meta:
+                  req: [path]
+                path:
+                  type: Path
+                  desc: |
+                    Relative path within the library (ex: templates/README.asciidoc).
+                category:
+                  type: Slug
+                  desc: Override the inferred category label for this asset.
+                exclude:
+                  type: Boolean
+                  desc: Exclude this path from resolution results.
+                  default: false

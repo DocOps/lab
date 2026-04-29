@@ -146,8 +146,8 @@ module DocOpsLab
           require 'erb'
 
           unless agent_prompt
-            template_path = File.join(TEMPLATES_DIR, 'spellcheck.prompt.yml')
-            agent_prompt = File.read(template_path) if File.exist?(template_path)
+            template_path = Library.resolve('templates/spellcheck.prompt.yml')
+            agent_prompt = File.read(template_path) if template_path && File.exist?(template_path)
           end
 
           # Create the YAML content with ERB templating for better formatting

@@ -9,8 +9,13 @@ module DocOpsLab
         def sync_scripts
           puts '📜 Syncing common scripts from DocOps Lab...'
 
-          unless Dir.exist?(SCRIPTS_SOURCE_DIR)
-            puts '❌ No scripts directory found in gem'
+          unless Library.available?
+            puts '❌ Library not available; run `labdev:sync:library` to fetch.'
+            return false
+          end
+          scripts_source = Library.resolve('scripts')
+          unless scripts_source && Dir.exist?(scripts_source)
+            puts '❌ scripts not found in library; run `labdev:sync:library` to fetch.'
             return false
           end
 
@@ -20,7 +25,7 @@ module DocOpsLab
 
           synced_count = 0
 
-          Dir.glob("#{SCRIPTS_SOURCE_DIR}/*").each do |script_path|
+          Dir.glob("#{scripts_source}/*").each do |script_path|
             next unless File.file?(script_path)
 
             script_name = File.basename(script_path)
@@ -47,14 +52,15 @@ module DocOpsLab
         end
 
         def list_script_templates
-          unless Dir.exist?(SCRIPTS_SOURCE_DIR)
-            puts '❌ No scripts directory found in gem'
+          scripts_source = Library.resolve('scripts')
+          unless scripts_source && Dir.exist?(scripts_source)
+            puts '❌ scripts not found in library; run `labdev:sync:library` to fetch.'
             return false
           end
 
           puts '📜 Available script templates:'
 
-          Dir.glob("#{SCRIPTS_SOURCE_DIR}/*").each do |script_path|
+          Dir.glob("#{scripts_source}/*").each do |script_path|
             next unless File.file?(script_path)
 
             script_name = File.basename(script_path)

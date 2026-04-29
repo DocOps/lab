@@ -48,6 +48,14 @@ if [[ -f ".config/docopslab-dev.yml" ]]; then
   fi
 fi
 
+# If the repo has a Gemfile, make sure none of the gems have a path: '../*' even though path: './*' is fine since it won't break for other users
+if [ -f "Gemfile" ]; then
+  if git diff --cached -U0 | grep -E '^\+.*gem [a-zA-Z0-9_-]+ .+ path:\s*['"'"'"]\.\./.+['"'"'"]'; then
+    echo ""
+    echo "❌ Error: Detected gems with local path: '../*' parameters in Gemfile changes. This will break for other users and CI."
+  fi
+fi
+
 # Run all linters
 if command -v bundle &> /dev/null; then
   echo "🧹 Running all linters..."

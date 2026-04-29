@@ -6,36 +6,35 @@ require 'pathname'
 
 module DocOpsLab
   module Dev
+    # rubocop:disable Metrics/ModuleLength
     module SyncOps
-      # rubocop :disable Metrics/ClassLength
+      # rubocop:disable Metrics/ClassLength
       class << self
         def install_vale_styles context
-          return unless File.exist?(CONFIG_PATHS[:vale]) && context.tool_available?('vale')
+          return unless File.exist?(Paths::CONFIG_FILES[:vale]) && context.tool_available?('vale')
 
-          puts "📚 Syncing Vale styles using Packages key in #{CONFIG_PATHS[:vale]} (local and remote packages)"
-          context.run_with_fallback('vale', "vale --config=#{CONFIG_PATHS[:vale]} sync")
+          puts "📚 Syncing Vale styles using Packages key in #{Paths::CONFIG_FILES[:vale]} (local and remote packages)"
+          context.run_with_fallback('vale', "vale --config=#{Paths::CONFIG_FILES[:vale]} sync")
         end
 
         def sync_vale_styles context, local: false
           puts '📚 Syncing Vale styles...'
 
-          styles_source_root = if context.lab_dev_mode?
-                                 # Running inside lab monorepo
-                                 'gems/docopslab-dev/assets/config-packs/vale'
-                               else
-                                 # Running from consumer project with path dependency
-                                 File.join(GEM_ROOT, 'assets', 'config-packs', 'vale')
-                               end
+          unless Library.available?
+            puts '❌ Library not available; run `labdev:sync:library` to fetch.'
+            return false
+          end
+          styles_source_root = Library.resolve('config-packs/vale')
+          unless styles_source_root
+            puts '❌ config-packs/vale not found in library; run `labdev:sync:library` to fetch.'
+            return false
+          end
           styles_dest_root = '.config/.vendor/vale/styles'
           FileUtils.mkdir_p(styles_dest_root)
 
           # Get the list of local styles from tools.yml
           begin
-            tools_yml_path = if context.lab_dev_mode?
-                               'gems/docopslab-dev/specs/data/tools.yml'
-                             else
-                               File.join(GEM_ROOT, 'specs', 'data', 'tools.yml')
-                             end
+            tools_yml_path = Dev.tools_def_path
 
             style_paths_array = YAML.load_file(tools_yml_path)
                                     .find { |t| t['slug'] == 'vale' }['packaging']['packages']
@@ -77,7 +76,7 @@ module DocOpsLab
           # If not local-only, also run Vale sync for remote styles
           unless local
             puts '📦 Syncing remote Vale packages...'
-            vale_config = CONFIG_PATHS[:vale]
+            vale_config = Paths::CONFIG_FILES[:vale]
             context.generate_vale_config unless File.exist?(vale_config)
             context.run_with_fallback('vale', "vale --config=#{vale_config} sync")
           end
@@ -91,6 +90,12 @@ module DocOpsLab
 
           docs_entries = manifest['docs']
           return false unless docs_entries.is_a?(Array)
+
+          lib_root = Library.root
+          unless lib_root
+            puts '❌ Library not available; run `labdev:sync:library` to fetch.'
+            return false
+          end
 
           puts '📚 Syncing documentation files...'
 
@@ -107,16 +112,14 @@ module DocOpsLab
             next unless source_pattern
             next if synced # Only collect exclusions
 
-            # Resolve source file path
+            # Resolve source file path relative to library root
             if source_pattern.include?('*')
-              # Glob pattern for exclusions
-              source_glob = File.join(GEM_ROOT, source_pattern)
+              source_glob = File.join(lib_root, source_pattern)
               Dir.glob(source_glob).each do |source_file|
                 excluded_files.add(source_file) if File.file?(source_file)
               end
             else
-              # Single file exclusion
-              source_file = File.join(GEM_ROOT, source_pattern)
+              source_file = File.join(lib_root, source_pattern)
               excluded_files.add(source_file) if File.exist?(source_file)
             end
           end
@@ -134,8 +137,7 @@ module DocOpsLab
 
             # Check if source is a glob pattern
             if source_pattern.include?('*')
-              # Glob pattern; copy matching files
-              source_glob = File.join(GEM_ROOT, source_pattern)
+              source_glob = File.join(lib_root, source_pattern)
               matching_files = Dir.glob(source_glob)
 
               if matching_files.empty?
@@ -147,13 +149,18 @@ module DocOpsLab
                 next unless File.file?(source_file)
                 next if sources_checked.include?(source_file)
 
-                # Skip if explicitly excluded
                 if excluded_files.include?(source_file)
                   puts "  ⏭️  Skipped #{File.basename(source_file)} (explicitly excluded)"
                   next
                 end
 
-                # Determine target file path
+                # Guard: docs/agent/AGENTS.md was relocated to templates/AGENTS.markdown.
+                if source_file.end_with?('docs/agent/AGENTS.md')
+                  puts '  ⏭️  Skipped docs/agent/AGENTS.md \
+                        (relocated to templates/AGENTS.markdown; remove from manifest)'
+                  next
+                end
+
                 filename = File.basename(source_file)
                 target_file = File.join(target_path, filename)
 
@@ -163,11 +170,11 @@ module DocOpsLab
                 skipped_count += 1 if result == :skipped
               end
             else # Single file
-              source_file = File.join(GEM_ROOT, source_pattern)
+              source_file = File.join(lib_root, source_pattern)
 
               unless File.exist?(source_file)
                 puts "  ❌ Source file not found: #{source_file}"
-                puts "     Run 'bundle exec rake gemdo:gen_agent_docs' in DocOps/lab to generate docs"
+                puts "     Run 'bundle exec rake labdev:sync:library` then 'labdev:sync:docs' to refresh"
                 next
               end
 
@@ -176,6 +183,12 @@ module DocOpsLab
               # Skip if explicitly excluded (shouldn't happen for inclusions, but safety check)
               if excluded_files.include?(source_file)
                 puts "  ⏭️  Skipped #{File.basename(source_file)} (explicitly excluded)"
+                next
+              end
+
+              # Guard: docs/agent/AGENTS.md was relocated to templates/AGENTS.markdown.
+              if source_file.end_with?('docs/agent/AGENTS.md')
+                puts '  ⏭️  Skipped docs/agent/AGENTS.md (relocated to templates/AGENTS.markdown; remove from manifest)'
                 next
               end
 
@@ -196,6 +209,52 @@ module DocOpsLab
 
         def sync_scripts _context
           ScriptManager.sync_scripts
+        end
+
+        def sync_templates context, force: false
+          manifest = context.load_manifest
+          return false unless manifest
+
+          template_entries = manifest['templates']
+          return false unless template_entries.is_a?(Array)
+
+          lib_root = Library.root
+          unless lib_root
+            puts '❌ Library not available; run `labdev:sync:library` to fetch.'
+            return false
+          end
+
+          puts '📄 Syncing template files...'
+
+          synced_count = 0
+          skipped_count = 0
+
+          template_entries.each do |entry|
+            source_rel = entry['source']
+            target_path = entry['target']
+            synced = entry.fetch('synced', false)
+
+            next unless source_rel && target_path
+
+            source_file = File.join(lib_root, source_rel)
+
+            unless File.exist?(source_file)
+              puts "  \u274c Template source not found: #{source_rel}"
+              puts '     Run `bundle exec rake labdev:sync:library` to fetch the latest library.'
+              next
+            end
+
+            result = copy_doc_file(source_file, target_path, synced: synced, force: force)
+            synced_count  += 1 if result == :copied
+            skipped_count += 1 if result == :skipped
+          end
+
+          puts "\u2705 Synced #{synced_count} template file(s)" if synced_count.positive?
+          if skipped_count.positive?
+            puts "\u2139\ufe0f  Skipped #{skipped_count} existing template(s) (use --force to overwrite)"
+          end
+
+          synced_count.positive? || skipped_count.positive?
         end
 
         def sync_config_files context, tool_filter: :all, offline: false
@@ -222,8 +281,9 @@ module DocOpsLab
             return false
           end
 
-          unless Dir.exist?(CONFIG_PACKS_SOURCE_DIR)
-            puts '❌ No assets/config-packs directory found in gem'
+          config_packs_root = Library.resolve('config-packs')
+          unless config_packs_root && Dir.exist?(config_packs_root)
+            puts '❌ config-packs not found in library; run `labdev:sync:library` to fetch.'
             return false
           end
 
@@ -270,7 +330,7 @@ module DocOpsLab
                 next
               end
 
-              source_path = File.join(CONFIG_PACKS_SOURCE_DIR, source_rel)
+              source_path = File.join(config_packs_root, source_rel)
 
               unless File.exist?(source_path)
                 puts "  ❌ Source not found: #{source_rel}"
@@ -375,7 +435,7 @@ module DocOpsLab
           obsolete_files = []
           # Common vendor paths to check for obsolete files
           vendor_patterns = [
-            File.join(CONFIG_VENDOR_DIR, '**', '*')
+            File.join(Paths.config_vendor_dir, '**', '*')
           ]
           vendor_patterns.each do |pattern|
             Dir.glob(pattern).each do |file_path|
@@ -462,7 +522,8 @@ module DocOpsLab
           end
         end
       end
-      # rubocop :enable Metrics/ClassLength
+      # rubocop:enable Metrics/ClassLength
     end
+    # rubocop:enable Metrics/ModuleLength
   end
 end

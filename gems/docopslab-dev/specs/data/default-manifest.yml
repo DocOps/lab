@@ -1,12 +1,7 @@
 source:
   repo: DocOps/lab
   ref: v1
-  root: gems/docopslab-dev/assets/config-packs
-
 docs:
-  - source: docs/agent/AGENTS.md
-    target: AGENTS.md
-    synced: false
   - source: docs/agent/skills/*.md
     target: .agent/docs/skills/
     synced: true
@@ -16,6 +11,15 @@ docs:
   - source: docs/agent/roles/*.md
     target: .agent/docs/roles/
     synced: true
+
+templates:
+  manifest:
+    - source: templates/AGENTS.markdown
+      target: ./AGENTS.md
+    - source: templates/gitignore
+      target: .gitignore
+    - source: templates/README.asciidoc
+      target: README.adoc
 
 tools:
   - tool: rubocop
@@ -62,3 +66,9 @@ tools:
       - source: actionlint/project.yml
         target: .config/actionlint.yml
         synced: false
+
+library:
+  enabled: true
+  source:
+    repo: DocOps/lab
+    ref: labdev-library

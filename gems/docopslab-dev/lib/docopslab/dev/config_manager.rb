@@ -5,9 +5,9 @@ module DocOpsLab
     module ConfigManager
       class << self
         def generate_vale_config _context, style_override: nil
-          base_config = File.join(CONFIG_VENDOR_DIR, 'vale.ini')
+          base_config = File.join(Paths.config_vendor_dir, 'vale.ini')
           project_config = '.config/vale.local.ini'
-          generated_config = CONFIG_PATHS[:vale]
+          generated_config = Paths::CONFIG_FILES[:vale]
 
           return false unless File.exist?(base_config)
 
@@ -34,9 +34,9 @@ module DocOpsLab
         end
 
         def generate_htmlproofer_config _context
-          base_config = File.join(CONFIG_VENDOR_DIR, 'htmlproofer.yml')
+          base_config = File.join(Paths.config_vendor_dir, 'htmlproofer.yml')
           project_config = '.config/htmlproofer.local.yml'
-          generated_config = CONFIG_PATHS[:htmlproofer]
+          generated_config = Paths::CONFIG_FILES[:htmlproofer]
 
           return false unless File.exist?(base_config)
 
@@ -59,9 +59,9 @@ module DocOpsLab
           config_paths = if config_path && File.exist?(config_path)
                            [config_path]
                          else
-                           [CONFIG_PATHS[:htmlproofer]]
+                           [Paths::CONFIG_FILES[:htmlproofer]]
                          end
-          config_paths << File.join(CONFIG_VENDOR_DIR, 'htmlproofer.yml') unless policy == 'replace'
+          config_paths << File.join(Paths.config_vendor_dir, 'htmlproofer.yml') unless policy == 'replace'
           config_path = config_paths.find { |path| File.exist?(path) }
 
           return unless config_path

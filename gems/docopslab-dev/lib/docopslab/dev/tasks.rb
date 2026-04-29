@@ -89,6 +89,11 @@ module DocOpsLab
                 puts '⚠️  Agent docs sync skipped or failed'
               end
             end
+
+            desc desc_for('init:templates')
+            task :templates do
+              CastOps.init_cast_targets(Dev)
+            end
           end
 
           # ============================================================
@@ -135,9 +140,10 @@ module DocOpsLab
             # end
 
             desc desc_for('run:shellcheck')
-            task :shellcheck, [:opts] => [] do |_t, args|
+            task :shellcheck, %i[path opts] => [] do |_t, args|
+              path = args[:path]
               opts = args[:opts] || ''
-              Dev.run_shellcheck(nil, opts)
+              Dev.run_shellcheck(path, opts)
             end
 
             desc desc_for('run:actionlint')
@@ -165,6 +171,13 @@ module DocOpsLab
             desc desc_for('sync:docs')
             task :docs do
               Dev.sync_docs(force: true)
+            end
+
+            desc desc_for('sync:templates')
+            task :templates, %i[path dry] => [] do |_t, args|
+              target = args[:path]
+              dry    = args[:dry].to_s.downcase == 'dry'
+              CastOps.sync_cast_targets(Dev, target_filter: target, dry_run: dry)
             end
 
             namespace :styles do
@@ -210,11 +223,22 @@ module DocOpsLab
 
             desc desc_for('sync:all')
             task :all do
-              Dev.sync_config_files
-              Dev.sync_scripts
-              Dev.sync_docs
+              Library.sync!
               Dev.install_missing_hooks
               Dev.sync_vale_styles
+              CastOps.sync_cast_targets(Dev)
+            end
+
+            desc desc_for('sync:library')
+            task :library do
+              Library.sync!
+            end
+
+            namespace :library do
+              desc desc_for('sync:library:stage')
+              task :stage, [:path] => [] do |_t, args|
+                Library.stage!(source_path: args[:path])
+              end
             end
           end
 
@@ -262,17 +286,12 @@ module DocOpsLab
 
             desc desc_for('lint:docs')
             task :docs, %i[path rule opts] => [] do |_t, args|
-              path = args[:path]
+              path = args[:path] || '.'
               rule = args[:rule]
               opts = args[:opts]
 
-              if path || rule || opts
-                filter = rule ? ".Name==#{rule}" : nil
-                target = path || nil
-                Dev.run_vale(target, opts || '', filter: filter)
-              else
-                Dev.run_linter_group('AsciiDoc', %w[vale])
-              end
+              filter = rule ? ".Name==#{rule}" : nil
+              Dev.run_vale(path, opts || '', filter: filter)
             end
 
             desc desc_for('lint:html')
@@ -399,6 +418,27 @@ module DocOpsLab
           end
 
           # ============================================================
+          # SKIM tasks; Skim source files for machine-oriented outlines
+          # ============================================================
+
+          desc desc_for('skim')
+          task :skim, %i[path form syntax] => [] do |_t, args|
+            Skim.run(args[:path], form: args[:form], syntax: args[:syntax])
+          end
+
+          namespace :skim do
+            desc desc_for('skim:adoc')
+            task :adoc, %i[path form syntax] => [] do |_t, args|
+              Skim.run_adoc(args[:path], form: args[:form], syntax: args[:syntax])
+            end
+
+            desc desc_for('skim:md')
+            task :md, %i[path form syntax] => [] do |_t, args|
+              Skim.run_md(args[:path], form: args[:form], syntax: args[:syntax])
+            end
+          end
+
+          # ============================================================
           # SHOW and HELP tasks; Display information
           # ============================================================
 
@@ -426,6 +466,11 @@ module DocOpsLab
               end
 
               Dev.show_lint_rule(tool, rule)
+            end
+
+            desc desc_for('show:library')
+            task :library do
+              Library.print_status
             end
           end
 

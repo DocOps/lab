@@ -1,14 +1,48 @@
 = DocOps Lab Dev Tooling
 :toc: macro
 :toclevels: 2
-// tag::globals[]
-:vale_off: pass:[<!-- vale off -->]
-:vale_on: pass:[<!-- vale on -->]
-:docopslab_hub_url: https://github.com/DocOps
-:docopslab_lab_hub_base_url: {docopslab_hub_url}/lab
+// tag::global-settings[]
+:this_proj_slug: lab
+:this_proj_name: DocOps Lab LAB
+:this_prod_slug: docopslab-dev
+:this_prod_path: gems/docopslab-dev
+// tag::universal-settings[]
+// ALL changes within this block must be made in prime template:
+//  DocOps/lab/gems/docopslab-dev/templates/README.asciidoc
+:docopslab_src_www_url: https://github.com/DocOps
+:docopslab_domain: docopslab.org
+:docopslab_www_url: https://{docopslab_domain}
+:docopslab_io_www_url: https://docopslab.github.io
+:docopslab_ruby_version: 3.2.7
+:docopslab_git_src_uri: git@github.com:DocOps
+:docopslab_src_raw_url: https://raw.githubusercontent.com/DocOps
+:this_proj_src_www_url: {docopslab_src_www_url}/{this_proj_slug}
+:this_proj_src_raw_url: {docopslab_src_raw_url}/{this_proj_slug}
+:this_proj_src_main_raw_url: {this_proj_src_raw_url}/main
+:this_proj_src_main_files_url: {this_proj_src_www_url}/blob/main
+:this_proj_src_git_uri: {docopslab_git_src_uri}/{this_proj_slug}.git
+:this_proj_ruby_version: {docopslab_ruby_version}
+// tag::env-settings[]
+:docs_extn:
+ifdef::env-github[]
+:docs_extn: .adoc
+:icons: font
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+// end::env-settings[]
+// Settings likely to be overridden locally
+:this_prod_slug: {this_proj_slug}
+:this_prod_name: {this_proj_name}
+:this_prod_src_www_url: {this_proj_src_www_url}
+// end::universal-settings[]
+:docopslab_lab_src_www_url: {docopslab_src_www_url}/lab
 :docopslab_lab_www_url: https://docopslab.org
-:project_manifest_path: .config/docopslab-dev.yml
-// end::globals[]
+:default_manifest_path: .config/docopslab-dev.yml
+// end::global-settings[]
 
 // tag::ai-prompt[]
 Internal development tooling for working on DocOps Lab codebases.
@@ -58,6 +92,7 @@ Docker image::
 Completely containerized docopslab-dev environment without local installation
 // end::features[]
 // end::ai-prompt[]
+
 
 [[setup]]
 == Setup
@@ -109,6 +144,11 @@ actionlint::
 * Otherwise see link:https://github.com/rhysd/actionlint/blob/v1.7.7/docs/install.md[install guide].
 * If not installed, `actionlint` operations will fallback to Docker execution
 
+gh (preferred) or git::
+* `brew install gh` (macOS)
+* See link:https://github.com/cli/cli/blob/trunk/docs/install_linux.md[install guide] for Linux (APT, DNF, etc.)
+* Used for `labdev:sync:library`; falls back to `git` if not installed
+
 [[setup-docker-only]]
 === Option 2: Full Docker Environment
 
@@ -130,6 +170,15 @@ Add an alias to your shell profile (`~/.bashrc`, `~/.zshrc`, etc.) to make Docke
 ----
 alias lab-dev='docker run -it --rm -v "$(pwd):/workspace" docopslab/dev'
 ----
+
+For Zshell users, the `noglob` command prefix is recommended to prevent formatting issues when passing arguments to tasks.
+
+[source,shell]
+----
+alias lab-dev='noglob docker run -it --rm -v "$(pwd):/workspace" docopslab/dev'
+----
+
+Be sure to run `source ~/.bashrc` or `source ~/.zshrc` or equivalent to instantiate the alias.
 
 Now `lab-dev` replaces the full Docker command and causes insertion of `bundle exec` for `rake` or `labdev:` commands.
 
@@ -179,7 +228,7 @@ A project lacking any configuration files can now be initialized.
 [.prompt]
  bundle exec rake labdev:init:all
 
-The `init` task creates `{project_manifest_path}` and default project configs for all tools.
+The `init` task creates `{default_manifest_path}` and default project configs for all tools.
 This file should be Git tracked for the project.
 
 Initialization also performs environment synchronization.
@@ -197,17 +246,46 @@ This process is part of the `init` operation, but on its own it ensures local co
 [.prompt]
  bundle exec rake labdev:sync:all
 
+[[manifest-file]]
+=== Manifest File
+
+// tag::manifest-intro[]
+Every project using `docopslab-dev` is configured through a single manifest file at
+`{default_manifest_path}` (created by `labdev:init:all` or manually).
+
+The manifest has four top-level keys, each documented in detail in the relevant section:
+
+`tools:`::
+<<managed-tools>>: active linters and their config file mappings.
+
+`docs:`::
+<<file-syncing>> > <<technical-documentation>>: agent docs and guides to sync.
+
+`templates:`::
+<<sync-cast>>: Liquid-rendered source-to-target entries.
+
+`library:`::
+<<remote-library,Remote Asset Library>>: library source and cache settings.
+// end::manifest-intro[]
+
 // end::setup[]
+
 
 // tag::ai-prompt[]
 [[using]]
-== Using the Library
+== Using the Tool (Rake Tasks)
 // tag::usage[]
 // tag::standard-usage[]
-This gem mainly supplies rake tasks for performing common development operations across unified configurations and sub-libraries.
+This gem mainly supplies rake tasks for performing common development operations across and between projects.
 
 [[standard-usage]]
 === Standard Usage
+
+With a proper native Ruby environment, use the `bundle exec` prefix to ensure consistent dependency versioning.
+
+.Sync all configs and assets
+[.prompt]
+ bundle exec rake labdev:sync:all
 
 .Run all linters
 [.prompt]
@@ -215,7 +293,7 @@ This gem mainly supplies rake tasks for performing common development operations
 
 .Auto-fix safe issues
 [.prompt]
- bundle exec rake labdev:heal
+ bundle exec rake labdev:heal:all
 
 // end::standard-usage[]
 
@@ -230,12 +308,12 @@ Non-Ruby commands like `vale` and `shellcheck` are immediately available.
 
 .First time in a DocOps Lab project
 [.prompt]
- lab-dev rake labdev:sync:all
+ lab-dev :sync:all
 
 .Regular development workflow
- lab-dev rake labdev:sync:all
- lab-dev rake labdev:lint:all
- lab-dev rake labdev:heal
+ lab-dev :sync:all
+ lab-dev :lint:all
+ lab-dev :heal
 
 .Irregular commands
  lab-dev vale --config .config/vale.ini README.adoc
@@ -255,14 +333,14 @@ All tools use the host project's Gemfile for version consistency.
 [TIP]
 ====
 Make sure container-managed paths are not tracked in Git.
-Add `.config/.vendor/` and `.bundle/` to `.gitignore`.
+Add `.config/.vendor/`, `scripts/.vendor`, and `.bundle/` to `.gitignore`.
 ====
 // end::usage[]
 
 See <<more-example-commands>> for additional common commands.
 
-[[handy-devlab-tasks]]
-=== Handy `devlab` Tasks
+[[handy-labdev-tasks]]
+=== Handy Tasks
 
 .Lint only for AsciiDoc syntax issues
 [.prompt]
@@ -276,24 +354,42 @@ See <<more-example-commands>> for additional common commands.
 [.prompt]
  bundle exec rake labdev:lint:docs
 
-.Generate a spellcheck report
+.Get a Spelling report
 [.prompt]
  bundle exec rake labdev:lint:spellcheck
 
+.Troubleshoot a Jekyll-AsciiDoc build
+[source,shell]
+ # example docs gen
+ bundle exec jekyll build --config .config/jekyll.yml --verbose > /tmp/logs/jekyll-build.log 2>&1
+ # parse the logs for errors
+ bundle exec rake labdev:lint:logs[jekyll,/tmp/logs/jekyll-build.log]
+
+.Generate a semantic index/outline of documentation source files
+[.prompt]
+ bundle exec rake labdev:skim:adoc[.,tree,json] > .agent/docs/docs-skim.json
+
+.Generate an index/outline of Agent-oriented Markdown files (with overlays)
+[.prompt]
+ bundle exec rake labdev:skim:md[.agent/docs/:_docs/agent/,tree,json] > .agent/docs/agent-docs-skim.json
+
 // end::ai-prompt[]
 
-[[configuration]]
-== Configuration
 
-The `docopslab-dev` gem itself is configured with a manifest file.
+[[managed-tools]]
+== Managed Tools
+
+The `docopslab-dev` gem itself is orchestrated using a manifest file.
 This manifest declares which tools are active and their integration settings.
 
 Individual configs are maintained for all supported tools in each project codebase.
+For each project implementation (application) of this coordinating gem, local configs inherit from centrally maintained "`canonical`" configs that ship with the gem.
+See <<file-syncing>> for details on how the synchronization process works.
 
-[[manifest-configuration]]
-=== Manifest Configuration
+[[tools-manifest]]
+=== Tools Manifest Configuration
 // tag::manifest-config[]
-Initialization automatically creates `{project_manifest_path}`, which you can edit, or you can create it manually.
+Initialization automatically creates `{default_manifest_path}`, which you can edit, or you can create it manually.
 
 ifndef::site-gen-jekyll[]
 See `specs/data/default-manifest.yml` for the default manifest structure.
@@ -305,104 +401,51 @@ include::specs/data/default-manifest.yml[]
 ----
 endif::[]
 
-[[properties-ref]]
-==== Properties Reference
+[[tools-manifest-properties]]
+==== Tools Properties Reference
 
-`tools`::
-(Array) List of tool configurations to enable and manage.
-Each entry may/must include:
+The following parameters are available for each record in the `tools:` block of the manifest.
 
-`tool`:::
-(Slug) Name of the tool, ex:, `rubocop`, `vale`, `htmlproofer`, `actionlint`, `shellcheck`.
+`tool`::
+(Slug, *required*)
+Name of the tool, ex:, `rubocop`, `vale`, `htmlproofer`, `actionlint`, `shellcheck`.
 
-`enabled`:::
-(Boolean) Whether to enable this tool's tasks and git hooks.
+`enabled`::
+(Boolean)
+Whether to enable this tool's tasks and git hooks.
 
-`files`:::
-List of files to init or sync for the tool.
-
-`source`::::
-Path within the gem where the base config is located, e.g., `config-packs/rubocop/base.yml`.
-
-`target`::::
-Path in the project where the file should be synced, e.g., `.config/.vendor/docopslab/rubocop.yml`.
-
-`paths`:::
-Repo=specific paths to include or exclude in linting operations for this tool.
-
-`lint`::::
-(Array) List of paths or glob patterns to lint with this tool.
-
-`skip`::::
-(Array) List of paths or glob patterns to exclude from linting with this tool.
-
-`exts`::::
-(Array) List of file extensions to include in linting with this tool.
-
-`git_tracked_only`::::
-(Boolean) Whether to limit linting to only Git-tracked files.
-
-
-`docs`::
-(Array) List of documentation files to sync from the gem to the target project.
-Each entry includes:
+`manifest`::
+(Array of Maps, *required*)
+Listing of files to init or sync for the tool.
+Each entry supports the following properties:
 
 `source`:::
-(String) Source path relative to `lib/docopslab/` in the gem.
-Supports glob patterns (e.g., `docs/agent/*.md`) or specific files.
+(Path, *required*)
+Path within the asset library where the base config is located, e.g., `config-packs/rubocop/base.yml`.
 
 `target`:::
-(String) Target path relative to the project root.
-Can be a directory (e.g., `_docs/`) or specific file path (e.g., `AGENTS.md`).
+(Path, *required*)
+Path in the project where the file should be synced, e.g., `.config/.vendor/docopslab/rubocop.yml`.
 
-`synced`:::
-(Boolean) Whether to update existing files on sync.
-+
-* `true` - Always overwrite on sync (keeps docs current with gem updates)
-* `false` - Create once, preserve user customizations
+`paths`::
+(Map) Repo-specific paths to include or exclude in linting operations for this tool.
 
-[[documentation-syncing-examples]]
-==== Documentation Syncing Examples
+`lint`:::
+(Array) List of paths or glob patterns to lint with this tool.
 
-.Customizable template (create once, allow modifications)
-[source,yaml]
-----
-docs:
-  - source: docs/AGENTS.md
-    target: AGENTS.md
-    synced: false
-----
+`skip`:::
+(Array) List of paths or glob patterns to exclude from linting with this tool.
 
-.Auto-synced agent guides (keep current)
-[source,yaml]
-----
-docs:
-  - source: docs/agent/*.md
-    target: .docopslab-dev/agent/
-    synced: true
-----
+`exts`:::
+(Array) List of file extensions to include in linting with this tool.
 
-.Mixed strategy (glob + specific override)
-[source,yaml]
-----
-docs:
-  - source: docs/agent/*.md
-    target: _docs/
-    synced: true
-  - source: docs/agent/ruby.md
-    target: _docs/styles/ruby-custom.md
-    synced: false
-----
+`git_tracked_only`:::
+(Boolean) Whether to limit linting to only Git-tracked files.
 
 // end::manifest-config[]
 
-[[standardized-tooling-configs]]
-=== Standardized Tooling Configs
-
-Configuration files follow a consistent inheritance pattern where project configs inherit from centrally managed base configs.
-
 [[rubocop]]
-==== RuboCop
+=== RuboCop
 // tag::config-rubocop[]
 Ruby code style and quality checking.
 
@@ -415,7 +458,7 @@ Your project config can override any rule while maintaining consistency with the
 // end::config-rubocop[]
 
 [[vale]]
-==== Vale
+=== Vale
 // tag::config-vale[]
 Linting for documentation quality and consistency, both AsciiDoc markup syntax and prose quality/correctness.
 
@@ -427,7 +470,7 @@ Ephemeral config:: `.config/vale.ini` (merged from base and target)
 Sync command:: `bundle exec rake labdev:sync:vale`
 
 [[vale-consumer-mode]]
-===== Consumer Mode (Other Projects)
+==== Consumer Mode (Other Projects)
 
 For all other projects, the gem works in a standard package consumption mode:
 
@@ -435,33 +478,25 @@ For all other projects, the gem works in a standard package consumption mode:
 * The `labdev:sync:styles` task simply runs `vale sync` in the proper context, downloading all listed packages into a local `.vale/styles` directory.
 
 [TIP]
-The `labdev:sync:vale` task updates both the base config and the styles package.
+The `labdev:sync:vale` task updates both the base config and the style packages.
 
-The `.config/vale.ini` for consumer projects (based on the gem's template) should look like this:
+A project's `.config/vale.local.ini` should look something like the one for this repository (DocOps/lab).
 
+.A snippet from DocOps/lab's `.config/vale.local.ini`
 [source,ini]
 ----
-# CONSUMER MODE CONFIG
-
-StylesPath = .vale/styles
-
-# List all packages, including the URL to the central DocOpsLabStyles package.
-# TODO: Update with the real URL.
-Packages = RedHat, proselint, write-good, https://example.com/path/to/DocOpsLabStyles.zip
-
-[*.adoc]
-BasedOnStyles = RedHat, DocOpsLab-Authoring, DocOpsLab-AsciiDoc
+include::../../.config/vale.local.ini[tag="core-settings"]
 ----
 
 This dual-mode system provides a robust workflow for both developing and consuming the centralized Vale styles.
 
 [NOTE]
-For full Vale configuration settings ("`keys`") reference, see link:https://vale.sh/docs/vale-ini[the Vale documentation].
+For full Vale configuration settings ("`keys`") reference, see the link:https://vale.sh/docs/vale-ini[official Vale documentation].
 
 // end::config-vale[]
 
 [[htmlproofer]]
-==== HTMLProofer
+=== HTMLProofer
 // tag::config-htmlproofer[]
 HTML validation for Jekyll sites and documentation builds.
 
@@ -489,150 +524,392 @@ For full HTMLProofer configuration options, see link:https://github.com/gjtoriki
 
 // end::config-htmlproofer[]
 
-[[common-scripts]]
-=== Common vs Local Scripts
 
-The `labdev:run:script` task exists to execute auxiliary scripting in a proper environment, simplifying the most common developer commands.
+[[file-syncing]]
+== File Syncing
 
-Upstream (centrally authored) scripts are synced to `scripts/.vendor/docopslab/` and can be executed with local override priority via `bundle exec rake 'labdev:run:script[script_name]'`.
+This gem enables central/upstream authorship and maintenance of technical documentation and other flat-file content, with flexible syncing to downstream projects.
 
-[NOTE]
-There is no local configuration of or manifest control over these scripts as there is with configs.
+[[sync-categories]]
+=== Sync Categories
 
-Local overrides are placed at `scripts/` and take precedence over upstream versions of scripts with their same filename.
+[cols="1,2,2",options="header"]
+|===
+|Category |Manifest key |Primary task(s)
 
-To execute, use `bundle exec rake labdev:run:script[script_name]`, where `script_name` is `script_name.sh` or `script_name`.
-Use `bundle exec rake 'labdev:run:script[script_name,--option1 value --option]` to add options to the standard script execution.
+|Documentation (whole-file)
+|`docs:`
+|`labdev:sync:docs`
 
-To extend an upstream script, source or execute the upstream script from within the same-named local script, using its relative path.
+|Tool configs
+|`tools:`
+|`labdev:sync:configs`
 
-Use complete script names including extensions for non-Bash scripts.
+|Scripts
+|none
+|`labdev:sync:scripts`
 
-See <<assets-scripts>> for more.
+|Git hooks
+|none
+|`labdev:sync:hooks`
 
-[[documentation-syncing]]
-=== Documentation Syncing
+|Templates (Sync/Cast)
+|`templates:`
+|`labdev:sync:templates`
+|===
 
-The gem packages agent instruction documentation that can be synced to target projects.
+Run `labdev:sync:all` to execute all sync operations in one command.
 
-[[available-documentation]]
-==== Available Documentation
+[[file-syncing-types]]
+=== Types of File-sync Operations
 
-AGENTS.md template::
-A comprehensive template for creating project-specific AI agent orientation files.
-Includes placeholders for project details, architecture, and development patterns.
+The `docopslab-dev` tool supports two main types of syncing operations, each with different use cases and behaviors.
 
-Agent guides::
+whole-file syncing::
+Maintain a local copy of centrally managed files like developer documentation, tool configs, and automation scripts.
+This is the main syncing pattern.
+
+<<sync-cast,template sync casting>>::
+Maintain canonical sections of code or text in files that need to be partially customized but also regularly updated from a central source.
+
+stub initialization::
+This is actually just an instance of casting that is not kept in sync after being written to the codebase during an `init` operation.
+
+[[file-syncing-semantics]]
+=== File Syncing Semantics
+
+Files are kept in sync under the following categorical semantics:
+
+documentation (`docs`)::
+Whole directories of documentation files that are authored in the DocOps/lab repo and synced to projects using `rake labdev:sync:docs`.
+
+tool configuration files (`configs`)::
+Files tied dependency tools like Vale and RuboCop.
+Synced using `rake labdev:sync:configs`.
+
+scripts::
+All files in `scripts/.vendor/` path (`rake labdev:sync:scripts`).
+
+Git hooks (`hooks`)::
+All Git hooks from the assets library (`rake labdev:sync:hooks`).
+
+linter styles/rules (`styles`)::
+Specific rulesets mapped to linters, including third-party origins.
+
+Vale linter (`vale`)::
+Includes Vale styles and config, together (`rake labdev:sync:vale`).
+
+Liquid/casting `templates`::
+Files that are rendered using Liquid syntax and/or canonical block resolution.
+Uses `rake labdev:sync:templates` or `rake labdev:sync:templates[.gitignore]` for a specific file.
+
+The command `rake labdev:sync:all` performs all syncing operations in one go.
+
+[[whole-file-syncing]]
+=== Whole-file Syncing Operations
+
+When we talk about "`whole file`" vs "`templated`" file syncing, we refer strictly to the relationship with upstream/centralized canonical sources.
+Even whole-file syncing does not mean the downstream version of such files are what affects the system.
+
+Configs can generally be merged with local settings, whereas documents and scripts tend to be replaced by local alternates.
+
+[[technical-documentation]]
+==== Cross-project Documentation
+
+The gem manages LLM/agent-oriented documentation that can be synced to downstream projects for local availability.
+Some files and paths are highlighted here.
+
 Specific instruction files for AI agents working with common tools and patterns.
-For instance:
+For instance, local paths:
 
-* `agent/git.md`
-* `agent/ruby.md`
-* `agent/fix-spelling-issues.md`
+* `.agent/skills/git.md`
+* `.agent/skills/fix-spelling-issues.md`
+* `.agent/missions/conduct-release.md`
 
-// tag::sync-behavior[]
-[[sync-behavior]]
-==== Sync Behavior
+Such files are sourced as AsciiDoc in `DocOps/lab/_docs/agent/`, largely reusing content from people-facing docs sourced in `_docs/reference/` and `_docs/tasks/`.
 
-The `synced:` flag in the manifest (`{project_manifest_path}`) controls update behavior:
+In most contexts, agents are instructed to check for a parallel file in the local project's `docs/` directory that would supersede the locally synced copy.
 
-`synced: true`::
-*Always updates* +
-File is overwritten on each sync.
-Use for reference documentation that should stay current with gem updates.
+[[tool-configs-scripts]]
+==== Tool Configs and Scripts
 
-`synced: false`::
-*Create once, preserve customizations* +
-Existing files are not overwritten unless `force` is used.
-Use for templates that are manually customized to the local project.
+Tool configs, linter styles, scripts, and Git hooks are all synced as part of `labdev:sync:all`.
+Most have no per-project manifest configuration; they are sourced from the centrally managed
+library and written to conventional paths.
+
+Configs and linter styles::
+Synced by `labdev:sync:configs`, `labdev:sync:vale`, `labdev:sync:styles`, and `labdev:sync:all`, depending on intent.
++
+These types of files are generally merged with existing local versions, rather than replaced, to preserve any project-specific customizations while still applying updates from the central source.
+
+Scripts::
+Synced to `scripts/.vendor/docopslab/` using `labdev:sync:scripts`.
+Local overrides placed at `scripts/` take precedence over upstream versions of the same filename, though of course they can execute the upstream-sourced scripts.
+
+Git hooks::
+Synced to `.git/hooks/` with `labdev:sync:hooks`.
+Git hooks do not have a merge or override system; they are either present or not.
+
+[[sync-cast]]
+=== Template Sync Casting
+
+While most `docopslab-dev` file-sync operations are standard (whole-file replacement), the concept of sync casting deserves more attention.
+
+Template sync casting keeps project files (_targets_) up to date with upstream canonical source templates (_primes_) using the link:{docopslab_src_www_url}/asciisourcerer/#sync-cast[AsciiSourcerer::Sync::Cast] model and engine.
+
+Casting can swap whole blocks of code, and it can render Liquid syntax, on a one-time or ongoing basis.
+
+Liquid can be used anywhere in the source/prime template.
+It will be processed during `init` operations for full rendering of the initial file.
+
+During `sync` operations, casting will render Liquid syntax in canonical block content only.
+
+[[sync-cast-data]]
+==== Liquid Context
+
+While the canonical blocks are sourced right in the `source` template file, data used to render Liquid-tagged content must come from an external source.
+
+runtime variables::
+At runtime, project attributes are derived from the `README.adoc` file and made available to all templates as `{{ data.project.attributes.<attr_key_name> }}`.
+
+manifest assignment::
+Data objects (variables) can be defined in the manifest, alongside a given instance of the mapping.
+These are available as  `{{ data.variables.<object> }}` in the template, where `<object>` is the name of a String, Boolean, Number, Array, or Map variable type.
+
+local/inherited assignment::
+Standard Liquid variables established with `{% assign %} or `{% capture %}` tags in templates or arguments passed to Jekyll-style `{% include %}` tags.
+
+[[sync-cast-operations]]
+==== Operations
+
+Two operations are available:
+
+`labdev:init:templates`::
+Bootstrap new target files from their source templates.
+During init, the entire source template is rendered through link:https://shopify.github.io/liquid/[Liquid] before writing, so every `{{ data.project.attributes.name }}` or `{{ data.variables.my_key }}` placeholder anywhere in the document is resolved.
+Targets that already exist are skipped.
+
+`labdev:sync:templates`::
+Update canonical blocks in existing target files from the source template.
+During sync, only the _content inside canonical blocks_ is rendered through Liquid.
+Content outside blocks is sourced from the target, not the source template, so template syntax outside blocks is never touched.
+
+.Bootstrap all configured targets
+[.prompt]
+ bundle exec rake labdev:init:templates
+
+.Sync all configured targets
+[.prompt]
+ bundle exec rake labdev:sync:templates
+
+.Sync a single target (by its target path)
+[.prompt]
+ bundle exec rake 'labdev:sync:templates[AGENTS.md]'
+
+.Preview a single target without writing
+[.prompt]
+ bundle exec rake 'labdev:sync:templates[AGENTS.md,dry]'
+
+The bulk sync is also included in `labdev:sync:all`.
+
+[[file-sync-manifest]]
+==== Manifest Configuration
+
+This reference covers the properties relevant to file syncing and sync casting in the manifest file at `{default_manifest_path}`.
+
+// tag::manifest-config[]
+The `docs:` block in the manifest is itself a manifest array.
+Each entry supports the following properties:
+
+`source`::
+(Path, *required*) Source path relative to `lib/docopslab/` in the gem.
+Supports glob patterns (e.g., `docs/agent/*.md`) or specific files.
+
+`target`::
+(Path, *required*) Target path relative to the project root.
+Can be a directory (e.g., `_docs/`) or specific file path (e.g., `AGENTS.md`).
+
+`synced`::
+(Boolean) Whether to update existing files on sync.
++
+* `true` - Always overwrite on sync (keeps docs current with gem updates)
+* `false` - Create once, preserve user customizations
+
+The `templates:` block in the manifest is a Map that nests its own `manifest:` listing as well as global data ingestion directives in `data:`.
+
+`manifest`:::
+(Array) Listing of prime templates and their downstream target files for Sync/Cast operations, optionally passing additional data.
+
+`source`::::
+(String) The path to the source template file, library relative (resolved via `labdev:sync:library`).
+
+`target`::::
+(String) The path in the project where the rendered template should be synced, relative to the project root.
+
+`data`::::
+(Map) Optional additional data to pass to the template rendering process.
+
+`data.variables`::::
+(Map) Key-value pairs of variables bearing any value type to pass to the template rendering process, accessible as `{{ data.variables.<key> }}` in templates.
+
+// end::manifest-config[]
+
+[[sync-cast-config]]
+==== Template Manifest Configuration
+
+Entries are declared under the `templates.manifest:` key in `{default_manifest_path}`.
+The key takes a Hash with two children: a global `data:` node and a `manifest:` list.
+
+[source,yaml]
+----
+templates:
+  data:                          # Global data available to all entries
+    variables:
+      project_name: "My Project"
+  manifest:
+    - source: templates/AGENTS.markdown   # Library-relative source template path
+      target: AGENTS.md                   # Project-local target path
+    - source: templates/custom.adoc
+      target: docs/custom.adoc
+      data:                               # Per-entry overrides, merged on top of global
+        variables:
+          extra_key: "value"
+----
+
+For a full property reference, see the comments in `specs/data/default-manifest.yml` in the gem source.
+
+[[sync-cast-liquid]]
+==== Liquid Template Context
+
+All Liquid variables are scoped under the top-level `data` key:
+
+`data.project.attributes.<key>`::
+Document attributes loaded from the project's `README.adoc` header.
+Asciidoctor built-in attributes are filtered out; only user-defined string attributes are available.
+
+`data.variables.<key>`::
+Merged from global `data.variables` and the per-entry `data.variables` override.
+Per-entry values take precedence.
+
+[source,liquid]
+----
+{{ data.project.attributes.this_proj_name }}
+{{ data.variables.description }}
+----
 
 [TIP]
-Be sure to add synced files to `.gitignore` and to track all locally modified files in Git.
+====
+During `init`, Liquid is rendered across the entire source template, so all `{{ data.* }}` references anywhere in the file are resolved.
+During `sync`, only the content _inside_ canonical blocks is rendered; template syntax outside blocks is intentional scaffolding and will never be evaluated.
+====
 
-.Default source, target, and syncing states for agent docs
+[[sync-cast-block-syntax]]
+==== Block Syntax
+
+Canonical blocks use the same AsciiDoc tag syntax as the rest of the DocOps Lab toolchain, wrapped in file-appropriate comments.
+
+.AsciiDoc / Markdown (HTML comment wrapper)
+[source,html]
+----
+<!-- tag::example-text[] -->
+This content is managed in the source template.
+<!-- end::example-text[] -->
+----
+
+.AsciiDoc (native comment)
+[source,asciidoc]
+----
+// tag::example-source[]
+This content is managed in the prime template.
+// end::example-source[]
+----
+
+The `canonical_prefix:` setting controls which tagged blocks are treated as canonical.
+By default this is `universal-`.
+A target may contain alternate-prefixed blocks (e.g. `local-agency`) as a cue to the engine that a canonical block has been intentionally replaced; no warning is emitted for those.
+
+[[sync-cast-init-target-workflow]]
+==== Typical Workflow
+
+The expected workflow for a new project:
+
+. Register the entry in `{default_manifest_path}` under `templates.manifest`.
+. Run `labdev:init:templates` to bootstrap the target file.
+. Customize the project-specific sections (outside canonical blocks).
+. As the source template evolves upstream, run `labdev:sync:templates` to pull in updated canonical blocks without disturbing local content.
+
+
+[[remote-library]]
+== Remote Asset Library
+
+The `docopslab-dev` fetches a centrally managed asset library from the `labdev-library` branch of `DocOps/lab` and caches it host-wide at `~/.cache/docopslab/dev/library/`.
+This enables updates per-project updates to config packs, templates, docs, hooks, and scripts without needing to update the gem package or re-download the remote library.
+
+[[library-cache-layout]]
+=== Cache Layout
+
+The library cache lives at `~/.cache/docopslab/dev/library/` (or under `$XDG_CACHE_HOME/docopslab/dev/library/` if that variable is set):
+
+----
+~/.cache/docopslab/dev/library/
+  current/          # Active snapshot used by sync and resolve operations
+    catalog.json    # Catalog with version, ref, and checksums
+    config-packs/
+    docs/
+    hooks/
+    scripts/
+    templates/
+  previous/         # Prior snapshot retained for fast rollback
+----
+
+Updates are _never automatic_.
+Run `labdev:sync:library` explicitly to pull a new snapshot.
+The prior snapshot is preserved as `previous/` so a broken update can be rolled back immediately.
+
+On first use, sync operations auto-fetch the library if no cache exists.
+
+[[library-configuration]]
+=== Library Configuration
+
+Add a `library:` block to `.config/docopslab-dev.yml` to configure the source.
+All fields are optional; defaults target the `labdev-library` branch of `DocOps/lab`.
+
 [source,yaml]
 ----
-- source: docs/agent/AGENTS.md
-  target: AGENTS.md
-  synced: false
-- source: docs/agent/*.md
-  target: .agent/
-  synced: true
+library:
+  enabled: true
+  source:
+    type: git-branch
+    repo: DocOps/lab
+    ref: labdev-library
+    path: library
+  sync:
+    mode: latest-only
+    cache_root: ~/.cache/docopslab/dev/library
+  # Optional: local fallback path when XDG cache is absent.
+  # Populated by `bundle exec rake gemdo:push:library:stage` in DocOps/lab.
+  local_path: .library
 ----
 
-// end::sync-behavior[]
+[[library-tasks]]
+=== Library Tasks (Consumer Projects)
 
-[[target-path-selection]]
-==== Target Path Selection
-
-Documentation can be synced to different locations based on project structure:
-
-.To project root
-[source,yaml]
-----
-- source: docs/AGENTS.md
-  target: AGENTS.md
-----
-
-.To existing `_docs/` directory
-[source,yaml]
-----
-- source: docs/agent/*.md
-  target: _docs/agent/
-----
-
-.To vendor path (if no `_docs/`)
-[source,yaml]
-----
-- source: docs/agent/*.md
-  target: .docopslab-dev/agent/
-----
-
-[[pattern-matching]]
-==== Pattern Matching
-
-Glob patterns allow bulk operations:
-
-.All markdown files
-[source,yaml]
-----
-- source: docs/agent/*.md
-  target: _docs/
-  synced: true
-----
-
-.Specific file override
-[source,yaml]
-----
-- source: docs/agent/ruby.md
-  target: _docs/styles/ruby-custom.md
-  synced: false
-- source: docs/agent/*.md
-  target: _docs/
-  synced: true
-----
-
-Result: Most files auto-sync to `_docs/`, but `ruby.md` also copied to custom path and preserved.
-
-[[syncing-documentation]]
-==== Syncing Documentation
-
-Your docs are probably already initialized as part of the basic `labdev:init` task, but if you _only_ want the docs, there's a task for that.
-
-.Initialize the docsets
+.Fetch and cache the latest remote library
 [.prompt]
- bundle exec rake labdev:init:docs
+ bundle exec rake labdev:sync:library
 
-Docs will be kept in sync by the general `labdev:sync` command, but you may always update the docs alone.
-
-.Sync docs explicitly (respects `synced:` flags)
+.Show current library cache status and version
 [.prompt]
- bundle exec rake labdev:sync:docs
+ bundle exec rake labdev:show:library
+
+[NOTE]
+The fetch tasks require either the `gh` CLI or `git` to be available on your `PATH`.
+The `gh` CLI is preferred and will be used when present.
 
 
 // tag::workflow[]
-[[available-tasks]]
-== Tasks and Workflow
+[[task-reference]]
+== Task Reference
 
 [.prompt]
  bundle exec rake --tasks | grep labdev:
@@ -659,7 +936,7 @@ This should yield warnings and errors if active linters find issues.
 
 . Auto-fix what you can.
 +
- bundle exec rake labdev:heal
+ bundle exec rake labdev:heal:all
 
 . Review the changes.
 +
@@ -693,6 +970,30 @@ Bypass the pre-push gates (usually to test or demo the failure at origin):
  git push --no-verify
 ====
 
+// tag::usage[]
+// tag::standard-usage[]
+[[override-commands]]
+=== Override Commands
+
+Most executions of the packaged tools are handled through Rake tasks, but you can always run them directly, especially to pass arguments not built into the tasks.
+
+RuboCop::
++
+ bundle exec rubocop --config .config/rubocop.yml [options]
+ bundle exec rubocop --config .config/rubocop.yml --auto-correct-all
+ bundle exec rubocop --config .config/rubocop.yml --only Style/StringLiterals
+
+Vale::
++
+ vale --config=.config/vale.ini [options] [files]
+ vale --config=.config/vale.ini README.adoc
+ vale --config=.config/vale.ini --minAlertLevel=error .
+
+HTMLProofer::
++
+ bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
+// end::standard-usage[]
+// end::usage[]
 // end::workflow[]
 
 
@@ -702,7 +1003,7 @@ Bypass the pre-push gates (usually to test or demo the failure at origin):
 
 Override settings by editing the project configs:
 
-* `{project_manifest_path}`
+* `{default_manifest_path}`
 * `.config/rubocop.yml`
 * `.config/vale.ini`
 * `.config/htmlproofer.yml`
@@ -740,105 +1041,13 @@ env.private                       # Environment variables (git ignored)
 ----
 // end::customization[]
 
-// tag::usage[]
-// tag::standard-usage[]
-[[override-commands]]
-=== Override Commands
-
-Most executions of the packaged tools are handled through Rake tasks, but you can always run them directly, especially to pass arguments not built into the tasks.
-
-RuboCop::
-+
- bundle exec rubocop --config .config/rubocop.yml [options]
- bundle exec rubocop --config .config/rubocop.yml --auto-correct-all
- bundle exec rubocop --config .config/rubocop.yml --only Style/StringLiterals
-
-Vale::
-+
- vale --config=.config/vale.ini [options] [files]
- vale --config=.config/vale.ini README.adoc
- vale --config=.config/vale.ini --minAlertLevel=error .
-
-HTMLProofer::
-+
- bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
-
-[[more-example-commands]]
-=== More Example Commands
-
-.Lint specific Ruby file with specific rule
-[.prompt]
- bundle exec rake 'labdev:lint:ruby[lib/myfile.rb,Style/StringLiterals]'
-
-.Lint all AsciiDoc files for a specific Vale rule
-[.prompt]
- bundle exec rake 'labdev:lint:adoc[,DocOpsLab-Authoring.ExNotEg]'
-
-.Lint specific shell script
-[.prompt]
- bundle exec rake 'labdev:lint:bash[scripts/docksh]'
-
-.Lint specific file with Vale (text mode)
-[.prompt]
- bundle exec rake 'labdev:lint:text[_docs/myfile.adoc]'
-
-.Show a specific lint rule profile
-[.prompt]
- bundle exec rake 'labdev:show:rule[vale,RedHat]'
-
-// end::standard-usage[]
-// end::usage[]
-
-
-[[assets]]
-== Other Assets
-
-Linters are the main feature of this gem, but it also handles other shared assets.
-
-[[assets-scripts]]
-=== Managed Scripts
-
-.List available scripts
-[.prompt]
- bundle exec rake labdev:show:scripts
-
-Unlike other `labdev:run` tasks, `labdev:run:script` requires a `script_name` of an existing local or an upstream-sourced script stored in the `scripts/.vendor/` path and maintained as part of the link:{docopslab_lab_hub_base_url}[DocOps/lab project].
-
-They are superseded by a script of the same name in the local `scripts/` directory, if present.
-(See >><common-scripts>> for more.)
-
-[[git-hooks]]
-=== Git Hooks
-
-The gem provides git hooks with a developer-oriented strategy:
-
-*Pre-commit* (Advisory):
-
-* Quick syntax validation on staged files
-* Config sync status check
-* Non-blocking - encourages frequent commits
-
-*Pre-push* (Quality Gate):
-
-* Comprehensive linting with `labdev:lint:all`
-* Blocks problematic code from reaching CI
-* Provides clear fix workflow instructions
-
-.Show hook status
-[.prompt]
- bundle exec rake labdev:show:hooks
-
-.Install/update hooks
-[.prompt]
- bundle exec rake labdev:sync:hooks
-
-Bypass (extraordinary use): `git push --no-verify`
-
 
 [[development]]
 == Development
 
-This gem is developed within the link:{docopslab_lab_hub_base_url}[DocOps Lab monorepo] at `/gems/docopslab-dev/`.
+This gem is developed within the link:{docopslab_lab_src_www_url}[DocOps Lab monorepo] at `/gems/docopslab-dev/`.
+
+This section pertains to working _on_ the `docopslab-dev` tool, rather than working _with_ it.
 
 [[strategy]]
 === Strategy and Aims
@@ -859,10 +1068,58 @@ Contributions in these directions are welcome.
 [[making-changes]]
 === Making Changes
 
-. Edit files in `lib/`, `config-packs/`, or `hooks/`.
+There are two types of changes 
+
+. Edit files in `lib/` or `assets/`.
 . Test with lab repo as consumer.
+
+For changes to docs or assets:
+
+[start=3]
+. Run linters on any scripts or content added.
+. Publish independently using the base repo's Rake tasks (`rake gemdo:push:library`).
+
+For changes to functionality in `lib/docopslab/dev/`:
+
+[start=3]
+. Add or update RSpec tests in `spec/` and ensure they pass.
 . Update version in `lib/docopslab/dev/version.rb`.
-. Update this README with new features.
+. Run linters on any Ruby and docs changes.
+. Update this `README.adoc` with new features or changed functionality.
+
+[[asset-resolution-policy]]
+=== Asset Resolution Policy
+
+To ensure that AI agents and tools have reliable access to resources while allowing for project-specific overrides, `docopslab-dev` follows a **local-first** resolution policy for most assets.
+
+==== Prompt Templates
+
+Downstream scripts (like the Jekyll-AsciiDoc log parser) resolve prompt templates using the following order:
+
+. **Local Project Override**: `.config/prompts/<filename>` (Git-tracked or user-defined).
+. **Upstream Library Fallback**: `templates/<filename>` inside the host-wide library cache (e.g., `~/.cache/docopslab/dev/library/current/templates/`).
+
+This pattern ensures that a project can always "pin" or customize its agent interactions locally without breaking the default provided by the toolchain.
+
+==== Configuration and Scripts
+
+* **Scripts**: The `labdev:run:scripts` task searches `scripts/` (local) before `scripts/.vendor/docopslab/` (synced).
+* **Configs**: Linter configurations are generally merged, with the local `.config/` version taking precedence over the bundled vendor versions.
+
+[[submodule-api-pattern]]
+=== Submodule API Pattern
+
+Each feature area lives in its own submodule under `DocOpsLab::Dev` (e.g., `Library`, `SyncOps`, `ConfigManager`).
+New public methods must be exposed on the submodule directly:
+
+[source,ruby]
+----
+DocOpsLab::Dev::Library.fetch!
+DocOpsLab::Dev::Library.resolve('templates/README.asciidoc')
+----
+
+The top-level `DocOpsLab::Dev` class surface (`Dev.library_fetch!`, etc.) is a backward-compatibility layer only and should not receive new methods.
+Callers consuming library features from Rake tasks or other modules should reference the submodule path, not the `Dev` facade.
 
 [[vale-dev-mode]]
 === Running Vale in Development Mode
@@ -889,11 +1146,14 @@ To build the `docopslab/dev` Docker image:
  bundle exec rake gemdo:build_docker
 
 [[publish-artifacts]]
-=== Publish Artifacts
+=== Publish & Deploy Artifacts
 
 For general DocOps Lab release procedures, see link:{xref_docs_release_url}[Release Process (General)].
 
 The `docopslab-dev` gem and `docopslab/dev` Docker image follow that process with these specific considerations:
+
+[NOTE]
+To *publish the _assets_ library*, see link:{docopslab_lab_src_www_url}#library-publish[the main DocOps/lab README].
 
 [[publishing-requirements]]
 ==== Publishing Requirements
@@ -906,7 +1166,7 @@ The `docopslab-dev` gem and `docopslab/dev` Docker image follow that process wit
 - [ ] Version bumped in `lib/docopslab/dev/version.rb`
 - [ ] Agent documentation generated (`bundle exec rake gemdo:generate_agent_docs`)
 
-[[publishing-the-gem]]
+[[publish-gem]]
 ==== Publishing the Gem
 
 Build and publish to RubyGems.org:
@@ -916,7 +1176,7 @@ Build and publish to RubyGems.org:
  gem push pkg/docopslab-dev-<version>.gem
 
 RubyGems.org will prompt for MFA code during push.
-You must have valid auhtentication for an account with permissions to publish this gem.
+You must have valid authentication for an account with permissions to publish this gem.
 
 [[publishing-the-docker-image]]
 ==== Publishing the Docker Image

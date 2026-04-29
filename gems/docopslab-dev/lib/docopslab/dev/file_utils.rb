@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'pathname'
+require 'sourcerer/util/pathifier'
 
 module DocOpsLab
   module Dev
@@ -30,6 +31,18 @@ module DocOpsLab
               scripts << file if File.executable?(file) || FileUtilities.shell_shebang?(file)
             end
           end
+
+          # Also pick up extensionless files with a Bash-implying shebang
+          Dir.glob('**/*').each do |file|
+            next unless File.file?(file)
+            next unless File.extname(file).empty?
+            next if file.include?('/.vendor/')
+            next if file.include?('/node_modules/')
+            next unless FileUtilities.git_tracked_or_staged?(file)
+
+            scripts << file if FileUtilities.shell_shebang?(file)
+          end
+
           scripts.uniq.sort
         end
 
@@ -56,11 +69,7 @@ module DocOpsLab
 
           files = []
           lint_paths.each do |path|
-            # If path is a directory, search recursively. Otherwise, it's a glob.
-            glob_pattern = File.directory?(path) ? File.join(path, '**', '*') : path
-            Dir.glob(glob_pattern).each do |file|
-              next unless File.file?(file)
-
+            Sourcerer::Util::Pathifier.match(path).enum.each do |file|
               # Normalize path by removing ./ prefix for consistent pattern matching
               normalized = file.sub(%r{^\./}, '')
               files << normalized
