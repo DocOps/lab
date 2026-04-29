@@ -8,7 +8,7 @@ title: Vibe Coding vs AI-assisted Programming
 :page-date: 2026-02-12
 :page-author: Brian Dominick
 :page-excerpt: Vibe coding has its place, but as of now I am not among the developers who think good software can be reliably produced when "`nobody touches the code`".
-include::../README.adoc[tags=globals]
+include::../README.adoc[tags="global-settings"]
 
 Let me say at the outset that vibe coding has its place.
 Let me also say that if you are vibe coding _production_ software, you are probably doing a disservice... even if you are also providing a legitimate service.

@@ -39,7 +39,7 @@ We reaffirm alignment with open source community norms:
 == Scope
 
 Projects covered::
-All repositories under the DocOps Lab organization on link:{docopslab_hub_url}[GitHub] are covered by this Agreement.  
+All repositories under the DocOps Lab organization on link:{docopslab_src_www_url}[GitHub] are covered by this Agreement.  
 
 Contributions covered::
 All source code, documentation, and related assets of or contributed to DocOps Lab are covered by this Agreement.

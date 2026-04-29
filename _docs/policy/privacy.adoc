@@ -9,7 +9,7 @@ order: 28
 :toc: macro
 include::../_local_settings.adoc[]
 = DocOps Lab Privacy Assurances
-include::../../README.adoc[tag=globals]
+include::../../README.adoc[tags="global-settings"]
 
 DocOps Lab is committed to the strictest protections of user privacy.
 This document outlines our privacy practices and the measures we take to ensure your data remains secure.

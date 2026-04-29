@@ -10,7 +10,7 @@ include::../_local_settings.adoc[]
 
 include::../partials/_docopslab-dev-context-notice.adoc[]
 
-include::../../gems/docopslab-dev/README.adoc[tags="globals,setup",leveloffset="-1"]
+include::../../gems/docopslab-dev/README.adoc[tags="global-settings,setup",leveloffset="-1""]
 
 [NOTE]
 For configuration details, see {xref_docs_lab-dev-config_link}.

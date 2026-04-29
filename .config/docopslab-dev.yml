@@ -1,11 +1,8 @@
 source:
   repo: DocOps/lab
   ref: v1
-  root: gems/docopslab-dev/assets/config-packs
+  
 docs:
-  - source: docs/agent/AGENTS.md
-    target: AGENTS.md
-    synced: false
   - source: docs/agent/skills/*.md
     target: .agent/docs/skills
     synced: true
@@ -18,6 +15,16 @@ docs:
   - source: docs/agent/missions/*.md
     target: .agent/docs/missions
     synced: true
+templates:
+  manifest:
+    - source: templates/AGENTS.markdown
+      target: AGENTS.md
+    - source: templates/gitignore
+      target: .gitignore
+    - source: templates/README.asciidoc
+      target: README.adoc
+    - source: templates/README.asciidoc
+      target: gems/docopslab-dev/README.adoc
 tools:
   - tool: rubocop
     files:
@@ -43,6 +50,7 @@ tools:
         - _blog/_asciidoc-crazy-table-snippet.adoc
         - _docs/partials/built/*
         - _projects/*
+        - _docs/reference/_asciidoc-syntax.adoc
       exts: ['adoc']
       # git_tracked_only: false
 
@@ -71,3 +79,20 @@ tools:
       - source: actionlint/project.yml
         target: .config/actionlint.yml
         synced: false
+
+# Local library declaration used by lab release and local tests
+library:
+  enabled: true
+  # source is the canonical remote layout; for local repo testing we provide
+  # a `lab/library/current` directory that matches the expected layout.
+  source:
+    type: git-branch
+    repo: DocOps/lab
+    ref: labdev-library
+    # path omitted: branch root IS the library layout
+  # For monorepo publishing/testing, use this path as the source to publish
+  local_path: library/current
+  # publish method defaults: local only for testing; production workflows may
+  # push to remote via a maintainer-only task.
+  publish:
+    local: true

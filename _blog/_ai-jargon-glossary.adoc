@@ -66,7 +66,7 @@ In the context of LLM agents, a _skill_ is any specific procedure or approach an
 Skills are defined in Markdown documents and invoked on an as-needed basis.
 
 // end::skills[]
-// tag:token[]
+// tag::token[]
 token::
 A unit of text that an LLM processes. 
 Tokens can be as short as one character or as long as one word, depending on the language and the specific "`tokenization`" method.

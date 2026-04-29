@@ -9,21 +9,22 @@ include::../_local_settings.adoc[]
 
 A guide to writing clean, consistent, and maintainable Bash scripts, based on best practices.
 
+[TIP]
+See also {xref_docs_cli-styles_link} for guidance specific to command-line interfaces development.
 
-[[bash-version]]
-== Bash Version
-
-Use Bash 4.0 or later to take advantage of modern features like associative arrays and improved string manipulation.
-
-
+// tag::sections[]
 [[file-and-script-structure]]
 == File and Script Structure
+
+[[bash-version]]
+=== Bash Version (4.0)
+
+Use Bash 4.0 or later to take advantage of modern features like associative arrays and improved string manipulation.
 
 [[shebang]]
 === Shebang
 
-Always start your scripts with a shebang.
-For scripts that require Bash-specific features, use `#!/usr/bin/env bash`.
+Always start scripts with this canonical shebang.
 
 [source,bash]
 ----
@@ -33,81 +34,159 @@ For scripts that require Bash-specific features, use `#!/usr/bin/env bash`.
 [[script-header]]
 === Script Header
 
-Include a header comment block at the top of your script.
-This block should briefly explain:
+Follow the shebang with a brief inline comment block covering the script's purpose and dependencies.
+Keep it compact: one line per thought, no visual padding.
 
-* The script's purpose.
-* Any dependencies required to run it.
-* License information.
-* Usage examples or a pointer to more detailed documentation.
+[source,bash]
+----
+#!/usr/bin/env bash
+# script-name: brief description of what the script does.
+# Depends on: curl, jq
+----
+
+[[indentation]]
+=== Indentation
+
+Indent with 2 spaces anywhere indentation is called for.
+
+Do not use 4 spaces or tabs.
 
 [[code-organization]]
 === Code Organization
 
 Structure your script into logical sections to improve readability.
 
-The preferred order is:
-
-. *Global Constants and Variables:*
+ifndef::audience-agent[]
+.Preferred Segment Order:
+Global Constants and Variables::
 Define all global variables and constants at the top.
 
-. *Function Definitions:*
-Group all functions together.
+Helper Functions::
+Small private utilities, named with a `_` prefix.
 
-. *Argument Parsing:*
-Handle command-line arguments and flags.
+Operation Functions::
+Substantive domain work called by `cmd_` functions or exported as a library's public API.
+Unprefixed `snake_case`.
 
-. *Main Logic:*
-The main execution block of the script.
-Often a `case` statement that dispatches commands.
+Command Functions::
+Thin subcommand handlers, named with a `cmd_` prefix.
+
+Dispatch::
+A `case` statement at the bottom mapping argument strings to `cmd_` functions.
+
+endif::audience-agent[]
 
 [source,bash]
 ----
 #!/usr/bin/env bash
-#
-# script-name
-#
-# Brief description of what the script does.
+# script-name: brief description.
 # Depends on: curl, jq
+set -euo pipefail
 
-# --- GLOBAL VARIABLES ---
+# CONSTANTS
 readonly SCRIPT_VERSION="1.0.0"
-LOG_FILE="/var/log/script-name.log"
 
-# --- FUNCTION DEFINITIONS ---
-my_function() {
+# HELPERS
+_validate_input() {
   # ...
 }
 
-# --- ARGUMENT PARSING ---
-if [[ "$1" == "--help" ]]; then
-  # ...
-fi
-
-# --- MAIN LOGIC ---
-main() {
+# OPERATIONS
+process_data() {
   # ...
 }
 
-main "$@"
+# COMMANDS
+cmd_run() {
+  _validate_input "$1"
+  process_data "$1"
+}
+
+# DISPATCH
+case "${1:-}" in
+  run) shift; cmd_run "$@" ;;
+  *)   printf 'Usage: script-name run\n' >&2; exit 1 ;;
+esac
+----
+
+[[comment-style]]
+=== Comment Style
+
+Avoid em dashes (`—`) or en dashes in comments.
+
+Use a colon (`:`) to separate a name from its description.
+
+Use a semicolon (`;`) to combine phrases into a single line when they are closely related.
+
+.Example comment styles
+[source,bash]
+----
+# clobber.sh: A script to overwrite files; use with caution.
+
+# Write config file (first run only; do not clobber user edits)
+
+# path set by init --local; sync uses it instead of git pull
+----
+
+[[section-comments]]
+=== Section Comments
+
+Mark major sections with plain uppercase `#` labels.
+No decorative dashes or borders needed; the label is sufficient.
+
+[source,bash]
+----
+# CONSTANTS
+# HELPERS
+# COMMANDS
+# DISPATCH
+----
+
+In longer scripts (several hundred lines or more), a horizontal rule comment may precede a major section label to add visual weight.
+Use these sparingly.
+
+[source,bash]
+----
+# ---------------------------------------------------------------------------
+# COMMANDS
+# ---------------------------------------------------------------------------
 ----
 
 
 [[naming-conventions]]
 == Naming Conventions
 
-Global Variables and Constants::
-Use `SCREAMING_SNAKE_CASE`. Use `readonly` for constants.
+[[variable-names]]
+=== Variables
+
+Global variables and constants::
+Use `SCREAMING_SNAKE_CASE`.
+Use `readonly` for constants.
 * `readonly MAX_RETRIES=5`
 * `APP_CONFIG_PATH=".env"`
 
-Local Variables::
+Local variables::
 Use `snake_case` and `local` declaration.
 * `local user_name="$1"`
 
-Function Names::
-Use `snake_case`.
-* `get_user_details()`
+[[function-names]]
+=== Functions
+
+Operation functions::
+The substantive work of a script; what `cmd_` functions orchestrate, and what sourced libraries export as their callable API.
+Use unprefixed `snake_case`.
+* `evaluate_system()`, `build_docker_image()`, `get_current_version()`
+
+Helper functions::
+Prefix internal utility functions with `_`.
+This applies in both standalone scripts and sourced library files.
+In a sourced library, the `_` prefix signals that these functions are implementation details and reduces the risk of collisions in the calling script's namespace.
+* `_bold()`, `_check_help()`, `_resolve_slug()`, `_check_project_root()`
+
+Subcommand handlers::
+Prefix functions that implement top-level subcommands with `cmd_`.
+The dispatch `case` at the bottom of the script maps argument strings to these functions unambiguously.
+* `cmd_init()`, `cmd_run()`, `cmd_check()`
 
 
 [[variables-and-data]]
@@ -121,9 +200,9 @@ This prevents polluting the global scope and avoids unintended side effects.
 
 [source,bash]
 ----
-my_function() {
+_some_action() {
   local file_path="$1" # Good: variable is local to the function
-  count=0              # Bad: variable is global by default
+  count=0              # Avoid: variable is global by default
 }
 ----
 
@@ -138,13 +217,14 @@ Always quote variable expansions (`"$variable"`) and command substitutions (`"$(
 echo "$file_name"
 touch "$new_file"
 
-# Bad: will fail if file_name contains spaces
+# Avoid: will fail if file_name contains spaces
 echo $file_name
 touch $new_file
 ----
 
 [NOTE]
-Files created by DocOps Lab should never include spaces, but this habit is important for dealing with user input or external data.
+Names of files created by DocOps Lab should never include spaces, but this habit is important for dealing with user input or external data.
+Always remember that many of our users come from Windows, where spaces in filenames are common.
 
 [[arrays]]
 === Arrays
@@ -173,7 +253,31 @@ echo "User email: ${user_details["email"]}"
 [[syntax]]
 === Syntax
 
-Use the `function_name() { ... }` syntax for clarity.
+Use the `name() { }` syntax.
+Do not use the `function` keyword;
+it is redundant in Bash and creates visual inconsistency when mixed with bare definitions.
+
+[source,bash]
+----
+# Good
+some_action() {
+  local arg="$1"
+  # ...
+}
+
+# Avoid
+function some_action() {
+  local arg="$1"
+  # ...
+}
+----
+
+Single-line form is acceptable for very short utility functions:
+
+[source,bash]
+----
+_bold() { printf '\033[1m%s\033[0m' "$*"; }
+----
 
 [[arguments]]
 === Arguments
@@ -183,13 +287,13 @@ Use `"$@"` to forward all arguments.
 
 [source,bash]
 ----
-log_message() {
+_log_message() {
   local level="$1"
   local message="$2"
   echo "[$level] $message"
 }
 
-log_message "INFO" "Process complete."
+_log_message "INFO" "Process complete."
 ----
 
 [[returning-values]]
@@ -199,7 +303,7 @@ log_message "INFO" "Process complete."
 
 [source,bash]
 ----
-get_user_home() {
+_get_user_home() {
   local user="$1"
   # ... logic to find home directory ...
   echo "/home/$user" # Returns string via stdout
@@ -210,7 +314,7 @@ get_user_home() {
 
 [source,bash]
 ----
-check_file_exists() {
+_check_file_exists() {
   if [[ -f "$1" ]]; then
     return 0 # Success
   else
@@ -244,14 +348,12 @@ For dispatching based on a command or option, `case` statements are often cleane
 [source,bash]
 ----
 case "$command" in
-  build)
-    build_image
+  build) cmd_build
     ;;
-  run)
-    run_container
+  run)   cmd_run
     ;;
   *)
-    echo "Error: Unknown command '$command'" >&2
+    printf 'Error: unknown command: %s\n' "$command" >&2
     exit 1
     ;;
 esac
@@ -261,24 +363,154 @@ esac
 [[error-handling]]
 == Error Handling
 
-* Use `set -o errexit` (or `set -e`) at the top of your script to make it exit immediately if a command fails.
-* Use `set -o pipefail` to cause a pipeline to fail if any of its commands fail, not just the last one.
-* Print error messages to standard error (`stderr`).
-* Exit with a non-zero status code on failure.
+Use `set -euo pipefail` at the top of every script.
+
+`e`:: Exit immediately when any command returns a non-zero status.
+`u`::
+Treat unset variables as an error, catching silent bugs from empty references.
+`o pipefail`::
+Fail a pipeline if any command within it fails, not just the last one.
+
+Print error messages to standard error (`stderr`) and exit with a non-zero status.
 
 [source,bash]
 ----
 #!/usr/bin/env bash
-set -o errexit
-set -o pipefail
+set -euo pipefail
 
-echo "Error: Something went wrong." >&2
+printf 'Error: something went wrong.\n' >&2
 exit 1
 ----
+
+[NOTE]
+Some scripts warrant more selective error handling.
+A container entrypoint running as PID 1, or a script that sources untrusted config, may use `set -e` alone.
+Document any deviations and the reason for them.
+
+[[cleanup-traps]]
+=== Cleanup Traps
+
+For scripts that create temporary resources or modify system state, register a cleanup function with `trap` so those resources are removed whether the script exits normally, fails under `set -e`, or is interrupted.
+
+[source,bash]
+----
+_cleanup() {
+  [[ -n "${tmp_file:-}" ]] && rm -f "$tmp_file"
+}
+trap _cleanup EXIT INT TERM
+
+tmp_file="$(mktemp)"
+# ... work with $tmp_file ...
+----
+
+[TIP]
+The `EXIT` pseudo-signal fires on both normal exit and on `set -e` termination.
+Adding `INT` and `TERM` ensures cleanup even when the user presses Ctrl+C or the process is sent SIGTERM.
+
+
+[[sourced-libraries]]
+=== Sourced Libraries
+
+Do not place `set -euo pipefail` inside a sourced library file.
+The calling script owns the error mode.
+The library's functions will execute under whatever error mode the caller established.
+
+[source,bash]
+----
+#!/usr/bin/env bash
+# my-lib.sh; shared helpers sourced by build scripts.
+# Do NOT add set -euo pipefail here.
+
+_do_something() {
+  # ...
+}
+----
+
+For file-level variables that a sourced library exports for its callers to read, ShellCheck will emit `SC2034` ("variable appears unused").
+Suppress it inline on those specific declarations rather than disabling the check globally.
+
+[source,bash]
+----
+# shellcheck disable=SC2034 # exported; read by callers
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+----
+
+
+[[intentional-word-splitting]]
+=== Intentional Word-splitting
+
+When a variable genuinely needs to be word-split (ex: an options string passed to a command), suppress the ShellCheck warning inline on that specific line.
+Add a comment explaining the intent.
+
+[source,bash]
+----
+# shellcheck disable=SC2086 # intentional: $docker_args may contain multiple flags
+docker build ${docker_args} -t "${image}" .
+----
+
+[[output]]
+== Output
+
+Prefer `printf` over `echo` for all script output.
+
+* `printf` is predictable, portable across Bash scripts, and supports format strings.
+* `echo` behaviour varies across shells and platforms, particularly with `-e` and `-n`.
+* Never use `echo -e`.
+* Use `printf` with `\n`, or a heredoc.
+
+[source,bash]
+----
+# Good
+printf 'Error: %s not found.\n' "$name" >&2
+
+# Capture heredoc as a local var
+read -r -d '' error_message <<'ERRMSG'
+Error: Something went wrong.
+Please check your configuration and try again.
+ERRMSG
+printf '%s\n' "$error_message"
+
+# Avoid
+echo -e "Error: $name not found.\n"
+----
+
+[TIP]
+Note the use of semantic heredoc delimiters (`ERRMSG`) instead of generic `EOF` or `HEREDOC`.
+
+For output intended for the user (status ticks, warnings, separators), use the shared style helpers from the centrally maintained link:{this_proj_src_main_files_url}/gems/docopslab-dev/assets/templates/universals.sh[`universals.sh`] rather than writing raw ANSI codes inline.
+See the `universal-style-helpers` tagged segment for the canonical set.
+
+ifdef::audience-agent[]
+.Universal style helpers common to all DocOps Lab scripts
+[source,bash]
+----
+include::../../gems/docopslab-dev/assets/templates/universals.sh[tag="universal-style-helpers"]
+----
+endif::audience-agent[]
 
 
 [[practices-to-avoid]]
 == Practices to Avoid
+
+[[avoid-emoji]]
+=== Avoid Emojis in Output
+
+Do not use emojis in script output.
+Use the symbol helpers from `universal-style-helpers` (`_tick`, `_warn`, `_fail`, `_info`) which provide consistent Unicode characters (`✓`, `⚠`, `✗`).
+
+Let's keep it classy.
+
+[source,bash]
+----
+# Good
+_tick "Gem built: $gem_file"
+_fail "Docker not found."
+
+# Avoid
+echo -e "\U2705 Gem built: $gem_file"
+echo "❌ Docker not found."
+----
+
 
 [[avoid-eval]]
 === Avoid `eval`
@@ -304,3 +536,25 @@ current_dir="$(pwd)"
 # Avoid
 current_dir=`pwd`
 ----
+
+[[avoid-which]]
+=== Avoid `which`
+
+Use `command -v` to test whether a command is available on the `PATH`.
+`which` is an external binary whose behavior varies across systems and is not available everywhere.
+`command -v` is a Bash builtin and the POSIX-portable alternative.
+
+[source,bash]
+----
+# Good
+if command -v docker &>/dev/null; then
+  # ...
+fi
+
+# Avoid
+if which docker > /dev/null 2>&1; then
+  # ...
+fi
+----
+
+// end::sections[]

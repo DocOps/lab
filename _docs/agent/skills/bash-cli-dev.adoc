@@ -1,0 +1,10 @@
+---
+permalink: /docs/agent/bash-cli-dev/
+---
+include::../_agent_settings.adoc[]
+= Bash CLI Development for Agents
+
+[TIP]
+Use this guide in combination with the general Bash coding skill.
+
+include::../../reference/cli-styles.adoc[tags="bash-clis,general-cli-principles"]

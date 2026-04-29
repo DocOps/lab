@@ -7,7 +7,7 @@ include::../_agent_settings.adoc[]
 
 include::../../partials/_docopslab-dev-context-notice.adoc[]
 
-include::../../../gems/docopslab-dev/README.adoc[tag="globals"]
+include::../../../gems/docopslab-dev/README.adoc[tags="global-settings"]
 
 include::../../../gems/docopslab-dev/README.adoc[tag="standard-usage",leveloffset="-1"]
 

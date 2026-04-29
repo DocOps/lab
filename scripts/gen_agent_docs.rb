@@ -81,23 +81,6 @@ module GenAgentDocs
       puts "  ⚠️  Agent docs source directory not found: #{source_dir}"
     end
 
-    # Process AGENTS.markdown template (strip Jekyll frontmatter, keep Liquid syntax)
-    agents_template_source = '_docs/templates/AGENTS.markdown'
-    agents_template_dest = File.join('gems/docopslab-dev/docs/agent', 'AGENTS.md')
-
-    if File.exist?(agents_template_source)
-      content = File.read(agents_template_source)
-
-      # Strip Jekyll frontmatter (between --- markers)
-      content = content.sub(/\A---.*?---\n/m, '')
-
-      # Write to gem lib path (Liquid syntax preserved - no interpolation)
-      File.write(agents_template_dest, content)
-      puts "  ✓ Generated #{agents_template_dest}"
-    else
-      puts "  ⚠️  AGENTS.markdown template not found: #{agents_template_source}"
-    end
-
     puts "✅ Agent documentation generated in #{gem_docs_dir}"
   end
 

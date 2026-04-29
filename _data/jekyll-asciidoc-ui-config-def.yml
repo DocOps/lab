@@ -492,8 +492,18 @@ properties:
                       
                       Alternatively, to use the syntax `[.buzz.keyw--api]*APIs* for the same result, change this [.ppty]`specifier` property value to `keyw--`.
 
+          llmstxt:
+            name: llms.txt Generator
+            desc: Add an `llms.txt` file to the site root, for guiding LLM-backed agents and bots.
+            docs: |
+              Uses the `_includes/llmstxt.markdown` as a template.
+
+              Pages with frontmatter `llms_txt_exclude: true` will be excluded from the generated `llms.txt` file.
+
+              Pages with `llms_txt_desc:` frontmatter will have that description included in the `llms.txt` file listing for that page.
+          
           resourcer:
-            name: Mardown Resourcer
+            name: Markdown Resourcer
             desc: |
               Generates an alternate Markdown file _from the rendered HTML_, reverse engineering back to a lightweight markup, especially designed for LLM (large language model) crawlers and RAG (retrieval-augmented generation) systems.
               Optionally (by default) reates a `<link rel="alternate" type="text/markdown" href="/alt/markdown.md">` link in the document head.
@@ -504,22 +514,6 @@ properties:
                 desc: |
                   Whether to add a `<link rel="alternate" type="text/markdown" href="/alt/markdown.md">` link in the document head.
                   This link points to the alternate Markdown file generated from the rendered HTML.
-              dest_dir:
-                dflt: 'alt'
-                type: String
-                desc: |
-                  Directory under `site.destination_dir` (usually `_site/`) where the alternate Markdown files will be written.
-              include:
-                dflt: []
-                type: Array
-                desc: |
-                  Array of paths or URL prefixes to include in the alternate Markdown generation.
-                  This overrides the `exclude` property.
-              exclude:
-                dflt: []
-                type: Array
-                desc: |
-                  Array of paths or URL prefixes to exclude from the alternate Markdown generation.
               use_gfm:
                 dflt: true
                 type: Boolean
@@ -533,10 +527,9 @@ properties:
                 desc: |
                   How to handle unknown HTML tags in the rendered HTML.
                   Options are:
-                  * `pass_through` to keep unknown tags in the Markdown
+                  * `pass` to keep unknown tags in the Markdown
                   * `drop` to remove unknown tags from the Markdown
-                  * `bypass` to leave unknown tags as-is in the Markdown
-                  * `raise` to raise an error if unknown tags are found
+                  * `fail` to raise an error if unknown tags are found
               sitemap:
                 dflt: 'auto'
                 type: String
@@ -1263,16 +1256,4 @@ properties:
                       {{ trademarked_term }} is a registered trademark of {{ trademark_owner | default: 'its respective owner' }}.
                     type: Template
           
-                       
-
-
-
-components:
-  properties:
-    range:
-      docs: |
-        Use `..` to establish a span.
-
-        A preceding number establishes the starting level/item index.
-        If the range starts with `..n` instead of a number, all numbers from the lowest available or applicable number forward through the terminating number.
-        If the range terminates with `..n` instead of a number, all numbers from the preceding number through to the highest available or applicable number. 
+                    

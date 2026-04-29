@@ -41,5 +41,5 @@ View a specific issue.
 
 The `issuer` tool can be used to bulk-post issues to any repository from a YAML file.
 
-Follow the instructions at link:{docopslab_hub_url}/issuer[Issuer] to install and use the tool.
+Follow the instructions at link:{docopslab_src_www_url}/issuer[Issuer] to install and use the tool.
 // end::github-issues-management[]

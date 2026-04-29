@@ -24,3 +24,31 @@ Metrics/BlockLength:
 
 Metrics/ParameterLists:
   Max: 6
+
+# RSpec spec files use a flat layout intentionally (not mirrored to lib/)
+RSpec/SpecFilePathFormat:
+  Exclude:
+    - 'gems/docopslab-dev/specs/tests/rspec/**/*_spec.rb'
+
+# Stateful integration-style examples legitimately need multiple steps/expectations
+RSpec/ExampleLength:
+  Max: 13
+
+RSpec/MultipleExpectations:
+  Max: 3
+
+# Integration/registry specs may legitimately have more memoized helpers
+RSpec/MultipleMemoizedHelpers:
+  Max: 6
+
+# Integration specs testing registries/system behavior -- not single classes
+RSpec/DescribeClass:
+  Exclude:
+    - 'gems/docopslab-dev/specs/tests/rspec/tasks_spec.rb'
+
+# expect/receive style is preferred over spy pattern when return values and argument
+# inspection must be combined in a single block
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+RSpec/NestedGroups:
+  Max: 4

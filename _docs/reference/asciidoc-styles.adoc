@@ -71,53 +71,7 @@ include::_asciidoc-syntax.adoc[lines=2..]
 AsciiDoc attributes are often used to store reusable matter.
 In certain contexts, attributes should follow a formatting convention that makes them easier to name and recall.
 
-[[boolean-attributes]]
-==== Boolean Attributes
-
-Use toggles to set or conditionalize states such as:
-
-* intended audience type or role
-** `audience-agent`
-** `audience-beginner`
-** ``
-* target platform or format
-** `env-github`
-** `site-gen-jekyll`
-** `backend-pdf`
-
-These kinds of attributes are passed depending on how the AsciiDoc is converted.
-Platform and format indicators tend to get argued by the converter at runtime.
-
-But you can also look check for statuses that might be set in previous files depending on the use-case of the output.
-
-.Testing for _existence_ of a target platform
-[source,asciidoc]
-----
-\ifdef::audience-level-beginner[]
-As a beginner, you will see extra content in parts of this guide.
-
-If you are an expert, skip to the <<expert-guide>>.
-\endif::[]
-----
-
-.Testing for _non-existence_ of a target audience type.
-[source,asciidoc]
-----
-\ifndef::audience-agent[]
-This content is _not_ to appear in docs generated for AI agents.
-\endif::[]
-----
-
-It is generally advised to create two versions of any such indicator that may need to be resolve a variable placeholder later.
-
-.Setting open-ended key and boolean simultaneously
-[source,asciidoc]
-----
-:audience-level: beginner
-:audience-level-beginner: true
-
-Later we can reference the {audience-level}, which might be overwritten by an attribute passed at runtime.
-----
+For a complete guidance on attribute naming and usage, see {xref_docs_asciidoc-attributes_link}.
 
 [[url-attributes]]
 ==== URL Attributes
@@ -143,8 +97,8 @@ Where:
 .Examples
 [source,asciidoc,subs=none]
 ----
-:docopslab_hub_url: https://github.com/DocOps
-:href_docopslab_aylstack_url: {docopslab_hub_url}/aylstack/
+:docopslab_src_www_url: https://github.com/DocOps
+:href_docopslab_aylstack_url: {docopslab_src_www_url}/aylstack/
 :href_docopslab_aylstack_link: link:{href_docopslab_aylstack_url}[AYL DocStack]
 ----
 
@@ -161,6 +115,6 @@ Our implementation of Vale allows for local project overrides while maintaining 
 include::../../gems/docopslab-dev/README.adoc[tags="config-vale",leveloffset="-2"]
 
 [NOTE]
-For information on managing DocOps Lab's Vale styles, see link:{this_repo_base_url}/blob/main/gems/docopslab-dev/README.adoc[the `docopslab-dev` gem README].
+For information on managing DocOps Lab's Vale styles, see link:{this_proj_src_www_url}/blob/main/gems/docopslab-dev/README.adoc[the `docopslab-dev` gem README].
 
 // end::content[]

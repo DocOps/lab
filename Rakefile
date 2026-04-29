@@ -9,9 +9,15 @@ require 'date'
 # Load DocOps Lab development tooling
 require 'docopslab/dev'
 
+# Include Git branch utilities
+# rubocop:disable Style/MixinUsage
+extend DocOpsLab::Dev::GitBranch
+# rubocop:enable Style/MixinUsage
+
 # Configuration
 JEKYLL_CONFIG = YAML.load_file('_config.yml')
 DEPLOY_BRANCH = 'gh-pages'
+LIBRARY_BRANCH = 'labdev-library'
 BUILD_DIR = JEKYLL_CONFIG['destination'] || '_site'
 SLIDES_DIR = 'slides'
 PROJECTS_DATA = YAML.safe_load_file('_data/docops-lab-projects.yml', permitted_classes: [Date])
@@ -196,7 +202,7 @@ end
 desc 'Copy the Jekyll-AsciiDoc UI config definition file'
 task :copy_jekyll_ui_config do
   pwd = Dir.pwd
-  source = '../jekyll-asciidoc-ui/specs/config-def.yml'
+  source = '../jekyll-asciidoc-ui/specs/data/config-def.yml'
   if pwd == '/workspace'
     puts "⚠️  Warning: Containerized environment cannot see #{source}; skipping copy."
     next
@@ -368,14 +374,11 @@ end
 
 desc 'Switch to gh-pages branch (for manual inspection)'
 task :switch_to_deploy do
-  current_branch = `git branch --show-current`.strip
-
-  unless `git status --porcelain`.strip.empty?
-    puts '❌ You have uncommitted changes. Please commit them first.'
-    exit 1
-  end
+  current_branch = git_current_branch
+  git_ensure_clean_switch!(DEPLOY_BRANCH)
 
   puts "📦 Switching to #{DEPLOY_BRANCH} branch..."
+
   system("git checkout #{DEPLOY_BRANCH}") or raise "Failed to checkout #{DEPLOY_BRANCH}"
   puts "✅ Now on #{DEPLOY_BRANCH} branch. Use 'git checkout #{current_branch}' to return."
 end
@@ -384,14 +387,9 @@ desc 'Prepare deployment files (SAFE - does not commit or push)'
 task prepare_deploy: %i[clean build_site] do
   puts '🚀 Preparing deployment files...'
 
-  # Save current branch
-  current_branch = `git branch --show-current`.strip
-
-  # Check if we have uncommitted changes
-  unless `git status --porcelain`.strip.empty?
-    puts '❌ You have uncommitted changes. Please commit them first.'
-    exit 1
-  end
+  # Save current branch and ensure clean state
+  current_branch = git_current_branch
+  git_ensure_clean_switch!(DEPLOY_BRANCH)
 
   # Store the current commit hash
   `git rev-parse HEAD`.strip
@@ -447,7 +445,7 @@ end
 
 desc 'Commit deployment (run this after prepare_deploy and review)'
 task :commit_deploy do
-  current_branch = `git branch --show-current`.strip
+  current_branch = git_current_branch
 
   unless current_branch == DEPLOY_BRANCH
     puts "❌ You must be on the #{DEPLOY_BRANCH} branch to commit deployment."
@@ -473,7 +471,7 @@ end
 
 desc 'Push deployment to origin (DANGER: this updates the live site!)'
 task :push_deploy do
-  current_branch = `git branch --show-current`.strip
+  current_branch = git_current_branch
 
   unless current_branch == DEPLOY_BRANCH
     puts "❌ You must be on the #{DEPLOY_BRANCH} branch to push deployment."
@@ -514,7 +512,7 @@ task deploy_with_slides_safe: %i[update_slides deploy_safe]
 
 desc 'Return to main branch from gh-pages'
 task :return_to_main do
-  current_branch = `git branch --show-current`.strip
+  current_branch = git_current_branch
   if current_branch == DEPLOY_BRANCH
     puts '🔄 Returning to main branch...'
     system('git checkout main')
@@ -578,5 +576,98 @@ namespace :gemdo do
     cmd += " #{filters.join(' ')}" if filters.any?
 
     system(cmd) or raise 'Task tests failed'
+  end
+
+  # Staging and publishing the remote library to the labdev-library branch.
+  # .library/ is the untracked local staging dir (rebuilt on demand).
+  # LibraryManager reads gems/docopslab-dev/specs/data/library-index.yml.
+  namespace :push do
+    require_relative 'scripts/library_manager'
+
+    namespace :library do
+      desc 'Run all library prebuild steps declared in library-index.yml'
+      task :prebuild do
+        LibraryManager.prebuild_tasks.each do |task_name|
+          puts "🔧 Library prebuild: #{task_name}"
+          Rake::Task[task_name].invoke
+        end
+        puts '✅ Library prebuild complete'
+      end
+
+      desc "Stage library assets into #{LibraryManager::STAGE_DIR}/ using library-index.yml"
+      task stage: %w[gemdo:push:library:prebuild] do
+        LibraryManager.stage!
+      end
+
+      desc "Generate #{LibraryManager::STAGE_DIR}/#{LibraryManager::CATALOG_FILE} with SHA256 checksums"
+      task :generate_catalog do
+        LibraryManager.generate_catalog!(DocOpsLab::Dev::VERSION)
+      end
+
+      desc "Load #{LibraryManager::STAGE_DIR}/ into the host XDG cache for local testing (no GitHub push)"
+      task local: %w[gemdo:push:library:stage gemdo:push:library:generate_catalog] do
+        raise 'Catalog not found; run gemdo:push:library:generate_catalog first' unless LibraryManager.staged?
+
+        puts "📥 Installing #{LibraryManager::STAGE_DIR}/ into host cache..."
+        DocOpsLab::Dev::Library::Cache.write!(LibraryManager::STAGE_DIR)
+        puts "✅ Library installed to #{DocOpsLab::Dev::Library::Cache.current_path}"
+        puts '   Run `bundle exec rake labdev:show:library` in any downstream project to verify.'
+      end
+
+      desc "Force-push #{LibraryManager::STAGE_DIR}/ to the #{LIBRARY_BRANCH} branch on GitHub"
+      task :remote do
+        require 'tmpdir'
+
+        raise "#{LibraryManager::STAGE_DIR}/ not found; run gemdo:push:library:stage first" \
+          unless Dir.exist?(LibraryManager::STAGE_DIR)
+        raise "#{LibraryManager.catalog_path} not found; run gemdo:push:library:generate_catalog first" \
+          unless File.exist?(LibraryManager.catalog_path)
+
+        remote_url = `git remote get-url origin 2>/dev/null`.strip
+        raise 'Could not determine remote origin URL' if remote_url.empty?
+
+        stage = LibraryManager::STAGE_DIR
+        puts "🚀 Pushing #{stage}/ to branch #{LIBRARY_BRANCH} on #{remote_url}..."
+
+        Dir.mktmpdir('labdev-push-') do |tmpdir|
+          system('git', 'init', tmpdir) or raise 'git init failed'
+          system('git', '-C', tmpdir, 'checkout', '-b', LIBRARY_BRANCH) or raise 'git checkout failed'
+
+          Dir.glob("#{stage}/**/*", File::FNM_DOTMATCH).each do |src|
+            next if File.directory?(src)
+            next if File.basename(src).start_with?('.')
+
+            rel  = Pathname.new(src).relative_path_from(Pathname.new(stage)).to_s
+            dest = File.join(tmpdir, rel)
+            FileUtils.mkdir_p(File.dirname(dest))
+            FileUtils.cp(src, dest)
+          end
+
+          ts = begin
+            JSON.parse(File.read(LibraryManager.catalog_path))['generated_at']
+          rescue StandardError
+            'unknown'
+          end
+          system('git', '-C', tmpdir, 'add', '.') or raise 'git add failed'
+          system(
+            'git', '-C', tmpdir, 'commit', '--allow-empty', '-m',
+            "auto: update library (#{ts})") or raise 'git commit failed'
+          system('git', '-C', tmpdir, 'remote', 'add', 'origin', remote_url) or raise 'git remote add failed'
+          push_env = { 'GIT_SSH_COMMAND' => 'ssh -o BatchMode=yes -o StrictHostKeyChecking=accept-new' }
+          puts "  → pushing to #{remote_url}..."
+          system(
+            push_env, 'git', '-C', tmpdir, 'push', '--force', 'origin',
+            LIBRARY_BRANCH) or raise "git push to #{LIBRARY_BRANCH} failed"
+        end
+
+        puts "✅ Library pushed to #{LIBRARY_BRANCH}"
+      end
+    end
+
+    desc 'Prebuild, stage, & generate catalog only; no GH push'
+    task dry: %w[gemdo:push:library:stage gemdo:push:library:generate_catalog]
+
+    desc 'Prebuild, stage, generate catalog, and push library to labdev-library on GitHub'
+    task library: %w[gemdo:push:library:stage gemdo:push:library:generate_catalog gemdo:push:library:remote]
   end
 end

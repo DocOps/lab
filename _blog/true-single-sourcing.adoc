@@ -12,7 +12,7 @@ title: TRUE Single Sourcing with YAML and AsciiDoc
 :more-than-rest: Defining relatively complex interfaces in YAML can apply to much more than just REST APIs.
 // end::more-than-rest[]
 :toc: macro
-include::../README.adoc[tag=globals]
+include::../README.adoc[tags="global-settings"]
 
 {page-excerpt}
 

@@ -1,0 +1,153 @@
+---
+title: DocOps Lab AsciiDoc Attributes Naming and Usage
+tags: ["reference", "documentation", "styles", "asciidoc", "attributes", "variables", "settings", "data"]
+description: "DocOps Lab documentation style and usage for AsciiDoc attributes and placeholders."
+order: 65
+docs-group: technical
+redirect_from: ["docs/universal-attributes"]
+---
+include::../_local_settings.adoc[]
+= AsciiDoc Attributes Naming and Usage
+
+Consistency of variable/placeholder names throughout and across project documentation is paramount to maintainability.
+
+This document defines the canonical attribute naming conventions for all AsciiDoc files, as well as tag-group names and conditional assignment.
+This guide is intentionally prescriptive: attributes are small public APIs and must be stable, predictable, and single-sourced when their values are identical across repositories.
+
+[[scope]]
+== Scope
+
+This guidance applies to all DocOps Lab repositories and documentation sources that publish AsciiDoc attributes in `README.adoc` and repo-level documentation.
+It covers:
+
+* attribute key naming (prefixes, suffixes, separators)
+* repository/project/product attribute namespaces
+* tag-group names and nesting logic
+* conditional blocks for common build/render targets and other environment variables
+
+
+[[attribute-naming]]
+== Attribute Naming Principles
+
+. Use only lowercase letters, digits and underscore (`_`) in attribute names.
+Do not use hyphens (`-`) in attribute names except:
+* inside the name of a slug or other identifier (`xref_blog_true-single-sourcing_link`)
+* when a third-party tool or convention requires it (ex: `page-*` frontmatter attributes for Jekyll)
+
+. Prefer semantic prefixes:
+* `docopslab_` for org-level
+* `this_proj_` for project-level
+* `this_prod_` for product-level (only when product identity differs)
+* `this_repo_` only when the repo filesystem identity differs and cannot be expressed with `this_proj_`.
+
+. Suffixes carry meaning:
+* `_vrsn` for to reference a product version (`this_prod_vrsn`)
+* `_version` for third-party versions (`this_prod_ruby_version`)
+* `_majmin` for major.minor version pair
+* `_url` for HTTPS addresses
+* `_uri` for addresses that could be URLs or local paths
+* `_git_uri` for SSH clone addresses
+* `_www_url` specifically for HTML web front/home/landing pages, including GitHub project homepages (`_src_www_url`)
+*  `_docs_url` for documentation site addresses
+
+. Universal values that must be identical across repos live in `// tag::universal-settings[]` and are canonically sourced in `DocOps/lab/gems/docopslab-dev/assets/templates/README.asciidoc`.
+
+. `// tag::global-settings[]` is the per-repo include that nests `universal-settings`.
+
+[[special-patterns]]
+=== Special patterns
+
+* Forkable projects may keep the `_prime` pattern (ex: `proj_docs_www_prime`) if they provide a documented override mechanism.
+Treat this as an advanced pattern; document its use in the README.
+
+* Keep `page-*` frontmatter (Jekyll) attributes outside of `global-settings`.
+
+* Keep `pub_type` / `docterm` repository-specific; these are not part of the universal attribute API.
+
+[[standard-attribute-names]]
+=== Standard Attribute Names (Canonical List)
+
+* `docopslab_src_www_url`: canonical DocOps GitHub org web page (https://github.com/DocOps). This is the primary universal org URL.
+* `docopslab_www_url`: DocOps public website (https://docopslab.org). Different from the org web page.
+* `this_proj_slug`: repository slug (machine name), ex: `releasehx`
+* `this_proj_name`: human-friendly project short name, ex: `ReleaseHx` (use `this_proj_name`, not `title`)
+* `this_prod_vrsn_major`: integer major version
+* `this_prod_vrsn_minor`: integer minor version
+* `this_prod_vrsn_majmin`: `\{this_prod_vrsn_major}.\{this_prod_vrsn_minor}`
+* `this_prod_vrsn_patch`: patch number
+* `this_prod_vrsn`: `\{this_prod_vrsn_majmin}.\{this_prod_vrsn_patch}`
+* `this_prod_vrsn_next`: the very next planned release
+* `this_prod_vrsn_next_majmin`: the next minor or major release planned
+* `this_proj_src_www_url`: derived: `\{docopslab_src_www_url}/\{this_proj_slug}` (recommended composite form)
+* `this_proj_src_git_uri`: derived or explicit SSH clone URI
+* `this_proj_docs_url`: documentation site URL (if hosted separately)
+
+[[boolean-attributes]]
+=== Boolean Attributes
+
+Use toggles to set or conditionalize states such as:
+
+intended audience type or role::
+* `audience-agent`
+* `audience-beginner`
+
+target platform or format::
+* `env-github`
+* `site-gen-jekyll`
+* `backend-pdf`
+
+These kinds of attributes are passed depending on how the AsciiDoc is converted.
+Platform and format indicators tend to get argued by the converter at runtime.
+
+But you can also check for statuses that might be set in previous files depending on the use-case of the output.
+
+.Testing for _existence_ of a target platform
+[source,asciidoc]
+----
+\ifdef::audience-level-beginner[]
+As a beginner, you will see extra content in parts of this guide.
+
+If you are an expert, skip to the <<expert-guide>>.
+\endif::[]
+----
+
+.Testing for _non-existence_ of a target audience type.
+[source,asciidoc]
+----
+\ifndef::audience-agent[]
+This content is _not_ to appear in docs generated for AI agents.
+\endif::[]
+----
+
+It is generally advised to create two versions of any such indicator that may need to be resolve a variable placeholder later.
+
+.Setting open-ended key and boolean simultaneously
+[source,asciidoc]
+----
+:audience-level: beginner
+:audience-level-beginner: true
+
+Later we can reference the {audience-level}, which might be overwritten by an attribute passed at runtime.
+----
+
+[[tag-groups]]
+== Tag Groups and Single-sourcing
+
+Use these tag names for include-able blocks:
+
+* `// tag::global-settings[]`: all repository-level settings; this is the block that most documents include to get their configuration.
+* `// tag::universal-settings[]`: *inside* `global-settings`.
+Contains only values guaranteed to be identical across repos and managed centrally (canonical source: `lab/README.adoc`).
+
+The `universal-settings` block contains shared values (ex: `docopslab_src_www_url`), but they are not immutable.
+Local overrides should be placed _after_ the universal section.
+
+:this_proj_slug: <slug>
+:this_proj_name: <Project Name>
+:this_proj_src_www_url: {docopslab_src_www_url}/{this_proj_slug}
+
+.Universal attributes, resolved
+[source,asciidoc,subs="+attributes,-macros"]
+----
+include::../../gems/docopslab-dev/assets/templates/README.asciidoc[tags=universal-settings]
+----

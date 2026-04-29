@@ -1,7 +1,7 @@
 ---
 title: Single Sourcing and Rendering DocOps Lab Project Profiles
 ---
-include::../README.adoc[tag=globals]
+include::../README.adoc[tags="global-settings"]
 :page-metablog: true
 :page-redirect_from: /metablog/lab-projects-source-site/
 :page-tags: ["Jekyll", "YAML", "Liquid", "single-sourcing", "metadata"]
@@ -54,7 +54,7 @@ include::../README.adoc[tag=projects]
 [[data-structure]]
 == Data Structure
 
-The link:{docopslab_hub_url}/blob/main/_data/docops-lab-projects.yml[`docops-lab-projects.yml` file] is basically a large array of tabular data.
+The link:{docopslab_src_www_url}/blob/main/_data/docops-lab-projects.yml[`docops-lab-projects.yml` file] is basically a large array of tabular data.
 Each project's record has a number of parameters.
 
 [source,yaml,subs=attributes]

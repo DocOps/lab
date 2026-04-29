@@ -479,8 +479,12 @@ projects:
     tech: [YAML,Ruby,AsciiDoc,GitHub Issues,GitLab Issues,Jira,Liquid,ERB,JMESPath,JSONPath]
     wave: 0
     done: 100%
+    live: true
     icon: history
     page: true
+    docs:
+      user: https://releasehx.docopslab.org/docs
+      api:  https://releasehx.docopslab.org/docs/api/releasehx/
 
 ## Issuer:
   - name: Issuer
@@ -828,9 +832,8 @@ projects:
     desc: |
       Jekyll website theme for version-controlled technical documentation across multiple products.
       Accommodates extra categorization, navigation features, multiple search engines, AsciiDoc styling.
-      The most complex and most powerful product.
     line: Jekyll theme for version-controlled technical documentation across multiple products (1.0 target release)
-    vrsn: 1.0.0
+    vrsn: 0.4.0
     tags: [Jekyll plugin,documentation,versioning,multi-product,technical writing]
     tech: [Jekyll,AsciiDoc,Liquid,YAML,HTML,CSS/Sass,JavaScript]
     wave: 2

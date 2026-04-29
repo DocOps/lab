@@ -176,11 +176,11 @@ Otherwise, reserve the first argument slot for something a meaningful arbitrary 
  git commmit
  git merge
 +
-.No subdomain needed
+.No subcommand needed
  rhx 1.2.1 --config test-config.yml --mapping apis/jira.yml --verbose --fetch --yaml
  rhx 1.2.1 --config test-config.yml --html
 +
-And yes, of course you can combine fixed subdomains with arbitrary arguments.
+And yes, of course you can combine fixed subcommands with arbitrary arguments.
 +
  git diff README.adoc
 

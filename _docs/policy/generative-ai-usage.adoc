@@ -9,7 +9,7 @@ order: 29
 :toc: macro
 include::../_local_settings.adoc[]
 = DocOps Lab Generative "`AI`" Guidance
-include::../../README.adoc[tag=globals]
+include::../../README.adoc[tags="global-settings"]
 
 DocOps Lab is sensitive to the impact of generative AI on many aspects of modern life.
 These concerns include impacts on human psychology, professional community, and even the totality of digital output.

@@ -1,7 +1,7 @@
 ---
 title: How to Train Your Agent
 ---
-include::../README.adoc[tag="globals"]
+include::../README.adoc[tags="global-settings"]
 :page-date: 2026-01-02
 :page-tags: ["AI", "single-sourcing", "AsciiDoc", "writing"]
 :page-author: Brian Dominick
@@ -70,7 +70,7 @@ The `AGENTS.md` file seems like it should be for guiding the agent or LLM, but i
 Everything in your `AGENTS.md` should be correcting something that agents or LLMs are susceptible to doing a wrong or less-preferred way.
 Do not waste tokens teaching them things they already do; encourage them to do things _your way_.
 
-I currently source a common/upstream link:{docopslab_lab_hub_base_url}/blob/main/_docs/templates/AGENTS.markdown[`AGENTS.markdown` template].
+I currently source a common/upstream link:{this_proj_src_main_files_url}/blob/main/_docs/templates/AGENTS.markdown[`AGENTS.markdown` template].
 It is filled with tags and tokens indicating where customization should be carried out for each repo into which an instance is placed.
 This is a per-codebase document, not something to sync across projects.
 
@@ -146,54 +146,54 @@ These documents are relatively original, whereas skills, missions, and topics al
 In my case, I could never afford to hire a person to fulfill any of these roles, and in truth they're somewhat over-specialized, on purpose.
 
 Here is the current roster of roles I am providing docs for:footnote:[This list is static yet subject to change.
-The full current, built library is always at {this_repo_base_url}/tree/agent-docs/roles, and they're published in rich-text form at link:{docopslab_www_base_url}/docs/agent/[in the Lab docs site].]
+The full current, built library is always at {this_proj_src_www_url}/tree/agent-docs/roles, and they're published in rich-text form at link:{docopslab_src_www_url}/docs/agent/[in the Lab docs site].]
 
-[cols="12,2,1,2"]
+[cols="12,2a,1,2a"]
 |===
 | Product Manager
-| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/product-manager.adoc?plain[AsciiDoc]
+| link:{this_proj_src_main_files_url}/_docs/agent/roles/product-manager.adoc[AsciiDoc]
 | link:/docs/agent/product-manager[HTML]
-| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/product-manager.md[Markdown]
+| link:{this_proj_src_www_url}/tree/agent-docs/roles/product-manager.md[Markdown]
 
 | Project Manager
-| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/project-manager.adoc?plain[AsciiDoc]
+| link:{this_proj_src_main_files_url}/_docs/agent/roles/project-manager.adoc?plain[AsciiDoc]
 | link:/docs/agent/project-manager[HTML]
-| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/project-manager.md[Markdown]
+| link:{this_proj_src_www_url}/tree/agent-docs/roles/project-manager.md[Markdown]
 
 | Software Planner/Architect
-| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/planner-architect.adoc?plain[AsciiDoc]
+| link:{this_proj_src_main_files_url}/_docs/agent/roles/planner-architect.adoc?plain[AsciiDoc]
 | link:/docs/agent/planner-architect[HTML]
-| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/planner-architect.md[Markdown]
+| link:{this_proj_src_www_url}/tree/agent-docs/roles/planner-architect.md[Markdown]
 
 | Product Engineer
-| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/product-engineer.adoc?plain[AsciiDoc]
+| link:{this_proj_src_main_files_url}/_docs/agent/roles/product-engineer.adoc?plain[AsciiDoc]
 | link:/docs/agent/product-engineer[HTML]
-| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/product-engineer.md[Markdown]
+| link:{this_proj_src_www_url}/tree/agent-docs/roles/product-engineer.md[Markdown]
 
 | QA/Testing Engineer
-| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/qa-engineer.adoc?plain[AsciiDoc]
+| link:{this_proj_src_main_files_url}/_docs/agent/roles/qa-engineer.adoc?plain[AsciiDoc]
 | link:/docs/agent/qa-engineer[HTML]
-| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/qa-engineer.md[Markdown]
+| link:{this_proj_src_www_url}/tree/agent-docs/roles/qa-engineer.md[Markdown]
 
 | DevOps/Release Engineer
-| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/devops-engineeer.adoc?plain[AsciiDoc]
+| link:{this_proj_src_main_files_url}/_docs/agent/roles/devops-engineeer.adoc?plain[AsciiDoc]
 | link:/docs/agent/devops-engineer[HTML]
-| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/devops-engineer.md[Markdown]
+| link:{this_proj_src_www_url}/tree/agent-docs/roles/devops-engineer.md[Markdown]
 
 | DocOps Engineer
-| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/docops-engineeer.adoc?plain[AsciiDoc]
+| link:{this_proj_src_main_files_url}/_docs/agent/roles/docops-engineeer.adoc?plain[AsciiDoc]
 | link:/docs/agent/docops-engineer[HTML]
-| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/docops-engineer.md[Markdown]
+| link:{this_proj_src_www_url}/tree/agent-docs/roles/docops-engineer.md[Markdown]
 
 | Tech Docs Manager
-| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/tech-docs-manager.adoc?plain[AsciiDoc]
+| link:{this_proj_src_main_files_url}/_docs/agent/roles/tech-docs-manager.adoc?plain[AsciiDoc]
 | link:/docs/agent/tech-docs-manager[HTML]
-| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/tech-docs-manager.md[Markdown]
+| link:{this_proj_src_www_url}/tree/agent-docs/roles/tech-docs-manager.md[Markdown]
 
 | Tech Writer
-| link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/roles/tech-writer.adoc?plain[AsciiDoc]
+| link:{this_proj_src_main_files_url}/_docs/agent/roles/tech-writer.adoc?plain[AsciiDoc]
 | link:/docs/agent/tech-writer[HTML]
-| link:{docopslab_lab_hub_base_url}/tree/agent-docs/roles/tech-writer.md[Markdown]
+| link:{this_proj_src_www_url}/tree/agent-docs/roles/tech-writer.md[Markdown]
 |===
 
 While I am competent in most of these rolesfootnote:[QA/Testing Engineer and DevOps/Release Engineer are true exceptions in my experience; these documents were produced with considerable LLM assistance.], I of course prefer it if my agents are superstars in each given specialty.
@@ -214,7 +214,7 @@ The more documentation I provide authors and developers, the more likely they ar
 Maybe more appealing still is offering that level of confidence for contributors' using their own LLM agents.
 In that case, the existence of massive amounts of detailed docs is reassuring, but the specificity of agent-oriented docs is even better.
 
-To review the current set of skills docs: link:{docopslab_lab_hub_base_url}/tree/main/_docs/agent/skills[AsciiDoc], link:{docopslab_lab_hub_base_url}/docs/agent/#skills[HTML], link:{docopslab_lab_hub_base_url}/tree/agent-docs/skills/[Markdown].
+To review the current set of skills docs: link:{this_proj_src_main_files_url}/_docs/agent/skills[AsciiDoc], link:{this_proj_src_main_files_url}/docs/agent/#skills[HTML], link:{this_proj_src_www_url}/tree/agent-docs/skills/[Markdown].
 
 [[agent-missions]]
 === Missions
@@ -271,7 +271,7 @@ If you leave it up to any series of LLM sessions, you will end up with either (a
 Your code and docs will either look like 5 or 10 professionals contributed without communicating, or else they will completely lack distinction or creativity.
 
 To wrangle and shape the results of any amount of "`vibe coding`" prompted drafting, LLM clients and agents need exceptional guidance and well-defined guardrails.
-I have found these to come in the form of curated, link:{docopslab_www_base_url}/docs/agent/[agent-focused documentation] and rigorous application of link:{docopslab_hub_base_url}/#linters[linters].
+I have found these to come in the form of curated, link:{docopslab_src_www_url}/docs/agent/[agent-focused documentation] and rigorous application of link:{docopslab_src_www_url}/#linters[linters].
 
 MCP servers may be added to the list soon.
 Stay tuned for more on that front.

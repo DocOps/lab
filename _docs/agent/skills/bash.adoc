@@ -1,0 +1,8 @@
+---
+permalink: /docs/agent/bash-styles/
+indexed: false
+---
+include::../_agent_settings.adoc[]
+= Bash Coding for Agents
+
+include::../../reference/bash-styles.adoc[tag="sections"]

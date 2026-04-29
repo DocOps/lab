@@ -6,7 +6,7 @@ order: 66
 ---
 include::../_local_settings.adoc[]
 = Dockerfile and Docker Image Management
-include::../../README.adoc[tag="globals"]
+include::../../README.adoc[tags="global-settings"]
 
 // tag::body[]
 DocOps Lab projects make extensive use of Docker.
@@ -28,6 +28,6 @@ Each runtime application project has its own `Dockerfile` in the root of its rep
 This Dockerfile defines the image that will be built and pushed to Docker Hub for use by anyone needing to run the application.
 
 [NOTE]
-Some Dockerfiles combine multiple applications, such as the link:{docopslab_hub_url}[issuer-rhx image], which combines both the Issuer and ReleaseHx applications.
+Some Dockerfiles combine multiple applications, such as the link:{docopslab_src_www_url}[issuer-rhx image], which combines both the Issuer and ReleaseHx applications.
 
 // end::body[]

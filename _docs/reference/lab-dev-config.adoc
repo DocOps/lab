@@ -15,7 +15,7 @@ For dev-tooling setup instructions, see {xref_docs_lab-dev-setup_link}.
 [NOTE]
 For dev-tooling usage instructions, see {xref_docs_lab-dev-usage_link}.
 
-include::../../gems/docopslab-dev/README.adoc[tags="globals,manifest-config",leveloffset="-2"]
+include::../../gems/docopslab-dev/README.adoc[tags="global-settings,manifest-config",leveloffset="-2""]
 
 [NOTE]
 See tool-specific sections in the various guides, such as for link:{xref_docs_asciidoc-styles_url}#config-vale[Vale (Documentation Style Guide)], link:{xref_docs_ruby-styles_url}#config-rubocop[RuboCop (Ruby Style Guide)], and link:{xref_docs_testing_url}#config-htmlproofer[ HTMLProofer].

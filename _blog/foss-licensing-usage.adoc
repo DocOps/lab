@@ -6,7 +6,7 @@ title: DocOps Lab Licensing and Usage
 :page-tags: ["open-source", "policy", "projects"]
 :page-image: blog-foss-licenses.jpg
 :page-image-source: https://license.md/popular-open-source-software-licenses/
-include::../README.adoc[tag="globals"]
+include::../README.adoc[tags="global-settings"]
 
 Let's talk about permissively licensed software and how it is best used and managed downstream.
 
@@ -22,7 +22,7 @@ ____
 
 DocOps Lab software is typically released in both source code and binary/packaged forms, for users' convenience.
 
-The *code* is released on an interactive platform (link:{docopslab_hub_url}[GitHub]) so you can investigate it, extend it, or help fix and improve it.
+The *code* is released on an interactive platform (link:{docopslab_src_www_url}[GitHub]) so you can investigate it, extend it, or help fix and improve it.
 
 The *binaries and packages* are released so you can install and execute it without including the source code in your own projects.
 This way even if you share your project as open source, any open source software it uses unmodified can be referenced as a dependency rather than packaged in your codebase.
@@ -203,7 +203,7 @@ Knock yourself out.
 
 We release some extra documentation like websites and educational materials under link:https://creativecommons.org/licenses/by/4.0/deed.en[Creative Commons Attribution 4.0 International (CC BY 4.0)] because it is similarly permissive like MIT and widely understood, and because we quite like CC and their efforts in the world of knowledge sharing.
 
-CC BY indicates a requirement to note what changes are made if you redistribute the so-licensed content, so for stuff like Docs-as-Code School or link:{docopslab_www_base_url}[the main (this) DocOpsLab.org] website.
+CC BY indicates a requirement to note what changes are made if you redistribute the so-licensed content, so for stuff like Docs-as-Code School or link:{docopslab_src_www_url}[the main (this) DocOpsLab.org] website.
 
 [[what-does-all-this-mean]]
 === What Does All This Mean?

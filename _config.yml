@@ -160,6 +160,7 @@ exclude:
   - '*.md'
   - artifacts/
   - README.adoc
+  - Rakefile
   - Gemfile
   - Gemfile.lock
   - node_modules/

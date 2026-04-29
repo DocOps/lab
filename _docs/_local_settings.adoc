@@ -7,6 +7,6 @@
 ifdef::env-github[]
 :extn: .adoc
 endif::env-github[]
-include::../README.adoc[tags="globals"]
+include::../README.adoc[tags="global-settings"]
 include::partials/built/xref_attrs.adoc[]
-:page-history_url: {this_repo_base_url}/commits/main/_docs/{page-slug}.adoc
+:page-history_url: {this_proj_src_www_url}/commits/main/_docs/{page-slug}.adoc

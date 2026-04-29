@@ -20,7 +20,7 @@ title: Collecting and Aggregating Blogs about Tech Docs
 :serials-aggregator-web-url: /docs-blogs/latest/
 :serials-aggregator-rss-url: /feeds/aggregate.xml
 :docops-lab-blog-feed-url: /feeds/docops-lab-blog.xml
-include::../README.adoc[tag=globals]
+include::../README.adoc[tags="global-settings"]
 
 {page-excerpt}
 

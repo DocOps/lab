@@ -38,6 +38,49 @@ When a product has a `docs/content/` path, documentation changes usually have a 
 
 Reference matter should be documented where it is defined, such as in `specs/data/*.yml` files.
 
+When a product matures (prior to 1.0), the documentation should move into new paths, separated depending on whether it is user-facing or internal.
+
+In either case, the way to discover where to put documentation changes is to use a `docopslab-dev` _skim_ task on the existing docs source.
+These skims are semantic outlines of the source files in their converted state.
+They can be used for navigation, content discovery, and change impact analysis.
+
+[[user-docs]]
+==== User-Facing Documentation
+
+End-user docs, including API documentation, is usually sourced in `docs/content/`, alongside asset files for the documentation site (images, CSS, etc.).
+
+The `docs/` path is typically a Jekyll site's source path, but in most cases a pre-build operation will generate supplemental files in `docs/built/` or the like.
+
+If the changes you are documenting are user-facing, use the tasks below to determine where the relevant documentation lives.
+
+[[docs-discovery]]
+Skim the docs::
+[.prompt]
+ bundle exec rake labdev:skim:adoc[README.adoc,tree,json] > .agent/docs/readme.json
+ bundle exec rake labdev:skim:adoc[docs/,tree,json] > .agent/docs/skim-docs.json
+
+[[internal-docs]]
+==== Internal Documentation
+
+Generally speaking, internal documentation (for developers, maintainers, and their AI agents), belongs in `_docs/` and `.agent/docs/` paths.
+
+The `_docs/agent/` path is for overlays that take priority over parallel docs in `.agent/docs/` (maintained by docopslab-dev library syncing). 
+
+Skim the README::
+[.prompt]
+ bundle exec rake labdev:skim:adoc[README.adoc,tree,json] > .agent/docs/readme.json
+
+Skim the internal docs::
+[.prompt]
+ bundle exec rake labdev:skim:adoc[_docs/,tree,json] > .agent/docs/skim-internal.json
+
+Skim the agent docs to see if any overlay is needed::
+[.prompt]
+ bundle exec rake labdev:skim:md[.agent/docs/:_docs/agent/,tree,json] > .agent/docs/skim-agent.json
+
+If a local instruction contradicts or differs arbitrarily from the main DocOps Lab developer/contributor docs, create an overlay file in `_docs/agent/*` with the same sub-path and filename.
+
+
 [[release-note-entry]]
 === Release Note Entry
 

@@ -1,7 +1,7 @@
 ---
 title: "DocOps Lab Has Issues: Announcing Issuer and ReleaseHx"
 ---
-include::../README.adoc[tag=globals]
+include::../README.adoc[tags="global-settings"]
 :page-date: 2026-02-01
 :page-tags: ["projects", "automation", "YAML", "GitHub", "announcements"]
 :page-author: Brian Dominick
@@ -165,7 +165,7 @@ DocOps Lab maintains a demonstration repository full of examples and sample file
 
 .Clone the repo
 [.prompt,subs=+attributes]
- git clone {docopslab_hub_url}/releasehx-demo.git
+ git clone {docopslab_src_www_url}/releasehx-demo.git
 
 .Change into the directory
 [.prompt]

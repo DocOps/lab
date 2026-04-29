@@ -30,7 +30,7 @@ A `docs/` or `_docs/` directory is close to the third universal requirement, nec
 `README.adoc`::
 Project documentation in AsciiDoc format, providing an overview and instructions.
 DocOps Lab READMEs typically include single-sourcing data for the product as AsciiDoc attributes.
-See the link:{docopslab_hub_url}/asciisourcerer[AsciiSourcerer project].
+See the link:{docopslab_src_www_url}/asciisourcerer[AsciiSourcerer project].
 
 `LICENSE`::
 The project's license file, specifying the terms under which the code can be used and distributed.

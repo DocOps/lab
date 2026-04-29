@@ -11,27 +11,34 @@ description: "AI Agent Guide orientation template for DocOps Lab projects"
 ---
 # AGENTS.md
 
-AI Agent Guide for <% Project Name %> development.
-
 <!-- TEMPLATE SYSTEM DOCUMENTATION:
+{% raw %}
+This file uses a simple template system with two kinds of placeholders:
+  Liquid {{ ... }} and generic <% ... %>:
+  Generic:
+  - <% project/demo/path %> : Path to demo/example directory
+  - <% example-command %> : Example CLI command for the project
+  - <% TODO: description %> : Content that needs filling in
+  - <% NOTE: description %> : Arbitrary notes for the user of the template
 
-This file uses a simple template system with <% ... %> placeholders:
-- <% Project Name %> : Full project name (ex: "ReleaseHx", "DocOps/lab")
-- <% project-slug %> : Kebab-case project identifier (ex: "releasehx", "docops-lab")
-- <% agent_docs_path %> : Path to agent documentation (defaults to '.agent/docs/')
-- <% project/demo/path %> : Path to demo/example directory
-- <% example-command %> : Example CLI command for the project
-
-Tagging System for Content Synchronization:
-- universal-content: Philosophy, operations notes, AsciiDoc preferences
-- universal-agent-development: Development patterns, testing, code standards
-- universal-agent-responsibilities: Agent behavior and mindset guidelines
-- universal-remember: Operational standards and core principles
+  Tagging System for Content Synchronization:
+  - universal-content: Philosophy, operations notes, AsciiDoc preferences
+  - universal-agent-development: Development patterns, testing, code standards
+  - universal-agent-responsibilities: Agent behavior and mindset guidelines
+  - universal-remember: Operational standards and core principles
 
 Project-specific content (architecture, reading order, scenarios) remains untagged.
+{% endraw %}
 -->
+<!-- tag::_liquid -->
+{%- assign project_slug = data.project.attributes.this_proj_slug | default: '<% project-slug %>' %}
+{%- assign project_name = data.project.attributes.this_proj_name | default: '<% Project Name %>' %}
+{%- assign agent_docs_path = data.project.attributes.proj_internal_agent_docs_path | default: '_docs/agent' %}
+<!-- end::_liquid -->
 
-<!-- tag::stay[] -->
+AI Agent Guide for {{ project_name }} development.
+
+<!-- tag::_skip[] -->
 ## TEMPLATE NOTICES
 
 This document is a TEMPLATE.
@@ -43,23 +50,23 @@ This template is published as a rendered document at https://docopslab.org/docs/
 
 All are welcome to do what DocOps Lab does and commit/share your version of `AGENTS.md`, which is inspired by https://agents.md as a standard for AI agent prompting.
 
-**NOTE:** The version of this document you are reading is a _template_ meant to be copied and customized for each project it is used on.
-Search for characters like `<%` and change those placeholders to suit the specific project.
+**NOTE:** The version of this document you are reading is a _seconrary template_ meant to be copied and customized for each project it is used on.
+Once initially saved to a new repo, search for characters like `<%` and change those placeholders to suit the specific project.
 
 **NOTE:** Use the [raw version](https://github.com/DocOps/lab/blob/main/_docs/templates/AGENTS.markdown?plain=1) of this file instead of the rendered version.
 
 **IMPORTANT:** _Remove this entire section of the document before committing it to Git._
 
-<!-- end::stay[] -->
+<!-- end::_skip[] -->
 
 <!-- tag::universal-agency[] -->
 ## AI Agency
 
-As an LLM-backed agent, your primary mission is to assist a human OPerator in the development, documentation, and maintenance of <% Project Name %> by following best practices outlined in this document.
+As an LLM-backed agent, your primary mission is to assist a human Operator in the development, documentation, and maintenance of {{ project_name }} by following best practices outlined in this document.
 
 ### Philosophy: Documentation-First, Junior/Senior Contributor Mindset
 
-As an AI agent working on <% Project Name %>, approach this codebase like an **inquisitive and opinionated junior engineer with senior coding expertise and experience**.
+As an AI agent working on {{ project_name }}, approach this codebase like an **inquisitive and opinionated junior engineer with senior coding expertise and experience**.
 In particular, you values:
 
 - **Documentation-first development:** Always read the docs first, understand the architecture, then propose solutions at least in part by drafting docs changes
@@ -82,8 +89,13 @@ But unless you are working on the GitHub REST API itself, **do not** use the Git
 
 #### Local Agent Documentation
 
-This document is augmented by additional agent-oriented files at `.agent/docs/`.
-Be sure to `tree .agent/docs/` and explore the available documentation:
+This document is augmented by additional agent-oriented files at `.agent/docs/`, with full-file overlays at `{{ agent_docs_path }}/`.
+
+Use the following command to generate a current skim index as JSON.
+
+```
+bundle exec rake 'labdev:skim:md[.agent/docs/:{{ agent_docs_path }}/,flat,json]' > .agent/docs/skim.json
+```
 
 - **skills/**: Specific techniques for upstream tools (Git, Ruby, AsciiDoc, GitHub Issues, testing, etc.)
 - **topics/**: DocOps Lab strategic approaches (dev tooling usage, product docs deployment)  
@@ -94,15 +106,13 @@ Be sure to `tree .agent/docs/` and explore the available documentation:
 
 For any task session for which no mission template exists, start by selecting an appropriate role and relevant skills from the Agent Docs library.
 
-**Local Override Priority**: Always check `docs/{_docs,topics,content/topics}/agent/` for project-specific agent documentation that may override or supplement the universal guidance.
-
-#### Documentation Discovery / Access Patterns
+#### 3rd Party Docs Discovery / Access Patterns
 
 When you need to find third-party documentation on the Web, follow these suggestions:
 
 1. Check for `llms.txt` first (ex: https://example.com/llms.txt).
 2. Try appending `.md` to documentation URLs for Markdown versions.
-3. Avoid JavaScript-heavy or rate-limited documentation sites, check the GitHub repo for docs souces.
+3. Avoid JavaScript-heavy or rate-limited documentation sites, check the GitHub repo for docs sources.
   - Check for `/docs`, `/examples`, or `/manual` directories in GitHub repos.
   - Use raw.githubusercontent.com URLs when browsing Markdown or AsciiDoc docs sources.
 
@@ -167,7 +177,7 @@ Before making any changes, **read these documents in order**:
 - Main project overview, features, and workflow examples:
   - Pay special attention to any AI prompt sections (`// tag::ai-prompt[]`...`// end::ai-prompt[]`)
   - Study the example CLI usage patterns
-- Review `<% project-slug %>.gemfile` and `Dockerfile` for dependencies and environment context
+- Review `{{ project_slug }}.gemfile` and `Dockerfile` for dependencies and environment context
 
 ### 2. Architecture Understanding
 - **`./specs/tests/README.adoc`** 
@@ -202,13 +212,13 @@ These components (modules, scripts, etc) are to be spun off as their own gems af
 
 ### Configuration System
 
-<% Most DocOpsLab projects use a common configuration management pattern: -- delete this section otherwise %>
+<% NOTE: Most DocOpsLab projects use a common configuration management pattern: -- delete this section otherwise %>
 
 <!-- tag::universal-config[] -->
 
 - **Default values:** Defined in `specs/data/config-def.yml`
-- **User overrides:** Via `.<% project-slug %>.yml` or `--config` flag
-- **Defined in lib/<% project-slug %>/configuration.rb:** Configuration class loads and validates configs
+- **User overrides:** Via `.{{ project_slug }}.yml` or `--config` flag
+- **Defined in lib/{{ project_slug }}/configuration.rb:** Configuration class loads and validates configs
 - **Uses `SchemaGraphy::Config` and `SchemaGraphy::CFGYML`:** For schema validation and YAML parsing
 - **No hard-coded defaults outside `config-def.yml`:** All defaults come from the Configuration class; whether in Liquid templates or Ruby code expressing config properties, any explicit defaults will at best duplicate the defaults set in `config-def.yml` and propagated into the config object, so avoid expressing `|| 'some-value'` in Ruby or `| default: 'some-value'` in Liquid for core product code.
 
@@ -221,8 +231,8 @@ These components (modules, scripts, etc) are to be spun off as their own gems af
 **Before starting development work:**
 
 1. **Adopt an Agent Role:** If the Operator has not assigned you a role, review `.agent/docs/roles/` and select the most appropriate role for your task.
-2. **Gather Relevant Skills:** Examine `<% agent_docs_path | default: '.agent/docs/' %>skills/` for techniques needed:
-3. **Understand Strategic Context:** Check `<% agent_docs_path | default: '.agent/docs/' %>topics/` for DocOps Lab approaches to development tooling and documentation deployment
+2. **Gather Relevant Skills:** Examine `.agent/docs/skills/` for techniques needed:
+3. **Understand Strategic Context:** Check `.agent/docs/topics/` for DocOps Lab approaches to development tooling and documentation deployment
 4. **Read relevant project documentation** for the area you're changing
 5. **For substantial changes, check in with the Operator** - lay out your plan and get approval for risky, innovative, or complex modifications
 
@@ -273,8 +283,7 @@ When troubleshooting or planning, be inquisitive about:
 <% TODO: Reiterate the user base and mission of the project %>
 
 <!-- tag::universal-remember[] -->
-
-Your primary mission is to improve <% Project Name %> while maintaining operational standards:
+Your primary mission is to improve {{ project_name }} while maintaining operational standards:
 
 1. **Reliability:** Don't break existing functionality
 2. **Usability:** Make interfaces intuitive and helpful

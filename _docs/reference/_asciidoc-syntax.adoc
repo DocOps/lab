@@ -201,7 +201,3 @@ require 'jekyll'
 ====
 --------
 
-
-== Special Syntax
-
-=== Attributes
