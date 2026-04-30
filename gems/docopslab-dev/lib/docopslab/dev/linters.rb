@@ -235,8 +235,9 @@ module DocOpsLab
               path_config = context.get_path_config('vale')
               skip_paths = path_config[:skip] || []
               exts = path_config[:exts] || []
+              pwd = Pathname.pwd
               asciidoc_files = path_result.enum.select do |f|
-                normalized = f.sub(%r{^\./}, '')
+                normalized = Pathname.new(f).expand_path.relative_path_from(pwd).to_s
                 if exts && !exts.empty?
                   ext = File.extname(f).delete_prefix('.')
                   next false unless exts.include?(ext)

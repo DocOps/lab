@@ -67,11 +67,13 @@ module DocOpsLab
 
           return [] unless lint_paths
 
+          pwd = Pathname.pwd
           files = []
           lint_paths.each do |path|
             Sourcerer::Util::Pathifier.match(path).enum.each do |file|
-              # Normalize path by removing ./ prefix for consistent pattern matching
-              normalized = file.sub(%r{^\./}, '')
+              # Normalize to a relative path for consistent pattern matching.
+              # Pathifier may return absolute paths, so we relativize unconditionally.
+              normalized = Pathname.new(file).expand_path.relative_path_from(pwd).to_s
               files << normalized
             end
           end

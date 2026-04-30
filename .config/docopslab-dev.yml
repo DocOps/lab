@@ -15,6 +15,7 @@ docs:
   - source: docs/agent/missions/*.md
     target: .agent/docs/missions
     synced: true
+
 templates:
   manifest:
     - source: templates/AGENTS.markdown
@@ -25,6 +26,7 @@ templates:
       target: README.adoc
     - source: templates/README.asciidoc
       target: gems/docopslab-dev/README.adoc
+
 tools:
   - tool: rubocop
     files:
@@ -49,8 +51,11 @@ tools:
         - _blog/_asciidoc-snippets.adoc
         - _blog/_asciidoc-crazy-table-snippet.adoc
         - _docs/partials/built/*
-        - _projects/*
+        - _projects/**/*
         - _docs/reference/_asciidoc-syntax.adoc
+        - _docs/agent/**/*
+        - .agent/**/*
+        - .bundle/**/*
       exts: ['adoc']
       # git_tracked_only: false
 
