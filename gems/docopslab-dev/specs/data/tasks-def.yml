@@ -18,8 +18,6 @@ labdev:
     _desc: Run assessments on the project environment and managed assets
     env:
       _desc: Assess the local environment and configuration
-    updates:
-      _desc: Check for updates to managed assets from upstream
     all:
       _alias: "labdev:check"
   init:

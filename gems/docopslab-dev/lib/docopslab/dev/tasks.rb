@@ -54,11 +54,6 @@ module DocOpsLab
               Dev.check_standard_rake_tasks
             end
 
-            desc desc_for('check:updates')
-            task :updates do
-              Dev.check_hook_updates
-            end
-
             desc desc_for('check:all')
             task :all do
               Rake::Task['labdev:check:env'].invoke

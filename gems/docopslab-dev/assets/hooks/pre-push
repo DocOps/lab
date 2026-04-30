@@ -36,18 +36,6 @@ echo "📋 Checking commits from $BASE to $LOCAL..."
 # Run all linters on the codebase
 echo "🔍 Running comprehensive linting..."
 
-# Check config sync status first
-if [[ -f ".config/docopslab-dev.yml" ]]; then
-  echo "🔄 Verifying config sync..."
-  if command -v bundle &> /dev/null; then
-    if ! bundle exec rake labdev:config:sync --dry-run &> /dev/null; then
-      echo "❌ Config sync needed. Run: bundle exec rake labdev:config:sync"
-      exit 1
-    fi
-    echo "✅ Config sync verified"
-  fi
-fi
-
 # If the repo has a Gemfile, make sure none of the gems have a path: '../*' even though path: './*' is fine since it won't break for other users
 if [ -f "Gemfile" ]; then
   if git diff --cached -U0 | grep -E '^\+.*gem [a-zA-Z0-9_-]+ .+ path:\s*['"'"'"]\.\./.+['"'"'"]'; then
