@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# ReverseMarkdown Extensions
+# ReverseMarkdown Extensions (DEPRECATED)
 #
 # Extends ReverseMarkdown with custom converters for better HTML-to-Markdown conversion
 # Specifically designed for converting AsciiDoc-generated HTML to cleaner Markdown
@@ -11,12 +11,13 @@
 #   markdown = ReverseMarkdown.convert(html, github_flavored: true)
 #
 # See README-mark_down_grade.adoc for more.
+#
+# This script is DEPRECATED in favor of the upstream module in AsciiSourcerer.
+# This file will be removed prior to the 1.0 release.
 
 require 'reverse_markdown'
 
 module MarkDownGrade
-  VERSION = '0.1.0'
-
   @config = {
     preserve_heading_ids: true,
     strip_internal_links: false

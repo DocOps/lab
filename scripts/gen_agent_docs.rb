@@ -2,7 +2,7 @@
 
 require 'nokogiri'
 require 'fileutils'
-require_relative 'mark_down_grade'
+require 'sourcerer/mark_down_grade'
 
 module GenAgentDocs
   def self.run build_dir
@@ -10,7 +10,7 @@ module GenAgentDocs
 
     # Setup ReverseMarkdown extensions for better conversion
     # Strip internal anchor links and disable anchor IDs for LLM consumption
-    MarkDownGrade.bootstrap!(strip_internal_links: true, preserve_heading_ids: false)
+    Sourcerer::MarkDownGrade.bootstrap!(strip_internal_links: true, preserve_heading_ids: false)
 
     # Manage paths
     source_dir = File.expand_path(File.join(build_dir, 'docs', 'agent'))
