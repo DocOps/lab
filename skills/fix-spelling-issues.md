@@ -6,8 +6,5 @@ As an AI agent, you can help DocOps Lab developers fix spelling issues in docume
 
 1. Use the spellcheck task to generate a spelling report.
 
-```
-bundle exec rake labdev:lint:spellcheck
-```
 2. Follow the prompts in the generated report.
 

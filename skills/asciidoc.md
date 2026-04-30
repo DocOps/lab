@@ -16,15 +16,13 @@ Table of Contents
 - General AsciiDoc Syntax Guidelines
 - DocOps Lab Specific Syntax Guidelines
 - Inline Syntax
-- Inline Semantics
-      - Syntax Preferences
+  - Inline Semantics
+  - Syntax Preferences
 - Block Syntax
-- Block Semantics
-      - Use Delimited Blocks
-      - Example Blocks
-- Special Syntax
-- Attributes
-      - Attribute Formatting
+  - Block Semantics
+  - Use Delimited Blocks
+  - Example Blocks
+  - Attribute Formatting
 - Vale Configuration and Usage
 - Consumer Mode (Other Projects)
 
@@ -96,11 +94,11 @@ DocOps Lab documentation largely follows the conventions outlined in the [Recomm
 Reinforcements and exceptions:
 
 - Use `.adoc` extensions _execpt_ for Liquid templates used to render AsciiDoc files, which use `.asciidoc`.
+
 - Use one sentence per line formatting.
 
-   - Let hard-returns signal spaces between sentences.
-   - Also do this for major colon- or semicolon-delimited sentences.
 - Use ATX-style titles and section headings.
+
 - For DRYness, use attributes for common URLs and paths (see Attribute Formatting).
 
 ## DocOps Lab Specific Syntax Guidelines
@@ -114,7 +112,9 @@ The main purpose of inline semantics is to provide a clear indication of the rol
 We can convey semantics by way of:
 
 - declaration by element, role, or class
+
 - text style based on declaration
+
 - browser effects based on declaration and additional data
 
 We use the following inline semantic coding in DocOps Lab publications.
@@ -273,13 +273,17 @@ Example single-line admonition block syntax
 NOTE: This is a single-line admonition block.
 ```
 
-**Exception to this exception** :
-   We do not recommend the same-line syntax for admonition blocks other than `NOTE` and `TIP`. For `IMPORTANT`, `CAUTION`, and `WARNING`, use at least the 2-line syntax, if not explicit delimiters.
+<dl>
+<dt class="hdlist1">Exception to this exception</dt>
+<dd>
+We do not recommend the same-line syntax for admonition blocks other than `NOTE` and `TIP`. For `IMPORTANT`, `CAUTION`, and `WARNING`, use at least the 2-line syntax, if not explicit delimiters.
 
-   ```asciidoc
-   [IMPORTANT]
-   This is a critical notice, but it's not warning you of danger.
-   ```
+```asciidoc
+[IMPORTANT]
+This is a critical notice, but it's not warning you of danger.
+```
+</dd>
+</dl>
 
 #### Exception: Single-line terminal commands
 
@@ -310,9 +314,13 @@ Use example blocks liberally. If something fits the description of being an exam
 Instances of the following block types may commonly be instances of examples, and just as commonly they may not be.
 
 - figures (diagrams, illustrations, screenshots)
+
 - tables
+
 - code listings
+
 - literal blocks (sample prompts, logs, etc)
+
 - rich-text snippets (rendered results, a user story, etc)
 
 Whenever any such instances _are examples_, prepend and append them with example blocks, and prefer to title them at the exampple-block level rather than the inner-content level.
@@ -331,61 +339,11 @@ require 'jekyll'
 ====
 ```
 
-## Special Syntax
-
-### Attributes
-
 ### Attribute Formatting
 
 AsciiDoc attributes are often used to store reusable matter. In certain contexts, attributes should follow a formatting convention that makes them easier to name and recall.
 
-#### Boolean Attributes
-
-Use toggles to set or conditionalize states such as:
-
-- intended audience type or role
-
-   - `audience-agent`
-   - `audience-beginner`
-   - ``
-- target platform or format
-
-   - `env-github`
-   - `site-gen-jekyll`
-   - `backend-pdf`
-
-These kinds of attributes are passed depending on how the AsciiDoc is converted. Platform and format indicators tend to get argued by the converter at runtime.
-
-But you can also look check for statuses that might be set in previous files depending on the use-case of the output.
-
-Testing for _existence_ of a target platform
-
-```asciidoc
-ifdef::audience-level-beginner[]
-As a beginner, you will see extra content in parts of this guide.
-
-If you are an expert, skip to the <<expert-guide>>.
-endif::[]
-```
-
-Testing for _non-existence_ of a target audience type.
-
-```asciidoc
-ifndef::audience-agent[]
-This content is _not_ to appear in docs generated for AI agents.
-endif::[]
-```
-
-It is generally advised to create two versions of any such indicator that may need to be resolve a variable placeholder later.
-
-Setting open-ended key and boolean simultaneously
-
-```asciidoc
-:audience-level: beginner
-:audience-level-beginner: true
-
-Later we can reference the {audience-level}, which might be overwritten by an attribute passed at runtime.
-```
+For a complete guidance on attribute naming and usage, see [DocOps Lab AsciiDoc Attributes Naming and Usage](/docs/asciidoc-attributes/).
 
 #### URL Attributes
 
@@ -399,20 +357,15 @@ Where:
 
 - `syntax_` is one of
 
-   - `href_` (external)
-   - `xref_` (local)
-   - none (skip it — presumed to be a straight URL)
 - `area_` is a component or category like `docs_` or `pages_`, mainly to ensure unique slugs across divisions
-- `form` is the way the resource is presented:
 
-   - `link` (includes linked text _and_ the URL)
-   - `url` (just the URL)
+- `form` is the way the resource is presented:
 
 Examples
 
 ```asciidoc
-:docopslab_hub_url: https://github.com/DocOps
-:href_docopslab_aylstack_url: {docopslab_hub_url}/aylstack/
+:docopslab_src_www_url: https://github.com/DocOps
+:href_docopslab_aylstack_url: {docopslab_src_www_url}/aylstack/
 :href_docopslab_aylstack_link: link:{href_docopslab_aylstack_url}[AYL DocStack]
 ```
 
@@ -426,44 +379,58 @@ Linting for documentation quality and consistency, both AsciiDoc markup syntax a
 
 This tool provides a custom styles package and a modified configuration system, enabling multi-file merging.
 
-**Base config** :
-   `.config/.vendor/docopslab/vale.ini` (from source)
+<dl>
+<dt class="hdlist1">Base config</dt>
+<dd>
+`.config/.vendor/docopslab/vale.ini` (from source)
+</dd>
+<dt class="hdlist1">Project config</dt>
+<dd>
+`.config/vale.local.ini` (inherits via `BasedOnStyles`)
+</dd>
+<dt class="hdlist1">Ephemeral config</dt>
+<dd>
+`.config/vale.ini` (merged from base and target)
+</dd>
+<dt class="hdlist1">Sync command</dt>
+<dd>
+`bundle exec rake labdev:sync:vale`
+</dd>
+</dl>
 
-**Project config** :
-   `.config/vale.local.ini` (inherits via `BasedOnStyles`)
-
-**Ephemeral config** :
-   `.config/vale.ini` (merged from base and target)
-
-**Sync command** :
-   `bundle exec rake labdev:sync:vale`
-
-### Consumer Mode (Other Projects)
+## Consumer Mode (Other Projects)
 
 For all other projects, the gem works in a standard package consumption mode:
 
 - The project’s `vale.ini` should list all desired packages, including a URL to the stable, published `DocOpsLabStyles.zip`.
+
 - The `labdev:sync:styles` task simply runs `vale sync` in the proper context, downloading all listed packages into a local `.vale/styles` directory.
 
-> **TIP:** The `labdev:sync:vale` task updates both the base config and the styles package.
+> **TIP:** The `labdev:sync:vale` task updates both the base config and the style packages.
 
-The `.config/vale.ini` for consumer projects (based on the gem’s template) should look like this:
+A project’s `.config/vale.local.ini` should look something like the one for this repository (DocOps/lab).
+
+A snippet from DocOps/lab’s `.config/vale.local.ini`
 
 ```ini
-# CONSUMER MODE CONFIG
+MinAlertLevel = warning
+StylesPath = .vendor/vale/styles
 
-StylesPath = .vale/styles
+[asciidoctor]
+missing-attribute = drop
+safe = unsafe
+experimental = YES
 
-# List all packages, including the URL to the central DocOpsLabStyles package.
-# TODO: Update with the real URL.
-Packages = RedHat, proselint, write-good, https://example.com/path/to/DocOpsLabStyles.zip
+[_blog/*.adoc]
+DocOpsLab-AsciiDoc.ExplicitSectionIDs = NO
 
-[*.adoc]
-BasedOnStyles = RedHat, DocOpsLab-Authoring, DocOpsLab-AsciiDoc
+[_docs/agent/**/*.adoc]
+DocOpsLab-AsciiDoc.ExplicitSectionIDs = NO
+DocOpsLab-AsciiDoc.ExtraLineBeforeLevel1 = NO
 ```
 
 This dual-mode system provides a robust workflow for both developing and consuming the centralized Vale styles.
 
-> **NOTE:** For full Vale configuration settings (“keys”) reference, see [the Vale documentation](https://vale.sh/docs/vale-ini).
+> **NOTE:** For full Vale configuration settings (“keys”) reference, see the [official Vale documentation](https://vale.sh/docs/vale-ini).
 > **NOTE:** For information on managing DocOps Lab’s Vale styles, see [the `docopslab-dev` gem README](https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc).
 

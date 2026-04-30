@@ -7,7 +7,7 @@ If you need to add or modify Rake tasks for the current project, follow the guid
 Table of Contents
 
 - Rake CLIs
-- Rake CLI Model
+  - Rake CLI Model
 
 ## Rake CLIs
 

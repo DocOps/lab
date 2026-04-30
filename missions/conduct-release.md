@@ -16,36 +16,42 @@ Check the `README.adoc` or `docs/**/release.adoc` file specific to the project y
 Table of Contents
 
 - Agent Roles
-- Context Management for Multi-role Sessions
-      - Task Assignments and Suggestions
+  - Context Management for Multi-role Sessions
+  - Task Assignments and Suggestions
 - Prerequisite: Attention OPERATOR
 - Mission Procedure
-- Stage 0: Mission Prep
-      - Evergreen Tasks
-      - Stage 1: Pre-flight Checks
-      - Stage 2: Release History
-      - Stage 3: Merge and Tag
-      - Stage 4: Release Announcement
-      - Stage 5: Artifact Publication
-      - Stage 6: Post-Release Tests & Cleanup
-      - Post-mission Debriefing
+  - Stage 0: Mission Prep
+  - Evergreen Tasks
+  - Stage 1: Pre-flight Checks
+  - Stage 2: Release History
+  - Stage 3: Merge and Tag
+  - Stage 4: Release Announcement
+  - Stage 5: Artifact Publication
+  - Stage 6: Post-Release Tests & Cleanup
+  - Post-mission Debriefing
 - Fulfillment Principles
-- ALWAYS
-      - NEVER
-      - Quality Bar
+  - ALWAYS
+  - NEVER
+  - Quality Bar
 
 ## Agent Roles
 
 The following agent roles will take a turn at steps in this mission.
 
-**devops/release engineer** :
-   Execute the technical steps of the release, including git operations, tagging, and artifact publication.
-
-**project manager** :
-   Oversee the release process, ensure conditions are met, and handle communications.
-
-**tech writer** :
-   Prepare release notes and ensure documentation is up to date.
+<dl>
+<dt class="hdlist1">devops/release engineer</dt>
+<dd>
+Execute the technical steps of the release, including git operations, tagging, and artifact publication.
+</dd>
+<dt class="hdlist1">project manager</dt>
+<dd>
+Oversee the release process, ensure conditions are met, and handle communications.
+</dd>
+<dt class="hdlist1">tech writer</dt>
+<dd>
+Prepare release notes and ensure documentation is up to date.
+</dd>
+</dl>
 
 ### Context Management for Multi-role Sessions
 
@@ -55,20 +61,28 @@ The Operator may of course dictate or override this decision.
 
 The goal is to use appropriate agents without cluttering any given agent’s context window.
 
-**Soft-reset between roles** :
-   At each transition, declare what you’re loading (role doc + skills) and what you’re backgrounding. Don’t hold all previous stage details in active memory.
-
-**Mission tracker as swap file** :
-   Dump detailed handoff notes into `.agent/project-setup-mission.md` after each stage. Read it first when starting new roles to understand what was built and what’s needed.
-
-**Checkpoint between stages** :
-   After each stage, ask Operator to review/continue/pause. Creates intervention points if focus dilutes.
-
-**Watch for dilution** :
-   Mixing concerns across roles, contradicting earlier decisions, hedging instead of checking files. If noticed, stop and checkpoint.
-
-**Focused lenses** :
-   Each role emphasizes different details (Product Engineer = code structure, QA = test coverage, DevOps = automation, PM = coordination). Switch lenses deliberately; shared base knowledge (README, goals, conventions) stays warm.
+<dl>
+<dt class="hdlist1">Soft-reset between roles</dt>
+<dd>
+At each transition, declare what you’re loading (role doc + skills) and what you’re backgrounding. Don’t hold all previous stage details in active memory.
+</dd>
+<dt class="hdlist1">Mission tracker as swap file</dt>
+<dd>
+Dump detailed handoff notes into `.agent/project-setup-mission.md` after each stage. Read it first when starting new roles to understand what was built and what’s needed.
+</dd>
+<dt class="hdlist1">Checkpoint between stages</dt>
+<dd>
+After each stage, ask Operator to review/continue/pause. Creates intervention points if focus dilutes.
+</dd>
+<dt class="hdlist1">Watch for dilution</dt>
+<dd>
+Mixing concerns across roles, contradicting earlier decisions, hedging instead of checking files. If noticed, stop and checkpoint.
+</dd>
+<dt class="hdlist1">Focused lenses</dt>
+<dd>
+Each role emphasizes different details (Product Engineer = code structure, QA = test coverage, DevOps = automation, PM = coordination). Switch lenses deliberately; shared base knowledge (README, goals, conventions) stays warm.
+</dd>
+</dl>
 
 ### Task Assignments and Suggestions
 
@@ -94,38 +108,59 @@ In general, the following stages are to be followed in order and tracked in a mi
 
 ### Stage 0: Mission Prep
 
-**Create a mission-tracking document** :
-   Write a document with detailed steps for fulfilling the mission assigned here, based on any project-specific context. (`role: project-manager; path: .agent/release-mission.md`)
+<dl>
+<dt class="hdlist1">Create a mission-tracking document</dt>
+<dd>
+Write a document with detailed steps for fulfilling the mission assigned here, based on any project-specific context. (`role: project-manager; path: .agent/release-mission.md`)
+</dd>
+</dl>
 
 ### Evergreen Tasks
 
 The following tasks apply to most stages.
 
-**Keep the mission-tracking document up to date** :
-   At the end of every stage, update the progress. (`path: .agent/release-mission.md`)
+<dl>
+<dt class="hdlist1">Keep the mission-tracking document up to date</dt>
+<dd>
+At the end of every stage, update the progress. (`path: .agent/release-mission.md`)
+</dd>
+</dl>
 
 ### Stage 1: Pre-flight Checks
 
-**Verify conditions** :
-   Ensure the "Definition of Done" is met.
+<dl>
+<dt class="hdlist1">Verify conditions</dt>
+<dd>
+Ensure the "Definition of Done" is met.
 
-   - [ ] All target issues are closed.
-   - [ ] CI builds and tests pass on `dev/<$tok.majmin>`.
-   - [ ] Documentation updated and merged. (`role: devops-release-engineer; upto: project-manager; with: Operator`)
+- <input type="checkbox" data-item-complete="0"> All target issues are closed.
 
-**Manual double-checks** :
-   Perform the following checks before proceeding.
+- <input type="checkbox" data-item-complete="0"> CI builds and tests pass on `dev/<$tok.majmin>`.
 
-   - [ ] No local paths in `Gemfile`.
-   - [ ] All documentation changes merged.
-   - [ ] Version attribute bumped and propagated. (`role: project-manager; with: Operator`)
+- <input type="checkbox" data-item-complete="0"> Documentation updated and merged. (`role: devops-release-engineer; upto: project-manager; with: Operator`)
+</dd>
+<dt class="hdlist1">Manual double-checks</dt>
+<dd>
+Perform the following checks before proceeding.
+
+- <input type="checkbox" data-item-complete="0"> No local paths in `Gemfile`.
+
+- <input type="checkbox" data-item-complete="0"> All documentation changes merged.
+
+- <input type="checkbox" data-item-complete="0"> Version attribute bumped and propagated. (`role: project-manager; with: Operator`)
+</dd>
+</dl>
 
 ### Stage 2: Release History
 
-**Prepare Release Notes doc** :
-   Generate and refine the release history.
+<dl>
+<dt class="hdlist1">Prepare Release Notes doc</dt>
+<dd>
+Generate and refine the release history.
 
-   Generate release notes and changelog using ReleaseHx.
+Generate release notes and changelog using ReleaseHx.
+</dd>
+</dl>
 
 > **NOTE:** Most projects use ReleaseHx in a unique manner, for diverse testing of its output options. See the project’s `README.adoc`; seek for `releasehx`.
 
@@ -142,30 +177,39 @@ Edit the Markdown file at `docs/release/<$tok.majmin>.<$tok.patch>.md`.
 
 ### Stage 3: Merge and Tag
 
-**Merge the dev branch to `main``** :
-   Merge the development branch into the main branch.
+<dl>
+<dt class="hdlist1">Merge the dev branch to `main``</dt>
+<dd>
+Merge the development branch into the main branch.
 
-   ```
-   git checkout main
-   git pull origin main
-   git merge --no-ff dev/<$tok.majmin>
-   git push origin main
-   ```
+```
+git checkout main
+git pull origin main
+git merge --no-ff dev/<$tok.majmin>
+git push origin main
+```
+</dd>
+<dt class="hdlist1">Tag the release</dt>
+<dd>
+Create and push the release tag.
 
-**Tag the release** :
-   Create and push the release tag.
-
-   ```
-   git tag -a v<$tok.majmin>.<$tok.patch> -m "Release <$tok.majmin>.<$tok.patch>"
-   git push origin v<$tok.majmin>.<$tok.patch>
-   ```
+```
+git tag -a v<$tok.majmin>.<$tok.patch> -m "Release <$tok.majmin>.<$tok.patch>"
+git push origin v<$tok.majmin>.<$tok.patch>
+```
+</dd>
+</dl>
 
 ### Stage 4: Release Announcement
 
-**Create GitHub release** :
-   Publish the release on GitHub.
+<dl>
+<dt class="hdlist1">Create GitHub release</dt>
+<dd>
+Publish the release on GitHub.
 
-   Use the GitHub CLI to create a release:
+Use the GitHub CLI to create a release:
+</dd>
+</dl>
 
 ```
 gh release create v<$tok.majmin>.<$tok.patch> --title "Release <$tok.majmin>.<$tok.patch>" --notes-file docs/releases/<$tok.majmin>.<$tok.patch>.md --target main
@@ -175,10 +219,14 @@ Or else use the GitHub web interface to manually register the release, and copy/
 
 ### Stage 5: Artifact Publication
 
-**Publish artifacts** :
-   Build and publish the final artifacts.
+<dl>
+<dt class="hdlist1">Publish artifacts</dt>
+<dd>
+Build and publish the final artifacts.
 
-   Use the `publish.sh` script with proper credentials in place.
+Use the `publish.sh` script with proper credentials in place.
+</dd>
+</dl>
 
 ```
 ./scripts/publish.sh
@@ -188,24 +236,37 @@ This step concludes the release process. (`role: devops-release-engineer; with: 
 
 ### Stage 6: Post-Release Tests & Cleanup
 
-**Test published artifacts** :
-   Manually fetch and install/activate any gems, images, or other binary files, and spot check published documentation. (`role: devops-release-engineer; upto: qa-testing-engineer; with: Operator`)
+<dl>
+<dt class="hdlist1">Test published artifacts</dt>
+<dd>
+Manually fetch and install/activate any gems, images, or other binary files, and spot check published documentation. (`role: devops-release-engineer; upto: qa-testing-engineer; with: Operator`)
+</dd>
+<dt class="hdlist1">Post-release tasks</dt>
+<dd>
+Perform necessary cleanup and preparation for the next cycle.
 
-**Post-release tasks** :
-   Perform necessary cleanup and preparation for the next cycle.
+- <input type="checkbox" data-item-complete="0"> Cut a _release_ branch for patching (`release/<$tok.majmin>`).
 
-   - [ ] Cut a _release_ branch for patching (`release/<$tok.majmin>`).
-   - [ ] Update `:next_prod_vrsn:` in docs.
-   - [ ] Create next development branch (`dev/<next>`).
-   - [ ] Notify stakeholders. (`role: project-manager; with: devops-release-engineer`)
+- <input type="checkbox" data-item-complete="0"> Update `:next_prod_vrsn:` in docs.
+
+- <input type="checkbox" data-item-complete="0"> Create next development branch (`dev/<next>`).
+
+- <input type="checkbox" data-item-complete="0"> Notify stakeholders. (`role: project-manager; with: devops-release-engineer`)
+</dd>
+</dl>
 
 ### Post-mission Debriefing
 
-**Review the Mission Report** :
-   Highlight outstanding or special notices from the Mission Report. (`role: Agent; with: Operator; read: .agent/reports/release-mission.md`)
-
-**Suggest modifications to _this_ mission assignment** :
-   Taking into account any bumps, blockers, or unexpected occurrences during fulfillment of this mission, recommend changes or additions to **“MISSION: Conduct a Product Release”** itself. (`role: Agent; with: Operator; path: ../lab/_docs/agent/missions/conduct-release.adoc`).
+<dl>
+<dt class="hdlist1">Review the Mission Report</dt>
+<dd>
+Highlight outstanding or special notices from the Mission Report. (`role: Agent; with: Operator; read: .agent/reports/release-mission.md`)
+</dd>
+<dt class="hdlist1">Suggest modifications to _this_ mission assignment</dt>
+<dd>
+Taking into account any bumps, blockers, or unexpected occurrences during fulfillment of this mission, recommend changes or additions to **“MISSION: Conduct a Product Release”** itself. (`role: Agent; with: Operator; path: ../lab/_docs/agent/missions/conduct-release.adoc`).
+</dd>
+</dl>
 
 > **IMPORTANT:** In case of emergency rollback or patching, see `.agent/docs/skills/product-release-rollback.md`.
 
@@ -214,15 +275,21 @@ This step concludes the release process. (`role: devops-release-engineer; with: 
 ### ALWAYS
 
 - Always ask the Operator when you don’t know exactly how DocOps Lab prefers a step be carried out.
+
 - Always follow the mission procedure as closely as possible, adapting only when necessary due to project-specific constraints.
+
 - Always document any deviations from the standard procedure and the reasons for them in the Mission Report.
+
 - Always look for a DRY way to define product metadata/attrbutes in README.adoc and YAML files (`specs/data/*-def.yml`).
+
 - Always pause for Operator approval before ANY publishing or deployment action, including pushing/posting to GitHub.
 
 ### NEVER
 
 - Never get creative or innovative without Operator permission.
+
 - Never skip steps in the mission procedure without documenting the reason.
+
 - Never assume the Operator understands DocOps Lab conventions without explanation.
 
 ### Quality Bar

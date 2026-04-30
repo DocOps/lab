@@ -17,13 +17,7 @@ The general procedure is as follows:
 
 1. Generate a draft release history in YAML.
 
-```
-bundle exec rhx <version> --yaml --fetch
-```
 2. Edit the generated YAML to ensure clarity and completeness.
-3. Generate the Markdown version.
 
-```
-bundle exec rhx <version> --md docs/release/<version>.md
-```
+3. Generate the Markdown version.
 

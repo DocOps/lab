@@ -11,44 +11,55 @@ However, conventions are not exhaustively listed, and deviations are rarely poin
 ### Naming Conventions
 
 - Use `snake_case` for variable and method names.
+
 - Use `CamelCase` for class and module names.
+
 - Use `SCREAMING_SNAKE_CASE` for constants.
+
 - Use descriptive names that convey the purpose of the variable, method, or class.
+
 - Avoid abbreviations unless they are widely understood.
+
 - Use verbs for method names to indicate actions.
+
 - Use nouns for class and module names to indicate entities.
 
 ### Architectural Conventions
 
 - Use classes and class instance methods for objects that work like _objects_ — they have state and do not act on other objects' state.
+
 - Use module methods acting on objects or carrying out general operations/utility functions.
+
 - Use Rake for internal (developer) CLI; use Thor for user-facing CLI
+
 - Gems may begin life as a module within another gem.
 
 ### Path Conventions
 
 - Use `lib/` for main application code.
 
-   - `lib/<project_name>.rb` for the main file
-   - `lib/<project_name>/` for supporting files and modules
-   - `lib/<project_name>/<module_name>/` for submodules
 - Use `spec/` for specifications and tests.
-- Use `docs/` or `_docs/` for documentation.
-- Use `build/` for pre-runtime artifacts.
-- Use `_build/` as default in applications that generate files at runtime, unless another path is more appropriate (ex: `_site/` in Jekyll-centric apps).
-- Do NOT assume or insist upon perfect alignment with Ruby path conventions:
 
-   - `SomeModule` or `SomeClass` may be sourced at `lib/some_module.rb` or `lib/some_class.rb` instead of `lib/some/module.rb` or `lib/some/class.rb`.
-   - Some modules like `SchemaGraphy` and `AsciiDoc` are never broken up into `schema_graphy` or `ascii_doc` namespaces.
-   - Modules with multiple parallel sibling modules in a category like (`WriteOps`, `DraftOps`) belong in paths like `lib/ops/write.rb` instead of `lib/write_ops.rb` or `lib/write/ops.rb`.
+- Use `docs/` or `_docs/` for documentation.
+
+- Use `build/` for pre-runtime artifacts.
+
+- Use `_build/` as default in applications that generate files at runtime, unless another path is more appropriate (ex: `_site/` in Jekyll-centric apps).
+
+- Do NOT assume or insist upon perfect alignment with Ruby path conventions:
 
 ### Syntax Conventions
 
 - Use 2 spaces for indentation.
+
 - Limit lines to 120 characters or so when possible.
+
 - Use parentheses for method calls with arguments, but omit them for methods without arguments.
+
 - Do not use parentheses in method definitions (`def method_name arg1, arg2`).
+
 - Use single quotes for strings that do not require interpolation or special symbols.
+
 - Use double quotes for strings that require interpolation or special symbols.
 
 ### Commenting Conventions

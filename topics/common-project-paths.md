@@ -22,96 +22,148 @@ Table of Contents
 
 Only two files are required in _every_ DocOps Lab project, though most projects should contain most of these files, depending on the nature of the codebase. A `docs/` or `_docs/` directory is close to the third universal requirement, necessary by the time a project reaches version 1.0.0.
 
-**`README.adoc`** :
-   Project documentation in AsciiDoc format, providing an overview and instructions. DocOps Lab READMEs typically include single-sourcing data for the product as AsciiDoc attributes. See the [AsciiSourcerer project](https://github.com/DocOps/asciisourcerer).
+<dl>
+<dt class="hdlist1">`README.adoc`</dt>
+<dd>
+Project documentation in AsciiDoc format, providing an overview and instructions. DocOps Lab READMEs typically include single-sourcing data for the product as AsciiDoc attributes. See the [AsciiSourcerer project](https://github.com/DocOps/asciisourcerer).
+</dd>
+<dt class="hdlist1">`LICENSE`</dt>
+<dd>
+The project’s license file, specifying the terms under which the code can be used and distributed. Almost always **MIT License**.
+</dd>
+<dt class="hdlist1">`docs/` / `_docs/`</dt>
+<dd>
+Directory for additional documentation, guides, and related materials. Typically `docs/` for product _user_ documentation, whereas `_docs/` is for (a) repos that are mainly for websites or (b) _internal engineering_ documentation files (more often found at `docs/_docs/`). Both might be present in the case of a website that hosts docs and _has its own_ docs.
 
-**`LICENSE`** :
-   The project’s license file, specifying the terms under which the code can be used and distributed. Almost always **MIT License**.
-
-**`docs/` / `_docs/`** :
-   Directory for additional documentation, guides, and related materials. Typically `docs/` for product _user_ documentation, whereas `_docs/` is for (a) repos that are mainly for websites or (b) _internal engineering_ documentation files (more often found at `docs/_docs/`). Both might be present in the case of a website that hosts docs and _has its own_ docs.
-
-   A `docs/` directory will typically have its own `Gemfile`, configs, and assets for Jekyll, Yard, and other generators. A `_docs/` directory is usually a content-only subordinate to the main project and its content, and may not have separate configs or assets.
+A `docs/` directory will typically have its own `Gemfile`, configs, and assets for Jekyll, Yard, and other generators. A `_docs/` directory is usually a content-only subordinate to the main project and its content, and may not have separate configs or assets.
+</dd>
+</dl>
 
 ## Configuration
 
-**`.config/`** :
-   Configuration files for tooling used in development, building, or QA/testing. Not always used.
+<dl>
+<dt class="hdlist1">`.config/`</dt>
+<dd>
+Configuration files for tooling used in development, building, or QA/testing. Not always used.
 
-   **`.config/releasehx.yml`** :
-      Configuration file for ReleaseHx, a tool for generating release notes and changelogs.
-
-   **`.config/jekyll.yml`** :
-      Configuration file for Jekyll docs publication. For Jekyll extensions (themes and plugins), this file is typically `./_config.yml` to conform to Jekyll defaults.
-
-   **`.config/vale.ini`** :
-      Configuration file for Vale, a linter for prose, defining linting rules and styles.
-
-**`.config/.vendor/`** :
-   Directory for upstream configuration files, mostly or entirely managed by `docopsab-dev` gem. These files are not tracked in Git but are synced with upstream sources and maintained by DocOps Lab.
+<dl>
+<dt class="hdlist1">`.config/releasehx.yml`</dt>
+<dd>
+Configuration file for ReleaseHx, a tool for generating release notes and changelogs.
+</dd>
+<dt class="hdlist1">`.config/jekyll.yml`</dt>
+<dd>
+Configuration file for Jekyll docs publication. For Jekyll extensions (themes and plugins), this file is typically `./_config.yml` to conform to Jekyll defaults.
+</dd>
+<dt class="hdlist1">`.config/vale.ini`</dt>
+<dd>
+Configuration file for Vale, a linter for prose, defining linting rules and styles.
+</dd>
+</dl>
+</dd>
+<dt class="hdlist1">`.config/.vendor/`</dt>
+<dd>
+Directory for upstream configuration files, mostly or entirely managed by `docopsab-dev` gem. These files are not tracked in Git but are synced with upstream sources and maintained by DocOps Lab.
+</dd>
+</dl>
 
 ## Containerization
 
-**`Dockerfile`** :
-   Dockerfile for building the project’s Docker image, defining the environment and dependencies.
-
-**`.dockerignore`** :
-   Specifies files and directories to ignore when building the Docker image.
-
-**`docker-compose.yml`** :
-   Defines and runs multi-container Docker applications, _if applicable_.
+<dl>
+<dt class="hdlist1">`Dockerfile`</dt>
+<dd>
+Dockerfile for building the project’s Docker image, defining the environment and dependencies.
+</dd>
+<dt class="hdlist1">`.dockerignore`</dt>
+<dd>
+Specifies files and directories to ignore when building the Docker image.
+</dd>
+<dt class="hdlist1">`docker-compose.yml`</dt>
+<dd>
+Defines and runs multi-container Docker applications, _if applicable_.
+</dd>
+</dl>
 
 ## Ruby Files
 
 These files are common to Ruby-based DocOps Lab projects. The `Gemfile` and `Gemfile.lock` may be present in non-Ruby codebases that use Ruby development dependencies, such as ReleaseHx.
 
-**`Gemfile`** :
-   Ruby Bundler file, specifying gem dependencies for the project.
-
-**`Gemfile.lock`** :
-   Generated by Bundler, this file locks the gem versions used in the project.
-
-**`.ruby-version`** :
-   Specifies the Ruby version used in the project.
-
-**`<gemname>.gemspec`** :
-   Ruby gem specification file, defining the gem’s metadata and dependencies.
+<dl>
+<dt class="hdlist1">`Gemfile`</dt>
+<dd>
+Ruby Bundler file, specifying gem dependencies for the project.
+</dd>
+<dt class="hdlist1">`Gemfile.lock`</dt>
+<dd>
+Generated by Bundler, this file locks the gem versions used in the project.
+</dd>
+<dt class="hdlist1">`.ruby-version`</dt>
+<dd>
+Specifies the Ruby version used in the project.
+</dd>
+<dt class="hdlist1">`<gemname>.gemspec`</dt>
+<dd>
+Ruby gem specification file, defining the gem’s metadata and dependencies.
+</dd>
+</dl>
 
 ## Automation Paths
 
-**`Rakefile`** :
-   Ruby Rakefile for defining tasks and automation scripts.
-
-**`scripts/`** :
-   Custom scripts for automating tasks related to development, testing, and deployment.
-
-**`.github/workflows/`** :
-   GitHub Actions workflows for CI/CD, defining automated build, test, and deployment processes.
+<dl>
+<dt class="hdlist1">`Rakefile`</dt>
+<dd>
+Ruby Rakefile for defining tasks and automation scripts.
+</dd>
+<dt class="hdlist1">`scripts/`</dt>
+<dd>
+Custom scripts for automating tasks related to development, testing, and deployment.
+</dd>
+<dt class="hdlist1">`.github/workflows/`</dt>
+<dd>
+GitHub Actions workflows for CI/CD, defining automated build, test, and deployment processes.
+</dd>
+</dl>
 
 ## Quality Assurance Paths
 
 Any files containing _requirements_, _specifications_, _definitions_, _schemas_, or _tests_ should be stored in the `specs/` directory, as detailed in [DocOps Lab Testing & Specifications](/docs/testing/).
 
-**`specs/`** :
-   General directory for content that specifies, defines, or tests elements of the product. See [DocOps Lab Testing & Specifications](/docs/testing/).
+<dl>
+<dt class="hdlist1">`specs/`</dt>
+<dd>
+General directory for content that specifies, defines, or tests elements of the product. See [DocOps Lab Testing & Specifications](/docs/testing/).
 
-   **`specs/data/`** :
-      Definition and schema files.
-
-   **`specs/tests/rspec/`** :
-      RSpec tests for Ruby codebases.
-
-   **`../<product-slug>-demo/`** :
-      Major products typically have a sibling repo that serves as a proving grounds and/or for demonstrative purposes.
+<dl>
+<dt class="hdlist1">`specs/data/`</dt>
+<dd>
+Definition and schema files.
+</dd>
+<dt class="hdlist1">`specs/tests/rspec/`</dt>
+<dd>
+RSpec tests for Ruby codebases.
+</dd>
+<dt class="hdlist1">`../<product-slug>-demo/`</dt>
+<dd>
+Major products typically have a sibling repo that serves as a proving grounds and/or for demonstrative purposes.
+</dd>
+</dl>
+</dd>
+</dl>
 
 ## Generative AI Paths
 
-**`.github/copilot-instructions.md`** :
-   Instructions for GitHub Copilot, providing guidance on how any cloud-based GH Copilot assistance should be oriented toward a given codebase.
-
-**`AGENTS.md`** :
-   General for _local_ coding agents. May duplicate `.github/copilot-instructions.md` or provide additional context.
-
-**`.agent/`** :
-   A directory for temporary/scratch files used by local coding agents.
+<dl>
+<dt class="hdlist1">`.github/copilot-instructions.md`</dt>
+<dd>
+Instructions for GitHub Copilot, providing guidance on how any cloud-based GH Copilot assistance should be oriented toward a given codebase.
+</dd>
+<dt class="hdlist1">`AGENTS.md`</dt>
+<dd>
+General for _local_ coding agents. May duplicate `.github/copilot-instructions.md` or provide additional context.
+</dd>
+<dt class="hdlist1">`.agent/`</dt>
+<dd>
+A directory for temporary/scratch files used by local coding agents.
+</dd>
+</dl>
 

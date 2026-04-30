@@ -6,19 +6,27 @@ This guide pertains to the `docopslab-dev` environment. For complete documentati
 
 > **IMPORTANT:** The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects. For your own applications of DocOps Labs products like ReleaseHx and Issuer, see [DocOps Box](/projects/docops-box) for a full-featured docs-focused workspace, runtime, and production environment.
 
-This gem mainly supplies rake tasks for performing common development operations across unified configurations and sub-libraries.
+This gem mainly supplies rake tasks for performing common development operations across and between projects.
 
 Table of Contents
 
 - Standard Usage
 - Override Commands
-- More Example Commands
-- Tasks and Workflow
-- Typical Workflow
+- Task Reference
+  - Typical Workflow
+  - Override Commands
 - Customization
-- Local Overrides
+  - Local Overrides
 
 ## Standard Usage
+
+With a proper native Ruby environment, use the `bundle exec` prefix to ensure consistent dependency versioning.
+
+Sync all configs and assets
+
+```
+bundle exec rake labdev:sync:all
+```
 
 Run all linters
 
@@ -29,65 +37,39 @@ bundle exec rake labdev:lint:all
 Auto-fix safe issues
 
 ```
-bundle exec rake labdev:heal
+bundle exec rake labdev:heal:all
 ```
 
 ## Override Commands
 
 Most executions of the packaged tools are handled through Rake tasks, but you can always run them directly, especially to pass arguments not built into the tasks.
 
-**RuboCop** :
-   ```
-   bundle exec rubocop --config .config/rubocop.yml [options]
-   bundle exec rubocop --config .config/rubocop.yml --auto-correct-all
-   bundle exec rubocop --config .config/rubocop.yml --only Style/StringLiterals
-   ```
-
-**Vale** :
-   ```
-   vale --config=.config/vale.ini [options] [files]
-   vale --config=.config/vale.ini README.adoc
-   vale --config=.config/vale.ini --minAlertLevel=error .
-   ```
-
-**HTMLProofer** :
-   ```
-   bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
-   ```
-
-## More Example Commands
-
-Lint specific Ruby file with specific rule
-
+<dl>
+<dt class="hdlist1">RuboCop</dt>
+<dd>
 ```
-bundle exec rake 'labdev:lint:ruby[lib/myfile.rb,Style/StringLiterals]'
+bundle exec rubocop --config .config/rubocop.yml [options]
+bundle exec rubocop --config .config/rubocop.yml --auto-correct-all
+bundle exec rubocop --config .config/rubocop.yml --only Style/StringLiterals
 ```
-
-Lint all AsciiDoc files for a specific Vale rule
-
+</dd>
+<dt class="hdlist1">Vale</dt>
+<dd>
 ```
-bundle exec rake 'labdev:lint:adoc[,DocOpsLab-Authoring.ExNotEg]'
+vale --config=.config/vale.ini [options] [files]
+vale --config=.config/vale.ini README.adoc
+vale --config=.config/vale.ini --minAlertLevel=error .
 ```
-
-Lint specific shell script
-
+</dd>
+<dt class="hdlist1">HTMLProofer</dt>
+<dd>
 ```
-bundle exec rake 'labdev:lint:bash[scripts/docksh]'
+bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
 ```
+</dd>
+</dl>
 
-Lint specific file with Vale (text mode)
-
-```
-bundle exec rake 'labdev:lint:text[_docs/myfile.adoc]'
-```
-
-Show a specific lint rule profile
-
-```
-bundle exec rake 'labdev:show:rule[vale,RedHat]'
-```
-
-## Tasks and Workflow
+## Task Reference
 
 ```
 bundle exec rake --tasks | grep labdev:
@@ -118,38 +100,15 @@ git commit -m "Add new feature"
 
 1. Auto-fix what you can.
 
-```
-bundle exec rake labdev:heal
-```
 2. Review the changes.
 
-```
-git diff
-```
 3. Commit the fixes.
 
-```
-git add -A
-git commit -m "Auto-fix linting issues"
-```
 4. Handle any remaining manual fixes.
 
-```
-bundle exec rake labdev:lint:all
-```
 5. Fix remaining issues manually.
 
-```
-git add -A
-git commit -m "Fix remaining linting issues"
-```
 6. Try pushing.
-
-```
-git push
-```
-
-If all blocking issues are cleared, the push should succeed. Otherwise, more cleanup is needed.
 
 > **TIP:** Bypass the pre-push gates (usually to test or demo the failure at origin):
 >
@@ -161,15 +120,49 @@ If all blocking issues are cleared, the push should succeed. Otherwise, more cle
 > git push --no-verify
 > ```
 
+### Override Commands
+
+Most executions of the packaged tools are handled through Rake tasks, but you can always run them directly, especially to pass arguments not built into the tasks.
+
+<dl>
+<dt class="hdlist1">RuboCop</dt>
+<dd>
+```
+bundle exec rubocop --config .config/rubocop.yml [options]
+bundle exec rubocop --config .config/rubocop.yml --auto-correct-all
+bundle exec rubocop --config .config/rubocop.yml --only Style/StringLiterals
+```
+</dd>
+<dt class="hdlist1">Vale</dt>
+<dd>
+```
+vale --config=.config/vale.ini [options] [files]
+vale --config=.config/vale.ini README.adoc
+vale --config=.config/vale.ini --minAlertLevel=error .
+```
+</dd>
+<dt class="hdlist1">HTMLProofer</dt>
+<dd>
+```
+bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
+```
+</dd>
+</dl>
+
 ## Customization
 
 Override settings by editing the project configs:
 
 - `.config/docopslab-dev.yml`
+
 - `.config/rubocop.yml`
+
 - `.config/vale.ini`
+
 - `.config/htmlproofer.yml`
+
 - `.config/actionlint.yml`
+
 - `.config/shellcheckrc`
 
 Your configurations will inherit from the base configurations and source libraries as sourced in the Git-ignored `.config/.vendor/docopslab/` path.

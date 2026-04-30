@@ -9,5 +9,6 @@ We will eventually provide detailed documentation of the conventions and protoco
 For now, Agents should:
 
 - Peruse the local `README.adoc` and `specs/data/*.{yml,yaml}`
+
 - Prompt their Operators to provide examples from relevant/neighboring projects.
 

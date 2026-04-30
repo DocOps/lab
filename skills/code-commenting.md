@@ -11,17 +11,17 @@ LLM-backed tools and linters are used to review comments and enforce adherence t
 Table of Contents
 
 - Code Comments Orientation
-- Kinds of Comments
-      - Flavors of Code
-      - General Style Rules
+  - Kinds of Comments
+  - Flavors of Code
+  - General Style Rules
 - Expository Comments: Use and Abuse
-- Principles
-      - General Examples
-      - Style
-      - Examples
+  - Principles
+  - General Examples
+  - Style
+  - Examples
 - Comment Protocols by Language
-- Ruby Commenting Protocols
-      - YAML Commenting Protocols
+  - Ruby Commenting Protocols
+  - YAML Commenting Protocols
 
 ## Code Comments Orientation
 
@@ -31,81 +31,101 @@ To begin, we will standardize our understanding of what types of comments are ap
 
 Code comments come in several distinct types.
 
-**documentation** :
-   Code comments used to build downstream-facing reference docs for methods, classes, functions, data objects, and so forth.
+<dl>
+<dt class="hdlist1">documentation</dt>
+<dd>
+Code comments used to build downstream-facing reference docs for methods, classes, functions, data objects, and so forth.
 
-   _Docstrings_ are specifically comments used in the generation of rich-text reference docs. That they also happen to “document” the code to which they are adjacent is secondary.
+_Docstrings_ are specifically comments used in the generation of rich-text reference docs. That they also happen to “document” the code to which they are adjacent is secondary.
+</dd>
+<dt class="hdlist1">expository</dt>
+<dd>
+Code comments that explain the purpose or function of code blocks, algorithms, or complex logic, strictly in natural language. Also called “inline comments”, these arbitrary remarks are mainly what is governed by this protocol guide.
+</dd>
+<dt class="hdlist1">rationale</dt>
+<dd>
+Comments that explain the reasoning behind a particular implementation choice, design pattern, or data structure.
+</dd>
+<dt class="hdlist1">status</dt>
+<dd>
+Stability and lifecycle markers: `DEPRECATED:`, `EXPERIMENTAL:`, `INTERNAL:`, `UNSTABLE:`. May also include planned removal dates, version gates, feature flags.
+</dd>
+<dt class="hdlist1">admonition</dt>
+<dd>
+Developer-facing warnings, notes, or tips embedded in code. Use `WARNING:`, `NOTE:`, and `TIP:` prefixes to mark these comments distinctly.
+</dd>
+<dt class="hdlist1">task</dt>
+<dd>
+Comments like `TODO:` and `FIXME:` are used to mark code that needs further work.
+</dd>
+<dt class="hdlist1">instructional</dt>
+<dd>
+Code comments left in template, stub, or sample files for interactive use. These comments tend to be intended for a downstream user who will interact directly with the file or one based on it.
+</dd>
+<dt class="hdlist1">label</dt>
+<dd>
+Comments that simply annotate sections of code by category or general purpose, to help with demarcation and navigation. These comments are usually brief and may use special formatting to stand out.
+</dd>
+<dt class="hdlist1">directive</dt>
+<dd>
+In some languages, we use special character patterns to signify that a comment has a special purpose, other than for generating reference docs. These comments may mark code for special parsing, content transclusion, or other operations.
 
-**expository** :
-   Code comments that explain the purpose or function of code blocks, algorithms, or complex logic, strictly in natural language. Also called “inline comments”, these arbitrary remarks are mainly what is governed by this protocol guide.
+In AsciiDoc, comments like `// tag::example[]` and `// end::example[]` are used to mark content for inclusion elsewhere.
 
-**rationale** :
-   Comments that explain the reasoning behind a particular implementation choice, design pattern, or data structure.
-
-**status** :
-   Stability and lifecycle markers: `DEPRECATED:`, `EXPERIMENTAL:`, `INTERNAL:`, `UNSTABLE:`. May also include planned removal dates, version gates, feature flags.
-
-**admonition** :
-   Developer-facing warnings, notes, or tips embedded in code. Use `WARNING:`, `NOTE:`, and `TIP:` prefixes to mark these comments distinctly.
-
-**task** :
-   Comments like `TODO:` and `FIXME:` are used to mark code that needs further work.
-
-**instructional** :
-   Code comments left in template, stub, or sample files for interactive use. These comments tend to be intended for a downstream user who will interact directly with the file or one based on it.
-
-**label** :
-   Comments that simply annotate sections of code by category or general purpose, to help with demarcation and navigation. These comments are usually brief and may use special formatting to stand out.
-
-**directive** :
-   In some languages, we use special character patterns to signify that a comment has a special purpose, other than for generating reference docs. These comments may mark code for special parsing, content transclusion, or other operations.
-
-   In AsciiDoc, comments like `// tag::example[]` and `// end::example[]` are used to mark content for inclusion elsewhere.
-
-   The popular linter Vale recognizes HTML comments like `<!-- vale off -→` and `<!-- vale on -→` to disable and re-enable content linting.
-
-**sequential/collection** :
-   Comments that number or order logical stages in a complex or lengthy process or members of a set. Usually something like `# STEP 1:`, `# PHASE 1:`, and so forth, or else `# GROUP A:`, `# SECTION 1:`, etc. Always use uppercase for these markers (ex: `# STEP:` not `# Step:`).
+The popular linter Vale recognizes HTML comments like `<!-- vale off -→` and `<!-- vale on -→` to disable and re-enable content linting.
+</dd>
+<dt class="hdlist1">sequential/collection</dt>
+<dd>
+Comments that number or order logical stages in a complex or lengthy process or members of a set. Usually something like `# STEP 1:`, `# PHASE 1:`, and so forth, or else `# GROUP A:`, `# SECTION 1:`, etc. Always use uppercase for these markers (ex: `# STEP:` not `# Step:`).
+</dd>
+</dl>
 
 ### Flavors of Code
 
-**Ruby** :
-   The most robust environment for code comments, Ruby supports RDoc/YARD-style documentation comments that can be used to generate reference documentation. See Ruby Commenting Protocols for more.
-
-**Bash** :
-   We make extensive use of comments in Bash scripts, but Bash has no standard for documentation comments or structured comments.
-
-**AsciiDoc** :
-   Comments in `.adoc` files tend to be labels, tasks, and directives (AsciiDoc tags). AsciiDoc files tend not to have expository comments, since the content is already documentation.
-
-**YAML/SGYML** :
-   YAML files use copious label and instructional comments to help downstream users navigate and understand large or complex data structures. Comments can also be used to annotate nesting depth. See YAML Commenting Protocols for more.
-
-**Liquid** :
-   Our use of Liquid comments is inconsistent at best. Part of the problem is their terrible format with explicit `{% comment %}` and `{% endcomment %}` tags. While Liquid 5 has greatly improved that, DocOps Lab tooling is standardized on Liquid 4 at this time.
-
-**HTML** :
-   We don’t code much HTML directly. It is mostly either converted from lightweight markup or rendered by Liquid templates (or JavaScript). Comments are usually to mark nested objects for convenience, to label major structures or to highlight/clarify obscure asset references, or as directives such as `<!-- vale off -→`, which disables content linting.
-
-**JavaScript** :
-   We are not a JavaScript shop, but we do write a good bit of vanilla JavaScript. Comments are used mainly to establish our bearings in the code and therefor are sometimes heavier than with other languages.
-
-**CSS/SCSS** :
-   We mainly write CSS as SCSS, and commenting is mainly to express the intent upon compiling.
+<dl>
+<dt class="hdlist1">Ruby</dt>
+<dd>
+The most robust environment for code comments, Ruby supports RDoc/YARD-style documentation comments that can be used to generate reference documentation. See Ruby Commenting Protocols for more.
+</dd>
+<dt class="hdlist1">Bash</dt>
+<dd>
+We make extensive use of comments in Bash scripts, but Bash has no standard for documentation comments or structured comments.
+</dd>
+<dt class="hdlist1">AsciiDoc</dt>
+<dd>
+Comments in `.adoc` files tend to be labels, tasks, and directives (AsciiDoc tags). AsciiDoc files tend not to have expository comments, since the content is already documentation.
+</dd>
+<dt class="hdlist1">YAML/SGYML</dt>
+<dd>
+YAML files use copious label and instructional comments to help downstream users navigate and understand large or complex data structures. Comments can also be used to annotate nesting depth. See YAML Commenting Protocols for more.
+</dd>
+<dt class="hdlist1">Liquid</dt>
+<dd>
+Our use of Liquid comments is inconsistent at best. Part of the problem is their terrible format with explicit `{% comment %}` and `{% endcomment %}` tags. While Liquid 5 has greatly improved that, DocOps Lab tooling is standardized on Liquid 4 at this time.
+</dd>
+<dt class="hdlist1">HTML</dt>
+<dd>
+We don’t code much HTML directly. It is mostly either converted from lightweight markup or rendered by Liquid templates (or JavaScript). Comments are usually to mark nested objects for convenience, to label major structures or to highlight/clarify obscure asset references, or as directives such as `<!-- vale off -→`, which disables content linting.
+</dd>
+<dt class="hdlist1">JavaScript</dt>
+<dd>
+We are not a JavaScript shop, but we do write a good bit of vanilla JavaScript. Comments are used mainly to establish our bearings in the code and therefor are sometimes heavier than with other languages.
+</dd>
+<dt class="hdlist1">CSS/SCSS</dt>
+<dd>
+We mainly write CSS as SCSS, and commenting is mainly to express the intent upon compiling.
+</dd>
+</dl>
 
 ### General Style Rules
 
 - Do not use em dashes or en dashes or (` - `).
 
-   - Use colons (`: `) to prefix a comment with a classification.
-   - Use semicolons (`; `) to break up clauses.
 - Use sentence-style capitalization.
-- Do not use terminal punctuation (periods, exclamation points, question marks) unless the comment is multiple sentences.
-- Hard wrap comments around 110-120 characters.
 
-   - Use one-sentence per line.
-   - Try not to wrap anything _except_ full sentences.
-   - When wrapping multi-line sentences, indent subsequent lines by an additional space.
+- Do not use terminal punctuation (periods, exclamation points, question marks) unless the comment is multiple sentences.
+
+- Hard wrap comments around 110-120 characters.
 
 ## Expository Comments: Use and Abuse
 
@@ -119,28 +139,38 @@ This guide exists to help with comment evaluation.
 
 Expository comments (and their authors) should adhere to these principles:
 
-**1) Express purpose, not implementation.**:
-   Comments should explain why code exists or what it is intended to do, rather than how it does it. (Rationale comments are available for explaining design/engineering choices, if necessary.)
+<dl>
+<dt class="hdlist1">1) Express purpose, not implementation.</dt>
+<dd>
+Comments should explain why code exists or what it is intended to do, rather than how it does it. (Rationale comments are available for explaining design/engineering choices, if necessary.)
+</dd>
+<dt class="hdlist1">2) Summarize peculiar or complex implementation (without violating #1).</dt>
+<dd>
+Expository comments may _include_ a _brief_ reference to an explicit design choice. Still not a _rationale comment_ (too brief, in passing) nor a _task comment_ (no further action prescribed), just a nod to an unusual or non-obvious implementation detail.
+</dd>
+<dt class="hdlist1">3) Use natural, imperative language.</dt>
+<dd>
+Comments should not contain code, and they should be formatted as English clauses or sentences. Comments should be phrased as commands or instructions, focusing on the action being performed, from the perspective of what the code is to do.
+</dd>
+<dt class="hdlist1">4) Be concise.</dt>
+<dd>
+Comments should be as brief as possible. Multi-sentence comments should be the exception. In fact, comments should not typically be complete sentences.
+</dd>
+<dt class="hdlist1">5) Maintain relevance and accuracy.</dt>
+<dd>
+Comments should be reviewed and updated as code changes to ensure they remain accurate and relevant.
+</dd>
+<dt class="hdlist1">6) Never cover straightforward code (except…​).</dt>
+<dd>
+Not all blocks need comments at all. The main criterion is whether the code’s purpose or function would not be _immediately_ clear from the code itself to a newcomer with beginner or intermediate knowledge of the language and little familiarity with the application architecture.
 
-**2) Summarize peculiar or complex implementation (without violating #1).**:
-   Expository comments may _include_ a _brief_ reference to an explicit design choice. Still not a _rationale comment_ (too brief, in passing) nor a _task comment_ (no further action prescribed), just a nod to an unusual or non-obvious implementation detail.
-
-**3) Use natural, imperative language.**:
-   Comments should not contain code, and they should be formatted as English clauses or sentences. Comments should be phrased as commands or instructions, focusing on the action being performed, from the perspective of what the code is to do.
-
-**4) Be concise.**:
-   Comments should be as brief as possible. Multi-sentence comments should be the exception. In fact, comments should not typically be complete sentences.
-
-**5) Maintain relevance and accuracy.**:
-   Comments should be reviewed and updated as code changes to ensure they remain accurate and relevant.
-
-**6) Never cover straightforward code (except…​).**:
-   Not all blocks need comments at all. The main criterion is whether the code’s purpose or function would not be _immediately_ clear from the code itself to a newcomer with beginner or intermediate knowledge of the language and little familiarity with the application architecture.
-
-   Exception: Sometimes an oddity or pivotal point needs to be highlighted even in otherwise straightforward code.
-
-**7} Do not use comments as notes to reviewers.** :
-   Temporary comments intended to guide code reviewers should be avoided. Code used to help with flag logical points or communicate during pair programming or pre-commit review should be denoted as admonitions (such as `# LOGIC: ` or `# REVIEW: `) or `# TEMP: ` and removed before merging.
+Exception: Sometimes an oddity or pivotal point needs to be highlighted even in otherwise straightforward code.
+</dd>
+<dt class="hdlist1">7} Do not use comments as notes to reviewers.</dt>
+<dd>
+Temporary comments intended to guide code reviewers should be avoided. Code used to help with flag logical points or communicate during pair programming or pre-commit review should be denoted as admonitions (such as `# LOGIC: ` or `# REVIEW: `) or `# TEMP: ` and removed before merging.
+</dd>
+</dl>
 
 ### General Examples
 
@@ -272,17 +302,24 @@ Never describe a method just by what it returns or what parameters it takes. Des
 
 When documenting Ruby classes and methods with YARD, follow these patterns:
 
-**class descriptions** :
-   Keep class descriptions focused on the class’s primary responsibility and role within the system. Avoid overselling capabilities or implementation details.
-
-**method descriptions** :
-   Lead with what the method accomplishes, not just its signature. Example: "Processes the provided attributes to populate Change properties" rather than "Initializes a new Change object."
-
-**capitalization consistency** :
-   When referring to class objects conceptually or as an instance (not variable names), use CamelCase names. Use lowercase for most instances where the term refers to a real-world object or concept.
-
-**voice consistency** :
-   Use descriptive, present-tense “voice” for API documentation and YARD comments.
+<dl>
+<dt class="hdlist1">class descriptions</dt>
+<dd>
+Keep class descriptions focused on the class’s primary responsibility and role within the system. Avoid overselling capabilities or implementation details.
+</dd>
+<dt class="hdlist1">method descriptions</dt>
+<dd>
+Lead with what the method accomplishes, not just its signature. Example: "Processes the provided attributes to populate Change properties" rather than "Initializes a new Change object."
+</dd>
+<dt class="hdlist1">capitalization consistency</dt>
+<dd>
+When referring to class objects conceptually or as an instance (not variable names), use CamelCase names. Use lowercase for most instances where the term refers to a real-world object or concept.
+</dd>
+<dt class="hdlist1">voice consistency</dt>
+<dd>
+Use descriptive, present-tense “voice” for API documentation and YARD comments.
+</dd>
+</dl>
 
 #### Exceptions
 

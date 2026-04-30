@@ -1,7 +1,5 @@
 # DocOps Lab AI Agent Documentation
 
-<section class="docs-group"></section>
-
 ## Roles
 
 #### [AGENT ROLE: Assistant Planner / Project Architect](/docs/agent/planner-architect/)
@@ -22,8 +20,6 @@
 
 #### [AGENT ROLE: Technical Writer](/docs/agent/tech-writer/)
 
-<section class="docs-group"></section>
-
 ## Skills
 
 #### [AI Agent Instructions for Git Operations](/docs/agent/git/)
@@ -31,6 +27,10 @@
 #### [AI Agent’s Guide to Writing in AsciiDoc](/docs/agent/asciidoc/)
 
 #### [Agent Rake CLI Guide](/docs/agent/rake-cli-dev/)
+
+#### [Bash CLI Development for Agents](/docs/agent/bash-cli-dev/)
+
+#### [Bash Coding for Agents](/docs/agent/bash-styles/)
 
 #### [Code Commenting](/docs/agent/code-commenting/)
 
@@ -58,8 +58,6 @@
 
 #### [Writing Tests for DocOps Lab Projects](/docs/agent/tests-writing/)
 
-<section class="docs-group"></section>
-
 ## Topics
 
 #### [AI Agent Instructions for In-house Dev-Tooling Usage](/docs/agent/dev-tooling-usage/)
@@ -69,8 +67,6 @@
 #### [Overview of Common Paths/Files in DocOps Lab Projects](/docs/agent/common-project-paths/)
 
 #### [Product Documentation Deployment](/docs/agent/product-docs-deployment/)
-
-<section class="docs-group"></section>
 
 ## Missions
 

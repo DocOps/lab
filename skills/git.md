@@ -11,22 +11,25 @@ Table of Contents
 - The Basics
 - Repository State
 - Development Procedures
-- Commit Message Conventions
-      - Merging Changes
+  - Commit Message Conventions
+  - Merging Changes
 - Dev Branch Rules
 - Commit Messages
-- General Style (Conventional Commits)
-      - Commit Description
-      - Commit Types
-      - Commit Body Conventions
+  - General Style (Conventional Commits)
+  - Commit Description
+  - Commit Types
+  - Commit Body Conventions
 - Use `gh` the GitHub CLI Tool
 
 ## The Basics
 
 1. Follow proper branching procedures as outlined in Repository State.
+
 2. Commit messages should be concise and easy for users to edit.  
 See Commit Messages for guidance.
+
 3. Always prompt user to approve commits before pushing.
+
 4. Use `gh` for interacting with GitHub whenever possible.  
 See Use `gh` the GitHub CLI Tool for more information.
 
@@ -61,34 +64,55 @@ git push -u origin feat/add-widget
 gh pr create --base dev/1.2 --title "feat: add widget" --body "Adds a new widget to the dashboard."
 ```
 
-**Branch naming conventions** :
-   - `feat/…​` for new features OR improvements
-   - `fix/…​` for bugfixes
-   - `chore/…​` for version bumps and sundry tasks with no product impact
-   - `epic/…​` for large features or changes that span releases
+<dl>
+<dt class="hdlist1">Branch naming conventions</dt>
+<dd>
+- `feat/…​` for new features OR improvements
+
+- `fix/…​` for bugfixes
+
+- `chore/…​` for version bumps and sundry tasks with no product impact
+
+- `epic/…​` for large features or changes that span releases
+</dd>
+</dl>
 
 ### Commit Message Conventions
 
-**Description (first line) conventions**:
-   - Use present-tense descriptive verbs (“adds widget”, not “added” or “add”)
-   - `feat: …​` for new features OR improvements
-   - `fix: …​` for bugfixes
-   - `chore: …​` for version bumps and sundry tasks with no product impact
-   - `docs: …​` for documentation changes
-   - `test: …​` for test code changes
-   - `refactor: …​` for code restructuring with no functional changes
-   - `style: …​` for formatting, missing semi-colons, etc; no functional changes
-   - `perf: …​` for performance improvements
-   - `auto: …​` for changes to CI/CD pipelines and build system
+<dl>
+<dt class="hdlist1">Description (first line) conventions</dt>
+<dd>
+- Use present-tense descriptive verbs (“adds widget”, not “added” or “add”)
 
-**Body conventions** :
-   - Use the body to explain what and why vs. how.
-   - Reference issues and pull requests as needed.
-   - Use bullet points (`- text`) and paragraphs as needed for clarity.
-   - Do not hard-wrap lines, but _do_:
+- `feat: …​` for new features OR improvements
 
-      - use 1-sentence per line
-      - keep sentences short
+- `fix: …​` for bugfixes
+
+- `chore: …​` for version bumps and sundry tasks with no product impact
+
+- `docs: …​` for documentation changes
+
+- `test: …​` for test code changes
+
+- `refactor: …​` for code restructuring with no functional changes
+
+- `style: …​` for formatting, missing semi-colons, etc; no functional changes
+
+- `perf: …​` for performance improvements
+
+- `auto: …​` for changes to CI/CD pipelines and build system
+</dd>
+<dt class="hdlist1">Body conventions</dt>
+<dd>
+- Use the body to explain what and why vs. how.
+
+- Reference issues and pull requests as needed.
+
+- Use bullet points (`- text`) and paragraphs as needed for clarity.
+
+- Do not hard-wrap lines, but _do_:
+</dd>
+</dl>
 
 ### Merging Changes
 
@@ -110,7 +134,9 @@ Delete merged branches.
 ## Dev Branch Rules
 
 - Always branch from `dev/x.y`.
+
 - Always squash-merge into `dev/x.y`.
+
 - Never merge directly into `main`.
 
 ## Commit Messages
@@ -144,25 +170,34 @@ Use the _past tense_ rather than imperative mood (e.g., "Added feature X" instea
 ### Commit Types
 
 - Use present-tense descriptive verbs (“adds widget”, not “added” or “add”)
+
 - `feat: …​` for new features OR improvements
+
 - `fix: …​` for bugfixes
+
 - `chore: …​` for version bumps and sundry tasks with no product impact
+
 - `docs: …​` for documentation changes
+
 - `test: …​` for test code changes
+
 - `refactor: …​` for code restructuring with no functional changes
+
 - `style: …​` for formatting, missing semi-colons, etc; no functional changes
+
 - `perf: …​` for performance improvements
+
 - `auto: …​` for changes to CI/CD pipelines and build system
 
 ### Commit Body Conventions
 
 - Use the body to explain what and why vs. how.
-- Reference issues and pull requests as needed.
-- Use bullet points (`- text`) and paragraphs as needed for clarity.
-- Do not hard-wrap lines, but _do_:
 
-   - use 1-sentence per line
-   - keep sentences short
+- Reference issues and pull requests as needed.
+
+- Use bullet points (`- text`) and paragraphs as needed for clarity.
+
+- Do not hard-wrap lines, but _do_:
 
 ## Use `gh` the GitHub CLI Tool
 
