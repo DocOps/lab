@@ -12,6 +12,7 @@ A guide to writing clean, consistent, and maintainable Bash scripts, based on be
 [TIP]
 See also {xref_docs_cli-styles_link} for guidance specific to command-line interfaces development.
 
+
 // tag::sections[]
 [[file-and-script-structure]]
 == File and Script Structure
@@ -66,7 +67,7 @@ Small private utilities, named with a `_` prefix.
 
 Operation Functions::
 Substantive domain work called by `cmd_` functions or exported as a library's public API.
-Unprefixed `snake_case`.
+Un-prefixed `snake_case`.
 
 Command Functions::
 Thin subcommand handlers, named with a `cmd_` prefix.
@@ -112,7 +113,7 @@ esac
 [[comment-style]]
 === Comment Style
 
-Avoid em dashes (`—`) or en dashes in comments.
+Avoid em dashes or en dashes in comments.
 
 Use a colon (`:`) to separate a name from its description.
 

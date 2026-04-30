@@ -79,10 +79,10 @@ module DocOpsLab
 
           abs_base = File.expand_path(dir_path)
           Sourcerer::Util::Pathifier.match(dir_path).enum
-            .select { |p| exts.any? { |e| p.end_with?(e) } }
-            .each_with_object({}) do |abs_path, map|
-              map[abs_path.sub("#{abs_base}/", '')] = abs_path
-            end
+                                    .select { |p| exts.any? { |e| p.end_with?(e) } }
+                                    .each_with_object({}) do |abs_path, map|
+            map[abs_path.sub("#{abs_base}/", '')] = abs_path
+          end
         end
 
         def parse_forms form

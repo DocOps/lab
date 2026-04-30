@@ -449,6 +449,7 @@ include::_asciidoc-snippets.adoc[tag="literal-markdown"]
 
 If you want your literal blocks to be handled distinctly from code blocks, or if you want to do anything cool with them or add caption/labels, you're going to have to jerry rig it in Markdown, probably by adding explicit HTML.
 
+[[html-embedding]]
 ==== HTML Embedding? (Nope)
 
 Speaking of passthroughs, you may have been thinking all along that you _prefer_ the way Markdown supports HTML tags throughout.

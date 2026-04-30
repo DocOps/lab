@@ -14,6 +14,7 @@ Consistency of variable/placeholder names throughout and across project document
 This document defines the canonical attribute naming conventions for all AsciiDoc files, as well as tag-group names and conditional assignment.
 This guide is intentionally prescriptive: attributes are small public APIs and must be stable, predictable, and single-sourced when their values are identical across repositories.
 
+
 [[scope]]
 == Scope
 
@@ -31,16 +32,19 @@ It covers:
 
 . Use only lowercase letters, digits and underscore (`_`) in attribute names.
 Do not use hyphens (`-`) in attribute names except:
+
 * inside the name of a slug or other identifier (`xref_blog_true-single-sourcing_link`)
 * when a third-party tool or convention requires it (ex: `page-*` frontmatter attributes for Jekyll)
 
 . Prefer semantic prefixes:
+
 * `docopslab_` for org-level
 * `this_proj_` for project-level
 * `this_prod_` for product-level (only when product identity differs)
 * `this_repo_` only when the repo filesystem identity differs and cannot be expressed with `this_proj_`.
 
 . Suffixes carry meaning:
+
 * `_vrsn` for to reference a product version (`this_prod_vrsn`)
 * `_version` for third-party versions (`this_prod_ruby_version`)
 * `_majmin` for major.minor version pair
@@ -67,8 +71,10 @@ Treat this as an advanced pattern; document its use in the README.
 [[standard-attribute-names]]
 === Standard Attribute Names (Canonical List)
 
-* `docopslab_src_www_url`: canonical DocOps GitHub org web page (https://github.com/DocOps). This is the primary universal org URL.
-* `docopslab_www_url`: DocOps public website (https://docopslab.org). Different from the org web page.
+* `docopslab_src_www_url`: canonical DocOps GitHub org web page (https://github.com/DocOps).
+This is the primary universal org URL.
+* `docopslab_www_url`: DocOps public website (https://docopslab.org).
+Different from the org web page.
 * `this_proj_slug`: repository slug (machine name), ex: `releasehx`
 * `this_proj_name`: human-friendly project short name, ex: `ReleaseHx` (use `this_proj_name`, not `title`)
 * `this_prod_vrsn_major`: integer major version
@@ -129,6 +135,7 @@ It is generally advised to create two versions of any such indicator that may ne
 
 Later we can reference the {audience-level}, which might be overwritten by an attribute passed at runtime.
 ----
+
 
 [[tag-groups]]
 == Tag Groups and Single-sourcing

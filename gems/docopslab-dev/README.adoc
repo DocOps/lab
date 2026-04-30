@@ -1092,6 +1092,7 @@ For changes to functionality in `lib/docopslab/dev/`:
 
 To ensure that AI agents and tools have reliable access to resources while allowing for project-specific overrides, `docopslab-dev` follows a **local-first** resolution policy for most assets.
 
+[[prompt-templates]]
 ==== Prompt Templates
 
 Downstream scripts (like the Jekyll-AsciiDoc log parser) resolve prompt templates using the following order:
@@ -1101,10 +1102,14 @@ Downstream scripts (like the Jekyll-AsciiDoc log parser) resolve prompt template
 
 This pattern ensures that a project can always "pin" or customize its agent interactions locally without breaking the default provided by the toolchain.
 
+[[config-scripts]]
 ==== Configuration and Scripts
 
-* **Scripts**: The `labdev:run:scripts` task searches `scripts/` (local) before `scripts/.vendor/docopslab/` (synced).
-* **Configs**: Linter configurations are generally merged, with the local `.config/` version taking precedence over the bundled vendor versions.
+Scripts::
+The `labdev:run:scripts` task searches `scripts/` (local) before `scripts/.vendor/docopslab/` (synced).
+
+Configs::
+Linter configurations are generally merged, with the local `.config/` version taking precedence over the bundled vendor versions.
 
 [[submodule-api-pattern]]
 === Submodule API Pattern
