@@ -9,8 +9,8 @@ module DocOpsLab
         def install_missing_hooks
           return unless Dir.exist?(hooks_dir)
 
-          Dir.glob("#{hooks_template_dir}/*.sh").each do |template_path|
-            hook_name = File.basename(template_path, '.sh')
+          Dir.glob("#{hooks_template_dir}/*").each do |template_path|
+            hook_name = File.basename(template_path)
             hook_path = File.join(hooks_dir, hook_name)
 
             next if File.exist?(hook_path)
@@ -27,8 +27,8 @@ module DocOpsLab
 
           updates_available = false
 
-          Dir.glob("#{hooks_template_dir}/*.sh").each do |template_path|
-            hook_name = File.basename(template_path, '.sh')
+          Dir.glob("#{hooks_template_dir}/*").each do |template_path|
+            hook_name = File.basename(template_path)
             hook_path = File.join(hooks_dir, hook_name)
 
             if File.exist?(hook_path)
@@ -55,8 +55,10 @@ module DocOpsLab
         def update_hooks_interactive
           return puts 'ℹ️  No .git directory found' unless Dir.exist?(hooks_dir)
 
-          Dir.glob("#{hooks_template_dir}/*.sh").each do |template_path|
-            hook_name = File.basename(template_path, '.sh')
+          hooks_to_update = []
+
+          Dir.glob("#{hooks_template_dir}/*").each do |template_path|
+            hook_name = File.basename(template_path)
             hook_path = File.join(hooks_dir, hook_name)
 
             if File.exist?(hook_path)
@@ -64,6 +66,8 @@ module DocOpsLab
               current_content = File.read(hook_path)
 
               next if template_content == current_content
+
+              hooks_to_update << hook_name
 
               puts "🔄 #{hook_name} hook has updates available"
               puts "Current file exists at: #{hook_path}"
@@ -92,14 +96,15 @@ module DocOpsLab
               end
             end
           end
+          puts '✅ No hooks need updating.' if hooks_to_update.empty?
         end
 
         def list_hook_templates
           puts '📋 Available git hook templates:'
           puts ''
 
-          Dir.glob("#{hooks_template_dir}/*.sh").each do |template_path|
-            hook_name = File.basename(template_path, '.sh')
+          Dir.glob("#{hooks_template_dir}/*").each do |template_path|
+            hook_name = File.basename(template_path)
             hook_path = File.join(hooks_dir, hook_name)
 
             status = nil
@@ -120,7 +125,7 @@ module DocOpsLab
                             ''
                           end
 
-            puts "  #{hook_name}: #{status}"
+            puts "  - #{hook_name.ljust(15)} (#{status})"
             puts "    #{description}" unless description.empty?
           end
         end
