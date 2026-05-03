@@ -4,6 +4,27 @@ This document is intended for AI agents operating within a DocOps Lab environmen
 
 ## File and Script Structure
 
+With certain exceptions, shell scripting is done in Bash 4.
+
+We will start with the exceptions.
+
+### POSIX Compliant Scripts
+
+Scripts that require maximum portability and compatibility should use the POSIX-compliant `sh` shell and avoid Bash-specific features.
+
+These scripts must begin with the shebang `#!/bin/sh` and should be tested in a POSIX-compliant environment to ensure they do not rely on Bash extensions.
+
+This standard is mainly to cover MacOS systems, which do not support Bash 4 out of the box. Therefore, bootstrap/installer scripts will need to be executable in a Bash 3 environment, where they can prompt for Bash 4 installation if it is not detected and if it is needed by a follow-on script.
+
+Such files should begin with:
+
+```bash
+#!/bin/sh
+# shellcheck shell=sh
+```
+
+The rest of this guide focuses on Bash 4 scripts, which are the norm for DocOps Lab projects and products that use basic shell scripts.
+
 ### Bash Version (4.0)
 
 Use Bash 4.0 or later to take advantage of modern features like associative arrays and improved string manipulation.
@@ -22,8 +43,8 @@ Follow the shebang with a brief inline comment block covering the script’s pur
 
 ```bash
 #!/usr/bin/env bash
-# script-name: brief description of what the script does.
-# Depends on: curl, jq
+# script-name.sh: brief description of what the script does.
+# Requires: curl, jq
 ```
 
 ### Indentation
@@ -131,7 +152,7 @@ Use `snake_case` and `local` declaration.
 <dl>
 <dt class="hdlist1">Operation functions</dt>
 <dd>
-The substantive work of a script; what `cmd_` functions orchestrate, and what sourced libraries export as their callable API. Use unprefixed `snake_case`.
+The substantive work of a script; what `cmd_` functions orchestrate, and what sourced libraries export as their callable API. Use un-prefixed `snake_case`.
 
 - `evaluate_system()`, `build_docker_image()`, `get_current_version()`
 </dd>
