@@ -1,5 +1,5 @@
 ---
-permalink: /docs/agent/bash-styles/
+permalink: /docs/agent/bash/
 indexed: false
 ---
 include::../_agent_settings.adoc[]
