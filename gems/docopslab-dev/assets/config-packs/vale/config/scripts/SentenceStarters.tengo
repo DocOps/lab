@@ -1,0 +1,77 @@
+text := import("text")
+
+matches := []
+lines := text.split(scope, "\n")
+
+starts := []
+run := 0
+i := 0
+for i < len(lines) {
+  line := lines[i]
+  starts = append(starts, run)
+  run = run + len(line) + 1
+  i = i + 1
+}
+
+j := 0
+inFence := false
+atBlockStart := true
+for j < len(lines) {
+  current := text.trim_space(lines[j])
+
+  if current == "" {
+    atBlockStart = true
+    j = j + 1
+    continue
+  }
+
+  if text.re_match(`^(-{4,}|\.{4,}|={4,})$`, current) {
+    inFence = !inFence
+    atBlockStart = true
+    j = j + 1
+    continue
+  }
+
+  if inFence {
+    j = j + 1
+    continue
+  }
+
+  if text.re_match(`^\s`, lines[j]) ||
+     text.re_match(`^include::`, current) ||
+     text.re_match(`::`, current) {
+    atBlockStart = false
+    j = j + 1
+    continue
+  }
+
+  if text.re_match(`^\[[^\]]+\]$`, current) ||
+     text.re_match(`^\[[A-Z]+\]$`, current) ||
+     text.re_match(`^\.[^\s].*$`, current) ||
+     text.re_match(`^[A-Za-z0-9_.-]+::\[[^\]]*\]$`, current) ||
+     text.re_match(`^[:/]|^//|^ifdef::|^ifndef::|^endif::|^\||^\s*(?:[*+-]|\d+\.)`, current) {
+    atBlockStart = false
+    j = j + 1
+    continue
+  }
+
+  if !atBlockStart {
+    j = j + 1
+    continue
+  }
+
+  normalized := text.re_replace(`^\[\.[^\]]+\]`, current, "")
+  normalized = text.re_replace(`^pass:\[([^\]]*)\]`, normalized, "$1")
+  normalized = text.re_replace(`^[*_#]+`, normalized, "")
+  normalized = text.re_replace(`[*_#]+$`, normalized, "")
+  normalized = text.trim_space(normalized)
+
+  if text.re_match(`^(?:` + "`[^`]+`" + `|[a-z0-9])`, normalized) {
+    begin := starts[j] + text.index(lines[j], current)
+    end := begin + len(current)
+    matches = append(matches, {"begin": begin, "end": end})
+  }
+
+  atBlockStart = false
+  j = j + 1
+}
