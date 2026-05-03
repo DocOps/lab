@@ -46,6 +46,10 @@ done)
 if [[ -n "$BASH_FILES" ]]; then
   for file in $BASH_FILES; do
     if head -n 1 "$file" | grep -qv '^#!/usr/bin/env bash'; then
+      # excuse as long as we explicitly declare system shell (for POSIX scripts)
+      if head -n 2 "$file" | tail -n 1 | grep -q '^# shellcheck shell=sh'; then
+        continue
+      fi
       echo "❌ Incorrect shebang in $file. Please use '#!/usr/bin/env bash'."
       exit 1
     fi
