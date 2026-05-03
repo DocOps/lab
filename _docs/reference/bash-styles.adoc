@@ -17,6 +17,30 @@ See also {xref_docs_cli-styles_link} for guidance specific to command-line inter
 [[file-and-script-structure]]
 == File and Script Structure
 
+With certain exceptions, shell scripting is done in Bash 4.
+
+We will start with the exceptions.
+
+[[posix-compliant]]
+=== POSIX Compliant Scripts
+
+Scripts that require maximum portability and compatibility should use the POSIX-compliant `sh` shell and avoid Bash-specific features.
+
+These scripts must begin with the shebang `#!/bin/sh` and should be tested in a POSIX-compliant environment to ensure they do not rely on Bash extensions.
+
+This standard is mainly to cover MacOS systems, which do not support Bash 4 out of the box.
+Therefore, bootstrap/installer scripts will need to be executable in a Bash 3 environment, where they can prompt for Bash 4 installation if it is not detected and if it is needed by a follow-on script.
+
+Such files should begin with:
+
+[source,shell]
+----
+#!/bin/sh
+# shellcheck shell=sh
+----
+
+The rest of this guide focuses on Bash 4 scripts, which are the norm for DocOps Lab projects and products that use basic shell scripts.
+
 [[bash-version]]
 === Bash Version (4.0)
 
@@ -41,8 +65,8 @@ Keep it compact: one line per thought, no visual padding.
 [source,bash]
 ----
 #!/usr/bin/env bash
-# script-name: brief description of what the script does.
-# Depends on: curl, jq
+# script-name.sh: brief description of what the script does.
+# Requires: curl, jq
 ----
 
 [[indentation]]
@@ -175,7 +199,7 @@ Use `snake_case` and `local` declaration.
 
 Operation functions::
 The substantive work of a script; what `cmd_` functions orchestrate, and what sourced libraries export as their callable API.
-Use unprefixed `snake_case`.
+Use un-prefixed `snake_case`.
 * `evaluate_system()`, `build_docker_image()`, `get_current_version()`
 
 Helper functions::
@@ -448,6 +472,7 @@ Add a comment explaining the intent.
 # shellcheck disable=SC2086 # intentional: $docker_args may contain multiple flags
 docker build ${docker_args} -t "${image}" .
 ----
+
 
 [[output]]
 == Output
