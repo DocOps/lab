@@ -30,7 +30,7 @@
 
 #### [Bash CLI Development for Agents](/docs/agent/bash-cli-dev/)
 
-#### [Bash Coding for Agents](/docs/agent/bash-styles/)
+#### [Bash Coding for Agents](/docs/agent/bash/)
 
 #### [Code Commenting](/docs/agent/code-commenting/)
 
