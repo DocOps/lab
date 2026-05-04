@@ -488,10 +488,19 @@ module DocOpsLab
         def check_shebang file_path
           return false unless File.exist?(file_path)
 
-          first_line = File.open(file_path, &:readline).strip
+          lines = File.readlines(file_path).map(&:strip)
+          return false if lines.empty?
+
+          first_line = lines[0]
+          second_line = lines[1]
+
+          # If second line has shellcheck directive for sh, require sh shebang
+          if second_line == '# shellcheck shell=sh'
+            return first_line == '#!/bin/sh'
+          end
+
+          # Otherwise, require bash shebang
           first_line == '#!/usr/bin/env bash'
-        rescue EOFError
-          false
         rescue StandardError => e
           puts "⚠️  Error checking shebang for #{file_path}: #{e.message}"
           false
