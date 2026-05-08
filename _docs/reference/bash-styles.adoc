@@ -506,13 +506,11 @@ Note the use of semantic heredoc delimiters (`ERRMSG`) instead of generic `EOF` 
 For output intended for the user (status ticks, warnings, separators), use the shared style helpers from the centrally maintained link:{this_proj_src_main_files_url}/gems/docopslab-dev/assets/templates/universals.sh[`universals.sh`] rather than writing raw ANSI codes inline.
 See the `universal-style-helpers` tagged segment for the canonical set.
 
-ifdef::audience-agent[]
 .Universal style helpers common to all DocOps Lab scripts
 [source,bash]
 ----
 include::../../gems/docopslab-dev/assets/templates/universals.sh[tag="universal-style-helpers"]
 ----
-endif::audience-agent[]
 
 
 [[practices-to-avoid]]
