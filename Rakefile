@@ -357,6 +357,105 @@ namespace :review do
   end
 end
 
+desc 'Show drafts stored in standby-content branch'
+# Displays any .adoc or .md files in the standby-content branch that are not in the current branch, for easy review of in-progress content without switching branches.
+task :show_drafts do
+  current_branch = git_current_branch
+  standby_branch = 'standby-content'
+
+  puts "🔍 Comparing #{current_branch} with #{standby_branch} for draft content...\n\n"
+
+  # Get list of .adoc and .md files in both branches
+  standby_files = `git ls-tree -r --name-only #{standby_branch}`.split("\n").select { |f| f.end_with?('.adoc', '.md') }
+  current_files = `git ls-tree -r --name-only #{current_branch}`.split("\n").select { |f| f.end_with?('.adoc', '.md') }
+
+  # Files in standby but not in current
+  draft_files = standby_files - current_files
+
+  if draft_files.empty?
+    puts "✅ No draft files found in #{standby_branch}"
+    next
+  end
+
+  puts "📄 Draft files in #{standby_branch} not in #{current_branch}:"
+  puts '━' * 80
+
+  draft_files.each do |file|
+    # Get file content from standby branch
+    file_content = `git show #{standby_branch}:#{file} 2>/dev/null`
+
+    # Get last commit date for the file
+    last_commit = `git log -1 --format=%ai #{standby_branch} -- #{file} 2>/dev/null`.strip
+
+    # Extract metadata
+    metadata = extract_draft_metadata(file, file_content)
+
+    # Display file info
+    puts "\n📝 #{file}"
+    puts "   Last update: #{last_commit}" if last_commit.length.positive?
+
+    # Display metadata if found
+    puts "   Title: #{metadata[:title]}" if metadata[:title]
+    puts "   Description: #{metadata[:description]}" if metadata[:description]
+    puts "   Date: #{metadata[:date]}" if metadata[:date]
+    puts "   Tags: #{metadata[:tags]}" if metadata[:tags]
+    puts "   Excerpt: #{metadata[:excerpt]}" if metadata[:excerpt]
+  end
+
+  puts "\n#{'━' * 80}"
+  puts "✅ Found #{draft_files.size} draft file(s) in #{standby_branch}"
+end
+
+# Helper method to extract metadata from .adoc or .md files
+def extract_draft_metadata filename, content
+  metadata = {}
+
+  # Extract frontmatter YAML from both .adoc and .md files
+  metadata.merge!(parse_frontmatter_yaml(content))
+
+  # For .adoc files, also extract AsciiDoc document attributes
+  return metadata unless filename.end_with?('.adoc')
+
+  # Suppress Asciidoctor warnings for this parsing
+  original_stderr = $stderr
+  $stderr = File.open(File::NULL, 'w')
+  begin
+    doc = Asciidoctor.load(content, safe: :safe)
+
+    # Extract title from document or frontmatter
+    metadata[:title] ||= doc.doctitle if doc.doctitle
+
+    # Extract page- attributes
+    %w[date tags excerpt description].each do |attr|
+      doc_key = "page-#{attr}"
+      metadata[attr.to_sym] = doc.attributes[doc_key] if doc.attributes[doc_key]
+    end
+  rescue StandardError
+    # Skip files that fail to parse
+  ensure
+    $stderr = original_stderr
+  end
+
+  metadata
+end
+
+# Helper to extract and parse YAML frontmatter
+def parse_frontmatter_yaml content
+  return {} unless content.start_with?('---')
+
+  fm_end = content.index(/^---/, 3)
+  return {} unless fm_end
+
+  fm_content = content[3...fm_end].strip
+  begin
+    parsed_fm = YAML.safe_load(fm_content) || {}
+    parsed_fm.transform_keys { |k| k.to_s.downcase.to_sym }
+  rescue Psych::SyntaxError
+    # Silently skip malformed frontmatter
+    {}
+  end
+end
+
 desc 'Clean build artifacts'
 task :clean do
   puts '🧹 Cleaning build artifacts...'
