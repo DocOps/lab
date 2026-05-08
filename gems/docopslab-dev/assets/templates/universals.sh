@@ -7,10 +7,11 @@
 # Edit only here, then run the sync tooling to propagate changes.
 
 # tag::universal-style-helpers[]
-_bold()     { printf '\033[1m%s\033[0m' "$*"; }
-_green()    { printf '\033[32m%s\033[0m' "$*"; }
-_yellow()   { printf '\033[33m%s\033[0m' "$*"; }
-_red()      { printf '\033[31m%s\033[0m' "$*"; }
+# Respects NO_COLOR standard: https://no-color.org
+_bold() { [[ -n "${NO_COLOR:-}" ]] && printf '%s' "$*" || printf '\033[1m%s\033[0m' "$*"; }
+_green() { [[ -n "${NO_COLOR:-}" ]] && printf '%s' "$*" || printf '\033[32m%s\033[0m' "$*"; }
+_yellow() { [[ -n "${NO_COLOR:-}" ]] && printf '%s' "$*" || printf '\033[33m%s\033[0m' "$*"; }
+_red() { [[ -n "${NO_COLOR:-}" ]] && printf '%s' "$*" || printf '\033[31m%s\033[0m' "$*"; }
 _tick()     { printf '%s %s\n' "$(_green '✓')" "$*"; }
 _warn()     { printf '%s %s\n' "$(_yellow '⚠')" "$*"; }
 _fail()     { printf '%s %s\n' "$(_red '✗')" "$*"; }
