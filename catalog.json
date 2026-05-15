@@ -1,0 +1,311 @@
+{
+  "library_version": "0.3.0",
+  "library_ref": "labdev-library@9b618c58",
+  "generated_at": "2026-05-15T00:14:38Z",
+  "files": [
+    {
+      "path": "README.adoc",
+      "sha256": "sha256:850d0198d3b62e3c7eebb2c9991bad6fb8fc4aa0e2f3fd9ea7e3986b23e88199"
+    },
+    {
+      "path": "config-packs/actionlint/base.yml",
+      "sha256": "sha256:1b2234d78373238f27e57faa57889bc97b20da9fb4db23861174a610d41d96c3"
+    },
+    {
+      "path": "config-packs/actionlint/project.yml",
+      "sha256": "sha256:a36ce8fd0a6bf0bcfafd2d45d5d4a15c40d9f178b71ce7de32b7ccaf21901b0c"
+    },
+    {
+      "path": "config-packs/htmlproofer/base.yml",
+      "sha256": "sha256:8d0ee9847c55b108dbe7e517c26fc04d9137302140e72ac9c522951dd7146b3b"
+    },
+    {
+      "path": "config-packs/htmlproofer/project.yml",
+      "sha256": "sha256:b8f28837142134f51c634661d1632456fdbe598efa897f0606fbb23bf9fc9450"
+    },
+    {
+      "path": "config-packs/rubocop/base.yml",
+      "sha256": "sha256:eb84c04579aef806ba882f05da62583786134ca1c59c293ef2cf5e5aa6994d8b"
+    },
+    {
+      "path": "config-packs/rubocop/project.yml",
+      "sha256": "sha256:a37e5b5d84ab4863b02ecae81571259034d64901e3bbb485955a572fb891d1b4"
+    },
+    {
+      "path": "config-packs/shellcheck/base.shellcheckrc",
+      "sha256": "sha256:fd0ee64da918cc26af8d4ef158060013e446cc199b4494c12c4326d48fa0ae63"
+    },
+    {
+      "path": "config-packs/subtxt/ai-asciidoc-antipatterns.sub.txt",
+      "sha256": "sha256:dd37731d6c80ab7a03fab0227d47584d49de62cc49c1517e99e3a297950721e9"
+    },
+    {
+      "path": "config-packs/vale/asciidoc/ExplicitSectionIDs.yml",
+      "sha256": "sha256:d0173a91a021b4a5cff275f310be2e4c829fbc283f3819e3fe1d73eac1d899fd"
+    },
+    {
+      "path": "config-packs/vale/asciidoc/ExtraLineBeforeLevel1.yml",
+      "sha256": "sha256:4e2d0c12f2e2458abfa4745f65bfa9d43414ccd10b45b295d6b024046fe46a4a"
+    },
+    {
+      "path": "config-packs/vale/asciidoc/OneSentencePerLine.yml",
+      "sha256": "sha256:444fae2a84c9630bc0cecc0ae8d5cfda9ab49a78019b8e0b1e526804f85f6762"
+    },
+    {
+      "path": "config-packs/vale/asciidoc/PreferSourceBlocks.yml",
+      "sha256": "sha256:238a3139fdce0a0d848169b6ac0f3a43f3d9df6eb1079988315a0a75e125e650"
+    },
+    {
+      "path": "config-packs/vale/asciidoc/ProperAdmonitions.yml",
+      "sha256": "sha256:2c44881bca0ffdbe708dbcefdfea1fe73df5eaa4da18a95a6a9b3926d4be77e5"
+    },
+    {
+      "path": "config-packs/vale/asciidoc/ProperDLs.yml",
+      "sha256": "sha256:3e9dc275e0e20132d05b49ab80090cdc1319c139da2bd8d0fa535b9a0102618c"
+    },
+    {
+      "path": "config-packs/vale/asciidoc/UncleanListStart.yml",
+      "sha256": "sha256:a0cf60a56f01cd8b6697e614e4d678705be1a807d4aa48ef81774d69044e1ca6"
+    },
+    {
+      "path": "config-packs/vale/authoring/ButParagraph.yml",
+      "sha256": "sha256:0448993c54305a1b38ed47145e0ecdebbe537487ccd0d9b6409c6a557fd91462"
+    },
+    {
+      "path": "config-packs/vale/authoring/ExNotEg.yml",
+      "sha256": "sha256:03c31b32f2368bb8ad25cd00f22af7003ed44e70d0a9479505700643ee4b39a3"
+    },
+    {
+      "path": "config-packs/vale/authoring/LiteralTerms.yml",
+      "sha256": "sha256:6d019700a6798447429a1d8aa3f62fc13241d5d053a123579c2f729504210580"
+    },
+    {
+      "path": "config-packs/vale/authoring/SentenceStarters.yml",
+      "sha256": "sha256:2ed4b4d589bdf16968c97f890bf5d2dead8c578f8a8c87b2f4b10dc5530a2006"
+    },
+    {
+      "path": "config-packs/vale/authoring/Spelling.yml",
+      "sha256": "sha256:fcfe9307ec39b61f61d75eafd7f6c937367094affb15451df53a8364724a17a4"
+    },
+    {
+      "path": "config-packs/vale/base.ini",
+      "sha256": "sha256:884127b5a72c373473d6096098183a65d188a521545e4b8c0b3658cbe2593288"
+    },
+    {
+      "path": "config-packs/vale/config/scripts/ExplicitSectionIDs.tengo",
+      "sha256": "sha256:a34992e07850fc4d074f92e0ac801351489936bf6a87b334d5bdb7dc586e45dc"
+    },
+    {
+      "path": "config-packs/vale/config/scripts/ExtraLineBeforeLevel1.tengo",
+      "sha256": "sha256:f2de8549d4093436bbec922aea91a08ba1c936006cb52108e3c0cd3c9a9f6271"
+    },
+    {
+      "path": "config-packs/vale/config/scripts/OneSentencePerLine.tengo",
+      "sha256": "sha256:89e90432013b2848dd0d6caa0601b7ecb5a35bfdda0d818ec7407f446d58c039"
+    },
+    {
+      "path": "config-packs/vale/config/scripts/SentenceStarters.tengo",
+      "sha256": "sha256:9df13f3959d48d7fa4a728390c94d4c8eb9fe1f7824658142d65dc59a8eccfd9"
+    },
+    {
+      "path": "config-packs/vale/project.ini",
+      "sha256": "sha256:2f6f1baa17ddb8c442be50cd12f2dd16a2cba99e24da21e45a73664f724f2974"
+    },
+    {
+      "path": "docs/agent/index.md",
+      "sha256": "sha256:6fae501054ed22be9cbcbf52ab5590a776a7aac6985bc08dc3a79125c66f3994"
+    },
+    {
+      "path": "docs/agent/missions/conduct-release.md",
+      "sha256": "sha256:15cd373fc8469eab2a4f1923d04df11f86e643eea694ebcc1f63b7fd21c72347"
+    },
+    {
+      "path": "docs/agent/missions/setup-new-project.md",
+      "sha256": "sha256:3e29adba9a649fbde03e887dfb1c825e686047adbf6553eac085143f006404f6"
+    },
+    {
+      "path": "docs/agent/roles/devops-release-engineer.md",
+      "sha256": "sha256:01d03a88097ee723b79dc5af3eeca288767a03b76674038e6558a5b6f82665b4"
+    },
+    {
+      "path": "docs/agent/roles/docops-engineer.md",
+      "sha256": "sha256:b7a725e8b85f0069423631f1a875cf992eacb9a842e9c8db64ad944654ec9a0f"
+    },
+    {
+      "path": "docs/agent/roles/planner-architect.md",
+      "sha256": "sha256:6aad60e1cc4931269dcab38c83cac45b9b753fbe05de521eb6d8e1ae911c8367"
+    },
+    {
+      "path": "docs/agent/roles/product-engineer.md",
+      "sha256": "sha256:1c82743965d7cb1e9e9ea7fb37de2282a6e067396354b94c6076ac238d81cb81"
+    },
+    {
+      "path": "docs/agent/roles/product-manager.md",
+      "sha256": "sha256:fce6fc90fdb710816d64435a2a8a7e4685eff7bc337478fd514a6bfba249db2a"
+    },
+    {
+      "path": "docs/agent/roles/project-manager.md",
+      "sha256": "sha256:0b1db24c62dc379f6623db70d0b25700eb9480e4df04633bed94c336d77bce74"
+    },
+    {
+      "path": "docs/agent/roles/qa-testing-engineer.md",
+      "sha256": "sha256:f5c62ca21ad2b6210f6e6ea32ddcc7d5d95eb0a9a7a16e41851f1bf0d88483c8"
+    },
+    {
+      "path": "docs/agent/roles/tech-docs-manager.md",
+      "sha256": "sha256:106cdb19035cd3e612742f49863207c4b6441e9c1437e095f5c45503362f30ec"
+    },
+    {
+      "path": "docs/agent/roles/tech-writer.md",
+      "sha256": "sha256:cb0528d87617c95e448895a3cd2acb5dfd2f28bb7812f7de413d55839fb07760"
+    },
+    {
+      "path": "docs/agent/skills/asciidoc.md",
+      "sha256": "sha256:6f7b91fcb06c6994d3cf0ff5ba6589e55988532134f116a059f9ad9dde92b79f"
+    },
+    {
+      "path": "docs/agent/skills/bash-cli-dev.md",
+      "sha256": "sha256:57f92713308ef7ce616fd5a474777d45e405c5b73b60493db65e9c61f578578e"
+    },
+    {
+      "path": "docs/agent/skills/bash.md",
+      "sha256": "sha256:0c2342f40fbfb8f0e3142edb956c22db7083a1026b89b0346e9c3fbec071774f"
+    },
+    {
+      "path": "docs/agent/skills/code-commenting.md",
+      "sha256": "sha256:0c1eb8dc8dd7cc1b13be0efff5b7405027838dbf7c61a2d48556b7c2691269b2"
+    },
+    {
+      "path": "docs/agent/skills/fix-broken-links.md",
+      "sha256": "sha256:642d20bba312a79a698a0cb00b7ff7f1aeb8b71f2c00e7e17aafa73b5f2e8dc5"
+    },
+    {
+      "path": "docs/agent/skills/fix-jekyll-asciidoc-build-errors.md",
+      "sha256": "sha256:b62966d4848b1f5d6d03cb3610d170537b3a05fb43cf9634dd4eedd9c64df64f"
+    },
+    {
+      "path": "docs/agent/skills/fix-spelling-issues.md",
+      "sha256": "sha256:fbfcc888723f062fd44984202a9e3921b3e90a2d97615579d0884c4a51448e6e"
+    },
+    {
+      "path": "docs/agent/skills/git.md",
+      "sha256": "sha256:9009947808dc6efa0a07d44c966fa0b9febbf1d2e5b3967e3a6204c3a0f629af"
+    },
+    {
+      "path": "docs/agent/skills/github-issues.md",
+      "sha256": "sha256:fbefb3d8e6f5201e5d8c22a964599d752b9a99437ec222fcc7c855fcc5949a38"
+    },
+    {
+      "path": "docs/agent/skills/product-release-rollback-and-patching.md",
+      "sha256": "sha256:8f02c7a2c503cff622878608ee1a9ee4f1e959dec06aad95b20c48b0ec5837f5"
+    },
+    {
+      "path": "docs/agent/skills/rake-cli-dev.md",
+      "sha256": "sha256:0e8ce5ee3363275ff4bebac915024466207bff8c55450ab4093e8256ee4ef2f4"
+    },
+    {
+      "path": "docs/agent/skills/readme-driven-dev.md",
+      "sha256": "sha256:1e70faf4c41cdc22dd5e65317d937a3acb7108218d0ec5793a56acee3869f948"
+    },
+    {
+      "path": "docs/agent/skills/release-history.md",
+      "sha256": "sha256:9a6296783abfe17f6aa5373a8830b3e1fae2679fa13ef9a2defccac6a949ad9b"
+    },
+    {
+      "path": "docs/agent/skills/ruby.md",
+      "sha256": "sha256:219bea20ff05779a14136315a40ec2c1c24d590cb0afeec95ce21b37925348cd"
+    },
+    {
+      "path": "docs/agent/skills/schemagraphy-sgyml.md",
+      "sha256": "sha256:b2bb6d98f7043e9e26d6465b182d490158a41a0444b844eeb91968a81338a85f"
+    },
+    {
+      "path": "docs/agent/skills/tests-running.md",
+      "sha256": "sha256:2706df71b8fd90da047787838ef2765b8c24a56d5c5d8dea8df9603d3778a7b5"
+    },
+    {
+      "path": "docs/agent/skills/tests-writing.md",
+      "sha256": "sha256:600dd2ed79258012442600d159453846f731a96b585bbdc881adee1d8e205b6d"
+    },
+    {
+      "path": "docs/agent/skills/write-the-docs.md",
+      "sha256": "sha256:98617a7b54cf504830440b9cc5b3a3b7ea3333dce9f4260431d6d0e34ee284ab"
+    },
+    {
+      "path": "docs/agent/topics/common-project-paths.md",
+      "sha256": "sha256:05ded3b5bab2b289cace58598920f7848cf1682606deadd12f84f63375c52ea8"
+    },
+    {
+      "path": "docs/agent/topics/dev-tooling-usage.md",
+      "sha256": "sha256:b438cf9731ab442efa28e1a3414749ac0fc7e1333475c1f58c8c8fbf1c7deed3"
+    },
+    {
+      "path": "docs/agent/topics/devops-ci-cd.md",
+      "sha256": "sha256:a130623250a9c13125e11dd64ea2419727b44d3ab10f293f0f44a483b904a3d3"
+    },
+    {
+      "path": "docs/agent/topics/product-docs-deployment.md",
+      "sha256": "sha256:a6b8813117447e867b281a689d70905f344d5ed0592c428c0c840f0e48d2db25"
+    },
+    {
+      "path": "hooks/pre-commit",
+      "sha256": "sha256:a9f8c12645662cdf16c4a343bf0264c0ac16ec313852bc539184ba8abef3db6b"
+    },
+    {
+      "path": "hooks/pre-push",
+      "sha256": "sha256:6f50c304530257aaac4f4c3aa384db62123a81d2771fbc6d774d03c95a4779e4"
+    },
+    {
+      "path": "scripts/adoc_section_ids.rb",
+      "sha256": "sha256:e19175d38e0b207cb0665755cef7aed2e5baf2e2ed9d9d09af04709bf66ddfe8"
+    },
+    {
+      "path": "scripts/build-common.sh",
+      "sha256": "sha256:737e7d7a375505a3636e0d122d0a2b546b770c719aeeb3d52eaf92abf9827655"
+    },
+    {
+      "path": "scripts/build-docker.sh",
+      "sha256": "sha256:5d2732e1bbe0f553282e438bb1e26b61993f153308ec8ef133791fec14108249"
+    },
+    {
+      "path": "scripts/build.sh",
+      "sha256": "sha256:269b457827a5aad80164877c65e16fb842f36f324d72abf31e802210df04e568"
+    },
+    {
+      "path": "scripts/parse_jekyll_asciidoc_logs.rb",
+      "sha256": "sha256:8077f527bbbb2ea1cd94a0072d8942fc343b86b0da6639a974db57dd7ae96350"
+    },
+    {
+      "path": "templates/AGENTS.markdown",
+      "sha256": "sha256:c593710750e310c3671da7a7e11b607fdac1791ee75e3e52db69edc49614c7b1"
+    },
+    {
+      "path": "templates/Gemfile",
+      "sha256": "sha256:f57afbadcdbd8948a3d9fe58f3a04e0aa3b0017e97bb9803af1b259dfd603690"
+    },
+    {
+      "path": "templates/README.asciidoc",
+      "sha256": "sha256:71ef9be178c22b9c42617a2b7cd7e31e81c5f9c3a1211a7dc34f0e1a4ee439c1"
+    },
+    {
+      "path": "templates/Rakefile",
+      "sha256": "sha256:b5547d757f14f3e4a531375d76367d623023098e3a448efd90e462cc4299d999"
+    },
+    {
+      "path": "templates/gitignore",
+      "sha256": "sha256:19e94f0b6bbac517ec24cd3ec0c2f01cf04a81c1e5c8968b1386232820af8798"
+    },
+    {
+      "path": "templates/jekyll-asciidoc-fix.prompt.yml",
+      "sha256": "sha256:6b6312df706f2f1143e467b6024418cb91543ef0a19c4ded0ccbd13b9c50ca47"
+    },
+    {
+      "path": "templates/spellcheck.prompt.yml",
+      "sha256": "sha256:56d7af5619a808aad80b72186a8edb282cd72d0cf26f48a2b7b2a778360da899"
+    },
+    {
+      "path": "templates/universals.sh",
+      "sha256": "sha256:e486900c1b237c8b32a117489d4bc7e36801c674193fc2acd9c5c442d07ab5ec"
+    }
+  ]
+}
