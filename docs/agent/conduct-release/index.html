@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MISSION: Conduct a Product Release | DocOps Lab</title>
+  <meta name="description" content="">
+  
+  <meta name="robots" content="noindex,nofollow" />
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MISSION: Conduct a Product Release">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://docopslab.org/docs/agent/conduct-release/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MISSION: Conduct a Product Release">
+  <meta name="twitter:description" content="">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/agent/conduct-release/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>MISSION: Conduct a Product Release</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">MISSION: Conduct a Product Release</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>MISSION: Conduct a Product Release</h1>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+        <div class="audience-agent info">
+          <p>This document is intended for AI agents operating within a DocOps Lab environment.</p>
+          
+            <p>Original sources for this document include:</p>
+            <ul>
+            
+              <!-- detect the origin url based on the slug (origin) -->
+              
+              
+              
+              <li><a href="/docs/release/">Release Process (General)</a></li>
+            
+            </ul>
+          
+        </div>
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>An AI Agent or multiple Agents, in collaboration with a human Operator, can execute the release procedure for a DocOps Lab project/product.</p>
+</div>
+<div class="paragraph">
+<p>This mission covers the entire process from pre-flight checks to post-release cleanup.</p>
+</div>
+<div class="paragraph">
+<p>Check the <code>README.adoc</code> or <code>docs/**/release.adoc</code> file specific to the project you are releasing for specific procedures.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#agent-roles">Agent Roles</a>
+<ul class="sectlevel2">
+<li><a href="#context-management-for-multi-role-sessions">Context Management for Multi-role Sessions</a></li>
+<li><a href="#task-assignments-and-suggestions">Task Assignments and Suggestions</a></li>
+</ul>
+</li>
+<li><a href="#prerequisite-attention-operator">Prerequisite: Attention OPERATOR</a></li>
+<li><a href="#mission-procedure">Mission Procedure</a>
+<ul class="sectlevel2">
+<li><a href="#stage-0-mission-prep">Stage 0: Mission Prep</a></li>
+<li><a href="#evergreen-tasks">Evergreen Tasks</a></li>
+<li><a href="#stage-1-pre-flight-checks">Stage 1: Pre-flight Checks</a></li>
+<li><a href="#stage-2-release-history">Stage 2: Release History</a></li>
+<li><a href="#stage-3-merge-and-tag">Stage 3: Merge and Tag</a></li>
+<li><a href="#stage-4-release-announcement">Stage 4: Release Announcement</a></li>
+<li><a href="#stage-5-artifact-publication">Stage 5: Artifact Publication</a></li>
+<li><a href="#stage-6-post-release-tests-cleanup">Stage 6: Post-Release Tests &amp; Cleanup</a></li>
+<li><a href="#post-mission-debriefing">Post-mission Debriefing</a></li>
+</ul>
+</li>
+<li><a href="#fulfillment-principles">Fulfillment Principles</a>
+<ul class="sectlevel2">
+<li><a href="#always">ALWAYS</a></li>
+<li><a href="#never">NEVER</a></li>
+<li><a href="#quality-bar">Quality Bar</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="agent-roles">Agent Roles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following agent roles will take a turn at steps in this mission.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">devops/release engineer</dt>
+<dd>
+<p>Execute the technical steps of the release, including git operations, tagging, and artifact publication.</p>
+</dd>
+<dt class="hdlist1">project manager</dt>
+<dd>
+<p>Oversee the release process, ensure conditions are met, and handle communications.</p>
+</dd>
+<dt class="hdlist1">tech writer</dt>
+<dd>
+<p>Prepare release notes and ensure documentation is up to date.</p>
+</dd>
+</dl>
+</div>
+<div class="sect2">
+<h3 id="context-management-for-multi-role-sessions">Context Management for Multi-role Sessions</h3>
+<div class="paragraph">
+<p>By default will be up to the Agent to decide whether to hand off to a concurrent or subsequent Agent or &#8220;upgrade&#8221; role/skills during a session.</p>
+</div>
+<div class="paragraph">
+<p>The Operator may of course dictate or override this decision.</p>
+</div>
+<div class="paragraph">
+<p>The goal is to use appropriate agents without cluttering any given agent&#8217;s context window.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Soft-reset between roles</dt>
+<dd>
+<p>At each transition, declare what you&#8217;re loading (role doc + skills) and what you&#8217;re backgrounding.
+Don&#8217;t hold all previous stage details in active memory.</p>
+</dd>
+<dt class="hdlist1">Mission tracker as swap file</dt>
+<dd>
+<p>Dump detailed handoff notes into <code>.agent/project-setup-mission.md</code> after each stage.
+Read it first when starting new roles to understand what was built and what&#8217;s needed.</p>
+</dd>
+<dt class="hdlist1">Checkpoint between stages</dt>
+<dd>
+<p>After each stage, ask Operator to review/continue/pause.
+Creates intervention points if focus dilutes.</p>
+</dd>
+<dt class="hdlist1">Watch for dilution</dt>
+<dd>
+<p>Mixing concerns across roles, contradicting earlier decisions, hedging instead of checking files.
+If noticed, stop and checkpoint.</p>
+</dd>
+<dt class="hdlist1">Focused lenses</dt>
+<dd>
+<p>Each role emphasizes different details (Product Engineer = code structure, QA = test coverage, DevOps = automation, PM = coordination).
+Switch lenses deliberately; shared base knowledge (README, goals, conventions) stays warm.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="task-assignments-and-suggestions">Task Assignments and Suggestions</h3>
+<div class="paragraph">
+<p>In the Mission Procedures section, metadata is associated with each task.</p>
+</div>
+<div class="paragraph">
+<p>All tasks are assigned a preferred <code>role:</code> the Agent should assume in carrying out the task.
+That role has further documentation at <code>.agent/docs/roles/&lt;role-slug&gt;.md</code>, and the executing agent should ingest that document entirely before proceeding.</p>
+</div>
+<div class="paragraph">
+<p>Recommended collaborators are indicated by <code>with:</code>.</p>
+</div>
+<div class="paragraph">
+<p>Recommended upgrades are designated by <code>upto:</code>.</p>
+</div>
+<div class="paragraph">
+<p>Suggested skill/topic readings are indicated by <code>read:</code>.</p>
+</div>
+<div class="paragraph">
+<p>Any working directories or files are listed in <code>path:</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisite-attention-operator">Prerequisite: Attention OPERATOR</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This process requires the <code>docopslab-dev</code> tooling is installed and synced.
+Ensure you have the necessary credentials for GitHub and any artifact registries (RubyGems, DockerHub, etc.).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mission-procedure">Mission Procedure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In general, the following stages are to be followed in order and tracked in a mission document.</p>
+</div>
+<div class="sect2">
+<h3 id="stage-0-mission-prep">Stage 0: Mission Prep</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Create a mission-tracking document</dt>
+<dd>
+<p>Write a document with detailed steps for fulfilling the mission assigned here, based on any project-specific context.
+(<code>role: project-manager; path: .agent/release-mission.md</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="evergreen-tasks">Evergreen Tasks</h3>
+<div class="paragraph">
+<p>The following tasks apply to most stages.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Keep the mission-tracking document up to date</dt>
+<dd>
+<p>At the end of every stage, update the progress.
+(<code>path: .agent/release-mission.md</code>)</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-1-pre-flight-checks">Stage 1: Pre-flight Checks</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Verify conditions</dt>
+<dd>
+<p>Ensure the "Definition of Done" is met.</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><input type="checkbox" data-item-complete="0"> All target issues are closed.</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> CI builds and tests pass on <code>dev/&lt;$tok.majmin&gt;</code>.</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> Documentation updated and merged.
+(<code>role: devops-release-engineer; upto: project-manager; with: Operator</code>)</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Manual double-checks</dt>
+<dd>
+<p>Perform the following checks before proceeding.</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><input type="checkbox" data-item-complete="0"> No local paths in <code>Gemfile</code>.</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> All documentation changes merged.</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> Version attribute bumped and propagated.
+(<code>role: project-manager; with: Operator</code>)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-2-release-history">Stage 2: Release History</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Prepare Release Notes doc</dt>
+<dd>
+<p>Generate and refine the release history.</p>
+<div class="paragraph">
+<p>Generate release notes and changelog using ReleaseHx.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Most projects use ReleaseHx in a unique manner, for diverse testing of its output options.
+See the project&#8217;s <code>README.adoc</code>; seek for <code>releasehx</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The default procedure if not otherwise specified:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>bundle update releasehx
+bundle exec rhx &lt;$tok.majmin&gt;.&lt;$tok.patch&gt; --md docs/release/&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;.md</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Edit the Markdown file at <code>docs/release/&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;.md</code>.</p>
+</div>
+<div class="paragraph">
+<p>(<code>role: devops-release-engineer; upto: tech-writer; with: Operator; read: .agent/docs/skills/release-history.md</code>)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-3-merge-and-tag">Stage 3: Merge and Tag</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Merge the dev branch to <code>main`</code></dt>
+<dd>
+<p>Merge the development branch into the main branch.</p>
+<div class="literalblock">
+<div class="content">
+<pre>git checkout main
+git pull origin main
+git merge --no-ff dev/&lt;$tok.majmin&gt;
+git push origin main</pre>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Tag the release</dt>
+<dd>
+<p>Create and push the release tag.</p>
+<div class="literalblock">
+<div class="content">
+<pre>git tag -a v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt; -m "Release &lt;$tok.majmin&gt;.&lt;$tok.patch&gt;"
+git push origin v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;</pre>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-4-release-announcement">Stage 4: Release Announcement</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Create GitHub release</dt>
+<dd>
+<p>Publish the release on GitHub.</p>
+<div class="paragraph">
+<p>Use the GitHub CLI to create a release:</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>gh release create v&lt;$tok.majmin&gt;.&lt;$tok.patch&gt; --title "Release &lt;$tok.majmin&gt;.&lt;$tok.patch&gt;" --notes-file docs/releases/&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;.md --target main</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or else use the GitHub web interface to manually register the release, and copy/paste the contents of <code>docs/release/&lt;$tok.majmin&gt;.&lt;$tok.patch&gt;.md</code> into the release notes field.
+(<code>role: project-manager; with: devops-release-engineer</code>)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-5-artifact-publication">Stage 5: Artifact Publication</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Publish artifacts</dt>
+<dd>
+<p>Build and publish the final artifacts.</p>
+<div class="paragraph">
+<p>Use the <code>publish.sh</code> script with <a href="#required-credentials">proper credentials</a> in place.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>./scripts/publish.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This step concludes the release process.
+(<code>role: devops-release-engineer; with: Operator</code>)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stage-6-post-release-tests-cleanup">Stage 6: Post-Release Tests &amp; Cleanup</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Test published artifacts</dt>
+<dd>
+<p>Manually fetch and install/activate any gems, images, or other binary files, and spot check published documentation.
+(<code>role: devops-release-engineer; upto: qa-testing-engineer; with: Operator</code>)</p>
+</dd>
+<dt class="hdlist1">Post-release tasks</dt>
+<dd>
+<p>Perform necessary cleanup and preparation for the next cycle.</p>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><input type="checkbox" data-item-complete="0"> Cut a <em>release</em> branch for patching (<code>release/&lt;$tok.majmin&gt;</code>).</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> Update <code>:next_prod_vrsn:</code> in docs.</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> Create next development branch (<code>dev/&lt;next&gt;</code>).</p>
+</li>
+<li>
+<p><input type="checkbox" data-item-complete="0"> Notify stakeholders.
+(<code>role: project-manager; with: devops-release-engineer</code>)</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="post-mission-debriefing">Post-mission Debriefing</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Review the Mission Report</dt>
+<dd>
+<p>Highlight outstanding or special notices from the Mission Report.
+(<code>role: Agent; with: Operator; read: .agent/reports/release-mission.md</code>)</p>
+</dd>
+<dt class="hdlist1">Suggest modifications to <em>this</em> mission assignment</dt>
+<dd>
+<p>Taking into account any bumps, blockers, or unexpected occurrences during fulfillment of this mission, recommend changes or additions to <strong>&#8220;MISSION: Conduct a Product Release&#8221;</strong> itself.
+(<code>role: Agent; with: Operator; path: ../lab/_docs/agent/missions/conduct-release.adoc</code>).</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+In case of emergency rollback or patching, see <code>.agent/docs/skills/product-release-rollback.md</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fulfillment-principles">Fulfillment Principles</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="always">ALWAYS</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Always ask the Operator when you don&#8217;t know exactly how DocOps Lab prefers a step be carried out.</p>
+</li>
+<li>
+<p>Always follow the mission procedure as closely as possible, adapting only when necessary due to project-specific constraints.</p>
+</li>
+<li>
+<p>Always document any deviations from the standard procedure and the reasons for them in the Mission Report.</p>
+</li>
+<li>
+<p>Always look for a DRY way to define product metadata/attrbutes in README.adoc and YAML files (<code>specs/data/*-def.yml</code>).</p>
+</li>
+<li>
+<p>Always pause for Operator approval before ANY publishing or deployment action, including pushing/posting to GitHub.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="never">NEVER</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Never get creative or innovative without Operator permission.</p>
+</li>
+<li>
+<p>Never skip steps in the mission procedure without documenting the reason.</p>
+</li>
+<li>
+<p>Never assume the Operator understands DocOps Lab conventions without explanation.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quality-bar">Quality Bar</h3>
+<div class="paragraph">
+<p>A successful release is one where all artifacts are published correctly, the documentation accurately reflects the changes, and the repository is in a clean state for the next development cycle.</p>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latest from Tech Docs Blogs | DocOps Lab</title>
+  <meta name="description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Latest from Tech Docs Blogs">
+  <meta property="og:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  <meta property="og:url" content="https://docopslab.org/docs-blogs/latest/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Latest from Tech Docs Blogs">
+  <meta name="twitter:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs-blogs/latest/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-default  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="container docs-blogs-latest">
+  <header class="page-header">
+    <h1>Latest from Tech Docs Blogs</h1>
+    <p class="tagline">Recent posts from the tech docs community</p>
+    <p class="page-nav">
+      <a href="/docs-blogs/">Browse all blogs</a>
+      &middot;
+      <a href="/feeds/docs-blogs.opml" title="Subscribe via OPML in your feed reader">Download OPML</a>
+      &middot;
+      <a href="/feeds/aggregate.xml" title="Subscribe to the aggregated RSS feed">Aggregated RSS</a>
+    </p>
+  </header><p class="post-count">50 recent posts</p>
+  <ul class="blog-latest-list"><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://cybertext.wordpress.com/2026/05/16/word-forcing-a-link-in-an-email-to-open-in-the-desktop-app/" rel="noopener" target="_blank">Word: Forcing a link in an email to open in the desktop app</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">CyberText Newsletter</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-16T00:24:14Z">May 16, 2026</time></p><p class="post-summary">I typically get client files emailed as attachments, but sometimes they&#8217;ll link to the document on their SharePoint server. Emailed attachments are easy&#8212;right-click and &#8216;save attachments&#8217;, then virus check before opening. But SharePoint links are a diff...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://sdeaton.com/blog/making-acaas/" rel="noopener" target="_blank">Making All Caps as a Service</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Sarah Deaton</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-16T00:00:00Z">May 16, 2026</time></p><p class="post-summary">For my recent Write the Docs talk, I needed a docs site that felt real enough to demo against. I didn’t have a convenient API lying around to document, so I built a toy API and a full docs site on top of that; overengineered, but did what I wanted and it was a fun side quest.
+...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.youtube.com/watch?v=0wnB4Y-DeUU" rel="noopener" target="_blank">Neurodivergent in Tech: Building Software for Brains Like Yours | Rin Oliver</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Technical Writing Uncensored</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-15T15:00:05Z">May 15, 2026</time></p><p class="post-summary">Interested in breaking into tech writing, interview prep, or other coaching: Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+What if the person who cares most about accessible documentation is the one who's always needed it?
+
+Kiran 'Rin' Oliver is a prod...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://sdeaton.com/blog/git-talk-recap/" rel="noopener" target="_blank">The git commands I avoided for nine years</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Sarah Deaton</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-15T00:00:00Z">May 15, 2026</time></p><p class="post-summary">
+I recently gave a talk at Write the Docs about three git commands I’d been avoiding for most of my career, or in two cases didn’t know existed at all. For the demo environment behind the talk, I built All Caps as a Service, a fake API and docs site that turned into its own si...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://amanhimself.dev/blog/moving-away-from-oh-my-zsh/" rel="noopener" target="_blank">Moving away from Oh My Zsh (OMZ)</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">AmanHimself.dev</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-14T00:00:01Z">May 14, 2026</time></p><p class="post-summary">I've been running Oh My Zsh (OMZ) on every workstation I've ever owned. It was one of the first things I'd install when setting up a new machine or cleanly updating an existing one. For years, I've blindly copied my workstation configuration from one Macbook to the next, witho...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://clickhelp.com/clickhelp-technical-writing-blog/architecture-docs-a-guide-to-clear-effective-system-documentation/" rel="noopener" target="_blank">Architecture Docs: A Guide to Clear, Effective System Documentation</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">ClickHelp Technical Writing Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-13T11:08:02Z">May 13, 2026</time></p><p class="post-summary">What&#160; Is Architecture Documentation? Architecture documentation describes the design and structure of a software system. It captures the system’s high-level components, their relationships, and the major decisions that shaped how the system is built and operated. It answe...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.cherryleaf.com/2026/05/from-prompts-to-workflows-4-practical-ways-technical-writers-can-use-ai/" rel="noopener" target="_blank">From Prompts to Workflows: 4 Practical Ways Technical Writers Can Use AI</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Cherryleaf Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-13T08:00:12Z">May 13, 2026</time></p><p class="post-summary">Many technical writers have experimented with ChatGPT, Claude, Copilot, or Gemini, but experimenting is not the same as integrating. How do you turn those one-off prompts into reliable workflows that genuinely improve documentation quality and reduce manual effort? This webina...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://jamestasse.tech/blog/posts/meowlin" rel="noopener" target="_blank">Meowlin</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">James Tasse</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-13T00:00:00Z">May 13, 2026</time></p><p class="post-summary">You may have heard of Merlin, a fantastic mobile app that can identify birds in real time.</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://dacharycarey.com/2026/05/11/agent-skill-more-than-markdown/" rel="noopener" target="_blank">A Skill is More than Markdown</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Dachary Carey</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-11T12:00:00Z">May 11, 2026</time></p><p class="post-summary">Organizations have been pushing official company skills out the door because skills look like just a markdown file, and that seems simple and trivial. But when you dig into the lifecycle of an official skill that you intend to support, distribute, and stand behind, it's a lot ...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://passo.uno/agentic-workflows-for-docs/" rel="noopener" target="_blank">What I've learned designing agentic workflows for docs</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Passo Uno</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-11T12:00:00Z">May 11, 2026</time></p><p class="post-summary">Back in 2024 I wrote that AI helps me remove boring work at the margins. This is fine for a lone writer, but how to scale this to an entire team of technical writers? How to make the system helpful but not intrusive? These are all questions I’m starting to answer now, partly t...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.cherryleaf.com/2026/05/free-technical-writing-skills-pack-for-ai-course-delegates/" rel="noopener" target="_blank">Free technical writing skills pack for AI course delegates</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Cherryleaf Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-11T09:30:30Z">May 11, 2026</time></p><p class="post-summary">We&#8217;re pleased to announce a new bonus for delegates enrolling in the certificate version of our Using Generative AI in Technical Writing elearning course. What&#8217;s new? Anyone who signs up for the certificate version of the course will now receive a free pack of elev...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://sdeaton.com/blog/costuming-claude-code/" rel="noopener" target="_blank">Costuming Claude Code</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Sarah Deaton</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-10T00:00:00Z">May 10, 2026</time></p><p class="post-summary">Most of how I’ve customized Claude Code so far has been on the side that changes what it knows or does: CLAUDE.md for project conventions, path-scoped rules for specific instructions, skills for specialized behaviors, hooks for guardrails.
+A separate set of customization knobs...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://amanhimself.dev/blog/new-blog-theme-again/" rel="noopener" target="_blank">New blog theme again</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">AmanHimself.dev</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-09T00:00:01Z">May 9, 2026</time></p><p class="post-summary">In January 2025, I shared an update on updating the blog theme and code block themes. The Astro setup that builds this blog uses Shiki, which makes it easier to switch between any supported code theme. What about the blog's primary and accent colors?</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://clickhelp.com/clickhelp-technical-writing-blog/best-diagram-and-flowchart-tools/" rel="noopener" target="_blank">Best Diagram and Flowchart Tools for 2026</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">ClickHelp Technical Writing Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-08T12:57:46Z">May 8, 2026</time></p><p class="post-summary">Diagrams and flowcharts are visual tools that teams use to create process flows, network diagrams, system models, and visuals from text, data, Excel, code, or ideas. They support collaboration, AI features, templates, shapes, cloud apps, security, sharing, planning, and docume...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://dacharycarey.com/2026/05/07/can-agent-skills-make-output-worse/" rel="noopener" target="_blank">Can Agent Skills Make Output Worse?</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Dachary Carey</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-08T03:00:00Z">May 8, 2026</time></p><p class="post-summary">In the last ~6 months, Agent Skills have gone from a new feature introduced by Claude Code to a widely adopted paradigm across the industry. Companies that want to signal they understand customer AI adoption and consider it as part of the developer experience have been publish...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://passo.uno/tools-slop-is-a-problem/" rel="noopener" target="_blank">Most vibe-coded tools are not for you</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Passo Uno</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-06T12:30:00Z">May 6, 2026</time></p><p class="post-summary">AI is inflicting a proliferation of tools, in the utensils’ sense. Folks are conjuring all sorts of programs out of thin air, unrestrained. Someone confessed on Hacker News to having created a hundred custom utilities. Linked to this increase is the promotional noise: Not a da...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://clickhelp.com/clickhelp-technical-writing-blog/developer-documentation-101/" rel="noopener" target="_blank">Developer Documentation 101: Why It Matters and How to Get It Right</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">ClickHelp Technical Writing Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-06T11:15:33Z">May 6, 2026</time></p><p class="post-summary">As IT systems grow in complexity, clear developer documentation has become a cornerstone for teams to work efficiently. A simple README is no longer sufficient; developers, DevOps engineers, QA, and even product managers require comprehensive resources to understand, use, and ...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.kevinrkuhl.com/blog/2026/05/godier-the-boring-internet/" rel="noopener" target="_blank">Terry Godier: "The Boring Internet"</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Kevin R. Kuhl</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-05T23:00:00Z">May 5, 2026</time></p><p class="post-summary">The Boring Internet is a wonderful post by Terry Godier about what’s dying and what remains as the internet changes. It echoes my own sentiments about RSS surviving its own death. The core idea is that we shouldn’t care about the platforms, even if they once offered us conveni...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.cherryleaf.com/2026/05/whats-new-expanded-content-in-our-using-generative-ai-in-technical-writing-course/" rel="noopener" target="_blank">What’s new: Expanded content in our Using Generative AI in Technical Writing course</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Cherryleaf Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-05T12:28:39Z">May 5, 2026</time></p><p class="post-summary">We&#8217;re pleased to announce a significant update to Cherryleaf&#8217;s Using Generative AI in Technical Writing elearning course. This update brings more ways to build practical, real-world skills. More practice, more confidence Learning by doing is central to effective el...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://about.readthedocs.com/blog/2026/05/ubuntu-26-04/" rel="noopener" target="_blank">Ubuntu 26.04 LTS available</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Read the Docs (Company Blog)</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-05T07:00:00Z">May 5, 2026</time></p><p class="post-summary">We are happy to announce that we added support for the latest Ubuntu 26.04 LTS version released in April …</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.writethedocs.org/blog/newsletter-may-2026/" rel="noopener" target="_blank">Write the Docs Newsletter – May 2026</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Write the Docs Newsletter</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-05T00:00:00Z">May 5, 2026</time></p><p class="post-summary">Hello to all of my fellow documentation lovers out there. May is blossoming all around me, and I hope it is for you and that you have some time to stop and enjoy the beauty you can find.</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://dacharycarey.com/2026/05/04/astro-removed-llms-txt/" rel="noopener" target="_blank">Astro Removed its llms.txt</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Dachary Carey</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-04T12:00:00Z">May 4, 2026</time></p><p class="post-summary">As I have been re-scoring documentation sites with my updated afdocs tool, I have had the opportunity to see a snapshot of various docs sites a few weeks apart as the industry is starting to pay a lot more attention to how to make documentation agent-friendly. I got a surprise...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://idratherbewriting.com/blog/internal-skills-release-docs" rel="noopener" target="_blank">Developing internal skills for recurring documentation processes like release notes</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">I'd Rather Be Writing</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-04T07:00:00Z">May 4, 2026</time></p><p class="post-summary">My hypothesis this year around AI was that if I develop some agent skills to speed up repeatable processes, it might clear up my bandwidth and free up time for me to work on non-repeatable doc tasks. It appears to be working.
+        </p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://amanhimself.dev/blog/week-notes-17/" rel="noopener" target="_blank">Week notes 17</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">AmanHimself.dev</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-03T00:00:01Z">May 3, 2026</time></p><p class="post-summary">A heavy week on the docs side. Two things shipped that I had been chewing on for a while, and a couple of small skills came together. Some reading and writing on the side too. - 🧪 Built a docs-ja-translator skill and landed the Japanese tutorial pilot at work. The skill takes ...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://dacharycarey.com/2026/05/01/github-docs-api-llms-txt/" rel="noopener" target="_blank">GitHub Reimagined llms.txt as an API</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Dachary Carey</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-05-01T12:00:00Z">May 1, 2026</time></p><p class="post-summary">I'm working on a new research report that starts by scoring a wide cross-section of documentation sites with afdocs. Consider it an industry-wide audit driven by specific research questions. This has given me an excuse to dig into different platforms, web hosts, documentation ...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://newsletter.bphogan.com/archive/issue-52-run-coding-models-locally-and-why-being/" rel="noopener" target="_blank">Issue 52 - Run Coding Models Locally, and Why Being Overqualified is a Risk</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Code, Content, and Career Newsletter</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-30T22:53:42Z">April 30, 2026</time></p><p class="post-summary">
+In this issue, you'll configure a coding agent to use local models, but first, you'll discover why managers view overqualified candidates as a hiring risk.
+You're Too Good For This Role
+If you've applied for a role that you're overqualified for, there's a good chance you won'...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.cherryleaf.com/2026/04/master-ai-documentation-projects-this-june/" rel="noopener" target="_blank">Master AI documentation projects this June</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Cherryleaf Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-30T12:00:44Z">April 30, 2026</time></p><p class="post-summary">We&#8217;ve scheduled our next Managing and mastering documentation projects with AI course. It will be held on the mornings of 17th and 18th June 2026. We&#8217;ve reserved May for private courses. The course helps documentation project managers and senior writers use AI for ...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.cherryleaf.com/2026/04/is-the-ai-race-actually-a-battle-over-workflows/" rel="noopener" target="_blank">The AI workflow war</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Cherryleaf Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-29T13:35:18Z">April 29, 2026</time></p><p class="post-summary">Which AI vendor is going to come out on top: Anthropic, Google, Microsoft, OpenAI? At the moment, they&#8217;re all great at general tasks, and the gap between them keeps shrinking. So the real competition has moved somewhere less glamorous: into your calendar, your inbox, you...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.cherryleaf.com/2026/04/new-50-interactive-practice-exercises-added-to-our-technical-writing-course/" rel="noopener" target="_blank">New: 50+ Interactive Practice Exercises Added to Our Technical Writing Course</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Cherryleaf Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-28T12:29:38Z">April 28, 2026</time></p><p class="post-summary">If you&#8217;ve been considering our Technical Author and Technical Writing training course, there&#8217;s never been a better time to enrol. We&#8217;ve just added over 50 optional interactive practice exercises throughout the course, designed to help you apply what you&#8217...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://idratherbewriting.com/blog/looking-at-book-club-one-year-in" rel="noopener" target="_blank">Looking back at the AI Book Club one year in</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">I'd Rather Be Writing</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-28T07:00:00Z">April 28, 2026</time></p><p class="post-summary">
+        </p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://idratherbewriting.com/blog/pace-value-moving-slow-boredom" rel="noopener" target="_blank">On pace and value -- why is moving slow boring?</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">I'd Rather Be Writing</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-27T07:00:00Z">April 27, 2026</time></p><p class="post-summary">
+        </p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://idratherbewriting.com/blog/frenetic-thinking-vs-careful-measured-analysis" rel="noopener" target="_blank">Frenetic thinking</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">I'd Rather Be Writing</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-26T07:00:00Z">April 26, 2026</time></p><p class="post-summary">
+        </p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://idratherbewriting.com/blog/work-expands-to-fill-the-allotted-space" rel="noopener" target="_blank">Work expands to fill the space allotted</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">I'd Rather Be Writing</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-26T07:00:00Z">April 26, 2026</time></p><p class="post-summary">
+        </p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://escrivi.org/blog/2026/hierarchy-of-docs/" rel="noopener" target="_blank">The documentation hierarchy of needs</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">leu escrivi!</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-25T00:00:00Z">April 25, 2026</time></p><p class="post-summary">Docs don't need to be beautiful. They need to exist first. If you don't know what to focus on, a hierarchy of documentation needs might help.</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://idratherbewriting.com/blog/too-much-coffee" rel="noopener" target="_blank">Too much coffee?</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">I'd Rather Be Writing</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-24T07:00:00Z">April 24, 2026</time></p><p class="post-summary">
+        </p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.cherryleaf.com/2026/04/cherryleaf-uk-technical-writer-author-jobs-indicator-april-2026-results-and-trend-graphs/" rel="noopener" target="_blank">Cherryleaf UK Technical Writer/Author jobs indicator – April 2026 results and trend graphs</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Cherryleaf Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-23T07:55:21Z">April 23, 2026</time></p><p class="post-summary">Over recent months, we’ve been using AI to conduct a monthly survey that tracks hiring demand for Technical Authors across the UK. In this post, we provide: The results for April 2026. Graphs showing the trends since we began the indicator in September 2025. Overall job volume...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://idratherbewriting.com/blog/book-club-breakneck-china-wang" rel="noopener" target="_blank">AI Book Club discussion recording of 'Breakneck: China's Quest to Engineer the Future', by Dan Wang</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">I'd Rather Be Writing</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-23T07:00:00Z">April 23, 2026</time></p><p class="post-summary">This is a recording of the AI Book Club discussion of Dan Wang's Breakneck: China's Quest to Engineer the Future. Our discussion tries to tie some of the book's themes to AI (to align with the book club's theme), but only in places where it makes sense. Some topics we discuss ...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://clickhelp.com/clickhelp-technical-writing-blog/how-to-create-an-online-software-tutorial/" rel="noopener" target="_blank">How to Create an Online Software Tutorial</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">ClickHelp Technical Writing Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-22T10:27:09Z">April 22, 2026</time></p><p class="post-summary">The past few decades have brought not only technological innovations but also significant changes in education and self-learning. Watching or reading online software tutorials has become one of the most popular and accessible ways to acquire new skills. Tutorials are short vid...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.youtube.com/watch?v=xeiU5UTffsw" rel="noopener" target="_blank">Your Docs Are Lying. Doc Detective Catches It. | Manny Silva</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Technical Writing Uncensored</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-21T15:01:46Z">April 21, 2026</time></p><p class="post-summary">Interested in breaking into tech writing, interview prep, or other coaching: Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+What if your documentation could detect its own failures — and then fix them? Manny Silva is back, and this time he brought the d...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://passo.uno/what-makes-docs-beautiful/" rel="noopener" target="_blank">What makes docs beautiful?</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Passo Uno</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-20T09:00:00Z">April 20, 2026</time></p><p class="post-summary">Docs are often thought of as a purely functional artifact, a packet of content that, when it works, it’s not remembered at all. Those who consume docs, however, can tell whether a manual or docs site pleases their mind and senses in ways that others don’t. We know the feeling ...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.cherryleaf.com/2026/04/four-methods-for-applying-ai-in-your-work/" rel="noopener" target="_blank">Four methods for applying AI in your work</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Cherryleaf Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-20T08:02:44Z">April 20, 2026</time></p><p class="post-summary">One of the core topics in our Mastering and Managing Documentation with AI course is that there are four distinct methods for applying AI in a professional context. Each one suits different team sizes, technical capabilities, and ambitions. In this post, we outline all four an...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://idratherbewriting.com/blog/taxes-thoughts-using-ai" rel="noopener" target="_blank">Some thoughts after using AI to help with taxes</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">I'd Rather Be Writing</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-20T07:00:00Z">April 20, 2026</time></p><p class="post-summary">After receiving a letter from the IRS stating that I owed more taxes on a previous year, I used AI to identify the issue -- a missing cost basis on stock sales. I then successfully disputed the notice, and ultimately claimed a sizable refund by carrying over capital losses. AI...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://amanhimself.dev/blog/playwright-to-chrome/" rel="noopener" target="_blank">Playwright to Chrome</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">AmanHimself.dev</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-19T00:00:01Z">April 19, 2026</time></p><p class="post-summary">Back in January, I had just started using Codex CLI and Claude Code. I was spending more time with Codex CLI and ended up creating a small Expo and React Native app as well. As I was learning how to use these tools, I wrote about using Codex CLI with Playwright for browser aut...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://dacharycarey.com/2026/04/18/what-agent-score-can-tell-you/" rel="noopener" target="_blank">What an Agent Score Can Tell You</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Dachary Carey</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-18T21:00:00Z">April 18, 2026</time></p><p class="post-summary">If you're a documentation team trying to figure out what &quot;agent-ready&quot; means for your site, you've probably noticed that several different organizations are now offering to score you. Cloudflare just launched isitagentready.com. Fern has an Agent Score directory powe...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://amanhimself.dev/blog/mac-setup/" rel="noopener" target="_blank">My Mac setup</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">AmanHimself.dev</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-18T00:00:01Z">April 18, 2026</time></p><p class="post-summary">A guide on setting up Apple Mac for daily work.</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://clickhelp.com/clickhelp-technical-writing-blog/best-mind-mapping-software/" rel="noopener" target="_blank">The Best Mind Mapping Software for 2026</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">ClickHelp Technical Writing Blog</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-15T11:54:28Z">April 15, 2026</time></p><p class="post-summary">Whether you are planning a product launch, structuring research, or running a brainstorming session with your team, the right mind mapping software can change how you think and work. Visual maps help people organize complex information faster than linear notes, see connections...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://lizargall.github.io/blog/content_marketing" rel="noopener" target="_blank">Content Marketing Matters</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Liz Argall</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-15T00:00:00Z">April 15, 2026</time></p><p class="post-summary">High quality documentation is one of the most important pieces of content marketing an organization has, and I know I'm not the only one to hold this view. In a world over saturated in marketing material, well written and complete support documentation helps your organization ...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://www.youtube.com/watch?v=G7BVVVSoTIU" rel="noopener" target="_blank">Why Tech Writers Are Built to Design Custom LLM Assistants | Kelly Murphy</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">Technical Writing Uncensored</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-14T15:00:33Z">April 14, 2026</time></p><p class="post-summary">Your LLM doesn't have to be a generalist. In fact, it probably shouldn't be.
+
+In this episode of Technical Writing Uncensored, content designer Kelly Murphy walks through how she built Gemini Gems — discrete, persona-driven LLM assistants — to survive a crushing solo workload ...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://idratherbewriting.com/blog/ai-skills-agentic-workflows-larah-fabrizio" rel="noopener" target="_blank">Podcast: How valuable are agent skills? Conversation with Larah Vasquez and Fabrizio Ferri-Benedetti</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">I'd Rather Be Writing</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-12T07:00:00Z">April 12, 2026</time></p><p class="post-summary">In this podcast, I chat with Larah Vasquez and Fabrizio Ferri-Benedetti about using skills to extend AI capabilities, the future of agentic engineering, local models like Qwen and Gemma, and whether the tech writer role is shifting into automation architecture. We get into the...</p></article>
+    </li><li class="blog-latest-item">
+      <article>
+        <h2 class="post-title">
+          <a href="https://amanhimself.dev/blog/week-notes-16/" rel="noopener" target="_blank">Week notes 16</a>
+        </h2>
+        <p class="post-meta">
+          <span class="source-icon"><i data-lucide="rss"></i></span>
+          <a class="blog-name" href="#" rel="noopener" target="_blank">AmanHimself.dev</a><span class="meta-sep">&middot;</span>
+          <time class="post-date" datetime="2026-04-12T00:00:01Z">April 12, 2026</time></p><p class="post-summary">Mixed week. A small side-project release, a couple of satisfying wins on the work side, and a lot of late-night ideas I want to act on coming week. - 🚀 Shipped SkillsBar v1.7.0. The big addition is Codex plugin support and adding custom collections view where one can organize ...</p></article>
+    </li></ul></div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

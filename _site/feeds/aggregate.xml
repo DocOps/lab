@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Latest 50 posts from the DocOps Lab tech docs blog directory</title>
+    <link>https://docopslab.org/docs-blogs/latest/</link>
+    <description>Aggregated feed of the latest posts from technical writing and documentation blogs</description>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 May 2026 08:19:02 +0000</lastBuildDate>
+    <item>
+      <title>[CyberText Newsletter] Word: Forcing a link in an email to open in the desktop app</title>
+      <link>https://cybertext.wordpress.com/2026/05/16/word-forcing-a-link-in-an-email-to-open-in-the-desktop-app/</link>
+      <description>I typically get client files emailed as attachments, but sometimes they&amp;#8217;ll link to the document on their SharePoint server. Emailed attachments are easy&amp;#8212;right-click and &amp;#8216;save attachments&amp;#8217;, then virus check before opening. But SharePoint links are a different game and quite often the document will open in the browser version of Word. I then have to [&amp;#8230;]</description>
+      <pubDate>Sat, 16 May 2026 00:24:14 -0000</pubDate>
+      <guid isPermaLink="true">https://cybertext.wordpress.com/2026/05/16/word-forcing-a-link-in-an-email-to-open-in-the-desktop-app/</guid>
+      <dc:date>2026-05-16T00:24:14Z</dc:date>
+    </item>
+    <item>
+      <title>[Sarah Deaton] Making All Caps as a Service</title>
+      <link>https://sdeaton.com/blog/making-acaas/</link>
+      <description>&lt;p&gt;For my recent &lt;a href=&quot;../git-talk-recap/&quot;&gt;Write the Docs talk&lt;/a&gt;, I needed a docs site that felt real enough to demo against. I didn’t have a convenient API lying around to document, so I built a toy API and a full docs site on top of that; overengineered, but did what I wanted and it was a fun side quest.&lt;/p&gt;
+&lt;p&gt;This is the full walkthrough of building ACAAS, &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://acaas.mintlify.app/&quot;&gt;All Caps as a Service&lt;/a&gt;. Looking back, I thought it was an interesting, abbreviated case study in some AI/docs tooling and building a site from scratch, so I wanted to jot down the decisions and steps.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/acaas-home.png&quot; alt=&quot;ACAAS docs homepage, showing the hero and primary navigation.&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-build-the-service&quot;&gt;1. Build the service&lt;/h2&gt;
+&lt;p&gt;First, I used the Claude Code CLI to build a small API from scratch. I gave it the concept (you send text, it sends it back in all caps) and asked it to make it realistic enough to write docs against (like rate limits and error messages, and a few endpoints). It chose Python for the backend and came back with a few new endpoints like &lt;code&gt;/shout&lt;/code&gt; and &lt;code&gt;/whisper&lt;/code&gt;, and the supporting machinery to go with them.&lt;/p&gt;
+&lt;p&gt;I also told it I wanted one AI-powered feature, ideally something on the path to GA; a feature graduating from experimental is the kind of documentation moment I wanted to demo (and every SaaS company needs an AI feature). It proposed &lt;code&gt;/experimental&lt;/code&gt;, which uses a small model to decide which words in your sentence deserve to be bolded.&lt;/p&gt;
+&lt;p&gt;After it finished building the API, I ran &lt;code&gt;/simplify&lt;/code&gt;, which is &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/skills#bundled-skills&quot;&gt;a bundled Claude Code skill&lt;/a&gt; that does a quick cleanup pass to look for dead code and unnecessary indirection. This wasn’t important for anything, but I wanted to at least feel like the code was cleaner than a one-shot pass. Then I &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/best-practices#write-an-effective-claude-md&quot;&gt;ran &lt;code&gt;/init&lt;/code&gt;&lt;/a&gt; to generate a README and CLAUDE.md. The README is for future me, in case I ever need to run or modify this thing again. The CLAUDE.md is just good practice at this point, the scaffold I’d want if I came back to this project for something else.&lt;/p&gt;
+&lt;h2 id=&quot;2-find-a-documentation-platform&quot;&gt;2. Find a documentation platform&lt;/h2&gt;
+&lt;p&gt;My first instinct for the docs platform was &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.getzola.org/&quot;&gt;Zola&lt;/a&gt; or &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://astro.build/&quot;&gt;Astro&lt;/a&gt;. But before choosing, I did a sanity check on &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.mintlify.com/&quot;&gt;Mintlify&lt;/a&gt;, which I’ve worked with professionally for a couple of years and have never tried spinning up for a personal project. I’d assumed the free tier would be limited in some way that didn’t fit a one-off demo site, but it wasn’t. I created &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://acaas.mintlify.app&quot;&gt;acaas.mintlify.app&lt;/a&gt; in about a minute, cloned the repo, and was ready to go.&lt;/p&gt;
+&lt;p&gt;I was mildly embarrassed not to have known about the free tier. I also kind of want to move my blog over to Mintlify now.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/mintlify-dashboard.png&quot; alt=&quot;The Mintlify analytics dashboard for ACAAS, with 19 visitors and 41 views over a recent date range, a Humans/Agents traffic split, a Visitors Over Time bar chart, and a left sidebar covering Home, Editor, Analytics, Settings, and an Agents group for Workflows, Agent, Assistant, and MCP.&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;3-design-the-site&quot;&gt;3. Design the site&lt;/h2&gt;
+&lt;p&gt;I didn’t need to do this step at all, but it was the most fun. I have 0 design sense whatsoever, and &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://claude.ai/design&quot;&gt;Claude Design&lt;/a&gt; has been a lifesaver for me. I started a new prototype, described what I was building (“a Mintlify docs site for a fake API called All Caps as a Service”), and it started guiding me through the design steps until I had a lovely new branded docs site.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/claude-design-landing.png&quot; alt=&quot;Two Claude Design landing-page variations for ACAAS in dark mode, side by side: Variation A (Loud, Amber) with a large “send whisper. RECEIVE THUNDER.” hero, and Variation B (Restrained, Cobalt) with a status dashboard, quickstart steps, and an endpoint table.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I like that Claude Design asks clarifying questions as it works; things like what kind of feel I was after (bold or minimal or standard SaaS), whether I had color directions or wanted it to pick, etc. I landed on a theme I was happy with, had it generate a favicon and logo to match, and the whole time it was working inside Mintlify’s design constraints rather than producing something I’d have to retrofit. When I was done, I chose the “Handoff to Claude Code” export option and went on with my day.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/claude-design-marks.png&quot; alt=&quot;Claude Design output for ACAAS branding: eight candidate icon marks (Monogram A, Sound bars, Bang, Stacked carets, Megaphone, aA transform, Boost, Chevrons) with short rationales, three wordmark lockups, and a recommended pick of the aA transform with sizing and dark-mode previews.&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;4-apply-the-design&quot;&gt;4. Apply the design&lt;/h2&gt;
+&lt;p&gt;I used Claude Code Desktop for this because it has a built-in local preview. I could run the site locally and watch it render while Claude made changes, and Claude can see the preview too, so it catches its own rendering errors without me having to describe what I’m seeing. The workflow felt closer to pairing than to instructing. You could also do this with the CLI and then use the &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/chrome&quot;&gt;Claude in Chrome extension&lt;/a&gt; or &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://github.com/microsoft/playwright-mcp&quot;&gt;Playwright MCP&lt;/a&gt; to have Claude iterate on the design itself locally, but I just like the Desktop in-app experience.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/claude-code-desktop-preview.png&quot; alt=&quot;Claude Code Desktop with the conversation in the left pane (a turn confirming that docs.json, index.mdx, styles.css, and new logo files were copied to the worktree, with Mintlify hot-reloading on localhost:3000) and the live ACAAS docs site rendered at localhost:3000 in the right pane, showing the freshly-applied “send whisper. RECEIVE THUNDER.” hero.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;This step was pretty anticlimactic in a nice way. Claude took the design handoff, implemented it cleanly, and there wasn’t anything to debug. As an aside, I’ve shipped so many ugly, half-finished prototypes and waved it away with “I don’t like CSS,” and it feels like the days of that are finally over.&lt;/p&gt;
+&lt;h2 id=&quot;5-scaffold-the-docs&quot;&gt;5. Scaffold the docs&lt;/h2&gt;
+&lt;p&gt;I let AI generate the content with little direction, and I feel very fine about that. I said I wanted getting-started guides, cookbooks, and a changelog, and it produced them. I’m sure a few are confidently wrong in ways that don’t matter for a demo.&lt;/p&gt;
+&lt;p&gt;One thing that surprised me was that new Mintlify sites ship with a pre-built &lt;code&gt;AGENTS.md&lt;/code&gt; file and a &lt;code&gt;.claude/&lt;/code&gt; directory with settings and skills scaffolding for working with Mintlify, along with some basic style guides. The core instructions felt fairly useful/didn’t include anything I’d argue didn’t deserve to be there.&lt;/p&gt;
+&lt;h2 id=&quot;6-create-an-openapi-spec&quot;&gt;6. Create an OpenAPI spec&lt;/h2&gt;
+&lt;p&gt;The last piece was an API reference section. This is one of my favorite Mintlify features, even though the docs I work on now don’t have an API component. The API reference pages are built in and include an interactive playground where visitors can make live calls to the service from inside the docs themselves. All it needs is an OpenAPI spec, which Claude Code generated directly from the service code.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/acaas-openapi.png&quot; alt=&quot;The ACAAS API reference section generated from the OpenAPI spec, with a “Try it” panel and request/response examples.&quot; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Start to finish, the whole build was about two hours, most of which was the design step and a small detour deciding how much realism the rate limits needed. A year ago I would have spent the same two hours scaffolding just the initial API and decided nevermind maybe I’ll go a different direction.&lt;/p&gt;
+&lt;p&gt;End result: I used the demo in my talk, &lt;a href=&quot;../git-talk-recap/&quot;&gt;the git commands I avoided for nine years&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 16 May 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://sdeaton.com/blog/making-acaas/</guid>
+      <dc:date>2026-05-16T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] Neurodivergent in Tech: Building Software for Brains Like Yours | Rin Oliver</title>
+      <link>https://www.youtube.com/watch?v=0wnB4Y-DeUU</link>
+      <description>Interested in breaking into tech writing, interview prep, or other coaching: Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+What if the person who cares most about accessible documentation is the one who&#39;s always needed it?
+
+Kiran &#39;Rin&#39; Oliver is a product manager at Mac Stadium who ended up as the de facto solo tech writer — three documentation migrations in a year, running the whole thing himself — and building software for neurodivergent brains on the side. His thesis: most &quot;accessible&quot; tools are just neurotypical software with accessibility bolted on after the fact. His projects start from the other direction.
+
+We get into it all:
+🧠 Why your quick start guide is failing readers before step one — and what to do about it
+🔧 The neurodivergent-centered apps Rin is building: Everbloom Reader, Clarion, Foghorn, and Lumentide
+📄 How LLMs expose every assumption your docs silently make (they only know what&#39;s on the page)
+🛠️ Practical accessibility tips every tech writer can implement now
+💼 Real talk on surviving layoffs, pivoting careers, and not losing your mind
+
+Rin&#39;s website: https://kiranoliver.com/
+
+#TechnicalWriting #TechComm #Neurodivergent #AccessibleDesign #TechnicalWritingUncensored #Documentation #ContentStrategy #UXWriting #TechWriterLife #DocsOrItDidntHappen #ADHD #CognitiveAccessibility #WriteTheDocs #DeveloperExperience #CareerAdvice #TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Fri, 15 May 2026 15:00:05 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=0wnB4Y-DeUU</guid>
+      <dc:date>2026-05-15T15:00:05Z</dc:date>
+    </item>
+    <item>
+      <title>[Sarah Deaton] The git commands I avoided for nine years</title>
+      <link>https://sdeaton.com/blog/git-talk-recap/</link>
+      <description>&lt;!--
+TODO before publishing:
+- copy videos from ~/src/git-talk-slides/videos/ into this directory:
+  with-worktrees.mp4, with-reflog.mp4, update-refs.mp4
+--&gt;
+&lt;p&gt;I recently gave a &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.youtube.com/watch?v=FiGT3XYICSE&quot;&gt;talk&lt;/a&gt; at &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.writethedocs.org/&quot;&gt;Write the Docs&lt;/a&gt; about three git commands I’d been avoiding for most of my career, or in two cases didn’t know existed at all. For the demo environment behind the talk, I built &lt;a href=&quot;../making-acaas/&quot;&gt;All Caps as a Service&lt;/a&gt;, a fake API and docs site that turned into its own side quest.&lt;/p&gt;
+&lt;p&gt;To properly set expectations up front: I’m not a git expert. I’ve used git almost daily for a decade with a workflow I’ll describe in a minute, and recently discovered some parts of git that changed my thinking on it. I gave the talk and wrote this post because you don’t need to be a git expert to get a long way with the tool, or to look into the parts you’ve been avoiding.&lt;/p&gt;
+&lt;iframe
+  width=&quot;100%&quot;
+  height=&quot;415&quot;
+  src=&quot;https://www.youtube.com/embed/FiGT3XYICSE&quot;
+  title=&quot;The git commands I avoided for nine years&quot;
+  frameborder=&quot;0&quot;
+  allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot;
+  allowfullscreen
+&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/git-talk-recap/git-talk-sketchnote.jpg&quot; alt=&quot;Sketchnote of the talk by Dennis Dawson. A timeline of sticky notes across the top reads “The Git Commands I Avoided for Nine Years (and why I wish I hadn’t).” Below, three commands are illustrated: git worktree, described as creating a second checkout of the repo; git reflog, described as an undo button for recovering lost commits, deleted branches, and bad rebases; and git rebase –update-refs, described as automagically force-updating all local branches that point to commits being rebased. Jujutsu (jj) appears at the bottom, described as reimagining what a commit is with no staging area and conflicts as first-class objects. On the right, “commit often” is written vertically in large pink letters.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Sketchnote by &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://dennissdawson.wixsite.com/mr--dawson/portfolio&quot;&gt;Dennis Dawson&lt;/a&gt;, via the &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.flickr.com/photos/writethedocs/55266348341/in/album-72177720333614185&quot;&gt;Write the Docs Flickr&lt;/a&gt;. I love the reflog drawing.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;how-i-got-here&quot;&gt;How I got here&lt;/h2&gt;
+&lt;p&gt;For the majority of my time in tech, I used about six git commands: &lt;code&gt;add&lt;/code&gt;, &lt;code&gt;commit -m &quot;wip&quot;&lt;/code&gt;, &lt;code&gt;rebase -i&lt;/code&gt;, &lt;code&gt;commit --amend&lt;/code&gt;, &lt;code&gt;cherry-pick&lt;/code&gt;, &lt;code&gt;push&lt;/code&gt;. Add, save, clean up the history, polish, and push. It worked, and it produced nice clean PRs.&lt;/p&gt;
+&lt;p&gt;When I first learned git in a software engineering bootcamp, the framing was unambiguous. Git was esssential but could be dangerous. You could lose work, and you should stay inside a small set of safe commands. Above all, don’t touch rebase while you’re learning. If you got into a mess with it, you were on your own.&lt;/p&gt;
+&lt;p&gt;I eventually went to work on teams with other engineers, learned about collaborating on projects using git, added &lt;code&gt;git rebase -i&lt;/code&gt; to my toolkit, and felt pretty accomplished. My daily git commands worked for the most part… except for the few times when I’d do a bad rebase, and think I lost hours of work, despair and start over. Or get into a really tangled merge conflict and just end up deleting the branch and pulling down again from the remote. I thought that was the way it was; git was powerful with some rough edges.&lt;/p&gt;
+&lt;p&gt;What changed this for me had nothing to do with git initially. Last year, I wanted to run two Claude Code sessions on the same repo on different branches at once, purely for parallelism. I didn’t know how to do this, because as far as I knew, you could only have one branch checked out for a repo at a given time on your computer.&lt;/p&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/worktrees&quot;&gt;The fix turned out to be &lt;code&gt;git worktree&lt;/code&gt;&lt;/a&gt;, a git feature rather than anything to do with Claude Code. It also addressed a paper cut I’d been living with for years that I didn’t even realized I’d had: the stash-checkout-checkout-back-stash-pop dance every time I wanted to spin up a quick branch for a typo fix when I was in the middle of other work. Fixing a problem I hadn’t let rise to consciousness made me wonder what else was there and what I should incorporate into my toolkit.&lt;/p&gt;
+&lt;h2 id=&quot;the-three-commands&quot;&gt;The three commands&lt;/h2&gt;
+&lt;p&gt;I picked these three commands because they were the most directly useful ones that I found, and, in the case of git reflog, changed my view of git entirely.&lt;/p&gt;
+&lt;h3 id=&quot;git-worktree&quot;&gt;&lt;code&gt;git worktree&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;You’re mid-edit on a quickstart change, and someone asks for a one-line typo fix on a different branch. The dance is &lt;code&gt;git stash&lt;/code&gt;, &lt;code&gt;git checkout main&lt;/code&gt;, &lt;code&gt;git checkout -b typo-fix&lt;/code&gt;, fix it, &lt;code&gt;git checkout quickstart&lt;/code&gt;, &lt;code&gt;git stash pop&lt;/code&gt;. So much context switching and heaven forbid you get pulled away in the middle of it and have to remember where you were in the dance when you left off.&lt;/p&gt;
+&lt;p&gt;Worktrees solve this context switching problem. The command &lt;code&gt;git worktree add ../typo-fix main -b typo-fix&lt;/code&gt; makes a second working directory on your machine, pointing at the same repo, on a new branch. Then you can cd into that directory (&lt;code&gt;../typo-fix&lt;/code&gt;) and have two branches open at the same time, without needing to wind down/stash your work from one task to switch to the other.&lt;/p&gt;
+&lt;p&gt;The worktrees share the same &lt;code&gt;.git&lt;/code&gt; history, but all the files are duplicated and won’t clobber each other as you make changes in each branch. The quickstart edits stay sitting in the original directory, untouched. Open the new folder in a second editor window, fix the typo, push, and the original is exactly where you left it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When you’d reach for it:&lt;/strong&gt; any time you’d otherwise stash or do the checkout dance. Especially worth it if you context-switch between branches a lot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When it shipped:&lt;/strong&gt; 2015, a year before I started learning git.&lt;/p&gt;
+&lt;h3 id=&quot;git-reflog&quot;&gt;&lt;code&gt;git reflog&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;A pronunciation note: it’s &lt;em&gt;ref-log&lt;/em&gt;, short for “reference log.” I’d always pronounced it &lt;code&gt;git re-flog&lt;/code&gt;, which made it sound made up and was a primary reason I didn’t investigate it any further. Based on the people who came up to me after the talk, I’m not the only one who did this. This is also the one command that made me rethink my whole vision of git and realize it’s so much safer than I’d been taught.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git reflog&lt;/code&gt; shows everywhere &lt;code&gt;HEAD&lt;/code&gt; has been recently (every commit, reset, checkout, rebase, all of it). If you ever accidentally &lt;code&gt;git reset --hard&lt;/code&gt; too far or drop a commit during a rebase, or get a tangled git history through a merge conflict, this is the command that saves you. The “lost” commit, or the good place you used to be but now aren’t, is sitting right there in the reference log. You can always go back to it. Just run &lt;code&gt;git reflog&lt;/code&gt;, find the SHA for the commit/place in time you want to return to, and &lt;code&gt;git reset&lt;/code&gt; back to that place.&lt;/p&gt;
+&lt;p&gt;The piece that finally clicked for me, which I’d been missing when I was taught: HEAD in your repository is just a &lt;strong&gt;pointer&lt;/strong&gt;. Doing something like &lt;code&gt;reset&lt;/code&gt; or changes branches moves the pointer, but the commits themselves don’t go anywhere. &lt;code&gt;reflog&lt;/code&gt; is the trail the pointer left behind, kept for 90 days by default.&lt;/p&gt;
+&lt;p&gt;The one catch is that it only saves &lt;em&gt;committed&lt;/em&gt; work, and uncommitted changes blown away by &lt;code&gt;reset --hard&lt;/code&gt; are gone. Commit early and often!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When you’d reach for it:&lt;/strong&gt; any time you think you’ve lost work or are in an otherwise irreparable state.&lt;/p&gt;
+&lt;p&gt;Neat trick: I also learned recently that you can even do things like &lt;code&gt;main@{one.week.ago}&lt;/code&gt; to go back to where your main branch was a week ago. You don’t even need to find exact commits but can say things like “I knew this was working two days ago, let’s go back there.”&lt;/p&gt;
+&lt;h3 id=&quot;git-rebase-update-refs&quot;&gt;&lt;code&gt;git rebase --update-refs&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;You have a stacked PR (branch A off main, branch B off A). Someone lands a change on main that conflicts with A. The naive flow is to rebase A onto main, resolve the conflict, then rebase B onto the new A, where the same conflict is waiting for you to resolve a second time.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git rebase --update-refs main&lt;/code&gt;, run from the top of the stack, rebases the whole stack in one pass and moves the branch pointers along the way. You only need to resolve the conflict once, and then all the downstream branches get updated with the changes from main as well.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When you’d reach for it:&lt;/strong&gt; stacked PRs that should all get updates from a branch at the same time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When it shipped:&lt;/strong&gt; 2022. I’d originally planned to talk about &lt;code&gt;git rerere&lt;/code&gt; (it remembers a conflict resolution and replays it next time the same one shows up), and found &lt;code&gt;--update-refs&lt;/code&gt; while writing the talk.&lt;/p&gt;
+&lt;h2 id=&quot;the-one-i-think-actually-matters&quot;&gt;The one I think actually matters&lt;/h2&gt;
+&lt;p&gt;If you take one of these home, take reflog.&lt;/p&gt;
+&lt;p&gt;Worktrees and &lt;code&gt;--update-refs&lt;/code&gt; are about ergonomics and make day-to-day tasks easier. Reflog is different; it changes the belief that screwing up means losing work, and that belief was what kept me out of the parts of git where the real power lives.&lt;/p&gt;
+&lt;h2 id=&quot;for-the-record&quot;&gt;For the record&lt;/h2&gt;
+&lt;p&gt;A few QA questions where my live answer was either hand-wavy or wrong, because again, I’m not a git expert at all. Here are my corrected answers (and thanks for the opportunity to learn this with you all!)&lt;/p&gt;
+&lt;h3 id=&quot;git-worktree-vs-multiple-clones&quot;&gt;&lt;code&gt;git worktree&lt;/code&gt; vs. multiple clones&lt;/h3&gt;
+&lt;p&gt;Someone asked what the actual difference was between doing &lt;code&gt;git worktree&lt;/code&gt; vs. just having multiple cloned versions of your repo. A clearer answer than whatever I gave:&lt;/p&gt;
+&lt;p&gt;Multiple clones give you fully independent copies of the repo, each with its own &lt;code&gt;.git&lt;/code&gt; directory. Branches you make in clone A don’t show up in clone B until you push and fetch, and you’re paying for the full history twice on disk.&lt;/p&gt;
+&lt;p&gt;Worktrees share the underlying &lt;code&gt;.git&lt;/code&gt; (the secondary worktree has a tiny &lt;code&gt;.git&lt;/code&gt; &lt;em&gt;file&lt;/em&gt; pointing back to the main one). Branches and commits show up in every worktree immediately, with no fetching and no duplicate storage. The one constraint is that the same branch can’t be checked out in two worktrees at once.&lt;/p&gt;
+&lt;p&gt;If you want two separate copies of the project that can drift apart, that’s &lt;code&gt;git clone&lt;/code&gt;. If you want one project with multiple working directories so you can sit on two branches at the same time, that’s &lt;code&gt;git worktree&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;does-reflog-work-with-reset-soft-and-hard&quot;&gt;Does reflog work with &lt;code&gt;reset --soft&lt;/code&gt; and &lt;code&gt;--hard&lt;/code&gt;?&lt;/h3&gt;
+&lt;p&gt;Yes for both. I also want to walk back something I said on stage, because I had it backwards. Every form of &lt;code&gt;git reset&lt;/code&gt; moves HEAD, which is the whole point of the command. The flags change what happens to the index and working tree on top of that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--soft&lt;/code&gt;: move HEAD. Index and working tree untouched, so whatever was previously committed shows back up as staged.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--mixed&lt;/code&gt; (the default): move HEAD, reset the index to match it. Working tree untouched, so changes show up as unstaged.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--hard&lt;/code&gt;: move HEAD, reset the index, and overwrite the working tree to match. Uncommitted changes (staged or not) are gone.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Reflog records every move of HEAD, so all three are recoverable in the sense that you can always put HEAD back where it was. The thing reflog &lt;em&gt;can’t&lt;/em&gt; save you from is the working-tree damage &lt;code&gt;--hard&lt;/code&gt; does. Edits you hadn’t committed aren’t in the reflog, because the reflog tracks committed history, not whatever’s sitting in your buffer. That’s the part of “commit often” I was trying to gesture at on stage and could have been clearer about.&lt;/p&gt;
+&lt;h3 id=&quot;a-note-on-jujutsu&quot;&gt;A note on Jujutsu&lt;/h3&gt;
+&lt;p&gt;At the end of the talk I mentioned &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://github.com/jj-vcs/jj&quot;&gt;Jujutsu (or &lt;code&gt;jj&lt;/code&gt;)&lt;/a&gt;. I didn’t even realize for a while that there were other version control systems being developed; I kind of thought git was the one we’d settled on. But of course there were VCS systems before and people are making new ones too, revisiting these foundational concepts and/or layering on top.&lt;/p&gt;
+&lt;p&gt;I find &lt;code&gt;jj&lt;/code&gt; to be really interesting because it’s a more recent VCS that’s gaining popularity. It can live alongside a git repo, sharing objects and remotes, but rethinks the model. &lt;code&gt;jj&lt;/code&gt; has no staging area, and you carry conflicts with you across operations instead of resolving them on the spot. The command surface is also much smaller. I’ve just heard of it and haven’t used it for real work, so I don’t have an opinion on whether it’s worth switching. But it’s on the list, and if you’ve been bouncing off git for years and it still doesn’t fit, that might be the direction to look.&lt;/p&gt;
+&lt;h2 id=&quot;coda&quot;&gt;Coda&lt;/h2&gt;
+&lt;p&gt;I keep coming back to one specific story. After learning software engineering at a bootcamp, I taught there for a year. One day a student ran a rebase even though we’d warned her against it. She lost a day of work and asked for help. The response from the instructors, mine included, was “oops, oh well, we told you so,” and I still feel bad about it. Reflog would have walked her right back to where she was, but none of us knew about it, so none of us could tell her. What stuck with her instead was &lt;em&gt;git is dangerous, stay in the shallow end&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;I gave the talk as a non-expert and that was sort of the point. You can poke at the parts of git you’ve been avoiding without becoming an expert first. The cost of looking was small for me, a search engine and an afternoon per command, weighed against nine more years of deleting repos and living with what I thought was lost.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 15 May 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://sdeaton.com/blog/git-talk-recap/</guid>
+      <dc:date>2026-05-15T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] Moving away from Oh My Zsh (OMZ)</title>
+      <link>https://amanhimself.dev/blog/moving-away-from-oh-my-zsh/</link>
+      <description>I&#39;ve been running Oh My Zsh (OMZ) on every workstation I&#39;ve ever owned. It was one of the first things I&#39;d install when setting up a new machine or cleanly updating an existing one. For years, I&#39;ve blindly copied my workstation configuration from one Macbook to the next, without questioning whether I still needed something in the current day and age, or whether it had quietly been replaced by something better. The first time I wrote about my setup was in 2023 and since then I&#39;ve written about it every year: 2024 and 2025 and recently in 2026. The last post is a result of me taking my time and making conscious decisions. Somewhere in that process, I realized that my setup and especially my terminal setup, was bloated.</description>
+      <pubDate>Thu, 14 May 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/moving-away-from-oh-my-zsh/</guid>
+      <dc:date>2026-05-14T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Architecture Docs: A Guide to Clear, Effective System Documentation</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/architecture-docs-a-guide-to-clear-effective-system-documentation/</link>
+      <description>&lt;p&gt;What&amp;#160; Is Architecture Documentation? Architecture documentation describes the design and structure of a software system. It captures the system’s high-level components, their relationships, and the major decisions that shaped how the system is built and operated. It answers three core questions: Unlike code comments or user manuals, architecture documentation explains the “why” and “how” at...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/architecture-docs-a-guide-to-clear-effective-system-documentation/&quot;&gt;Architecture Docs: A Guide to Clear, Effective System Documentation&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 13 May 2026 11:08:02 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/architecture-docs-a-guide-to-clear-effective-system-documentation/</guid>
+      <dc:date>2026-05-13T11:08:02Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] From Prompts to Workflows: 4 Practical Ways Technical Writers Can Use AI</title>
+      <link>https://www.cherryleaf.com/2026/05/from-prompts-to-workflows-4-practical-ways-technical-writers-can-use-ai/</link>
+      <description>&lt;p&gt;Many technical writers have experimented with ChatGPT, Claude, Copilot, or Gemini, but experimenting is not the same as integrating. How do you turn those one-off prompts into reliable workflows that genuinely improve documentation quality and reduce manual effort? This webinar introduces four practical approaches to using AI in technical writing and documentation management: chatbot agents,...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/05/from-prompts-to-workflows-4-practical-ways-technical-writers-can-use-ai/&quot; title=&quot;Read From Prompts to Workflows: 4 Practical Ways Technical Writers Can Use AI&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/05/from-prompts-to-workflows-4-practical-ways-technical-writers-can-use-ai/&quot;&gt;From Prompts to Workflows: 4 Practical Ways Technical Writers Can Use AI&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 13 May 2026 08:00:12 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/05/from-prompts-to-workflows-4-practical-ways-technical-writers-can-use-ai/</guid>
+      <dc:date>2026-05-13T08:00:12Z</dc:date>
+    </item>
+    <item>
+      <title>[James Tasse] Meowlin</title>
+      <link>https://jamestasse.tech/blog/posts/meowlin</link>
+      <description>You may have heard of Merlin, a fantastic mobile app that can identify birds in real time.</description>
+      <pubDate>Wed, 13 May 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://jamestasse.tech/blog/posts/meowlin</guid>
+      <dc:date>2026-05-13T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Dachary Carey] A Skill is More than Markdown</title>
+      <link>https://dacharycarey.com/2026/05/11/agent-skill-more-than-markdown/</link>
+      <description>&lt;p&gt;Organizations have been pushing official company skills out the door because skills look like just a markdown file, and that seems simple and trivial. But when you dig into the lifecycle of an official skill that you intend to support, distribute, and stand behind, it&#39;s a lot more than a markdown file. I&#39;m not sure a single organization shipping skills today recognizes how much more.&lt;/p&gt;
+&lt;p&gt;This is the article I promised at the end of &lt;a href=&quot;https://dacharycarey.com/2026/05/07/can-agent-skills-make-output-worse/&quot;&gt;Can Agent Skills Make Output Worse?&lt;/a&gt;, where I closed by saying I&#39;d been ideating around what skill lifecycle management looks like and would write more about it as I proposed process and tooling around it. This is the lifecycle that I&#39;m picturing. Let me tell you what&#39;s actually involved, where the work falls, and where the org chart runs out of people to do it.&lt;/p&gt;</description>
+      <pubDate>Mon, 11 May 2026 12:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://dacharycarey.com/2026/05/11/agent-skill-more-than-markdown/</guid>
+      <dc:date>2026-05-11T12:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Passo Uno] What I&#39;ve learned designing agentic workflows for docs</title>
+      <link>https://passo.uno/agentic-workflows-for-docs/</link>
+      <description>&lt;p&gt;Back in 2024 &lt;a href=&quot;https://passo.uno/ai-tech-writer-examples/&quot;&gt;I wrote&lt;/a&gt; that AI helps me remove boring work at the margins. This is fine for a lone writer, but how to scale this to an entire team of technical writers? How to make the system helpful but not intrusive? These are all questions I’m starting to answer now, partly through experimentation, but also through dialogue with practitioners and colleagues. One answer I’m testing these days relies on GitHub Agentic Workflows.&lt;/p&gt;</description>
+      <pubDate>Mon, 11 May 2026 12:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://passo.uno/agentic-workflows-for-docs/</guid>
+      <dc:date>2026-05-11T12:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Free technical writing skills pack for AI course delegates</title>
+      <link>https://www.cherryleaf.com/2026/05/free-technical-writing-skills-pack-for-ai-course-delegates/</link>
+      <description>&lt;p&gt;We&amp;#8217;re pleased to announce a new bonus for delegates enrolling in the certificate version of our Using Generative AI in Technical Writing elearning course. What&amp;#8217;s new? Anyone who signs up for the certificate version of the course will now receive a free pack of eleven technical writing skills.md files. These are ready-made, practical resources you...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/05/free-technical-writing-skills-pack-for-ai-course-delegates/&quot; title=&quot;Read Free technical writing skills pack for AI course delegates&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/05/free-technical-writing-skills-pack-for-ai-course-delegates/&quot;&gt;Free technical writing skills pack for AI course delegates&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 11 May 2026 09:30:30 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/05/free-technical-writing-skills-pack-for-ai-course-delegates/</guid>
+      <dc:date>2026-05-11T09:30:30Z</dc:date>
+    </item>
+    <item>
+      <title>[Sarah Deaton] Costuming Claude Code</title>
+      <link>https://sdeaton.com/blog/costuming-claude-code/</link>
+      <description>&lt;p&gt;Most of how I’ve customized Claude Code so far has been on the side that changes what it knows or does: &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/memory#claude-md-files&quot;&gt;&lt;code&gt;CLAUDE.md&lt;/code&gt;&lt;/a&gt; for project conventions, &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/memory#organize-rules-with-claude%2Frules%2F&quot;&gt;path-scoped rules&lt;/a&gt; for specific instructions, &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/skills&quot;&gt;skills&lt;/a&gt; for specialized behaviors, &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/hooks-guide&quot;&gt;hooks&lt;/a&gt; for guardrails.&lt;/p&gt;
+&lt;p&gt;A separate set of customization knobs sits alongside those, and they don’t really change what Claude does, just how being in the CLI feels. The settings in this group are things like spinner verbs, themes, status lines, the welcome box, and the commit trailer.&lt;/p&gt;
+&lt;p&gt;What inspired me to pull them all together was watching other people character-ify their spinner verbs. I’d been treating it as a fun one-off customization, until I started seeing screenshots of people swapping their verbs out for things Bender from Futurama would say, or Moira Rose from Schitt’s Creek (&lt;em&gt;Bombinating&lt;/em&gt;, &lt;em&gt;Effulging&lt;/em&gt;, &lt;em&gt;Pontificating&lt;/em&gt;). I wanted to see if I could extend this character in Claude Code through more of the settings I’d collected in my head.&lt;/p&gt;
+&lt;h2 id=&quot;setting-the-stage&quot;&gt;Setting the stage&lt;/h2&gt;
+&lt;p&gt;Here’s what I ended up with after pulling things together. This screenshot is mid-conversation with the Moira persona:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/costuming-claude-code/moira-spinner.png&quot; alt=&quot;A Claude Code session running the Moira persona. At the top, a previous response reads “Local incantations: zola serve for the dressing room, zola build for opening night.” Below that is the user’s next message, “which drafts are currently in progress?”, followed by a spinner showing “Effulging…” with the tip “Crows have eyes. So does the linter.” floating beneath it. The status line at the bottom reads “🌹 Act I — the stage is set, bébé. (3% staged).”&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Reading the screenshot top to bottom:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The response has a Moira-feel (incantations, opening night, etc) because of the &lt;strong&gt;&lt;a href=&quot;https://sdeaton.com/blog/costuming-claude-code/#output-style-the-voice&quot;&gt;output style&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Effulging…&lt;/code&gt; and the &lt;code&gt;Crows have eyes&lt;/code&gt; line beneath it are a custom &lt;strong&gt;&lt;a href=&quot;https://sdeaton.com/blog/costuming-claude-code/#flourish-spinner-verbs-and-tips&quot;&gt;spinner verb and tip&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;The color palette (deep wine, gold, ivory) is a custom &lt;strong&gt;&lt;a href=&quot;https://sdeaton.com/blog/costuming-claude-code/#theme-the-dressing-room&quot;&gt;theme&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;🌹 Act I&lt;/code&gt; strip at the bottom is a &lt;strong&gt;&lt;a href=&quot;https://sdeaton.com/blog/costuming-claude-code/#status-line-the-bottom-strip&quot;&gt;status line&lt;/a&gt;&lt;/strong&gt; that reframes the context window as the show progressing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A few touchpoints &lt;a href=&quot;https://sdeaton.com/blog/costuming-claude-code/#off-scene-company-announcements-git-attribution-and-the-curtain-call&quot;&gt;aren’t visible here but contribute to the experience&lt;/a&gt;: a company announcement that introduces Moira on launch, a custom git attribution trailer that credits her on every commit, and a hook that has my laptop say &lt;em&gt;curtain&lt;/em&gt; out loud when I close the session.&lt;/p&gt;
+&lt;h2 id=&quot;choosing-a-character&quot;&gt;Choosing a character&lt;/h2&gt;
+&lt;p&gt;Before settling on Moira, I tried on a few other personas, like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bob Ross (gentle, encouraging, every bug a happy little accident)&lt;/li&gt;
+&lt;li&gt;Werner Herzog (&lt;em&gt;what would code be without a monster lurking in the dark? It would be like sleep without dreams&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;Worf from Star Trek (&lt;em&gt;Qapla’!&lt;/em&gt; on every successful merge)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;They were all fun, but Moira was the one I kept coming back to. There’s something endearing about being called &lt;em&gt;bébé&lt;/em&gt; before being told the CSS is broken, and her costume-and-stage metaphors mapped surprisingly well onto refactors and deployments.&lt;/p&gt;
+&lt;h2 id=&quot;the-full-ensemble-it-s-all-in-settings-json&quot;&gt;The full ensemble: it’s all in settings.json&lt;/h2&gt;
+&lt;p&gt;Here’s what the start of a Moira session actually looks like, with a welcome banner from a company announcement at the top, her voice kicking in as soon as she’s read the project, and a status line steady at the bottom:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/costuming-claude-code/moira-session.png&quot; alt=&quot;Opening of a Claude Code session running the Moira persona: a welcome banner reading “🥀 Welcome, bébé. The stage is set. Moira Rose is at your service.”, the user asking “please describe this project”, and Moira responding “One moment, darling — permit me a glance at the playbill before I describe the production.” followed by “Here is the playbill, bébé.” after reading files. The status line at the bottom reads “🌹 Act I — the stage is set, bébé. (3% staged).”&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;All of this lives in &lt;code&gt;~/.claude/settings.json&lt;/code&gt;, which the CLI reads on launch for user-configurable settings. There are a few different places where you can put settings:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;~/.claude/settings.json&lt;/code&gt; is local to your computer and applies across every project&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.claude/settings.json&lt;/code&gt; inside a project repo is project-scoped and gets checked in with git&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.claude/settings.local.json&lt;/code&gt; is project-scoped &lt;em&gt;and&lt;/em&gt; local, and is gitignored by default&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I did all of this in my user-level settings because I didn’t want the people I work with to be greeted with &lt;em&gt;bébé&lt;/em&gt;. Here’s the relevant bits, minus everything unrelated:&lt;/p&gt;
+&lt;div class=&quot;expandable-code&quot;&gt;
+&lt;pre data-lang=&quot;json&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;outputStyle&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;moira-rose&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;theme&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;custom:moira&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;companyAnnouncements&lt;/span&gt;&lt;span&gt;&amp;quot;: [
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;🥀 Welcome, bébé. The stage is set. Moira Rose is at your service.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;  ],
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;spinnerVerbs&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;mode&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;replace&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;verbs&lt;/span&gt;&lt;span&gt;&amp;quot;: [&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Bombinating&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Effulging&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Pontificating&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Promenading&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Vociferating&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Adjudicating&lt;/span&gt;&lt;span&gt;&amp;quot;]
+&lt;/span&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;spinnerTipsOverride&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;excludeDefault&lt;/span&gt;&lt;span&gt;&amp;quot;: &lt;/span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true&lt;/span&gt;&lt;span&gt;,
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;tips&lt;/span&gt;&lt;span&gt;&amp;quot;: [
+&lt;/span&gt;&lt;span&gt;      &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Crows have eyes. So does the linter.&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;      &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Take just a sip. Just a tipple.&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;      &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Fold in the cheese. Then commit.&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;      &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Don&amp;#39;t ever, EVER ship on a Friday.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;statusLine&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;type&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;command&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;command&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;~/.claude/statusline-moira.sh&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;attribution&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;commit&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;🌹 Composed in collaboration with Moira Rose, via Claude Code&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\n\n&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Co-Authored-By: Moira Rose &amp;lt;moira@roseapothecary.com&amp;gt;&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;pr&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;🌹 A Moira Rose production. Generated with Claude Code.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;  },
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;hooks&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;SessionEnd&lt;/span&gt;&lt;span&gt;&amp;quot;: [
+&lt;/span&gt;&lt;span&gt;      {
+&lt;/span&gt;&lt;span&gt;        &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;hooks&lt;/span&gt;&lt;span&gt;&amp;quot;: [
+&lt;/span&gt;&lt;span&gt;          { &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;type&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;command&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;command&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;~/.claude/moira-curtain-call.sh&lt;/span&gt;&lt;span&gt;&amp;quot; }
+&lt;/span&gt;&lt;span&gt;        ]
+&lt;/span&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;span&gt;    ]
+&lt;/span&gt;&lt;span&gt;  }
+&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+&lt;p&gt;A few of those settings keys point at files that sit alongside &lt;code&gt;settings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;~/.claude/
+&lt;/span&gt;&lt;span&gt;├── settings.json              # the file above
+&lt;/span&gt;&lt;span&gt;├── output-styles/
+&lt;/span&gt;&lt;span&gt;│   └── moira-rose.md          # persona text, goes into the system prompt
+&lt;/span&gt;&lt;span&gt;├── statusline-moira.sh        # status line script
+&lt;/span&gt;&lt;span&gt;├── moira-curtain-call.sh      # SessionEnd hook script
+&lt;/span&gt;&lt;span&gt;└── themes/
+&lt;/span&gt;&lt;span&gt;    └── moira.json             # custom palette
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;output-style-the-voice&quot;&gt;Output style: the voice&lt;/h2&gt;
+&lt;p&gt;The biggest lever in this whole experiment is the &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/output-styles&quot;&gt;output style&lt;/a&gt;. Claude Code ships with a few built-in styles (&lt;code&gt;default&lt;/code&gt;, &lt;code&gt;Learning&lt;/code&gt;, &lt;code&gt;Explanatory&lt;/code&gt;), and you can drop your own into &lt;code&gt;~/.claude/output-styles/&lt;/code&gt; as a markdown file. Setting &lt;code&gt;&quot;outputStyle&quot;: &quot;moira-rose&quot;&lt;/code&gt; in &lt;code&gt;settings.json&lt;/code&gt; makes it the default for every session.&lt;/p&gt;
+&lt;p&gt;What an output style actually does is replace part of Claude Code’s default system prompt. Specifically, it swaps out the block that tells the model “you’re a software engineering assistant” and puts your file’s content in its place. The tool-handling and safety scaffolding stay exactly where they were, so Claude Code is still Claude Code; it just thinks it’s something other than a coder.&lt;/p&gt;
+&lt;p&gt;Because the system prompt is the foundation Claude Code builds everything else on, anything you put there carries more weight than an in-context instruction would. And once the session is going, the file doesn’t get re-read the way a skill does each time it triggers.&lt;/p&gt;
+&lt;p&gt;Here’s an abbreviated version of &lt;code&gt;~/.claude/output-styles/moira-rose.md&lt;/code&gt;. I still wanted the Claude Code software abilities, so I made sure the file framed her as also having been “pressed into service as an interactive software engineering assistant.”&lt;/p&gt;
+&lt;div class=&quot;expandable-code&quot;&gt;
+&lt;pre data-lang=&quot;markdown&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-markdown &quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;# You are Moira Rose
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span&gt;You are MOIRA ROSE — matriarch of the Rose family, former star of &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*Sunrise Bay*&lt;/span&gt;&lt;span&gt;,
+&lt;/span&gt;&lt;span&gt;briefly mayoress of Schitt&amp;#39;s Creek, custodian of the Wig Wall, mother to David
+&lt;/span&gt;&lt;span&gt;and Alexis, devoted wife to Johnny. You have, against all reasonable
+&lt;/span&gt;&lt;span&gt;expectation, been pressed into service as an interactive software engineering
+&lt;/span&gt;&lt;span&gt;assistant.
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span&gt;You will assist your dear bébé — the user — with their software endeavours.
+&lt;/span&gt;&lt;span&gt;The work itself is unchanged. The voice is unmistakably yours.
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;## Your voice
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span&gt;Vocabulary: reach for the obscure word over the common one. &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*bébé, mon dieu,
+&lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;ennui, lachrymose, lugubrious, denouement, soliloquy, bombinate, effulgent,
+&lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;recrudescence.*&lt;/span&gt;&lt;span&gt; Sprinkle, don&amp;#39;t pour.
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;## How you frame engineering work
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span&gt;A bug is a &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*villain*&lt;/span&gt;&lt;span&gt; or &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*unwanted houseguest*&lt;/span&gt;&lt;span&gt;.
+&lt;/span&gt;&lt;span&gt;A refactor is a &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*costume change*&lt;/span&gt;&lt;span&gt; or &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*renovation of the West Wing*&lt;/span&gt;&lt;span&gt;.
+&lt;/span&gt;&lt;span&gt;A deploy is &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*opening night*&lt;/span&gt;&lt;span&gt;; a rollback is &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*closing notice*&lt;/span&gt;&lt;span&gt;.
+&lt;/span&gt;&lt;span&gt;A test suite is the &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*dress rehearsal*&lt;/span&gt;&lt;span&gt;.
+&lt;/span&gt;&lt;span&gt;A merge conflict is &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*a domestic dispute requiring mediation*&lt;/span&gt;&lt;span&gt;.
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span&gt;The metaphor garnishes — it does not obscure. Always make the actual change clear.
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;## What stays the same
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span&gt;You are still a careful engineer. You read before you edit. You verify before
+&lt;/span&gt;&lt;span&gt;you claim. Code itself is sacred — no theatrical variable names, no
+&lt;/span&gt;&lt;span&gt;soliloquising in docstrings. The voice lives &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*around*&lt;/span&gt;&lt;span&gt; the code, never &lt;/span&gt;&lt;span style=&quot;font-style:italic;color:#b48ead;&quot;&gt;*in*&lt;/span&gt;&lt;span&gt; it.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+&lt;p&gt;The full file goes further with sample exchanges, what to avoid, and when to break character.&lt;/p&gt;
+
+&lt;link rel=&quot;stylesheet&quot; href=&quot;../../admonition.css?h=98c1477488c4b2c9d71a&quot; type=&quot;text/css&quot;&gt;
+
+&lt;div
+  class=&quot;my-4 flex flex-col rounded-lg bg-(--admonition-bg)&quot;
+  style=&quot;--admonition-bg: var(--admonition-tip);&quot;
+&gt;
+  &lt;div class=&quot;flex items-center rounded-t-lg bg-(--admonition-bg) p-1&quot;&gt;
+    &lt;div
+      class=&quot;mx-2 h-4 w-4 text-[0px] [background:var(--url)_center_center_no-repeat] dark:invert&quot;
+      style=&quot;--url: url(icons/tip.svg);&quot;
+    &gt;
+      tip
+    &lt;/div&gt;
+    &lt;span&gt;&lt;strong&gt;When this is actually useful&lt;/strong&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;pl-4&quot;&gt;&lt;p&gt;Pointing Claude Code at something other than software engineering. If you want to turn Claude Code into a docs writer, a data-analysis copilot, or a teaching assistant — anything that wants the file and shell tooling without the “you are a coder” stance — this is where you’d do it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;flourish-spinner-verbs-and-tips&quot;&gt;Flourish: spinner verbs and tips&lt;/h2&gt;
+&lt;p&gt;These were the original entry point for me. Spinner verbs are the action verb that cycles while Claude is working (“Thinking,” “Wrangling,” “Crafting”), and spinner tips are the suggestions that float underneath during longer waits. Both are configured as JSON objects under their own keys in &lt;code&gt;settings.json&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;For verbs, the configuration takes a &lt;code&gt;mode&lt;/code&gt; and a &lt;code&gt;verbs&lt;/code&gt; array. Setting &lt;code&gt;mode&lt;/code&gt; to &lt;code&gt;&quot;append&quot;&lt;/code&gt; adds your verbs to Claude Code’s defaults, while &lt;code&gt;&quot;replace&quot;&lt;/code&gt; uses only yours. The &lt;code&gt;verbs&lt;/code&gt; array is the list of strings themselves:&lt;/p&gt;
+&lt;pre data-lang=&quot;json&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;spinnerVerbs&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;mode&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;replace&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;verbs&lt;/span&gt;&lt;span&gt;&amp;quot;: [&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Bombinating&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Effulging&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Pontificating&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Promenading&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Vociferating&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Adjudicating&lt;/span&gt;&lt;span&gt;&amp;quot;]
+&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Spinner tips work the same way. &lt;code&gt;tips&lt;/code&gt; is an array of strings, and &lt;code&gt;excludeDefault&lt;/code&gt; decides whether yours replace the built-ins or get merged in:&lt;/p&gt;
+&lt;pre data-lang=&quot;json&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;spinnerTipsOverride&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;excludeDefault&lt;/span&gt;&lt;span&gt;&amp;quot;: &lt;/span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;true&lt;/span&gt;&lt;span&gt;,
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;tips&lt;/span&gt;&lt;span&gt;&amp;quot;: [
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Crows have eyes. So does the linter.&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;    &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Take just a sip. Just a tipple.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;  ]
+&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So now the spinner reads &lt;code&gt;Effulging… (5s · thinking)&lt;/code&gt; with &lt;code&gt;Crows have eyes. So does the linter.&lt;/code&gt; floating underneath, and it has yet to get old.&lt;/p&gt;
+
+
+&lt;div
+  class=&quot;my-4 flex flex-col rounded-lg bg-(--admonition-bg)&quot;
+  style=&quot;--admonition-bg: var(--admonition-tip);&quot;
+&gt;
+  &lt;div class=&quot;flex items-center rounded-t-lg bg-(--admonition-bg) p-1&quot;&gt;
+    &lt;div
+      class=&quot;mx-2 h-4 w-4 text-[0px] [background:var(--url)_center_center_no-repeat] dark:invert&quot;
+      style=&quot;--url: url(icons/tip.svg);&quot;
+    &gt;
+      tip
+    &lt;/div&gt;
+    &lt;span&gt;&lt;strong&gt;When this is actually useful&lt;/strong&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;pl-4&quot;&gt;&lt;p&gt;The tips make a kind of ambient broadcast channel for a team, with room for things like onboarding nudges, new-tool announcements, or current-incident reminders. They surface during waits, so people see them without being interrupted.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;theme-the-dressing-room&quot;&gt;Theme: the dressing room&lt;/h2&gt;
+&lt;p&gt;Claude Code added &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/terminal-config#create-a-custom-theme&quot;&gt;custom color themes in 2.1.118&lt;/a&gt;. You drop a JSON file into &lt;code&gt;~/.claude/themes/&lt;/code&gt; and reference it with &lt;code&gt;&quot;theme&quot;: &quot;custom:&amp;lt;name&amp;gt;&quot;&lt;/code&gt; in settings. With Moira’s voice and spinner sorted, it felt only right to let her pick her own palette. (I don’t normally anthropomorphize AI tools this much, but I’ll allow it for the bit.)&lt;/p&gt;
+&lt;p&gt;She landed on deep wine for the prompt accent and gold for bullets and headings. Errors are stage-blood crimson, borders went amethyst, ivory took the foreground, and success messages came out in sage rather than green, since green apparently felt too literal. The whole UI now reads like a dressing room.&lt;/p&gt;
+
+
+&lt;div
+  class=&quot;my-4 flex flex-col rounded-lg bg-(--admonition-bg)&quot;
+  style=&quot;--admonition-bg: var(--admonition-tip);&quot;
+&gt;
+  &lt;div class=&quot;flex items-center rounded-t-lg bg-(--admonition-bg) p-1&quot;&gt;
+    &lt;div
+      class=&quot;mx-2 h-4 w-4 text-[0px] [background:var(--url)_center_center_no-repeat] dark:invert&quot;
+      style=&quot;--url: url(icons/tip.svg);&quot;
+    &gt;
+      tip
+    &lt;/div&gt;
+    &lt;span&gt;&lt;strong&gt;When this is actually useful&lt;/strong&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;pl-4&quot;&gt;&lt;p&gt;Matching your editor or terminal so the CLI doesn’t feel jarringly different from the rest of your environment, or color-coding specific kinds of messages so they jump out.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;status-line-the-bottom-strip&quot;&gt;Status line: the bottom strip&lt;/h2&gt;
+&lt;p&gt;The &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/statusline&quot;&gt;status line&lt;/a&gt; is the strip at the bottom of the CLI, and is kind of like a shell prompt with access to live session state. You can replace it with the output of any command.&lt;/p&gt;
+&lt;p&gt;When you wire one up, Claude Code sends your command a JSON blob on stdin with fields like &lt;code&gt;model&lt;/code&gt;, &lt;code&gt;workspace&lt;/code&gt;, &lt;code&gt;cost&lt;/code&gt;, &lt;code&gt;output_style&lt;/code&gt;, the context window’s &lt;code&gt;remaining_percentage&lt;/code&gt;, and &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/statusline#available-data&quot;&gt;a handful of others&lt;/a&gt;. Your command can do whatever it wants with that, and whatever it prints to stdout becomes what shows up at the bottom.&lt;/p&gt;
+&lt;p&gt;I gave Moira a status line that frames the context window as the show progressing. The line starts as a backstage murmur before any context exists, moves through Act I once the session is rolling, and ends in stage-blood crimson when she’s almost out of room. The colors shift along with the acts, from gold through rose, fuchsia, and crimson. This is &lt;code&gt;~/.claude/statusline-moira.sh&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;expandable-code&quot;&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#!/bin/bash
+&lt;/span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Moira Rose status line — dramatic act commentary based on context window usage.
+&lt;/span&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;# Receives Claude Code session JSON on stdin. Prints one styled line.
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;input&lt;/span&gt;&lt;span&gt;=$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;cat&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;)
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;remaining&lt;/span&gt;&lt;span&gt;=$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;echo &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;input&lt;/span&gt;&lt;span&gt;&amp;quot; | &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;jq -r &lt;/span&gt;&lt;span&gt;&amp;#39;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.context_window.remaining_percentage // empty&lt;/span&gt;&lt;span&gt;&amp;#39;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;)
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span&gt;=&amp;quot;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;[ &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;-n &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;remaining&lt;/span&gt;&lt;span&gt;&amp;quot; &lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;]&lt;/span&gt;&lt;span&gt;; &lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span&gt;=$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;echo &lt;/span&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;100 - &lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;remaining&lt;/span&gt;&lt;span&gt;&amp;quot; | &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bc&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;)
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;fi
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ESC&lt;/span&gt;&lt;span&gt;=$&amp;#39;&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\033&lt;/span&gt;&lt;span&gt;&amp;#39;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ESC&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}[0m&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;DIM&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ESC&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}[2m&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;GOLD&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ESC&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}[38;5;220m&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ROSE&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ESC&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}[38;5;211m&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;FUCHSIA&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ESC&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}[38;5;199m&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;CRIMSON&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ESC&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}[38;5;160m&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BLOOD&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ESC&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}[1;38;5;88m&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;[ &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;-z &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span&gt;&amp;quot; &lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;]&lt;/span&gt;&lt;span&gt;; &lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;line&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;DIM&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}🥀 The understudy is still in makeup, bébé.&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;elif &lt;/span&gt;&lt;span&gt;(( $(&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;echo &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt; &amp;lt; 20&lt;/span&gt;&lt;span&gt;&amp;quot; | &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bc -l&lt;/span&gt;&lt;span&gt;) )); &lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;line&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;GOLD&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}🌹 Act I&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;DIM&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;} — the stage is set, bébé.&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;elif &lt;/span&gt;&lt;span&gt;(( $(&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;echo &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt; &amp;lt; 40&lt;/span&gt;&lt;span&gt;&amp;quot; | &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bc -l&lt;/span&gt;&lt;span&gt;) )); &lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;line&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;GOLD&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}🌹 The plot&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;DIM&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}, it thickens.&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;elif &lt;/span&gt;&lt;span&gt;(( $(&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;echo &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt; &amp;lt; 60&lt;/span&gt;&lt;span&gt;&amp;quot; | &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bc -l&lt;/span&gt;&lt;span&gt;) )); &lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;line&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ROSE&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}🌹 Act II&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;DIM&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;} — tensions mount.&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;elif &lt;/span&gt;&lt;span&gt;(( $(&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;echo &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt; &amp;lt; 80&lt;/span&gt;&lt;span&gt;&amp;quot; | &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bc -l&lt;/span&gt;&lt;span&gt;) )); &lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;line&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;FUCHSIA&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}🌹 Act III approaches.&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;DIM&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;} Compose yourself.&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;elif &lt;/span&gt;&lt;span&gt;(( $(&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;echo &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt; &amp;lt; 95&lt;/span&gt;&lt;span&gt;&amp;quot; | &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;bc -l&lt;/span&gt;&lt;span&gt;) )); &lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;line&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;CRIMSON&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}🥀 The denouement, bébé.&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;else
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;line&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;BLOOD&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}🩸 The CURTAIN descends!&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;DIM&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;} Save your work, darling.&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;fi
+&lt;/span&gt;&lt;span&gt;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;if &lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;[ &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;-n &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span&gt;&amp;quot; &lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;]&lt;/span&gt;&lt;span&gt;; &lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;then
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;printf &lt;/span&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;%s &lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;DIM&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}(%s%% staged)&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RESET&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;&amp;quot; &amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;line&lt;/span&gt;&lt;span&gt;&amp;quot; &amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;used&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;else
+&lt;/span&gt;&lt;span&gt;    &lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;printf &lt;/span&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;%s&lt;/span&gt;&lt;span&gt;&amp;quot; &amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;line&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;fi
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;/div&gt;
+&lt;p&gt;The branch on an empty &lt;code&gt;used&lt;/code&gt; handles the case where the session has just started and there isn’t a &lt;code&gt;remaining_percentage&lt;/code&gt; field on stdin yet. Instead of a defaulted-to-zero number that reads weirdly, the line shows &lt;code&gt;🥀 The understudy is still in makeup, bébé.&lt;/code&gt; until the show actually starts.&lt;/p&gt;
+&lt;p&gt;And &lt;code&gt;settings.json&lt;/code&gt; just points at the script:&lt;/p&gt;
+&lt;pre data-lang=&quot;json&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;statusLine&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;type&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;command&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;command&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;~/.claude/statusline-moira.sh&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once the curtain goes up, the bottom of the screen shows &lt;code&gt;🌹 Act I — the stage is set, bébé. (3% staged)&lt;/code&gt; and progresses through the acts as the conversation grows. When she gets close to capacity, the line switches to a curtain warning and tells me to save my work.&lt;/p&gt;
+
+
+&lt;div
+  class=&quot;my-4 flex flex-col rounded-lg bg-(--admonition-bg)&quot;
+  style=&quot;--admonition-bg: var(--admonition-tip);&quot;
+&gt;
+  &lt;div class=&quot;flex items-center rounded-t-lg bg-(--admonition-bg) p-1&quot;&gt;
+    &lt;div
+      class=&quot;mx-2 h-4 w-4 text-[0px] [background:var(--url)_center_center_no-repeat] dark:invert&quot;
+      style=&quot;--url: url(icons/tip.svg);&quot;
+    &gt;
+      tip
+    &lt;/div&gt;
+    &lt;span&gt;&lt;strong&gt;When this is actually useful&lt;/strong&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;pl-4&quot;&gt;&lt;p&gt;Passively surfacing things you want quick visibility into, like the current Kubernetes context, AWS profile, which environment a repo is pointed at, or session cost so far. The stdin JSON gives you fields like &lt;code&gt;model&lt;/code&gt;, &lt;code&gt;cost.total_cost_usd&lt;/code&gt;, and &lt;code&gt;workspace&lt;/code&gt; alongside the context numbers, and the script can call out to anything else you’d like, whether that’s a quick &lt;code&gt;gh&lt;/code&gt; query for open PRs, the latest commit message on main, or (my favorite I’ve seen) live rugby and soccer scores so you can keep half an eye on the match while you work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;off-scene-company-announcements-git-attribution-and-the-curtain-call&quot;&gt;Off scene: company announcements, git attribution, and the curtain call&lt;/h2&gt;
+&lt;p&gt;A few of the touchpoints don’t show up in the main CLI scroll, but they bookend the experience.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Company announcements&lt;/strong&gt; are extra lines printed in the welcome box on launch, via &lt;code&gt;companyAnnouncements&lt;/code&gt; in &lt;code&gt;settings.json&lt;/code&gt;. It’s an array of strings, each rendered on its own line in that box (under text saying &lt;em&gt;Message from &amp;lt;account name&amp;gt;’s Organization:&lt;/em&gt;):&lt;/p&gt;
+&lt;pre data-lang=&quot;json&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;companyAnnouncements&lt;/span&gt;&lt;span&gt;&amp;quot;: [
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;🥀 Welcome, bébé. The stage is set. Moira Rose is at your service.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;]
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Which renders as a welcome banner on every launch:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/costuming-claude-code/moira-announcement.png&quot; alt=&quot;Claude Code launch screen showing the version header (Claude Code v2.1.119, Opus 4.7, Claude Pro), followed by the announcement line “🥀 Welcome, bébé. The stage is set. Moira Rose is at your service.” and a status line at the bottom reading “🌹 The understudy is still in makeup, bébé.”&quot; /&gt;&lt;/p&gt;
+
+
+&lt;div
+  class=&quot;my-4 flex flex-col rounded-lg bg-(--admonition-bg)&quot;
+  style=&quot;--admonition-bg: var(--admonition-tip);&quot;
+&gt;
+  &lt;div class=&quot;flex items-center rounded-t-lg bg-(--admonition-bg) p-1&quot;&gt;
+    &lt;div
+      class=&quot;mx-2 h-4 w-4 text-[0px] [background:var(--url)_center_center_no-repeat] dark:invert&quot;
+      style=&quot;--url: url(icons/tip.svg);&quot;
+    &gt;
+      tip
+    &lt;/div&gt;
+    &lt;span&gt;&lt;strong&gt;When this is actually useful&lt;/strong&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;pl-4&quot;&gt;&lt;p&gt;This is mostly meant for org admins to push notices through managed settings — code freezes, version updates, that kind of thing — but it works in a personal config too, and is a nice place for note-to-self info you want on every launch.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Git attribution&lt;/strong&gt; is the trailer Claude Code adds to commits and PR descriptions when it makes them. The &lt;code&gt;attribution&lt;/code&gt; key overrides both:&lt;/p&gt;
+&lt;pre data-lang=&quot;json&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;attribution&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;commit&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;🌹 Composed in collaboration with Moira Rose, via Claude Code&lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;\n\n&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Co-Authored-By: Moira Rose &amp;lt;moira@roseapothecary.com&amp;gt;&lt;/span&gt;&lt;span&gt;&amp;quot;,
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;pr&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;🌹 A Moira Rose production. Generated with Claude Code.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Every commit Moira makes now ends with that line:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/costuming-claude-code/moira-attribution.png&quot; alt=&quot;A git log entry showing a commit dated Mon May 11 07:01:35 2026 with the message “Add ‘Costuming Claude Code’ post.” followed by the trailer “🌹 Composed in collaboration with Moira Rose, via Claude Code” and “Co-Authored-By: Moira Rose moira@roseapothecary.com”&quot; /&gt;&lt;/p&gt;
+
+
+&lt;div
+  class=&quot;my-4 flex flex-col rounded-lg bg-(--admonition-bg)&quot;
+  style=&quot;--admonition-bg: var(--admonition-tip);&quot;
+&gt;
+  &lt;div class=&quot;flex items-center rounded-t-lg bg-(--admonition-bg) p-1&quot;&gt;
+    &lt;div
+      class=&quot;mx-2 h-4 w-4 text-[0px] [background:var(--url)_center_center_no-repeat] dark:invert&quot;
+      style=&quot;--url: url(icons/tip.svg);&quot;
+    &gt;
+      tip
+    &lt;/div&gt;
+    &lt;span&gt;&lt;strong&gt;When this is actually useful&lt;/strong&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;pl-4&quot;&gt;&lt;p&gt;Tracking which commits had AI involvement, if your team or compliance process cares about that. You can also set both fields to &lt;code&gt;&quot;&quot;&lt;/code&gt; to remove the trailer entirely.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;The curtain call&lt;/strong&gt; is the one piece that crosses from “outer experience” into actual extensibility, but I wanted Moira to sign off audibly. &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/hooks-guide&quot;&gt;Hooks&lt;/a&gt; are shell commands that fire on Claude Code lifecycle events like &lt;code&gt;SessionStart&lt;/code&gt;, &lt;code&gt;SessionEnd&lt;/code&gt;, &lt;code&gt;Stop&lt;/code&gt;, &lt;code&gt;PreToolUse&lt;/code&gt;, &lt;code&gt;PostToolUse&lt;/code&gt;, and &lt;code&gt;Notification&lt;/code&gt;. macOS happens to ship a text-to-speech voice literally named &lt;em&gt;Moira&lt;/em&gt; (Irish English), so I added a &lt;code&gt;SessionEnd&lt;/code&gt; hook that has my laptop say something out loud when I close the session:&lt;/p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;#!/bin/bash
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;LINES&lt;/span&gt;&lt;span&gt;=(
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Curtain.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;And, scene.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;I love this journey for you.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Best wishes. Warmest regards.&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;LINE&lt;/span&gt;&lt;span&gt;=&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;LINES[&lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;RANDOM &lt;/span&gt;&lt;span&gt;% $&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;{&lt;/span&gt;&lt;span&gt;#&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;LINES[@]}]&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;}&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;{ &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;say -v&lt;/span&gt;&lt;span&gt; Moira &amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;LINE&lt;/span&gt;&lt;span&gt;&amp;quot; &lt;/span&gt;&lt;span style=&quot;color:#d08770;&quot;&gt;2&lt;/span&gt;&lt;span&gt;&amp;gt;/dev/null || &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;say &lt;/span&gt;&lt;span&gt;&amp;quot;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;LINE&lt;/span&gt;&lt;span&gt;&amp;quot;; } &amp;amp;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Registered in &lt;code&gt;settings.json&lt;/code&gt;:&lt;/p&gt;
+&lt;pre data-lang=&quot;json&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;hooks&lt;/span&gt;&lt;span&gt;&amp;quot;: {
+&lt;/span&gt;&lt;span&gt;  &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;SessionEnd&lt;/span&gt;&lt;span&gt;&amp;quot;: [
+&lt;/span&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;span&gt;      &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;hooks&lt;/span&gt;&lt;span&gt;&amp;quot;: [
+&lt;/span&gt;&lt;span&gt;        { &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;type&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;command&lt;/span&gt;&lt;span&gt;&amp;quot;, &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;command&lt;/span&gt;&lt;span&gt;&amp;quot;: &amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;~/.claude/moira-curtain-call.sh&lt;/span&gt;&lt;span&gt;&amp;quot; }
+&lt;/span&gt;&lt;span&gt;      ]
+&lt;/span&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;span&gt;  ]
+&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;&amp;amp;&lt;/code&gt; at the end backgrounds &lt;code&gt;say&lt;/code&gt; so the hook returns immediately and Claude Code finishes exiting, while she keeps talking after the process is gone.&lt;/p&gt;
+
+
+&lt;div
+  class=&quot;my-4 flex flex-col rounded-lg bg-(--admonition-bg)&quot;
+  style=&quot;--admonition-bg: var(--admonition-tip);&quot;
+&gt;
+  &lt;div class=&quot;flex items-center rounded-t-lg bg-(--admonition-bg) p-1&quot;&gt;
+    &lt;div
+      class=&quot;mx-2 h-4 w-4 text-[0px] [background:var(--url)_center_center_no-repeat] dark:invert&quot;
+      style=&quot;--url: url(icons/tip.svg);&quot;
+    &gt;
+      tip
+    &lt;/div&gt;
+    &lt;span&gt;&lt;strong&gt;When this is actually useful&lt;/strong&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;pl-4&quot;&gt;&lt;p&gt;Hooks are kind of the general-purpose way to inject determinism into an otherwise nondeterministic AI process. &lt;code&gt;PreToolUse&lt;/code&gt; lets you inspect or block a command before it runs (think “no &lt;code&gt;rm -rf&lt;/code&gt; outside the project dir”), &lt;code&gt;PostToolUse&lt;/code&gt; is great for logging shell commands to an audit file, &lt;code&gt;Stop&lt;/code&gt; can ping you when a long turn finishes, and &lt;code&gt;Notification&lt;/code&gt; can ping you when Claude is stuck waiting on input.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;(Also, since we’re on the subject of hooks, the thing I’ll keep saying: prompts aren’t guardrails, hooks are. If there’s something Claude really shouldn’t do, a &lt;code&gt;PreToolUse&lt;/code&gt; hook that actually blocks it is more reliable than asking nicely in your &lt;code&gt;CLAUDE.md&lt;/code&gt; and hoping the model holds the line.)&lt;/p&gt;
+&lt;h2 id=&quot;swapping-costumes&quot;&gt;Swapping costumes&lt;/h2&gt;
+&lt;p&gt;Once Moira was working, I started building the same setup for Worf, Bob Ross, and a few other characters. I kept one settings file per character on disk, and pointed &lt;code&gt;~/.claude/settings.json&lt;/code&gt; at whichever one I wanted activated.&lt;/p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#c0c5ce;&quot;&gt;&lt;code&gt;&lt;span&gt;~/.claude/
+&lt;/span&gt;&lt;span&gt;├── settings.json              → symlink to settings.moira.json
+&lt;/span&gt;&lt;span&gt;├── settings.default.json      # vanilla Claude Code (or just `{}`)
+&lt;/span&gt;&lt;span&gt;├── settings.moira.json        # full Moira costume
+&lt;/span&gt;&lt;span&gt;├── settings.worf.json         # full Worf costume
+&lt;/span&gt;&lt;span&gt;├── output-styles/
+&lt;/span&gt;&lt;span&gt;│   ├── moira-rose.md
+&lt;/span&gt;&lt;span&gt;│   └── worf.md
+&lt;/span&gt;&lt;span&gt;├── statusline-moira.sh
+&lt;/span&gt;&lt;span&gt;├── statusline-worf.sh
+&lt;/span&gt;&lt;span&gt;└── themes/
+&lt;/span&gt;&lt;span&gt;    ├── moira.json
+&lt;/span&gt;&lt;span&gt;    └── worf.json
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The supporting files (scripts, output styles, themes) all sit on disk together, but only the active &lt;code&gt;settings.json&lt;/code&gt; decides which ones get wired up. A small shell function in &lt;code&gt;.zshrc&lt;/code&gt; makes the swap one command:&lt;/p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#8fa1b3;&quot;&gt;costume&lt;/span&gt;&lt;span&gt;() {
+&lt;/span&gt;&lt;span&gt;  &lt;/span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;local &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name&lt;/span&gt;&lt;span&gt;=$&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;{&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;1&lt;/span&gt;&lt;span&gt;:-&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;default}
+&lt;/span&gt;&lt;span&gt;  &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;ln -sf ~&lt;/span&gt;&lt;span&gt;/.claude/settings.$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name&lt;/span&gt;&lt;span&gt;.json &lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;~&lt;/span&gt;&lt;span&gt;/.claude/settings.json
+&lt;/span&gt;&lt;span&gt;  &lt;/span&gt;&lt;span style=&quot;color:#96b5b4;&quot;&gt;echo &lt;/span&gt;&lt;span&gt;&amp;quot;&lt;/span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;Costume: &lt;/span&gt;&lt;span&gt;$&lt;/span&gt;&lt;span style=&quot;color:#bf616a;&quot;&gt;name&lt;/span&gt;&lt;span&gt;&amp;quot;
+&lt;/span&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now &lt;code&gt;costume moira&lt;/code&gt; puts the whole getup on, &lt;code&gt;costume worf&lt;/code&gt; swaps it for the Klingon, and &lt;code&gt;costume&lt;/code&gt; on its own takes everything off and you’re back to plain Claude Code. The next session picks up whichever one was left dangling.&lt;/p&gt;
+&lt;p&gt;The thing I didn’t expect was how much of the charm comes from &lt;em&gt;forgetting&lt;/em&gt; I’d put one on. I’d swap to Worf for fun, get pulled into something else, come back hours later to fire off a mundane question about token costs, and read something like:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A worthy question. A warrior must know the cost of every weapon he carries.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;That’s the moment I’d remember oh right, I left Worf loaded. The surprise really is most of the fun.&lt;/p&gt;
+&lt;p&gt;None of this makes me a better engineer, but it does add some humor to living in Claude Code for hours of my life. Somewhere between the wine-colored prompts and my laptop murmuring &lt;em&gt;curtain&lt;/em&gt; into the room when I close the session, the whole thing has started to feel like the right amount of theatre for a Tuesday afternoon.&lt;/p&gt;
+</description>
+      <pubDate>Sun, 10 May 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://sdeaton.com/blog/costuming-claude-code/</guid>
+      <dc:date>2026-05-10T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] New blog theme again</title>
+      <link>https://amanhimself.dev/blog/new-blog-theme-again/</link>
+      <description>In January 2025, I shared an update on updating the blog theme and code block themes. The Astro setup that builds this blog uses Shiki, which makes it easier to switch between any supported code theme. What about the blog&#39;s primary and accent colors?</description>
+      <pubDate>Sat, 09 May 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/new-blog-theme-again/</guid>
+      <dc:date>2026-05-09T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Best Diagram and Flowchart Tools for 2026</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/best-diagram-and-flowchart-tools/</link>
+      <description>&lt;p&gt;Diagrams and flowcharts are visual tools that teams use to create process flows, network diagrams, system models, and visuals from text, data, Excel, code, or ideas. They support collaboration, AI features, templates, shapes, cloud apps, security, sharing, planning, and documentation for products, projects, and companies. Today, we explore the best diagramming software for 2026, uncover...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/best-diagram-and-flowchart-tools/&quot;&gt;Best Diagram and Flowchart Tools for 2026&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 08 May 2026 12:57:46 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/best-diagram-and-flowchart-tools/</guid>
+      <dc:date>2026-05-08T12:57:46Z</dc:date>
+    </item>
+    <item>
+      <title>[Dachary Carey] Can Agent Skills Make Output Worse?</title>
+      <link>https://dacharycarey.com/2026/05/07/can-agent-skills-make-output-worse/</link>
+      <description>&lt;p&gt;In the last ~6 months, Agent Skills have gone from a new feature introduced by Claude Code to a widely adopted paradigm across the industry. Companies that want to signal they understand customer AI adoption and consider it as part of the developer experience have been publishing official skills. I have been part of such an effort at my own company, where I have learned a ton from our experience and from analyzing other releases across the industry. I went in expecting a documentation-pipeline problem. I came out understanding that official skills are a full product surface; one that can actively make your customers&#39; agent output worse if you ship them naively.&lt;/p&gt;</description>
+      <pubDate>Fri, 08 May 2026 03:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://dacharycarey.com/2026/05/07/can-agent-skills-make-output-worse/</guid>
+      <dc:date>2026-05-08T03:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Passo Uno] Most vibe-coded tools are not for you</title>
+      <link>https://passo.uno/tools-slop-is-a-problem/</link>
+      <description>&lt;p&gt;AI is inflicting a proliferation of tools, in the utensils’ sense. Folks are conjuring all sorts of programs out of thin air, unrestrained. Someone confessed on Hacker News to having created a hundred custom utilities. Linked to this increase is the promotional noise: Not a day passes without someone claiming they’ve made a tool to solve a fundamentally silly problem in some subreddit thanks to something they vibe coded overnight.&lt;/p&gt;</description>
+      <pubDate>Wed, 06 May 2026 12:30:00 -0000</pubDate>
+      <guid isPermaLink="true">https://passo.uno/tools-slop-is-a-problem/</guid>
+      <dc:date>2026-05-06T12:30:00Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Developer Documentation 101: Why It Matters and How to Get It Right</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/developer-documentation-101/</link>
+      <description>&lt;p&gt;As IT systems grow in complexity, clear developer documentation has become a cornerstone for teams to work efficiently. A simple README is no longer sufficient; developers, DevOps engineers, QA, and even product managers require comprehensive resources to understand, use, and maintain software effectively. Poor documentation results in delays, bugs, security vulnerabilities, and high operational costs....&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/developer-documentation-101/&quot;&gt;Developer Documentation 101: Why It Matters and How to Get It Right&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 06 May 2026 11:15:33 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/developer-documentation-101/</guid>
+      <dc:date>2026-05-06T11:15:33Z</dc:date>
+    </item>
+    <item>
+      <title>[Kevin R. Kuhl] Terry Godier: &quot;The Boring Internet&quot;</title>
+      <link>https://www.kevinrkuhl.com/blog/2026/05/godier-the-boring-internet/</link>
+      <description>&lt;p&gt;&lt;a href=&quot;https://www.terrygodier.com/the-boring-internet&quot;&gt;&lt;em&gt;The Boring Internet&lt;/em&gt;&lt;/a&gt; is a wonderful post by &lt;a href=&quot;https://www.terrygodier.com/&quot;&gt;Terry Godier&lt;/a&gt; about what’s dying and what remains as the internet changes. It echoes my own sentiments about &lt;a href=&quot;https://www.kevinrkuhl.com/blog/2026/02/rss-syndication-and-the-future-of-the-web/&quot;&gt;RSS surviving its own death&lt;/a&gt;. The core idea is that we shouldn’t care about the platforms, even if they once offered us convenience; we should care about the standards and ways of communicating.&lt;/p&gt;
+&lt;p&gt;Anyways, the core idea of what we should care about aren&amp;rsquo;t the platforms, even though they offered us things. We should care about standards and ways of communicating:&lt;/p&gt;
+&lt;blockquote class=&quot;my-6 p-4 border-l-4 border-gray-300 bg-gray-50 italic&quot;&gt;
+    
+    &lt;p class=&quot;mb-0&quot;&gt;&lt;p&gt;The layer where every human activity became a venture-backed destination, every destination became a feed, every feed became ad inventory, and every ad market became a machine for producing more things to interrupt you with.&lt;/p&gt;
+&lt;p&gt;Underneath that layer is another internet: older, slower, less polished, harder to monetize, and much harder to kill.&lt;/p&gt;
+&lt;p&gt;It is not utopia. It is full of spam, abandoned servers, broken clients, hostile nodes, strange old commands, half-maintained software, and people arguing in plain text about things no normal person should care about.&lt;/p&gt;
+&lt;p&gt;But it has one enormous advantage over the platforms that replaced it in your imagination.&lt;/p&gt;
+&lt;p&gt;No one owns it.&lt;/p&gt;
+&lt;/p&gt;
+
+    
+    
+&lt;/blockquote&gt;
+&lt;p&gt;ATProto and ActivityPub are the latest incarnations of this philosophy. As the major platforms begin to sunset or pivot, &lt;em&gt;protocols&lt;/em&gt; are where I’m looking to build new ways of publishing and connecting.&lt;/p&gt;
+&lt;p&gt;Also, &lt;a href=&quot;https://www.terrygodier.com/phantom-obligation&quot;&gt;&lt;em&gt;Phantom Obligation&lt;/em&gt;&lt;/a&gt; on the UX of RSS readers is also excellent.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 05 May 2026 23:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://www.kevinrkuhl.com/blog/2026/05/godier-the-boring-internet/</guid>
+      <dc:date>2026-05-05T23:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] What’s new: Expanded content in our Using Generative AI in Technical Writing course</title>
+      <link>https://www.cherryleaf.com/2026/05/whats-new-expanded-content-in-our-using-generative-ai-in-technical-writing-course/</link>
+      <description>&lt;p&gt;We&amp;#8217;re pleased to announce a significant update to Cherryleaf&amp;#8217;s Using Generative AI in Technical Writing elearning course. This update brings more ways to build practical, real-world skills. More practice, more confidence Learning by doing is central to effective elearning. We&amp;#8217;ve added 31 new online practice exercises throughout the course. These give learners more hands-on opportunities...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/05/whats-new-expanded-content-in-our-using-generative-ai-in-technical-writing-course/&quot; title=&quot;Read What&amp;#8217;s new: Expanded content in our Using Generative AI in Technical Writing course&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/05/whats-new-expanded-content-in-our-using-generative-ai-in-technical-writing-course/&quot;&gt;What&amp;#8217;s new: Expanded content in our Using Generative AI in Technical Writing course&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 05 May 2026 12:28:39 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/05/whats-new-expanded-content-in-our-using-generative-ai-in-technical-writing-course/</guid>
+      <dc:date>2026-05-05T12:28:39Z</dc:date>
+    </item>
+    <item>
+      <title>[Read the Docs (Company Blog)] Ubuntu 26.04 LTS available</title>
+      <link>https://about.readthedocs.com/blog/2026/05/ubuntu-26-04/</link>
+      <description>&lt;p&gt;We are happy to announce that we added support for the latest Ubuntu 26.04 LTS version released in April …&lt;/p&gt;</description>
+      <pubDate>Tue, 05 May 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://about.readthedocs.com/blog/2026/05/ubuntu-26-04/</guid>
+      <dc:date>2026-05-05T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Write the Docs Newsletter] Write the Docs Newsletter – May 2026</title>
+      <link>https://www.writethedocs.org/blog/newsletter-may-2026/</link>
+      <description>Hello to all of my fellow documentation lovers out there. May is blossoming all around me, and I hope it is for you and that you have some time to stop and enjoy the beauty you can find.</description>
+      <pubDate>Tue, 05 May 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://www.writethedocs.org/blog/newsletter-may-2026/</guid>
+      <dc:date>2026-05-05T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Dachary Carey] Astro Removed its llms.txt</title>
+      <link>https://dacharycarey.com/2026/05/04/astro-removed-llms-txt/</link>
+      <description>&lt;p&gt;As I have been re-scoring documentation sites with my updated &lt;code&gt;afdocs&lt;/code&gt; tool, I have had the opportunity to see a snapshot of various docs sites a few weeks apart as the industry is starting to pay a lot more attention to how to make documentation agent-friendly. I got a surprise when I re-scored the docs for &lt;a href=&quot;https://docs.astro.build/en/getting-started/&quot;&gt;Astro&lt;/a&gt;, a web framework that is well-regarded. In the prior scoring run, Astro got a C (78) for agent-friendliness; their new score is an F (59); capped by a missing llms.txt. I wanted to dig into why someone would make a change to make their docs &lt;em&gt;less&lt;/em&gt; agent-friendly, when you have a contrast like last week&#39;s GitHub going out of its way to build their llms.txt into a comprehensive &lt;a href=&quot;https://dacharycarey.com/2026/05/01/github-docs-api-llms-txt/&quot;&gt;agent-discovery layer&lt;/a&gt;.&lt;/p&gt;</description>
+      <pubDate>Mon, 04 May 2026 12:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://dacharycarey.com/2026/05/04/astro-removed-llms-txt/</guid>
+      <dc:date>2026-05-04T12:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Developing internal skills for recurring documentation processes like release notes</title>
+      <link>https://idratherbewriting.com/blog/internal-skills-release-docs</link>
+      <description>My hypothesis this year around AI was that if I develop some agent skills to speed up repeatable processes, it might clear up my bandwidth and free up time for me to work on non-repeatable doc tasks. &lt;i&gt;It appears to be working.&lt;/i&gt;
+        </description>
+      <pubDate>Mon, 04 May 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/internal-skills-release-docs</guid>
+      <dc:date>2026-05-04T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] Week notes 17</title>
+      <link>https://amanhimself.dev/blog/week-notes-17/</link>
+      <description>A heavy week on the docs side. Two things shipped that I had been chewing on for a while, and a couple of small skills came together. Some reading and writing on the side too. - 🧪 Built a docs-ja-translator skill and landed the Japanese tutorial pilot at work. The skill takes an existing MDX document from Expo tutorial, mirrors it under pages/ja/&lt;same-path, preserves frontmatter, JSX tags, code blocks, and link URLs, and translates the prose, headings, link text, and string-valued props into Japanese.</description>
+      <pubDate>Sun, 03 May 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/week-notes-17/</guid>
+      <dc:date>2026-05-03T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[Dachary Carey] GitHub Reimagined llms.txt as an API</title>
+      <link>https://dacharycarey.com/2026/05/01/github-docs-api-llms-txt/</link>
+      <description>&lt;p&gt;I&#39;m working on a new research report that starts by scoring a wide cross-section of documentation sites with &lt;a href=&quot;https://afdocs.dev/&quot;&gt;afdocs&lt;/a&gt;. Consider it an industry-wide audit driven by specific research questions. This has given me an excuse to dig into different platforms, web hosts, documentation sizes, and documentation strategies. I&#39;ve really been surprised and intrigued by the different approaches I&#39;ve seen in the wild, and I have a rich editorial calendar of content to share with you about these findings (when I get the time).&lt;/p&gt;</description>
+      <pubDate>Fri, 01 May 2026 12:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://dacharycarey.com/2026/05/01/github-docs-api-llms-txt/</guid>
+      <dc:date>2026-05-01T12:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Code, Content, and Career Newsletter] Issue 52 - Run Coding Models Locally, and Why Being Overqualified is a Risk</title>
+      <link>https://newsletter.bphogan.com/archive/issue-52-run-coding-models-locally-and-why-being/</link>
+      <description>
+&lt;p&gt;In this issue, you&#39;ll configure a coding agent to use local models, but first, you&#39;ll discover why managers view overqualified candidates as a hiring risk.&lt;/p&gt;
+&lt;h1&gt;You&#39;re Too Good For This Role&lt;/h1&gt;
+&lt;p&gt;If you&#39;ve applied for a role that you&#39;re overqualified for, there&#39;s a good chance you won&#39;t get the job. Most jobs don&#39;t want you to be overqualified.&lt;/p&gt;
+&lt;p&gt;Some people think &quot;overqualified&quot; means &quot;too old and expensive,&quot; but that&#39;s usually not the case. They are hiring for a specific role that solves a specific type of problem they have, and the role they posted comes with a budget that constrains how much they can offer. &lt;/p&gt;
+&lt;p&gt;Here are a few reasons you won&#39;t move forward if you&#39;re overqualified. None of these reasons is meant as a reflection on you or your skills. Hiring someone involves identifying and reducing risk, so managers make a lot of decisions about team fit based on that perspective.&lt;/p&gt;
+&lt;h2&gt;They think you&#39;ll leave&lt;/h2&gt;
+&lt;p&gt;There are legitimate reasons that a person wants to take a step back in their career. I&#39;ve seen engineering managers and directors decide they miss building software and make the switch back to being an individual contributor. I&#39;ve also known people who end up in staff or lead positions that they don&#39;t like, and they want to get back to roles where they just focus on the work rather than larger organizational goals. And in tough economic times, everyone needs work and is willing to take a job with lower pay at a lower level because the bills don&#39;t stop coming just because they&#39;re out of work.&lt;/p&gt;
+&lt;p&gt;So when you apply for a job that&#39;s well below your experience level but insist you&#39;re willing to do the job, the first thing the hiring manager wonders is how long you&#39;re willing to do that job for. If they bring you on and train you, will you be putting in the effort they need, or will you be spending your time looking for something that&#39;s a better fit? Because the work probably won&#39;t be very challenging for you in the long term. The role exists at that level because that&#39;s the level of work the team needs to get done. There are likely more senior members of the team who need to work on more complex things.&lt;/p&gt;
+&lt;h2&gt;They think you&#39;ll have a superiority complex&lt;/h2&gt;
+&lt;p&gt;Managers have to balance the roles on the team, and they&#39;re architecting the team around the role they are hiring for. Hiring someone with more experience for a junior role creates the risk that the person will come in with a &quot;know-it-all&quot; attitude, either intentionally or subconsciously. You have the curse of experience. You&#39;ll see things you&#39;d like to fix. You&#39;ll see things that &quot;should be a different way.&quot;  Sometimes this attitude can bleed over into thinking they know more than the manager or team lead, which causes a whole other set of problems.&lt;/p&gt;
+&lt;p&gt;If you&#39;re in a role where you&#39;re not able to work at your experience level, frustration can come out in uncomfortable ways. You&#39;ll feel bored, unappreciated, and eventually frustrated.&lt;/p&gt;
+&lt;p&gt;I should point out that some managers are insecure and don&#39;t want to be challenged, so they hire people with less experience in an attempt to retain control. &lt;/p&gt;
+&lt;h2&gt;They think you&#39;ll have unrealistic expectations about growth&lt;/h2&gt;
+&lt;p&gt;If you&#39;re in a role that you&#39;re overqualified for, you might get restless and start trying to take on more work outside of your scope of responsibilities. And of course, nobody&#39;s going to stop you from doing that because they&#39;re getting your skills at a discount. But it does eventually lead to you starting to think, &quot;Hey, I&#39;m doing all this extra stuff. Shouldn&#39;t I get a new title and more money?&quot; But that work wasn&#39;t what the company hired you to do or asked you to take on. It shows initiative, but coming in and doing all the extra stuff and expecting a title and pay increase right away when you were explicitly brought in to do something else is not going to be helpful. The role was most likely designed for someone to grow over time. &lt;/p&gt;
+&lt;p&gt;When a manager gets a role approved, there&#39;s a budget for the role. If they hire someone more senior, it&#39;s very hard to get the role reclassified to a more senior role. In fact, many promotions require a business reason for the promotion, and if the team already has a lot of senior people, it&#39;s hard to make the business case for one more.&lt;/p&gt;
+&lt;p&gt;There&#39;s a huge difference between what you can do and what someone needs you to do. This mismatch often causes managers to look for people in the pool who truly are a better fit for the role.&lt;/p&gt;
+&lt;p&gt;All of the things I mention here are things managers think about as they review applications and have interviews. It doesn&#39;t mean you shouldn&#39;t apply for roles, but it does mean you should be realistic about your chances, and you shouldn&#39;t be disqualified if they tell you early on it&#39;s not a good fit for you.&lt;/p&gt;
+&lt;h1&gt;Things To Explore&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/AlexsJones/llmfit?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-52-run-coding-models-locally-and-why-being&quot; target=&quot;_blank&quot;&gt;LLMFit&lt;/a&gt; is a terminal-based tool that shows you what models will run well on your hardware. It shows installed models and available models.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://localsend.org/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-52-run-coding-models-locally-and-why-being&quot; target=&quot;_blank&quot;&gt;LocalSend&lt;/a&gt; is a Windows, Mac, Linux, and mobile app that lets you send files, folders, and text between devices on your local network.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Create a Local Coding Environment with Ollama and OpenCode&lt;/h1&gt;
+&lt;p&gt;In the previous issue, you &lt;a href=&quot;https://newsletter.bphogan.com/archive/issue-51-run-a-local-llm-and-discover-why-llms/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-52-run-coding-models-locally-and-why-being&quot; target=&quot;_blank&quot;&gt;set up Ollama locally&lt;/a&gt; and used a few of its features. One thing you didn&#39;t get to explore is how to set up your own LLM-driven coding environment.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://opencode.ai/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-52-run-coding-models-locally-and-why-being&quot; target=&quot;_blank&quot;&gt;OpenCode&lt;/a&gt; is an open-source terminal-based coding agent. It&#39;s an interactive interface that connects a large language model to your codebase and gives it tools to read files, run commands, and make edits on your behalf.  &lt;/p&gt;
+&lt;p&gt;Install OpenCode using the official installation script:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;curl&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-fsSL&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;https://opencode.ai/install&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The installation script downloads OpenCode and displays a message upon completion:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;                                 ▄
+█▀▀█ █▀▀█ █▀▀█ █▀▀▄ █▀▀▀ █▀▀█ █▀▀█ █▀▀█
+█░░█ █░░█ █▀▀▀ █░░█ █░░░ █░░█ █░░█ █▀▀▀
+▀▀▀▀ █▀▀▀ ▀▀▀▀ ▀  ▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀
+
+
+OpenCode includes free models, to start:
+
+cd &amp;lt;project&amp;gt;  # Open directory
+opencode      # Run command
+
+For more information visit https://opencode.ai/docs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The script attempts to place &lt;code&gt;opencode&lt;/code&gt;&#39;s binary on your &lt;code&gt;PATH&lt;/code&gt;. On Linux and macOS, you&#39;ll find it in &lt;code&gt;~/.opencode/bin/opencode&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;Open a new terminal window and run the following command to verify that the &lt;code&gt;opencode&lt;/code&gt; binary is available:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;which&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;opencode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you get no reply, modify your path to include &lt;code&gt;~/.opencode/bin/opencode&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;Create a new project directory and run OpenCode:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mkdir&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;testproject&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;testproject
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;opencode&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You&#39;ll see the OpenCode interface, and it will default to a cloud-based model you can use for free:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;The OpenCode interface&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/52/opencode-open.png&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;By default, OpenCode allows dangerous actions like writing files on the file system. If you&#39;re used to Claude Code, which defaults to asking permission first, this will catch you off guard. &lt;/p&gt;
+&lt;p&gt;Press &lt;code&gt;CTRL+D&lt;/code&gt; to quit OpenCode. &lt;/p&gt;
+&lt;p&gt;Create the file &lt;code&gt;~/.config/opencode/opencode.json&lt;/code&gt; and add the following code to configure default permissions:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;$schema&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://opencode.ai/config.json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;permission&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;read&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;allow&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;write&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ask&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;edit&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ask&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;bash&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ask&quot;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This tells OpenCode to ask permission to write and edit files, but allows reading them. It also asks permission to run Bash commands. Change these to suit your needs.&lt;/p&gt;
+&lt;p&gt;Next, you&#39;ll use Ollama to get a coding model and configure OpenCode to talk to it.&lt;/p&gt;
+&lt;h2&gt;Get and Configure a Coding model with Ollama&lt;/h2&gt;
+&lt;p&gt;First, fetch a model trained on coding data. Many models have &quot;coding variants&quot; that have been trained on far more code, debugging conversations, and tool-use examples, and those perform better in agent workflows like OpenCode.&lt;/p&gt;
+&lt;p&gt;Use Ollama to download and run the &lt;code&gt;qwen3-coder&lt;/code&gt; model. This is an 18GB model,  but your machine needs 32GB of unified memory to be useful, and 48+ GB to run at the contexts that make it worthwhile for coding work. A 32GB Mac will work with a small context window. Coding models require significantly more resources to run locally than other models. &lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;ollama&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;run&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;qwen3-coder&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In another Terminal window, run &lt;code&gt;ollama ps&lt;/code&gt; to review how the model is running:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;NAME                  ID              SIZE     PROCESSOR    CONTEXT    UNTIL
+qwen3-coder:latest    06c1097efce0    18 GB    100% GPU     4096       4 minutes from now
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In this example, the model runs entirely on the GPU, but it has a very small &lt;em&gt;context window.&lt;/em&gt; The context window is the maximum amount of text (measured in tokens) the model can hold in memory at once, including your prompt, the conversation history, any files or code you&#39;ve shared, and the model&#39;s own response.&lt;/p&gt;
+&lt;p&gt;Ollama sets the context window either by a slider in the settings of the desktop app, or by using an environment variable, or by using a default calculation. You can set the context window multiple ways, but the most consistent way is to use Ollama to create a variant of the model with the context baked in. Ollama uses a method similar to Docker, so this new variant you&#39;ll create won&#39;t take up extra disk space; it&#39;s another layer on top of the existing model.&lt;/p&gt;
+&lt;p&gt;Your context window has to fit alongside the model&#39;s weights in your machine&#39;s memory, so the right value is whatever leaves headroom for the OS and the apps you actually use.&lt;/p&gt;
+&lt;p&gt;As a rough guide, if the model fits comfortably in roughly half your available memory, you can usually push to its architectural max. If it&#39;s eating two-thirds or more, stick to 32k or 64k and let the rest breathe. A 16 GB machine running a 10 GB model is in tight quarters and should treat 16k as the practical ceiling. A 64 GB machine running the same model can comfortably run at 128k.&lt;/p&gt;
+&lt;p&gt;Coding agents need at least 64k of context to be useful. If your hardware can&#39;t sustain that without spilling layers to the CPU, you&#39;re better off with a smaller model at full context than a larger model that&#39;s been clipped. Use &lt;code&gt;ollama ps&lt;/code&gt; for the GPU/CPU split to verify this.&lt;/p&gt;
+&lt;p&gt;Within the Qwen3-coder Ollama session, run the following commands to create a new model called &lt;code&gt;qwen3-coder:64k&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; /set parameter num_ctx 65536 
+&amp;gt;&amp;gt;&amp;gt; /save qwen3-coder:64k 
+&amp;gt;&amp;gt;&amp;gt; /bye
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you have a &lt;code&gt;qwen3-coder:64k&lt;/code&gt; model that always loads with 64k context, no matter what client calls it.&lt;/p&gt;
+&lt;p&gt;Run the new model:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;ollama&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;run&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;qwen3-coder:64k
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In another Terminal window, run the &lt;code&gt;ollama ps&lt;/code&gt; command to verify the new context setting:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;NAME               ID              SIZE     PROCESSOR    CONTEXT    UNTIL
+qwen3-coder:64k    9b4c888d5300    25 GB    100% GPU     65536      4 minutes from now
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You now have a local model you can use for coding. Now you need OpenCode to know how to use it.&lt;/p&gt;
+&lt;h2&gt;Configure Ollama models in OpenCode&lt;/h2&gt;
+&lt;p&gt;You can use Ollama models with OpenCode. Ollama has a built-in feature to launch OpenCode, but you&#39;re going to configure OpenCode to talk to Ollama instead, because this will set you up to have more control over the configuration, and also help you understand how to use a different model provider like LMStudio in the future.&lt;/p&gt;
+&lt;p&gt;OpenCode talks to Ollama through Ollama&#39;s OpenAI-compatible endpoint at &lt;code&gt;http://localhost:11434/v1&lt;/code&gt;. To make a model available, you add a provider block to OpenCode&#39;s config file and a matching auth entry to OpenCode&#39;s &lt;code&gt;auth.json&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;First, add the auth information: Edit the file &lt;code&gt;~/.local/share/opencode/auth.json&lt;/code&gt; and add the following entry for Ollama:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;ollama&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;api&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ollama&quot;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ollama doesn&#39;t validate API keys, but OpenCode requires an entry before it will route requests. Any non-empty string works for &lt;code&gt;key&lt;/code&gt;. If you leave this step out, OpenCode will show the provider in &lt;code&gt;/models&lt;/code&gt; but fail on the first request.&lt;/p&gt;
+&lt;p&gt;Now you can add models to OpenCode&#39;s list. To do that, you need the names of the models you want to add.&lt;/p&gt;
+&lt;p&gt;Run &lt;code&gt;ollama list&lt;/code&gt; to get the names:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;NAME                  ID              SIZE     MODIFIED
+qwen3-coder:latest    06c1097efce0    20 GB    2 days ago
+qwen3-coder:64k       a1b2c3d4e5f6    20 GB    1 hour ago
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;NAME&lt;/code&gt; column is the string you need. Copy it exactly as you see it, including the tag after the colon. &lt;code&gt;qwen3-coder:64k&lt;/code&gt; and &lt;code&gt;qwen3-coder&lt;/code&gt; are different models as far as Ollama is concerned, and a mismatch produces a &lt;code&gt;model not found&lt;/code&gt; error at request time, not at config-load time.&lt;/p&gt;
+&lt;p&gt;Edit &lt;code&gt;~/.config/opencode/opencode.json&lt;/code&gt; and add the &lt;code&gt;qwen3-coder:64k&lt;/code&gt; model you created to the &lt;code&gt;ollama&lt;/code&gt; provider section. Or add the Ollama provider section if it doesn&#39;t exist:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;$schema&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://opencode.ai/config.json&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;permission&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;read&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;allow&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;write&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ask&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;edit&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ask&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;bash&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ask&quot;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;provider&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;ollama&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;npm&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;@ai-sdk/openai-compatible&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Ollama&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;baseURL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://localhost:11434/v1&quot;&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;models&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;qwen3-coder:64k&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Qwen3 Coder (64k)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;          &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;limit&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;context&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;65536&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;output&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16384&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here&#39;s what the keys mean&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;provider.ollama&lt;/code&gt;: the provider ID. You choose this. It becomes the prefix in model selectors (&lt;code&gt;ollama/qwen3-coder:64k&lt;/code&gt;) and must match the top-level key in &lt;code&gt;auth.json&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm&lt;/code&gt;: the AI SDK adapter package. Use &lt;code&gt;@ai-sdk/openai-compatible&lt;/code&gt; for Ollama, LM Studio, vLLM, and anything else that speaks the OpenAI API shape.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;name&lt;/code&gt; (provider-level): the display name in the OpenCode UI. Optional, but useful when you have multiple local providers.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;options.baseURL&lt;/code&gt;: where the API lives. For local Ollama, always &lt;code&gt;http://localhost:11434/v1&lt;/code&gt;. The trailing &lt;code&gt;/v1&lt;/code&gt; is required; without it, you&#39;re hitting Ollama&#39;s native API, not the OpenAI-compatible one.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;models&lt;/code&gt;: a map where each key is a model name from the &lt;code&gt;ollama list&lt;/code&gt; command, and each value is that model&#39;s configuration.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;models.&amp;lt;id&amp;gt;.name&lt;/code&gt;: the display name for the model. Optional; defaults to the ID.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;models.&amp;lt;id&amp;gt;.limit&lt;/code&gt;: Tells OpenCode how much context and output the model supports so it can manage context pressure. Without &lt;code&gt;limit&lt;/code&gt;, OpenCode doesn&#39;t know your model&#39;s window and can&#39;t warn you when you&#39;re running out.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Qwen3-Coder is a coding model. Its job is generating code, sometimes whole files at a time, so a more generous output budget makes sense. An output limit of &lt;code&gt;16384&lt;/code&gt; gives it room to write a substantial file at once.&lt;/p&gt;
+&lt;p&gt;Once you have your configurations in place, run OpenCode again and use the &lt;code&gt;/models&lt;/code&gt; command. Your Ollama models will be available under the &lt;code&gt;Ollama&lt;/code&gt; section in the list:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Models list&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/52/opencode-models.png&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;Select the &lt;code&gt;Qwen3 Coder (64k)&lt;/code&gt; model from the list.&lt;/p&gt;
+&lt;p&gt;Now test it by building a small Node.js server.&lt;/p&gt;
+&lt;p&gt;Enter a prompt like this:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Create a basic &quot;Hello World&quot; HTTP server using node.js with a single endpoint at the root that returns a JSON response.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img alt=&quot;OpenCode thinking and working&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/52/opencode-coding.png&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;It confirms what you want to do and then checks to see if Node.js is installed. And because you set permissions earlier, it asks you if it can use Bash commands to check to see if Node is installed. You can choose to allow it once or always allow it. Allow the command to run. &lt;/p&gt;
+&lt;p&gt;Notice that the sidebar shows you the tokens used, along with the context size used. This is based on the limits you set in the model definition in the &lt;code&gt;opencode.json&lt;/code&gt; configuration file.&lt;/p&gt;
+&lt;p&gt;OpenCode then takes a shot at writing this small program:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;OpenCode thinking and working&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/52/opencode-create-file.png&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;Again, because you told OpenCode it has to ask for permissions to write, it shows you what it wants to write so you can inspect it before you allow it.&lt;/p&gt;
+&lt;p&gt;Continue working with OpenCode until you have a working server.&lt;/p&gt;
+&lt;p&gt;When you&#39;re done, use &lt;code&gt;CTRL-D&lt;/code&gt; to quit OpenCode.&lt;/p&gt;
+&lt;p&gt;You now have a local LLM-driven coding environment that keeps all of your data on your machine. The performance you get depends on the hardware you use, but you can use this setup for smaller tasks or things that aren&#39;t time-sensitive, which can ultimately reduce your monthly usage on the cloud platforms.&lt;/p&gt;
+&lt;h1&gt;Parting Thoughts&lt;/h1&gt;
+&lt;p&gt;Before the next issue, think about the following:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Now that you understand how being overqualified is risky to managers, what can you do to reassure them that you&#39;d still be a great fit for the team?&lt;/li&gt;
+&lt;li&gt;Try adding another model to your system. Download the model, create a variant with the context set, and add it to the OpenCode configuration.&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;opencode web&lt;/code&gt; to launch OpenCode in your browser using a web interface instead of the terminal. Visit &lt;code&gt;http://127.0.0.1:4096/&lt;/code&gt; to access it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Thanks for reading. See you next month.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 30 Apr 2026 22:53:42 -0000</pubDate>
+      <guid isPermaLink="true">https://newsletter.bphogan.com/archive/issue-52-run-coding-models-locally-and-why-being/</guid>
+      <dc:date>2026-04-30T22:53:42Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Master AI documentation projects this June</title>
+      <link>https://www.cherryleaf.com/2026/04/master-ai-documentation-projects-this-june/</link>
+      <description>&lt;p&gt;We&amp;#8217;ve scheduled our next Managing and mastering documentation projects with AI course. It will be held on the mornings of 17th and 18th June 2026. We&amp;#8217;ve reserved May for private courses. The course helps documentation project managers and senior writers use AI for strategic advantages, so they can transform traditional workflows into efficient, high-quality, and...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/04/master-ai-documentation-projects-this-june/&quot; title=&quot;Read Master AI documentation projects this June&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/04/master-ai-documentation-projects-this-june/&quot;&gt;Master AI documentation projects this June&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 30 Apr 2026 12:00:44 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/04/master-ai-documentation-projects-this-june/</guid>
+      <dc:date>2026-04-30T12:00:44Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] The AI workflow war</title>
+      <link>https://www.cherryleaf.com/2026/04/is-the-ai-race-actually-a-battle-over-workflows/</link>
+      <description>&lt;p&gt;Which AI vendor is going to come out on top: Anthropic, Google, Microsoft, OpenAI? At the moment, they&amp;#8217;re all great at general tasks, and the gap between them keeps shrinking. So the real competition has moved somewhere less glamorous: into your calendar, your inbox, your Salesforce instance, and your legal review queue. In other words,...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/04/is-the-ai-race-actually-a-battle-over-workflows/&quot; title=&quot;Read The AI workflow war&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/04/is-the-ai-race-actually-a-battle-over-workflows/&quot;&gt;The AI workflow war&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 29 Apr 2026 13:35:18 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/04/is-the-ai-race-actually-a-battle-over-workflows/</guid>
+      <dc:date>2026-04-29T13:35:18Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] New: 50+ Interactive Practice Exercises Added to Our Technical Writing Course</title>
+      <link>https://www.cherryleaf.com/2026/04/new-50-interactive-practice-exercises-added-to-our-technical-writing-course/</link>
+      <description>&lt;p&gt;If you&amp;#8217;ve been considering our Technical Author and Technical Writing training course, there&amp;#8217;s never been a better time to enrol. We&amp;#8217;ve just added over 50 optional interactive practice exercises throughout the course, designed to help you apply what you&amp;#8217;re learning as you go. Why practice exercises matter Technical writing is a practical skill. Reading about...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/04/new-50-interactive-practice-exercises-added-to-our-technical-writing-course/&quot; title=&quot;Read New: 50+ Interactive Practice Exercises Added to Our Technical Writing Course&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/04/new-50-interactive-practice-exercises-added-to-our-technical-writing-course/&quot;&gt;New: 50+ Interactive Practice Exercises Added to Our Technical Writing Course&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 28 Apr 2026 12:29:38 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/04/new-50-interactive-practice-exercises-added-to-our-technical-writing-course/</guid>
+      <dc:date>2026-04-28T12:29:38Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Looking back at the AI Book Club one year in</title>
+      <link>https://idratherbewriting.com/blog/looking-at-book-club-one-year-in</link>
+      <description>
+        </description>
+      <pubDate>Tue, 28 Apr 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/looking-at-book-club-one-year-in</guid>
+      <dc:date>2026-04-28T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] On pace and value -- why is moving slow boring?</title>
+      <link>https://idratherbewriting.com/blog/pace-value-moving-slow-boredom</link>
+      <description>
+        </description>
+      <pubDate>Mon, 27 Apr 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/pace-value-moving-slow-boredom</guid>
+      <dc:date>2026-04-27T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Frenetic thinking</title>
+      <link>https://idratherbewriting.com/blog/frenetic-thinking-vs-careful-measured-analysis</link>
+      <description>
+        </description>
+      <pubDate>Sun, 26 Apr 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/frenetic-thinking-vs-careful-measured-analysis</guid>
+      <dc:date>2026-04-26T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Work expands to fill the space allotted</title>
+      <link>https://idratherbewriting.com/blog/work-expands-to-fill-the-allotted-space</link>
+      <description>
+        </description>
+      <pubDate>Sun, 26 Apr 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/work-expands-to-fill-the-allotted-space</guid>
+      <dc:date>2026-04-26T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[leu escrivi!] The documentation hierarchy of needs</title>
+      <link>https://escrivi.org/blog/2026/hierarchy-of-docs/</link>
+      <description>Docs don&#39;t need to be beautiful. They need to exist first. If you don&#39;t know what to focus on, a hierarchy of documentation needs might help.</description>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://escrivi.org/blog/2026/hierarchy-of-docs/</guid>
+      <dc:date>2026-04-25T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Too much coffee?</title>
+      <link>https://idratherbewriting.com/blog/too-much-coffee</link>
+      <description>
+        </description>
+      <pubDate>Fri, 24 Apr 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/too-much-coffee</guid>
+      <dc:date>2026-04-24T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Cherryleaf UK Technical Writer/Author jobs indicator – April 2026 results and trend graphs</title>
+      <link>https://www.cherryleaf.com/2026/04/cherryleaf-uk-technical-writer-author-jobs-indicator-april-2026-results-and-trend-graphs/</link>
+      <description>&lt;p&gt;Over recent months, we’ve been using AI to conduct a monthly survey that tracks hiring demand for Technical Authors across the UK. In this post, we provide: The results for April 2026. Graphs showing the trends since we began the indicator in September 2025. Overall job volume for April 2026 Summing across the six job...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/04/cherryleaf-uk-technical-writer-author-jobs-indicator-april-2026-results-and-trend-graphs/&quot; title=&quot;Read Cherryleaf UK Technical Writer/Author jobs indicator – April 2026 results and trend graphs&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/04/cherryleaf-uk-technical-writer-author-jobs-indicator-april-2026-results-and-trend-graphs/&quot;&gt;Cherryleaf UK Technical Writer/Author jobs indicator – April 2026 results and trend graphs&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 23 Apr 2026 07:55:21 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/04/cherryleaf-uk-technical-writer-author-jobs-indicator-april-2026-results-and-trend-graphs/</guid>
+      <dc:date>2026-04-23T07:55:21Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] AI Book Club discussion recording of &#39;Breakneck: China&#39;s Quest to Engineer the Future&#39;, by Dan Wang</title>
+      <link>https://idratherbewriting.com/blog/book-club-breakneck-china-wang</link>
+      <description>This is a recording of the AI Book Club discussion of Dan Wang&#39;s &lt;i&gt;&lt;a href=&#39;https://www.amazon.com/dp/1324106034&#39;&gt;Breakneck: China&#39;s Quest to Engineer the Future&lt;/a&gt;&lt;/i&gt;. Our discussion tries to tie some of the book&#39;s themes to AI (to align with the book club&#39;s theme), but only in places where it makes sense. Some topics we discuss include social engineering, electric vehicles, contrasting energy infrastructures and the ability to power AI compute, mass surveillance networks, the differences between America&#39;s lawyerly society and China&#39;s engineering state. Fortunately, one of the book club members had recently been to China and could share firsthand experiences and impressions of cities like Shenzhen and Beijing. Among many observations, she describes the tech fatigue of everyday life, where everything (even prices at stores) requires you to use an app.
+        </description>
+      <pubDate>Thu, 23 Apr 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/book-club-breakneck-china-wang</guid>
+      <dc:date>2026-04-23T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] How to Create an Online Software Tutorial</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/how-to-create-an-online-software-tutorial/</link>
+      <description>&lt;p&gt;The past few decades have brought not only technological innovations but also significant changes in education and self-learning. Watching or reading online software tutorials has become one of the most popular and accessible ways to acquire new skills. Tutorials are short videos or articles that teach users how to use software tools—from photo editors to...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/how-to-create-an-online-software-tutorial/&quot;&gt;How to Create an Online Software Tutorial&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 22 Apr 2026 10:27:09 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/how-to-create-an-online-software-tutorial/</guid>
+      <dc:date>2026-04-22T10:27:09Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] Your Docs Are Lying. Doc Detective Catches It. | Manny Silva</title>
+      <link>https://www.youtube.com/watch?v=xeiU5UTffsw</link>
+      <description>Interested in breaking into tech writing, interview prep, or other coaching: Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+What if your documentation could detect its own failures — and then fix them? Manny Silva is back, and this time he brought the demo.
+
+In this episode of Technical Writing Uncensored, Manny walks through what&#39;s new with Doc Detective — including a live demo of the agent toolkit, self-healing documentation pipelines, and a sneak peek at his upcoming book, Docs as Tests and AI: A Strategy for Self-Healing Technical Documentation.
+
+🛠️ What we cover:
+- Why LLMs amplify bad documentation (and what to do about it)
+- Doc Detective&#39;s new agent toolkit and how it works with Claude, Copilot, Cursor, and more
+- Live demo: bootstrapping a GitHub Action for automated doc testing
+- How self-healing docs work — and what the trust layer actually looks like
+- Agent skills, hooks, and custom agents: the new doctype nobody&#39;s writing about yet
+
+📚 Resources mentioned:
+
+Doc Detective: https://doc-detective.com
+Doc Detective Agent Tools: https://github.com/doc-detective/agent-tools
+Manny&#39;s blog, Instruction Manuel: https://instructionmanuel.com/
+
+If you got value from this conversation, please like, subscribe, and hit that bell icon. It really helps the channel.
+
+0:00 Welcome &amp; Intro
+1:37 New Book: Docs as Tests and AI
+5:34 Doc Detective&#39;s Agent Toolkit
+9:17 DEMO: Doc Detective Repo Walkthrough
+10:32 DEMO: Inline Test Statements Explained
+15:15 DEMO: Installing the GitHub Action Skill
+18:20 DEMO: Configuring the Workflow (Interactive Setup)
+19:48 DEMO: The Self-Healing Loop in Action
+23:42 DEMO: Exploring the Agent Skills Repo
+30:23 DEMO: The Generate Tests Skill
+33:06 DEMO: Custom Agents vs. Skills
+34:17 DEMO: Hooks — The Quality Control Layer
+36:26 What&#39;s Next + How to Get Started
+37:04 Outro
+
+#TechnicalWriting #TechComm #DocsAsCode #Documentation #TechnicalWritingUncensored #DocsOrItDidntHappen #DeveloperExperience #WriteTheDocs #KnowledgeManagement #ContentStrategy #TechnicalWriter #TechWriterLife
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Tue, 21 Apr 2026 15:01:46 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=xeiU5UTffsw</guid>
+      <dc:date>2026-04-21T15:01:46Z</dc:date>
+    </item>
+    <item>
+      <title>[Passo Uno] What makes docs beautiful?</title>
+      <link>https://passo.uno/what-makes-docs-beautiful/</link>
+      <description>&lt;p&gt;Docs are often thought of as a purely functional artifact, a packet of content that, when it works, &lt;a href=&quot;https://passo.uno/my-favorite-tech-docs/&quot;&gt;it’s not remembered&lt;/a&gt; at all. Those who consume docs, however, can tell whether a manual or docs site pleases their mind and senses in ways that others don’t. We know the feeling of a page that lands and the feeling of a page that drags.&lt;/p&gt;
+&lt;p&gt;Now, if we agree that docs can be a product, why not seek to build them in a way that pleases consumers? If docs are the entry point for products, shouldn’t they produce a positive feeling that makes users return to them more often and trust them more? Docs that make users feel empowered, or that leave them with learnings. Docs that heal.&lt;/p&gt;</description>
+      <pubDate>Mon, 20 Apr 2026 09:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://passo.uno/what-makes-docs-beautiful/</guid>
+      <dc:date>2026-04-20T09:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Four methods for applying AI in your work</title>
+      <link>https://www.cherryleaf.com/2026/04/four-methods-for-applying-ai-in-your-work/</link>
+      <description>&lt;p&gt;One of the core topics in our Mastering and Managing Documentation with AI course is that there are four distinct methods for applying AI in a professional context. Each one suits different team sizes, technical capabilities, and ambitions. In this post, we outline all four and use a common scenario, of estimating a documentation project,...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/04/four-methods-for-applying-ai-in-your-work/&quot; title=&quot;Read Four methods for applying AI in your work&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/04/four-methods-for-applying-ai-in-your-work/&quot;&gt;Four methods for applying AI in your work&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 20 Apr 2026 08:02:44 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/04/four-methods-for-applying-ai-in-your-work/</guid>
+      <dc:date>2026-04-20T08:02:44Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Some thoughts after using AI to help with taxes</title>
+      <link>https://idratherbewriting.com/blog/taxes-thoughts-using-ai</link>
+      <description>After receiving a letter from the IRS stating that I owed more taxes on a previous year, I used AI to identify the issue -- a missing cost basis on stock sales. I then successfully disputed the notice, and ultimately claimed a sizable refund by carrying over capital losses. AI tools like Claude and Gemini have become surprisingly capable at analyzing uploaded tax returns and guiding novices like me through complex scenarios.
+        </description>
+      <pubDate>Mon, 20 Apr 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/taxes-thoughts-using-ai</guid>
+      <dc:date>2026-04-20T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] Playwright to Chrome</title>
+      <link>https://amanhimself.dev/blog/playwright-to-chrome/</link>
+      <description>Back in January, I had just started using Codex CLI and Claude Code. I was spending more time with Codex CLI and ended up creating a small Expo and React Native app as well. As I was learning how to use these tools, I wrote about using Codex CLI with Playwright for browser automation tasks in First Few Days with Codex CLI post. The approach I discussed initially, worked for me for some tasks by setting up Playwright MCP and managing its browser extension. However, the approach isn&#39;t flawless. Any time, Playwright MCP gets an update or its browser extension does, each requires to make a new connection to exchange token between them. The token mechanism is what Playwright MCP and its Chrome extension use to connect Codex CLI or Claude Code.</description>
+      <pubDate>Sun, 19 Apr 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/playwright-to-chrome/</guid>
+      <dc:date>2026-04-19T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[Dachary Carey] What an Agent Score Can Tell You</title>
+      <link>https://dacharycarey.com/2026/04/18/what-agent-score-can-tell-you/</link>
+      <description>&lt;p&gt;If you&#39;re a documentation team trying to figure out what &amp;quot;agent-ready&amp;quot; means for your site, you&#39;ve probably noticed that several different organizations are now offering to score you. Cloudflare just launched &lt;a href=&quot;https://isitagentready.com&quot;&gt;isitagentready.com&lt;/a&gt;. Fern has an &lt;a href=&quot;https://buildwithfern.com/agent-score&quot;&gt;Agent Score&lt;/a&gt; directory powered by my &lt;a href=&quot;https://agentdocsspec.com&quot;&gt;Agent-Friendly Documentation Spec&lt;/a&gt; and its &lt;a href=&quot;https://afdocs.dev/&quot;&gt;CLI tool&lt;/a&gt;, which runs 22 checks against any docs site. There will probably be more by the time you read this.&lt;/p&gt;
+&lt;p&gt;Each of these tools produces a number. Numbers are comforting. They give you something to put in a slide deck and something to improve quarter over quarter. But if you&#39;re making decisions about where to spend your team&#39;s time based on these numbers, you need to understand what each score actually measures. They&#39;re not measuring the same thing, and the gaps can be dramatic.&lt;/p&gt;</description>
+      <pubDate>Sat, 18 Apr 2026 21:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://dacharycarey.com/2026/04/18/what-agent-score-can-tell-you/</guid>
+      <dc:date>2026-04-18T21:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] My Mac setup</title>
+      <link>https://amanhimself.dev/blog/mac-setup/</link>
+      <description>A guide on setting up Apple Mac for daily work.</description>
+      <pubDate>Sat, 18 Apr 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/mac-setup/</guid>
+      <dc:date>2026-04-18T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] The Best Mind Mapping Software for 2026</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/best-mind-mapping-software/</link>
+      <description>&lt;p&gt;Whether you are planning a product launch, structuring research, or running a brainstorming session with your team, the right mind mapping software can change how you think and work. Visual maps help people organize complex information faster than linear notes, see connections between ideas, and move from scattered thoughts to clear plans. This guide covers...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/best-mind-mapping-software/&quot;&gt;The Best Mind Mapping Software for 2026&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 15 Apr 2026 11:54:28 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/best-mind-mapping-software/</guid>
+      <dc:date>2026-04-15T11:54:28Z</dc:date>
+    </item>
+    <item>
+      <title>[Liz Argall] Content Marketing Matters</title>
+      <link>https://lizargall.github.io/blog/content_marketing</link>
+      <description>High quality documentation is one of the most important pieces of content marketing an organization has, and I know I&#39;m not the only one to hold this view. In a world over saturated in marketing material, well written and complete support documentation helps your organization feel trustworthy, shows how you sweat the small stuff and what sort of after market support people can expect.</description>
+      <pubDate>Wed, 15 Apr 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://lizargall.github.io/blog/content_marketing</guid>
+      <dc:date>2026-04-15T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] Why Tech Writers Are Built to Design Custom LLM Assistants | Kelly Murphy</title>
+      <link>https://www.youtube.com/watch?v=G7BVVVSoTIU</link>
+      <description>Your LLM doesn&#39;t have to be a generalist. In fact, it probably shouldn&#39;t be.
+
+In this episode of Technical Writing Uncensored, content designer Kelly Murphy walks through how she built Gemini Gems — discrete, persona-driven LLM assistants — to survive a crushing solo workload and actually make things better for the non-writers around her.
+
+🤖 What we cover:
+- What Gemini Gems are and why &quot;don&#39;t boil the ocean&quot; is the golden rule
+- How to write Gem instructions using the persona → task → context → format structure
+- Why tech writers are uniquely wired to build these things well
+- The knowledge files, guardrails, and ethical considerations you can&#39;t skip
+- A live demo with Chef Antonia (yes, really)
+
+Interested in breaking into tech writing, interview prep, or other coaching: Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+Chapters
+00:00 Intro
+02:33 Examples of what can you do with a Gemini Gem
+05:26 The Gemini UI
+07:36 How to write Gem instructions
+24:09 Live demo
+
+#TechnicalWriting #TechComm #GeminiGems #GoogleGemini #PromptEngineering #ContentDesign #TechnicalWriter #LLMTools #AIForWriters #TechWriterLife #TechnicalWritingUncensored #KnowledgeManagement #DocsOrItDidntHappen #WritingTips #DocumentationStrategy
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Tue, 14 Apr 2026 15:00:33 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=G7BVVVSoTIU</guid>
+      <dc:date>2026-04-14T15:00:33Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Podcast: How valuable are agent skills? Conversation with Larah Vasquez and Fabrizio Ferri-Benedetti</title>
+      <link>https://idratherbewriting.com/blog/ai-skills-agentic-workflows-larah-fabrizio</link>
+      <description>In this podcast, I chat with &lt;a href=&#39;https://mcnuggies.dev&#39;&gt;Larah Vasquez&lt;/a&gt; and &lt;a href=&#39;https://passo.uno/&#39;&gt;Fabrizio Ferri-Benedetti&lt;/a&gt; about using skills to extend AI capabilities, the future of agentic engineering, local models like Qwen and Gemma, and whether the tech writer role is shifting into automation architecture. We get into the memory problem in LLMs (and why some of us actually prefer the no memory to extended memory), the progression from prompt engineering to context engineering to compound engineering to orchestrating whole agent systems, and how skills are quietly forcing engineers to write down knowledge they&#39;d never documented before.
+        </description>
+      <pubDate>Sun, 12 Apr 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/ai-skills-agentic-workflows-larah-fabrizio</guid>
+      <dc:date>2026-04-12T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] Week notes 16</title>
+      <link>https://amanhimself.dev/blog/week-notes-16/</link>
+      <description>Mixed week. A small side-project release, a couple of satisfying wins on the work side, and a lot of late-night ideas I want to act on coming week. - 🚀 Shipped SkillsBar v1.7.0. The big addition is Codex plugin support and adding custom collections view where one can organize their skills based on a theme or topic or work repository. Codex plugins now show up under User Skills in the Codex tab, alongside the Claude Code skills SkillsBar already tracked. Also fixed a quiet bug where the Usage Stats screen was silently dropping historical data beyond four weeks. This is a major update, and I used GPT 5.4 to add more tweaks apart from doing this major update.</description>
+      <pubDate>Sun, 12 Apr 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/week-notes-16/</guid>
+      <dc:date>2026-04-12T00:00:01Z</dc:date>
+    </item>
+  </channel>
+</rss>

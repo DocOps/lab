@@ -1,0 +1,130 @@
+---
+tags:
+- API
+- API docs
+- Bootstrap
+- CLI
+- Dockerized
+- Jekyll plugin
+- OpenAPI
+- REST
+- UI
+- assets
+- automation
+- build tool
+- business
+- changelog
+- components
+- configuration
+- containers
+- contracts
+- curriculum
+- dark-mode
+- data
+- data collection
+- development
+- document management
+- documentation
+- education
+- environment
+- filesystem
+- forms
+- freelancing
+- integration
+- invoicing
+- issue management
+- issues
+- landing page
+- legal tech
+- legal writing
+- light-mode
+- lightweight markup
+- liquid
+- material-design
+- minimal
+- multi-product
+- navigation
+- pagination
+- parsing
+- presentations
+- product management
+- project management
+- project structure
+- release history
+- sandbox
+- schema
+- schemas
+- semantics
+- serialization
+- single-sourcing
+- tech stack
+- technical writing
+- templates
+- text
+- text processing
+- training
+- tutorial
+- validation
+- version management
+- versioning
+- virtualization
+- web
+- web app
+- web service
+- website
+- workflow
+tech:
+- AsciiDoc
+- Asciidoctor
+- Bash
+- Bootstrap
+- CLI
+- CSS
+- CSS/Sass
+- Docker
+- ERB
+- GPG
+- Git
+- GitHub
+- GitHub Issues
+- GitLab Issues
+- HTML
+- IMYML
+- JMESPath
+- JSON
+- JSON Schema
+- JSONPath
+- JavaScript
+- Jekyll
+- Jira
+- Liquid
+- Node.js
+- OpenAPI
+- PDF
+- Pandoc
+- Python
+- Rake
+- Reveal.js
+- RuboCop
+- Ruby
+- Ruby on Rails
+- SGYML
+- ShellCheck
+- Stimulus.js
+- Vale
+- YAML
+- Zsh
+- jQuery
+types:
+  content: content
+  environment: environment
+  framework: framework
+  ruby-api: Ruby API
+  rest-api: REST API
+  web-app: web-app
+  utility: utility
+  jekyll-ext: Jekyll extension
+  jekyll-theme: Jekyll theme
+  demo: demo
+  website: website
+  schema: schema

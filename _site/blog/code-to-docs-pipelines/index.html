@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code-to-Docs Pipelines | DocOps Lab</title>
+  <meta name="description" content="If the best way to maintain accurate documentation is to draw canonical data from the product source code, how does one get started moving from having duplic...">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Code-to-Docs Pipelines">
+  <meta property="og:description" content="If the best way to maintain accurate documentation is to draw canonical data from the product source code, how does one get started moving from having duplic...">
+  <meta property="og:url" content="https://docopslab.org/blog/code-to-docs-pipelines/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/blog-pipes.jpg">
+    
+  <meta property="og:image:alt" content="Ugly pipes.">
+    
+  
+  
+  <meta property="article:author" content="Brian Dominick">
+  <meta property="article:published_time" content="2026-02-25T00:00:00+00:00">
+    
+      
+  <meta property="article:tag" content="docs-as-code">
+      
+  <meta property="article:tag" content="single-sourcing">
+      
+  <meta property="article:tag" content="automation">
+      
+  <meta property="article:tag" content="YAML">
+      
+  <meta property="article:tag" content="programming">
+      
+    
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Code-to-Docs Pipelines">
+  <meta name="twitter:description" content="If the best way to maintain accurate documentation is to draw canonical data from the product source code, how does one get started moving from having duplic...">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/blog-pipes.jpg">
+    
+  <meta name="twitter:image:alt" content="Ugly pipes.">
+    
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="Brian Dominick">
+  
+  <meta name="publish_date" property="og:publish_date" content="2026-02-25T00:00:00+00:00">
+  
+  <link rel="canonical" href="https://docopslab.org/blog/code-to-docs-pipelines/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="DocOps Lab Blog" href="https://docopslab.org/feeds/docops-lab-blog.xml">
+  
+</head>
+<body class="layout-post  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  
+
+
+
+<div class="blog-post-container">
+  <div class="container">
+    <article class="blog-post">
+    <header class="post-header">
+      <h1 class="post-title">
+        Code-to-Docs Pipelines
+        
+      </h1>
+      
+      
+      <h2 class="blog-title">
+        <img src="/assets/images/favicons/favicon-raw-transparent.png" alt="DocOps Lab Favicon" class="blog-favicon-logo">
+        A DocOps Lab Blog entry
+      </h2>
+      
+      
+      <div class="post-meta">
+        
+        <time class="post-date" datetime="2026-02-25T00:00:00+00:00">
+          <i data-lucide="calendar"></i>
+          February 25, 2026
+        </time>
+        
+        
+        
+        <span class="post-author">
+          <i data-lucide="user"></i>
+          Brian Dominick
+        </span>
+        
+        
+        <div class="post-tags">
+          <i data-lucide="tag"></i>
+          
+            <span class="tag">docs-as-code</span>
+          
+            <span class="tag">single-sourcing</span>
+          
+            <span class="tag">automation</span>
+          
+            <span class="tag">YAML</span>
+          
+            <span class="tag">programming</span>
+          
+        </div>
+        
+        
+      </div>
+    </header>
+    
+    <div class="post-content">
+      
+      <figure class="post-image">
+        <img src="/assets/images/blog-pipes.jpg" alt="Ugly pipes." class="post-image-img">
+        
+        <figcaption class="post-image-caption">
+          
+          
+        </figcaption>
+        
+      </figure>
+      
+      <div class="paragraph">
+<p>Since the truest source of truth for any software product is in the product source code itself, the only way to insure against product/docs divergence is to programmatically derive canonical product data from the product source code and insert it into the docs every time a new version of the product is released.</p>
+</div>
+<div class="paragraph">
+<p>As much of a mouthful as that first sentence was, the technique itself stands much easier said than done.
+Nevertheless, the effort required pays dividends in the form of &#8220;always updated&#8221; docs.
+(Well, at least eventually it does, in theory&#8230;&#8203; until it doesn&#8217;t.)</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s talk about building a bridge between product code and docs, and honestly evaluate what it takes to maintain and increase those connections.</p>
+</div>
+<div class="sect1">
+<h2 id="docs-as-code-no">Isn&#8217;t This Just Docs-as-Code?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you are familiar with the concept of &#8220;docs as code&#8221;, you probably think of it in one or both of two ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Documentation authored along with and embedded in product source code, such as for APIs</p>
+</li>
+<li>
+<p>Docs written in Markdown or the like, stored along side the code in the same or a separate Git repository</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Those are valid, core techniques of docs-as-code, but today I want to talk about a third approach, which is less about where we store documentation than <em>how we use existing product source code to inform documentation</em>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This blog entry is not exclusive to &#8220;docs-as-code&#8221; techniques, though there will be some obvious overlap.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Let me provide a straightforward example that does not fit with either of those two common understandings of docs-as-code.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Imagine a product that has several standard attributes, with one such attribute being the <strong>default installation path</strong>.
+This path is crucial to note in user docs, but it is hard-coded into the product source code as a variable called <code>default_install_path</code>.</p>
+</div>
+<div class="paragraph">
+<p>Now imagine commercial technical-writing platform like MadCap Flare, which can ingest CSV files and turn their data into variables.
+If the product developers automate the generation of a <code>attributes.csv</code> file containing core product data like the <code>default_install_path</code> and its value, technical writers can express the current information accurately anywhere in the docs using a variable placeholder.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You might be thinking, &#8220;But Flare isn&#8217;t even docs-as-code&#8221;, and you certainly would be right for conventional uses of Flare, but we&#8217;ve just expressed a case where we&#8217;re legitimately single-sourcing documentation content as product code.
+The default installation path is reported anywhere throughout the docs without ever duplicating the literal path, which is derived automatically from the product source.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="abstraction">The Abstraction Distraction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I want to make clear that the real value of technical writers is in conveying info that the product <em>manager</em> (PM) may know and the product engineers may very well <em>not</em> know.</p>
+</div>
+<div class="paragraph">
+<p>Consider a form field or API endpoint that gets labeled <strong>Project start date</strong>.
+In the underlying field name and the database backend, this is probably something like <code>start_date</code> or <code>started_at</code>, corresponding with a table or model called <code>Projects</code>.</p>
+</div>
+<div class="paragraph">
+<p>There might even be a comment or documentation string that gets conveyed into the API docs or right there in the form&#8217;s inline help.
+It will almost always be something unhelpful like: &#8220;The date the project started.&#8221;</p>
+</div>
+<div class="paragraph">
+<p>To the <em>programmers</em>, this datum means almost nothing.
+They know it must be a <code>Date</code> (or similar) data type, and they assume it to chronologically precede the corresponding <code>end_date</code>.
+(Maybe their code even enforces that chronology.)</p>
+</div>
+<div class="paragraph">
+<p>To the user entering information, or the user viewing it as a report, the &#8220;project start date&#8221; corresponds to something official and far too real-world to belong in the source code.
+For instance, &#8220;The date of the first meeting to convene the task group.&#8221;</p>
+</div>
+<div class="paragraph">
+<p>This is an extremely simple example of why technical writers should matter to product owners.
+There is a decent chance the product developers do not know or care about the analog/real-world correspondent of any piece of data coming into or out of the product.</p>
+</div>
+<div class="paragraph">
+<p>I cannot tell you how many front-end engineers I have met who don&#8217;t really know how to talk to users about the interfaces they develop.
+Technical writers are often surprised by this, but it makes sense:
+programmers are often uninvolved in interface design.
+They are given specifications to meet, and how a real-world user decides what constitutes the correct date to enter is not actually all that important to the programmer.</p>
+</div>
+<div class="paragraph">
+<p>Everything in this section has been to express the kind of thing products typically <em>should not</em> store in their source code.</p>
+</div>
+<div class="paragraph">
+<p>And while I do recommend sourcing user-facing info in lightweight markup files in the product code repo, the point is it needs to be <em>owned by</em> or at least <em>accessible to</em> technical writers and the Product team.
+The SME in this case is likely a product manager, not an engineer.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="product-attributes">Product Attributes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most products are defined by lots and lots of specific data.</p>
+</div>
+<div class="paragraph">
+<p>Consider a configuration file.
+This is a flat file in some format like YAML or JSON or XML or INI, etc, that enables parameterized settings of key product attributes for a given installation.
+Users will install the product then configure it in <code>product-name.ini</code> or something like that.</p>
+</div>
+<div class="paragraph">
+<p>Ideally, these files can be treated very much like an API&#8201;&#8212;&#8201;all their associated info can be sourced in native code or something like YAML, so developers have a central place to edit stuff like data type and default value.</p>
+</div>
+<div class="paragraph">
+<p>Consider this Python code intended to establish default values and enforce a certain type for a given configuration setting.</p>
+</div>
+<div id="python-basic" class="listingblock">
+<div class="title">A minimally structured way to define product attributes.</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">class AppSettingsDC:
+    db_url: str = "sqlite:///./data.db"
+    pool_size: int = 5
+    timeout_seconds: float = 30.0
+    # dates have no default...
+    project_start_date: Optional[date] = None
+    project_end_date: Optional[date] = None</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Above is how you will typically find such settings.
+This is of minimal value to informing the docs, except as described above, where a CSV file that could be output so the docs could read data that was generated from the source code.</p>
+</div>
+<div class="paragraph">
+<p>But even in that case, the value is somewhat limited.
+A tech writer is going to have to manually author docs that refer to these settings.</p>
+</div>
+<div id="attributes-table" class="listingblock">
+<div class="title">A Markdown table reporting product attributes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-markdown hljs" data-lang="markdown">| Setting | Type | Default | Description |
+|---------|------|---------|-------------|
+| `db_url` | str | `{{ site.data.attrs.db_url }}` | SQLAlchemy‑compatible connection URL. |
+| `pool_size` | int | `{{ site.data.attrs.pool_size }}` | Number of connections kept alive in the DB connection pool. |
+| `timeout_seconds` | float | `{{ site.data.attrs.timeout_seconds }}` | How long (in seconds) the driver waits for a response before timing out. |</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once created, the default values can stay up to date with product changes.
+But it&#8217;s easy to see why it would be a pain to author and maintain an entire reference of dozens or hundreds of such settings.
+It should also be easy to see why changes to the setting name, type, or description can easily fall out of sync and become just plain wrong.</p>
+</div>
+<div class="paragraph">
+<p>More helpful would be a robustly structured system.
+Take a look at this next example.</p>
+</div>
+<div id="python-advanced" class="listingblock">
+<div class="title">A more fully structured system for product attributes</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">class SettingMeta(TypedDict):
+    """Structure that holds the core three elements we need to convey."""
+    type:      Literal["str", "int", "float"]
+    default:   str # store the literal default as a string
+    desc:      str # free‑form description
+
+SETTINGS: dict[str, SettingMeta] = {
+    "db_url": {
+        "type":    "str",
+        "default": "sqlite:///./data.db",
+        "desc":    "SQLAlchemy‑compatible connection URL.",
+    },
+    "pool_size": {
+        "type":    "int",
+        "default": "5",
+        "desc":    "Number of connections kept alive in the DB connection pool.",
+    },
+    "timeout_seconds": {
+        "type":    "float",
+        "default": "30.0",
+        "desc":    "How long (in seconds) the driver waits for a response before timing out.",
+    },
+    "project_start_date": {
+        "type":    "date",
+        "desc":    "The start date of the project.",
+    },
+    "project_end_date": {
+        "type":    "date",
+        "desc":    "The end date of the project.",
+    },
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you can probably imagine how a configuration reference document could be auto-generated from a collection of numerous settings like these.
+A simple template can convert that data to markup, so the output is pressed whenever the product and/or docs are built.</p>
+</div>
+<div class="sect2">
+<h3 id="the-catch">The Catch</h3>
+<div class="paragraph">
+<p>You&#8217;re probably already noticing a problem, though.
+While the highly technical data about the database backend may be explainable in one sentence and fully maintainable by programmers, there&#8217;s that pesky &#8220;project start date&#8221; we used as a previous example.</p>
+</div>
+<div class="paragraph">
+<p>We already know this isn&#8217;t a good enough description for users, who themselves may not know what constitutes the actual start date they should enter.
+And I added a <code>project_end_date</code> for good measure&#8201;&#8212;&#8201;you can probably already imagine that being confusing: <em>is it a future date or do we wait to report the actual end date?</em></p>
+</div>
+<div class="paragraph">
+<p>Suddenly, we&#8217;re either asking the developers to maintain the user-facing documentation <em>inside their source code</em>, or we need to find some way to complement the source code with those enhanced docs.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+None of this is to mention that even when product attribute descriptions are staightforward, they often need to be proofread and edited by a professional, who is probably not a developer working in the product codebase.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Doing all of this much better than so-far discussed is quite possible, but I needed to get to this point so anyone reading along can appreciate the problem.
+I often hear developers shrug off the idea that this is &#8220;even a thing&#8221;.
+They think the sentence fragment they jot into a <code>desc</code> field should be good enough.</p>
+</div>
+<div class="paragraph">
+<p>Meanwhile, technical writers typically consider this an insurmountable obstacle.
+<em>The developers are going to define this stuff how they see fit</em>, TW&#8217;s assume, <em>and they don&#8217;t really care if we (tech writers) can make use of it as a shared source of truth for the docs.</em></p>
+</div>
+<div class="paragraph">
+<p>Next we will look at a few ways to address this conundrum.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="truth-strategies">Truth Strategies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are options for handling the problem of where the truth gets sourced.
+Here I lay them out from least to most optimal.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">The conventional method</dt>
+<dd>
+<p>Technical writers share a document with developers that is a third &#8220;source of truth&#8221;, which the product and (especially) docs are supposed to adhere to.
+Optimally, both parties copy and paste from this document into their files as needed, though in reality, devs tend to write the code first and then report into this doc.
+TWs then add any user-facing enhancements to the description, or they overwrite the description in their third source of truth.</p>
+<div class="paragraph">
+<p>This process is both dreadful and typical.</p>
+</div>
+</dd>
+<dt class="hdlist1">The read-only code method</dt>
+<dd>
+<p>Technical writers have access to the source code, and they use it as a reference, all the while maintaining a second source of truth.</p>
+<div class="paragraph">
+<p>This practice should be the bare minimum for any team hoping to maintain accurate docs, but the accuracy will depend on the vigilance of the TWs, following up on a reliable system for reporting product changes.</p>
+</div>
+</dd>
+<dt class="hdlist1">The overlay method</dt>
+<dd>
+<p>Tech writers maintain a secondary file in a format like YAML, which contents can establish, overwrite, or augment the descriptions of particular settings, but references can still be built automatically.
+The source is still maintained by devs, but TWs can affect the user-facing docs output without messing up canonical information like data types, default values, and so forth.</p>
+<div class="paragraph">
+<p>This is a legitimate practice that is mostly used with the newly introduced <a href="https://spec.openapis.org/overlay/latest.html">OpenAPI Overlays</a>, though I have seen it used in custom setups a couple of times.
+It counts as legitimate single sourcing because each part of each attribute is singly sourced (types and defaults in the code, descriptions in the overlay).</p>
+</div>
+</dd>
+<dt class="hdlist1">The collaborative method (native-code approach)</dt>
+<dd>
+<p>Tech writers maintain the <code>desc</code> fields right in the source code.
+They use Git and code-editors to modify the documentation source strings at agreed-upon points in the process, mindful not to edit anything <em>but</em> the documentation aspects.</p>
+<div class="paragraph">
+<p>This is more common than many people realize, and it is probably the way to establish true single sourcing that is lowest in terms of up-front friction.
+The docs still need to draw from the product code through an automated process, but there is no need for a secondary system.</p>
+</div>
+</dd>
+<dt class="hdlist1">The collaborative method (shared-definition approach)</dt>
+<dd>
+<p>Mature software products should be defined in a neutral, user-friendly format (like YAML) so that the product source code, the documentation, and even testing code can be derived from a common, canonical source.</p>
+<div class="paragraph">
+<p>This is much easier and safer for TWs and even PMs to participate in directly, but it requires more up-front planning and infrastructure preparation.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>In the following sections, I will detail and show examples of the latter three above strategies.
+(The first two strategies are self-explanatory and not recommended.)</p>
+</div>
+<div class="sect2">
+<h3 id="overlay-method">The Overlay Method</h3>
+<div class="paragraph">
+<p>Once there is a fixed data structure in place that is being used to generate output for reference codes, that system can be &#8220;overlayed&#8221; with suppliementary or overriding data.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">project_start_date:
+  desc: The date of the first meeting to convene the task group.
+project_end_date:
+  desc: The expected or actual date of the final meeting to adjourn the task group.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There really is no reason to carry over the original <code>desc</code> parameter values from the source code; we can just overwrite them in cases like this.
+But if you wanted to augment them, a parameter like <code>docs</code> is advised.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">db_url:
+  docs: |
+    SQLite is used by default for a local file-based DB.
+    For production, you should use a more robust database like PostgreSQL or MySQL.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This method works just fine, but it is always a tail chasing the dog.
+Technical writers under such a regimen are only able to <em>describe</em> the product after the fact.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="collaborative-methods">The Collaborative Methods</h3>
+<div class="paragraph">
+<p>When conditions align, the preferable way of handling documentation is to have tech writers and programmers working in the same source, wherever the product data is actually <em>defined</em>.</p>
+</div>
+<div class="paragraph">
+<p>This <em>can</em> happen in the programming language files where this kind of data/content is typically sourced.
+I have seen teams where TWs modify the same source code as engineers, sometimes even committing to the same code branches prior to them being merged into a trunk.</p>
+</div>
+<div class="paragraph">
+<p>The more accessible and powerful way is to actually <em>define</em> this matter in shared data documents.
+OpenAPI is surely the best-known form of this, but it only applies to REST APIs, which all share a relatively common architecture.</p>
+</div>
+<div class="paragraph">
+<p>OpenAPI documents (OADs) can be used to indicate how the product should work, which means they are also a perfect source for reference documentation.</p>
+</div>
+<div class="paragraph">
+<p>Configuration files and the like do not have a common standard specification for definition and documentation, but teams that want to explore these collaborative approaches can develop flat-file sourcing structures and templates for processing them.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example schema defining a configuration file structure</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">settings:
+  db_url:
+    type: str
+    default: sqlite:///./data.db
+    desc: SQLAlchemy‑compatible connection URL.
+    docs: |
+      SQLite is used by default for a local file-based DB.
+      For production, you should use a more robust database like PostgreSQL or MySQL.
+  pool_size:
+    type: int
+    default: 5
+    desc: Number of connections kept alive in the DB connection pool.
+  timeout_seconds:
+    type: int
+    default: 30
+    desc: How long (in seconds) the driver waits for a response before timing out.
+    range: [1,120]
+  project_start_date:
+    type: date
+    desc: The date of the first meeting to convene the task group.
+  project_end_date:
+    type: date
+    desc: The expected or actual date of the final meeting to adjourn the task group.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now imagine a data structure like this, with tech writers given full access, not only generating docs and underlying product code and tests, but also a form-fill interface for users, with inline help based on the <code>desc</code> and <code>docs</code> fields.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This approach has the additional advantage of keeping the product source code remarkably clean;
+no more <code>description</code> parameters cluttering the file in <a href="#python-advanced">our example source code</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once these core product attributes are defined in a neutral format&#8201;&#8212;&#8201;whether they represent unchangeable data like <code>default_install_path</code> or configurable via flat-file or form UIs&#8201;&#8212;&#8201;the potential is limitless.
+They can be used to establish the product settings, validate user input, perform unit tests, and of course, generate reference docs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-started">Getting Started with Single Sourcing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The above examples are idealized, but they do illustrate the potential of using product source code as the single source of truth for at least aspects of a product&#8217;s documentation.</p>
+</div>
+<div class="paragraph">
+<p>In reality, there are often obstacles, starting with dependence on product developers to put the infrastructure in place.</p>
+</div>
+<div class="paragraph">
+<p>Getting that CSV or JSON file of canonical product data generated for your authoring system to ingest might be too much to ask, but it is a reasonable place to start.</p>
+</div>
+<div class="paragraph">
+<p>A full-fledged single-sourcing definition system will likely require a dedicated contractor or an internal task force.</p>
+</div>
+<div class="paragraph">
+<p>The latest AI technology makes experimenting with this kind of stuff safe and accessible.
+If you are a technical writer with read access to the product source code, try asking an AI agent or chatbot to help script a bridge between the source code and your documentation platform.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See my post <a href="/blog/vibe-coding-vs-programming/">Vibe Coding vs AI-assisted Programming</a> for resources and advice on AI-assisted coding.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It probably won&#8217;t do the job perfectly, but it might get close enough that developers are excited to polish it off or recreate it if they can see it in action and appreciate the benefits it offers.</p>
+</div>
+</div>
+</div>
+    </div>
+    
+    
+      
+    
+
+    
+    <div class="related-posts">
+
+      
+
+      
+        <h2>Related posts</h2>
+        <ul>
+          
+            
+            
+            <li>
+              <a href="/blog/tech-docs-blogs-collection/">Collecting and Aggregating Blogs about Tech Docs</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/true-single-sourcing/">TRUE Single Sourcing with YAML and AsciiDoc</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/lab-projects-source-site/">Single Sourcing and Rendering DocOps Lab Project Profiles</a>
+            </li>
+            
+          
+        </ul>
+      
+    </div>
+    
+    
+    <footer class="post-footer">
+      
+      
+      <div class="post-navigation">
+        
+        <a href="/blog/foss-licensing-usage/" class="nav-link nav-prev">
+          <i data-lucide="arrow-left"></i>
+          <div class="nav-text">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">DocOps Lab Licensing and Usage</span>
+          </div>
+        </a>
+        
+        
+        
+      </div>
+      
+      <div class="back-to-blog">
+        <a href="/blog/" class="btn-secondary">
+          <i data-lucide="arrow-left"></i>
+          Back to Blog
+        </a>
+      </div>
+    </footer>
+    </article>
+  </div>
+</div>
+
+
+<footer>
+  <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Single Sourcing and Rendering DocOps Lab Project Profiles | DocOps Lab</title>
+  <meta name="description" content="Sourcing complex profile metadata from YAML and rendering it with Liquid templates.">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Single Sourcing and Rendering DocOps Lab Project Profiles">
+  <meta property="og:description" content="Sourcing complex profile metadata from YAML and rendering it with Liquid templates.">
+  <meta property="og:url" content="https://docopslab.org/blog/lab-projects-source-site/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/featured-projects-screenshot.png">
+    
+  <meta property="og:image:alt" content="The Featured Projects section from the DocOps Lab landing page, showing cards for several projects.">
+    
+  
+  
+  <meta property="article:author" content="Dr Meta">
+  <meta property="article:published_time" content="2025-09-25T00:00:00+00:00">
+    
+      
+  <meta property="article:tag" content="Jekyll">
+      
+  <meta property="article:tag" content="YAML">
+      
+  <meta property="article:tag" content="Liquid">
+      
+  <meta property="article:tag" content="single-sourcing">
+      
+  <meta property="article:tag" content="metadata">
+      
+    
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Single Sourcing and Rendering DocOps Lab Project Profiles">
+  <meta name="twitter:description" content="Sourcing complex profile metadata from YAML and rendering it with Liquid templates.">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/featured-projects-screenshot.png">
+    
+  <meta name="twitter:image:alt" content="The Featured Projects section from the DocOps Lab landing page, showing cards for several projects.">
+    
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="Dr Meta">
+  
+  <meta name="publish_date" property="og:publish_date" content="2025-09-25T00:00:00+00:00">
+  
+  <link rel="canonical" href="https://docopslab.org/blog/lab-projects-source-site/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700&family=Source+Code+Pro:ital,wght@0,400;0,500;0,700&display=swap" rel="stylesheet">
+
+  <!-- Font Detection Script for MetaBlog -->
+  <script>
+    // Wait for fonts to load and then detect what's actually being used
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        const codeElements = document.querySelectorAll('.metablog pre, .metablog code');
+        if (codeElements.length > 0) {
+          const testElement = codeElements[0];
+          const computedStyle = window.getComputedStyle(testElement);
+          const actualFont = computedStyle.fontFamily;
+          console.log('🔍 MetaBlog Font Detection:');
+          console.log('Computed font-family:', actualFont);
+          console.log('First element tested:', testElement);
+          
+          // Add data attribute for CSS debugging
+          document.documentElement.setAttribute('data-metablog-font', actualFont.split(',')[0].replace(/['"]/g, ''));
+        }
+      }, 500); // Wait for font loading
+    });
+  </script>
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="DocOps Lab Blog" href="https://docopslab.org/feeds/docops-lab-blog.xml">
+  
+</head>
+<body class="layout-post  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  
+
+
+
+<div class="blog-post-container metablog">
+  <div class="container">
+    <article class="blog-post metablog">
+    <header class="post-header metablog">
+      <h1 class="post-title metablog">
+        Single Sourcing and Rendering DocOps Lab Project Profiles
+        
+      </h1>
+      
+      
+      <h2 class="blog-title metablog">
+        <i data-lucide="microscope"></i>
+        A Dr Meta's MetaBlog entry
+      </h2>
+      
+      
+      
+      
+      <div class="post-meta metablog">
+        
+        
+        
+        <span class="post-author metablog">
+          <i data-lucide="user"></i>
+          Dr Meta
+        </span>
+        
+        
+        <div class="post-tags metablog">
+          <i data-lucide="tag"></i>
+          
+            <span class="tag">Jekyll</span>
+          
+            <span class="tag">YAML</span>
+          
+            <span class="tag">Liquid</span>
+          
+            <span class="tag">single-sourcing</span>
+          
+            <span class="tag">metadata</span>
+          
+        </div>
+        
+        
+          
+          <div class="post-version">
+            <span class="version-param"><i data-lucide="milestone"></i><span class="tag">POST VERSION:</span> <strong><code>1.0.0</code></strong></span>
+          </div>
+          
+          
+        
+      </div>
+    </header>
+    
+    <div class="post-content metablog">
+      
+      <figure class="post-image">
+        <img src="/assets/images/featured-projects-screenshot.png" alt="The Featured Projects section from the DocOps Lab landing page, showing cards for several projects." class="post-image-img">
+        
+      </figure>
+      
+      <div class="paragraph">
+<p>Much of this website consists of representations of DocOps Lab projects, in different orders and forms.</p>
+</div>
+<div class="paragraph">
+<p>Project metadata is stored in the <code>_data/docops-lab-projects.yml</code> file, which is the canonical source of truth <em>about</em> the numerous codebases DocOps Lab maintains.
+At least, it represents the sole source of most of the data it contains, though at any given point some part of that file is likely out of sync with reality.</p>
+</div>
+<div class="paragraph">
+<p>Nevertheless, some aspects of this sourcing and output strategy are pretty extreme and therefore worth blogging about.</p>
+</div>
+<div class="sect1">
+<h2 id="source-files">Source Files</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Effectively all of the information about DocOps Lab projects on this site is single-sourced, though some of it is sourced (once) in different places.</p>
+</div>
+<div class="paragraph">
+<p>Most of it is sourced in the <code>docops-lab-projects.yml</code> file, which we will dive into shortly.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The content of the code snippets used in this post is subject to change.
+When the blog next builds, the live data will be transcluded into the code blocks on this page, and the text around them should remain accurate.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note meta">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The above note is single sourced at <code>_snippets-may-change-note.adoc</code> so it can be embedded in multiple posts.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A small amount is sourced in the <code>README.adoc</code> file, as data attributes.
+This includes the text for each of the Featured Projects cards on the landing page, which are also expressed in the README file itself.</p>
+</div>
+<div class="listingblock">
+<div class="title">Snippet from <code>README.adoc</code></div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:docops-box-desc: A Docker-containerized environment and shell script for reducing the complexity of setting up “developer tools”. Non-developers can run a single command (`docksh run`) and instantly access whole runtimes and specialized documentation tools in a pre-configured shell environment.
+:docs-as-code-school-desc: Structured education in modern technical documentation and document processing. Starting with &#8220;Deep Semantics&#8221; (Fall 2025?) and expanding to courses on version management, code-like workflow adoption, and legal document operations, this project uses docs-as-code to teach docs-as-code principles.
+:ayl-docstack-desc: AsciiDoc. YAML. Liquid. A three-language approach to managing complex, multi-variant documentation. This &#8220;tech stack&#8221; maximizes power while minimizing syntax overhead, making advanced documentation techniques accessible to beginners while remaining powerful enough for enterprise needs.
+:schemagraphy-desc: Extends YAML through SGYML and accompanying libraries, providing advanced data typing and document transclusion capabilities. Provides a full-featured schema language that allows users to define complex data structures, document structures, and whole interfaces in a single, unified format.
+:jekyll-asciidoc-ui-desc: A set of Jekyll plugins and themes that enrich AsciiDoc web output. Includes themes like AsciiDocsy and Just The AsciiDocs, plus plugins for Jekyll-OpenAPI integration, adocBook document converter, and 25 UI extensions for AsciiDoc.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="data-structure">Data Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="https://github.com/DocOps/blob/main/_data/docops-lab-projects.yml"><code>docops-lab-projects.yml</code> file</a> is basically a large array of tabular data.
+Each project&#8217;s record has a number of parameters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  - name: DocOps Box
+    slug: docops-box
+    type: environment
+    desc: |
+      Everything needed for managing customized Ruby, Node.js, Python, and Pandoc environments via Docker containers, ready for interactive work.
+      Including the popular ZShell with handy configurations.
+      Alternatively builds a production-ready ("live") image for automation/deployment.
+    line: Up and running with Ruby, Node, Zsh, Pandoc, and Git for document operations with interactive and production-ready Docker images.
+    star: true
+    page: true
+    done: 90%
+    vrsn: 0.1.0
+    wave: 0
+    card: readme
+    icon: container
+    tech: [Docker,Bash,Zsh,Ruby,Git,Pandoc,Node.js,Python]
+    tags: [development,automation,containers,virtualization,Dockerized]
+    sort: 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I think most of the above data record is mostly self-explanatory, but a few fields merit highlighting.</p>
+</div>
+<div class="paragraph">
+<p>I also added a concept of custom cards, which are defined in another file: <code>_data/cards.yml</code>.
+As of now, it contains only one card record.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: Issuer and ReleaseHx
+  type: utility
+  card: |
+    Issue-ticket creation and release-history management tools that integrate with Jira, GitHub, and GitLab. Bulk-create work items from a single YAML file, then generate release notes and changelogs in AsciiDoc, Markdown, YAML, JSON, HTML, or PDF formats at release time.
+  icon: logs
+  sort: 6
+  href: /blog/issuer-releasehx-news/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is all pulled together using simple Liquid assignments and filters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign starred_projects = site.data.docops-lab-projects.projects | where: 'star', true %}
+{% assign featured_projects = starred_projects | concat: site.data.cards | sort: 'sort' %}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-profiles">Project Profiles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Project profiles come in micro, mini, and page sizes.</p>
+</div>
+<div class="paragraph">
+<p>The micros are for card-based representations, such as the <a href="/#featured-projects">Featured Projects section on the landing page</a>, or pages that group projects in ways that might involve repeated instances of the same project in the output, such as the <a href="/projects/by-tech/">Projects by Technology</a> and <a href="/projects/by-category/">Projects by Category</a> pages.</p>
+</div>
+<div class="paragraph">
+<p>The minis are for the project detail sections that appear on the <a href="/projects/">Projects Overview</a> page, which includes a lot more information about each project, but still in a compact format.</p>
+</div>
+<div class="paragraph">
+<p>Finally, some projects have their own dedicated pages, such as <a href="/projects/docs-as-code-school/">Docs-as-Code School</a>.
+This is the most comprehensive representation of a project.</p>
+</div>
+<div class="paragraph">
+<p>I can even re-create one here in this page using Liquid templates.</p>
+</div>
+<div class="project-profile project-card profile-mini" id="docops-box">
+  <div class="project-header">
+  <i data-lucide="container" class="project-icon"></i>
+  <h3>
+    <a href="/projects/docops-box/" class="project-title-link">
+      DocOps Box
+    </a>
+  </h3>
+
+  <span class="project-version">
+
+
+
+
+
+
+
+
+    0.1.0
+
+
+
+  </span>
+
+  </div>
+
+  <div class="project-line">
+  <div class="paragraph">
+<p>Up and running with Ruby, Node, Zsh, Pandoc, and Git for document operations with interactive and production-ready Docker images.</p>
+</div>
+  </div>
+
+  <div class="project-description">
+
+    <div class="paragraph">
+<p>A Docker-containerized environment and shell script for reducing the complexity of setting up “developer tools”. Non-developers can run a single command (<code>docksh run</code>) and instantly access whole runtimes and specialized documentation tools in a pre-configured shell environment.</p>
+</div>
+
+  </div>
+  <div class="project-meta">
+
+    <dl class="project-type horizontal">
+      <dt>Type:</dt>
+      <dd>
+        <a href="/projects/by-type/#type-environment">
+          environment
+        </a>
+      </dd>
+    </dl>
+
+
+    <dl class="project-done horizontal">
+      <dt>Status:</dt>
+      <dd>90%</dd>
+    </dl>
+
+
+    <dl class="project-wave horizontal">
+      <dt>Wave:</dt>
+      <dd>0</dd>
+    </dl>
+
+
+
+
+    <div class="meta-list">
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-development"># development</a></span>
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-automation"># automation</a></span>
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-containers"># containers</a></span>
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-virtualization"># virtualization</a></span>
+
+      <span class="meta-label"><a href="/projects/by-category/#tag-dockerized"># Dockerized</a></span>
+
+    </div>
+
+
+    <div class="meta-list">
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-docker">Docker</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-bash">Bash</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-zsh">Zsh</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-ruby">Ruby</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-git">Git</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-pandoc">Pandoc</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-node-js">Node.js</a></span>
+
+      <span class="meta-label"><a href="/projects/by-tech/#tech-python">Python</a></span>
+
+    </div>
+
+
+
+  </div>
+
+
+</div>
+<div class="paragraph">
+<p>The above &#8220;mini-profile&#8221; expression was called with this Liquid code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% include project-profile.html slug='docops-box' %}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note how the style for this page remains largely intact in affecting the profile rendering.</p>
+</div>
+</div>
+</div>
+    </div>
+    
+    
+
+    
+    <div class="related-posts">
+
+      
+
+      
+        <h2>Related posts</h2>
+        <ul>
+          
+            
+            
+            <li>
+              <a href="/blog/true-single-sourcing/">TRUE Single Sourcing with YAML and AsciiDoc</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/code-to-docs-pipelines/">Code-to-Docs Pipelines</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/release-the-lab/">Release the Lab!</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/tech-docs-blogs-collection/">Collecting and Aggregating Blogs about Tech Docs</a>
+            </li>
+            
+          
+        </ul>
+      
+    </div>
+    
+    
+    <footer class="post-footer metablog">
+      
+      
+      <div class="post-navigation">
+        
+        <a href="/blog/release-the-lab/" class="nav-link nav-prev">
+          <i data-lucide="arrow-left"></i>
+          <div class="nav-text">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">Release the Lab!</span>
+          </div>
+        </a>
+        
+        
+        
+        <a href="/blog/issuer-releasehx-news/" class="nav-link nav-next">
+          <div class="nav-text">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">DocOps Lab Has Issues: Announcing Issuer and ReleaseHx</span>
+          </div>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        
+      </div>
+      
+      <div class="back-to-blog">
+        <a href="/blog/" class="btn-secondary">
+          <i data-lucide="arrow-left"></i>
+          Back to Blog
+        </a>
+      </div>
+    </footer>
+    </article>
+  </div>
+</div>
+
+
+<footer class="footer-section">
+<!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

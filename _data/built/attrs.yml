@@ -1,0 +1,110 @@
+---
+attribute-undefined: drop-line
+attribute-missing: skip
+appendix-caption: Appendix
+appendix-refsig: Appendix
+caution-caption: Caution
+chapter-refsig: Chapter
+example-caption: Example
+figure-caption: Figure
+important-caption: Important
+last-update-label: Last updated
+note-caption: Note
+part-refsig: Part
+prewrap: ''
+sectids: ''
+section-refsig: Section
+table-caption: Table
+tip-caption: Tip
+toc-placement: macro
+toc-title: Table of Contents
+untitled-label: Untitled
+version-label: Version
+warning-caption: Warning
+notitle: ''
+docfilesuffix: ".adoc"
+docname: README
+embedded: ''
+asciidoctor: ''
+asciidoctor-version: 2.0.23
+safe-mode-name: safe
+safe-mode-safe: ''
+safe-mode-level: 1
+max-include-depth: 64
+doctype: article
+htmlsyntax: html
+backend-html5-doctype-article: ''
+doctype-article: ''
+backend-html5: ''
+backend: html5
+outfilesuffix: ".html"
+filetype: html
+filetype-html: ''
+basebackend-html-doctype-article: ''
+basebackend-html: ''
+basebackend: html
+stylesdir: "."
+iconsdir: "./images/icons"
+localdate: '2026-05-17'
+localyear: '2026'
+localtime: '08:19:02 UTC'
+localdatetime: 2026-05-17 08:19:02 UTC
+docdate: '2026-05-17'
+docyear: '2026'
+doctime: '08:18:43 UTC'
+docdatetime: 2026-05-17 08:18:43 UTC
+doctitle: DocOps Lab
+toc: ''
+toclevels: '2'
+this_proj_slug: lab
+this_proj_name: DocOps/Lab
+docopslab_src_www_url: https://github.com/DocOps
+docopslab_domain: docopslab.org
+docopslab_www_url: https://docopslab.org
+docopslab_io_www_url: https://docopslab.github.io
+docopslab_ruby_version: 3.2.7
+docopslab_git_src_uri: git@github.com:DocOps
+docopslab_src_raw_url: https://raw.githubusercontent.com/DocOps
+this_proj_src_www_url: https://github.com/DocOps/lab
+this_proj_src_raw_url: https://raw.githubusercontent.com/DocOps/lab
+this_proj_src_main_raw_url: https://raw.githubusercontent.com/DocOps/lab/main
+this_proj_src_main_files_url: https://github.com/DocOps/lab/blob/main
+this_proj_src_git_uri: git@github.com:DocOps/lab.git
+this_proj_ruby_version: 3.2.7
+docs_extn: ''
+this_prod_slug: lab
+this_prod_name: DocOps/Lab
+this_prod_src_www_url: https://github.com/DocOps/lab
+docopslab_lab_src_www_url: https://github.com/DocOps/lab
+tagline: Bridging the gap between document professionals and the world of code
+description: A community resource for free, open-source tools and practices that empower
+  technical writers, project managers, paralegals, researchers, and educators to leverage
+  modern documentation practices through accessible technologies, strategies, and
+  conventions.
+docops-box: A Docker-containerized environment and shell script for reducing the complexity
+  of setting up “developer tools”. Non-developers can run a single command (`docksh
+  run`) and instantly access whole runtimes and specialized documentation tools in
+  a pre-configured shell environment.
+docs-as-code-school: Structured education in modern technical documentation and document
+  processing. Starting with &#8220;Deep Semantics&#8221; (Fall 2025?) and expanding
+  to courses on version management, code-like workflow adoption, and legal document
+  operations, this project uses docs-as-code to teach docs-as-code principles.
+ayl-docstack: AsciiDoc. YAML. Liquid. A three-language approach to managing complex,
+  multi-variant documentation. This &#8220;tech stack&#8221; maximizes power while
+  minimizing syntax overhead, making advanced documentation techniques accessible
+  to beginners while remaining powerful enough for enterprise needs.
+schemagraphy: Extends YAML through SGYML and accompanying libraries, providing advanced
+  data typing and document transclusion capabilities. Provides a full-featured schema
+  language that allows users to define complex data structures, document structures,
+  and whole interfaces in a single, unified format.
+jekyll-asciidoc-ui: A set of Jekyll plugins and themes that enrich AsciiDoc web output.
+  Includes themes like AsciiDocsy and Just The AsciiDocs, plus plugins for Jekyll-OpenAPI
+  integration, adocBook document converter, and 25 UI extensions for AsciiDoc.
+intro: DocOps Lab is working to distribute the power of docs-as-code for non-programmers.
+intro-2: Too many [.role]*technical writers*, [.role]*project managers*, [.role]*paralegals*,
+  [.role]*researchers*, and [.role]*educators* are stuck with legacy document tools
+  that constrain their potential.
+bridge-text: Through several interconnected open source projects, DocOps Lab is creating
+  pathways for &#8220;tech-savvy non-programmers&#8221; to harness developer tools.
+authorcount: 0
+toc-position: content

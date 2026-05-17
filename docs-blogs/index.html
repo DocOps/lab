@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Docs Streams | DocOps Lab</title>
+  <meta name="description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Tech Docs Streams">
+  <meta property="og:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  <meta property="og:url" content="https://docopslab.org/docs-blogs/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tech Docs Streams">
+  <meta name="twitter:description" content="Powering documentation operations with tooling and best practices for modern technical writing and product teams and other document managers.">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs-blogs/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-default  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="container docs-blogs-directory">
+  <header class="page-header">
+    <h1>Tech Docs Streams</h1>
+    <p class="tagline">A curated directory of technical documentation blogs, newsletters, and podcasts</p>
+    <p class="page-nav">
+      <a href="/docs-blogs/latest/">Latest posts</a>
+      &middot;
+      <a href="/feeds/docs-blogs.opml" title="Subscribe to all feeds via OPML">Download OPML</a>
+      &middot;
+      <span class="blog-count">43 resources</span>
+    </p>
+  </header>
+
+  <div class="view-controls" role="toolbar" aria-label="Sort blogs by">
+    <button class="view-btn active" data-view="alpha" type="button">A–Z</button>
+    <button class="view-btn" data-view="kind" type="button">By kind</button>
+    <button class="view-btn" data-view="tag" type="button">By tag</button>
+    <button class="view-btn" data-view="random" type="button">Random</button>
+  </div>
+
+  <!-- Tag picker bar: built and shown only in the "By tag" view -->
+  <div class="tag-picker-bar" id="tag-picker-bar" hidden></div>
+
+  <!-- Stream "kinds" picker -->
+  <div class="kind-picker-bar meta-toc-grid" id="kind-picker-bar" hidden style="display: none;">
+    <a class="kind-pick-btn meta-toc-link" data-kind="blogs" type="button" href="#blog-section">Blogs</a>
+    <a class="kind-pick-btn meta-toc-link" data-kind="podcasts" type="button" href="#podcast-section">Podcasts</a>
+    <a class="kind-pick-btn meta-toc-link" data-kind="newsletters" type="button" href="#newsletter-section">Newsletters</a>
+  </div>
+
+  <!-- Card data rendered once, alphabetically -->
+  <div class="blog-cards" id="blog-cards-container"><div class="card blog-card"
+         data-name="AmanHimself.dev"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;ai&quot;,&quot;tools&quot;,&quot;blogging&quot;,&quot;best-practices&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://amanhimself.dev" rel="noopener" target="_blank">AmanHimself.dev</a>&nbsp;<a class="feed-link" href="https://amanhimself.dev/rss.xml" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Aman blogs about writing, blogging, and coding, including nitty-gritty insights into the hows and whyfors.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tools" type="button">tools</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="blogging" type="button">blogging</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="best-practices" type="button">best-practices</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="BufferBuffer: (mis)adventures of a technical writer"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;humor&quot;,&quot;careers&quot;,&quot;best-practices&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://bufferbuffer.com" rel="noopener" target="_blank">BufferBuffer: (mis)adventures of a technical writer</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Personal blog chronicling the adventures and misadventures of a technical writer; posts blend practical insights with humor and hard-won lessons about the tech writing profession.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="humor" type="button">humor</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="best-practices" type="button">best-practices</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Cherryleaf Blog"
+         data-kind="blog"
+         data-tags="[&quot;tech-comm&quot;,&quot;content-strategy&quot;,&quot;careers&quot;,&quot;ai&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://www.cherryleaf.com/blog/" rel="noopener" target="_blank">Cherryleaf Blog</a>&nbsp;<a class="feed-link" href="https://www.cherryleaf.com/blog/feed/" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Blog from UK-based technical communication consultancy Cherryleaf covering a wide range of topics including content strategy, documentation tools, tech comm careers, and emerging trends like AI.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-strategy" type="button">content-strategy</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Cherryleaf Podcast"
+         data-kind="podcast"
+         data-tags="[&quot;tech-comm&quot;,&quot;content-strategy&quot;,&quot;careers&quot;,&quot;ai&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--podcast" title="podcast"><i data-lucide="podcast"></i></span>&nbsp;<a href="https://www.cherryleaf.com/podcast/" rel="noopener" target="_blank">Cherryleaf Podcast</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Podcast from UK-based technical communication consultancy Cherryleaf covering a wide range of topics including content strategy, tools, careers, and industry trends (often featuring interviews with tech comm experts).</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-strategy" type="button">content-strategy</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="ClickHelp Technical Writing Blog"
+         data-kind="blog"
+         data-tags="[&quot;tech-comm&quot;,&quot;saas&quot;,&quot;best-practices&quot;,&quot;industry-news&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://clickhelp.com/clickhelp-technical-writing-blog" rel="noopener" target="_blank">ClickHelp Technical Writing Blog</a>&nbsp;<a class="feed-link" href="https://clickhelp.com/clickhelp-technical-writing-blog/feed" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Blog maintained by ClickHelp (a SaaS platform for topic-based help) covering industry news, how-to articles, general best practices, and occasional product announcements relevant to technical writers.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="saas" type="button">saas</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="best-practices" type="button">best-practices</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="industry-news" type="button">industry-news</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Code, Content, and Career Newsletter"
+         data-kind="newsletter"
+         data-tags="[&quot;technical-writing&quot;,&quot;docs-as-code&quot;,&quot;careers&quot;,&quot;programming&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--newsletter" title="newsletter"><i data-lucide="newspaper"></i></span>&nbsp;<a href="https://newsletter.bphogan.com" rel="noopener" target="_blank">Code, Content, and Career Newsletter</a>&nbsp;<a class="feed-link" href="https://newsletter.bphogan.com/rss" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>A monthly newsletter by Brian Hogan, with “opinions and advice about software, technical content creation, and career development” for those who write about technology.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="docs-as-code" type="button">docs-as-code</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="programming" type="button">programming</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="CoffeeCup.tech"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;ai&quot;,&quot;tools&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://coffeecup.tech/blog" rel="noopener" target="_blank">CoffeeCup.tech</a>&nbsp;<a class="feed-link" href="https://coffeecup.tech/blog/rss.xml" rel="noopener" target="_blank" title="RSS/Atom feed">Atom</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Blog of writer Florence Venisse, chronicling experiments and exploration of technology related to technical content.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tools" type="button">tools</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="CyberText Newsletter"
+         data-kind="newsletter"
+         data-tags="[&quot;tech-comm&quot;,&quot;tools&quot;,&quot;careers&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--newsletter" title="newsletter"><i data-lucide="newspaper"></i></span>&nbsp;<a href="https://cybertext.wordpress.com" rel="noopener" target="_blank">CyberText Newsletter</a>&nbsp;<a class="feed-link" href="https://cybertext.wordpress.com/feed" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Long-running newsletter and blog from CyberText Consulting offering practical advice on documentation tools (e.g. Word, Flare), career development, and web communication for technical writers.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tools" type="button">tools</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Dachary Carey"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;ai&quot;,&quot;programming&quot;,&quot;audits&quot;,&quot;case-studies&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://dacharycarey.com" rel="noopener" target="_blank">Dachary Carey</a>&nbsp;<a class="feed-link" href="https://dacharycarey.com/index.xml" rel="noopener" target="_blank" title="RSS/Atom feed">Atom</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Personal blog of Dachary Carey, a technical writer and software developer.
+Posts cover a range of topics including documentation audits, case studies of docs sites/architecture, AI in technical writing, and programming docs tools.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="programming" type="button">programming</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="audits" type="button">audits</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="case-studies" type="button">case-studies</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Damilola Oladele"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;open-source&quot;,&quot;community&quot;,&quot;mentoring&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://damilola-oladele.dev" rel="noopener" target="_blank">Damilola Oladele</a>&nbsp;<a class="feed-link" href="https://damilola-oladele.dev/feed.xml" rel="noopener" target="_blank" title="RSS/Atom feed">Atom</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Software developer and technical writer sharing posts on documentation best practices, open source contributions, community building and mentoring in tech.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="open-source" type="button">open-source</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="community" type="button">community</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="mentoring" type="button">mentoring</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Daniel D. Beck"
+         data-kind="blog"
+         data-tags="[&quot;docs-as-code&quot;,&quot;git&quot;,&quot;ssg&quot;,&quot;github&quot;,&quot;careers&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://ddbeck.com/writing" rel="noopener" target="_blank">Daniel D. Beck</a>&nbsp;<a class="feed-link" href="https://ddbeck.com/feed.xml" rel="noopener" target="_blank" title="RSS/Atom feed">Atom</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Docs-as-code practitioner sharing tutorials and insights on documentation automation, static site generators, Git/GitHub workflows, and occasional career tips for technical writers.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="docs-as-code" type="button">docs-as-code</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="git" type="button">git</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ssg" type="button">ssg</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="github" type="button">github</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="DocOps Lab Blog"
+         data-kind="blog"
+         data-tags="[&quot;docops&quot;,&quot;docs-as-code&quot;,&quot;tools&quot;,&quot;content-strategy&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://docopslab.org/blog/" rel="noopener" target="_blank">DocOps Lab Blog</a>&nbsp;<a class="feed-link" href="https://docopslab.org/feeds/docops-lab-blog.xml" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>The DocOps Lab’s own blog covering documentation operations, docs-as-code practices, tooling reviews, and content strategy insights for technical writing teams.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="docops" type="button">docops</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="docs-as-code" type="button">docs-as-code</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tools" type="button">tools</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-strategy" type="button">content-strategy</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Docs by Design"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;api-docs&quot;,&quot;document-design&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://docsbydesign.com" rel="noopener" target="_blank">Docs by Design</a>&nbsp;<a class="feed-link" href="https://docsbydesign.com/feed" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Bob Watson’s blog pondering technical writing, API documentation, and broader topics in designing and delivering documentation effectively.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="api-docs" type="button">api-docs</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="document-design" type="button">document-design</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="docs goblin"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;docs-as-code&quot;,&quot;ai&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://docsgoblin.com/blog/blog.html" rel="noopener" target="_blank">docs goblin</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Personal blog by a technical writer exploring “doc tooling, AI‑augmenting tech writers, information architecture, and other assorted topics” in modern documentation.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="docs-as-code" type="button">docs-as-code</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="edmar.sh"
+         data-kind="newsletter"
+         data-tags="[&quot;technical-writing&quot;,&quot;best-practices&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--newsletter" title="newsletter"><i data-lucide="newspaper"></i></span>&nbsp;<a href="https://edmar.sh" rel="noopener" target="_blank">edmar.sh</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Community-oriented site and monthly newsletter discussing technical content and documentation best practices, with a focus on knowledge sharing among tech writers.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="best-practices" type="button">best-practices</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Everything Technical Writing"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;careers&quot;,&quot;best-practices&quot;,&quot;open-source&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://www.everythingtechnicalwriting.com" rel="noopener" target="_blank">Everything Technical Writing</a>&nbsp;<a class="feed-link" href="https://www.everythingtechnicalwriting.com/rss" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>A one-stop blog for all things technical writing with tips, tricks, and techniques for thriving as a technical writer in software.
+Includes career guidance, expert interviews, and insights into open-source documentation.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="best-practices" type="button">best-practices</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="open-source" type="button">open-source</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="ffeathers"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;community&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://ffeathers.wordpress.com" rel="noopener" target="_blank">ffeathers</a>&nbsp;<a class="feed-link" href="https://ffeathers.wordpress.com/feed" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Sarah Maddox’s technical writing (and occasional fiction) blog offering practical insights on technical communication, documentation community events, and writing in the tech world (with a dash of whimsy).</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="community" type="button">community</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Heroic Technical Writing"
+         data-kind="blog"
+         data-tags="[&quot;tech-comm&quot;,&quot;careers&quot;,&quot;professional-development&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://heroictechwriting.com" rel="noopener" target="_blank">Heroic Technical Writing</a>&nbsp;<a class="feed-link" href="https://heroictechwriting.com/feed" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Bart Leahy’s blog providing advice and insights on the business and personal aspects of technical communication, including career growth, professional development, and proposal writing.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="professional-development" type="button">professional-development</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Hire This One"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;careers&quot;,&quot;best-practices&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://hirethis.one/blog" rel="noopener" target="_blank">Hire This One</a>&nbsp;<a class="feed-link" href="https://hirethis.one/rss.xml" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Attached to the demo/portfolio site of an aspiring tech writer named Sam, this blog features posts about breaking into the field and trying out new tech.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="best-practices" type="button">best-practices</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="I&#39;d Rather Be Writing"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;api-docs&quot;,&quot;docs-as-code&quot;,&quot;ai&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://idratherbewriting.com" rel="noopener" target="_blank">I'd Rather Be Writing</a>&nbsp;<a class="feed-link" href="http://feeds.feedburner.com/idratherbewriting" rel="noopener" target="_blank" title="RSS/Atom feed">Atom</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Widely read blog by Tom Johnson, covering API documentation, reference guides, AI-assisted authoring, and trends in technical writing.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="api-docs" type="button">api-docs</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="docs-as-code" type="button">docs-as-code</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="I&#39;d Rather Be Writing Podcast"
+         data-kind="blog"
+         data-tags="[&quot;ai&quot;,&quot;api-docs&quot;,&quot;tools&quot;,&quot;book-reviews&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://www.youtube.com/@idratherbewriting" rel="noopener" target="_blank">I'd Rather Be Writing Podcast</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Video podcast from Tom Johnson and Fabrizio Ferri Benedetti, covering topics related to API documentation, AI in technical writing, and interviews with industry experts.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="api-docs" type="button">api-docs</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tools" type="button">tools</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="book-reviews" type="button">book-reviews</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="James Tasse"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;tools&quot;,&quot;ai&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://jamestasse.tech/blog" rel="noopener" target="_blank">James Tasse</a>&nbsp;<a class="feed-link" href="https://jamestasse.tech/rss.xml" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Mostly covering the involvement of AI in technical writing, James takes a highly technical and analytical approach to tooling and content.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tools" type="button">tools</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Just Write Click"
+         data-kind="blog"
+         data-tags="[&quot;docs-as-code&quot;,&quot;open-source&quot;,&quot;ssg&quot;,&quot;tools&quot;,&quot;content-strategy&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://justwriteclick.com" rel="noopener" target="_blank">Just Write Click</a>&nbsp;<a class="feed-link" href="https://justwriteclick.com/feed" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Anne Gentle’s blog (author of <strong>Docs Like Code</strong>) about treating docs like code.
+Covers continuous publishing, static site generators (Sphinx, Hugo, etc), open-source documentation collaboration, and innovative content strategy techniques for technical writing teams.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="docs-as-code" type="button">docs-as-code</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="open-source" type="button">open-source</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ssg" type="button">ssg</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tools" type="button">tools</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-strategy" type="button">content-strategy</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Kevin R. Kuhl"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;tools&quot;,&quot;docs-as-code&quot;,&quot;ai&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://www.kevinrkuhl.com/blog/" rel="noopener" target="_blank">Kevin R. Kuhl</a>&nbsp;<a class="feed-link" href="https://www.kevinrkuhl.com/blog/index.xml" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Filled with commentary on other writings, this traditional blog is a welcome blast from the past style.
+Kevin looks at all kinds of technology, old and new, from the perspective of a professional tech writer.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tools" type="button">tools</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="docs-as-code" type="button">docs-as-code</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Knowledgebase Ninjas Podcast"
+         data-kind="podcast"
+         data-tags="[&quot;tech-comm&quot;,&quot;kb&quot;,&quot;ai&quot;,&quot;saas&quot;,&quot;best-practices&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--podcast" title="podcast"><i data-lucide="podcast"></i></span>&nbsp;<a href="https://document360.com/podcast/" rel="noopener" target="_blank">Knowledgebase Ninjas Podcast</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Weekly interview podcast by Document360. Host Gowri Ramkumar chats with documentation experts about building better knowledge bases, the challenges of SaaS documentation, the role of AI in tech writing, and practical insights for technical communicators.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="kb" type="button">kb</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="saas" type="button">saas</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="best-practices" type="button">best-practices</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="KnowledgeOwl — The Owlery"
+         data-kind="blog"
+         data-tags="[&quot;kb&quot;,&quot;ia&quot;,&quot;search&quot;,&quot;governance&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://blog.knowledgeowl.com/" rel="noopener" target="_blank">KnowledgeOwl — The Owlery</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Blog from KnowledgeOwl (a knowledge base and documentation platform) covering knowledge base management, information architecture, search optimization, and content governance in documentation teams.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="kb" type="button">kb</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ia" type="button">ia</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="search" type="button">search</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="governance" type="button">governance</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Kyle Blank Rollins"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;professional-development&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://www.kyleblankrollins.com/blog.html" rel="noopener" target="_blank">Kyle Blank Rollins</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Personal blog featuring articles on professional growth (from academia to industry) and occasional technical-writing topics, as the author navigates career development and research.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="professional-development" type="button">professional-development</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Leading Technical Communication"
+         data-kind="blog"
+         data-tags="[&quot;tech-comm&quot;,&quot;leadership&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://larrykunz.wordpress.com" rel="noopener" target="_blank">Leading Technical Communication</a>&nbsp;<a class="feed-link" href="https://larrykunz.wordpress.com/feed" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Larry Kunz’s blog featuring thought-provoking articles and advice on leadership and management within the technical communication field.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="leadership" type="button">leadership</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="leu escrivi!"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;ai&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://escrivi.org" rel="noopener" target="_blank">leu escrivi!</a>&nbsp;<a class="feed-link" href="https://escrivi.org/rss.xml" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Blog of France-based documentation engineer Ariel Kaiser, covering technical writing, docs tooling, and the impact and uses of AI.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Little Language Models (Little Helper)"
+         data-kind="blog"
+         data-tags="[&quot;ia&quot;,&quot;content-modeling&quot;,&quot;content-strategy&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://littlelanguagemodels.com/articles" rel="noopener" target="_blank">Little Language Models (Little Helper)</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Blog from the Vienna-based information-architecture consultancy Little Helper; posts explore information architecture, content modeling, and building frustration-free content experiences via structured content design.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="ia" type="button">ia</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-modeling" type="button">content-modeling</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-strategy" type="button">content-strategy</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Liz Argall"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;community&quot;,&quot;mentoring&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://lizargall.github.io/blog" rel="noopener" target="_blank">Liz Argall</a>&nbsp;<a class="feed-link" href="https://lizargall.github.io/blog/rss.xml" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>The blog of an international community-building tech writer and mentor/coach.
+Posts ponder aspects of the craft like communication and collaboration.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="community" type="button">community</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="mentoring" type="button">mentoring</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Paligo Blog"
+         data-kind="blog"
+         data-tags="[&quot;tech-comm&quot;,&quot;content-management&quot;,&quot;content-strategy&quot;,&quot;ai&quot;,&quot;ia&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://paligo.net/blog/" rel="noopener" target="_blank">Paligo Blog</a>&nbsp;<a class="feed-link" href="https://paligo.net/feed" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Company blog of the Paligo CCMS, providing technical communication professionals with expert guidance on creating efficient, scalable documentation systems.
+Topics include structured content (CCMS) workflows, information architecture, knowledge management, AI-ready documentation, and strategies to improve content quality.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-management" type="button">content-management</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-strategy" type="button">content-strategy</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ia" type="button">ia</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Passo Uno"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;ai&quot;,&quot;industry-news&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://passo.uno" rel="noopener" target="_blank">Passo Uno</a>&nbsp;<a class="feed-link" href="https://passo.uno/posts/index.xml" rel="noopener" target="_blank" title="RSS/Atom feed">Atom</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Personal site of Fabrizio Ferri Benedetti (UX/technical writer) featuring editorial pieces and in-depth discussions about the current state of technical writing, documentation “experiments”, and the impact of AI on our industry.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="industry-news" type="button">industry-news</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Read the Docs (Company Blog)"
+         data-kind="blog"
+         data-tags="[&quot;open-source&quot;,&quot;ssg&quot;,&quot;community&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://about.readthedocs.com/blog/" rel="noopener" target="_blank">Read the Docs (Company Blog)</a>&nbsp;<a class="feed-link" href="https://about.readthedocs.com/feeds/atom.xml" rel="noopener" target="_blank" title="RSS/Atom feed">Atom</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Blog from Read the Docs (a popular documentation hosting platform) covering platform updates, open source doc projects, static site generator news, and community announcements in the docs-as-code ecosystem.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="open-source" type="button">open-source</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ssg" type="button">ssg</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="community" type="button">community</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Robert Delwood"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;api-docs&quot;,&quot;programming&quot;,&quot;automation&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://robertdelwood.medium.com" rel="noopener" target="_blank">Robert Delwood</a>&nbsp;<a class="feed-link" href="https://medium.com/feed/@robertdelwood" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>The Medium "stories" of a professional API documentation writer, programmer, and former NASA engineer.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="api-docs" type="button">api-docs</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="programming" type="button">programming</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="automation" type="button">automation</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Sarah Deaton"
+         data-kind="blog"
+         data-tags="[&quot;ai&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://sdeaton.com" rel="noopener" target="_blank">Sarah Deaton</a>&nbsp;<a class="feed-link" href="https://sdeaton.com/rss.xml" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Sarah&#8217;s deep and practical analysis of AI tools and techniques as they apply to content and software.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Tech Docs"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;docs-as-code&quot;,&quot;tools&quot;,&quot;content-strategy&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://blog.techdocs.studio" rel="noopener" target="_blank">Tech Docs</a></h2><p class="blog-desc"><div class="paragraph">
+<p>David Garcia’s blog about documentation systems and “what breaks them” – discussing the tooling, infrastructure, and content strategy behind successful docs-as-code implementations.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="docs-as-code" type="button">docs-as-code</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tools" type="button">tools</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-strategy" type="button">content-strategy</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Technical Writing Uncensored"
+         data-kind="podcast"
+         data-tags="[&quot;tech-comm&quot;,&quot;best-practices&quot;,&quot;careers&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--podcast" title="podcast"><i data-lucide="podcast"></i></span>&nbsp;<a href="https://www.youtube.com/@UncensoredTechWriter" rel="noopener" target="_blank">Technical Writing Uncensored</a>&nbsp;<a class="feed-link" href="https://www.youtube.com/feeds/videos.xml?channel_id=UCdzER3fTHLN8mseLA_wtntg" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Hosted by Diana Payton, this interview-driven video podcast highlights some of the best minds in technical content.
+Episodes offer candid takes on documentation culture, skills needed for success, and unfiltered advice for tech writers.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="best-practices" type="button">best-practices</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="technicalwriting.dev"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;docs-as-code&quot;,&quot;ssg&quot;,&quot;open-source&quot;,&quot;ai&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://technicalwriting.dev" rel="noopener" target="_blank">technicalwriting.dev</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Individual blog of a tech writer focusing on developer documentation and tooling, specializing in Sphinx-based docs and static site generators for code projects.
+Includes explorations of AI tools in documentation.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="docs-as-code" type="button">docs-as-code</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ssg" type="button">ssg</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="open-source" type="button">open-source</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="ai" type="button">ai</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="TechWhirl"
+         data-kind="blog"
+         data-tags="[&quot;content-management&quot;,&quot;tech-comm&quot;,&quot;industry-news&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://techwhirl.com" rel="noopener" target="_blank">TechWhirl</a>&nbsp;<a class="feed-link" href="https://techwhirl.com/feed" rel="noopener" target="_blank" title="RSS/Atom feed">RSS</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Online resource for anyone interested in content management and technical communication; publishes interviews, analysis, and commentary on creating and managing information assets.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="content-management" type="button">content-management</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="industry-news" type="button">industry-news</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="The Not-Boring Tech Writer"
+         data-kind="podcast"
+         data-tags="[&quot;tech-comm&quot;,&quot;careers&quot;,&quot;best-practices&quot;,&quot;community&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--podcast" title="podcast"><i data-lucide="podcast"></i></span>&nbsp;<a href="https://thenotboringtechwriter.com" rel="noopener" target="_blank">The Not-Boring Tech Writer</a></h2><p class="blog-desc"><div class="paragraph">
+<p>A KnowledgeOwl-sponsored podcast (hosted by Kate Mueller) that explores the craft of technical writing in an engaging way.
+Episodes feature interviews with tech writers and documentarians, touching on topics like breaking into the field, knowledge base and community management, documentation best practices, and personal career stories.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="careers" type="button">careers</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="best-practices" type="button">best-practices</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="community" type="button">community</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="This is important"
+         data-kind="blog"
+         data-tags="[&quot;technical-writing&quot;,&quot;accessibility&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--blog" title="blog"><i data-lucide="rss"></i></span>&nbsp;<a href="https://www.thisisimportant.net" rel="noopener" target="_blank">This is important</a>&nbsp;<a class="feed-link" href="https://www.thisisimportant.net/feed" rel="noopener" target="_blank" title="RSS/Atom feed">Atom</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Blog by Sarah Moir exploring technical writing, documentation, data analysis, ethics in tech and inclusivity.
+Includes both a general feed and a category-specific feed for tech-writing posts.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="technical-writing" type="button">technical-writing</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="accessibility" type="button">accessibility</button></li></ul></div>
+    </div><div class="card blog-card"
+         data-name="Write the Docs Newsletter"
+         data-kind="newsletter"
+         data-tags="[&quot;tech-comm&quot;,&quot;community&quot;,&quot;events&quot;]">
+      <div class="blog-card-inner">
+        <h2 class="blog-card-title">
+          <span class="blog-kind blog-kind--newsletter" title="newsletter"><i data-lucide="newspaper"></i></span>&nbsp;<a href="https://www.writethedocs.org/blog/archive/tag/newsletter/" rel="noopener" target="_blank">Write the Docs Newsletter</a>&nbsp;<a class="feed-link" href="https://www.writethedocs.org/blog/archive/tag/newsletter/atom.xml" rel="noopener" target="_blank" title="RSS/Atom feed">Atom</a></h2><p class="blog-desc"><div class="paragraph">
+<p>Newsletter and blog from the Write the Docs community covering technical communication best practices, documentation culture, upcoming community events, and industry news.</p>
+</div></p><ul class="blog-tags"><li class="blog-tag"><button class="tag-filter-btn" data-tag="tech-comm" type="button">tech-comm</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="community" type="button">community</button></li><li class="blog-tag"><button class="tag-filter-btn" data-tag="events" type="button">events</button></li></ul></div>
+    </div></div>
+
+</div>
+
+<footer>
+<!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var container  = document.getElementById('blog-cards-container');
+  var tagPickBar = document.getElementById('tag-picker-bar');
+  var viewBtns   = document.querySelectorAll('.view-btn');
+  var cards      = Array.from(container.querySelectorAll('.blog-card'));
+  var activeView = 'alpha';
+  var selectedTag = null;
+  var tagIdx = null;
+
+  function getKind(card) { return card.dataset.kind || 'blog'; }
+  function getName(card) { return card.dataset.name || ''; }
+  function getTags(card) {
+    try { return JSON.parse(card.dataset.tags || '[]'); } catch (e) { return []; }
+  }
+
+  function sortedByName(arr) {
+    return arr.slice().sort(function (a, b) {
+      return getName(a).localeCompare(getName(b), undefined, { sensitivity: 'base' });
+    });
+  }
+
+  function clearContainer() {
+    while (container.firstChild) { container.removeChild(container.firstChild); }
+  }
+
+  // --- Views ---
+
+  function showAlpha() {
+    tagPickBar.style.display = 'none';
+    clearContainer();
+    sortedByName(cards).forEach(function (c) { container.appendChild(c); });
+  }
+
+  function showRandom() {
+    tagPickBar.style.display = 'none';
+    clearContainer();
+    var shuffled = cards.slice();
+    for (var i = shuffled.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = t;
+    }
+    shuffled.forEach(function (c) { container.appendChild(c); });
+  }
+
+  function showKind() {
+    tagPickBar.style.display = 'none';
+    showKindPicker();
+    clearContainer();
+    var groups = {}, order = [];
+    cards.forEach(function (card) {
+      var k = getKind(card);
+      if (!groups[k]) { groups[k] = []; order.push(k); }
+      groups[k].push(card);
+    });
+    order.sort();
+    order.forEach(function (k) {
+      var h = document.createElement('h2');
+      h.className = 'blog-group-heading';
+      h.id = k + '-section';
+      h.textContent = k.charAt(0).toUpperCase() + k.slice(1) + 's';
+      container.appendChild(h);
+      sortedByName(groups[k]).forEach(function (c) { container.appendChild(c); });
+    });
+  }
+
+  function buildTagIndex() {
+    var idx = {};
+    cards.forEach(function (card) {
+      getTags(card).forEach(function (tag) {
+        idx[tag] = (idx[tag] || 0) + 1;
+      });
+    });
+    return idx;
+  }
+
+  function filterByTag(tag) {
+    selectedTag = tag;
+    tagPickBar.querySelectorAll('.tag-pick-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.tag === tag);
+    });
+    clearContainer();
+    sortedByName(cards.filter(function (card) {
+      return getTags(card).indexOf(tag) !== -1;
+    })).forEach(function (c) { container.appendChild(c); });
+  }
+
+  function renderTagPicker(activeTag) {
+    tagPickBar.innerHTML = '';
+    Object.keys(tagIdx).sort().forEach(function (tag) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tag-pick-btn' + (tag === activeTag ? ' active' : '');
+      btn.dataset.tag = tag;
+      btn.innerHTML = tag + ' <span class="tag-count">' + tagIdx[tag] + '</span>';
+      btn.addEventListener('click', function () { filterByTag(tag); });
+      tagPickBar.appendChild(btn);
+    });
+    tagPickBar.style.display = 'flex';
+  }
+
+  function hideTagPickerBar() {
+    tagPickBar.style.display = 'none';
+    selectedTag = null;
+  }
+
+  function showTag(jumpTo) {
+    if (!tagIdx) { tagIdx = buildTagIndex(); }
+    var pick = (jumpTo && tagIdx[jumpTo]) ? jumpTo
+             : (selectedTag && tagIdx[selectedTag]) ? selectedTag
+             : Object.keys(tagIdx).sort()[0];
+    renderTagPicker(pick);
+    filterByTag(pick);
+  }
+
+  function showKindPicker() {
+    document.getElementById('kind-picker-bar').style.display = 'flex';
+  }
+
+  function hideKindPicker() {
+    document.getElementById('kind-picker-bar').style.display = 'none';
+  }
+
+  // --- Activation ---
+
+  function activateView(view, tagName) {
+    activeView = view;
+    viewBtns.forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.view === view);
+    });
+    switch (view) {
+      case 'kind':   showKind(); hideTagPickerBar(); break;
+      case 'tag':    showTag(tagName || null); hideKindPicker(); break;
+      case 'random': showRandom(); hideTagPickerBar(); hideKindPicker(); break;
+      case 'alpha': showAlpha(); hideTagPickerBar(); hideKindPicker(); break;
+      default:       showAlpha(); hideTagPickerBar();  hideKindPicker(); break;
+    }
+  }
+
+  viewBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () { activateView(btn.dataset.view); });
+  });
+
+  // Event delegation: clicking a card tag pill jumps to By Tag filtered to that tag
+  container.addEventListener('click', function (e) {
+    var btn = e.target.closest('.tag-filter-btn');
+    if (!btn) { return; }
+    e.stopPropagation();
+    activateView('tag', btn.dataset.tag);
+  });
+
+  // Re-sort on load to fix Liquid case-sensitive initial order
+  showAlpha();
+}());
+</script>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

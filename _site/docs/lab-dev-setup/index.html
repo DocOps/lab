@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev-tooling Setup | DocOps Lab</title>
+  <meta name="description" content="Environment and Bootstrapping for new DocOpsLab project codebases or establishing a complete dev environment">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dev-tooling Setup">
+  <meta property="og:description" content="Environment and Bootstrapping for new DocOpsLab project codebases or establishing a complete dev environment">
+  <meta property="og:url" content="https://docopslab.org/docs/lab-dev-setup/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dev-tooling Setup">
+  <meta name="twitter:description" content="Environment and Bootstrapping for new DocOpsLab project codebases or establishing a complete dev environment">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/lab-dev-setup/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Dev-tooling Setup</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Dev-tooling Setup</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Dev-tooling Setup</h1>
+      
+      <p class="document-description">Environment and Bootstrapping for new DocOpsLab project codebases or establishing a complete dev environment</p>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide pertains to the <code>docopslab-dev</code> environment.
+For complete documentation, see the <a href="/projects/docops-box/">project&#8217;s README</a>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The environment described and provided here is <em>not</em> optimized for DocOps Lab <em>applications</em> used in third-party projects.
+For your own applications of DocOps Labs products like ReleaseHx and Issuer, see <a href="/projects/docops-box">DocOps Box</a> for a full-featured docs-focused workspace, runtime, and production environment.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If this is <em>your first time using</em> <code>docopslab-dev</code> on a given workstation, you will need to ensure the <a href="#prerequisites">prerequisites</a> are met.</p>
+</div>
+<div class="paragraph">
+<p>If you have the prerequisites and are just getting started with <em>a given DocOps Lab project</em>, you should be ready after <a href="#initialize-sync">Initialize or Sync</a>.</p>
+</div>
+<div class="paragraph">
+<p>If you are initializing <code>docopslab-dev</code> in an new project, you will also need to initialize the environment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are three ways to prepare the necessary dependencies and runtimes.</p>
+</div>
+<div class="paragraph">
+<p>If you are already a Ruby user, Option 1 is likely for you.
+Otherwise, Option 2 is strongly recommended, at least for getting started quickly.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup-native">Option 1: Native Installations</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Ruby &amp; Bundler</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Ruby 3.2+ with Bundler installed natively</p>
+</li>
+<li>
+<p><code>gem 'docopslab-dev' in `Gemfile</code></p>
+</li>
+<li>
+<p>All Ruby gems managed via <code>bundle install</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Vale</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>brew install vale</code> (macOS)</p>
+</li>
+<li>
+<p><code>apt install vale</code> (Ubuntu/Debian)</p>
+</li>
+<li>
+<p><code>dnf install vale</code> (Fedora)</p>
+</li>
+<li>
+<p>If not installed, <code>vale</code> operations will fallback to Docker execution</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Asciidoctor (to support Vale)</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>installed globally</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>gem install asciidoctor</code> or</p>
+</li>
+<li>
+<p><code>npm i -g asciidoctor</code> or</p>
+</li>
+<li>
+<p>natively installed through your system&#8217;s package manager</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Test with <code>asciidoctor --version</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">ShellCheck</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>brew install shellcheck</code> (macOS)</p>
+</li>
+<li>
+<p><code>apt install shellcheck</code> (Ubuntu/Debian)</p>
+</li>
+<li>
+<p><code>dnf install shellcheck</code> (Fedora)</p>
+</li>
+<li>
+<p>If not installed, <code>shellcheck</code> operations will fallback to Docker execution</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">actionlint</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>brew install actionlint</code> (macOS)`</p>
+</li>
+<li>
+<p><code>go install github.com/rhysd/actionlint/cmd/actionlint@latest</code> (Go 1.16 or later)</p>
+</li>
+<li>
+<p>Otherwise see <a href="https://github.com/rhysd/actionlint/blob/v1.7.7/docs/install.md">install guide</a>.</p>
+</li>
+<li>
+<p>If not installed, <code>actionlint</code> operations will fallback to Docker execution</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">gh (preferred) or git</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>brew install gh</code> (macOS)</p>
+</li>
+<li>
+<p>See <a href="https://github.com/cli/cli/blob/trunk/docs/install_linux.md">install guide</a> for Linux (APT, DNF, etc.)</p>
+</li>
+<li>
+<p>Used for <code>labdev:sync:library</code>; falls back to <code>git</code> if not installed</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup-docker-only">Option 2: Full Docker Environment</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>All tools available, via <code>docopslab/dev</code> image</p>
+</li>
+<li>
+<p>No native Ruby installation required</p>
+</li>
+<li>
+<p>You&#8217;ll need Docker installed::</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.docker.com/desktop/setup/install/mac-install/">Docker Desktop on MacOs</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/desktop/features/wsl/">Docker Desktop with WSL2 on Windows</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/engine/install/">Docker Engine on Linux</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Install with <code>docker pull docopslab/dev</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>docopslab/dev</code> image provides a complete development environment with Ruby, Vale, and all linting tools pre-installed.</p>
+</div>
+<div class="paragraph">
+<p>Add an alias to your shell profile (<code>~/.bashrc</code>, <code>~/.zshrc</code>, etc.) to make Docker usage easier:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">alias lab-dev='docker run -it --rm -v "$(pwd):/workspace" docopslab/dev'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For Zshell users, the <code>noglob</code> command prefix is recommended to prevent formatting issues when passing arguments to tasks.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">alias lab-dev='noglob docker run -it --rm -v "$(pwd):/workspace" docopslab/dev'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Be sure to run <code>source ~/.bashrc</code> or <code>source ~/.zshrc</code> or equivalent to instantiate the alias.</p>
+</div>
+<div class="paragraph">
+<p>Now <code>lab-dev</code> replaces the full Docker command and causes insertion of <code>bundle exec</code> for <code>rake</code> or <code>labdev:</code> commands.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setup-ruby-docker">Option 3: Ruby with Docker fallback</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Ruby &amp; Bundler + <code>Gemfile</code> as in <a href="#setup-native">Option 1</a></p>
+</li>
+<li>
+<p>Vale and other non-Ruby services run via Docker if not installed locally as in <a href="#setup-docker-only">Option 2</a></p>
+</li>
+<li>
+<p>All <code>labdev:</code> rake tasks that use non-Ruby dependencies will attempt native execution first, then fall back to Docker if the tool is not found or is found to be the wrong version.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="initialize-sync">Initialize or Sync</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once <a href="#prerequisites">dependencies are installed</a>, the development environment <em>may</em> need to be initialized and <em>must</em> be synced, between your local instance and source assets.</p>
+</div>
+<div class="paragraph">
+<p>Assuming you are not initializing a new project, you can skip to <a href="#environment-synchronization">Environment Synchronization</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-initialization">Project Initialization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you are introducing <code>docopslab-dev</code> to an existing project, you first need to integrate and initialize it.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add <code>docopslab-dev</code> to the project&#8217;s <code>Gemfile</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">group :development do
+  gem 'docopslab-dev'
+end</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Install the gem.</p>
+<div class="literalblock prompt">
+<div class="content">
+<pre>bundle install</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add <code>require 'docopslab/dev'</code> to the top of the project&#8217;s <code>Rakefile</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A project lacking any configuration files can now be initialized.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Use <code>bundle exec rake labdev:check</code> to ensure the project environment is aligned.</p>
+</li>
+<li>
+<p>Initialize the development environment</p>
+<div class="literalblock prompt">
+<div class="content">
+<pre>bundle exec rake labdev:init:all</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The <code>init</code> task creates <code>.config/docopslab-dev.yml</code> and default project configs for all tools.
+This file should be Git tracked for the project.</p>
+</div>
+<div class="paragraph">
+<p>Initialization also performs environment synchronization.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="environment-synchronization">Environment Synchronization</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This process is part of the <code>init</code> operation, but on its own it ensures local configs and assets are up to date with their source templates.</p>
+</div>
+<div class="literalblock prompt">
+<div class="title">Install the dependencies (if not done already)</div>
+<div class="content">
+<pre>bundle install</pre>
+</div>
+</div>
+<div class="literalblock prompt">
+<div class="title">Sync configuration files</div>
+<div class="content">
+<pre>bundle exec rake labdev:sync:all</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="manifest-file">Manifest File</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every project using <code>docopslab-dev</code> is configured through a single manifest file at
+<code>.config/docopslab-dev.yml</code> (created by <code>labdev:init:all</code> or manually).</p>
+</div>
+<div class="paragraph">
+<p>The manifest has four top-level keys, each documented in detail in the relevant section:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>tools:</code></dt>
+<dd>
+<p><a href="#managed-tools">[managed-tools]</a>: active linters and their config file mappings.</p>
+</dd>
+<dt class="hdlist1"><code>docs:</code></dt>
+<dd>
+<p><a href="#file-syncing">[file-syncing]</a> &gt; <a href="#technical-documentation">[technical-documentation]</a>: agent docs and guides to sync.</p>
+</dd>
+<dt class="hdlist1"><code>templates:</code></dt>
+<dd>
+<p><a href="#sync-cast">[sync-cast]</a>: Liquid-rendered source-to-target entries.</p>
+</dd>
+<dt class="hdlist1"><code>library:</code></dt>
+<dd>
+<p><a href="#remote-library">Remote Asset Library</a>: library source and cache settings.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For configuration details, see <a href="/docs/lab-dev-config/">DocOps Lab Dev-tooling Configuration</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See <a href="/docs/lab-dev-usage/">DocOps Lab Dev-tooling Usage</a> for operational details.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/lab-dev-setup.adoc" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

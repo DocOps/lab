@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocOps Lab Contributor&#8217;s Guide | DocOps Lab</title>
+  <meta name="description" content="Guidelines, protocols, and best practices for contributing to DocOps Lab projects.">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DocOps Lab Contributor&#8217;s Guide">
+  <meta property="og:description" content="Guidelines, protocols, and best practices for contributing to DocOps Lab projects.">
+  <meta property="og:url" content="https://docopslab.org/docs/contributing/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="DocOps Lab Contributor&#8217;s Guide">
+  <meta name="twitter:description" content="Guidelines, protocols, and best practices for contributing to DocOps Lab projects.">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/contributing/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>DocOps Lab Contributor&#8217;s Guide</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">DocOps Lab Contributor&#8217;s Guide</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>DocOps Lab Contributor&#8217;s Guide</h1>
+      
+      <p class="document-description">Guidelines, protocols, and best practices for contributing to DocOps Lab projects.</p>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab encourages contributions from anyone interested in improving our projects.
+We are even open to initiatives around new projects that align with <a href="/docs/mission/">Mission</a> and values.</p>
+</div>
+<div class="paragraph">
+<p>This guide outlines the process for contributing code, documentation, and other improvements to our repositories and community.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Just like DocOps Lab software is aimed at non-developers, so too do we want to make contributing as accessible as possible.
+We welcome contributions from people of all skill levels, including those who may be new to coding or open source.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See <a href="/docs/development/">DocOps Lab Development Process (General)</a> for detailed contribution procedures.
+This document focuses on a more general approach to the contribution process, whereas that guide is highly technical and focused on actually working with DocOps Lab codebases.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Each DocOps Lab project repository should have a <strong>Contributing</strong> Section in its <code>README.adoc</code> file.
+Always consult that once you&#8217;re familiar with general policies and actually ready to push code.
+</td>
+</tr>
+</table>
+</div>
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-started">Getting Started</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Contributors are welcome to use any valid toolchain to develop and commit code and docs to DocOps Lab projects.</p>
+</div>
+<div class="paragraph">
+<p>This section provides an overview of the broad technological strategies for contributing.</p>
+</div>
+<div class="paragraph">
+<p>For details on the very concept of contributing to open-source projects, see GitHub&#8217;s see <a href="https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-open-source">GitHub&#8217;s official contribution guide</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="quick-and-dirty-changes">Option 1: Web UI for Quick and Dirty Changes</h3>
+<div class="paragraph">
+<p>Use GitHub&#8217;s Web interface and optionally Copilot to fork the prime repo (<code>DocOps/&lt;repo-id&gt;</code>) and make a change.
+Run the tests until it&#8217;s right, then issue a pull request (PR) to the prime repository.</p>
+</div>
+<div class="paragraph">
+<p>This method is suitable for small changes, such as fixing typos or making minor code adjustments in one or a few files.
+It is also the easiest method for total beginners.</p>
+</div>
+<div class="paragraph">
+<p>We recommend following this <a href="https://medium.com/anitab-org-open-source/contributing-using-github-web-ui-225a60390318">thorough guide to GitHUb Web UI contributions</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="install-the-development-environment">Option 2: Install the Development Environment</h3>
+<div class="paragraph">
+<p>For more substantial contributions, set up a local development environment suitable to the project you want to work on.</p>
+</div>
+<div class="paragraph">
+<p>A base Dockerized Ruby environment should be suitable, as well.
+The latest <a href="/projects/docops-box/">DocOps Box</a> to create a base image that should suffice for developing any DocOps Lab codebase.</p>
+</div>
+<div class="paragraph">
+<p><em>If you are initializing a <strong>new DocOps Lab project</strong></em>, see <a href="/docs/lab-dev-setup/">DocOps Lab Dev-tooling Setup</a> for comprehensive setup details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cloud-environment">Option 3: Use a Cloud Environment</h3>
+<div class="paragraph">
+<p>Also for larger contributions, consider using a cloud-based development environment like GitHub Codespaces or Gitpod.
+We do not specifically instruct this or provide template spaces at this time, but we may do so upon request.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributing-code">Contributing Code (Including Docs)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All contributions of functional code, data, or documentation (which is also code) must go through the poorly named &#8220;Pull Request&#8221; (PR) process via GitHub.</p>
+</div>
+<div class="paragraph">
+<p>This process allows for review, discussion, and testing before changes are merged into the main codebase.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See the separate <a href="/docs/generative-ai-usage/">DocOps Lab Generative "AI" Guidance</a> document for LLM-specific policy info.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="contributing-product-code">Contributing Product Code</h3>
+<div class="paragraph">
+<p>Code contributions need not be perfect or expert level, but contributors should have reason to believe a contribution is correct and useful before issuing a PR.</p>
+</div>
+<div class="paragraph">
+<p>Prospective contributions are encouraged to open an issue in the repository to discuss the proposed change before starting work.</p>
+</div>
+<div class="paragraph">
+<p>They are also encouraged to read the project&#8217;s <code>README.adoc</code> to understand the contribution needs and flow plus localized coding standards.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contributing-documentation-code">Contributing Documentation Code</h3>
+<div class="paragraph">
+<p>Documentation contributions are welcome and encouraged.
+This includes improving existing documentation, adding new content, or fixing typos and formatting issues.</p>
+</div>
+<div class="paragraph">
+<p>While opening a Bug issue to report a problem with the existing docs is always welcome, critics can become contributors by forking the repository, making changes, and issuing a PR.</p>
+</div>
+<div class="paragraph">
+<p>Documentation is a great place to get started with open-source contributions, and DocOps Lab is committed to being helpful and encouraging to anyone trying to lend a hand.</p>
+</div>
+<div class="paragraph">
+<p>Be sure to check any relevant README files, including a <code>docs/README.adoc</code> file if present or the &#8220;Documentation&#8221; section of the main <code>README.adoc</code> in the project root.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contributing-test-code">Contributing Test Code</h3>
+<div class="paragraph">
+<p>Tests are also code.
+They can assess:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>product source</p>
+</li>
+<li>
+<p>product executables</p>
+</li>
+<li>
+<p>documentation source</p>
+</li>
+<li>
+<p>converted docs output</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Contributors are welcome to add tests for existing code or docs, or to improve existing tests.</p>
+</div>
+<div class="paragraph">
+<p>This includes unit tests, integration tests, and end-to-end tests.
+It also includes demo environments and sample data used for testing.</p>
+</div>
+<div class="paragraph">
+<p>Look for a <code>specs/tests/README.adoc</code> file or similar in the repository for local guidance on testing frameworks and practices.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributor-license-agreement-cla">Contributor License Agreement (CLA)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>All contributions to DocOps Lab projects must comply with our <a href="/docs/cla/">CLA</a>.</p>
+</div>
+<div class="paragraph">
+<p>This Agreement ensures that contributions are made under a consistent license, protecting both contributors and the project.</p>
+</div>
+<div class="paragraph">
+<p>All contributors should read the whole Agreement, which is very brief and simple, but here is a listing of the key points that pertain to contributors' rights and responsibilities:</p>
+</div>
+<details>
+<summary class="title">Key Points of the DocOps Lab CLA</summary>
+<div class="content">
+<div class="exampleblock">
+<div class="content">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Capacity declaration</dt>
+<dd>
+<p>Upon contributing source code or content, contributors must specify whether they act:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>in a personal capacity</p>
+</li>
+<li>
+<p>as part of an employer&#8217;s work, with employer approval</p>
+</li>
+<li>
+<p>under other constraints or conflicts</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Authority</dt>
+<dd>
+<p>Contributors affirm they have the legal right and authority to submit contributions, free of encumbrances or conflicting obligations.</p>
+</dd>
+<dt class="hdlist1">LLM usage declaration</dt>
+<dd>
+<p>Contributors must disclose use of large language models (LLMs), &#8220;AI agents&#8221;, &#8220;chat bots&#8221;, or similar tools in generating code or content that gets contributed.
+Private, behind-the-scenes usage of LLMs or similar tools to perform tasks that do not generate publishable code or content need <em>not</em> be disclosed.</p>
+<div class="paragraph">
+<p>See also <a href="/docs/generative-ai-usage/">DocOps Lab Generative "AI" Guidance</a> for DocOps Lab&#8217;s policy on generative AI usage.</p>
+</div>
+</dd>
+<dt class="hdlist1">Acceptance</dt>
+<dd>
+<p>Contributors accept <strong>all licenses present</strong> in the repository.</p>
+</dd>
+<dt class="hdlist1">Assignment</dt>
+<dd>
+<p>Contributors relinquish individual copyright in their contributions.</p>
+</dd>
+<dt class="hdlist1">Ownership</dt>
+<dd>
+<p>DocOps Lab holds sole copyright in all accepted contributions but instantly reissues permissively under an attribution-only license.</p>
+</dd>
+<dt class="hdlist1">Non-assertion pledge</dt>
+<dd>
+<p>Contributors agree not to assert patents against DocOps Lab or downstream users for uses permitted under project licenses.
+All parties affirm freely contributed original work.
+Contributions are affirmed as:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Original, OR</p>
+</li>
+<li>
+<p>Properly licensed <em>with DocOps Lab approval</em>, AND</p>
+</li>
+<li>
+<p>Not knowingly infringing third-party rights, AND</p>
+</li>
+<li>
+<p>Provided without warranty
+DocOps Lab adheres to a <a href="/docs/contributing/#code-of-conduct">Code of Conduct</a> that promotes a welcoming and inclusive environment for all contributors.</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Contributors agree to respect these principles and to engage in constructive, respectful dialogue with other contributors.
+Preferred dispute process::
+Disputes are to be addressed first informally within the community.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Mediation</dt>
+<dd>
+<p>If unresolved, disputes may be mediated by disinterested and mutually chosen members of the broader open-source community.</p>
+</dd>
+<dt class="hdlist1">Legal forum</dt>
+<dd>
+<p>Legal proceedings are a last resort.
+Jurisdiction defaults to the contributor&#8217;s home jurisdiction, if remote participation is permitted, or else the most convenient remote venue acceptable to all parties.</p>
+</dd>
+<dt class="hdlist1">Declaration of agreement (repeated)</dt>
+<dd>
+<p><strong>By contributing to any DocOps Lab project that links prominently to this CLA document from its README file&#8217;s "Contributing" section, you assert that you have read and that you agree to the terms of this Agreement.</strong></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Read the FULL AGREEMENT at <a href="/docs/cla/">CLA</a>.</p>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div class="sect1">
+<h2 id="code-of-conduct">Community Decorum (Code of Conduct)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab commits to and requires contributors foster a welcoming and inclusive environment for all participants.</p>
+</div>
+<div class="paragraph">
+<p>Our social guidelines are simple, direct, and included here in their entirety to emphasize their importance.</p>
+</div>
+<div class="sect2">
+<h3 id="purpose">Purpose</h3>
+<div class="paragraph">
+<p>DocOps Lab is a community of people collaborating on free and open projects.
+We want our workspaces&#8201;&#8212;&#8201;virtual and IRL&#8201;&#8212;&#8201;to be welcoming, respectful, and productive for all contributors.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="standards">Standards</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Positive behavior includes</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Offering help and guidance</p>
+</li>
+<li>
+<p>Respecting different skills, backgrounds, and viewpoints</p>
+</li>
+<li>
+<p>Giving and accepting constructive feedback gracefully</p>
+</li>
+<li>
+<p>Focusing on collaboration and shared goals</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Unacceptable behavior includes</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Personal attacks or insults</p>
+</li>
+<li>
+<p>Harassment or unwanted attention</p>
+</li>
+<li>
+<p>Dismissing or undermining others&#8217; contributions</p>
+</li>
+<li>
+<p>Disruptive, aggressive, or exclusionary conduct</p>
+</li>
+<li>
+<p>Violating project policies or guidelines</p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="responsibilities">Responsibilities</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Maintainers</dt>
+<dd>
+<p>Responsible for clarifying standards, addressing issues, and applying actions fairly.</p>
+</dd>
+<dt class="hdlist1">Contributors</dt>
+<dd>
+<p>Responsible for following this Code of Conduct in all project spaces, including GitHub repos, issue trackers, and community forums.</p>
+</dd>
+<dt class="hdlist1">Users/participants</dt>
+<dd>
+<p>Expected to follow this Code of Conduct in all project spaces, including GitHub repos, issue trackers, and community forums.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enforcement">Enforcement</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Reporting</dt>
+<dd>
+<p>Concerns may be reported privately to DocOps Lab maintainers via <a href="https://github.com/DocOps/lab">the Lab repository</a> or by direct message to an admin.</p>
+</dd>
+<dt class="hdlist1">Process</dt>
+<dd>
+<p>Reports will be reviewed promptly and addressed in a way that seeks fairness, confidentiality, and community health.</p>
+</dd>
+<dt class="hdlist1">Extra-organizational Handling</dt>
+<dd>
+<p>DocOps Lab encourages contributors and participants to seek appropriate mediation or intervention from outside DocOps Lab.
+Anyone uncomfortable with this Enforcement process .</p>
+</dd>
+<dt class="hdlist1">Consequences</dt>
+<dd>
+<p>Responses to violations may range from a <em>discussion</em> or <em>warning</em> to <em>suspension from participation</em> or even <em>removal of access</em> in serious cases.</p>
+</dd>
+<dt class="hdlist1">Escalation</dt>
+<dd>
+<p>Actions involving potential liability or criminality will be referred accordingly.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="scope">Scope</h3>
+<div class="paragraph">
+<p>This Code of Conduct applies to all DocOps Lab spaces.
+That means any online forums and any in-person events organized by the project.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="commitment">Commitment</h3>
+<div class="paragraph">
+<p>DocOps Lab is committed to fostering a respectful, collaborative environment.
+Your voluntary participation helps keep this community healthy and open to all.</p>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/contributing.adoc" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Coding vs AI-assisted Programming | DocOps Lab</title>
+  <meta name="description" content="Vibe coding has its place, but as of now I am not among the developers who think good software can be reliably produced when &#8220;nobody touches the code&#...">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Vibe Coding vs AI-assisted Programming">
+  <meta property="og:description" content="Vibe coding has its place, but as of now I am not among the developers who think good software can be reliably produced when &#8220;nobody touches the code&#...">
+  <meta property="og:url" content="https://docopslab.org/blog/vibe-coding-vs-programming/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/blog-roomba-dog-mess.jpg">
+    
+  <meta property="og:image:alt" content="A small dog rides a roomba that is spreading spoilage around an otherwise clean floor">
+    
+  
+  
+  <meta property="article:author" content="Brian Dominick">
+  <meta property="article:published_time" content="2026-02-12T00:00:00+00:00">
+    
+      
+  <meta property="article:tag" content="AI">
+      
+  <meta property="article:tag" content="programming">
+      
+    
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vibe Coding vs AI-assisted Programming">
+  <meta name="twitter:description" content="Vibe coding has its place, but as of now I am not among the developers who think good software can be reliably produced when &#8220;nobody touches the code&#...">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/blog-roomba-dog-mess.jpg">
+    
+  <meta name="twitter:image:alt" content="A small dog rides a roomba that is spreading spoilage around an otherwise clean floor">
+    
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="Brian Dominick">
+  
+  <meta name="publish_date" property="og:publish_date" content="2026-02-12T00:00:00+00:00">
+  
+  <link rel="canonical" href="https://docopslab.org/blog/vibe-coding-vs-programming/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="DocOps Lab Blog" href="https://docopslab.org/feeds/docops-lab-blog.xml">
+  
+</head>
+<body class="layout-post  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  
+
+
+
+<div class="blog-post-container">
+  <div class="container">
+    <article class="blog-post">
+    <header class="post-header">
+      <h1 class="post-title">
+        Vibe Coding vs AI-assisted Programming
+        
+      </h1>
+      
+      
+      <h2 class="blog-title">
+        <img src="/assets/images/favicons/favicon-raw-transparent.png" alt="DocOps Lab Favicon" class="blog-favicon-logo">
+        A DocOps Lab Blog entry
+      </h2>
+      
+      
+      <div class="post-meta">
+        
+        <time class="post-date" datetime="2026-02-12T00:00:00+00:00">
+          <i data-lucide="calendar"></i>
+          February 12, 2026
+        </time>
+        
+        
+        
+        <span class="post-author">
+          <i data-lucide="user"></i>
+          Brian Dominick
+        </span>
+        
+        
+        <div class="post-tags">
+          <i data-lucide="tag"></i>
+          
+            <span class="tag">AI</span>
+          
+            <span class="tag">programming</span>
+          
+        </div>
+        
+        
+      </div>
+    </header>
+    
+    <div class="post-content">
+      
+      <figure class="post-image">
+        <img src="/assets/images/blog-roomba-dog-mess.jpg" alt="A small dog rides a roomba that is spreading spoilage around an otherwise clean floor" class="post-image-img">
+        
+      </figure>
+      
+      <div class="paragraph">
+<p>Let me say at the outset that vibe coding has its place.
+Let me also say that if you are vibe coding <em>production</em> software, you are probably doing a disservice&#8230;&#8203; even if you are also providing a legitimate service.</p>
+</div>
+<div class="paragraph">
+<p>Now, how I define &#8220;vibe coding&#8221; makes all the difference, but that&#8217;s what half of this article is about.
+For now, let&#8217;s just say that vibe coding is a term I use to describe the practice of using LLMs to generate code without much intervention or oversight.
+It&#8217;s prompting and leaving the LLM to do most design and implementation work, with minimal if any human review and only re-prompts to fix bugs or deviatons.</p>
+</div>
+<div class="paragraph">
+<p>If you already know you are not vibe coding, this article might not have much value to you.
+This is more of a warning about what vibe coders are missing, at least in circumstances where it would matter, along with some advice for AI-<em>assisted</em> software development.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Jargon glossary</div>
+<div class="paragraph">
+<p>Here is what the author means by some of the terms of art that appear in this article, in the specific context of this article.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">AI or artificial intelligence</dt>
+<dd>
+<p>A broad term for computer systems that can perform tasks that typically require human intellect or reasoning, such as understanding natural language, recognizing patterns, learning from data, and making decisions.
+Critics note that existing AIs are not truly &#8220;intelligent&#8221; in the human sense, but rather sophisticated pattern recognition and generation tools.</p>
+</dd>
+<dt class="hdlist1">LLM</dt>
+<dd>
+<p>Large Language Model, a kind of &#8220;artificial intelligence&#8221; that interprets and generates text and other media based on patterns and associations gleaned from heavily processing extremely large datasets.</p>
+</dd>
+<dt class="hdlist1">generative AI (GenAI)</dt>
+<dd>
+<p>A kind of &#8220;artificial intelligence&#8221; that generates content such as text, images, audio, or video based on input prompts.
+LLMs are a subset of generative AI, which is sometimes expressed as &#8220;GAI&#8221; or &#8220;genAI&#8221; (not to be confused with AGI: artificial general intelligence).</p>
+</dd>
+<dt class="hdlist1">LLM client</dt>
+<dd>
+<p>A software application that uses an LLM to perform tasks such as answering questions, generating content in response to prompts, or assisting with various activities.
+LLM clients can be chatbots, virtual assistants, code generators, or any other type of application that interacts with an LLM to leverage its capabilities.</p>
+</dd>
+<dt class="hdlist1">LLM agent</dt>
+<dd>
+<p>A type of LLM client that can perform actions on behalf of a user, such as making API calls, executing commands, interacting with other software, or carrying out a series of such tasks to achieve a goal.</p>
+</dd>
+<dt class="hdlist1">prompt</dt>
+<dd>
+<p>The user-input text or data that an LLM client sends to the LLM to generate a response.
+The prompt is the user&#8217;s real-time contribution to the context.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="context">Context and Purpose Matter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I am going to make some bold statements about the difference between vibe coding and AI-assisted programming.
+Therefore, I wish to differentiate up front between the kinds of software that each might be legitimate for.</p>
+</div>
+<div class="sect2">
+<h3 id="what-i-have-vibe-coded">What I Have Vibe Coded</h3>
+<div class="paragraph">
+<p>I will state a few times in this article that I am not criticizing vibe coding, per se.
+I&#8217;m not opposed to it, and in fact I do it in certain cases.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Short-lived/rarely used automation scripts</dt>
+<dd>
+<p>I have vibe coded a number of scripts that automate tasks for me, such as file management, data manipulation, and even some aspects of my development workflow.
+These scripts are typically not intended for long-term maintenance or use by others, and they often serve a specific, one-off purpose.
+They are either used just once or only occasionally.</p>
+</dd>
+<dt class="hdlist1">Rapid MVP development and UI prototyping</dt>
+<dd>
+<p>If your main objective is to find out if a certain interface will make sense in a real-world environment, speed-to-test or time-to-market will prove more important than engineering excellence.</p>
+<div class="paragraph">
+<p>Minimum viable products are expected to be fairly rough, under the supposition that early adopters will put up with or work around some flaws and frustrations to make use of a truly groundbreaking product.</p>
+</div>
+<div class="paragraph">
+<p>In these cases, I often ask an LLM to make something I can test right away, even if I know it will be a mess and I will have to rewrite it later.</p>
+</div>
+</dd>
+<dt class="hdlist1">Sample content generation</dt>
+<dd>
+<p>One place I used to get stuck is making dummy, test, or demonstrative content to use in testing or showcasing my software.
+My phony content was either too brief, too generic, or too unrealistic to be useful.</p>
+<div class="paragraph">
+<p>Now I often ask an LLM to generate sample data or content that fits my specific needs, providing some context and letting it fill in the details.
+It doesn&#8217;t always do much better than I would, but it never does worse.</p>
+</div>
+</dd>
+<dt class="hdlist1">Integration/unit tests</dt>
+<dd>
+<p>I have never been good at writing tests, and I have often neglected them altogether.
+Now I ask LLMs to draft tests for my code; their output is almost always better than mine would be, if only because the tests exist and catch the most egregious regressions or gaps.</p>
+<div class="paragraph">
+<p>Eventually, I review and modify these tests, typically but not always prior to release, often with maintainability in mind.
+However, I have not yet made it a requirement to review and modify them as I go.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>There are surely numerous other cases in which vibe coding makes sense.
+I may even add some to this post in the future.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="times-im-tempted">Times I&#8217;m Tempted but Resist Vibe Coding</h3>
+<div class="paragraph">
+<p>What I do not vibe code, by my definition of the term, is any software that I release to the world or expect/invite others to help maintain.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Shippable software</dt>
+<dd>
+<p>I have not yet vibe coded any software that I have released to the public, and I do not intend to.</p>
+<div class="paragraph">
+<p>If advances in LLMs and coding agents make it possible to produce shippable software with little to no intervention, I will try to remember to return here and report it.
+But the place to check will be the <a href="/docs/generative-ai-usage/">DocOps Lab Generative "AI" Guidance</a> policy document.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="production-software-sidebar" class="sidebarblock">
+<div class="content">
+<div class="title">Vibe-coded production software: a contradiction in terms</div>
+<div class="paragraph">
+<p>If a piece of software can be simply prompted up front to solve a purpose, anyone can prompt a <em>better</em> solution to their particular problem.</p>
+</div>
+<div class="paragraph">
+<p>This is why vibe coding tends to be suitable only to local automation scripts rather than production apps meant for others to use.
+If you have not met and investigated the woes of your intended users, or if you have not repeatedly encountered their same problems in numerous contexts of your own, you have little hope of designing or prompting a solution that will meet their needs.</p>
+</div>
+<div class="paragraph">
+<p>Truly, an LLM might help you anticipate users' needs during the design or even the implementation of a briefly prompted coding project.
+After all, most LLMs have been trained on forum and even tech-support content that reflects users' needs and frustrations on a huge array of matters.
+LLMs even show signs of anticipating problems across domains, from interface issues to security vulnerabilities.</p>
+</div>
+<div class="paragraph">
+<p>But again, any user that has a need that can be met by an LLM whipping up a solution on the spot, can also whip up a better solution on the spot with their own LLM and their more specific description of their use case.
+All the advantages of using an LLM to code for you, without much intervention, are also advantages for anyone else who can use an LLM to code for themselves.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re going to bother shipping an application, it should be too complicated for an LLM to infer from a simple prompt, and it should be designed to meet the needs of users you will never meet, based on the experience of real-world users struggling with a problem best met by an interface intended for repeatable solutions across varied problems.</p>
+</div>
+<div class="paragraph">
+<p>And anything that will truly meet the complex needs of downstream users with variant use cases will require a level of design and engineering that is well beyond the capabilities of LLMs without skilled human guidance.</p>
+</div>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Contributions to open-source projects</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Open source software that is almost able to do what I need begs to be modified to fill the gap.
+If I do not already know the language, I am tempted to ask an LLM to generate the necessary patch or changes, which is often fairly simple and straightforward.</p>
+</div>
+<div class="paragraph">
+<p>This is nevertheless a pretty bad idea in most cases, even if I can&#8217;t always explain exactly where a vibe-coding project might fall short.
+The problem lies in the unknown unknowns of the codebase and the language, which can lead to a patch that seems to work but is actually flawed in ways that are not immediately apparent, leading to more awkward headaches or interactions for maintainers.</p>
+</div>
+<div class="paragraph">
+<p>There are surely exceptions to this, especially for projects that are impeccably documented and where the patch is more or less a drop-in, parallel rendition of a solution that is already exemplified by tried-and-true code.
+Plugins and extensions for well-documented platforms are another example of places where you might vibe code production code.</p>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="which-is-which">Which is Which</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I started with examples of good and bad use cases for vibe coding, but now I want to dig into the values imbued in the distinction.</p>
+</div>
+<div class="sect2">
+<h3 id="programming">(How) You Know if You are Programming</h3>
+<div class="paragraph">
+<p>For me, the distinctions between &#8220;vibe coding&#8221; and &#8220;AI-enhanced software development&#8221; or &#8220;AI-assisted programming&#8221; are straightforward and clear, at least in the aggregate.</p>
+</div>
+<div class="paragraph">
+<p>Programming with AI assistance means:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You can and sometimes do write code without assistance.</p>
+</li>
+<li>
+<p>You assess for maintainability every step of the way.</p>
+</li>
+<li>
+<p>You intervene heavily at every stage, including planning and documentation.</p>
+</li>
+<li>
+<p>You continuously document the code for both future humans and future LLMs/agents.</p>
+</li>
+<li>
+<p>You practice (and instruct all coding agents to practice) particular programming methodologies.</p>
+</li>
+<li>
+<p>A programmer or subject-matter expert reviews all code changes and output.</p>
+</li>
+<li>
+<p>You write and regularly implement tests for your code.</p>
+</li>
+<li>
+<p>You aggressively lint for style and quality.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="annotated-breakdown">Annotated Breakdown</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">1. You can and sometimes do write code without assistance.</dt>
+<dd>
+<p>You are a programmer.
+Even if you learned to code in the LLM era with the help of LLMs, you cannot bridge the gap between what LLMs do and what programmers do, each at their best.</p>
+<div class="paragraph">
+<p>I&#8217;m not going to define what it means to be a &#8220;programmer&#8221; or an &#8220;engineer&#8221;.
+I consider myself to mostly be the former but sometimes represent myself as the latter because I do develop production software and I do at least <em>try</em> to think like an engineer.</p>
+</div>
+</dd>
+<dt class="hdlist1">2. You assess for maintainability every step of the way.</dt>
+<dd>
+<p>This means keeping front-of-mind awareness of the fact that colleagues and contributors will need to modify the code down the line.
+LLMs are capable of doing this, but they seldom do it by default.</p>
+<div class="paragraph">
+<p>Furthermore, without pro-active influence of preferences and constraints, LLMs will tend to target a &#8220;lowest common denominator&#8221; when it comes to style, conventions, and even major architectural decisions.
+This may sound appealing, but the arbitrary nature of LLMs means that across sessions and across models, these choices will drift or change radically.</p>
+</div>
+<div class="paragraph">
+<p>Truthfully, most of the points on this list revolve around &#8220;maintainability&#8221;.</p>
+</div>
+</dd>
+<dt class="hdlist1">3. You intervene heavily at every stage, including planning and documentation.</dt>
+<dd>
+<p>Even the best coding-oriented LLMs produce flawed plans, code, and docs.
+If you do not review every change and at least tweak the output, there is going to be a gap between the quality you <em>could</em> produce and the quality of an LLM&#8217;s output, beyond the scale of a single block or function.</p>
+<div class="paragraph">
+<p>Even in the smallest production apps with the best prompt context preparation, the very best LLMs will produce output that can and should be improved.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="intervention-problem-sidebar" class="sidebarblock">
+<div class="content">
+<div class="title">The problem with intervention and LLM-backed coding</div>
+<div class="paragraph">
+<p>Usually, the most straightforward way to fix minor problems introduced by LLMs is to just change the code yourself.
+However, if you do this, the LLM will not know that you have made the change.</p>
+</div>
+<div class="paragraph">
+<p>With inline coding assistants, this is expected and accommodated.
+But when using a web UI or an agentic coding bot, the stateless nature of the interaction means that the LLM will not know about your changes, and it will not be able to learn from them or adjust its future output accordingly.</p>
+</div>
+<div class="paragraph">
+<p>You can always instruct an agent to scan for your changes, but this process tends to be imperfect.
+Most agents will notice when they try to make changes on top of your intervening amendments, at which point they will sync up rather reliably, but this can waste precious cycles and still doesn&#8217;t always work.</p>
+</div>
+<div class="paragraph">
+<p>You can show &#8220;diffs&#8221; to a web UI if you track them carefully, or you can paste or upload files into the prompt context.
+In either case this is an extra step that adds friction to the process; in fact, pasting and prompting is no better than asking an agent to detect the diffs.</p>
+</div>
+<div class="paragraph">
+<p>At first, the extra step of notifying the agent and even explaining my changes was frustrating and felt duplicative.
+But I have come to appreciate it, especially since it can be accomplished with documentation or code comments, which the agent can be pointed to.</p>
+</div>
+<div class="paragraph">
+<p>The alternative is just to prompt the LLM client to perform the change based on your natural-language description.
+This is often the best option; it is essentially the same as writing up your own changes to convey to the client.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, I tend not to do a lot of round trips with web UIs that are not integrated with my codebase.
+This just does not seem like a good use of that interface, so I tend to use them only for discussion and one-way generation of draft files.</p>
+</div>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">4. You continuously document the code for both future humans and future LLMs/agents.</dt>
+<dd>
+<p>A lot of people think that since LLMs can obtain a near-perfect &#8220;grasp&#8221; of a decent chunk of a codebase, they can write flawless docs.
+I have not found this to be so.</p>
+<div class="paragraph">
+<p>Even if the LLM can write technically accurate documentation, it will not necessarily write maintainable documentation.
+Whether the problem is <a href="#linting">poor or inconsistent style</a>, lack of clarity, or just a failure to understand the needs of future readers, LLMs always need at least a little help writing docs.</p>
+</div>
+</dd>
+<dt class="hdlist1">5. You practice (and instruct all coding agents to practice) particular programming methodologies.</dt>
+<dd>
+<p>Having preferences for methodologies, styles, and conventions is not just a matter of aesthetics; it is a matter of maintainability and consistency.
+Without these, you are basically just asking an LLM to generate code that works, then hoping that it is good and consistent enough to maintain and build upon.
+(It will not be.)</p>
+</dd>
+<dt class="hdlist1">6. A programmer or subject-matter expert reviews all code changes and output.</dt>
+<dd>
+<p>All contributors to shared codebases require (and participate in) code and docs reviews.
+This goes for LLMs and agents as much as it goes for human contributors.</p>
+<div class="paragraph">
+<p>Vibe coding requires assessment of the output of the vibe-coded script or app, but review of the source code does not offer much advantage.
+Sometimes it can be helpful to prompt a second LLM or even the same client in a given session to &#8220;double check&#8221; or &#8220;clean up&#8221; or even &#8220;refactor&#8221; code as needed.</p>
+</div>
+<div class="paragraph">
+<p>Human review of source code and docs suggests a sense of craft that LLMs frankly never exhibit, even if prompted to.</p>
+</div>
+</dd>
+<dt class="hdlist1">7. You write and regularly implement tests for your code.</dt>
+<dd>
+<p>Even if you do not perform test-driven development (TDD), maintaining tests for your code is a differentiator between vibing and programming.</p>
+<div class="paragraph">
+<p>Testing is not just a sign that you care about future development.
+When done right, it also provides an objective avenue for LLMs and human collaborators to understand the codebase.
+Poorly written tests can teach as much about the codebase as good tests, which can teach as much as source code itself.</p>
+</div>
+</dd>
+</dl>
+</div>
+<div id="linting" class="dlist">
+<dl>
+<dt class="hdlist1">8. You aggressively lint for style and quality.</dt>
+<dd>
+<p>Enforcing style and quality standards, from code syntax to documentation grammar, are critical for maintaining a codebase that is approachable and maintainable by a team of humans and LLMs alike.
+The variances in style and syntax-preference even just across sessions can be dramatic.
+You need a way to detect and hopefully automatically fix deviations that would frustrate or misguide later users.</p>
+<div class="paragraph">
+<p>In my case, because I strongly prefer AsciiDoc over Markdown as my lightweight markup format for documentation, I have no choice but to prompt LLMs away from their heavily Markdown-oriented training and toward AsciiDoc, which is a more complex format.
+In fact, LLMs want to write Markdown so badly, I find myself regularly undoing their sloppy syntax.</p>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="vibe-coding">You are Vibe Coding When&#8230;&#8203;</h3>
+<div class="paragraph">
+<p>Remember, this is <em>not</em> an anti-vibe-coding article.
+There are plenty of cases where vibe coding is advisable.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>You don&#8217;t know how to program.</strong>
+Honestly, this is the most understandable case.
+Programming is hugely advantageous, and the hardest thing about it is learning how to do it effectively.
+Skipping that stage would be tempting for anyone who can find huge advantage.</p>
+</li>
+<li>
+<p><strong>Maintainability and consistency do not matter.</strong>
+Again, there are countless legitimate cases in this category.
+Many repeatable tasks are simple.
+The less concerned about how <em>others</em> will use your code, the more sense it makes to vibe code.</p>
+</li>
+<li>
+<p><strong>You don&#8217;t touch the code.</strong>
+If you aren&#8217;t modifying the code as you go, or at least modifying your instructions based on what you see in the output, well, you&#8217;re certainly vibe coding at that point.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="when-vibe-coding">When You Vibe Code&#8230;&#8203;</h4>
+<div class="paragraph">
+<p>If you do <em>not</em> intend to share the results of your vibe-coding sessions with the world or with colleagues or co-contributors, vibe code however you wish.</p>
+</div>
+<div class="paragraph">
+<p>But when you are relying primarily on LLMs to code for public or <em>collaborative</em> projects, please consider the following guidelines:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Use a fully integrated agent</strong> (rather than a web UI or a TUI agent).
+IDEs like <a href="https://code.visualstudio.com/docs/copilot/overview">VS Code with the Copilot extension</a> or an AI-backed application such as <a href="https://cursor.com">Cursor</a> are great for beginners.
+If you truly want to work on the command line, consider an AI-aware terminal client like <a href="https://www.warp.dev">Warp</a> or <a href="https://www.waveterm.dev">Wave</a>.</p>
+<div class="paragraph">
+<p>The TUI-like shell programs such as Codex, Claude Code, and Gemini are far more restricting in how you interact with authored code and take <em>more</em> rather than less mastery of shell operations.</p>
+</div>
+</li>
+<li>
+<p><strong>Start with a written specification</strong> (Markdown or AsciiDoc).
+Keep this document updated and re-refer the coding agent to it when it changes.
+Have the agent update it based on changes from your chat.
+You can have an LLM help you write it, but make sure you&#8217;re fully in charge of this step.</p>
+</li>
+<li>
+<p><strong>Prompt the LLM/agent to ask you for clarification as it goes.</strong></p>
+</li>
+<li>
+<p><strong>Have the LLM/agent generate a report in Markdown as it goes.</strong>
+This report should include a changelog, a list of files and functions created or modified, and any other relevant information about the code being generated.</p>
+</li>
+<li>
+<p><strong>Actually review the report and have the agent make changes.</strong></p>
+</li>
+<li>
+<p><strong>Have the LLM/agent review its own work.</strong>
+<em>Better yet</em>, use a second LLM/agent to review the work of the first.</p>
+</li>
+<li>
+<p><strong>Have a second LLM/agent write unit tests based on the specification</strong>, and run those tests separately without telling the main agent they exist.
+(This way neither agent is inadvertently biasing its work just to make tests pass, which is a not-uncommon anti-pattern of coding agents.)</p>
+</li>
+<li>
+<p><strong>Provide explicit prompts that insist the output be maintainable and presentable.</strong>
+Most agents do not assume they are writing shippable code by default.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="vibe-prompt-detail">Vibe Prompt Detail</h4>
+<div class="paragraph">
+<p>When I prompt for real vibe coding, my prompts are pretty substantial.
+They generally take at least as long as it would take me to pre-comment the script I am describing.</p>
+</div>
+<div class="paragraph">
+<p>Detailed prompts include namespace preferences, language and framework designations, and even instructions on the depth and functionality of the code to be generated.
+This is still vibe coding because I am not thoroughly reviewing the code as it is generated, even if I am at least somewhat concerned with maintainability, usually in case I later choose to integrate with production code.</p>
+</div>
+<div id="inline-assistance-sidebar" class="sidebarblock">
+<div class="content">
+<div class="title">Inline coding with LLM-assisted auto-complete</div>
+<div class="paragraph">
+<p>Another way I program with AI help, which sometimes constitutes vibe coding but I also use for production coding, is by taking advantage of an IDE-integrated LLM auto-complete client.</p>
+</div>
+<div class="paragraph">
+<p>For me, this usually means creating an outline with comments where entire blocks of code will go.
+Sometimes I have an LLM client draft the outline based on my description of the app.</p>
+</div>
+<div class="paragraph">
+<p>I mostly program in Ruby and Bash.
+When writing Ruby, I tend to comment the class and method definitions in natural language, including at least a general declaration of inputs and outputs.
+For Bash scripts, I usually write comments for each major step or function.</p>
+</div>
+<div class="paragraph">
+<p>To most programming languages, I bring a lot of preferences, assumptions, and habits to the process, and I tend to only tolerate great variance from those expectations in cases when the script is not intended for long-term maintenance.</p>
+</div>
+<div class="paragraph">
+<p>While lots of these real-time, inline coding assistants carry a great deal of context from recently focused files and adjacent or key files from the codebase, they tend to be <em>much</em> better at generating code for single-file scripts than for files that are intended to be one small component of a complex codebase.</p>
+</div>
+<div class="paragraph">
+<p>Any vibe-coding that is done here is usually for subordinate or helper methods or functions, or else for one-off scripts.
+If there is ever any production code I do not thoroughly examine in its initial or applied state, that would be helpers and utilities not central to the novelty of my application.</p>
+</div>
+<div class="paragraph">
+<p>Such code blocks tend to get far more careful review once they are moved upstream and turned into dependencies for multiple codebases.
+At that point their architecture and API are maybe an order of magnitude more critical.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Two methods that work well with both vibe coding <em>and</em> programming are <strong>assisted prompt generation</strong> and <strong>docs-driven development</strong>.</p>
+</div>
+<div class="paragraph">
+<p>If you <em>use an LLM to help formulate prompts</em>, and you edit its drafts to better represent your intentions, you may improve the quality and alignment.
+This approach is all the more effective if you expect a single agent session to produce an entire application from start to finish.</p>
+</div>
+<div class="paragraph">
+<p>For more complex coding projects, <em>docs can lead development</em>.
+A full development specification (&#8220;spec&#8221;) or product requirements document (PRD) can provide alignment between your intentions and the LLM&#8217;s output.
+This practice can drastically decrease the amount of intervention or back-and-forth with coding agents.</p>
+</div>
+<div class="paragraph">
+<p>A primary agent can even delegate any subordinate or dependent tasks to sub-agents or background agents.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="resources">Resources</h3>
+<div class="paragraph">
+<p>Here are some articles sharing good advice on practical coding with LLMs, fully vibed or just assisted.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.godaddy.com/resources/news/i-accidentally-trained-my-ai-agent-to-write-better-code-than-me-10-tips-so-you-can-too">I Accidentally Trained My AI Agent To Write Better Code Than Me: 10 Tips So You Can Too</a></p>
+</li>
+<li>
+<p><a href="https://liveandletlearn.net/post/10-tips-writing-software-llm-agents/">10 Tips for Writing Software with LLM Agents</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+    </div>
+    
+    
+      
+    
+
+    
+    <div class="related-posts">
+
+      
+
+      
+        <p>No related posts found.</p>
+      
+    </div>
+    
+    
+    <footer class="post-footer">
+      
+      
+      <div class="post-navigation">
+        
+        <a href="/blog/why-github/" class="nav-link nav-prev">
+          <i data-lucide="arrow-left"></i>
+          <div class="nav-text">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">Why DocOps Lab Chooses GitHub over GitLab</span>
+          </div>
+        </a>
+        
+        
+        
+        <a href="/blog/true-single-sourcing/" class="nav-link nav-next">
+          <div class="nav-text">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">TRUE Single Sourcing with YAML and AsciiDoc</span>
+          </div>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        
+      </div>
+      
+      <div class="back-to-blog">
+        <a href="/blog/" class="btn-secondary">
+          <i data-lucide="arrow-left"></i>
+          Back to Blog
+        </a>
+      </div>
+    </footer>
+    </article>
+  </div>
+</div>
+
+
+<footer>
+  <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

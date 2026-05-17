@@ -1,0 +1,260 @@
+<opml version="2.0">
+  <head>
+    <title>Technical Documentation Blogs</title>
+    <dateCreated>2026-02-21T10:00:00Z</dateCreated>
+    <dateModified>2026-05-17T08:19:08Z</dateModified>
+    <ownerName></ownerName>
+    <ownerEmail></ownerEmail>
+  </head>
+  <body>
+  
+  <outline text="AmanHimself.dev"
+           title="AmanHimself.dev"
+           xmlUrl="https://amanhimself.dev/rss.xml"
+           type="rss"
+           htmlUrl="https://amanhimself.dev"
+           description="Aman blogs about writing, blogging, and coding, including nitty-gritty insights into the hows and whyfors.">
+  </outline>
+  
+  <outline text="Cherryleaf Blog"
+           title="Cherryleaf Blog"
+           xmlUrl="https://www.cherryleaf.com/blog/feed/"
+           type="rss"
+           htmlUrl="https://www.cherryleaf.com/blog/"
+           description="Blog from UK-based technical communication consultancy Cherryleaf covering a wide range of topics including content strategy, documentation tools, tech comm careers, and emerging trends like AI.">
+  </outline>
+  
+  <outline text="ClickHelp Technical Writing Blog"
+           title="ClickHelp Technical Writing Blog"
+           xmlUrl="https://clickhelp.com/clickhelp-technical-writing-blog/feed"
+           type="rss"
+           htmlUrl="https://clickhelp.com/clickhelp-technical-writing-blog"
+           description="Blog maintained by ClickHelp (a SaaS platform for topic-based help) covering industry news, how-to articles, general best practices, and occasional product announcements relevant to technical writers.">
+  </outline>
+  
+  <outline text="Code, Content, and Career Newsletter"
+           title="Code, Content, and Career Newsletter"
+           xmlUrl="https://newsletter.bphogan.com/rss"
+           type="rss"
+           htmlUrl="https://newsletter.bphogan.com"
+           description="A monthly newsletter by Brian Hogan, with “opinions and advice about software, technical content creation, and career development” for those who write about technology.">
+  </outline>
+  
+  <outline text="CoffeeCup.tech"
+           title="CoffeeCup.tech"
+           xmlUrl="https://coffeecup.tech/blog/rss.xml"
+           type="atom"
+           htmlUrl="https://coffeecup.tech/blog"
+           description="Blog of writer Florence Venisse, chronicling experiments and exploration of technology related to technical content.">
+  </outline>
+  
+  <outline text="CyberText Newsletter"
+           title="CyberText Newsletter"
+           xmlUrl="https://cybertext.wordpress.com/feed"
+           type="rss"
+           htmlUrl="https://cybertext.wordpress.com"
+           description="Long-running newsletter and blog from CyberText Consulting offering practical advice on documentation tools (e.g. Word, Flare), career development, and web communication for technical writers.">
+  </outline>
+  
+  <outline text="Dachary Carey"
+           title="Dachary Carey"
+           xmlUrl="https://dacharycarey.com/index.xml"
+           type="atom"
+           htmlUrl="https://dacharycarey.com"
+           description="Personal blog of Dachary Carey, a technical writer and software developer.Posts cover a range of topics including documentation audits, case studies of docs sites/architecture, AI in technical writing, and programming docs tools.">
+  </outline>
+  
+  <outline text="Damilola Oladele"
+           title="Damilola Oladele"
+           xmlUrl="https://damilola-oladele.dev/feed.xml"
+           type="atom"
+           htmlUrl="https://damilola-oladele.dev"
+           description="Software developer and technical writer sharing posts on documentation best practices, open source contributions, community building and mentoring in tech.">
+  </outline>
+  
+  <outline text="Daniel D. Beck"
+           title="Daniel D. Beck"
+           xmlUrl="https://ddbeck.com/feed.xml"
+           type="atom"
+           htmlUrl="https://ddbeck.com/writing"
+           description="Docs-as-code practitioner sharing tutorials and insights on documentation automation, static site generators, Git/GitHub workflows, and occasional career tips for technical writers.">
+  </outline>
+  
+  <outline text="DocOps Lab Blog"
+           title="DocOps Lab Blog"
+           xmlUrl="https://docopslab.org/feeds/docops-lab-blog.xml"
+           type="rss"
+           htmlUrl="https://docopslab.org/blog/"
+           description="The DocOps Lab’s own blog covering documentation operations, docs-as-code practices, tooling reviews, and content strategy insights for technical writing teams.">
+  </outline>
+  
+  <outline text="Docs by Design"
+           title="Docs by Design"
+           xmlUrl="https://docsbydesign.com/feed"
+           type="rss"
+           htmlUrl="https://docsbydesign.com"
+           description="Bob Watson’s blog pondering technical writing, API documentation, and broader topics in designing and delivering documentation effectively.">
+  </outline>
+  
+  <outline text="Everything Technical Writing"
+           title="Everything Technical Writing"
+           xmlUrl="https://www.everythingtechnicalwriting.com/rss"
+           type="rss"
+           htmlUrl="https://www.everythingtechnicalwriting.com"
+           description="A one-stop blog for all things technical writing with tips, tricks, and techniques for thriving as a technical writer in software. Includes career guidance, expert interviews, and insights into open-source documentation.">
+  </outline>
+  
+  <outline text="ffeathers"
+           title="ffeathers"
+           xmlUrl="https://ffeathers.wordpress.com/feed"
+           type="rss"
+           htmlUrl="https://ffeathers.wordpress.com"
+           description="Sarah Maddox’s technical writing (and occasional fiction) blog offering practical insights on technical communication, documentation community events, and writing in the tech world (with a dash of whimsy).">
+  </outline>
+  
+  <outline text="Heroic Technical Writing"
+           title="Heroic Technical Writing"
+           xmlUrl="https://heroictechwriting.com/feed"
+           type="rss"
+           htmlUrl="https://heroictechwriting.com"
+           description="Bart Leahy’s blog providing advice and insights on the business and personal aspects of technical communication, including career growth, professional development, and proposal writing.">
+  </outline>
+  
+  <outline text="Hire This One"
+           title="Hire This One"
+           xmlUrl="https://hirethis.one/rss.xml"
+           type="rss"
+           htmlUrl="https://hirethis.one/blog"
+           description="Attached to the demo/portfolio site of an aspiring tech writer named Sam, this blog features posts about breaking into the field and trying out new tech. ">
+  </outline>
+  
+  <outline text="I'd Rather Be Writing"
+           title="I'd Rather Be Writing"
+           xmlUrl="http://feeds.feedburner.com/idratherbewriting"
+           type="atom"
+           htmlUrl="https://idratherbewriting.com"
+           description="Widely read blog by Tom Johnson, covering API documentation, reference guides, AI-assisted authoring, and trends in technical writing.">
+  </outline>
+  
+  <outline text="James Tasse"
+           title="James Tasse"
+           xmlUrl="https://jamestasse.tech/rss.xml"
+           type="rss"
+           htmlUrl="https://jamestasse.tech/blog"
+           description="Mostly covering the involvement of AI in technical writing, James takes a highly technical and analytical approach to tooling and content.">
+  </outline>
+  
+  <outline text="Just Write Click"
+           title="Just Write Click"
+           xmlUrl="https://justwriteclick.com/feed"
+           type="rss"
+           htmlUrl="https://justwriteclick.com"
+           description="Anne Gentle’s blog (author of *Docs Like Code*) about treating docs like code.Covers continuous publishing, static site generators (Sphinx, Hugo, etc), open-source documentation collaboration, and innovative content strategy techniques for technical writing teams.">
+  </outline>
+  
+  <outline text="Kevin R. Kuhl"
+           title="Kevin R. Kuhl"
+           xmlUrl="https://www.kevinrkuhl.com/blog/index.xml"
+           type="rss"
+           htmlUrl="https://www.kevinrkuhl.com/blog/"
+           description="Filled with commentary on other writings, this traditional blog is a welcome blast from the past style.Kevin looks at all kinds of technology, old and new, from the perspective of a professional tech writer.">
+  </outline>
+  
+  <outline text="Leading Technical Communication"
+           title="Leading Technical Communication"
+           xmlUrl="https://larrykunz.wordpress.com/feed"
+           type="rss"
+           htmlUrl="https://larrykunz.wordpress.com"
+           description="Larry Kunz’s blog featuring thought-provoking articles and advice on leadership and management within the technical communication field.">
+  </outline>
+  
+  <outline text="leu escrivi!"
+           title="leu escrivi!"
+           xmlUrl="https://escrivi.org/rss.xml"
+           type="rss"
+           htmlUrl="https://escrivi.org"
+           description="Blog of France-based documentation engineer Ariel Kaiser, covering technical writing, docs tooling, and the impact and uses of AI.">
+  </outline>
+  
+  <outline text="Liz Argall"
+           title="Liz Argall"
+           xmlUrl="https://lizargall.github.io/blog/rss.xml"
+           type="rss"
+           htmlUrl="https://lizargall.github.io/blog"
+           description="The blog of an international community-building tech writer and mentor/coach.Posts ponder aspects of the craft like communication and collaboration.">
+  </outline>
+  
+  <outline text="Paligo Blog"
+           title="Paligo Blog"
+           xmlUrl="https://paligo.net/feed"
+           type="rss"
+           htmlUrl="https://paligo.net/blog/"
+           description="Company blog of the Paligo CCMS, providing technical communication professionals with expert guidance on creating efficient, scalable documentation systems.Topics include structured content (CCMS) workflows, information architecture, knowledge management, AI-ready documentation, and strategies to improve content quality.">
+  </outline>
+  
+  <outline text="Passo Uno"
+           title="Passo Uno"
+           xmlUrl="https://passo.uno/posts/index.xml"
+           type="atom"
+           htmlUrl="https://passo.uno"
+           description="Personal site of Fabrizio Ferri Benedetti (UX/technical writer) featuring editorial pieces and in-depth discussions about the current state of technical writing, documentation “experiments”, and the impact of AI on our industry.">
+  </outline>
+  
+  <outline text="Read the Docs (Company Blog)"
+           title="Read the Docs (Company Blog)"
+           xmlUrl="https://about.readthedocs.com/feeds/atom.xml"
+           type="atom"
+           htmlUrl="https://about.readthedocs.com/blog/"
+           description="Blog from Read the Docs (a popular documentation hosting platform) covering platform updates, open source doc projects, static site generator news, and community announcements in the docs-as-code ecosystem.">
+  </outline>
+  
+  <outline text="Robert Delwood"
+           title="Robert Delwood"
+           xmlUrl="https://medium.com/feed/@robertdelwood"
+           type="rss"
+           htmlUrl="https://robertdelwood.medium.com"
+           description="The Medium &quot;stories&quot; of a professional API documentation writer, programmer, and former NASA engineer.">
+  </outline>
+  
+  <outline text="Sarah Deaton"
+           title="Sarah Deaton"
+           xmlUrl="https://sdeaton.com/rss.xml"
+           type="rss"
+           htmlUrl="https://sdeaton.com"
+           description="Sarah&#39;s deep and practical analysis of AI tools and techniques as they apply to content and software.">
+  </outline>
+  
+  <outline text="Technical Writing Uncensored"
+           title="Technical Writing Uncensored"
+           xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCdzER3fTHLN8mseLA_wtntg"
+           type="rss"
+           htmlUrl="https://www.youtube.com/@UncensoredTechWriter"
+           description="Hosted by Diana Payton, this interview-driven video podcast highlights some of the best minds in technical content.Episodes offer candid takes on documentation culture, skills needed for success, and unfiltered advice for tech writers.">
+  </outline>
+  
+  <outline text="TechWhirl"
+           title="TechWhirl"
+           xmlUrl="https://techwhirl.com/feed"
+           type="rss"
+           htmlUrl="https://techwhirl.com"
+           description="Online resource for anyone interested in content management and technical communication; publishes interviews, analysis, and commentary on creating and managing information assets.">
+  </outline>
+  
+  <outline text="This is important"
+           title="This is important"
+           xmlUrl="https://www.thisisimportant.net/feed"
+           type="atom"
+           htmlUrl="https://www.thisisimportant.net"
+           description="Blog by Sarah Moir exploring technical writing, documentation, data analysis, ethics in tech and inclusivity.Includes both a general feed and a category-specific feed for tech-writing posts.">
+  </outline>
+  
+  <outline text="Write the Docs Newsletter"
+           title="Write the Docs Newsletter"
+           xmlUrl="https://www.writethedocs.org/blog/archive/tag/newsletter/atom.xml"
+           type="atom"
+           htmlUrl="https://www.writethedocs.org/blog/archive/tag/newsletter/"
+           description="Newsletter and blog from the Write the Docs community covering technical communication best practices, documentation culture, upcoming community events, and industry news.">
+  </outline>
+  
+  </body>
+</opml>

@@ -1,0 +1,66 @@
+#!/usr/bin/env -S ruby -ws
+
+$C ||= false # command to run between deletions
+$y ||= false # yes, actually execute autoclave
+
+require "set"
+require_relative "../lib/debride"
+
+def autoclave nuke, cmd
+  nuke.each do |path, lines_to_remove, klass, name|
+    warn "#{path} #{lines_to_remove} #{klass}##{name}"
+
+    file = File.foreach(path).with_index.map { |l, i| [i+1, l] }
+
+    File.open path, "w" do |f|
+      file.each do |idx, line|
+        # skip empty line after a removed line
+        next if line.chomp.empty? && lines_to_remove.include?(idx-1)
+        f.write line unless lines_to_remove.include? idx
+      end
+    end
+
+    if cmd then
+      expanded = cmd.gsub(/\bNAME\b/, "#{klass}##{name}").gsub(/\bPATH\b/, path)
+      warn "CMD = %p" % [expanded]
+      `#{expanded}` if $y
+    end
+  end
+end
+
+iter = 0
+old_count = nil
+
+abort "usage: #{$0} [-y] [-C=cmd] [debride args]+" if ARGV.empty? or ARGV.include? "-h"
+
+warn "NOT running commands, use -y to execute" unless $y
+
+loop do
+  iter += 1
+
+  debride = Debride.run ARGV.dup
+
+  min = debride.option[:minimum] || 0
+
+  nuke = debride.missing_locations
+    .flat_map { |klass, meths|
+      meths
+        .reject { |(meth, loc)| !loc }
+        .map { |(meth, loc)|
+          path, start, finish = /^(.+):(\d+)(?:-(\d+))?$/.match(loc).captures
+          finish ||= start
+          [path, start.to_i..finish.to_i, klass, meth]
+        }
+        .reject { |p,r,k,m| r.size <= min }
+    }
+    .sort_by { |p,r,k,m| [p, -r.begin, m] }
+
+  count = nuke.size
+
+  break if count.zero? || old_count == count
+  old_count = count
+
+  puts "iter = %2d count = %4d" % [iter, count]
+  autoclave nuke, $C
+  puts
+end

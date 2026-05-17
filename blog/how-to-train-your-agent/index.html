@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Train Your Agent | DocOps Lab</title>
+  <meta name="description" content="LLMs still produce frustrating slop unless they are reined in by techniques that revolve around good documentation. Here&#8217;s how to train your agents to ...">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Train Your Agent">
+  <meta property="og:description" content="LLMs still produce frustrating slop unless they are reined in by techniques that revolve around good documentation. Here&#8217;s how to train your agents to ...">
+  <meta property="og:url" content="https://docopslab.org/blog/how-to-train-your-agent/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/blog-dragon-training.jpg">
+    
+  <meta property="og:image:alt" content="The Game of Thrones character Daenerys Targaryen controls her dragon, Drogon.">
+    
+  
+  
+  <meta property="article:author" content="Brian Dominick">
+  <meta property="article:published_time" content="2026-01-02T00:00:00+00:00">
+    
+      
+  <meta property="article:tag" content="AI">
+      
+  <meta property="article:tag" content="single-sourcing">
+      
+  <meta property="article:tag" content="AsciiDoc">
+      
+  <meta property="article:tag" content="writing">
+      
+    
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Train Your Agent">
+  <meta name="twitter:description" content="LLMs still produce frustrating slop unless they are reined in by techniques that revolve around good documentation. Here&#8217;s how to train your agents to ...">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/blog-dragon-training.jpg">
+    
+  <meta name="twitter:image:alt" content="The Game of Thrones character Daenerys Targaryen controls her dragon, Drogon.">
+    
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="Brian Dominick">
+  
+  <meta name="publish_date" property="og:publish_date" content="2026-01-02T00:00:00+00:00">
+  
+  <link rel="canonical" href="https://docopslab.org/blog/how-to-train-your-agent/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="DocOps Lab Blog" href="https://docopslab.org/feeds/docops-lab-blog.xml">
+  
+</head>
+<body class="layout-post  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  
+
+
+
+<div class="blog-post-container">
+  <div class="container">
+    <article class="blog-post">
+    <header class="post-header">
+      <h1 class="post-title">
+        How to Train Your Agent
+        
+      </h1>
+      
+      
+      <h2 class="blog-title">
+        <img src="/assets/images/favicons/favicon-raw-transparent.png" alt="DocOps Lab Favicon" class="blog-favicon-logo">
+        A DocOps Lab Blog entry
+      </h2>
+      
+      
+      <div class="post-meta">
+        
+        <time class="post-date" datetime="2026-01-02T00:00:00+00:00">
+          <i data-lucide="calendar"></i>
+          January 02, 2026
+        </time>
+        
+        
+        
+        <span class="post-author">
+          <i data-lucide="user"></i>
+          Brian Dominick
+        </span>
+        
+        
+        <div class="post-tags">
+          <i data-lucide="tag"></i>
+          
+            <span class="tag">AI</span>
+          
+            <span class="tag">single-sourcing</span>
+          
+            <span class="tag">AsciiDoc</span>
+          
+            <span class="tag">writing</span>
+          
+        </div>
+        
+        
+      </div>
+    </header>
+    
+    <div class="post-content">
+      
+      <figure class="post-image">
+        <img src="/assets/images/blog-dragon-training.jpg" alt="The Game of Thrones character Daenerys Targaryen controls her dragon, Drogon." class="post-image-img">
+        
+      </figure>
+      
+      <div class="paragraph">
+<p>I don&#8217;t know if there&#8217;s a name for that thing that happens where every new problem you encounter in your professional domain seems perfectly suited for your current specialty or your preferred tech stack.
+It&#8217;s some form of confirmation bias, to be sure.</p>
+</div>
+<div class="paragraph">
+<p>Whatever it is called, I am both wary of and susceptible to this phenomenon.
+And it happened to me earl last year when I &#8220;realized&#8221; that to use LLMs and agents on serious projects, one of the major needs is good technical documentation.
+I have been using LLMs with the <a href="https://specdriven.ai">&#8220;Spec-driven development&#8221; approach</a> for all 3 years that I&#8217;ve been using them, but in 2025 that concept <a href="https://www.youtube.com/watch?v=8rABwKRsec4">rose to the forefront</a>.
+That&#8217;s just how I&#8217;ve always coded, especially since I started focusing on developing tools for documentation and authoring.</p>
+</div>
+<div class="paragraph">
+<p>But it&#8217;s not just specifications, is it?
+Surely one document is never going to enable high-quality product code.
+Before you know it, every project needs a curated, streamlined <em>library</em> of documents.</p>
+</div>
+<div class="paragraph">
+<p>A good prompt for a complex coding task includes rich context, which is how MCP servers and skills came about.
+These, too, are largely dependent on documentation.
+And once this level of complexity is introduced, and especially when working across codebases on multiple simultaneous projects.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Jargon glossary</div>
+<div class="paragraph">
+<p>Here is what the author means by some of the terms of art that appear in this article, in the specific context of this article.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">AI or artificial intelligence</dt>
+<dd>
+<p>A broad term for computer systems that can perform tasks that typically require human intellect or reasoning, such as understanding natural language, recognizing patterns, learning from data, and making decisions.
+Critics note that existing AIs are not truly &#8220;intelligent&#8221; in the human sense, but rather sophisticated pattern recognition and generation tools.</p>
+</dd>
+<dt class="hdlist1">LLM</dt>
+<dd>
+<p>Large Language Model, a kind of &#8220;artificial intelligence&#8221; that interprets and generates text and other media based on patterns and associations gleaned from heavily processing extremely large datasets.</p>
+</dd>
+<dt class="hdlist1">generative AI (GenAI)</dt>
+<dd>
+<p>A kind of &#8220;artificial intelligence&#8221; that generates content such as text, images, audio, or video based on input prompts.
+LLMs are a subset of generative AI, which is sometimes expressed as &#8220;GAI&#8221; or &#8220;genAI&#8221; (not to be confused with AGI: artificial general intelligence).</p>
+</dd>
+<dt class="hdlist1">LLM client</dt>
+<dd>
+<p>A software application that uses an LLM to perform tasks such as answering questions, generating content in response to prompts, or assisting with various activities.
+LLM clients can be chatbots, virtual assistants, code generators, or any other type of application that interacts with an LLM to leverage its capabilities.</p>
+</dd>
+<dt class="hdlist1">LLM agent</dt>
+<dd>
+<p>A type of LLM client that can perform actions on behalf of a user, such as making API calls, executing commands, interacting with other software, or carrying out a series of such tasks to achieve a goal.</p>
+</dd>
+<dt class="hdlist1">context window</dt>
+<dd>
+<p>The total amount of input data (text, code, etc) that an LLM processes during a given request.</p>
+</dd>
+<dt class="hdlist1">prompt</dt>
+<dd>
+<p>The user-input text or data that an LLM client sends to the LLM to generate a response.
+The prompt is the user&#8217;s real-time contribution to the context.</p>
+</dd>
+<dt class="hdlist1">MCP server</dt>
+<dd>
+<p>For &#8220;model context protocol&#8221;, an interface that allows LLMs to invoke tools or consume resources specifically delivered for AI usage by the MCP providers.
+MCP servers can deliver content in formats optimized for LLM consumption, such as JSON or Markdown, and can also provide interactive access to utilities and APIs specially designed for LLM clients.</p>
+</dd>
+<dt class="hdlist1">skills</dt>
+<dd>
+<p>In the context of LLM agents, a <em>skill</em> is any specific procedure or approach an agent can onboard in order to better carry out tasks it informs.
+Skills are defined in Markdown documents and invoked on an as-needed basis.</p>
+</dd>
+<dt class="hdlist1">token</dt>
+<dd>
+<p>A unit of text that an LLM processes.
+Tokens can be as short as one character or as long as one word, depending on the language and the specific &#8220;tokenization&#8221; method.
+The number of tokens in a prompt or response can affect LLM cost and performance.</p>
+</dd>
+<dt class="hdlist1">vibe coding</dt>
+<dd>
+<p>A term used to describe the practice of using LLMs to generate code with minimal human intervention or oversight, typically without much concern for maintainability or best practices.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>I settled on a strategy of organizing resources into skills, roles, missions, and topics.
+The concept of &#8220;skills&#8221; was introduced in 2025 by Anthropic, but the rest of these categories are my own twist on the concept.</p>
+</div>
+<div class="paragraph">
+<p>These resources are all represented by Markdown docs available to LLM-backed coding agents like Copilot, Warp, and Cursor.
+(I will talk about MCP serves in a separate blog entry somewhere down the line, but for now I have not concluded much about this new protocol.)</p>
+</div>
+<div class="paragraph">
+<p>An additional twist is that I single source all of this content, alongside (and secondary to) my people-facing docs, and I do it all using AsciiDoc that gets converted to Markdown at build time, as I described in <a href="/blog/single-sourcing-for-ai-agents/">Building Docs for AI Agents from Single-Sourced Content</a>.</p>
+</div>
+<div class="paragraph">
+<p>In this post, I want to talk about <em>what</em> to provide for AI agents, and you can refer to the <a href="/blog/single-sourcing-for-ai-agents/">other post</a> for <em>how to deliver</em> it.</p>
+</div>
+<div class="sect1">
+<h2 id="taming-dragon">Taming the Dragon</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>LLMs are too powerful.
+The most useful task at the LLM operator&#8217;s disposal is to <em>constrain</em> the generative AI&#8217;s behavior.</p>
+</div>
+<div class="paragraph">
+<p>Part of this is handled by the client/agent you choose in order to interface with the LLM during a session.</p>
+</div>
+<div class="paragraph">
+<p>The rest is the additional context you provide it.
+It may at first seem like instructions such as &#8220;Use Java&#8221; or &#8220;Use Semantic Versioning&#8221; or &#8220;Use Next.js framework&#8221; that you are contributing something, but what you are really doing is <em>reducing the likelihood of variance</em> in the LLM&#8217;s output.
+And reduced variance means greater consistency and a higher likelihood of success.</p>
+</div>
+<div class="paragraph">
+<p>Being opinionated about how the LLM (or your coworkers) should work is one thing.
+Unless you document that opinion, you cannot expect anyone to follow it consistently&#8201;&#8212;&#8201;<em>especially</em> an LLM, <em>especially</em> across sessions.</p>
+</div>
+<div class="sect2">
+<h3 id="agents-md">AGENTS.md</h3>
+<div class="paragraph">
+<p>I recommend standardizing on an <code>AGENTS.md</code> file per project, rather than any of the model- or agent-specific options like <code>CLAUDE.md</code> or <code>copilot-instructions.md</code>.
+This file should contain the high-level instructions for how to approach the project, including any constraints on languages, frameworks, styles, or other conventions.</p>
+</div>
+<div class="paragraph">
+<p>The <code>AGENTS.md</code> file seems like it should be for guiding the agent or LLM, but in truth you are <em>toning it down</em> from the solution space that LLMs tend to explore by default, which is either wide open or strongly biased toward certain technologies like Python and Markdown.</p>
+</div>
+<div class="paragraph">
+<p>Everything in your <code>AGENTS.md</code> should be correcting something that agents or LLMs are susceptible to doing a wrong or less-preferred way.
+Do not waste tokens teaching them things they already do; encourage them to do things <em>your way</em>.</p>
+</div>
+<div class="paragraph">
+<p>I currently source a common/upstream <a href="https://github.com/DocOps/lab/blob/main/blob/main/_docs/templates/AGENTS.markdown"><code>AGENTS.markdown</code> template</a>.
+It is filled with tags and tokens indicating where customization should be carried out for each repo into which an instance is placed.
+This is a per-codebase document, not something to sync across projects.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="linters">Linters</h3>
+<div class="paragraph">
+<p>One of the best ways to constrain LLM output is to use linters and formatters.</p>
+</div>
+<div class="paragraph">
+<p>These are tools you can customize to enforce your particular conventions and styles, for both programmatic code and textual content.
+You can even lint the markup syntax of your raw docs-as-code source files.</p>
+</div>
+<div class="paragraph">
+<p>While you can show the LLM your linting configuration files up front as instruction, most models will still deviate considerably, or else your style guide and spelling preferences and so forth will overwhelm the context window.</p>
+</div>
+<div class="paragraph">
+<p>More usefully, linters and formatters are <em>automated checks</em> that can be run after the LLM produces output.
+Some linters can auto-correct deviations of style and formatting, but LLM agents are pretty good at following up on linter reports and correcting their errors.</p>
+</div>
+<div class="paragraph">
+<p>Forcing or even automating conformity is so advantageous, I cannot imagine working with LLMs on code or docs without the advantage of good linters.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="training-dragon">Training the Dragon</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The rest of what you are doing with an agent/LLM is powering them up.
+This is where you can introduce specific or peculiar conventions that you need the LLM to follow throughout a session, a lot of which needs to be available across sessions.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s too much to just put all your internal and user-facing product docs, and all the docs for all the development tools and dependency libraries you use, into one big Markdown file to dump into the context window at the top of every session.</p>
+</div>
+<div class="paragraph">
+<p>This will be too big, even for small projects once they reach maturity (I would argue, long before they&#8217;re ready for general availability release).</p>
+</div>
+<div id="no-one-else-can-train-your-dragon" class="sidebarblock">
+<div class="content">
+<div class="title">No one else can train your dragon</div>
+<div class="paragraph">
+<p>This is the hard part.
+You or your team must create the documentation that your LLM agents will need to perform well.
+The whole point is that anyone else&#8217;s attempt at this would be incompatible, in more ways than one.</p>
+</div>
+<div class="paragraph">
+<p>As I built my agent-facing library, there were general points and lessons and best practices built in throughout for reinforcement, but more importantly the docs attempt to influence LLMs <em>away from their own tendencies</em> where I disagree with their typical or occasional behavior.</p>
+</div>
+<div class="paragraph">
+<p>For now, you have to roll up your sleeves and incorporate lessons from all the kinds of &#8220;tweak this&#8221; messages you&#8217;ve used on LLMs over the past year or so.
+These are the ways bots need to be adjusted to work well with <em>your</em> tech stack, <em>your</em> framework, <em>your</em> conventions, <em>your</em> styles, and so forth.</p>
+</div>
+<div class="paragraph">
+<p>You will also need a way to distribute and sync this between projects, and to modify or override some of it in particular projects, when the standard conventions do not translate or apply.
+Cross-project orchestration is out of scope for this post, but it I touched on it/blog/single-sourcing-for-ai-agents/#distribution[here].</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Instead, you need to <em>organize</em> your documentation into a taxonomy of resources that the LLM can access as needed.
+The good news is that LLMs are pretty good at selectively ingesting and applying relevant context from multiple documents.
+The hard work is in establishing the library of assets; prompting then becomes as easy as saying:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Prompt pointing to AGENTS.md</div>
+<div class="content">
+<div class="paragraph">
+<p><em>Read the <code>AGENTS.md</code> file, then pick a role and skillset appropriate to the task set forth in <code>.agent/docs/team/add-fancy-feature.md</code>.</em></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Most agents consume the <code>AGENTS.md</code> automatically, but I use lots of agents and I work on multi-repo sessions from a parent directory, so an explicit directive has become part of all my initial prompts.</p>
+</div>
+<div class="paragraph">
+<p>It can be even simpler to work this way if you provide a mission template of sorts.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. Mission prompt</div>
+<div class="content">
+<div class="paragraph">
+<p><em>Read <code>.agent/docs/missions/conduct-release.md</code> then carry out the 1.2.0 release of the product in this repo.</em></p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>What follows is the particular taxonomy I use to organize my agent-facing documentation.
+I use all of these as general/standardized documents for all my projects, with project-specific variations as needed.</p>
+</div>
+<div class="paragraph">
+<p>Most of the documents reference the system they are part of, so bots can determine on the fly if they need to review other documents in the collection or override the advice with local versions.</p>
+</div>
+<div class="sect2">
+<h3 id="agent-roles">Roles</h3>
+<div class="paragraph">
+<p>These documents are relatively original, whereas skills, missions, and topics all tend to draw directly on resources written for <em>people</em>.
+In my case, I could never afford to hire a person to fulfill any of these roles, and in truth they&#8217;re somewhat over-specialized, on purpose.</p>
+</div>
+<div class="paragraph">
+<p>Here is the current roster of roles I am providing docs for:<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 70.5882%;">
+<col style="width: 11.7647%;">
+<col style="width: 5.8823%;">
+<col style="width: 11.7648%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Product Manager</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/blob/main/_docs/agent/roles/product-manager.adoc">AsciiDoc</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/docs/agent/product-manager">HTML</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/tree/agent-docs/roles/product-manager.md">Markdown</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project Manager</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/blob/main/_docs/agent/roles/project-manager.adoc?plain">AsciiDoc</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/docs/agent/project-manager">HTML</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/tree/agent-docs/roles/project-manager.md">Markdown</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Software Planner/Architect</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/blob/main/_docs/agent/roles/planner-architect.adoc?plain">AsciiDoc</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/docs/agent/planner-architect">HTML</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/tree/agent-docs/roles/planner-architect.md">Markdown</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Product Engineer</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/blob/main/_docs/agent/roles/product-engineer.adoc?plain">AsciiDoc</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/docs/agent/product-engineer">HTML</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/tree/agent-docs/roles/product-engineer.md">Markdown</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QA/Testing Engineer</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/blob/main/_docs/agent/roles/qa-engineer.adoc?plain">AsciiDoc</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/docs/agent/qa-engineer">HTML</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/tree/agent-docs/roles/qa-engineer.md">Markdown</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DevOps/Release Engineer</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/blob/main/_docs/agent/roles/devops-engineeer.adoc?plain">AsciiDoc</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/docs/agent/devops-engineer">HTML</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/tree/agent-docs/roles/devops-engineer.md">Markdown</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DocOps Engineer</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/blob/main/_docs/agent/roles/docops-engineeer.adoc?plain">AsciiDoc</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/docs/agent/docops-engineer">HTML</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/tree/agent-docs/roles/docops-engineer.md">Markdown</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tech Docs Manager</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/blob/main/_docs/agent/roles/tech-docs-manager.adoc?plain">AsciiDoc</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/docs/agent/tech-docs-manager">HTML</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/tree/agent-docs/roles/tech-docs-manager.md">Markdown</a></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tech Writer</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/blob/main/_docs/agent/roles/tech-writer.adoc?plain">AsciiDoc</a></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="/docs/agent/tech-writer">HTML</a></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><a href="https://github.com/DocOps/lab/tree/agent-docs/roles/tech-writer.md">Markdown</a></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>While I am competent in most of these roles<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup>, I of course prefer it if my agents are superstars in each given specialty.</p>
+</div>
+<div class="paragraph">
+<p>I would never publish these as job descriptions and expect people to conform to them, but for LLMs, this is <em>exactly</em> the kind of context they need to perform well.
+They set expectations far more clearly and reliably than if you were to just say, &#8220;Be a good project manager&#8221; or &#8220;Act like a senior software engineer&#8221;.
+And role docs are far more efficient than if all the attributes and expectations are buried in a larger document set or in skills alone.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="agent-skills">Skills</h3>
+<div class="paragraph">
+<p>This is where we get down and dirty, implementing procedural knowledge that the agent can apply directly to the task at hand.</p>
+</div>
+<div class="paragraph">
+<p>Skills tend to be distillations of internal docs I wrote for myself and prospective collaborators.
+I want contributors to DocOps Lab projects to be reassured that they can follow established conventions and procedures.
+The more documentation I provide authors and developers, the more likely they are to contribute successfully and hopefully repeatedly.</p>
+</div>
+<div class="paragraph">
+<p>Maybe more appealing still is offering that level of confidence for contributors' using their own LLM agents.
+In that case, the existence of massive amounts of detailed docs is reassuring, but the specificity of agent-oriented docs is even better.</p>
+</div>
+<div class="paragraph">
+<p>To review the current set of skills docs: <a href="https://github.com/DocOps/lab/blob/main/_docs/agent/skills">AsciiDoc</a>, <a href="https://github.com/DocOps/lab/blob/main/docs/agent/#skills">HTML</a>, <a href="https://github.com/DocOps/lab/tree/agent-docs/skills/">Markdown</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="agent-missions">Missions</h3>
+<div class="paragraph">
+<p>The other kind of procedural documentation I provide for agents is the docs I call &#8220;missions&#8221;.</p>
+</div>
+<div class="paragraph">
+<p>These are for <em>big</em> operations that need to be applied across projects with consistency and competency.
+They typically require numerous skills and topics as well as multiple roles.</p>
+</div>
+<div class="paragraph">
+<p>I only have developed two missions so far: <code>conduct-release.md</code> and <code>setup-new-project.md</code>.
+These are series of tasks that I must repeat often enough that I don&#8217;t want to do it myself, but the procedures are complex and variant enough that I cannot script them or write one document that covers all cases.</p>
+</div>
+<div class="paragraph">
+<p>Again, this is an ideal slot for generative AI to fill.
+With proper guidance and monitoring, an LLM agent can carry out these kinds of missions with a high degree of success.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="agent-topics">Topics</h3>
+<div class="paragraph">
+<p>I organize topics documents similarly to how I organize user documents.
+This is a 3-category framework that compromises between <a href="https://www.heretto.com/blog/dita-task">DITA&#8217;s typing system</a> and the newly popular <a href="https://diataxis.fr">Diátaxis</a>.<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>The choice of just three main categories&#8201;&#8212;&#8201;<em>Concepts</em>, <em>Tasks</em>, and <em>References</em> (dropping Diátaxis&#8217;s <em>Tutorials</em> grouping)&#8201;&#8212;&#8201;maps well onto the way LLMs seem to understand content.</p>
+</div>
+<div class="paragraph">
+<p>(Mainly, I think LLMs do not care that much about the form topics take.
+However, as with human users, dividing them up aids the decision of which document to consume at which time.)</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Task</dt>
+<dd>
+<p>A lot of what you&#8217;ll find in Skills and Missions for AI bots would fall under <em>tasks</em> in human-facing documentation.
+And that&#8217;s mainly where the agent-oriented docs draw from.</p>
+</dd>
+<dt class="hdlist1">Concept</dt>
+<dd>
+<p>LLMs do need to understand concepts, but they tend not to need the same depth of explanation that people do, especially when thorough reference content is available from which they can abstract and infer.
+For the most part, only feed conceptual docs to LLMs when the subject matter differs significantly from domain-wide understandings.</p>
+</dd>
+<dt class="hdlist1">References</dt>
+<dd>
+<p>Critical but somewhat tricky for LLMs are large, structured documents intended for lookup rather than straight reading.
+Reference docs may best be consumed using MCP tools that will serve up precise snippets on demand.
+Agents can query your reference docs this way, and this may prove one of the best applications of MCP technology.
+It can save from overwhelming and diluting the context window with too much unrelated matter.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion">Train Your Agents or They Will Train You</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are a few categories of my work that I do not care to become an expert in.
+Interestingly enough, one of those is the line-by-line coding of software, even though I have been programming for more than 25 years now.</p>
+</div>
+<div class="paragraph">
+<p>I have never been a gifted coder who writes the most elegant or efficient syntax.
+Fortunately, LLMs are &#8220;naturally&#8221; better at this skill than I am.</p>
+</div>
+<div class="paragraph">
+<p>Yet after decades of programming, however meagerly, I have developed style preferences and conventions that need to be consistent across my projects.</p>
+</div>
+<div class="paragraph">
+<p>If you leave it up to any series of LLM sessions, you will end up with either (a) a hodge-podge of styles and strategies or (b) a generic, lowest-common-denominator approach that lacks forward focus or context-specific innovation.
+Your code and docs will either look like 5 or 10 professionals contributed without communicating, or else they will completely lack distinction or creativity.</p>
+</div>
+<div class="paragraph">
+<p>To wrangle and shape the results of any amount of &#8220;vibe coding&#8221; prompted drafting, LLM clients and agents need exceptional guidance and well-defined guardrails.
+I have found these to come in the form of curated, <a href="https://github.com/DocOps/docs/agent/">agent-focused documentation</a> and rigorous application of <a href="https://github.com/DocOps/#linters">linters</a>.</p>
+</div>
+<div class="paragraph">
+<p>MCP servers may be added to the list soon.
+Stay tuned for more on that front.</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>. This list is static yet subject to change. The full current, built library is always at <a href="https://github.com/DocOps/lab/tree/agent-docs/roles" class="bare">https://github.com/DocOps/lab/tree/agent-docs/roles</a>, and they&#8217;re published in rich-text form at <a href="https://github.com/DocOps/docs/agent/">in the Lab docs site</a>.
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>. QA/Testing Engineer and DevOps/Release Engineer are true exceptions in my experience; these documents were produced with considerable LLM assistance.
+</div>
+<div class="footnote" id="_footnotedef_3">
+<a href="#_footnoteref_3">3</a>. DocOps Labs' hybrid &#8220;Ditataxis&#8221; framework will be released in 2026 as part of the <a href="/projects/ayl-docstack/">AYL DocStack</a> project.
+</div>
+</div>
+    </div>
+    
+    
+      
+    
+
+    
+    <div class="related-posts">
+
+      
+
+      
+        <h2>Related posts</h2>
+        <ul>
+          
+            
+            
+            <li>
+              <a href="/blog/single-sourcing-for-ai-agents/">Building Docs for AI Agents from Single-Sourced Content</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/true-single-sourcing/">TRUE Single Sourcing with YAML and AsciiDoc</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/tech-blogging-in-asciidoc/">Why Tech Blogging is Better in AsciiDoc</a>
+            </li>
+            
+          
+        </ul>
+      
+    </div>
+    
+    
+    <footer class="post-footer">
+      
+      
+      <div class="post-navigation">
+        
+        <a href="/blog/issuer-releasehx-news/" class="nav-link nav-prev">
+          <i data-lucide="arrow-left"></i>
+          <div class="nav-text">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">DocOps Lab Has Issues: Announcing Issuer and ReleaseHx</span>
+          </div>
+        </a>
+        
+        
+        
+        <a href="/blog/foss-licensing-usage/" class="nav-link nav-next">
+          <div class="nav-text">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">DocOps Lab Licensing and Usage</span>
+          </div>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        
+      </div>
+      
+      <div class="back-to-blog">
+        <a href="/blog/" class="btn-secondary">
+          <i data-lucide="arrow-left"></i>
+          Back to Blog
+        </a>
+      </div>
+    </footer>
+    </article>
+  </div>
+</div>
+
+
+<footer>
+  <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

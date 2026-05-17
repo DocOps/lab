@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collecting and Aggregating Blogs about Tech Docs | DocOps Lab</title>
+  <meta name="description" content="I love reading blogs about technical documentation, so much so that I created a collection and aggregated feed of them plus podcasts and newsletters. Here&#8...">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Collecting and Aggregating Blogs about Tech Docs">
+  <meta property="og:description" content="I love reading blogs about technical documentation, so much so that I created a collection and aggregated feed of them plus podcasts and newsletters. Here&#8...">
+  <meta property="og:url" content="https://docopslab.org/blog/tech-docs-blogs-collection/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/blog-chickens-feeding.jpg">
+    
+  <meta property="og:image:alt" content="Hens being hand-fed by a person.">
+    
+  
+  
+  <meta property="article:author" content="Dr Meta">
+  <meta property="article:published_time" content="2026-02-27T00:00:00+00:00">
+    
+      
+  <meta property="article:tag" content="automation">
+      
+  <meta property="article:tag" content="blogging">
+      
+  <meta property="article:tag" content="announcements">
+      
+  <meta property="article:tag" content="docs-as-code">
+      
+  <meta property="article:tag" content="YAML">
+      
+  <meta property="article:tag" content="Jekyll">
+      
+    
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Collecting and Aggregating Blogs about Tech Docs">
+  <meta name="twitter:description" content="I love reading blogs about technical documentation, so much so that I created a collection and aggregated feed of them plus podcasts and newsletters. Here&#8...">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/blog-chickens-feeding.jpg">
+    
+  <meta name="twitter:image:alt" content="Hens being hand-fed by a person.">
+    
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="Dr Meta">
+  
+  <meta name="publish_date" property="og:publish_date" content="2026-02-27T00:00:00+00:00">
+  
+  <link rel="canonical" href="https://docopslab.org/blog/tech-docs-blogs-collection/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700&family=Source+Code+Pro:ital,wght@0,400;0,500;0,700&display=swap" rel="stylesheet">
+
+  <!-- Font Detection Script for MetaBlog -->
+  <script>
+    // Wait for fonts to load and then detect what's actually being used
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        const codeElements = document.querySelectorAll('.metablog pre, .metablog code');
+        if (codeElements.length > 0) {
+          const testElement = codeElements[0];
+          const computedStyle = window.getComputedStyle(testElement);
+          const actualFont = computedStyle.fontFamily;
+          console.log('🔍 MetaBlog Font Detection:');
+          console.log('Computed font-family:', actualFont);
+          console.log('First element tested:', testElement);
+          
+          // Add data attribute for CSS debugging
+          document.documentElement.setAttribute('data-metablog-font', actualFont.split(',')[0].replace(/['"]/g, ''));
+        }
+      }, 500); // Wait for font loading
+    });
+  </script>
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="DocOps Lab Blog" href="https://docopslab.org/feeds/docops-lab-blog.xml">
+  
+</head>
+<body class="layout-post  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  
+
+
+
+<div class="blog-post-container metablog">
+  <div class="container">
+    <article class="blog-post metablog">
+    <header class="post-header metablog">
+      <h1 class="post-title metablog">
+        Collecting and Aggregating Blogs about Tech Docs
+        
+      </h1>
+      
+      
+      <h2 class="blog-title metablog">
+        <i data-lucide="microscope"></i>
+        A Dr Meta's MetaBlog entry
+      </h2>
+      
+      
+      
+      
+      <div class="post-meta metablog">
+        
+        
+        
+        <span class="post-author metablog">
+          <i data-lucide="user"></i>
+          Dr Meta
+        </span>
+        
+        
+        <div class="post-tags metablog">
+          <i data-lucide="tag"></i>
+          
+            <span class="tag">automation</span>
+          
+            <span class="tag">blogging</span>
+          
+            <span class="tag">announcements</span>
+          
+            <span class="tag">docs-as-code</span>
+          
+            <span class="tag">YAML</span>
+          
+            <span class="tag">Jekyll</span>
+          
+        </div>
+        
+        
+          
+          <div class="post-version">
+            <span class="version-param"><i data-lucide="milestone"></i><span class="tag">POST VERSION:</span> <strong><code>1.0.0</code></strong></span>
+          </div>
+          
+          
+        
+      </div>
+    </header>
+    
+    <div class="post-content metablog">
+      
+      <figure class="post-image">
+        <img src="/assets/images/blog-chickens-feeding.jpg" alt="Hens being hand-fed by a person." class="post-image-img">
+        
+        <figcaption class="post-image-caption">
+          
+          
+          <a href="https://stock.adobe.com/images/hand-feeding-several-chicken-on-a-farm/424299732" class="image-source" target="_blank" rel="noopener noreferrer">
+            Adobe Stock
+            
+            (Fair Use)
+            
+          </a>
+          
+        </figcaption>
+        
+      </figure>
+      
+      <div class="paragraph">
+<p>I love reading blogs about technical documentation, so much so that I created a collection and aggregated feed of them plus podcasts and newsletters. Here&#8217;s how I did it (and how you can contribute).</p>
+</div>
+<div class="sect1">
+<h2 id="summary">What I&#8217;ve Done</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I&#8217;ve collected a number of my favorite blogs, podcasts, and newsletters about technical documentation and presented the in these forms:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <a href="/docs-blogs/">web page with annotated links</a> to all the services.</p>
+</li>
+<li>
+<p>an <a href="/feeds/docs-blogs.opml">OPML listing</a> of all the feeds, which you can import into your feed reader of choice.</p>
+</li>
+<li>
+<p>A <a href="/docs-blogs/latest/">web page aggregating all the feeds</a> into one.</p>
+</li>
+<li>
+<p>An <a href="/feeds/aggregate.xml">RSS feed that aggregates all the feeds</a> into one, which you can also subscribe to.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I&#8217;ve also added a proper <a href="/feeds/docops-lab-blog.xml">RSS feed for the DocOps Lab Blog</a>, which is also included in the above collection and aggregator.</p>
+</div>
+<div class="paragraph">
+<p>If all you&#8217;re interested in is the content, check out the links above and subscribe to any or all of it.</p>
+</div>
+<div class="paragraph">
+<p>Instead of a clunky, opaque database backend, I&#8217;ve sourced all the data for the collection as a <a href="https://github.com/DocOps/lab/blob/main/_data/tech-docs-serials.yml">YAML file</a> in the repository.</p>
+</div>
+<div class="paragraph">
+<p>If you wish to submit a feed, check out <a href="#contributing">Contributing Your Favorite Resources</a> below.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="execution">The Execution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some few may be interested in how I did this without using an application server and database or JavaScript, so I thought I&#8217;d lay it out.</p>
+</div>
+<div class="paragraph">
+<p>Feel free to copy any of this and make it your own, with a modified or totally alternate listing of the serialized content of your choice.</p>
+</div>
+<div class="sect2">
+<h3 id="background">Background</h3>
+<div class="paragraph">
+<p>Back in early and middle 2000s, when blogs were all the rage and podcasts were emergent, I created a few different tools that collected all or some of the output from their attendant &#8220;feeds&#8221; in order to create a one-stop shop for content from multiple outlets.</p>
+</div>
+<div class="paragraph">
+<p>Such &#8220;aggregators&#8221; were pretty popular at the time, and there was lots of software to produce them with.
+The only reason to make your own, which many developers did, was to make it fit your specific technological circumstances.</p>
+</div>
+<div class="paragraph">
+<p>This bespoke development wasn&#8217;t so much about customizing the feeds or the look and feel, as other emergent technologies made this possible for some of the open-source and commercial aggregators that existed.
+It was more about the fact that I wanted to use the tools I was already using for serving application-driven websites.
+Basically, I wanted them to use my database backend, my app server, and my HTML templating system.</p>
+</div>
+<div class="paragraph">
+<p>For similar reasons, I have harked back to my industrious days of coding feeds and aggregators in order to create and publish a collection of blogs about technical documentation, and an aggregated feed of them&#8201;&#8212;&#8201;all because I want to do it <em>my way</em>, which I fully realize might be nobody else&#8217;s way.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="goals">Goals</h3>
+<div class="paragraph">
+<p>I wanted to do this project in a way that demonstrates the power of DocOps&#8201;&#8212;&#8201;a solution consistent with the practices I advocate for in my work on documentation operations.</p>
+</div>
+<div class="paragraph">
+<p>That means:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No relational databases (YAML instead)</p>
+</li>
+<li>
+<p>Everything in Git</p>
+</li>
+<li>
+<p>No unnecessary JavaScript (see <a href="#js-note">note</a> below)</p>
+</li>
+<li>
+<p>No application server</p>
+</li>
+<li>
+<p>Static-site generation (SSG)</p>
+</li>
+<li>
+<p>CI/CD automation</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The aggregator is the only really tricky part of this project.
+The standard way to pull the latest posts from dozens of feeds together this would be either:</p>
+</div>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p>Dynamic web application with a database backend that collects posts centrally, or</p>
+</li>
+<li>
+<p>Client-side JavaScript that forces every visiting browser to request every feed and construct the page on the fly</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>I wanted the power of the first option without the overhead of a database or application server.
+Neither of these opaque maintenance headaches are in use for any of my other offerings, and I surely did not want to start running them now.</p>
+</div>
+<div class="paragraph">
+<p>The JavaScript option (B) was a non-starter, as it would be a terrible user experience, obscene overkill, and prone to breaking.
+I&#8217;ve seen this done, and it&#8217;s ugly.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tools">The Tools</h3>
+<div class="paragraph">
+<p>Since this site already runs on Jekyll SSG and GitHub Actions, I used these resources to collect and build the aggregator.</p>
+</div>
+<div class="paragraph">
+<p>The collection listing itself is a simple YAML file that contains the metadata for each feed, including the URL of the feed itself.</p>
+</div>
+<div class="paragraph">
+<p>The aggregator is where the real work is done, since it must be kept up to date with the latest content from scores of feeds.
+Here&#8217;s how it works:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A single YAML file gets maintained with metadata for each service.</p>
+</li>
+<li>
+<p>A GitHub Action runs on a schedule to pull the latest content from each service and combine it into a single feed source.</p>
+</li>
+<li>
+<p>The Action commits the resulting JSON source file to the repository.</p>
+</li>
+<li>
+<p>Then the Jekyll SSG builds the aggregator page and feed from that source file, which is committed back to the repository and published on GitHub Pages.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This flow is somewhat unconventional, as it uses a cron job to pull content from external sources and commit it to the repository, which is probably an uncommon use of GitHub Actions.
+It only runs hourly, as I think it would get costly (well, start costing) to run it every minute or however often might be needed for truly breaking news.</p>
+</div>
+<div id="js-note" class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+I did end up using JavaScript for the <a href="/docs-blogs/">browseable collections page</a>.
+This is merely a superficial layer to reorganize the generated content&#8201;&#8212;&#8201;it does not perform any content gathering.
+This front-end feature was fully vibe coded and will probably be replaced by a multi-page solution in the future.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributing">Contributing Your Favorite Resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have a favorite blog, podcast, or newsletter about technical documentation that is not included in the collection, please submit it for consideration.</p>
+</div>
+<div class="paragraph">
+<p>Open a pull request to the repository with the feed&#8217;s metadata added to the <a href="https://github.com/DocOps/lab/blob/main/_data/tech-docs-serials.yml">YAML file</a> that contains the collection listing.</p>
+</div>
+</div>
+</div>
+    </div>
+    
+    
+
+    
+    <div class="related-posts">
+
+      
+
+      
+        <h2>Related posts</h2>
+        <ul>
+          
+            
+            
+            <li>
+              <a href="/blog/code-to-docs-pipelines/">Code-to-Docs Pipelines</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/issuer-releasehx-news/">DocOps Lab Has Issues: Announcing Issuer and ReleaseHx</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/release-the-lab/">Release the Lab!</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/lab-projects-source-site/">Single Sourcing and Rendering DocOps Lab Project Profiles</a>
+            </li>
+            
+          
+            
+            
+            <li>
+              <a href="/blog/true-single-sourcing/">TRUE Single Sourcing with YAML and AsciiDoc</a>
+            </li>
+            
+          
+        </ul>
+      
+    </div>
+    
+    
+    <footer class="post-footer metablog">
+      
+      
+      <div class="post-navigation">
+        
+        <a href="/blog/true-single-sourcing/" class="nav-link nav-prev">
+          <i data-lucide="arrow-left"></i>
+          <div class="nav-text">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">TRUE Single Sourcing with YAML and AsciiDoc</span>
+          </div>
+        </a>
+        
+        
+        
+        <a href="/blog/tech-blogging-in-asciidoc/" class="nav-link nav-next">
+          <div class="nav-text">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">Why Tech Blogging is Better in AsciiDoc</span>
+          </div>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        
+      </div>
+      
+      <div class="back-to-blog">
+        <a href="/blog/" class="btn-secondary">
+          <i data-lucide="arrow-left"></i>
+          Back to Blog
+        </a>
+      </div>
+    </footer>
+    </article>
+  </div>
+</div>
+
+
+<footer class="footer-section">
+<!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

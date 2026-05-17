@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bash Scripting Styles and Conventions | DocOps Lab</title>
+  <meta name="description" content="Style guide and best practices for writing Bash scripts in DocOps Lab projects">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Bash Scripting Styles and Conventions">
+  <meta property="og:description" content="Style guide and best practices for writing Bash scripts in DocOps Lab projects">
+  <meta property="og:url" content="https://docopslab.org/docs/bash-styles/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bash Scripting Styles and Conventions">
+  <meta name="twitter:description" content="Style guide and best practices for writing Bash scripts in DocOps Lab projects">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/bash-styles/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Bash Scripting Styles and Conventions</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Bash Scripting Styles and Conventions</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Bash Scripting Styles and Conventions</h1>
+      
+      <p class="document-description">Style guide and best practices for writing Bash scripts in DocOps Lab projects</p>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A guide to writing clean, consistent, and maintainable Bash scripts, based on best practices.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+See also <a href="/docs/cli-styles/">DocOps Lab CLI Style Guide</a> for guidance specific to command-line interfaces development.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="file-and-script-structure">File and Script Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With certain exceptions, shell scripting is done in Bash 4.</p>
+</div>
+<div class="paragraph">
+<p>We will start with the exceptions.</p>
+</div>
+<div class="sect2">
+<h3 id="posix-compliant">POSIX Compliant Scripts</h3>
+<div class="paragraph">
+<p>Scripts that require maximum portability and compatibility should use the POSIX-compliant <code>sh</code> shell and avoid Bash-specific features.</p>
+</div>
+<div class="paragraph">
+<p>These scripts must begin with the shebang <code>#!/bin/sh</code> and should be tested in a POSIX-compliant environment to ensure they do not rely on Bash extensions.</p>
+</div>
+<div class="paragraph">
+<p>This standard is mainly to cover MacOS systems, which do not support Bash 4 out of the box.
+Therefore, bootstrap/installer scripts will need to be executable in a Bash 3 environment, where they can prompt for Bash 4 installation if it is not detected and if it is needed by a follow-on script.</p>
+</div>
+<div class="paragraph">
+<p>Such files should begin with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">#!/bin/sh
+# shellcheck shell=sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The rest of this guide focuses on Bash 4 scripts, which are the norm for DocOps Lab projects and products that use basic shell scripts.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="bash-version">Bash Version (4.0)</h3>
+<div class="paragraph">
+<p>Use Bash 4.0 or later to take advantage of modern features like associative arrays and improved string manipulation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="shebang">Shebang</h3>
+<div class="paragraph">
+<p>Always start scripts with this canonical shebang.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="script-header">Script Header</h3>
+<div class="paragraph">
+<p>Follow the shebang with a brief inline comment block covering the script&#8217;s purpose and dependencies.
+Keep it compact: one line per thought, no visual padding.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+# script-name.sh: brief description of what the script does.
+# Requires: curl, jq</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="indentation">Indentation</h3>
+<div class="paragraph">
+<p>Indent with 2 spaces anywhere indentation is called for.</p>
+</div>
+<div class="paragraph">
+<p>Do not use 4 spaces or tabs.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-organization">Code Organization</h3>
+<div class="paragraph">
+<p>Structure your script into logical sections to improve readability.</p>
+</div>
+<div class="dlist">
+<div class="title">Preferred Segment Order:</div>
+<dl>
+<dt class="hdlist1">Global Constants and Variables</dt>
+<dd>
+<p>Define all global variables and constants at the top.</p>
+</dd>
+<dt class="hdlist1">Helper Functions</dt>
+<dd>
+<p>Small private utilities, named with a <code>_</code> prefix.</p>
+</dd>
+<dt class="hdlist1">Operation Functions</dt>
+<dd>
+<p>Substantive domain work called by <code>cmd_</code> functions or exported as a library&#8217;s public API.
+Un-prefixed <code>snake_case</code>.</p>
+</dd>
+<dt class="hdlist1">Command Functions</dt>
+<dd>
+<p>Thin subcommand handlers, named with a <code>cmd_</code> prefix.</p>
+</dd>
+<dt class="hdlist1">Dispatch</dt>
+<dd>
+<p>A <code>case</code> statement at the bottom mapping argument strings to <code>cmd_</code> functions.</p>
+</dd>
+</dl>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+# script-name: brief description.
+# Depends on: curl, jq
+set -euo pipefail
+
+# CONSTANTS
+readonly SCRIPT_VERSION="1.0.0"
+
+# HELPERS
+_validate_input() {
+  # ...
+}
+
+# OPERATIONS
+process_data() {
+  # ...
+}
+
+# COMMANDS
+cmd_run() {
+  _validate_input "$1"
+  process_data "$1"
+}
+
+# DISPATCH
+case "${1:-}" in
+  run) shift; cmd_run "$@" ;;
+  *)   printf 'Usage: script-name run\n' &gt;&amp;2; exit 1 ;;
+esac</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="comment-style">Comment Style</h3>
+<div class="paragraph">
+<p>Avoid em dashes or en dashes in comments.</p>
+</div>
+<div class="paragraph">
+<p>Use a colon (<code>:</code>) to separate a name from its description.</p>
+</div>
+<div class="paragraph">
+<p>Use a semicolon (<code>;</code>) to combine phrases into a single line when they are closely related.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example comment styles</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># clobber.sh: A script to overwrite files; use with caution.
+
+# Write config file (first run only; do not clobber user edits)
+
+# path set by init --local; sync uses it instead of git pull</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="section-comments">Section Comments</h3>
+<div class="paragraph">
+<p>Mark major sections with plain uppercase <code>#</code> labels.
+No decorative dashes or borders needed; the label is sufficient.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># CONSTANTS
+# HELPERS
+# COMMANDS
+# DISPATCH</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In longer scripts (several hundred lines or more), a horizontal rule comment may precede a major section label to add visual weight.
+Use these sparingly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># ---------------------------------------------------------------------------
+# COMMANDS
+# ---------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="naming-conventions">Naming Conventions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="variable-names">Variables</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Global variables and constants</dt>
+<dd>
+<p>Use <code>SCREAMING_SNAKE_CASE</code>.
+Use <code>readonly</code> for constants.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>readonly MAX_RETRIES=5</code></p>
+</li>
+<li>
+<p><code>APP_CONFIG_PATH=".env"</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Local variables</dt>
+<dd>
+<p>Use <code>snake_case</code> and <code>local</code> declaration.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>local user_name="$1"</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="function-names">Functions</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Operation functions</dt>
+<dd>
+<p>The substantive work of a script; what <code>cmd_</code> functions orchestrate, and what sourced libraries export as their callable API.
+Use un-prefixed <code>snake_case</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>evaluate_system()</code>, <code>build_docker_image()</code>, <code>get_current_version()</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Helper functions</dt>
+<dd>
+<p>Prefix internal utility functions with <code><em></code>.
+This applies in both standalone scripts and sourced library files.
+In a sourced library, the <code></em></code> prefix signals that these functions are implementation details and reduces the risk of collisions in the calling script&#8217;s namespace.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>_bold()</code>, <code>_check_help()</code>, <code>_resolve_slug()</code>, <code>_check_project_root()</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Subcommand handlers</dt>
+<dd>
+<p>Prefix functions that implement top-level subcommands with <code>cmd_</code>.
+The dispatch <code>case</code> at the bottom of the script maps argument strings to these functions unambiguously.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cmd_init()</code>, <code>cmd_run()</code>, <code>cmd_check()</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="variables-and-data">Variables and Data</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="declaration-and-scoping">Declaration and Scoping</h3>
+<div class="paragraph">
+<p>Always use <code>local</code> to declare variables inside functions.
+This prevents polluting the global scope and avoids unintended side effects.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">_some_action() {
+  local file_path="$1" # Good: variable is local to the function
+  count=0              # Avoid: variable is global by default
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="quoting">Quoting</h3>
+<div class="paragraph">
+<p>Always quote variable expansions (<code>"$variable"</code>) and command substitutions (<code>"$(command)"</code>) to prevent issues with word splitting and unexpected filename expansion (globbing).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Good: handles spaces and special characters in filenames
+echo "$file_name"
+touch "$new_file"
+
+# Avoid: will fail if file_name contains spaces
+echo $file_name
+touch $new_file</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Names of files created by DocOps Lab should never include spaces, but this habit is important for dealing with user input or external data.
+Always remember that many of our users come from Windows, where spaces in filenames are common.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="arrays">Arrays</h3>
+<div class="paragraph">
+<p>Use standard indexed arrays for lists of items.</p>
+</div>
+<div class="paragraph">
+<p>Use associative arrays (<code>declare -A</code>) for key-value pairs (i.e., maps).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Indexed array
+local -a packages=("git" "curl" "jq")
+echo "First package is: ${packages[0]}"
+
+# Associative array
+declare -A user_details
+user_details["name"]="John Doe"
+user_details["email"]="john.doe@example.com"
+echo "User email: ${user_details["email"]}"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="functions">Functions</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="syntax">Syntax</h3>
+<div class="paragraph">
+<p>Use the <code>name() { }</code> syntax.
+Do not use the <code>function</code> keyword;
+it is redundant in Bash and creates visual inconsistency when mixed with bare definitions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Good
+some_action() {
+  local arg="$1"
+  # ...
+}
+
+# Avoid
+function some_action() {
+  local arg="$1"
+  # ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Single-line form is acceptable for very short utility functions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">_bold() { printf '\033[1m%s\033[0m' "$*"; }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="arguments">Arguments</h3>
+<div class="paragraph">
+<p>Access arguments using positional parameters (<code>$1</code>, <code>$2</code>, etc.).
+Use <code>"$@"</code> to forward all arguments.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">_log_message() {
+  local level="$1"
+  local message="$2"
+  echo "[$level] $message"
+}
+
+_log_message "INFO" "Process complete."</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="returning-values">Returning Values</h3>
+<div class="paragraph">
+<p><strong>To return a string or data</strong>, use <code>echo</code> or <code>printf</code> and capture the output using command substitution.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">_get_user_home() {
+  local user="$1"
+  # ... logic to find home directory ...
+  echo "/home/$user" # Returns string via stdout
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>To return a status</strong>, use <code>return</code> with a numeric code. <code>0</code> means success, and any non-zero value (<code>1-255</code>) indicates failure.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">_check_file_exists() {
+  if [[ -f "$1" ]]; then
+    return 0 # Success
+  else
+    return 1 # Failure
+  fi
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conditionals">Conditionals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use <code>[[ &#8230;&#8203; ]]</code> for conditional tests.
+It is more powerful, prevents many common errors, and is easier to use than the older <code>[ &#8230;&#8203; ]</code> or <code>test</code> builtins.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Good
+if [[ "$name" == "admin" &amp;&amp; -f "$config_file" ]]; then
+  # ...
+fi
+
+# Avoid
+if [ "$name" = "admin" -a -f "$config_file" ]; then
+  # ...
+fi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For dispatching based on a command or option, <code>case</code> statements are often cleaner than long <code>if/elif/else</code> chains.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">case "$command" in
+  build) cmd_build
+    ;;
+  run)   cmd_run
+    ;;
+  *)
+    printf 'Error: unknown command: %s\n' "$command" &gt;&amp;2
+    exit 1
+    ;;
+esac</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="error-handling">Error Handling</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Use <code>set -euo pipefail</code> at the top of every script.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>e</code></dt>
+<dd>
+<p>Exit immediately when any command returns a non-zero status.</p>
+</dd>
+<dt class="hdlist1"><code>u</code></dt>
+<dd>
+<p>Treat unset variables as an error, catching silent bugs from empty references.</p>
+</dd>
+<dt class="hdlist1"><code>o pipefail</code></dt>
+<dd>
+<p>Fail a pipeline if any command within it fails, not just the last one.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Print error messages to standard error (<code>stderr</code>) and exit with a non-zero status.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+set -euo pipefail
+
+printf 'Error: something went wrong.\n' &gt;&amp;2
+exit 1</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Some scripts warrant more selective error handling.
+A container entrypoint running as PID 1, or a script that sources untrusted config, may use <code>set -e</code> alone.
+Document any deviations and the reason for them.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="cleanup-traps">Cleanup Traps</h3>
+<div class="paragraph">
+<p>For scripts that create temporary resources or modify system state, register a cleanup function with <code>trap</code> so those resources are removed whether the script exits normally, fails under <code>set -e</code>, or is interrupted.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">_cleanup() {
+  [[ -n "${tmp_file:-}" ]] &amp;&amp; rm -f "$tmp_file"
+}
+trap _cleanup EXIT INT TERM
+
+tmp_file="$(mktemp)"
+# ... work with $tmp_file ...</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code>EXIT</code> pseudo-signal fires on both normal exit and on <code>set -e</code> termination.
+Adding <code>INT</code> and <code>TERM</code> ensures cleanup even when the user presses Ctrl+C or the process is sent SIGTERM.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sourced-libraries">Sourced Libraries</h3>
+<div class="paragraph">
+<p>Do not place <code>set -euo pipefail</code> inside a sourced library file.
+The calling script owns the error mode.
+The library&#8217;s functions will execute under whatever error mode the caller established.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+# my-lib.sh; shared helpers sourced by build scripts.
+# Do NOT add set -euo pipefail here.
+
+_do_something() {
+  # ...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For file-level variables that a sourced library exports for its callers to read, ShellCheck will emit <code>SC2034</code> ("variable appears unused").
+Suppress it inline on those specific declarations rather than disabling the check globally.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># shellcheck disable=SC2034 # exported; read by callers
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &amp;&amp; pwd)"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="intentional-word-splitting">Intentional Word-splitting</h3>
+<div class="paragraph">
+<p>When a variable genuinely needs to be word-split (ex: an options string passed to a command), suppress the ShellCheck warning inline on that specific line.
+Add a comment explaining the intent.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># shellcheck disable=SC2086 # intentional: $docker_args may contain multiple flags
+docker build ${docker_args} -t "${image}" .</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="output">Output</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Prefer <code>printf</code> over <code>echo</code> for all script output.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>printf</code> is predictable, portable across Bash scripts, and supports format strings.</p>
+</li>
+<li>
+<p><code>echo</code> behaviour varies across shells and platforms, particularly with <code>-e</code> and <code>-n</code>.</p>
+</li>
+<li>
+<p>Never use <code>echo -e</code>.</p>
+</li>
+<li>
+<p>Use <code>printf</code> with <code>\n</code>, or a heredoc.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Good
+printf 'Error: %s not found.\n' "$name" &gt;&amp;2
+
+# Capture heredoc as a local var
+read -r -d '' error_message &lt;&lt;'ERRMSG'
+Error: Something went wrong.
+Please check your configuration and try again.
+ERRMSG
+printf '%s\n' "$error_message"
+
+# Avoid
+echo -e "Error: $name not found.\n"</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Note the use of semantic heredoc delimiters (<code>ERRMSG</code>) instead of generic <code>EOF</code> or <code>HEREDOC</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For output intended for the user (status ticks, warnings, separators), use the shared style helpers from the centrally maintained <a href="https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/assets/templates/universals.sh"><code>universals.sh</code></a> rather than writing raw ANSI codes inline.
+See the <code>universal-style-helpers</code> tagged segment for the canonical set.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="practices-to-avoid">Practices to Avoid</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="avoid-emoji">Avoid Emojis in Output</h3>
+<div class="paragraph">
+<p>Do not use emojis in script output.
+Use the symbol helpers from <code>universal-style-helpers</code> (<code>_tick</code>, <code>_warn</code>, <code>_fail</code>, <code>_info</code>) which provide consistent Unicode characters (<code>✓</code>, <code>⚠</code>, <code>✗</code>).</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s keep it classy.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Good
+_tick "Gem built: $gem_file"
+_fail "Docker not found."
+
+# Avoid
+echo -e "\U2705 Gem built: $gem_file"
+echo "❌ Docker not found."</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="avoid-eval">Avoid <code>eval</code></h3>
+<div class="paragraph">
+<p>The <code>eval</code> command can execute arbitrary code and poses a significant security risk if used with external or user-provided data.</p>
+</div>
+<div class="paragraph">
+<p>It also makes code difficult to debug.</p>
+</div>
+<div class="paragraph">
+<p>Avoid it whenever possible.
+Modern Bash versions provide safer alternatives like namerefs (<code>declare -n</code>) for indirect variable/array manipulation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="avoid-backticks">Avoid Backticks</h3>
+<div class="paragraph">
+<p>Use <code>$(...)</code> for command substitution instead of backticks (<code>`...`</code>).
+It is easier to read and can be nested.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Good
+current_dir="$(pwd)"
+
+# Avoid
+current_dir=`pwd`</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="avoid-which">Avoid <code>which</code></h3>
+<div class="paragraph">
+<p>Use <code>command -v</code> to test whether a command is available on the <code>PATH</code>.
+<code>which</code> is an external binary whose behavior varies across systems and is not available everywhere.
+<code>command -v</code> is a Bash builtin and the POSIX-portable alternative.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Good
+if command -v docker &amp;&gt;/dev/null; then
+  # ...
+fi
+
+# Avoid
+if which docker &gt; /dev/null 2&gt;&amp;1; then
+  # ...
+fi</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/bash-styles.adoc" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

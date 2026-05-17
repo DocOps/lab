@@ -1,0 +1,246 @@
+:xref_blog_code-to-docs-pipelines_title: Code-to-Docs Pipelines
+:xref_blog_code-to-docs-pipelines_url: /blog/code-to-docs-pipelines/
+:xref_blog_code-to-docs-pipelines_link: link:/blog/code-to-docs-pipelines/[Code-to-Docs Pipelines]
+:xref_blog_foss-licensing-usage_title: DocOps Lab Licensing and Usage
+:xref_blog_foss-licensing-usage_url: /blog/foss-licensing-usage/
+:xref_blog_foss-licensing-usage_link: link:/blog/foss-licensing-usage/[DocOps Lab Licensing and Usage]
+:xref_blog_how-to-train-your-agent_title: How to Train Your Agent
+:xref_blog_how-to-train-your-agent_url: /blog/how-to-train-your-agent/
+:xref_blog_how-to-train-your-agent_link: link:/blog/how-to-train-your-agent/[How to Train Your Agent]
+:xref_blog_issuer-releasehx-news_title: DocOps Lab Has Issues: Announcing Issuer and ReleaseHx
+:xref_blog_issuer-releasehx-news_url: /blog/issuer-releasehx-news/
+:xref_blog_issuer-releasehx-news_link: link:/blog/issuer-releasehx-news/[DocOps Lab Has Issues: Announcing Issuer and ReleaseHx]
+:xref_blog_lab-projects-source-site_title: Single Sourcing and Rendering DocOps Lab Project Profiles
+:xref_blog_lab-projects-source-site_url: /blog/lab-projects-source-site/
+:xref_blog_lab-projects-source-site_link: link:/blog/lab-projects-source-site/[Single Sourcing and Rendering DocOps Lab Project Profiles]
+:xref_blog_release-the-lab_title: Release the Lab!
+:xref_blog_release-the-lab_url: /blog/release-the-lab/
+:xref_blog_release-the-lab_link: link:/blog/release-the-lab/[Release the Lab!]
+:xref_blog_single-sourcing-for-ai-agents_title: Building Docs for AI Agents from Single-Sourced Content
+:xref_blog_single-sourcing-for-ai-agents_url: /blog/single-sourcing-for-ai-agents/
+:xref_blog_single-sourcing-for-ai-agents_link: link:/blog/single-sourcing-for-ai-agents/[Building Docs for AI Agents from Single-Sourced Content]
+:xref_blog_tech-blogging-in-asciidoc_title: Why Tech Blogging is Better in AsciiDoc
+:xref_blog_tech-blogging-in-asciidoc_url: /blog/tech-blogging-in-asciidoc/
+:xref_blog_tech-blogging-in-asciidoc_link: link:/blog/tech-blogging-in-asciidoc/[Why Tech Blogging is Better in AsciiDoc]
+:xref_blog_tech-docs-blogs-collection_title: Collecting and Aggregating Blogs about Tech Docs
+:xref_blog_tech-docs-blogs-collection_url: /blog/tech-docs-blogs-collection/
+:xref_blog_tech-docs-blogs-collection_link: link:/blog/tech-docs-blogs-collection/[Collecting and Aggregating Blogs about Tech Docs]
+:xref_blog_true-single-sourcing_title: TRUE Single Sourcing with YAML and AsciiDoc
+:xref_blog_true-single-sourcing_url: /blog/true-single-sourcing/
+:xref_blog_true-single-sourcing_link: link:/blog/true-single-sourcing/[TRUE Single Sourcing with YAML and AsciiDoc]
+:xref_blog_vibe-coding-vs-programming_title: Vibe Coding vs AI-assisted Programming
+:xref_blog_vibe-coding-vs-programming_url: /blog/vibe-coding-vs-programming/
+:xref_blog_vibe-coding-vs-programming_link: link:/blog/vibe-coding-vs-programming/[Vibe Coding vs AI-assisted Programming]
+:xref_blog_why-github_title: Why DocOps Lab Chooses GitHub over GitLab
+:xref_blog_why-github_url: /blog/why-github/
+:xref_blog_why-github_link: link:/blog/why-github/[Why DocOps Lab Chooses GitHub over GitLab]
+:xref_docs_conduct-release_title: Conduct Release
+:xref_docs_conduct-release_url: /docs/agent/conduct-release/
+:xref_docs_conduct-release_link: link:/docs/agent/conduct-release/[Conduct Release]
+:xref_docs_setup-new-project_title: Setup New Project
+:xref_docs_setup-new-project_url: /docs/agent/setup-new-project/
+:xref_docs_setup-new-project_link: link:/docs/agent/setup-new-project/[Setup New Project]
+:xref_docs_devops-release-engineer_title: Devops Release Engineer
+:xref_docs_devops-release-engineer_url: /docs/agent/devops-release-engineer/
+:xref_docs_devops-release-engineer_link: link:/docs/agent/devops-release-engineer/[Devops Release Engineer]
+:xref_docs_docops-engineer_title: Docops Engineer
+:xref_docs_docops-engineer_url: /docs/agent/docops-engineer/
+:xref_docs_docops-engineer_link: link:/docs/agent/docops-engineer/[Docops Engineer]
+:xref_docs_planner-architect_title: Planner Architect
+:xref_docs_planner-architect_url: /docs/agent/planner-architect/
+:xref_docs_planner-architect_link: link:/docs/agent/planner-architect/[Planner Architect]
+:xref_docs_product-engineer_title: Product Engineer
+:xref_docs_product-engineer_url: /docs/agent/product-engineer/
+:xref_docs_product-engineer_link: link:/docs/agent/product-engineer/[Product Engineer]
+:xref_docs_product-manager_title: Product Manager
+:xref_docs_product-manager_url: /docs/agent/product-manager/
+:xref_docs_product-manager_link: link:/docs/agent/product-manager/[Product Manager]
+:xref_docs_project-manager_title: Project Manager
+:xref_docs_project-manager_url: /docs/agent/project-manager/
+:xref_docs_project-manager_link: link:/docs/agent/project-manager/[Project Manager]
+:xref_docs_qa-testing-engineer_title: Qa Testing Engineer
+:xref_docs_qa-testing-engineer_url: /docs/agent/qa-testing-engineer/
+:xref_docs_qa-testing-engineer_link: link:/docs/agent/qa-testing-engineer/[Qa Testing Engineer]
+:xref_docs_tech-docs-manager_title: Tech Docs Manager
+:xref_docs_tech-docs-manager_url: /docs/agent/tech-docs-manager/
+:xref_docs_tech-docs-manager_link: link:/docs/agent/tech-docs-manager/[Tech Docs Manager]
+:xref_docs_tech-writer_title: Tech Writer
+:xref_docs_tech-writer_url: /docs/agent/tech-writer/
+:xref_docs_tech-writer_link: link:/docs/agent/tech-writer/[Tech Writer]
+:xref_docs_asciidoc_title: Asciidoc
+:xref_docs_asciidoc_url: /docs/agent/asciidoc/
+:xref_docs_asciidoc_link: link:/docs/agent/asciidoc/[Asciidoc]
+:xref_docs_bash-cli-dev_title: Bash Cli Dev
+:xref_docs_bash-cli-dev_url: /docs/agent/bash-cli-dev/
+:xref_docs_bash-cli-dev_link: link:/docs/agent/bash-cli-dev/[Bash Cli Dev]
+:xref_docs_bash_title: Bash
+:xref_docs_bash_url: /docs/agent/bash/
+:xref_docs_bash_link: link:/docs/agent/bash/[Bash]
+:xref_docs_code-commenting_title: DocOps Lab Code Commenting Guidance
+:xref_docs_code-commenting_url: /docs/code-commenting/
+:xref_docs_code-commenting_link: link:/docs/code-commenting/[DocOps Lab Code Commenting Guidance]
+:xref_docs_fix-broken-links_title: DocOps Lab Broken Link Debugging
+:xref_docs_fix-broken-links_url: /docs/fix-broken-links/
+:xref_docs_fix-broken-links_link: link:/docs/fix-broken-links/[DocOps Lab Broken Link Debugging]
+:xref_docs_fix-jekyll-asciidoc-build-errors_title: Fix Jekyll-AsciiDoc Build Errors
+:xref_docs_fix-jekyll-asciidoc-build-errors_url: /docs/fix-jekyll-asciidoc-build-errors/
+:xref_docs_fix-jekyll-asciidoc-build-errors_link: link:/docs/fix-jekyll-asciidoc-build-errors/[Fix Jekyll-AsciiDoc Build Errors]
+:xref_docs_fix-spelling-issues_title: DocOps Lab Spellcheck and Fixing
+:xref_docs_fix-spelling-issues_url: /docs/fix-spelling-issues/
+:xref_docs_fix-spelling-issues_link: link:/docs/fix-spelling-issues/[DocOps Lab Spellcheck and Fixing]
+:xref_docs_git_title: Git
+:xref_docs_git_url: /docs/agent/git/
+:xref_docs_git_link: link:/docs/agent/git/[Git]
+:xref_docs_github-issues_title: GitHub Issues Types and Tasks Reference
+:xref_docs_github-issues_url: /docs/github-issues/
+:xref_docs_github-issues_link: link:/docs/github-issues/[GitHub Issues Types and Tasks Reference]
+:xref_docs_product-release-rollback-and-patching_title: Product Release Rollback And Patching
+:xref_docs_product-release-rollback-and-patching_url: /docs/agent/product-release-rollback-and-patching/
+:xref_docs_product-release-rollback-and-patching_link: link:/docs/agent/product-release-rollback-and-patching/[Product Release Rollback And Patching]
+:xref_docs_rake-cli-dev_title: Rake Cli Dev
+:xref_docs_rake-cli-dev_url: /docs/agent/rake-cli-dev/
+:xref_docs_rake-cli-dev_link: link:/docs/agent/rake-cli-dev/[Rake Cli Dev]
+:xref_docs_readme-driven-dev_title: Readme Driven Dev
+:xref_docs_readme-driven-dev_url: /docs/agent/readme-driven-dev/
+:xref_docs_readme-driven-dev_link: link:/docs/agent/readme-driven-dev/[Readme Driven Dev]
+:xref_docs_release-history_title: Release History
+:xref_docs_release-history_url: /docs/agent/release-history/
+:xref_docs_release-history_link: link:/docs/agent/release-history/[Release History]
+:xref_docs_ruby_title: Ruby
+:xref_docs_ruby_url: /docs/agent/ruby/
+:xref_docs_ruby_link: link:/docs/agent/ruby/[Ruby]
+:xref_docs_schemagraphy-sgyml_title: Schemagraphy Sgyml
+:xref_docs_schemagraphy-sgyml_url: /docs/agent/schemagraphy-sgyml/
+:xref_docs_schemagraphy-sgyml_link: link:/docs/agent/schemagraphy-sgyml/[Schemagraphy Sgyml]
+:xref_docs_tests-running_title: Tests Running
+:xref_docs_tests-running_url: /docs/agent/tests-running/
+:xref_docs_tests-running_link: link:/docs/agent/tests-running/[Tests Running]
+:xref_docs_tests-writing_title: Tests Writing
+:xref_docs_tests-writing_url: /docs/agent/tests-writing/
+:xref_docs_tests-writing_link: link:/docs/agent/tests-writing/[Tests Writing]
+:xref_docs_write-the-docs_title: Write The Docs
+:xref_docs_write-the-docs_url: /docs/agent/write-the-docs/
+:xref_docs_write-the-docs_link: link:/docs/agent/write-the-docs/[Write The Docs]
+:xref_docs_common-project-paths_title: Common Project Paths
+:xref_docs_common-project-paths_url: /docs/agent/common-project-paths/
+:xref_docs_common-project-paths_link: link:/docs/agent/common-project-paths/[Common Project Paths]
+:xref_docs_dev-tooling-usage_title: Dev Tooling Usage
+:xref_docs_dev-tooling-usage_url: /docs/agent/dev-tooling-usage/
+:xref_docs_dev-tooling-usage_link: link:/docs/agent/dev-tooling-usage/[Dev Tooling Usage]
+:xref_docs_devops-ci-cd_title: Devops Ci Cd
+:xref_docs_devops-ci-cd_url: /docs/agent/devops-ci-cd/
+:xref_docs_devops-ci-cd_link: link:/docs/agent/devops-ci-cd/[Devops Ci Cd]
+:xref_docs_product-docs-deployment_title: Product Docs Deployment
+:xref_docs_product-docs-deployment_url: /docs/agent/product-docs-deployment/
+:xref_docs_product-docs-deployment_link: link:/docs/agent/product-docs-deployment/[Product Docs Deployment]
+:xref_docs_xref_attrs_title: Xref_attrs
+:xref_docs_xref_attrs_url: /docs/xref-attrs/
+:xref_docs_xref_attrs_link: link:/docs/xref-attrs/[Xref_attrs]
+:xref_docs_cla_title: DocOps Lab Contributor License Agreement (CLA)
+:xref_docs_cla_url: /docs/cla/
+:xref_docs_cla_link: link:/docs/cla/[DocOps Lab Contributor License Agreement (CLA)]
+:xref_docs_contributing_title: DocOps Lab Contributor's Guide
+:xref_docs_contributing_url: /docs/contributing/
+:xref_docs_contributing_link: link:/docs/contributing/[DocOps Lab Contributor's Guide]
+:xref_docs_generative-ai-usage_title: DocOps Lab Generative "AI" Guidance
+:xref_docs_generative-ai-usage_url: /docs/generative-ai-usage/
+:xref_docs_generative-ai-usage_link: link:/docs/generative-ai-usage/[DocOps Lab Generative "AI" Guidance]
+:xref_docs_mission_title: Mission
+:xref_docs_mission_url: /docs/mission/
+:xref_docs_mission_link: link:/docs/mission/[Mission]
+:xref_docs_privacy_title: DocOps Lab Privacy Policy
+:xref_docs_privacy_url: /docs/privacy/
+:xref_docs_privacy_link: link:/docs/privacy/[DocOps Lab Privacy Policy]
+:xref_docs_asciidoc-attributes_title: DocOps Lab AsciiDoc Attributes Naming and Usage
+:xref_docs_asciidoc-attributes_url: /docs/asciidoc-attributes/
+:xref_docs_asciidoc-attributes_link: link:/docs/asciidoc-attributes/[DocOps Lab AsciiDoc Attributes Naming and Usage]
+:xref_docs_asciidoc-styles_title: DocOps Lab Documentation Style Guide
+:xref_docs_asciidoc-styles_url: /docs/asciidoc-styles/
+:xref_docs_asciidoc-styles_link: link:/docs/asciidoc-styles/[DocOps Lab Documentation Style Guide]
+:xref_docs_bash-styles_title: DocOps Lab Bash Coding Guide
+:xref_docs_bash-styles_url: /docs/bash-styles/
+:xref_docs_bash-styles_link: link:/docs/bash-styles/[DocOps Lab Bash Coding Guide]
+:xref_docs_cli-styles_title: DocOps Lab CLI Style Guide
+:xref_docs_cli-styles_url: /docs/cli-styles/
+:xref_docs_cli-styles_link: link:/docs/cli-styles/[DocOps Lab CLI Style Guide]
+:xref_docs_docker_title: DocOps Lab Dockerfile and Docker Image Management
+:xref_docs_docker_url: /docs/docker/
+:xref_docs_docker_link: link:/docs/docker/[DocOps Lab Dockerfile and Docker Image Management]
+:xref_docs_git-commit-styles_title: DocOps Lab Git Commits Style Guide
+:xref_docs_git-commit-styles_url: /docs/git-commit-styles/
+:xref_docs_git-commit-styles_link: link:/docs/git-commit-styles/[DocOps Lab Git Commits Style Guide]
+:xref_docs_infrastructure_title: DocOps Lab Development & Deployment Infrastructure
+:xref_docs_infrastructure_url: /docs/infrastructure/
+:xref_docs_infrastructure_link: link:/docs/infrastructure/[DocOps Lab Development & Deployment Infrastructure]
+:xref_docs_lab-dev-config_title: DocOps Lab Dev-tooling Configuration
+:xref_docs_lab-dev-config_url: /docs/lab-dev-config/
+:xref_docs_lab-dev-config_link: link:/docs/lab-dev-config/[DocOps Lab Dev-tooling Configuration]
+:xref_docs_namespaces_title: DocOps Lab Namespace Semantics
+:xref_docs_namespaces_url: /docs/namespaces/
+:xref_docs_namespaces_link: link:/docs/namespaces/[DocOps Lab Namespace Semantics]
+:xref_docs_ruby-styles_title: Ruby Styles
+:xref_docs_ruby-styles_url: /docs/ruby-styles/
+:xref_docs_ruby-styles_link: link:/docs/ruby-styles/[Ruby Styles]
+:xref_docs_testing_title: DocOps Lab Testing & Specifications
+:xref_docs_testing_url: /docs/testing/
+:xref_docs_testing_link: link:/docs/testing/[DocOps Lab Testing & Specifications]
+:xref_docs_deployment-setup_title: Product Artifact and Documentation Deployment Setup
+:xref_docs_deployment-setup_url: /docs/deployment-setup/
+:xref_docs_deployment-setup_link: link:/docs/deployment-setup/[Product Artifact and Documentation Deployment Setup]
+:xref_docs_development_title: DocOps Lab Development Process (General)
+:xref_docs_development_url: /docs/development/
+:xref_docs_development_link: link:/docs/development/[DocOps Lab Development Process (General)]
+:xref_docs_github-issues-usage_title: Using GitHub Issues for DocOps Lab Projects
+:xref_docs_github-issues-usage_url: /docs/github-issues-usage/
+:xref_docs_github-issues-usage_link: link:/docs/github-issues-usage/[Using GitHub Issues for DocOps Lab Projects]
+:xref_docs_lab-dev-setup_title: DocOps Lab Dev-tooling Setup
+:xref_docs_lab-dev-setup_url: /docs/lab-dev-setup/
+:xref_docs_lab-dev-setup_link: link:/docs/lab-dev-setup/[DocOps Lab Dev-tooling Setup]
+:xref_docs_lab-dev-usage_title: DocOps Lab Dev-tooling Usage
+:xref_docs_lab-dev-usage_url: /docs/lab-dev-usage/
+:xref_docs_lab-dev-usage_link: link:/docs/lab-dev-usage/[DocOps Lab Dev-tooling Usage]
+:xref_docs_product-change-docs_title: DocOps Lab Product Change Tracking and Docs (General)
+:xref_docs_product-change-docs_url: /docs/product-change-docs/
+:xref_docs_product-change-docs_link: link:/docs/product-change-docs/[DocOps Lab Product Change Tracking and Docs (General)]
+:xref_docs_release_title: DocOps Lab Release Process (General)
+:xref_docs_release_url: /docs/release/
+:xref_docs_release_link: link:/docs/release/[DocOps Lab Release Process (General)]
+:xref_docs_agents_title: AGENTS.md Template
+:xref_docs_agents_url: /docs/templates/AGENTS.md/
+:xref_docs_agents_link: link:/docs/templates/AGENTS.md/[AGENTS.md Template]
+:xref_projects_adocbook_title: adocBook
+:xref_projects_adocbook_url: /projects/adocbook/
+:xref_projects_adocbook_link: link:/projects/adocbook/[adocBook]
+:xref_projects_asciidoc-edu_title: AsciiDoc EDU
+:xref_projects_asciidoc-edu_url: /projects/asciidoc-edu/
+:xref_projects_asciidoc-edu_link: link:/projects/asciidoc-edu/[AsciiDoc EDU]
+:xref_projects_asciidoc-ops_title: AsciiDoc Ops for Tech Docs
+:xref_projects_asciidoc-ops_url: /projects/asciidoc-ops/
+:xref_projects_asciidoc-ops_link: link:/projects/asciidoc-ops/[AsciiDoc Ops for Tech Docs]
+:xref_projects_ayl-docstack_title: AYL DocStack
+:xref_projects_ayl-docstack_url: /projects/ayl-docstack/
+:xref_projects_ayl-docstack_link: link:/projects/ayl-docstack/[AYL DocStack]
+:xref_projects_docops-box_title: DocOps Box
+:xref_projects_docops-box_url: /projects/docops-box/
+:xref_projects_docops-box_link: link:/projects/docops-box/[DocOps Box]
+:xref_projects_docs-as-code-school_title: Docs-as-Code School
+:xref_projects_docs-as-code-school_url: /projects/docs-as-code-school/
+:xref_projects_docs-as-code-school_link: link:/projects/docs-as-code-school/[Docs-as-Code School]
+:xref_projects_issuer_title: Issuer
+:xref_projects_issuer_url: /projects/issuer/
+:xref_projects_issuer_link: link:/projects/issuer/[Issuer]
+:xref_projects_jekyll-asciidoc-ui_title: Jekyll AsciiDoc UI Extensions
+:xref_projects_jekyll-asciidoc-ui_url: /projects/jekyll-asciidoc-ui/
+:xref_projects_jekyll-asciidoc-ui_link: link:/projects/jekyll-asciidoc-ui/[Jekyll AsciiDoc UI Extensions]
+:xref_projects_jekyll-ext_title: Jekyll Extender
+:xref_projects_jekyll-ext_url: /projects/jekyll-ext/
+:xref_projects_jekyll-ext_link: link:/projects/jekyll-ext/[Jekyll Extender]
+:xref_projects_legaldoc-ops_title: LegalDoc Ops
+:xref_projects_legaldoc-ops_url: /projects/legaldoc-ops/
+:xref_projects_legaldoc-ops_link: link:/projects/legaldoc-ops/[LegalDoc Ops]
+:xref_projects_releasehx_title: ReleaseHx
+:xref_projects_releasehx_url: /projects/releasehx/
+:xref_projects_releasehx_link: link:/projects/releasehx/[ReleaseHx]
+:xref_projects_schemagraphy_title: SchemaGraphy
+:xref_projects_schemagraphy_url: /projects/schemagraphy/
+:xref_projects_schemagraphy_link: link:/projects/schemagraphy/[SchemaGraphy]

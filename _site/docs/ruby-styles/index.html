@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruby Development Style Guide | DocOps Lab</title>
+  <meta name="description" content="Ruby coding styles and conventions for DocOps Lab projects.">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ruby Development Style Guide">
+  <meta property="og:description" content="Ruby coding styles and conventions for DocOps Lab projects.">
+  <meta property="og:url" content="https://docopslab.org/docs/ruby-styles/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ruby Development Style Guide">
+  <meta name="twitter:description" content="Ruby coding styles and conventions for DocOps Lab projects.">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/ruby-styles/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Ruby Development Style Guide</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Ruby Development Style Guide</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Ruby Development Style Guide</h1>
+      
+      <p class="document-description">Ruby coding styles and conventions for DocOps Lab projects.</p>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide outlines the Ruby coding styles and conventions used in DocOps Lab projects.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="automated-style-enforcement">Automated Style Enforcement</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab projects using the <code>docopslab-dev</code> gem automatically enforce Ruby style guidelines through:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">RuboCop</dt>
+<dd>
+<p>Automated code style checking and auto-fixing</p>
+</dd>
+<dt class="hdlist1">Git Hooks</dt>
+<dd>
+<p>Pre-commit advisory checks, pre-push quality gates</p>
+</dd>
+<dt class="hdlist1">CI/CD Integration</dt>
+<dd>
+<p>Automated linting in GitHub Actions workflows</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>To apply style fixes: <code>bundle exec rake labdev:heal:ruby</code></p>
+</div>
+<div class="paragraph">
+<p>See <a href="/docs/lab-dev-usage/">DocOps Lab Dev-tooling Usage</a> for setup details.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conventions">Conventions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab largely follows Ruby&#8217;s community conventions, with some exceptions.
+Conventions are either reiterated or clarified here.</p>
+</div>
+<div class="paragraph">
+<p>However, conventions are not exhaustively listed, and deviations are rarely pointed out as such.</p>
+</div>
+<div class="sect2">
+<h3 id="naming-conventions">Naming Conventions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>snake_case</code> for variable and method names.</p>
+</li>
+<li>
+<p>Use <code>CamelCase</code> for class and module names.</p>
+</li>
+<li>
+<p>Use <code>SCREAMING_SNAKE_CASE</code> for constants.</p>
+</li>
+<li>
+<p>Use descriptive names that convey the purpose of the variable, method, or class.</p>
+</li>
+<li>
+<p>Avoid abbreviations unless they are widely understood.</p>
+</li>
+<li>
+<p>Use verbs for method names to indicate actions.</p>
+</li>
+<li>
+<p>Use nouns for class and module names to indicate entities.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="architectural-conventions">Architectural Conventions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use classes and class instance methods for objects that work like <em>objects</em>&#8201;&#8212;&#8201;they have state and do not act on other objects' state.</p>
+</li>
+<li>
+<p>Use module methods acting on objects or carrying out general operations/utility functions.</p>
+</li>
+<li>
+<p>Use Rake for internal (developer) CLI; use Thor for user-facing CLI</p>
+</li>
+<li>
+<p>Gems may begin life as a module within another gem.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="path-conventions">Path Conventions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>lib/</code> for main application code.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>lib/&lt;project_name&gt;.rb</code> for the main file</p>
+</li>
+<li>
+<p><code>lib/&lt;project_name&gt;/</code> for supporting files and modules</p>
+</li>
+<li>
+<p><code>lib/&lt;project_name&gt;/&lt;module_name&gt;/</code> for submodules</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use <code>spec/</code> for specifications and tests.</p>
+</li>
+<li>
+<p>Use <code>docs/</code> or <code>_docs/</code> for documentation.</p>
+</li>
+<li>
+<p>Use <code>build/</code> for pre-runtime artifacts.</p>
+</li>
+<li>
+<p>Use <code>_build/</code> as default in applications that generate files at runtime, unless another path is more appropriate (ex: <code>_site/</code> in Jekyll-centric apps).</p>
+</li>
+<li>
+<p>Do NOT assume or insist upon perfect alignment with Ruby path conventions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SomeModule</code> or <code>SomeClass</code> may be sourced at <code>lib/some_module.rb</code> or <code>lib/some_class.rb</code> instead of <code>lib/some/module.rb</code> or <code>lib/some/class.rb</code>.</p>
+</li>
+<li>
+<p>Some modules like <code>SchemaGraphy</code> and <code>AsciiDoc</code> are never broken up into <code>schema_graphy</code> or <code>ascii_doc</code> namespaces.</p>
+</li>
+<li>
+<p>Modules with multiple parallel sibling modules in a category like (<code>WriteOps</code>, <code>DraftOps</code>) belong in paths like <code>lib/ops/write.rb</code> instead of <code>lib/write_ops.rb</code> or <code>lib/write/ops.rb</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="syntax-conventions">Syntax Conventions</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Use 2 spaces for indentation.</p>
+</li>
+<li>
+<p>Limit lines to 120 characters or so when possible.</p>
+</li>
+<li>
+<p>Use parentheses for method calls with arguments, but omit them for methods without arguments.</p>
+</li>
+<li>
+<p>Do not use parentheses in method definitions (<code>def method_name arg1, arg2</code>).</p>
+</li>
+<li>
+<p>Use single quotes for strings that do not require interpolation or special symbols.</p>
+</li>
+<li>
+<p>Use double quotes for strings that require interpolation or special symbols.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="commenting-conventions">Commenting Conventions</h3>
+<div class="paragraph">
+<p>See <a href="/docs/code-commenting/">DocOps Lab Code Commenting Guidance</a> for detailed commenting conventions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rubocop-customization">RuboCop Customization</h2>
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+These rules (&#8220;cops&#8221;) can be overridden on a per-project basis in the <code>.config/rubocop.yml</code> file.
+See <a href="#config-rubocop">RuboCop Configuration</a> for docopslab-dev-managed RuboCop configuration.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="project-ruby-style-guide-customizations-only">Project Ruby Style Guide (Customizations Only)</h3>
+<div class="paragraph">
+<p>This document lists only deviations from the standard RuboCop defaults.
+For everything else, consult:
+<a href="https://docs.rubocop.org/rubocop/cops.html">RuboCop Style Guide (All Cops)</a></p>
+</div>
+<div class="paragraph">
+<p>Generated from <code>gems/docopslab-dev/assets/config-packs/rubocop/base.yml</code> compared to built-in defaults.</p>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="all-cops">All Cops</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Display Style Guide</dt>
+<dd>
+<p><code>true</code></p>
+</dd>
+<dt class="hdlist1">New Cops</dt>
+<dd>
+<p><code>enable</code></p>
+</dd>
+<dt class="hdlist1">Target Ruby Version</dt>
+<dd>
+<p><code>3.2</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="layout-first-method-argument-line-break">Layout: First Method Argument Line Break</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_layout.html#layoutfirstmethodargumentlinebreak">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>true</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="layout-hash-alignment">Layout: Hash Alignment</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_layout.html#layouthashalignment">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="layout-line-length">Layout: Line Length</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_layout.html#layoutlinelength">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Allowed Patterns</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>\A\s*#.*\z</code></p>
+</li>
+<li>
+<p><code>\A\s**.*\z</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="layout-multiline-method-call-brace-layout">Layout: Multiline Method Call Brace Layout</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_layout.html#layoutmultilinemethodcallbracelayout">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enforced Style</dt>
+<dd>
+<p><code>same_line</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="layout-parameter-alignment">Layout: Parameter Alignment</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_layout.html#layoutparameteralignment">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enforced Style</dt>
+<dd>
+<p><code>with_fixed_indentation</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="layout-space-around-equals-in-parameter-default">Layout: Space Around Equals In Parameter Default</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_layout.html#layoutspacearoundequalsinparameterdefault">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+<dt class="hdlist1">Enforced Style</dt>
+<dd>
+<p><code>no_space</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="layout-space-around-operators">Layout: Space Around Operators</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_layout.html#layoutspacearoundoperators">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="metrics-abc-size">Metrics: Abc Size</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="metrics-block-length">Metrics: Block Length</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_metrics.html#metricsblocklength">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Allowed Methods</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>describe</code></p>
+</li>
+<li>
+<p><code>context</code></p>
+</li>
+<li>
+<p><code>feature</code></p>
+</li>
+<li>
+<p><code>scenario</code></p>
+</li>
+<li>
+<p><code>let</code></p>
+</li>
+<li>
+<p><code>let!</code></p>
+</li>
+<li>
+<p><code>subject</code></p>
+</li>
+<li>
+<p><code>task</code></p>
+</li>
+<li>
+<p><code>namespace</code></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Max</dt>
+<dd>
+<p><code>50</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="metrics-cyclomatic-complexity">Metrics: Cyclomatic Complexity</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="metrics-method-length">Metrics: Method Length</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_metrics.html#metricsmethodlength">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Max</dt>
+<dd>
+<p><code>25</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="metrics-perceived-complexity">Metrics: Perceived Complexity</h4>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="naming-predicate-method">Naming: Predicate Method</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_naming.html#namingpredicatemethod">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="security-yamlload">Security: YAMLLoad</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_security.html#securityyamlload">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="style-comment-annotation">Style: Comment Annotation</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_style.html#stylecommentannotation">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Keywords</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TODO</code></p>
+</li>
+<li>
+<p><code>FIXME</code></p>
+</li>
+<li>
+<p><code>OPTIMIZE</code></p>
+</li>
+<li>
+<p><code>HACK</code></p>
+</li>
+<li>
+<p><code>REVIEW</code></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="style-commented-keyword">Style: Commented Keyword</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_style.html#stylecommentedkeyword">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="style-documentation">Style: Documentation</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_style.html#styledocumentation">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enabled</dt>
+<dd>
+<p><code>false</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="style-method-call-with-args-parentheses">Style: Method Call With Args Parentheses</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_style.html#stylemethodcallwithargsparentheses">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Allow Parentheses In Chaining</dt>
+<dd>
+<p><code>true</code></p>
+</dd>
+<dt class="hdlist1">Allow Parentheses In Multiline Call</dt>
+<dd>
+<p><code>true</code></p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3 dl-horizontal">
+<h4 id="style-method-def-parentheses">Style: Method Def Parentheses</h4>
+<div class="paragraph">
+<p><a href="https://docs.rubocop.org/rubocop/cops_style.html#stylemethoddefparentheses">Cop documentation</a></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Enforced Style</dt>
+<dd>
+<p><code>require_no_parentheses</code></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="config-rubocop">RuboCop Configuration</h3>
+<div class="paragraph">
+<p>Ruby code style and quality checking.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Base config</dt>
+<dd>
+<p><code>.config/.vendor/docopslab/rubocop.yml</code></p>
+</dd>
+<dt class="hdlist1">Project config</dt>
+<dd>
+<p><code>.config/rubocop.yml</code> (inherits via <code>inherit_from</code>)</p>
+</dd>
+<dt class="hdlist1">Sync command</dt>
+<dd>
+<p><code>bundle exec rake labdev:sync:configs</code></p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The base configuration provides DocOps Lab Ruby style standards.
+Your project config can override any rule while maintaining consistency with the broader ecosystem.</p>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/ruby-styles.adoc" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>
