@@ -8,6 +8,7 @@ require 'pathname'
 require 'shellwords'
 require_relative 'dev/version' # includes RUBY_TARGET
 require_relative 'dev/paths'
+require_relative 'dev/docker_aware'
 require_relative 'dev/manifest'
 require_relative 'dev/spell_check'
 require_relative 'dev/log_parser'
@@ -195,7 +196,7 @@ module DocOpsLab
       end
 
       def bootstrap_project
-        Initializer.bootstrap_project
+        Initializer.bootstrap_project(self)
       end
 
       def install_vale_styles
