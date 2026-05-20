@@ -2,9 +2,21 @@
 
 This document is intended for AI agents operating within a DocOps Lab environment.
 
-This guide pertains to the `docopslab-dev` environment. For complete documentation, see the [project’s README]({xref_projects_docops-box_url}).
+This guide pertains to the `docopslab-dev` environment. For complete documentation, see the [project’s README]({xref_projects_box_url}).
 
-> **IMPORTANT:** The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects. For your own applications of DocOps Labs products like ReleaseHx and Issuer, see [DocOps Box](/projects/docops-box) for a full-featured docs-focused workspace, runtime, and production environment.
+> **IMPORTANT:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-important" title="Important"></i>
+> </td>
+> <td>
+> <div class="paragraph">
+> <p>The environment described and provided here is <em>not</em> optimized for DocOps Lab <em>applications</em> used in third-party projects.
+> For your own applications of DocOps Labs products like ReleaseHx and Issuer, see <a href="/projects/box">DocOps Box</a> for a full-featured docs-focused workspace, runtime, and production environment.</p>
+> </div>
+> </td>
+> </tr>
+> </table>
 
 This gem mainly supplies rake tasks for performing common development operations across and between projects.
 
@@ -12,9 +24,6 @@ Table of Contents
 
 - Standard Usage
 - Override Commands
-- Task Reference
-  - Typical Workflow
-  - Override Commands
 - Customization
   - Local Overrides
 
@@ -69,86 +78,6 @@ bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
 </dd>
 </dl>
 
-## Task Reference
-
-```
-bundle exec rake --tasks | grep labdev:
-```
-
-> **TIP:** To hide the `labdev:` tasks from the standard `rake --tasks` output for an integrated project, use:
->
->
->
->
->
-> ```
-> bundle exec rake --tasks | grep -v labdev:
-> ```
-
-### Typical Workflow
-
-This tool is for working on DocOps Lab projects or possibly unrelated projects that wish to follow our methodology. A typical workflow might look as follows.
-
-Normal development
-
-```
-git add .
-git commit -m "Add new feature"
-```
-
-+ This should yield warnings and errors if active linters find issues.
-
-1. Auto-fix what you can.
-
-2. Review the changes.
-
-3. Commit the fixes.
-
-4. Handle any remaining manual fixes.
-
-5. Fix remaining issues manually.
-
-6. Try pushing.
-
-> **TIP:** Bypass the pre-push gates (usually to test or demo the failure at origin):
->
->
->
->
->
-> ```
-> git push --no-verify
-> ```
-
-### Override Commands
-
-Most executions of the packaged tools are handled through Rake tasks, but you can always run them directly, especially to pass arguments not built into the tasks.
-
-<dl>
-<dt class="hdlist1">RuboCop</dt>
-<dd>
-```
-bundle exec rubocop --config .config/rubocop.yml [options]
-bundle exec rubocop --config .config/rubocop.yml --auto-correct-all
-bundle exec rubocop --config .config/rubocop.yml --only Style/StringLiterals
-```
-</dd>
-<dt class="hdlist1">Vale</dt>
-<dd>
-```
-vale --config=.config/vale.ini [options] [files]
-vale --config=.config/vale.ini README.adoc
-vale --config=.config/vale.ini --minAlertLevel=error .
-```
-</dd>
-<dt class="hdlist1">HTMLProofer</dt>
-<dd>
-```
-bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
-```
-</dd>
-</dl>
-
 ## Customization
 
 Override settings by editing the project configs:
@@ -157,9 +86,9 @@ Override settings by editing the project configs:
 
 - `.config/rubocop.yml`
 
-- `.config/vale.ini`
+- `.config/vale.local.ini`
 
-- `.config/htmlproofer.yml`
+- `.config/htmlproofer.local.yml`
 
 - `.config/actionlint.yml`
 
@@ -171,7 +100,7 @@ Your configurations will inherit from the base configurations and source librari
 
 Projects using `docopslab-dev` will have a configuration structure like the following:
 
-```tree
+```
 .config/
 ├── docopslab-dev.yml # Project manifest (tracked)
 ├── actionlint.yml # Project config (tracked; inherits from base)

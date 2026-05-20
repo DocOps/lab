@@ -149,7 +149,16 @@ DocOps Lab _loosely_ follows the [Conventional Commits](https://www.conventional
 
 Enforcement is not strict, but using Conventional Commits style is encouraged for consistency and clarity.
 
-> **NOTE:** Most DocOps Lab projects do not base Changelog/Release Notes generation on commit messages.
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Most DocOps Lab projects do not base Changelog/Release Notes generation on commit messages.
+> </td>
+> </tr>
+> </table>
 
 The basic outline for a Conventional Commit message is:
 

@@ -63,9 +63,27 @@ git tag -a v1.2.1 -m "Patch release 1.2.1"
 git push origin v1.2.1
 ```
 
-> **NOTE:** Be sure to change `1.1`, `1.2`, and `1.2.1` to the actual affected branches and versions.
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Be sure to change <code>1.1</code>, <code>1.2</code>, and <code>1.2.1</code> to the actual affected branches and versions.
+> </td>
+> </tr>
+> </table>
 
 Repeat for every affected branch then release the patched versions.
 
-> **NOTE:** Between minor versions, patch versions may vary due to inconsistent applicability of patches.
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Between minor versions, patch versions may vary due to inconsistent applicability of patches.
+> </td>
+> </tr>
+> </table>
 

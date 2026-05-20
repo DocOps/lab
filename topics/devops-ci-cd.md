@@ -47,7 +47,16 @@ Each runtime application project has its own `Dockerfile` in the root of its rep
 
 This Dockerfile defines the image that will be built and pushed to Docker Hub for use by anyone needing to run the application.
 
-> **NOTE:** Some Dockerfiles combine multiple applications, such as the [issuer-rhx image](https://github.com/DocOps), which combines both the Issuer and ReleaseHx applications.
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Some Dockerfiles combine multiple applications, such as the <a href="https://github.com/DocOps">issuer-rhx image</a>, which combines both the Issuer and ReleaseHx applications.
+> </td>
+> </tr>
+> </table>
 
 ## See Also
 

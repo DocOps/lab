@@ -162,7 +162,17 @@ Generate release notes and changelog using ReleaseHx.
 </dd>
 </dl>
 
-> **NOTE:** Most projects use ReleaseHx in a unique manner, for diverse testing of its output options. See the project’s `README.adoc`; seek for `releasehx`.
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Most projects use ReleaseHx in a unique manner, for diverse testing of its output options.
+> See the project’s <code>README.adoc</code>; seek for <code>releasehx</code>.
+> </td>
+> </tr>
+> </table>
 
 The default procedure if not otherwise specified:
 
@@ -268,7 +278,16 @@ Taking into account any bumps, blockers, or unexpected occurrences during fulfil
 </dd>
 </dl>
 
-> **IMPORTANT:** In case of emergency rollback or patching, see `.agent/docs/skills/product-release-rollback.md`.
+> **IMPORTANT:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-important" title="Important"></i>
+> </td>
+> <td>
+> In case of emergency rollback or patching, see <code>.agent/docs/skills/product-release-rollback.md</code>.
+> </td>
+> </tr>
+> </table>
 
 ## Fulfillment Principles
 

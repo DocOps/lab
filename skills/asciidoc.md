@@ -184,66 +184,66 @@ The standard linewise delimiters for various AsciiDoc blocks are as follows:
 
 <table>
 <tr>
-<td class="hdlist1">
+<td>
 <code>====</code>
 </td>
-<td class="hdlist2">
+<td>
 <p>For <em>admonitions</em> and <em>examples</em></p>
 </td>
 </tr>
 <tr>
-<td class="hdlist1">
+<td>
 <code>----</code>
 </td>
-<td class="hdlist2">
+<td>
 <p>For code listing (verbatim) blocks</p>
 </td>
 </tr>
 <tr>
-<td class="hdlist1">
+<td>
 <code>....</code>
 </td>
-<td class="hdlist2">
+<td>
 <p>For literal (verbatim) blocks</p>
 </td>
 </tr>
 <tr>
-<td class="hdlist1">
+<td>
 <code> **** </code>
 </td>
-<td class="hdlist2">
+<td>
 <p>For sidebar blocks</p>
 </td>
 </tr>
 <tr>
-<td class="hdlist1">
+<td>
 <code>|===</code>
 </td>
-<td class="hdlist2">
+<td>
 <p>For tables</p>
 </td>
 </tr>
 <tr>
-<td class="hdlist1">
+<td>
 <code> ____ </code>
 </td>
-<td class="hdlist2">
+<td>
 <p>For quote blocks</p>
 </td>
 </tr>
 <tr>
-<td class="hdlist1">
+<td>
 <code>++++</code>
 </td>
-<td class="hdlist2">
+<td>
 <p>For raw/passthrough blocks</p>
 </td>
 </tr>
 <tr>
-<td class="hdlist1">
+<td>
 <code>--</code>
 </td>
-<td class="hdlist2">
+<td>
 <p>For open blocks</p>
 </td>
 </tr>
@@ -406,7 +406,16 @@ For all other projects, the gem works in a standard package consumption mode:
 
 - The `labdev:sync:styles` task simply runs `vale sync` in the proper context, downloading all listed packages into a local `.vale/styles` directory.
 
-> **TIP:** The `labdev:sync:vale` task updates both the base config and the style packages.
+> **TIP:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-tip" title="Tip"></i>
+> </td>
+> <td>
+> The <code>labdev:sync:vale</code> task updates both the base config and the style packages.
+> </td>
+> </tr>
+> </table>
 
 A project’s `.config/vale.local.ini` should look something like the one for this repository (DocOps/lab).
 
@@ -431,6 +440,24 @@ DocOpsLab-AsciiDoc.ExtraLineBeforeLevel1 = NO
 
 This dual-mode system provides a robust workflow for both developing and consuming the centralized Vale styles.
 
-> **NOTE:** For full Vale configuration settings (“keys”) reference, see the [official Vale documentation](https://vale.sh/docs/vale-ini).
-> **NOTE:** For information on managing DocOps Lab’s Vale styles, see [the `docopslab-dev` gem README](https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc).
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> For full Vale configuration settings (“keys”) reference, see the <a href="https://vale.sh/docs/vale-ini">official Vale documentation</a>.
+> </td>
+> </tr>
+> </table>
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> For information on managing DocOps Lab’s Vale styles, see <a href="https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc">the <code>docopslab-dev</code> gem README</a>.
+> </td>
+> </tr>
+> </table>
 

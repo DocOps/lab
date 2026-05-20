@@ -139,7 +139,16 @@ Add (inter-)project documentation management, planning, and oversight capabiliti
 
 To upgrade, reference the appropriate role documentation and announce the skill adoption to the Operator.
 
-> **TIP:** Product Manages should invoke DocOps Engineer, Technical Writer, and Technical Documentation Manager upgrades at the top of any major product/feature planning session, since DocOps Lab’s products are all documentation focused.
+> **TIP:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-tip" title="Tip"></i>
+> </td>
+> <td>
+> Product Manages should invoke DocOps Engineer, Technical Writer, and Technical Documentation Manager upgrades at the top of any major product/feature planning session, since DocOps Lab’s products are all documentation focused.
+> </td>
+> </tr>
+> </table>
 
 ## Resources
 

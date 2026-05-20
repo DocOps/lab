@@ -90,7 +90,17 @@ When it comes to product-design assistance, an Agent with a documentation-relate
 
 ## Processes
 
-> **NOTE:** Remember, as a DocOps Engineer, your work will mainly focus on implementing solutions for DocOps Lab codebases themselves. Read this section in that light.
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Remember, as a DocOps Engineer, your work will mainly focus on implementing solutions for DocOps Lab codebases themselves.
+> Read this section in that light.
+> </td>
+> </tr>
+> </table>
 
 ### Setting Up Documentation Automation
 

@@ -2,7 +2,16 @@
 
 This document is intended for AI agents operating within a DocOps Lab environment.
 
-> **TIP:** Use this guide in combination with the general Bash coding skill.
+> **TIP:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-tip" title="Tip"></i>
+> </td>
+> <td>
+> Use this guide in combination with the general Bash coding skill.
+> </td>
+> </tr>
+> </table>
 
 Table of Contents
 
@@ -23,7 +32,16 @@ The one truly major Bash CLI we maintain is `docksh`, our Docker shell utility f
 
 Base CLIs are relatively open ended. Developers should consider how the script might change, but unless it is intended to be elaborate from the start, there is not much reason to fuss over complicated structures.
 
-> **TIP:** See [DocOps Lab Bash Coding Guide](/docs/bash-styles/) for details about implementing Bash CLIs.
+> **TIP:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-tip" title="Tip"></i>
+> </td>
+> <td>
+> See <a href="/docs/bash-styles/">DocOps Lab Bash Coding Guide</a> for details about implementing Bash CLIs.
+> </td>
+> </tr>
+> </table>
 
 Let’s examine our typical Bash script CLI structure:
 
@@ -93,7 +111,7 @@ A CLI with very handy subcommands
 
 ```
 git fetch
-git commmit
+git commit
 git merge
 ```
 

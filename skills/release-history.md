@@ -9,7 +9,16 @@ Original sources for this document include:
 
 ReleaseHx automatically generates release notes and changelogs from GitHub Issues and PRs when properly labeled.
 
-> **NOTE:** Every DocOps Lab project implements ReleaseHx differently as a way of “eating our own dog food”.
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Every DocOps Lab project implements ReleaseHx differently as a way of “eating our own dog food”.
+> </td>
+> </tr>
+> </table>
 
 Refer to any given project’s documentation for specific instructions on how to prepare changes for inclusion in release notes and changelogs.
 

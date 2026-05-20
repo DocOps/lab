@@ -197,7 +197,17 @@ echo $file_name
 touch $new_file
 ```
 
-> **NOTE:** Names of files created by DocOps Lab should never include spaces, but this habit is important for dealing with user input or external data. Always remember that many of our users come from Windows, where spaces in filenames are common.
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Names of files created by DocOps Lab should never include spaces, but this habit is important for dealing with user input or external data.
+> Always remember that many of our users come from Windows, where spaces in filenames are common.
+> </td>
+> </tr>
+> </table>
 
 ### Arrays
 
@@ -341,7 +351,18 @@ printf 'Error: something went wrong.\n' >&2
 exit 1
 ```
 
-> **NOTE:** Some scripts warrant more selective error handling. A container entrypoint running as PID 1, or a script that sources untrusted config, may use `set -e` alone. Document any deviations and the reason for them.
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Some scripts warrant more selective error handling.
+> A container entrypoint running as PID 1, or a script that sources untrusted config, may use <code>set -e</code> alone.
+> Document any deviations and the reason for them.
+> </td>
+> </tr>
+> </table>
 
 ### Cleanup Traps
 
@@ -357,7 +378,17 @@ tmp_file="$(mktemp)"
 # ... work with $tmp_file ...
 ```
 
-> **TIP:** The `EXIT` pseudo-signal fires on both normal exit and on `set -e` termination. Adding `INT` and `TERM` ensures cleanup even when the user presses Ctrl+C or the process is sent SIGTERM.
+> **TIP:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-tip" title="Tip"></i>
+> </td>
+> <td>
+> The <code>EXIT</code> pseudo-signal fires on both normal exit and on <code>set -e</code> termination.
+> Adding <code>INT</code> and <code>TERM</code> ensures cleanup even when the user presses Ctrl+C or the process is sent SIGTERM.
+> </td>
+> </tr>
+> </table>
 
 ### Sourced Libraries
 
@@ -416,17 +447,27 @@ printf '%s\n' "$error_message"
 echo -e "Error: $name not found.\n"
 ```
 
-> **TIP:** Note the use of semantic heredoc delimiters (`ERRMSG`) instead of generic `EOF` or `HEREDOC`.
+> **TIP:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-tip" title="Tip"></i>
+> </td>
+> <td>
+> Note the use of semantic heredoc delimiters (<code>ERRMSG</code>) instead of generic <code>EOF</code> or <code>HEREDOC</code>.
+> </td>
+> </tr>
+> </table>
 
 For output intended for the user (status ticks, warnings, separators), use the shared style helpers from the centrally maintained [`universals.sh`](https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/assets/templates/universals.sh) rather than writing raw ANSI codes inline. See the `universal-style-helpers` tagged segment for the canonical set.
 
 Universal style helpers common to all DocOps Lab scripts
 
 ```bash
-_bold() { printf '\033[1m%s\033[0m' "$*"; }
-_green() { printf '\033[32m%s\033[0m' "$*"; }
-_yellow() { printf '\033[33m%s\033[0m' "$*"; }
-_red() { printf '\033[31m%s\033[0m' "$*"; }
+# Respects NO_COLOR standard: https://no-color.org
+_bold() { [[-n "${NO_COLOR:-}"]] && printf '%s' "$*" || printf '\033[1m%s\033[0m' "$*"; }
+_green() { [[-n "${NO_COLOR:-}"]] && printf '%s' "$*" || printf '\033[32m%s\033[0m' "$*"; }
+_yellow() { [[-n "${NO_COLOR:-}"]] && printf '%s' "$*" || printf '\033[33m%s\033[0m' "$*"; }
+_red() { [[-n "${NO_COLOR:-}"]] && printf '%s' "$*" || printf '\033[31m%s\033[0m' "$*"; }
 _tick() { printf '%s %s\n' "$(_green '✓')" "$*"; }
 _warn() { printf '%s %s\n' "$(_yellow '⚠')" "$*"; }
 _fail() { printf '%s %s\n' "$(_red '✗')" "$*"; }

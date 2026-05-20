@@ -18,4 +18,13 @@ SchemaGraphy Schemas and the SGYML and tooling to support them are in a nascent 
 
 Check {xref\_projects\_schemagraphy\_link} for the latest information on SchemaGraphy and SGYML.
 
-> **TIP:** If the codebase you are working on uses SGYML or SchemaGraphy Schemas, check for a path `../schemagraphy/` (relative to the project root).
+> **TIP:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-tip" title="Tip"></i>
+> </td>
+> <td>
+> If the codebase you are working on uses SGYML or SchemaGraphy Schemas, check for a path <code>../schemagraphy/</code> (relative to the project root).
+> </td>
+> </tr>
+> </table>
