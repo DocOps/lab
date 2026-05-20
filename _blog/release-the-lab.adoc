@@ -11,7 +11,7 @@ include::../README.adoc[tags="global-settings"]
 
 {page-excerpt}
 
-The site is heavily data driven, mainly based on a complex link:{docopslab_src_www_url}/blob/main/_data/docops-lab-projects.yml[YAML file] maintained for the past 2+ years to track projects, their relationships, progress, and so forth.
+The site is heavily data driven, mainly based on a complex link:{this_proj_src_www_url}/blob/main/_data/docops-lab-projects.yml[YAML file] maintained for the past 2+ years to track projects, their relationships, progress, and so forth.
 Now it informs a static website built with Jekyll and Asciidoctor, which is hosted on GitHub Pages.
 
 Check out the link:{docopslab_src_www_url}[Git repository and README] for more details.

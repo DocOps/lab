@@ -189,7 +189,7 @@ The biggest idea I have would be a massive *extension of Issuer and the IMYML fi
 
 What if you could not only create issues in YAML but actually _maintain_ them in Git-tracked YAML, with the help of Copilot or your favorite IDE with generative AI support?
 I have not field tested this in any way, but I am strongly tempted to give it a try.
-I have published a link:{issuer-repo-url}/tree/[draft Specification/proposal] for the format and tooling, but it's going to be way on the back burner until there is active interest.
+I have published a link:{issuer-repo-url}/tree/main[draft Specification/proposal] for the format and tooling, but it's going to be way on the back burner until there is active interest.
 
 [[releasehx-1-0]]
 === ReleaseHx 1.0

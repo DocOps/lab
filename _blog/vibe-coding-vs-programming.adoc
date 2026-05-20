@@ -15,7 +15,7 @@ Let me also say that if you are vibe coding _production_ software, you are proba
 
 Now, how I define "`vibe coding`" makes all the difference, but that's what half of this article is about.
 For now, let's just say that vibe coding is a term I use to describe the practice of using LLMs to generate code without much intervention or oversight.
-It's prompting and leaving the LLM to do most design and implementation work, with minimal if any human review and only re-prompts to fix bugs or deviatons.
+It's prompting and leaving the LLM to do most design and implementation work, with minimal if any human review and only re-prompts to fix bugs or deviations.
 
 If you already know you are not vibe coding, this article might not have much value to you.
 This is more of a warning about what vibe coders are missing, at least in circumstances where it would matter, along with some advice for AI-__assisted__ software development.
