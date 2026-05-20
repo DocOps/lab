@@ -71,8 +71,8 @@ module DocOpsLab
           true
         end
 
-        def bootstrap_project
-          puts '� Bootstrapping DocOps Lab project...'
+        def bootstrap_project context = nil
+          puts '🚀 Bootstrapping DocOps Lab project...'
           puts ''
 
           created = []
@@ -90,13 +90,27 @@ module DocOpsLab
           puts ''
           if created.any?
             puts "✅ Bootstrap complete! Created: #{created.join(', ')}"
-            puts ''
-            puts 'Next steps:'
-            puts '  1. bundle exec rake labdev:sync:all  # or: docker run ... labdev:sync:all'
-            puts '  2. Start using labdev tasks!'
           else
-            puts '✅ Project already initialized, nothing to create'
+            puts '✅ Bootstrap files already exist'
           end
+
+          # Initialize templates from manifest (if context provided, use it; else use Dev context)
+          context ||= Dev
+          puts ''
+          puts '🎨 Initializing templates from manifest...'
+          template_results = CastOps.init_cast_targets(context)
+
+          if template_results.any?
+            puts "✅ Initialized #{template_results.size} template(s)"
+          else
+            puts '✅ Templates already initialized'
+          end
+
+          puts ''
+          puts 'Next steps:'
+          puts '  1. bundle exec rake labdev:sync:all  # or: docker run ... labdev:sync:all'
+          puts '  2. Review and customize the generated files'
+          puts '  3. Start using labdev tasks: bundle exec rake labdev:check:env'
         end
       end
     end

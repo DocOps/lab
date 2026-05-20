@@ -11,7 +11,16 @@ require_relative 'library/fetch'
 module DocOpsLab
   module Dev
     # Remote library fetch, cache, and resolution.
-    # Manages a host-wide asset cache at ~/.cache/docopslab/dev/library/.
+    # Manages a host-wide asset cache at ~/.cache/docopslab/dev/library/ (native)
+    # or ./.docopslab-cache/ (Docker without cache mount).
+    #
+    # Docker Cache Strategy:
+    # - If running in Docker with host cache mounted (-v ~/.cache/docopslab:...):
+    #   uses host cache path (DockerAware.cache_mount_accessible? = true)
+    # - If running in Docker without cache mount: uses workspace-relative cache
+    #   (./.docopslab-cache/) which persists with the project
+    # - If running natively: uses ~/.cache/docopslab/ via XDG_CACHE_HOME
+    #
     # Callers should use this module directly: Library.fetch!, Library.resolve(path), etc.
     module Library
       class << self
@@ -285,6 +294,10 @@ module DocOpsLab
           # local_path points to the 'current' snapshot dir, so its parent is
           # the cache root (mirrors Cache::XDG_CACHE_SUBPATH layout).
           cr = File.join(File.expand_path(config['local_path']), '..') if cr.nil? && local_path_active?(config)
+
+          # In Docker without access to host cache, use workspace-local cache
+          cr = DockerAware.workspace_cache_path if cr.nil? && DockerAware.docker_without_cache?
+
           Cache.with_root_override(cr ? File.expand_path(cr) : nil, &)
         end
 
