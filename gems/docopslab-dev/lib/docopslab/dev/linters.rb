@@ -495,9 +495,7 @@ module DocOpsLab
           second_line = lines[1]
 
           # If second line has shellcheck directive for sh, require sh shebang
-          if second_line == '# shellcheck shell=sh'
-            return first_line == '#!/bin/sh'
-          end
+          return first_line == '#!/bin/sh' if second_line == '# shellcheck shell=sh'
 
           # Otherwise, require bash shebang
           first_line == '#!/usr/bin/env bash'

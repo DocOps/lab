@@ -12,7 +12,8 @@ ENV TZ=Etc/UTC \
     LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     BUNDLE_SILENCE_ROOT_WARNING=1 \
-    BUNDLE_DISABLE_SHARED_GEMS=0
+    BUNDLE_DISABLE_SHARED_GEMS=0 \
+    DOCOPSLAB_IN_DOCKER=true
 
 # System packages (single layer, no recommends, clean properly)
 RUN apt-get update && \
