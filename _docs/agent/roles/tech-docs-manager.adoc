@@ -2,8 +2,8 @@
 permalink: /docs/agent/tech-docs-manager/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AGENT ROLE: Technical Documentation Manager
+include::../_agent_settings.adoc[]
 
 == Mission
 

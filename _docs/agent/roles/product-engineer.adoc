@@ -2,8 +2,8 @@
 permalink: /docs/agent/product-engineer/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AGENT ROLE: Product Engineer
+include::../_agent_settings.adoc[]
 
 == Mission
 

@@ -2,7 +2,7 @@
 permalink: /docs/agent/product-docs-deployment/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = Product Documentation Deployment
+include::../_agent_settings.adoc[]
 
 include::../../../README.adoc[tags="global-settings,docops-lab-docs-sites",leveloffset="-2""]

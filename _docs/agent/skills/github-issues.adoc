@@ -2,8 +2,8 @@
 permalink: /docs/agent/github-issues/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = GitHub Issues Management for AI Agents
+include::../_agent_settings.adoc[]
 
 AI agents assisting in DocOps Lab development tasks should use the Issuer and `gh` CLI tools to manage GitHub issues in project repositories.
 

@@ -2,8 +2,8 @@
 permalink: /docs/agent/fix-spelling-issues/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = Fix Spelling Issues in Documentation
+include::../_agent_settings.adoc[]
 
 As an AI agent, you can help DocOps Lab developers fix spelling issues in documentation by following the procedure below.
 

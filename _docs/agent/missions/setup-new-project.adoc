@@ -3,6 +3,7 @@ permalink: /docs/agent/setup-new-project/
 indexed: false
 ---
 include::../_agent_settings.adoc[]
+include::../../../gems/docopslab-dev/README.adoc[tag="global-settings"]
 = MISSION: Start a New DocOps Lab Project
 
 An AI Agent or multiple Agents, in collaboration with a human Operator, can initialize and prepare a codebase for a new DocOps Lab project.

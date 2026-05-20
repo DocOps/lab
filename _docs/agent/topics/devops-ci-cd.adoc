@@ -2,8 +2,8 @@
 permalink: /docs/agent/devops-ci-cd/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AI Agent Orientation to DocOps Lab DevOps/CI/CD Practices
+include::../_agent_settings.adoc[]
 
 DocOps Lab is in a very nascent stage of establishing shared (cross-repo) tools, workflows, and protocols to for automating development, integration, build, and deployment processes.
 

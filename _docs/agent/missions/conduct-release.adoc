@@ -39,6 +39,8 @@ include::_common.adoc[tag="task-metadata"]
 
 == Prerequisite: Attention OPERATOR
 
+[[required-credentials]]
+
 This process requires the `docopslab-dev` tooling is installed and synced.
 Ensure you have the necessary credentials for GitHub and any artifact registries (RubyGems, DockerHub, etc.).
 

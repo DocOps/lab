@@ -2,7 +2,7 @@
 permalink: /docs/agent/bash/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = Bash Coding for Agents
+include::../_agent_settings.adoc[]
 
 include::../../reference/bash-styles.adoc[tag="sections"]

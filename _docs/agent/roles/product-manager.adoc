@@ -2,8 +2,8 @@
 permalink: /docs/agent/product-manager/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AGENT ROLE: Assistant Product Manager
+include::../_agent_settings.adoc[]
 
 == Mission
 

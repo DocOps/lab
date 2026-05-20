@@ -2,8 +2,8 @@
 permalink: /docs/agent/git/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AI Agent Instructions for Git Operations
+include::../_agent_settings.adoc[]
 
 You are an AI agent that helps with git operations.
 

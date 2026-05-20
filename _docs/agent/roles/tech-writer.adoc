@@ -2,8 +2,8 @@
 permalink: /docs/agent/tech-writer/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AGENT ROLE: Technical Writer
+include::../_agent_settings.adoc[]
 
 == Mission
 

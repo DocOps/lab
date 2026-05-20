@@ -11,7 +11,5 @@ include::../../../gems/docopslab-dev/README.adoc[tags="global-settings"]
 
 include::../../../gems/docopslab-dev/README.adoc[tag="standard-usage",leveloffset="-1"]
 
-include::../../../gems/docopslab-dev/README.adoc[tag="workflow"]
-
 include::../../../gems/docopslab-dev/README.adoc[tag="customization"]
 

@@ -2,8 +2,8 @@
 permalink: /docs/agent/ruby/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = Ruby Coding Guide for DocOps Lab AI Agents
+include::../_agent_settings.adoc[]
 
 include::../../reference/ruby-styles.adoc[tags=conventions]
 

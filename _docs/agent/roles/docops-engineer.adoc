@@ -2,8 +2,8 @@
 permalink: /docs/agent/docops-engineer/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AGENT ROLE: DocOps Engineer
+include::../_agent_settings.adoc[]
 
 == Mission
 

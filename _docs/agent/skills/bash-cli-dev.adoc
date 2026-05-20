@@ -1,8 +1,8 @@
 ---
 permalink: /docs/agent/bash-cli-dev/
 ---
-include::../_agent_settings.adoc[]
 = Bash CLI Development for Agents
+include::../_agent_settings.adoc[]
 
 [TIP]
 Use this guide in combination with the general Bash coding skill.

@@ -2,8 +2,8 @@
 permalink: /docs/agent/devops-release-engineer/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AGENT ROLE: DevOps / Release Engineer
+include::../_agent_settings.adoc[]
 
 
 == Mission

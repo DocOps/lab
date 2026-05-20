@@ -3,8 +3,8 @@ permalink: /docs/agent/asciidoc/
 indexed: false
 origins: ["asciidoc-styles"]
 ---
-include::../_agent_settings.adoc[]
 = AI Agent's Guide to Writing in AsciiDoc 
+include::../_agent_settings.adoc[]
 
 If you learn nothing else form this guide, learn this:
 DocOps Lab is an AsciiDoc shop, and we _do not_ author in Markdown;

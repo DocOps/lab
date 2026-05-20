@@ -2,8 +2,8 @@
 permalink: /docs/agent/schemagraphy-sgyml/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = SchemaGraphy/SGYML 101
+include::../_agent_settings.adoc[]
 
 SGYML stands for SchemaGraphy YAML-based Modeling Language, a format designed, standardized, and maintained by DocOps Lab.
 

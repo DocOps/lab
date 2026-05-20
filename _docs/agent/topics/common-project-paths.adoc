@@ -1,8 +1,8 @@
 ---
 permalink: /docs/agent/common-project-paths/
 ---
-include::../_agent_settings.adoc[]
 = Overview of Common Paths/Files in DocOps Lab Projects
+include::../_agent_settings.adoc[]
 
 _If you are creating a new DocOPs Lab project_, use this guide to establish initial files.
 This also applies to adding major facilities or features to an existing project.

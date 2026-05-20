@@ -2,8 +2,8 @@
 permalink: /docs/agent/fix-jekyll-asciidoc-build-errors/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = Fix Jekyll AsciiDoc Build Errors
+include::../_agent_settings.adoc[]
 
 As an AI agent, you can help fix Asciidoctor errors in Jekyll builds.
 

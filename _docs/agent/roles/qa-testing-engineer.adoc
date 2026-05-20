@@ -2,8 +2,8 @@
 permalink: /docs/agent/qa-testing-engineer/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AGENT ROLE: QA / Testing Specialist
+include::../_agent_settings.adoc[]
 
 
 == Mission

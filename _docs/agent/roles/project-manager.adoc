@@ -2,8 +2,8 @@
 permalink: /docs/agent/project-manager/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AGENT ROLE: Project Manager
+include::../_agent_settings.adoc[]
 
 == Mission
 

@@ -2,8 +2,8 @@
 permalink: /docs/agent/planner-architect/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = AGENT ROLE: Assistant Planner / Project Architect
+include::../_agent_settings.adoc[]
 
 
 == Mission

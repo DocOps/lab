@@ -2,8 +2,8 @@
 permalink: /docs/agent/tests-writing/
 indexed: false
 ---
-include::../_agent_settings.adoc[]
 = Writing Tests for DocOps Lab Projects
+include::../_agent_settings.adoc[]
 
 As an AI agent, you can help DocOps Lab developers write comprehensive tests following established patterns and categories.
 
