@@ -160,6 +160,14 @@ services:
   desc: |
     Docs-as-code practitioner sharing tutorials and insights on documentation automation, static site generators, Git/GitHub workflows, and occasional career tips for technical writers.
 
+- name: djw.fyi
+  site: https://djw.fyi/posts
+  feed: https://djw.fyi/posts/index.xml
+  type: RSS
+  tags: [technical-writing, ai, docs-as-code, careers]
+  desc: |
+    Blog of Daryl White, a technical writer with a broad array of experience in the field, 
+
 - name: DocOps Lab Blog
   site: https://docopslab.org/blog/
   feed: https://docopslab.org/feeds/docops-lab-blog.xml
@@ -235,6 +243,14 @@ services:
   tags: [ai,api-docs,tools,book-reviews]
   desc: |
     Video podcast from Tom Johnson and Fabrizio Ferri Benedetti, covering topics related to API documentation, AI in technical writing, and interviews with industry experts.
+
+- name: Instruction Manuel
+  site: https://instructionmanuel.com
+  feed: https://instructionmanuel.com/rss.xml
+  type: RSS
+  tags: [technical-writing, best-practices, tools, ai, testing]
+  desc: |
+    New blog from Manny Silva, technical writer, engineer, maintainer of the popular open-source docs testing tool https://docs.doc-detective.com[Doc Detective], and author of the book https://instructionmanuel.com/books/docs-as-tests[_Docs as Tests_].
 
 - name: James Tasse
   site: https://jamestasse.tech/blog
@@ -353,11 +369,25 @@ services:
   desc: |
     Sarah's deep and practical analysis of AI tools and techniques as they apply to content and software.
 
+- name: Story Needle
+  site: https://storyneedle.com
+  feed: https://storyneedle.com/feed
+  type: RSS
+  tags: [ai, content-strategy, content-modeling, content-management]
+  desc: |
+    A massive compendium of articles by content strategist Michael Andrews, author of numerous https://storyneedle.com/books-content-strategy/[books such as _No More Silos_ and _Metadata Basics for Web Content_].
+
 - name: Tech Docs
   site: https://blog.techdocs.studio
   tags: [technical-writing, docs-as-code, tools, content-strategy]
   desc: |
     David Garcia’s blog about documentation systems and “what breaks them” – discussing the tooling, infrastructure, and content strategy behind successful docs-as-code implementations.
+
+- name: Technically Writing
+  site: https://www.dufcrule.com/posts/
+  tags: [technical-writing, ai]
+  desc: |
+    Occasional posts by a Spain-baed tech writer named Ian.
 
 - name: technicalwriting.dev
   site: https://technicalwriting.dev

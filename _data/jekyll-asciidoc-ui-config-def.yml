@@ -114,9 +114,10 @@ properties:
                   Method for delivering library assets.
                   Options are:
                   
-                  * `cdn` (default), for cloud-sourced asset delivery
-                  * `compile` for local build from source files and served from site
-                  * `serve` for local or retrieved static assets served from the site
+                  [horizontal]
+                  `cdn`:: (default), for cloud-sourced asset delivery
+                  `compile`:: for local build from source files and served from site
+                  `serve`:: for local or retrieved static assets served from the site
 
                   If `cdn`, the base_uri must be a valid base URL for CDN delivery of the library.
                   If `compile`, the URI may be remote (URL or `git@` protocol) or local (path to submodule or local directory).
@@ -229,7 +230,7 @@ properties:
               # - gdpr-dialog
               # - gdpr-enforce
               - content-typing
-              - resourcer
+              # - markdowngrade
             # AsciiDoc integrators
               - theme-ext
               - tabbed-panes
@@ -501,19 +502,21 @@ properties:
               Pages with frontmatter `llms_txt_exclude: true` will be excluded from the generated `llms.txt` file.
 
               Pages with `llms_txt_desc:` frontmatter will have that description included in the `llms.txt` file listing for that page.
+              Otherwise, a description is derived from frontmatter `description` or `excerpt`, or from the page content if those are not designated.
           
-          resourcer:
-            name: Markdown Resourcer
+          markdowngrade:
+            name: MarkDownGrade
             desc: |
               Generates an alternate Markdown file _from the rendered HTML_, reverse engineering back to a lightweight markup, especially designed for LLM (large language model) crawlers and RAG (retrieval-augmented generation) systems.
-              Optionally (by default) reates a `<link rel="alternate" type="text/markdown" href="/alt/markdown.md">` link in the document head.
+              Optionally (by default) creates a `<link rel="alternate" type="text/markdown" href="/alt/markdown.md">` link in the "`original`" document head.
             properties:
               add_link_rel:
                 dflt: true
                 type: Boolean
                 desc: |
-                  Whether to add a `<link rel="alternate" type="text/markdown" href="/alt/markdown.md">` link in the document head.
+                  Whether to add a `<link rel="alternate" type="text/markdown" href="{{ page.permalink | relative_url }}.md">` link in the document head.
                   This link points to the alternate Markdown file generated from the rendered HTML.
+                  The link element is inserted into each page's DOM during the build process.
               use_gfm:
                 dflt: true
                 type: Boolean
@@ -525,11 +528,13 @@ properties:
                 type: String
                 regx: /^(pass_through|drop|bypass|raise)$/
                 desc: |
-                  How to handle unknown HTML tags in the rendered HTML.
+                  How to handle unexpected HTML tags in the rendered HTML.
                   Options are:
-                  * `pass` to keep unknown tags in the Markdown
-                  * `drop` to remove unknown tags from the Markdown
-                  * `fail` to raise an error if unknown tags are found
+
+                  [horizontal]
+                  `pass`:: Keep unknown tags in the Markdown.
+                  `drop`:: Remove unknown tags from the Markdown.
+                  `fail`:: Raise an error if unknown tags are found.
               sitemap:
                 dflt: 'auto'
                 type: String
@@ -537,9 +542,13 @@ properties:
                 desc: |
                   How to handle the sitemap for the alternate Markdown files.
                   Options are:
-                  * `auto` to automatically generate a sitemap for the alternate Markdown files
-                  * `off` to disable the sitemap generation
-                  * `<absolute-or-site-root path>` to specify a custom path for the sitemap.
+
+                  [horizontal]
+                  `auto`:: to automatically generate a sitemap for the alternate Markdown files at `/llms/sitemap.xml`
+                  `off`:: to disable the sitemap generation
+                  `<absolute-or-site-root path>`:: to specify a custom path for the sitemap.
+
+                  Sitemap can be generated as JSON or XML, as determined by the target file extension.
           
           term-ext:
             name: Term Extension

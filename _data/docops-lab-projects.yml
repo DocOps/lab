@@ -73,7 +73,7 @@ projects:
         done: 80%
         type: reference
         slug: glossary
-    deps: [docops-box]
+    deps: [box]
     done: 90%
     vrsn: V1
     wave: 1
@@ -180,7 +180,8 @@ projects:
 
 ## Jekyll/AsciiDoc Extension Platform Docs:
   - name: Jekyll/AsciiDoc Extension Platform Docs
-    slug: jekyll-asciidoc-ext-docs
+    slug: jekyll-ext-docs
+    repo: jekyll-ext
     type: content
     desc: |
       Disambiguation and coordination of the core components of an application based in our Jekyll/Asciidoctor-based publishing framework.
@@ -203,7 +204,7 @@ projects:
 ## DocOps Box:
 # tag::docops-box[]
   - name: DocOps Box
-    slug: docops-box
+    slug: box
     type: environment
     desc: |
       Everything needed for managing customized Ruby, Node.js, Python, and Pandoc environments via Docker containers, ready for interactive work.
@@ -212,7 +213,8 @@ projects:
     line: Up and running with Ruby, Node, Zsh, Pandoc, and Git for document operations with interactive and production-ready Docker images.
     star: true
     page: true
-    done: 90%
+    done: 100%
+    live: true
     vrsn: 0.1.0
     wave: 0
     card: readme
@@ -254,9 +256,10 @@ projects:
     memo: Currently a module in ReleaseHx 0.1.0. (Needs spin-off.)
     star: true
     deps: [asciisourcerer]
-    done: 40%
+    done: 100%
+    live: true
     vrsn: V1-beta
-    wave: 2
+    wave: 1
     card: readme
     page: true
     icon: grid-2x2-check
@@ -556,6 +559,7 @@ projects:
   - name: graphy
     slug: graphy
     repo: schemagraphy
+    path: gem/graphy
     type: utility
     desc: |
       CLI utility for executing SchemaGraphy operations.
@@ -620,20 +624,20 @@ projects:
     icon: rabbit
     deps: [LiquiDoc,SchemaGraphy,CliGraphy]
 
-## docksh:
-  - name: docksh
-    slug: docksh
-    repo: docops-box
+## dxbx:
+  - name: dxbx
+    slug: dxbx
+    repo: box
     type: utility
     desc: |
-      Manager for DocOps Docker images and containers.
+      Manager for DocOps Box Docker images and containers.
       Simplifies building, running, and managing DocOps development environments via Docker.
-    line: Manager for DocOps Docker images and containers
+    line: Manager for DocOps Box Docker images and containers
     vrsn: 0.1.0
     tags: [CLI,containers,development,environment]
-    tech: [Bash,Docker]
+    tech: [Bash,Docker,Compose,DevContainers,Git]
     wave: 0
-    done: 85%
+    done: 100%
     icon: ship-wheel
 
 ## docopslab-dev:
@@ -676,8 +680,10 @@ projects:
 # JEKYLL EXTENSIONS
 
 ## jekyll-ext
-  - name: Jekyll Extender
+  - name: Jekyll Plugin Utilities
     slug: jekyll-ext
+    path: gems/plugin-utils
+    repo: jekyll-ext
     type: jekyll-ext
     desc: |
       A plugin that extends Jekyll with core capabilities key to DocOps Lab Jekyll extension projects but broadly useful to Jekyll plugin and theme developers.
@@ -699,7 +705,8 @@ projects:
 ## jekyll-asciidoc-ui:
   - name: Jekyll AsciiDoc UI Extensions
     slug: jekyll-asciidoc-ui
-    text: Jekyll Extensions
+    repo: jekyll-ext
+    path: gems/jekyll-asciidoc-ui
     type: jekyll-ext
     desc: |
       Front-end assets and components that any Jekyll theme could use to add front-end AsciiDoc support.
@@ -717,17 +724,19 @@ projects:
     card: readme
     sort: 5
     deps: [releasehx,ayl-docstack,jekyll-ext]
-    memo: AYL DockStack dependency is mainly for glossary functionality.
+    memo: |
+      AYL DockStack dependency is mainly for base/default semantics/styles.
+      This affects: `theme-ext`, `content-type`, 
     libs:
-      # General Jekyll extensions
+      # General Jekyll UI extensions
       - glossaries
       - releasehx
       - term-ext
       - seo-ext
       - code-copy
       - toc-alt
-      - alt-markdown
-      - ai-crawl
+      - markdown-alt
+      - llms-txt
       - gdpr-dialog
       - gdpr-enforce
       # AsciiDoc integrators
@@ -767,7 +776,7 @@ projects:
     vrsn: 0.1.0
     tags: [Jekyll plugin,API docs,REST,OpenAPI,documentation]
     tech: [Jekyll,AsciiDoc,Liquid,YAML,OpenAPI,HTML,CSS,JavaScript]
-    wave: 1
+    wave: 2
     done: 80%
     icon: cloud-download
     deps: [jekyll-asciidoc-ui,jekyll-ext]
