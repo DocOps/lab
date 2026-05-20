@@ -5,7 +5,7 @@ require 'yaml'
 require 'time'
 require 'fileutils'
 require 'erb'
-require 'docopslab-dev'
+require 'docopslab/dev'
 
 # Jekyll-AsciiDoc Log Parser
 #
@@ -316,14 +316,15 @@ module JekyllAsciiDocLogParser
       file_issues.sum { |file_data| file_data['issues'].length }
     end
 
-    def generate_yaml_report file_issues, output_file, source_name
+    def generate_yaml_report file_issues, output_file, source_name, agent_prompt=nil
       template = ERB.new(yaml_template)
       yaml_content = template.result_with_hash(
         file_issues: file_issues,
         source_name: source_name,
         timestamp: Time.now.strftime('%Y-%m-%d %H:%M:%S'),
         total_files: file_issues.length,
-        total_issues: count_total_issues(file_issues))
+        total_issues: count_total_issues(file_issues),
+        ai_prompt_content: ai_prompt(agent_prompt))
 
       # Post-process to remove unwanted blank lines
       cleaned_content = clean_yaml_whitespace(yaml_content)
@@ -422,7 +423,7 @@ module JekyllAsciiDocLogParser
         <% end %>
         #
         # AI Agent Instructions:
-        <%= ai_prompt %>
+        <%= ai_prompt_content %>
       TEMPLATE
     end
 

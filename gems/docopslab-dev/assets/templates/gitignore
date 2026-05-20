@@ -22,6 +22,9 @@ vendor/
 .config/.vendor/
 scripts/.vendor/
 
+# Docker-based library cache (uses workspace-local cache when no host mount)
+.docopslab-cache/
+
 # Temporary paths
 tmp/
 *.tmp

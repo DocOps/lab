@@ -39,6 +39,8 @@ for j < len(lines) {
 
   if text.re_match(`^\s`, lines[j]) ||
      text.re_match(`^include::`, current) ||
+     text.re_match(`^image::`, current) ||
+     text.re_match(`^link:`, current) ||
      text.re_match(`::`, current) {
     atBlockStart = false
     j = j + 1
