@@ -142,7 +142,7 @@ Before making any changes, **read these documents in order**:
 
 #### Collection Directories
 
-Mostly paths starting with `_` such as `_docs/`, `_blog`, `_proects` (auto-generated).
+Mostly paths starting with `_` such as `_docs/`, `_blog`, and `_projects` (auto-generated).
 See `_config.yml#/collections` block for details.
 
 #### Gems
@@ -160,13 +160,12 @@ For now, that's just `docopslab-dev` in `gems/docopslab-dev/`.
 #### Configuration
 
 * `_config.yml`: Jekyll site configuration
-* `config/`: Most upstream configuration files for DocOps/lab and its gems
+* `.config/`: Most upstream configuration files for DocOps/lab and its gems
 
 ### Auxiliary Components
 
 These components (modules, scripts, etc) are to be spun off as their own gems after a later DocOps/lab release:
-
-* `scripts/reverse_markdown_ext.rb`: Extensions to ReverseMarkdown for better AsciiDoc -> Markdown conversion, will eventually live in Sourcerer API.
+None at this time; `scripts/reverse_markdown_ext.rb` has moved to AsciiSourcerer.
 
 <!-- end::project-content[] -->
 

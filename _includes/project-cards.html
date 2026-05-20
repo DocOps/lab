@@ -20,7 +20,7 @@
         {% if card.page %}
           {% assign default_href = "/projects/" | append: card.slug %}
         {% endif %}
-        <div class="project-card" data-href="{{ card.href | default: default_href }}">
+        <div class="project-card" id="{{ card.slug }}" data-href="{{ card.href | default: default_href }}">
         <div class="project-header">
           <i data-lucide="{{ card.icon | default: 'layers' }}" class="project-icon"></i>
           <h3>{{ card.title | default: card.text | default: card.name }}</h3>
@@ -46,7 +46,7 @@
       {% assign starred_projects = include.nodes | where: 'star', true %}
       {% for project in starred_projects %}
         {% assign default_href = "/projects/#" | append: project.slug %}
-      <div class="project-card" data-href="{{ project.href | default: default_href }}">
+      <div class="project-card" id="{{ project.slug }}" data-href="{{ project.href | default: default_href }}">
       <div class="project-header">
         <i data-lucide="{{ project.icon | default: 'layers' }}" class="project-icon"></i>
         <h3>{{ project.name | default: project.title }}</h3>

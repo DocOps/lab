@@ -6,6 +6,7 @@ order: 35
 ---
 include::../_local_settings.adoc[]
 :docopslab_lab_www_url:
+:default_manifest_path: .config/docopslab-dev.yml
 = Dev-tooling Usage
 
 include::../partials/_docopslab-dev-context-notice.adoc[]
@@ -18,4 +19,4 @@ For configuration details, see {xref_docs_lab-dev-config_link}.
 
 include::../../gems/docopslab-dev/README.adoc[tags="usage",leveloffset="-1"]
 
-include::../../gems/docopslab-dev/README.adoc[tags="workflow"]
+include::../../gems/docopslab-dev/README.adoc[tags="reference",leveloffset="0"]

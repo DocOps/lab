@@ -173,7 +173,7 @@ Otherwise, reserve the first argument slot for something a meaningful arbitrary 
 +
 .A CLI with very handy subcommands
  git fetch
- git commmit
+ git commit
  git merge
 +
 .No subcommand needed
