@@ -39,6 +39,14 @@ tools:
       - source: vale/project.ini
         target: .config/vale.local.ini
         synced: false
+    paths:
+      lint: ['.']
+      skip:
+        - build/*
+        - specs/*
+        - .agent/**/*
+        - .config/.vendor/**/*
+      exts: ['adoc']
 
   - tool: htmlproofer
     enabled: false  # Disabled by default, enable per project

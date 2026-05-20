@@ -51,7 +51,7 @@ Internal development tooling for working on DocOps Lab codebases.
 [IMPORTANT]
 ====
 The environment described and provided here is _not_ optimized for DocOps Lab _applications_ used in third-party projects.
-For your own applications of DocOps Labs products like ReleaseHx and Issuer, see link:{docopslab_lab_www_url}/projects/docops-box[DocOps Box] for a full-featured docs-focused workspace, runtime, and production environment.
+For your own applications of DocOps Labs products like ReleaseHx and Issuer, see link:{docopslab_lab_www_url}/projects/box[DocOps Box] for a full-featured docs-focused workspace, runtime, and production environment.
 ====
 // end::docopsbox[]
 
@@ -202,6 +202,8 @@ Assuming you are not initializing a new project, you can skip to <<environment-s
 
 If you are introducing `docopslab-dev` to an existing project, you first need to integrate and initialize it.
 
+If you are introducing `docopslab-dev` to an existing project, integrate it into your existing Rakefile:
+
 . Add `docopslab-dev` to the project's `Gemfile`.
 +
 [source,ruby]
@@ -255,17 +257,28 @@ Every project using `docopslab-dev` is configured through a single manifest file
 
 The manifest has four top-level keys, each documented in detail in the relevant section:
 
+ifdef::env-github[:usage_link_managed_tools: <<managed-tools,managed tools>>]
+ifdef::env-github[:usage_link_file_syncing: <<file-syncing,file syncing>>]
+ifdef::env-github[:usage_link_technical_documentation: <<technical-documentation,technical documentation>>]
+ifdef::env-github[:usage_link_sync_cast: <<sync-cast,SyncCast>>]
+ifdef::env-github[:usage_link_remote_library: <<remote-library,Remote Asset Library>>]
+ifndef::env-github[:usage_link_managed_tools: link:/docs/lab-dev-usage/#managed-tools[managed tools]]
+ifndef::env-github[:usage_link_file_syncing: link:/docs/lab-dev-usage/#file-syncing[file syncing]]
+ifndef::env-github[:usage_link_technical_documentation: link:/docs/lab-dev-usage/#technical-documentation[technical documentation]]
+ifndef::env-github[:usage_link_sync_cast: link:/docs/lab-dev-usage/#sync-cast[SyncCast]]
+ifndef::env-github[:usage_link_remote_library: link:/docs/lab-dev-usage/#remote-library[Remote Asset Library]]
+
 `tools:`::
-<<managed-tools>>: active linters and their config file mappings.
+{usage_link_managed_tools}: active linters and their config file mappings.
 
 `docs:`::
-<<file-syncing>> > <<technical-documentation>>: agent docs and guides to sync.
+{usage_link_file_syncing} > {usage_link_technical_documentation}: agent docs and guides to sync.
 
 `templates:`::
-<<sync-cast>>: Liquid-rendered source-to-target entries.
+{usage_link_sync_cast}: Liquid-rendered source-to-target entries.
 
 `library:`::
-<<remote-library,Remote Asset Library>>: library source and cache settings.
+{usage_link_remote_library}: library source and cache settings.
 // end::manifest-intro[]
 
 // end::setup[]
@@ -335,7 +348,22 @@ All tools use the host project's Gemfile for version consistency.
 Make sure container-managed paths are not tracked in Git.
 Add `.config/.vendor/`, `scripts/.vendor`, and `.bundle/` to `.gitignore`.
 ====
+
+[[docker-caching]]
+==== Advanced library caching with Docker
+
+Mount your system cache directory to the container for persistent caching of library assets across sessions and projects.
+
+....
+docker run -it --rm \
+  -v "$(pwd):/workspace" \
+  -v ~/.cache/docopslab:/home/docops/.cache/docopslab \
+  docopslab/dev
+....
+
 // end::usage[]
+
+// tag::reference[]
 
 See <<more-example-commands>> for additional common commands.
 
@@ -480,6 +508,7 @@ For all other projects, the gem works in a standard package consumption mode:
 [TIP]
 The `labdev:sync:vale` task updates both the base config and the style packages.
 
+ifdef::site-gen-jekyll[]
 A project's `.config/vale.local.ini` should look something like the one for this repository (DocOps/lab).
 
 .A snippet from DocOps/lab's `.config/vale.local.ini`
@@ -487,6 +516,7 @@ A project's `.config/vale.local.ini` should look something like the one for this
 ----
 include::../../.config/vale.local.ini[tag="core-settings"]
 ----
+endif::[]
 
 This dual-mode system provides a robust workflow for both developing and consuming the centralized Vale styles.
 
@@ -906,6 +936,7 @@ library:
 The fetch tasks require either the `gh` CLI or `git` to be available on your `PATH`.
 The `gh` CLI is preferred and will be used when present.
 
+// end::reference[]
 
 // tag::workflow[]
 [[task-reference]]
@@ -992,6 +1023,7 @@ Vale::
 HTMLProofer::
 +
  bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
+
 // end::standard-usage[]
 // end::usage[]
 // end::workflow[]
@@ -1005,8 +1037,8 @@ Override settings by editing the project configs:
 
 * `{default_manifest_path}`
 * `.config/rubocop.yml`
-* `.config/vale.ini`
-* `.config/htmlproofer.yml`
+* `.config/vale.local.ini`
+* `.config/htmlproofer.local.yml`
 * `.config/actionlint.yml`
 * `.config/shellcheckrc`
 
@@ -1017,15 +1049,14 @@ Your configurations will inherit from the base configurations and source librari
 
 Projects using `docopslab-dev` will have a configuration structure like the following:
 
-[source,tree]
-----
+....
 .config/
 ├── docopslab-dev.yml             # Project manifest (tracked)
 ├── actionlint.yml                # Project config (tracked; inherits from base)
 ├── htmlproofer.local.yml         # Project config (tracked; inherits from base)
 ├── htmlproofer.yml               # Generated config (untracked)
 ├── rubocop.yml                   # Project config (tracked; inherits from base)
-├── shellcheckrc                 # ShellCheck config (tracked)
+├── shellcheckrc                  # ShellCheck config (tracked)
 ├── vale.ini                      # Generated active config (untracked)
 ├── vale.local.ini                # Project config (tracked; inherits from base)
 ├── .vendor/                      # Base configs (untracked; synced)
@@ -1038,7 +1069,7 @@ scripts/                          # Project override scripts
 .github/workflows/                # CI/CD workflows (tracked)
 env.docopslab                     # Environment variables (git tracked)
 env.private                       # Environment variables (git ignored)
-----
+....
 // end::customization[]
 
 

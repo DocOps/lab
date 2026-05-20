@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.metadata['changelog_uri'] = 'https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/README.adoc'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
-  spec.files = Dir.glob('{lib,docs}/**/*') +
+  spec.files = Dir.glob('lib/**/*') +
                %w[README.adoc LICENSE docopslab-dev.gemspec] +
                Dir.glob('specs/data/*')
 
@@ -47,7 +47,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'bundler-audit',  '~> 0.9'
 
   # Testing and coverage
-  spec.add_dependency 'html-proofer',   '~> 5.0'
+  spec.add_dependency 'html-proofer',   '~> 5.2'
   spec.add_dependency 'inch',           '~> 0.8'
   spec.add_dependency 'simplecov',      '~> 0.22'
 
