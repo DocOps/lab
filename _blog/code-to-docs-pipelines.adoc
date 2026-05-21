@@ -183,7 +183,7 @@ And I added a `project_end_date` for good measure -- you can probably already im
 Suddenly, we're either asking the developers to maintain the user-facing documentation _inside their source code_, or we need to find some way to complement the source code with those enhanced docs.
 
 [NOTE]
-None of this is to mention that even when product attribute descriptions are staightforward, they often need to be proofread and edited by a professional, who is probably not a developer working in the product codebase.
+None of this is to mention that even when product attribute descriptions are straightforward, they often need to be proofread and edited by a professional, who is probably not a developer working in the product codebase.
 
 Doing all of this much better than so-far discussed is quite possible, but I needed to get to this point so anyone reading along can appreciate the problem.
 I often hear developers shrug off the idea that this is "`even a thing`".
