@@ -482,7 +482,7 @@ properties:
                     dflt: '.buzz, .key, .buzz dt, .keywords dt'
                     type: Selector
                     docs: |
-                      CSS selector for the element/s the content of which will be used to generate the keywords meta tag.
+                      CSS selector for the element(s) the content of which will be used to generate the keywords meta tag.
                   specifier:
                     dflt: 'kee-'
                     type: Slug
