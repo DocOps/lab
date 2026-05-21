@@ -91,7 +91,7 @@ projects:
       Deep-dive courses and other resources for learning general docs-as-code methods.
       Initially focused on using AYL DocStack tools and strategies to tackle complex documentation tasks and projects.
       Includes nascent AsciiDoc EDU platform/framework code.
-    line: Learn to author and manage documents the way progrmamers do.
+    line: Learn to author and manage documents the way programmers do.
     star: true
     page: true
     card: readme
