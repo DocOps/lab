@@ -437,7 +437,7 @@ projects:
     slug: schemagraphy-rest
     type: rest-api
     desc: |
-      A RESTful API service for processing schema/data and schema/text combinations without installing SchemaGraphy libaries locally.
+      A RESTful API service for processing schema/data and schema/text combinations without installing SchemaGraphy libraries locally.
     line: REST API for testing and processing SchemaGraphy schemas.
     vrsn: 0.1.0
     tags: [sandbox,schemas,web service,validation,Dockerized]
