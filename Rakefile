@@ -231,7 +231,7 @@ task :write_rubocop_styles do
 end
 
 desc 'Render an AsciiDoc file of universal attributes'
-# use _data/docops-lab-projects.yml data and the Liquid template at _includes/docpslab-universal-attributes.asciidoc to produce a file at _docs/partials/built/_docopslab-universal-attributes.adoc
+# use _data/docops-lab-projects.yml data and the Liquid template at _includes/docopslab-universal-attributes.asciidoc to produce a file at _docs/partials/built/_docopslab-universal-attributes.adoc
 task :generate_universal_attributes do
   puts '📄 Generating universal attributes AsciiDoc file...'
 
