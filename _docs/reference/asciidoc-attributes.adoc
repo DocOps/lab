@@ -45,7 +45,7 @@ Do not use hyphens (`-`) in attribute names except:
 
 . Suffixes carry meaning:
 
-* `_vrsn` for to reference a product version (`this_prod_vrsn`)
+* `_vrsn` to reference a product version (`this_prod_vrsn`)
 * `_version` for third-party versions (`this_prod_ruby_version`)
 * `_majmin` for major.minor version pair
 * `_url` for HTTPS addresses
