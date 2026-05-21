@@ -101,7 +101,7 @@ If this is _your first time using_ `docopslab-dev` on a given workstation, you w
 
 If you have the prerequisites and are just getting started with _a given DocOps Lab project_, you should be ready after <<initialize-sync>>.
 
-If you are initializing `docopslab-dev` in an new project, you will also need to initialize the environment.
+If you are initializing `docopslab-dev` in a new project, you will also need to initialize the environment.
 
 [[prerequisites]]
 === Prerequisites
