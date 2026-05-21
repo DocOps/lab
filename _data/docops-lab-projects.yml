@@ -1085,7 +1085,7 @@ projects:
   - name: Kitchen Sink REST API Demo
     slug: kitchen-sink-rest
     type: demo
-    line: A complex but small REST API for testing and demonstraton of OpenAPI docs generation
+    line: A complex but small REST API for testing and demonstration of OpenAPI docs generation
     desc: |
       A sample REST API with OpenAPI 3.0 spec, Postman collection, and example client code in Ruby, Python, and JavaScript.
     vrsn: V1
