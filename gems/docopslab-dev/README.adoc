@@ -123,7 +123,7 @@ Vale::
 * `brew install vale` (macOS)
 * `apt install vale` (Ubuntu/Debian)  
 * `dnf install vale` (Fedora)
-* If not installed, `vale` operations will fallback to Docker execution
+* If not installed, `vale` operations will fall back to Docker execution
 
 Asciidoctor (to support Vale)::
 * installed globally
@@ -136,13 +136,13 @@ ShellCheck::
 * `brew install shellcheck` (macOS)
 * `apt install shellcheck` (Ubuntu/Debian)  
 * `dnf install shellcheck` (Fedora)
-* If not installed, `shellcheck` operations will fallback to Docker execution
+* If not installed, `shellcheck` operations will fall back to Docker execution
 
 actionlint::
 * `brew install actionlint` (macOS)`
 * `go install github.com/rhysd/actionlint/cmd/actionlint@latest` (Go 1.16 or later)
 * Otherwise see link:https://github.com/rhysd/actionlint/blob/v1.7.7/docs/install.md[install guide].
-* If not installed, `actionlint` operations will fallback to Docker execution
+* If not installed, `actionlint` operations will fall back to Docker execution
 
 gh (preferred) or git::
 * `brew install gh` (macOS)
