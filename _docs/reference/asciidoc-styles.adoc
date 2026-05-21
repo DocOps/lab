@@ -47,7 +47,7 @@ That guide is reproduced here.
 [[general-asciidoc-syntax-guidelines]]
 == General AsciiDoc Syntax Guidelines
 
-DocOps Lab documentation largely follows the conventions outlined in the link:https://asciidoctor.org/docs/asciidoc-recommended-practices/[Recommended Practices] andlink:https://asciidoctor.org/docs/asciidoc-writers-guide/[Writer's Guide] documents maintained by the Asciidoctor project.
+DocOps Lab documentation largely follows the conventions outlined in the link:https://asciidoctor.org/docs/asciidoc-recommended-practices/[Recommended Practices] and link:https://asciidoctor.org/docs/asciidoc-writers-guide/[Writer's Guide] documents maintained by the Asciidoctor project.
 
 
 Reinforcements and exceptions:
