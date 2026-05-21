@@ -271,7 +271,7 @@ AsciiDoc also supports ordered lists (numbered), unordered lists (bulleted), and
 [[ordered-lists]]
 ==== Ordered Lists
 
-Ordered lists can be pretty powerful, in that you can start an re-start them at any number.
+Ordered lists can be pretty powerful, in that you can start and re-start them at any number.
 
 .Ordered list example
 ========
