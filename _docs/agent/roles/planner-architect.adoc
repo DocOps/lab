@@ -78,4 +78,4 @@ A good plan is something a mid-level engineer can execute without re-designing i
 * PlantUML with C4 extensions for architecture diagrams.
 * AsciiDoc for natural language specifications.
 * YAML for schema/definition documents.
-* Ruby, Bash, JavaScript, SQL, REST (Highl-level modeling and outlining)
+* Ruby, Bash, JavaScript, SQL, REST (High-level modeling and outlining)
