@@ -144,7 +144,7 @@ $schema:
             repo:
               type: String
               desc: |
-                Git repository to fetch library from, either on Git (`owner/name`) or a local path on host (value starting: `~` for relative to home, `.` for relevant to present directory, or `/` for asbolute paths).
+                Git repository to fetch library from, either on Git (`owner/name`) or a local path on host (value starting: `~` for relative to home, `.` for relevant to present directory, or `/` for absolute paths).
               default: DocOps/lab
             ref:
               type: String
