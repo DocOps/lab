@@ -758,7 +758,7 @@ projects:
       - inline-term
       - inline-file
       - trademarker
-      # AsciiDoc block semantics/manipulaton
+      # AsciiDoc block semantics/manipulation
       - admonition-ext
       - sidebar-ext
       - code-truncate
