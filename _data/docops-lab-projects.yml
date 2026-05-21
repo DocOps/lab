@@ -941,7 +941,7 @@ projects:
       Data Schema specifications or requirements docs for specialized SGYML (YAML) data objects, for governing flat-file data sources as code.
       These standards specify how end users can create custom definitional documents out of these syntaxes and process them.
       These natural-language specifications and their SGYML Schema counterparts dictate: how SchemaGraphy validators, parsers, and other supporting utilities should be configured to process SGYML documents in specific syntaxes.
-      This monorepo includes full documentaton of each "`spec`", though contents are mainly sourced in separate repos alongside a flagship API for the given syntax.
+      This monorepo includes full documentation of each "`spec`", though contents are mainly sourced in separate repos alongside a flagship API for the given syntax.
     deps: [schemagraphy]
     subjects:
       - name: OpenHXY
