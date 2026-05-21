@@ -167,7 +167,7 @@ $schema:
               type: Path
               desc: |
                 Override the XDG-derived cache root for the library snapshot.
-                Defaults the the host's `$XDG_CACHE_HOME/docopslab/dev/library` (usually `~/.cache/docopslab/dev/library`).
+                Defaults the host's `$XDG_CACHE_HOME/docopslab/dev/library` (usually `~/.cache/docopslab/dev/library`).
 
             local_path:
               type: Path
