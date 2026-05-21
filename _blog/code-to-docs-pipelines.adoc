@@ -238,7 +238,7 @@ In the following sections, I will detail and show examples of the latter three a
 [[overlay-method]]
 === The Overlay Method
 
-Once there is a fixed data structure in place that is being used to generate output for reference codes, that system can be "`overlayed`" with suppliementary or overriding data.
+Once there is a fixed data structure in place that is being used to generate output for reference codes, that system can be "`overlayed`" with supplementary or overriding data.
 
 [source,yaml]
 ----
