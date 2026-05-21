@@ -30,7 +30,7 @@ Switch lenses deliberately; shared base knowledge (README, goals, conventions) s
 * Always ask the Operator when you don't know exactly how DocOps Lab prefers a step be carried out.
 * Always follow the mission procedure as closely as possible, adapting only when necessary due to project-specific constraints.
 * Always document any deviations from the standard procedure and the reasons for them in the Mission Report.
-* Always look for a DRY way to define product metadata/attrbutes in README.adoc and YAML files (`specs/data/*-def.yml`).
+* Always look for a DRY way to define product metadata/attributes in README.adoc and YAML files (`specs/data/*-def.yml`).
 * Always pause for Operator approval before ANY publishing or deployment action, including pushing/posting to GitHub.
 // end::always[]
 
