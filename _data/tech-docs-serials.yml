@@ -387,7 +387,7 @@ services:
   site: https://www.dufcrule.com/posts/
   tags: [technical-writing, ai]
   desc: |
-    Occasional posts by a Spain-baed tech writer named Ian.
+    Occasional posts by a Spain-based tech writer named Ian.
 
 - name: technicalwriting.dev
   site: https://technicalwriting.dev
