@@ -340,8 +340,8 @@ module DocOpsLab
       end
 
       def run_auto_fix
-        Linters.run_auto_fix
-        AsciiidocAutoFix.fix_asciidoc_files(self)
+        Linters.run_auto_fix(self)
+        AutoFixAsciidoc.fix_asciidoc_files(self)
       end
 
       def run_rubocop_auto_fix path: nil

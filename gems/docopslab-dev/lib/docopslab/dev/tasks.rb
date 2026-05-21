@@ -390,14 +390,12 @@ module DocOpsLab
             end
 
             desc desc_for('heal:adoc')
-            # Add an optional path argument that defaults to nil
             task :adoc, %i[path] => [] do |_t, args|
               Dev.run_adoc_auto_fix(args[:path])
             end
 
             desc desc_for('heal:all')
             task :all do
-              # if the user passed an argument, we wan to tell them this task does not accept any arguments and we want to peaec out of this operation rather than running it
               if ARGV.any? { |arg| arg.include?('labdev:heal:all') && arg.include?('[') }
                 puts '⚠️  labdev:heal:all does not accept any arguments. Exiting.'
                 puts 'Use labdev:heal:ruby[path] or labdev:heal:adoc[path] to auto-fix specific files.'
