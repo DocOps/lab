@@ -1024,7 +1024,7 @@ properties:
 # tag::dry-yaml[]
               type_definitions:
                 dflt: &type_definitions_map
-                  $ref: "https://raw.githubcontent.com/DocOps/aylstack/content-types.yml#ditataxis-plus"
+                  $ref: "https://raw.githubusercontent.com/DocOps/aylstack/content-types.yml#ditataxis-plus"
                 desc: &type_description |
                   A collection of "`content types`" supported by your style guidance, in the form of a Map of types and their properties.
                 docs: &type_definitions_docs |
