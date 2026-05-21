@@ -72,5 +72,5 @@ spellcheck:
   output_file: spelling-report.yml # defaults to spellcheck-<datetime>.yml
   prompt: |
     # Your custom prompt here
-    # Preceed each line with a hash (#)
+    # Precede each line with a hash (#)
 ----
