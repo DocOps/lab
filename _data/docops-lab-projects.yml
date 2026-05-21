@@ -1227,7 +1227,7 @@ $meta:
 #     there is crossover, tags may include OTHER types.
 # 8. Each project should have a tech array, which is an array of technologies
 #    used in the project, such as programming languages, frameworks, or libraries.
-# 9. Each project should have an icon, which is a clevrely representative Lucide
+# 9. Each project should have an icon, which is a cleverly representative Lucide
 #    icon name from: https://lucide.dev/icons
 # 10. Each project should have a line, which is a short, one-line description of
 #     the project, suitable for use in a list or summary.
