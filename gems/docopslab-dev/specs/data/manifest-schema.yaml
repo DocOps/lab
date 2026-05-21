@@ -112,7 +112,7 @@ $schema:
           type: Boolean
           desc: |
             Whether to auto-sync this file from upstream.
-            If properly conigured, local modifications outside canonical blocks.
+            If properly configured, local modifications outside canonical blocks.
           default: true
         data:
           type: Map
