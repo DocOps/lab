@@ -1250,7 +1250,7 @@ $meta:
 #     only repo visibility. If omitted, assume false (repo is private or doesn't exist yet).
 # 15. Projects MAY have a href property, which is a URL to the project's website
 #     or documentation site. External URLs only (not GitHub repos).
-# 16. Projects MAY have a text property, which which is to override the property's
+# 16. Projects MAY have a text property, which is to override the property's
 #     actual name in displays on the website.
 # 17. Projects MAY have a look, which is a short description of the project's appearance,
 #     when relevant, such as a theme or design style.
