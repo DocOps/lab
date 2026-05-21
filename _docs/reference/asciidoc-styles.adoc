@@ -52,7 +52,7 @@ DocOps Lab documentation largely follows the conventions outlined in the link:ht
 
 Reinforcements and exceptions:
 
-* Use `.adoc` extensions _execpt_ for Liquid templates used to render AsciiDoc files, which use `.asciidoc`.
+* Use `.adoc` extensions _except_ for Liquid templates used to render AsciiDoc files, which use `.asciidoc`.
 * Use one sentence per line formatting.
 ** Let hard-returns signal spaces between sentences.
 ** Also do this for major colon- or semicolon-delimited sentences.
