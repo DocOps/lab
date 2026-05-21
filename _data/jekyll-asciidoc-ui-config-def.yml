@@ -728,7 +728,7 @@ properties:
                 desc: |
                   A map of keys (prompt indicators) and strings (prompt strings) to use for different prompts.
                 docs: |
-                  Add key-value pairs to the `alt_strings` object to enable non-default prompt strings associated with an extra role (`.priompt-<key>`, where `<key>` is the key of the prompt string to use).
+                  Add key-value pairs to the `alt_strings` object to enable non-default prompt strings associated with an extra role (`.prompt-<key>`, where `<key>` is the key of the prompt string to use).
 
                   For example, to use a different prompt string for a block with the role `.prompt-root`, add something like following to the `alt_strings` object:
 
