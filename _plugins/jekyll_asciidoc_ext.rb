@@ -6,7 +6,7 @@ require 'fileutils'
 # Build site-wide xref_* attributes from collections and inject them
 # into every AsciiDoc page right before Asciidoctor runs.
 # Page front matter set as AsciiDoc `page-` attributes are not available
-#  at the point this hook runs, so conventional frontmatter (--- fenced)
+#  when this hook runs, so conventional frontmatter (--- fenced)
 #  is recommended for overriding relevant values such as:
 #  `xref_id`, `title`, `slug`, `xref_exclude`
 #
