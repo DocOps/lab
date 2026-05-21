@@ -14,4 +14,4 @@
 # When adding to dictionary, maintain alphabetical order within sections
 # DO NOT TAKE INITIATIVE. Stick to the instructed changes except where prompted with `fix?: 'fix'`.
 # If it is simpler (and safe) for you to use grep or sed to make fix() changes, do so.
-# DO NOT correct neigboring words in text nor add nor alter words in the dictionary other than those named.
+# DO NOT correct neighboring words in text nor add nor alter words in the dictionary other than those named.
