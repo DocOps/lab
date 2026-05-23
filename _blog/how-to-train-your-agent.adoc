@@ -44,7 +44,7 @@ These resources are all represented by Markdown docs available to LLM-backed cod
 
 An additional twist is that I single source all of this content, alongside (and secondary to) my people-facing docs, and I do it all using AsciiDoc that gets converted to Markdown at build time, as I described in {xref_blog_single-sourcing-for-ai-agents_link}.
 
-In this post, I want to talk about _what_ to provide for AI agents, and you can refer to the link:{xref_blog_single-sourcing-for-ai-agents_url}[other post] for _how to deliver_ it.
+In this post, I want to talk about _what_ to provide for AI agents, and you can refer to the {xref_blog_single-sourcing-for-ai-agents_link} for _how to deliver_ it.
 
 
 [[taming-dragon]]
@@ -123,7 +123,7 @@ Instead, you need to _organize_ your documentation into a taxonomy of resources 
 The good news is that LLMs are pretty good at selectively ingesting and applying relevant context from multiple documents.
 The hard work is in establishing the library of assets; prompting then becomes as easy as saying:
 
-.Prompt pointing to AGENTS.md
+.Prompt pointing to `AGENTS.md`
 ====
 _Read the `AGENTS.md` file, then pick a role and skillset appropriate to the task set forth in `.agent/docs/team/add-fancy-feature.md`._
 ====
