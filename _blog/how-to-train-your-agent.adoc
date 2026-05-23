@@ -25,7 +25,9 @@ Before you know it, every project needs a curated, streamlined _library_ of docu
 
 A good prompt for a complex coding task includes rich context, which is how MCP servers and skills came about.
 These, too, are largely dependent on documentation.
-And once this level of complexity is introduced, and especially when working across codebases on multiple simultaneous projects.
+
+Once this level of complexity is introduced, especially when working across codebases on multiple simultaneous projects, your project/organizaton are dealing with documentation divergence and all the attendant problems and possible solutions.
+Now you are in my world.
 
 .Jargon glossary
 ****
@@ -38,11 +40,11 @@ I settled on a strategy of organizing resources into skills, roles, missions, an
 The concept of "`skills`" was introduced in 2025 by Anthropic, but the rest of these categories are my own twist on the concept.
 
 These resources are all represented by Markdown docs available to LLM-backed coding agents like Copilot, Warp, and Cursor.
-(I will talk about MCP serves in a separate blog entry somewhere down the line, but for now I have not concluded much about this new protocol.)
+(I will talk about MCP servers in a separate blog entry somewhere down the line, but for now I have not concluded much about this new protocol.)
 
 An additional twist is that I single source all of this content, alongside (and secondary to) my people-facing docs, and I do it all using AsciiDoc that gets converted to Markdown at build time, as I described in {xref_blog_single-sourcing-for-ai-agents_link}.
 
-In this post, I want to talk about _what_ to provide for AI agents, and you can refer to the link:{xref_blog_single-sourcing-for-ai-agents_url}[other post] for _how to deliver_ it.
+In this post, I want to talk about _what_ to provide for AI agents, and you can refer to the {xref_blog_single-sourcing-for-ai-agents_link} for _how to deliver_ it.
 
 
 [[taming-dragon]]
@@ -114,14 +116,14 @@ For now, you have to roll up your sleeves and incorporate lessons from all the k
 These are the ways bots need to be adjusted to work well with _your_ tech stack, _your_ framework, _your_ conventions, _your_ styles, and so forth.
 
 You will also need a way to distribute and sync this between projects, and to modify or override some of it in particular projects, when the standard conventions do not translate or apply.
-Cross-project orchestration is out of scope for this post, but it I touched on it link:{xref_blog_single-sourcing-for-ai-agents_url}#distribution[here].
+Cross-project orchestration is out of scope for this post, but I touched on it in {xref_blog_single-sourcing-for-ai-agents_link} and I will talk about it more in the future.
 ****
 
 Instead, you need to _organize_ your documentation into a taxonomy of resources that the LLM can access as needed.
 The good news is that LLMs are pretty good at selectively ingesting and applying relevant context from multiple documents.
 The hard work is in establishing the library of assets; prompting then becomes as easy as saying:
 
-.Prompt pointing to AGENTS.md
+.Prompt pointing to `AGENTS.md`
 ====
 _Read the `AGENTS.md` file, then pick a role and skillset appropriate to the task set forth in `.agent/docs/team/add-fancy-feature.md`._
 ====

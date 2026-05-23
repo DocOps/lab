@@ -28,7 +28,7 @@ include::../README.adoc[tags="global-settings"]
 [[summary]]
 == What I've Done
 
-I've collected a number of my favorite blogs, podcasts, and newsletters about technical documentation and presented the in these forms:
+I've collected a number of my favorite blogs, podcasts, and newsletters about technical documentation and presented them in these forms:
 
 * A link:{serials-collection-web-url}[web page with annotated links] to all the services.
 * an link:{serials-collection-opml-url}[OPML listing] of all the feeds, which you can import into your feed reader of choice.

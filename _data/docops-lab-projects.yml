@@ -231,7 +231,7 @@ projects:
       A Docker image preconfigured with Issuer and ReleaseHx CLIs and their dependencies.
       For managing issue tickets and release notes/changelogs in Jira, GitHub, and GitLab.
     line: Docker image preconfigured with Issuer and ReleaseHx CLIs for ticket and change management
-    vrsn: 0.3.0-0.1.2
+    vrsn: 0.3.0-0.2.0
     tags: [issues,release history,changelog,CLI,API,Dockerized]
     tech: [Docker,Bash,Ruby,GitHub Issues,GitLab Issues,Jira]
     wave: 0
@@ -253,12 +253,12 @@ projects:
       Define the expected structure of YAML data objects and AsciiDoc documents, link YAML documents, and more.
       Eventually to include ports for JavaScript, Python, and more.
     line: A framework for defining, validating, and parsing data and text objects using YAML and AsciiDoc.
-    memo: Currently a module in ReleaseHx 0.1.0. (Needs spin-off.)
+    memo: Spun off from ReleaseHx 0.1.0. (Needs spin-off.)
     star: true
     deps: [asciisourcerer]
     done: 100%
     live: true
-    vrsn: V1-beta
+    vrsn: 0.1.0
     wave: 1
     card: readme
     page: true
@@ -424,7 +424,7 @@ projects:
       Provides Ruby API for extracting, parsing, and manipulating AsciiDoc content and YAML data programmatically.
       Jumpstarts and extends primitive dependencies like Psych (YAML), Asciidoctor (AsciiDoc), and Jekyll/Liquid.
     line: Ruby API for pre-build and build-time AsciiDoc/YAML processing
-    vrsn: 0.1.0
+    vrsn: 0.4.0
     tags: [API,documentation,single-sourcing]
     tech: [Ruby,AsciiDoc,Asciidoctor,YAML,Liquid,Jekyll]
     wave: 1
@@ -651,7 +651,7 @@ projects:
       A development utility that centralizes authoring of common configs, styles/rules, and documentation for sharing across all DocOps Lab project repos.
       Provides a numer of Rake tasks for maintaining consistency of distributed libraries and assets used in _development_ of DocOps Lab tools but not necessary for _using_ said tools.
     line: Aka `labdev`, a tool for distributing common libraries and assets across DocOps Lab project repos
-    vrsn: 0.1.0
+    vrsn: 0.3.0
     tags: [development,environment]
     tech: [CLI,Ruby,Docker,Rake,Vale,RuboCop,YAML,Bash,ShellCheck]
     wave: 0
