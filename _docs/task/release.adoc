@@ -82,7 +82,7 @@ Edit the Markdown file at `docs/release/{tok_majmin}.{tok_patch}.md`.
 
 // end::step-history[]
 
-[[step-2-merge-to-main]]
+[[release-step-merge-to-main]]
 === Step 2. Merge to Main
 
 // tag::step-merge[]
@@ -95,7 +95,7 @@ git push origin main
 ....
 // end::step-merge[]
 
-[[step-3-tag-release]]
+[[release-step-tag-release]]
 === Step 3. Tag Release
 
 // tag::step-tag[]
@@ -194,8 +194,6 @@ git checkout release/1.1
 git merge --squash fix/parser-typo
 git commit -m "fix: correct parser typo"
 git push origin release/1.1
-git tag -a v1.2 -m "Patch release 1.2"
-git push origin v1.2
 ....
 
 
@@ -205,8 +203,6 @@ git checkout release/1.2
 git cherry-pick <commit-hash>
 # … TEST …
 git push origin release/1.2
-git tag -a v1.2.1 -m "Patch release 1.2.1"
-git push origin v1.2.1
 ....
 
 [NOTE]
@@ -217,13 +213,15 @@ Repeat for every affected branch then release the patched versions.
 [NOTE]
 Between minor versions, patch versions may vary due to inconsistent applicability of patches.
 
-// end::rollback-patching[]
-
 [[patch-releasing]]
 === Patch Releasing
 
-Perform Steps 1, 4, and 5 of the standard release procedure:
+Perform Steps 1 through 5 of the standard release procedure:
 
-* <<release-step-history>>
-* <<release-step-announce>>
-* <<release-step-artifacts>>
+. <<release-step-history>>
+. <<release-step-merge-to-main>>
+. <<release-step-tag-release>>
+. <<release-step-announce>>
+. <<release-step-artifacts>>
+
+// end::rollback-patching[]
