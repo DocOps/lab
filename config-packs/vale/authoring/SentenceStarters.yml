@@ -1,0 +1,6 @@
+---
+extends: script
+scope: raw
+level: warning
+message: "Don't start a sentence with a code literal, lowercase character, or number"
+script: SentenceStarters.tengo

@@ -1,0 +1,39 @@
+= DocOps Lab: Agent Library
+:doctype: article
+
+This is the *{empty}DocOps Lab agent library* distribution branch.
+It is not intended for direct use as a cloned project.
+
+It is published and consumed automatically by the `docopslab-dev` gem's `labdev:sync:library` Rake task.
+
+
+[[contents]]
+== Contents
+
+`config-packs/`::
+Bundled configuration files for linters and quality tools (Vale, RuboCop, actionlint, etc.), organized by tool name.
+
+`docs/agent/`::
+Generated agent-guidance documents covering roles, skills, missions, and topics for AI agents working on DocOps Lab projects.
+
+`hooks/`::
+Git hook scripts installed by `labdev:init:hooks`.
+
+`scripts/`::
+Utility scripts available to projects via `labdev:sync:scripts`.
+
+`templates/`::
+Boilerplate and sync-cast template files, including `AGENTS.markdown` (the canonical template for project-level `AGENTS.md` files).
+
+`catalog.json`::
+Machine-generated catalog of all files in this library snapshot, including SHA256 checksums and the timestamp of the generating commit.
+
+
+[[usage]]
+== Usage
+
+Projects using `docopslab-dev` fetch this library with:
+
+ bundle exec rake labdev:sync:library
+
+For full documentation, see the https://github.com/DocOps/lab/tree/main/gems/docopslab-dev[docopslab-dev README].
