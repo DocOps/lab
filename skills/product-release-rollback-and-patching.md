@@ -8,6 +8,7 @@ Table of Contents
 
 - Rollback Failsafe
 - Standard Patching
+- Patch Releasing
 
 ## Rollback Failsafe
 
@@ -48,8 +49,6 @@ git checkout release/1.1
 git merge --squash fix/parser-typo
 git commit -m "fix: correct parser typo"
 git push origin release/1.1
-git tag -a v1.2 -m "Patch release 1.2"
-git push origin v1.2
 ```
 
 Example forward porting procedure
@@ -59,8 +58,6 @@ git checkout release/1.2
 git cherry-pick <commit-hash>
 # … TEST …
 git push origin release/1.2
-git tag -a v1.2.1 -m "Patch release 1.2.1"
-git push origin v1.2.1
 ```
 
 > **NOTE:** <table>
@@ -86,4 +83,18 @@ Repeat for every affected branch then release the patched versions.
 > </td>
 > </tr>
 > </table>
+
+## Patch Releasing
+
+Perform Steps 1 through 5 of the standard release procedure:
+
+1. [release-step-history]
+
+2. [release-step-merge-to-main]
+
+3. [release-step-tag-release]
+
+4. [release-step-announce]
+
+5. [release-step-artifacts]
 

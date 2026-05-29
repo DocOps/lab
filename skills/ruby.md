@@ -38,7 +38,7 @@ However, conventions are not exhaustively listed, and deviations are rarely poin
 
 - Use `lib/` for main application code.
 
-- Use `spec/` for specifications and tests.
+- Use `specs/` for specifications and tests.
 
 - Use `docs/` or `_docs/` for documentation.
 
