@@ -1,9 +1,9 @@
 PATH
   remote: gems/docopslab-dev
   specs:
-    docopslab-dev (0.3.0)
+    docopslab-dev (0.3.1)
       asciidoctor (~> 2.0)
-      asciisourcerer (~> 0.2)
+      asciisourcerer (~> 0.4)
       brakeman (~> 7.1)
       bundler-audit (~> 0.9)
       debride (~> 1.13)
