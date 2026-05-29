@@ -59,7 +59,7 @@ However, conventions are not exhaustively listed, and deviations are rarely poin
 ** `lib/<project_name>.rb` for the main file
 ** `lib/<project_name>/` for supporting files and modules
 ** `lib/<project_name>/<module_name>/` for submodules
-* Use `spec/` for specifications and tests.
+* Use `specs/` for specifications and tests.
 * Use `docs/` or `_docs/` for documentation.
 * Use `build/` for pre-runtime artifacts.
 * Use `_build/` as default in applications that generate files at runtime, unless another path is more appropriate (ex: `_site/` in Jekyll-centric apps).
