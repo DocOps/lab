@@ -2,7 +2,7 @@
 
 module DocOpsLab
   module Dev
-    VERSION = '0.3.0'
+    VERSION = '0.3.1'
     RUBY_TARGET = '3.2.7'
   end
 end
