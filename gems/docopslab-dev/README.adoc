@@ -1181,10 +1181,17 @@ To build the `docopslab/dev` Docker image:
 [.prompt]
  bundle exec rake gemdo:build_docker
 
+[[]]
+
 [[publish-artifacts]]
 === Publish & Deploy Artifacts
 
-For general DocOps Lab release procedures, see link:{xref_docs_release_url}[Release Process (General)].
+Commit changes and push to GitHub before publishing generated artifacts.
+
+[NOTE]
+The `docopslab-dev` gem does not issue official release notices or registrations on GitHub the way other DocOps Lab gems do.
+
+For general DocOps Lab release procedures, see link:https://docopslab.org/docs/release/[Release Process (General)].
 
 The `docopslab-dev` gem and `docopslab/dev` Docker image follow that process with these specific considerations:
 
