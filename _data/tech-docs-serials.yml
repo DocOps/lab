@@ -244,6 +244,14 @@ services:
   desc: |
     Video podcast from Tom Johnson and Fabrizio Ferri Benedetti, covering topics related to API documentation, AI in technical writing, and interviews with industry experts.
 
+- name: I Make Things
+  site: https://shaunagordon.com/categories/tech/
+  feed: https://shaunagordon.com/posts/index.xml
+  type: Atom
+  tags: [ai, community, professional-development]
+  desc: |
+    Personal blog of Shauna Gordon, with a mix of technical and personal lessons, from AI optimization to work culture.
+
 - name: Instruction Manuel
   site: https://instructionmanuel.com
   feed: https://instructionmanuel.com/rss.xml
