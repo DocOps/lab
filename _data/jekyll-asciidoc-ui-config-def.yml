@@ -1,5 +1,5 @@
-# Setting descriptions and defaults for all jekyll-asciidoc-ui configuration options
-# This also models the domain-specific language (DSL) enabled by this plugin's own API method: Jekyll.
+# Setting descriptions and defaults for jekyll-docops configuration options
+# Covers both the jekyll-ext utility layer and the asciidoc-ui frontend layer.
 properties:
   jekyll-ext: # root-level block for Jekyll extensions
     name: Jekyll Plugin-System Extension Settings
@@ -53,6 +53,7 @@ properties:
 
           End users (site admins) will be able to re-override this setting in their own config files.
   
+
   asciidoc-ui: # root-level block for AsciiDoc UI configuration
     name: User Interface Configuration
     desc: |
@@ -61,16 +62,23 @@ properties:
       The options in this object are used to configure the plugin itself, with `site.asciidoc-ui.components` enabling and configuring the included components and extensions.
     properties:
 
-      container:
+      selectors:
         properties:
-          selector:
-            dflt: '.asciidoc-html5'
+          enabler:
+            dflt: '.asciidoc-ui'
             type: Selector
             desc: |
-              CSS selector for the container element(s) in which to apply the plugin.
-              Designated elements will be affected by styles and scripts applied by the plugin.
+              CSS selector for the container element(s) within which or specific elements to which to apply the plugin's styles and JavaScript.
 
               Defaults to any element with the class `asciidoc-html5`.
+          disabler:
+            dflt: '.no-asciidoc-ui'
+            type: Selector
+            desc: |
+              CSS selector for the container element(s) within which or specific elements to which to _deny_ the plugin's styles and JavaScript.
+
+              Defaults to any element with the class `no-asciidoc-ui`.
+      
       
       libraries: # third-party frontend dependencies
         name: Third-Party Library Settings
@@ -137,7 +145,7 @@ properties:
                 desc: |
                   Array of files to include from the library.
                   Use this to specify only the files you need from the library.
-                  If not specified, the plugin will include all files from the library.
+                  If not specified or if value is `null` or `['*']``, the plugin will include all files from the library.
           
           fontawesome:
             properties:
@@ -264,7 +272,7 @@ properties:
               Non-default components available for enabling:
 
               * `+releasehx`
-              * `+glossary`
+              * `+glossaries`
               * `+term-ext`
               * `+seo-ext`
               * `+gdpr-dialog`
@@ -284,62 +292,76 @@ properties:
           glossaries:
             name: Glossaries
             desc: |
-              Adds glossary pages or documents to the site.
-              The glossary page is a single page or series of pages listing and defining any terms added to the collection.
+              Adds one or more named glossary page sets to the site.
+              Each top-level key under `glossaries:` is a user-chosen identifier for a single glossary
+              (e.g. `main`, `api-terms`).
+              Each named glossary generates its own index page and per-volume sub-pages.
 
-              Use <<config-terms-ext>> to auto-detect and classify terms in the document body.
+              Use <<config-term-ext>> to auto-detect and annotate terms in the document body.
             docs: |
-              Call using `{% include ui/glossary.html %}` in a page or layout file.
+              Define as many named glossaries as needed:
+              
+              [source,yaml]
+              ----
+              asciidoc-ui:
+                glossaries:
+                  main:
+                    source: site.data.glossary
+                    name: Glossary
+                    permalink: /glossary
+                  api-terms:
+                    source: site.data.api_glossary
+                    name: API Reference Glossary
+                    permalink: /api/glossary
+              ----
 
-              The associated properties are for default/global glossary settings.
+              Each glossary's `source` or `sources` must be a `site.data.*` object path or a sequence of same.
+              Jekyll automatically loads `_data/glossary.yml` as `site.data.glossary`, `_data/api_glossary.yml` as `site.data.api_glossary`, and so on.
 
-              You may pass these as arguments when including/rendering `ui/glossary.html`.
-
-              You may also add arbitrary arguments either as properties of this ([.ppty']`asciidoc-ui.components.glossary`) object in the config file,
-               or as additional variables to pass in the tag itself.
-
-              For example, `{% include ui/glossary.html source="site.data.my-glossary" my_var="some value" %}`.
-
-              These properties can also be set in any glossary data object, which are usually sourced like `data/glossary/product-a.yml`.
-
-              The order of precedence for these settings is:
-
-              . The tag itself, which overrides
-              . The glossary data's `volume` object, which overrides
-              . The config file
-
-              Tags alone can additionally specify a `volume`, `categories`, `tags`, or `applications` arguments to filter the glossary terms displayed.
+              When neither `source` nor `sources` is set, `source` defaults to
+              `site.data.glossary`.
 
             properties:
-              source:
-                dflt: "site.data.glossary"
-                type: String
-                desc: Object path for glossary data.
-              sources:
-                dflt: []
-                type: Array
-                desc: Array of object paths for glossary data, in descending order of preference (which definitions will overwrite which others by default).
-              name:
-                dflt: Glossary
-                type: String
-                desc: Title to display for the glossary page.
-              text:
-                dflt: Glossary of terms used in this documentation
-                type: String
-                desc: Description to display for the glossary page.
-              layout:
-                dflt: asciidoc
-                type: Slug
-                desc: Layout to use for the glossary page.
-              permalink:
-                dflt: /glossary-public
-                type: Path
-                desc: Permalink URL for the glossary page.
-              paginate:
-                dflt: 100
-                type: Integer or 'alphabetical'
-                desc: Number of terms to display per page.
-          
+              <glossary-key>:
+                desc: Configuration block for a single named glossary.
+                docs: |
+                  Replace `<glossary-key>` with a unique identifier of your choice (e.g. `main`, `api-terms`).
+                  Each identifier produces its own index page at the configured `permalink`.
+                properties:
+                  source:
+                    dflt: "site.data.glossary"
+                    type: String
+                    desc: |
+                      Single `site.data.*` object path for glossary data
+                      (e.g. `site.data.glossary`).
+                      Jekyll auto-loads `_data/glossary.yml` as `site.data.glossary`.
+                  sources:
+                    dflt: []
+                    type: Array
+                    desc: |
+                      Additional `site.data.*` object paths merged after `source`, in order.
+                      Later entries can override terms defined by earlier ones.
+                  name:
+                    dflt: ""
+                    type: String
+                    desc: |
+                      Display title for the generated glossary index page.
+                      Defaults to a humanized form of the glossary key.
+                  layout:
+                    dflt: default
+                    type: Slug
+                    desc: Jekyll layout name used for all generated pages in this glossary.
+                  permalink:
+                    dflt: ""
+                    type: Path
+                    desc: |
+                      URL path for the generated glossary index.
+                      Defaults to `/<glossary-key>`.
+                  paginate:
+                    dflt: 100
+                    type: Integer or 'alphabetical'
+                    desc: Number of terms to display per page.
+
           releasehx:
             name: ReleaseHX
             desc: |

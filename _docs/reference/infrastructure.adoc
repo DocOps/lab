@@ -5,8 +5,6 @@ description: "Local and cloud assets for DocOps Lab projects"
 order: 51
 ---
 include::../_local_settings.adoc[]
-:vale_off: pass:[<!-- vale off -->]
-:vale_on:  pass:[<!-- vale on -->]
 = Development & Deployment Infrastructure
 
 This document addresses a standardized codebase structure and deployment configuration that is common across most DocOps Lab projects.
