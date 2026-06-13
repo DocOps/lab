@@ -22,10 +22,11 @@ This file uses a simple template system with two kinds of placeholders:
   - <% NOTE: description %> : Arbitrary notes for the user of the template
 
   Tagging System for Content Synchronization:
-  - universal-content: Philosophy, operations notes, AsciiDoc preferences
-  - universal-agent-development: Development patterns, testing, code standards
-  - universal-agent-responsibilities: Agent behavior and mindset guidelines
-  - universal-remember: Operational standards and core principles
+  - universal-agency: Philosophy, operations notes, AsciiDoc preferences
+  - universal-config: Development patterns, testing, code standards
+  - universal-approach: Agent behavior and mindset guidelines
+  - universal-responsibilities: General best practices
+  - universal-remember: Reiteration
 
 Project-specific content (architecture, reading order, scenarios) remains untagged.
 {% endraw %}

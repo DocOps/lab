@@ -161,7 +161,7 @@ projects:
         slug: jekyll-supercharge
         type: tutorial
         done: 0%
-        deps: [jekyll-asciidoc-ui]
+        deps: [jekyll-docops]
       - name: "README.adoc-Driven Development and Documentation (RADDD)"
         title: "README.adoc-Driven Development and Documentation"
         desc: |
@@ -187,7 +187,7 @@ projects:
       Disambiguation and coordination of the core components of an application based in our Jekyll/Asciidoctor-based publishing framework.
       These utilities make up the Jekyll _publishing_ aspect of a typical Asciidoctor, Jekyll, and Clide-based toolchain, but they can readily be used independent of that toolchain.
 
-      This is a unified docs site for the various plugins and themes based on jekyll-asciidoc-ui.
+      This is a unified docs site for the various plugins and themes based on jekyll-docops.
       The intention is for this plugin to differentially feed all of these extensions with core options and a means for each plugin to incorporate these libraries into its own gem or application.
     line: A unified documentation site for Jekyll/AsciiDoc extensions, plugins, and themes.
     vrsn: '0.0' # unversioned website
@@ -196,7 +196,7 @@ projects:
     wave: 1
     done: 80%
     icon: book-open
-    deps: [jekyll-asciidoc-ui,jekyll-openapi,adocBook,asciidocsy-jekyll-theme]
+    deps: [jekyll-docops,jekyll-openapi,adocBook,asciidocsy-jekyll-theme]
 
 
 # ENVIRONMENT
@@ -552,7 +552,7 @@ projects:
     wave: 1
     done: 85%
     icon: notebook-text
-    deps: [jekyll-just-the-asciidocs,jekyll-asciidoc-ui]
+    deps: [jekyll-just-the-asciidocs,jekyll-docops]
     page: true
 
 ## graphy:
@@ -702,20 +702,23 @@ projects:
     deps: [schemagraphy, asciisourcerer]
     page: true
 
-## jekyll-asciidoc-ui:
-  - name: Jekyll AsciiDoc UI Extensions
-    slug: jekyll-asciidoc-ui
-    repo: jekyll-ext
-    path: gems/jekyll-asciidoc-ui
+## jekyll-docops
+  - name: Jekyll DocOps Extensions
+    slug: jekyll-docops
+    repo: jekyll-docops
     type: jekyll-ext
     desc: |
+      Plugin that adds back-end (plugin) and front-end (UI) support and capabilities to Jekyll themes and plugins.
+
       Front-end assets and components that any Jekyll theme could use to add front-end AsciiDoc support.
-      Includes templates that interpret specified data objects, such as ReleaseHX and glossaries.
+      Includes templates that interpret specified data objects, such as release histories and glossaries.
       Adds some common Bootstrap components such as collapse, accordion, button, badge, card, and so forth.
+
+      Also extends Jekyll with core capabilities key to DocOps Lab Jekyll extension projects but broadly useful to Jekyll plugin and theme developers.
     line: Front-end assets and components for adding AsciiDoc support to Jekyll themes
     vrsn: 0.1.0
-    tags: [Jekyll plugin,documentation,UI,components,Bootstrap]
-    tech: [Jekyll,AsciiDoc,Liquid,YAML,Bootstrap,HTML,CSS/Sass,JavaScript,OpenAPI]
+    tags: [Jekyll plugin,documentation,UI,components,assets,configuration]
+    tech: [Jekyll,Ruby,AsciiDoc,Liquid,YAML,Bootstrap,HTML,CSS/Sass,JavaScript,OpenAPI]
     wave: 1
     done: 70%
     icon: test-tube-diagonal
@@ -723,10 +726,10 @@ projects:
     page: true
     card: readme
     sort: 5
-    deps: [releasehx,ayl-docstack,jekyll-ext]
+    deps: [schemagraphy,asciisourcerer,releasehx,ayl-docstack]
     memo: |
       AYL DockStack dependency is mainly for base/default semantics/styles.
-      This affects: `theme-ext`, `content-type`, 
+      We may wish to source these in jekyll-docops until we build out AYL DocStack enough to support these assets as a standalone dependency.
     libs:
       # General Jekyll UI extensions
       - glossaries
@@ -779,7 +782,7 @@ projects:
     wave: 2
     done: 80%
     icon: cloud-download
-    deps: [jekyll-asciidoc-ui,jekyll-ext]
+    deps: [jekyll-docops]
 
 ## jekyll-versioneer:
   - name: jekyll-versioneer
@@ -795,7 +798,7 @@ projects:
     wave: 2
     done: 70%
     icon: git-branch
-    deps: [SchemaGraphy,jekyll-asciidoc-ui,versioneer]
+    deps: [SchemaGraphy,jekyll-docops,versioneer]
 
 ## jekyll-api-docs:
   - name: jekyll-api-docs
@@ -811,7 +814,7 @@ projects:
     wave: 4
     done: 0%
     icon: puzzle
-    deps: [jekyll-asciidoc-ui,jekyll-openapi]
+    deps: [jekyll-docops,jekyll-openapi]
 
 # JEKYLL THEMES & ENHANCEMENTS
 
@@ -822,7 +825,7 @@ projects:
     desc: |
       A simple landing page theme for Jekyll sites that use AsciiDoc.
       Based on the Minimal Mistakes theme.
-      Includes AsciiDoc-friendly templates and jekyll-asciidoc-ui assets.
+      Includes AsciiDoc-friendly templates and jekyll-docops assets.
     line: Simple landing page theme for Jekyll sites using AsciiDoc
     vrsn: 0.1.0
     tags: [Jekyll plugin,landing page,minimal]
@@ -830,7 +833,7 @@ projects:
     wave: 2
     done: 10%
     icon: layout-template
-    deps: [jekyll-asciidoc-ui]
+    deps: [jekyll-docops]
     note: Currently under development in link:/[DocOps LAB] site (THIS very site!).
 
 ## AsciiDocsy:
@@ -848,7 +851,7 @@ projects:
     wave: 2
     done: 100%
     icon: panels-top-left
-    deps: [LiquiDoc, Graphy, SchemaGraphy, jekyll-asciidoc-ui, jekyll-versioneer]
+    deps: [LiquiDoc, Graphy, SchemaGraphy, jekyll-docops, jekyll-versioneer]
     note: AsciiDocsy is technically live, but will be refactored for 1.0.0 release.
     docs:
       user: https://asciidocsy.netlify.app/docs/theme
@@ -897,7 +900,7 @@ projects:
     wave: 3
     done: 0%
     icon: test-tube-diagonal
-    deps: [adocBook, jekyll-asciidoc-ui]
+    deps: [adocBook, jekyll-docops]
 
 ## YAML Agency:
   - name: YAML Agency
@@ -924,7 +927,7 @@ projects:
 #       Extends Agency Bootstrap theme with an AsciiDoc-sourced template for a product landing page.
 #       Uses custom AsciiDoc semantics (roles, etc) for definition of page elements.
 #       Quickly add a landing page to your product docs, either for promoting your product itself, or for introducing the docs, or  both, or one for each.
-#     deps: [jekyll-asciidoc-ui]
+#     deps: [jekyll-docops]
 #     tags: [landing page]
 #     tech: [Jekyll,AsciiDoc,Liquid,HTML,CSS/Sass,JavaScript]
 #     done: 40%
