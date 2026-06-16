@@ -23,5 +23,5 @@ ignore_files:
 # Other options
 check_favicon: false         # Don't require favicon
 check_html: true            # Check HTML structure
-check_opengraph: false      # Skip OpenGraph validation
+check_opengraph: false      # Skip Open Graph validation
 disable_external: false     # Check external links (can be disabled for speed)

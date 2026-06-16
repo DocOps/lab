@@ -51,7 +51,7 @@ This template is published as a rendered document at https://docopslab.org/docs/
 
 All are welcome to do what DocOps Lab does and commit/share your version of `AGENTS.md`, which is inspired by https://agents.md as a standard for AI agent prompting.
 
-**NOTE:** The version of this document you are reading is a _seconrary template_ meant to be copied and customized for each project it is used on.
+**NOTE:** The version of this document you are reading is a _secondary template_ meant to be copied and customized for each project it is used on.
 Once initially saved to a new repo, search for characters like `<%` and change those placeholders to suit the specific project.
 
 **NOTE:** Use the [raw version](https://github.com/DocOps/lab/blob/main/_docs/templates/AGENTS.markdown?plain=1) of this file instead of the rendered version.

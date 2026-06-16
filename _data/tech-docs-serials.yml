@@ -286,7 +286,7 @@ services:
     Filled with commentary on other writings, this traditional blog is a welcome blast from the past style.
     Kevin looks at all kinds of technology, old and new, from the perspective of a professional tech writer.
 
-- name: Knowledgebase Ninjas Podcast
+- name: Knowledge base Ninjas Podcast
   kind: podcast
   site: https://document360.com/podcast/
   tags: [tech-comm, kb, ai, saas, best-practices]
@@ -395,7 +395,7 @@ services:
   site: https://www.dufcrule.com/posts/
   tags: [technical-writing, ai]
   desc: |
-    Occasional posts by a Spain-baed tech writer named Ian.
+    Occasional posts by a Spain-based tech writer named Ian.
 
 - name: technicalwriting.dev
   site: https://technicalwriting.dev

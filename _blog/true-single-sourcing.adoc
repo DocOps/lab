@@ -116,7 +116,7 @@ These can involve data processing and logic, but they are relatively simple and 
 Liquid was specifically designed for non-developers, and generative-AI coding tools are adept at writing templates in nearly all popular syntaxes.
 This means those savvy non-programmers can help author data files _and_ help turn them into good, auto-generated reference documentation.
 
-This non-programmer involvement is but one of the key advantages of stepping away from "`native`" (Python, Java, Rust, Javascript, Ruby, Golang, etc) programming code and into a truly cross-language, human-writeable data format like YAML.
+This non-programmer involvement is but one of the key advantages of stepping away from "`native`" (Python, Java, Rust, JavaScript, Ruby, Golang, etc) programming code and into a truly cross-language, human-writeable data format like YAML.
 
 [NOTE]
 While YAML is second only to JSON and XML in terms of current popularity, it is wildly more user- and Git-friendly than the leading formats.

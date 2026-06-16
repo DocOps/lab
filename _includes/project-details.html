@@ -184,7 +184,7 @@
     <h4>{{ pack[0] }}</h4>
     <p>{{ pack[1].desc }}</p>
     {% if pack[1].deps %}
-    <p><strong>Dependends on:</strong> {{ pack[1].deps | join: ', ' }}</p>
+    <p><strong>Depends on:</strong> {{ pack[1].deps | join: ', ' }}</p>
     {% endif %}
     {% if pack[1].libs %}
     <div class="pack-libraries">

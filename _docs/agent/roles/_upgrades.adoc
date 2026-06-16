@@ -15,7 +15,7 @@ Technical Writer:: Add documentation authoring and quality control capabilities 
 // end::tech-writer[]
 
 // tag::product-engineer[]
-Product Engineer:: Add code implementation and bugfixing capabilities (`.agent/docs/roles/product-engineer.md`)
+Product Engineer:: Add code implementation and bug fixing capabilities (`.agent/docs/roles/product-engineer.md`)
 // end::product-engineer[]
 
 // tag::devops-release-engineer[]

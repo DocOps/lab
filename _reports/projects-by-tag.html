@@ -35,7 +35,7 @@ icon: tag
 </div>
 
 {% assign popular_projects = popular | split: "," %}
-<!-- javascript to add a .popular class to any .meta-toc-link matcing all tags in the popular_projects Array -->
+<!-- javascript to add a .popular class to any .meta-toc-link matching all tags in the popular_projects Array -->
 <script>
   // first make a constant out of popular_projects
   const popular_projects = {{ popular_projects | jsonify }};

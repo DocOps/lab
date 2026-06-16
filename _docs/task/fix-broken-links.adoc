@@ -178,13 +178,13 @@ Use this solution only when the link source is wrong or the target anchor ID is 
 .Misspelled link source
 [source,asciidoc]
 ----
-See xref:sectione-one[Section One] for details.
+See xref:section-one[Section One] for details.
 ----
 
 .Misspelled anchor ID
 [source,asciidoc]
 ----
-[[secton-one]]
+[[section-one]]
 === Section One
 ----
 

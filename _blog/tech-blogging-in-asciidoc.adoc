@@ -55,7 +55,7 @@ It embeds the content of another file -- in whole _or in part_ -- into a parent 
 
 Such includes are also used throughout the link:{page-github-url}?plain=1[source for this post].
 
-Nearly every example of block content in this post is transcluded from an adjacent file called `_asciidoc-snippets.adoc`, which is subvidivded using AsciiDoc include tags, demarcated like so:
+Nearly every example of block content in this post is transcluded from an adjacent file called `_asciidoc-snippets.adoc`, which is subdivided using AsciiDoc include tags, demarcated like so:
 
 :tagged_content: Everything between tagged lines is included in the "calling" document.
 
@@ -271,7 +271,7 @@ AsciiDoc also supports ordered lists (numbered), unordered lists (bulleted), and
 [[ordered-lists]]
 ==== Ordered Lists
 
-Ordered lists can be pretty powerful, in that you can start an re-start them at any number.
+Ordered lists can be pretty powerful, in that you can start and re-start them at any number.
 
 .Ordered list example
 ========

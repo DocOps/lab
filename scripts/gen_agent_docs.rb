@@ -35,7 +35,7 @@ module GenAgentDocs
       # Create a mapping of file names to their intended categories
       # TODO: Tech Debt; Refactor this to avoid hardcoded directory mapping. Consider preserving directory structure during Jekyll build.
       # This is based on our file organization from the source
-      # Each of these 3 vars should be Arrays made up of all *.adoc files in the given directory (_docs/agent/{skills,topics,roles,missions}) that are NOT preceeded by an underscore in the filename.
+      # Each of these 3 vars should be Arrays made up of all *.adoc files in the given directory (_docs/agent/{skills,topics,roles,missions}) that are NOT preceded by an underscore in the filename.
       skill_files = Dir.glob('_docs/agent/skills/*.adoc')
                        .map { |path| File.basename(path, '.adoc') }
                        .reject { |name| name.start_with?('_') }

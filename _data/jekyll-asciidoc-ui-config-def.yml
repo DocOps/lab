@@ -504,7 +504,7 @@ properties:
                     dflt: '.buzz, .key, .buzz dt, .keywords dt'
                     type: Selector
                     docs: |
-                      CSS selector for the element/s the content of which will be used to generate the keywords meta tag.
+                      CSS selector for the element(s) the content of which will be used to generate the keywords meta tag.
                   specifier:
                     dflt: 'kee-'
                     type: Slug
@@ -750,7 +750,7 @@ properties:
                 desc: |
                   A map of keys (prompt indicators) and strings (prompt strings) to use for different prompts.
                 docs: |
-                  Add key-value pairs to the `alt_strings` object to enable non-default prompt strings associated with an extra role (`.priompt-<key>`, where `<key>` is the key of the prompt string to use).
+                  Add key-value pairs to the `alt_strings` object to enable non-default prompt strings associated with an extra role (`.prompt-<key>`, where `<key>` is the key of the prompt string to use).
 
                   For example, to use a different prompt string for a block with the role `.prompt-root`, add something like following to the `alt_strings` object:
 
@@ -1046,7 +1046,7 @@ properties:
 # tag::dry-yaml[]
               type_definitions:
                 dflt: &type_definitions_map
-                  $ref: "https://raw.githubcontent.com/DocOps/aylstack/content-types.yml#ditataxis-plus"
+                  $ref: "https://raw.githubusercontent.com/DocOps/aylstack/content-types.yml#ditataxis-plus"
                 desc: &type_description |
                   A collection of "`content types`" supported by your style guidance, in the form of a Map of types and their properties.
                 docs: &type_definitions_docs |

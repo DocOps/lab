@@ -91,7 +91,7 @@ projects:
       Deep-dive courses and other resources for learning general docs-as-code methods.
       Initially focused on using AYL DocStack tools and strategies to tackle complex documentation tasks and projects.
       Includes nascent AsciiDoc EDU platform/framework code.
-    line: Learn to author and manage documents the way progrmamers do.
+    line: Learn to author and manage documents the way programmers do.
     star: true
     page: true
     card: readme
@@ -437,7 +437,7 @@ projects:
     slug: schemagraphy-rest
     type: rest-api
     desc: |
-      A RESTful API service for processing schema/data and schema/text combinations without installing SchemaGraphy libaries locally.
+      A RESTful API service for processing schema/data and schema/text combinations without installing SchemaGraphy libraries locally.
     line: REST API for testing and processing SchemaGraphy schemas.
     vrsn: 0.1.0
     tags: [sandbox,schemas,web service,validation,Dockerized]
@@ -649,7 +649,7 @@ projects:
     type: utility
     desc: |
       A development utility that centralizes authoring of common configs, styles/rules, and documentation for sharing across all DocOps Lab project repos.
-      Provides a numer of Rake tasks for maintaining consistency of distributed libraries and assets used in _development_ of DocOps Lab tools but not necessary for _using_ said tools.
+      Provides a number of Rake tasks for maintaining consistency of distributed libraries and assets used in _development_ of DocOps Lab tools but not necessary for _using_ said tools.
     line: Aka `labdev`, a tool for distributing common libraries and assets across DocOps Lab project repos
     vrsn: 0.3.0
     tags: [development,environment]
@@ -761,7 +761,7 @@ projects:
       - inline-term
       - inline-file
       - trademarker
-      # AsciiDoc block semantics/manipulaton
+      # AsciiDoc block semantics/manipulation
       - admonition-ext
       - sidebar-ext
       - code-truncate
@@ -944,7 +944,7 @@ projects:
       Data Schema specifications or requirements docs for specialized SGYML (YAML) data objects, for governing flat-file data sources as code.
       These standards specify how end users can create custom definitional documents out of these syntaxes and process them.
       These natural-language specifications and their SGYML Schema counterparts dictate: how SchemaGraphy validators, parsers, and other supporting utilities should be configured to process SGYML documents in specific syntaxes.
-      This monorepo includes full documentaton of each "`spec`", though contents are mainly sourced in separate repos alongside a flagship API for the given syntax.
+      This monorepo includes full documentation of each "`spec`", though contents are mainly sourced in separate repos alongside a flagship API for the given syntax.
     deps: [schemagraphy]
     subjects:
       - name: OpenHXY
@@ -1088,7 +1088,7 @@ projects:
   - name: Kitchen Sink REST API Demo
     slug: kitchen-sink-rest
     type: demo
-    line: A complex but small REST API for testing and demonstraton of OpenAPI docs generation
+    line: A complex but small REST API for testing and demonstration of OpenAPI docs generation
     desc: |
       A sample REST API with OpenAPI 3.0 spec, Postman collection, and example client code in Ruby, Python, and JavaScript.
     vrsn: V1
@@ -1230,7 +1230,7 @@ $meta:
 #     there is crossover, tags may include OTHER types.
 # 8. Each project should have a tech array, which is an array of technologies
 #    used in the project, such as programming languages, frameworks, or libraries.
-# 9. Each project should have an icon, which is a clevrely representative Lucide
+# 9. Each project should have an icon, which is a cleverly representative Lucide
 #    icon name from: https://lucide.dev/icons
 # 10. Each project should have a line, which is a short, one-line description of
 #     the project, suitable for use in a list or summary.
@@ -1253,7 +1253,7 @@ $meta:
 #     only repo visibility. If omitted, assume false (repo is private or doesn't exist yet).
 # 15. Projects MAY have a href property, which is a URL to the project's website
 #     or documentation site. External URLs only (not GitHub repos).
-# 16. Projects MAY have a text property, which which is to override the property's
+# 16. Projects MAY have a text property, which is to override the property's
 #     actual name in displays on the website.
 # 17. Projects MAY have a look, which is a short description of the project's appearance,
 #     when relevant, such as a theme or design style.

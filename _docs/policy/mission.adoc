@@ -157,7 +157,7 @@ Our commitment to containerization (with Docker, etc) is a key part of this prin
 Similar to some of the sub-principles of reusability, interoperability means technology and techniques that fit and work together in a cohesive manner.
 
 DocOPs favors tool integration and data exchange mechanisms that enable seamless workflows across different systems.
-This also means _effective_ compatibility across operating systems (Windows, MacOS, and Linux).
+This also means _effective_ compatibility across operating systems (Windows, macOS, and Linux).
 
 .Examples of DocOps interoperability
 ====

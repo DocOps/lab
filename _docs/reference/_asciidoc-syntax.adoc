@@ -185,7 +185,7 @@ Instances of the following block types may commonly be instances of examples, an
 * literal blocks (sample prompts, logs, etc)
 * rich-text snippets (rendered results, a user story, etc)
 
-Whenever any such instances _are examples_, prepend and append them with example blocks, and prefer to title them at the exampple-block level rather than the inner-content level.
+Whenever any such instances _are examples_, prepend and append them with example blocks, and prefer to title them at the example-block level rather than the inner-content level.
 
 .Example of a code block treated as an example
 [source,asciidoc]
