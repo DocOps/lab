@@ -1,0 +1,1085 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Latest 50 posts from the DocOps Lab tech docs blog directory</title>
+    <link>https://docopslab.org/docs-blogs/latest/</link>
+    <description>Aggregated feed of the latest posts from technical writing and documentation blogs</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 02 Jul 2026 13:54:55 +0000</lastBuildDate>
+    <item>
+      <title>[Technical Writing Uncensored] Why Technical Writers Need to Learn About AI Right Now | Rutva Safi Interview</title>
+      <link>https://www.youtube.com/watch?v=o4zAml9jrQU</link>
+      <description>Get the free AI cheatsheet for technical writers here: https://links.dianapayton.com/ai-cheatsheet
+
+It covers the AI tools, concepts, and people worth following that actually matter for tech writers right now — no fluff, no hype.
+
+If you&#39;re feeling the pressure to prove your AI fluency at work, or you&#39;re just not sure your LinkedIn and portfolio reflect where the industry is going, I coach technical writers through exactly that. Schedule a free call with me here: https://calendly.com/dfhauer/30min
+
+Download Camtasia or SnagIt for a free trial: https://techsmith.z6rjha.net/c/7435048/347799/5161
+
+Learn how to build a technical writing career by transitioning from an engineering background. Rutva Safi shares her personal path.
+
+In this technical writer interview, Rutva Safi joins the show to discuss her professional journey. If you are currently working in engineering and considering a switch, this conversation provides a clear look at how to navigate the shift into documentation and technical communication. We break down the specific skills that transfer between these roles and how to position your existing experience for success.
+
+This discussion is for anyone curious about the reality of working as a solo technical writer. Rutva explains the day-to-day work involved and shares advice for those trying to break into the industry. You will hear firsthand why moving from developer to writer is a viable path and what challenges to expect along the way. Whether you need technical writing tips for your portfolio or career guidance, this episode covers the practical realities of the field.
+
+Rutva&#39;s LinkedIn: https://www.linkedin.com/in/rutvasafi/
+Rutva&#39;s Instagram: https://www.instagram.com/the.rs.stories
+
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Wed, 01 Jul 2026 15:00:20 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=o4zAml9jrQU</guid>
+      <dc:date>2026-07-01T15:00:20Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Product Onboarding Process</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/product-onboarding-process/</link>
+      <description>&lt;p&gt;A product onboarding process is essential for SaaS and technical software products. It guides users from initial signup to full mastery of the product. In competitive industries like SaaS and technical documentation tools, onboarding directly affects activation rates and long-term retention by addressing user pain points early. For example, Intercom experienced early churn as new...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/product-onboarding-process/&quot;&gt;Product Onboarding Process&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 01 Jul 2026 10:46:10 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/product-onboarding-process/</guid>
+      <dc:date>2026-07-01T10:46:10Z</dc:date>
+    </item>
+    <item>
+      <title>[Read the Docs (Company Blog)] Dashboard dark theme</title>
+      <link>https://about.readthedocs.com/blog/2026/07/dashboard-dark-theme/</link>
+      <description>&lt;p&gt;Several weeks ago, we introduced and began testing a dark theme option for our dashboard.
+This added an option for …&lt;/p&gt;</description>
+      <pubDate>Wed, 01 Jul 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://about.readthedocs.com/blog/2026/07/dashboard-dark-theme/</guid>
+      <dc:date>2026-07-01T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Code, Content, and Career Newsletter] Issue 54 - Build &quot;YouGPT&quot; with Open WebUI</title>
+      <link>https://newsletter.bphogan.com/archive/issue-54-build-yougpt-with-open-webui/</link>
+      <description>&lt;p&gt;The June issue is only going to cover a single topic: setting up a local LLM to surface your own work. Load up your blog posts, tutorials, notes, and other works into a pipeline you control, without having to hand things over to for-profit models. Keep your content and your thoughts to yourself.&lt;/p&gt;
+&lt;p&gt;But first, here are a couple of other topics you might find interesting.&lt;/p&gt;
+&lt;h1&gt;Things To Explore&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/harehare/mq?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;mq&lt;/a&gt; is a command-line tool that processes Markdown using a syntax similar to &lt;a href=&quot;https://jqlang.org/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;jq&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://openrouter.ai/docs/guides/routing/routers/auto-router?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;Auto Router&lt;/a&gt; from OpenRouter automatically selects the best model for your prompt. If you&#39;re using OpenRouter, this can be a good way to ensure that you don&#39;t use expensive models for trivial tasks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Query Your Own Writing with Open WebUI Knowledge Bases&lt;/h1&gt;
+&lt;p&gt;In &lt;a href=&quot;https://newsletter.bphogan.com/archive/issue-51-run-a-local-llm-and-discover-why-llms/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;Issue 51&lt;/a&gt;, you set up Ollama and ran models from the command line. In &lt;a href=&quot;https://newsletter.bphogan.com/archive/issue-52-run-coding-models-locally-and-why-being/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;Issue 52&lt;/a&gt;, you connected a model to OpenCode and ran your own local coding agent. In this issue, you&#39;ll set up &lt;a href=&quot;https://openwebui.com/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;Open WebUI&lt;/a&gt;, a self-hosted, browser-based interface to your models. It gives you conversation history, a model picker, and saved system prompts, all running on your own hardware. But you&#39;re going to set it up for a specific reason: to create a model that uses your own writing.&lt;/p&gt;
+&lt;p&gt;Open WebUI has a &lt;a href=&quot;https://docs.openwebui.com/features/workspace/knowledge/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;Knowledge&lt;/a&gt; feature, a built-in Retrieval-Augmented Generation (RAG) pipeline. This lets a model answer questions using your own writing instead of being limited to its training data. &lt;/p&gt;
+&lt;p&gt;Building a RAG system yourself means putting together a pipeline that chunks your text, generates embeddings, stores them in a vector database, and handles retrieval. Open WebUI does all this for you once you configure a handful of settings and upload your content.&lt;/p&gt;
+&lt;p&gt;In this tutorial, you&#39;ll install Open WebUI with Docker, connect it to Ollama models, and configure a knowledge base from your own writing. Then you&#39;ll create your own model that searches your knowledge base and cites the sources it used.&lt;/p&gt;
+&lt;p&gt;This tutorial assumes you&#39;re using Ollama already, which &lt;a href=&quot;https://newsletter.bphogan.com/archive/issue-51-run-a-local-llm-and-discover-why-llms/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;Issue 51&lt;/a&gt; covers in detail. It also assumes you have Docker available, since that&#39;s the easiest way to set up Open WebUI. If you&#39;re on macOS, follow &lt;a href=&quot;https://smallsharpsoftwaretools.com/tutorials/use-colima-to-run-docker-containers-on-macos/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;my guide to setting up Docker with Colima&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Finally, you&#39;ll need a machine powerful enough to run larger models. A Mac with 32GB of unified memory will be enough, but 48GB would be better. The more you can load into video memory, the better performance you&#39;ll get.&lt;/p&gt;
+&lt;h2&gt;Install a model that can call tools and summarize results&lt;/h2&gt;
+&lt;p&gt;Open WebUI uses agentic tool calling for knowledge bases. It gives the model a set of tools to search your writing for answers. This means the model you use has to support tool calling and be capable enough to use those tools reliably.&lt;/p&gt;
+&lt;p&gt;In this tutorial, you&#39;ll use &lt;a href=&quot;https://ollama.com/library/qwen3.5?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;Qwen 3.5 35B&lt;/a&gt;. This is a mixture-of-experts (MoE) model. It has 35 billion parameters in total but activates only about 3 billion for each token, so it&#39;s relatively fast. The tradeoff is that its reasoning is lighter than a dense model of the same total size. For a knowledge base, you shouldn&#39;t notice the tradeoff because retrieval finds the right content and the model mostly summarizes and cites what it&#39;s handed.&lt;/p&gt;
+&lt;p&gt;Open a Terminal and use &lt;code&gt;ollama pull&lt;/code&gt; to download the model.&lt;/p&gt;
+&lt;p&gt;On Apple Silicon, pull the MLX build, which runs faster on Metal:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;ollama&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pull&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;qwen3.5:35b-mlx
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;On other hardware, pull &lt;code&gt;qwen3.5:35b&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Plan for at least 32 GB of memory for the model, with 48 GB or more giving comfortable headroom. The full model loads into memory even though only part of it runs per token. &lt;code&gt;Qwen 3.5:35b&lt;/code&gt; is around 24 GB at a 4-bit quantization. You&#39;ll also need room for the context window, the embedding model you&#39;ll run when you import your data, and your operating system itself.&lt;/p&gt;
+&lt;h2&gt;Install Open WebUI&lt;/h2&gt;
+&lt;p&gt;You can install Open WebUI using Docker or through Python&#39;s package managers. You&#39;ll use Docker to run Open WebUI because it&#39;s the quickest and most consistent method. The Docker image bundles Open WebUI with everything it needs.&lt;/p&gt;
+&lt;p&gt;With Docker running, install and start Open WebUI with the following command:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;docker&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;run&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-d&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-p&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;3000&lt;/span&gt;:8080&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;--add-host&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;host.docker.internal:host-gateway&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;-v&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;open-webui:/app/backend/data&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;--name&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;open-webui&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;--restart&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;always&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;ghcr.io/open-webui/open-webui:main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here&#39;s what the options mean:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-p 3000:8080&lt;/code&gt; makes Open WebUI at &lt;code&gt;http://localhost:3000&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--add-host=host.docker.internal:host-gateway&lt;/code&gt; lets the container reach the Ollama service on your host. This connects Open WebUI to the models you pulled.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-v open-webui:/app/backend/data&lt;/code&gt; configures a Docker volume which saves your chat history, settings, and knowledge bases. Leave it out, and you&#39;ll lose everything when the container restarts.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--restart always&lt;/code&gt; ensures Open WebUI restarts if it crashes.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;:main&lt;/code&gt; image is the standard one. There&#39;s also an &lt;code&gt;:ollama&lt;/code&gt; image that bundles Ollama, but you already run Ollama natively, so use &lt;code&gt;:main&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Docker pulls the image on the first run. Once it&#39;s finished downloading, open &lt;code&gt;http://localhost:3000&lt;/code&gt; in your browser and create your first account. The first account you create becomes the administrator. You can configure Open WebUI for multiple users, each with their own accounts and chat histories.&lt;/p&gt;
+&lt;p&gt;Open WebUI finds your Ollama setup automatically. Click the model dropdown at the top of a new chat, and you&#39;ll see the models you have installed previously, including the &lt;code&gt;qwen3.5:35b&lt;/code&gt; model: &lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Open WebUI chat screen using Qwen 3.5 model&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/54/openwebui_chat.png&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;You can try chatting with your model to ensure it works, but it&#39;ll only know about information in its training data. &lt;/p&gt;
+&lt;p&gt;Now that Open WebUI is running, configure it to upload your content.&lt;/p&gt;
+&lt;h2&gt;Configure document chunking, embedding, and retrieval&lt;/h2&gt;
+&lt;p&gt;Before you can upload and configure your knowledge base, you&#39;ll configure how Open WebUI splits your writing into chunks, turns those chunks into searchable data, and decides how many chunks to return for each search. These settings apply to every knowledge base you create. &lt;/p&gt;
+&lt;p&gt;In the &lt;strong&gt;Admin Panel&lt;/strong&gt;, open &lt;strong&gt;Settings&lt;/strong&gt; and choose &lt;strong&gt;Documents&lt;/strong&gt;. You&#39;ll start configuring the &lt;strong&gt;General&lt;/strong&gt; settings:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Open WebUI content extraction settings&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/54/content_extraction.png&quot;/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Leave the &lt;strong&gt;Content Extraction Engine&lt;/strong&gt; on the default setting. The built-in extractor reads text and Markdown locally, which covers most writing. If your archive is mostly PDFs, the local Apache Tika or Docling engines extract them more cleanly. Avoid cloud-based extractors if you want to keep everything private, as those extractors send your files out.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Set the &lt;strong&gt;Text Splitter&lt;/strong&gt; to &lt;strong&gt;Token&lt;/strong&gt;, so the chunk size is counted in tokens. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Set &lt;strong&gt;Chunk Size&lt;/strong&gt; to &lt;code&gt;1500&lt;/code&gt; and &lt;strong&gt;Chunk Overlap&lt;/strong&gt; to &lt;code&gt;200&lt;/code&gt;.  These options control how Open WebUI slices your writing before embedding. These values are good for prose. The overlap keeps sentences from getting cut off at chunk boundaries. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now configure the embedding model:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Open WebUI embedding options&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/54/embedding_options.png&quot;/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set the &lt;strong&gt;Embedding Model Engine&lt;/strong&gt; to &lt;strong&gt;Ollama&lt;/strong&gt;. &lt;/li&gt;
+&lt;li&gt;Choosing &lt;strong&gt;Ollama&lt;/strong&gt; reveals two more fields: an Ollama base URL, already pointed at your Ollama service (the same &lt;code&gt;host.docker.internal&lt;/code&gt; address from the install step), and an API key field. Leave the URL as it is, and leave the API key blank, since local Ollama doesn&#39;t use one.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Type &lt;code&gt;nomic-embed-text&lt;/code&gt; into the &lt;strong&gt;Embedding Model&lt;/strong&gt; field. The embedding model gets baked into your index when you upload, so if you change it later, you have to re-embed everything. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Open a Terminal window and pull the model &lt;code&gt;nomic-embed-text&lt;/code&gt;, the embedding model Open WebUI&#39;s own documentation recommends for an Ollama setup.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;bash
+$ ollama pull nomic-embed-text&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Finally, configure the &lt;strong&gt;Retrieval&lt;/strong&gt; section:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Open WebUI Reranker options&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/54/reranker.png&quot;/&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Turn on &lt;strong&gt;Hybrid Search&lt;/strong&gt;. By default, Open WebUI searches by meaning, which works well for finding related ideas, but it can miss exact terms like names, product titles, and the vocabulary or terms you&#39;ve invented. Hybrid search adds keyword matching alongside the semantic search, so it&#39;s likely to surface more.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Turning on Hybrid Search reveals a &lt;strong&gt;Reranking Model&lt;/strong&gt; field. Set it to &lt;code&gt;bge-reranker-v2-m3&lt;/code&gt;. The reranker reads through the chunks that came back and reorders them so the most relevant ones land at the top, where the model pays the most attention. It runs on the CPU, which is fine for a personal archive. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Set &lt;strong&gt;Top K&lt;/strong&gt; to 10. Top K is the number of chunks each search returns to the model, and the default is low. This Top K controls retrieval. It is not the same as Ollama&#39;s &lt;code&gt;top_k&lt;/code&gt; sampling parameter, which controls how the model picks words as it writes. Leave the relevance threshold at 0 for now.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You&#39;ll also see a RAG Template field on this page. Leave it on its default. It shapes the older path where Open WebUI injects retrieved text directly into the prompt, not the tool-based search your model will use. Save your settings. You&#39;re now ready to upload your content.&lt;/p&gt;
+&lt;h2&gt;Create the knowledge base&lt;/h2&gt;
+&lt;p&gt;Now import your writing. Go to &lt;strong&gt;Workspace&lt;/strong&gt;, then &lt;strong&gt;Knowledge&lt;/strong&gt;, and click the &lt;strong&gt;New Knowledge&lt;/strong&gt; button.&lt;/p&gt;
+&lt;p&gt;Fill in the &lt;strong&gt;What are you working on&lt;/strong&gt; field with a name for the knowledge base, and enter details about what you want to accomplish. &quot;My newsletter issues, blog posts, and tutorials&quot; works better than &quot;stuff.&quot;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Open WebUI Knowledge info&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/54/new_knowledge.png&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;Open the knowledge base you created and use the &lt;strong&gt;Add Content&lt;/strong&gt; menu to import your writing. Choose one of the following methods to add some content:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Upload File&lt;/strong&gt; handles individual documents. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload Directory&lt;/strong&gt; imports a whole folder at once, which helps if your posts are stored as Markdown files. Open WebUI embeds each file as you add it, using the model and chunk settings you configured a moment ago. Large imports take a while, and the embedding runs in your browser session, so don&#39;t navigate away from the page while it&#39;s working.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sync Directory&lt;/strong&gt; uploads a directory and keeps track of what changed between your directory and the knowledge base. When you choose this option, Open WebUI adds or removes files from the knowledge base. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can create directories within your knowledge base if you want to organize its contents, but the &lt;strong&gt;Sync Directory&lt;/strong&gt; setting doesn&#39;t support this. It instead replaces everything with the contents of the source directory you specify.&lt;/p&gt;
+&lt;p&gt;When the files show as processed, your archive is searchable. Now you can attach your knowledge base to a model and configure a prompt.&lt;/p&gt;
+&lt;h2&gt;Create a model and attach your knowledge&lt;/h2&gt;
+&lt;p&gt;A model in Open WebUI is a wrapper around a base model. It lets you add your own system prompt, a context size, tool settings, and knowledge bases. This model then shows up in the model selection when you start new chats.&lt;/p&gt;
+&lt;p&gt;Go to &lt;strong&gt;Workspace&lt;/strong&gt;, then &lt;strong&gt;Models&lt;/strong&gt;, and click &lt;strong&gt;Add New Model&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Enter a name for the model and select the &lt;code&gt;qwen-3.5-35b&lt;/code&gt; model you pulled at the start as the base model.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Open WebUI model settings&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/54/model_options.png&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;Open the &lt;strong&gt;Advanced Params&lt;/strong&gt; section. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Set &lt;strong&gt;Function Calling&lt;/strong&gt; to &lt;strong&gt;Native&lt;/strong&gt;. Native is what lets the model call the knowledge tools at all. You can also set Native once for every model under &lt;strong&gt;Admin Panel&lt;/strong&gt;, then &lt;strong&gt;Settings&lt;/strong&gt;, then &lt;strong&gt;Models&lt;/strong&gt;, but setting it here keeps it scoped to this model only. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Set &lt;code&gt;num_ctx&lt;/code&gt; to &lt;code&gt;32768&lt;/code&gt;. Open WebUI sends &lt;code&gt;num_ctx&lt;/code&gt; to Ollama on each request, so you don&#39;t need to create a custom model variant or worry about a global setting. You don&#39;t need a larger context than 32k: with native retrieval, the model pulls in one search&#39;s worth of results at a time, not your whole archive, and 32k leaves room for several rounds of searching plus the answer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Find the &lt;strong&gt;Knowledge&lt;/strong&gt; section and select the knowledge base you created. This scopes the model&#39;s knowledge tools to your writing.&lt;/p&gt;
+&lt;p&gt;Confirm the model can reach its knowledge tools. Under &lt;strong&gt;Capabilities&lt;/strong&gt;, make sure the &lt;strong&gt;Builtin Tools&lt;/strong&gt; capability is on and the &lt;strong&gt;Knowledge Base&lt;/strong&gt; tool category is enabled. These should be set for you by default, but double-check that they are before moving on.&lt;/p&gt;
+&lt;p&gt;Now set the system prompt. Your prompt needs to tell the model to search your knowledge base every time and tell it what tools to use to retrieve your content. Here&#39;s one to start with:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;You are a research assistant with access to my own writing: newsletter issues, blog posts, book drafts, and personal notes, stored in an attached knowledge base.
+
+Always search the knowledge base before you answer. For every question, without exception, first call `list_knowledge` to see what is attached, then call `query_knowledge_files` to search it. Do this even when the question looks like general knowledge and even when you are confident you already know the answer. I have written about many topics, including general technical ones, and I want my own writing surfaced whenever it exists. Do not decide on your own that a question is too general to need a search.
+
+After searching, ground your answer in the results. Synthesize across all the relevant sources rather than relying on a single excerpt, and name which source each point comes from. Keep my own terminology and phrasing intact, and point out when something is a rough note rather than published writing. If the search returns nothing relevant, tell me the knowledge base had nothing on this, then answer from general knowledge.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The backticks around &lt;code&gt;list_knowledge&lt;/code&gt; and &lt;code&gt;query_knowledge_files&lt;/code&gt; mark those words as the tool names, which helps the model call them instead of treating them as prose. The model can decide that a question is too general to search your knowledge, and it might try to answer from its training data, so telling it to search every time, even when it thinks it knows the answer, is what makes it use your writing first.&lt;/p&gt;
+&lt;p&gt;Save the model. Now you can test it out.&lt;/p&gt;
+&lt;h2&gt;Ask your model some questions&lt;/h2&gt;
+&lt;p&gt;Start a new chat, select your model, and ask it something you know is in your archive but might have phrased differently than you&#39;d search for. For example, if you have information in your knowledge base about how to prepare for interviews, you can ask it how to prepare:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&quot;Open WebUI results, showing the query and tool calls&quot; class=&quot;newsletter-image&quot; src=&quot;https://bphogan.com/images/ccc/54/chat_results.png&quot;/&gt;&lt;/p&gt;
+&lt;p&gt;You&#39;ll see the model call its knowledge tools before it answers, and a good answer lists the sources it used so you can expand each one and confirm the model isn&#39;t making things up. &lt;/p&gt;
+&lt;p&gt;If you&#39;re not seeing the results you want, try one or more of the following fixes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the model answers without searching, and you&#39;ve set &lt;strong&gt;Function Calling&lt;/strong&gt;  to &lt;strong&gt;Native&lt;/strong&gt; and the &lt;strong&gt;Knowledge Base Tool&lt;/strong&gt; category is enabled, the model may not be calling the tools effectively. Switch out the model for a different one and try again. Some models have issues with reliably calling tools, or they send back invalid responses from those tools. You can edit your model&#39;s definition and replace the underlying model any time you want without having to delete the model and start over.&lt;/li&gt;
+&lt;li&gt;If answers come out thin, try switching to a dense model around 30 billion parameters, like &lt;code&gt;gemma4:31B&lt;/code&gt;. Dense models can reason better, but they run a lot slower than the mixture-of-experts model you used.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;If the model searches but misses things you know are there, go to &lt;strong&gt;Admin Panel&lt;/strong&gt;, select &lt;strong&gt;Settings&lt;/strong&gt;, select &lt;strong&gt;Documents&lt;/strong&gt;. Increase &lt;strong&gt;Top K&lt;/strong&gt; and confirm that hybrid search and the reranker are on. The search tool uses them when they&#39;re enabled, and semantic search alone is the usual reason exact terms get missed. You can change these freely without re-importing, since they apply at query time, not at upload. Only the embedding model and chunk settings bake into the index.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once you&#39;re seeing positive results, add new documents to your knowledge base and keep asking it questions. Add work notes, drafts, ideas, and more.&lt;/p&gt;
+&lt;h1&gt;Parting Thoughts&lt;/h1&gt;
+&lt;p&gt;Before the next issue, explore the following things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Explore different models and see how they perform. There are many variables, including the source of the models and the hardware you used.&lt;/li&gt;
+&lt;li&gt;Uploading files using the web interface works for short-term work, but as your files change, you&#39;ll want a better solution, so look at the &lt;a href=&quot;https://github.com/open-webui/oikb?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-54-build-yougpt-with-open-webui&quot; target=&quot;_blank&quot;&gt;oikb&lt;/a&gt; command-line tool. You can use this official tool to ingest content, keep things in sync, and update your knowledge bases on a schedule.&lt;/li&gt;
+&lt;li&gt;Explore other content extraction engines and see how they perform against PDFs. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See you next issue. As always, thanks for reading.&lt;/p&gt;</description>
+      <pubDate>Wed, 01 Jul 2026 02:22:09 -0000</pubDate>
+      <guid isPermaLink="true">https://newsletter.bphogan.com/archive/issue-54-build-yougpt-with-open-webui/</guid>
+      <dc:date>2026-07-01T02:22:09Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Tom&#39;s opinionated guide to skill building 101</title>
+      <link>https://idratherbewriting.com/blog/all-about-skills-intro</link>
+      <description>The thing I&#39;m most excited about with AI lately is SKILLs. (I have to capitalize the word at first so you know I&#39;m talking about agent skills rather than just general capabilities; however, I&#39;ll subsequently just refer to agent skills as skills.) I&#39;ve now built about 10 skills for various purposes, and I&#39;d like to write a post that shares some of my thoughts around skill building in a more opinionated way.
+        </description>
+      <pubDate>Tue, 30 Jun 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/all-about-skills-intro</guid>
+      <dc:date>2026-06-30T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] AI Book Club discussion of The Infinity Machine by Sebastian Mallaby</title>
+      <link>https://idratherbewriting.com/blog/book-club-infinity-machine-mallaby</link>
+      <description>This is a recording of the AI Book Club discussion of Sebastian Mallaby&#39;s &lt;i&gt;&lt;a href=&#39;https://www.amazon.com/Infinity-Machine-Hassabis-DeepMind-Superintelligence/dp/0735222521&#39;&gt;The Infinity Machine: Demis Hassabis, DeepMind, and the Quest for Superintelligence&lt;/a&gt;&lt;/i&gt;. In the discussion, we talk about the complex character of Demis Hassabis (and comparisons to Ender&#39;s game), the idea of founders&#39; personal morality acting as a final safeguard, and the relentless acceleration of AI development. We also talk about the historical rivalries between deep learning and reinforcement learning, the growing urgency around AI-driven job displacement, and what it means to train AI to automate our own work.
+        </description>
+      <pubDate>Sun, 28 Jun 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/book-club-infinity-machine-mallaby</guid>
+      <dc:date>2026-06-28T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[This is important] Manage AI-driven docs contributions</title>
+      <link>https://thisisimportant.net/posts/manage-ai-contributions/</link>
+      <description>&lt;p&gt;AI tools make it easier than ever to generate content. With that ease, nearly anyone can become a contributor to the documentation. When people are using AI tools to create documentation, how do you maintain the quality, consistency, and accuracy of the content?&lt;/p&gt;
+&lt;p&gt;Fabrizio Ferri Benedetti proposes &lt;a href=&quot;https://passo.uno/ai-docs-policy-contributions/&quot;&gt;defining an AI policy for your documentation&lt;/a&gt;, with key recommendations to outline principles for using AI for documentation, define the tasks that need a human in the loop, request disclosure of AI tool use to create a feedback loop to learn from, and combine human review with deterministic tools.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s great advice, but I want to go beyond implementing a policy for AI usage. If you&amp;rsquo;re frustrated that people are producing low quality content that doesn&amp;rsquo;t meet your expectations or what you want to publish on the documentation site, make it easier on everyone by encoding your expectations in processes, documentation, and tooling.&lt;/p&gt;
+&lt;div class=&quot;toc&quot;&gt;
+    &lt;nav id=&quot;TableOfContents&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;#collaborate-with-contributors&quot;&gt;Collaborate with contributors&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#define-a-content-strategy&quot;&gt;Define a content strategy&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#write-contributing-guidelines&quot;&gt;Write contributing guidelines&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#set-up-a-triage-process&quot;&gt;Set up a triage process&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#document-style-guidance&quot;&gt;Document style guidance&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#add-tooling-to-enforce-style-and-best-practices&quot;&gt;Add tooling to enforce style and best practices&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#ai-driven-contributions-dont-have-to-be-sloppy&quot;&gt;AI-driven contributions don&amp;rsquo;t have to be sloppy&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;collaborate-with-contributors&quot;&gt;Collaborate with contributors&lt;/h2&gt;
+&lt;p&gt;People writing AI-generated content to send to customers (instead of the official product documentation) are not the enemy. Those of us writing official technical documentation have the same goal as folks writing unofficial content — to help customers (and prospective customers) use our product to get their tasks done.&lt;/p&gt;
+&lt;p&gt;How we help the user might look a little different, depending on our expertise, skill sets, and customer exposure. If you work with folks that are using AI to write unofficial product content or to contribute to the documentation site, get excited — someone cared enough about the customer to make content for them!&lt;/p&gt;
+&lt;p&gt;Channel the enthusiasm of potential contributors by starting a conversation. Be curious! Discover more about the content being created by your non-docs colleagues:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Why did they create this content? What was the motivation? What customer problem was it solving? Who is it for?&lt;/li&gt;
+&lt;li&gt;Do they know about existing documentation pages about similar topics, if they exist? If so, can they elaborate on what isn&amp;rsquo;t quite right about those pages, or the gap that the new content is filling?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Treat it like a user research exercise — what is your documentation not doing that this person wanted to fix by creating something else? Depending on what you learn, you can point them in the right next direction — another official content pipeline, a restructured documentation contribution, or a stamp of approval for their unofficial content!&lt;/p&gt;
+&lt;p&gt;The direction you point them depends on your content strategy&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&quot;define-a-content-strategy&quot;&gt;Define a content strategy&lt;/h2&gt;
+&lt;p&gt;Not everything is official product documentation!&lt;/p&gt;
+&lt;p&gt;People contribute content that they wrote because it was useful to them, or solved a particular customer&amp;rsquo;s problem, and they think it should be in the documentation. Sometimes people use AI to generate and create documentation-like artifacts, functioning as unofficial product documentation, without trying to contribute to the documentation directly. Sometimes people don&amp;rsquo;t know what&amp;rsquo;s already in the documentation — they didn&amp;rsquo;t check — they just had an idea and thought it would be a good thing to add!&lt;/p&gt;
+&lt;p&gt;Official product documentation is a contract with the customer about the supportable product functionality — here is what the product is, and how it works — but it doesn&amp;rsquo;t have to stop there. Product documentation can include best practices, recommendations, and conceptual overviews that teach people how the product works so that they can be more successful.&lt;/p&gt;
+&lt;p&gt;However, the content on a documentation site needs to be maintained, and some types of content lend themselves better to content types that can be published once and left to drift, rather than continually updated and maintained documentation.&lt;/p&gt;
+&lt;p&gt;To identify what content belongs where, define the content strategy. Sit down with your colleagues, or yourself, and answer the following questions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What belongs on the documentation site?&lt;/li&gt;
+&lt;li&gt;What belongs on the company blog?&lt;/li&gt;
+&lt;li&gt;What belongs in internal sales enablement decks?&lt;/li&gt;
+&lt;li&gt;What belongs on the customer community forum?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Answering these questions, and doing additional work to define a content strategy, helps identify the right home for different types of content. With a content strategy, you can define a coherent voice and purpose for each content site and identify where different types of content belong.&lt;/p&gt;
+&lt;p&gt;If you have a defined content strategy, you have a clear direction to point potential documentation contributors if they, for example, want to publish marketing-style content about product functionality that isn&amp;rsquo;t fully implemented yet in the product (a blog post, for example).&lt;/p&gt;
+&lt;p&gt;A content strategy also helps you redirect technically correct content that otherwise doesn&amp;rsquo;t fit the function, architecture, or strategy of the documentation site, without having to offer a hard &amp;ldquo;no&amp;rdquo; to potential collaborators:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This deep dive into product architecture is a great idea for a blog post!&lt;/p&gt;
+&lt;p&gt;This decision tree for recommending different license models would make a great deck for training account executives!&lt;/p&gt;
+&lt;p&gt;This complex workaround for missing product functionality would be a perfect fit for a post on the community forum — it&amp;rsquo;s a niche use case, but super useful for the customers that need it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;To have conversations with potential contributors about your content strategy, you need to know where your contributors are, and they need to know how to find you.&lt;/p&gt;
+&lt;h2 id=&quot;write-contributing-guidelines&quot;&gt;Write contributing guidelines&lt;/h2&gt;
+&lt;p&gt;If you produce an open source project with public documentation, you might already have documented contributing guidelines in a &lt;a href=&quot;http://CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; file. If you work in a docs-as-code environment, you might have opened your repository internally to product managers, engineers, and support representatives to open pull requests to contribute. If you don&amp;rsquo;t work in either of those environments, you might have never thought about defining contributing guidelines for your content management system.&lt;/p&gt;
+&lt;p&gt;With the increasing use of AI assistants and tools in the workplace, it&amp;rsquo;s more common (and easier than ever before) for people outside the documentation team to contribute to documentation, no matter how you maintain and publish your content. If you don&amp;rsquo;t yet have contributing guidelines, it&amp;rsquo;s time to write some.&lt;/p&gt;
+&lt;p&gt;Start by documenting the expectations you have about types of content you want people to contribute to your documentation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fix typos and errors&lt;/li&gt;
+&lt;li&gt;Add a section to an existing topic, like a troubleshooting guide&lt;/li&gt;
+&lt;li&gt;Write a new user onboarding checklist&lt;/li&gt;
+&lt;li&gt;Provide real-world use cases and syntax examples&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Outline these options that you might be willing to accept as direct content contributions, and also identify what is out of scope for contributions — rearchitecting the content, rewriting multiple topics — and offering alternatives or requesting that they contact the documentation team first.&lt;/p&gt;
+&lt;h2 id=&quot;set-up-a-triage-process&quot;&gt;Set up a triage process&lt;/h2&gt;
+&lt;p&gt;Good contributions start with a conversation. You can&amp;rsquo;t have those conversations if people don&amp;rsquo;t know how to contact you and if you don&amp;rsquo;t make yourself available. The contributing guidelines help people know how to reach you. If you set up a triage process, you can have a plan to reactively and proactively interact with potential documentation contributors.&lt;/p&gt;
+&lt;p&gt;A triage process involves the following:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;One or more ways to contact the team, such as with an email alias, a dedicated Slack channel, feedback on individual documentation topics, GitHub issues, a ticket creation form, and more.&lt;/li&gt;
+&lt;li&gt;A designated rotation of writers responsible for reviewing and responding to the incoming contacts.&lt;/li&gt;
+&lt;li&gt;A service-level agreement on the team of how often to review and respond to various types of requests.&lt;/li&gt;
+&lt;li&gt;Guidelines for what the expected output of the review and response process is.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&amp;rsquo;ve had the most success in circumstances where one person is responsible for triage on a weekly basis. Having one designated person helps reduce context switching for the rest of the team, ensures responsiveness, and standardizes expectations that other teams might have for working with your team. Depending on the size of your team and the volume of contact input, you can experiment with other options.&lt;/p&gt;
+&lt;h2 id=&quot;document-style-guidance&quot;&gt;Document style guidance&lt;/h2&gt;
+&lt;p&gt;To ensure high-quality content contributions, you must document what &amp;ldquo;high quality&amp;rdquo; looks like for your documentation. You might have a fully detailed style guide, you might have chosen an industry-standard one to use and one page of documented product-specific style guidelines, or you might only have a list of low-level guidance that was documented on an as-needed basis:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;How to handle a single item list&lt;/li&gt;
+&lt;li&gt;Whether to use sentence case for headings&lt;/li&gt;
+&lt;li&gt;The different meanings of may, might, and can&lt;/li&gt;
+&lt;li&gt;The ambiguity of once&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A more detailed style guide likely cover guidance like how to refer to the user interface, how to structure links to other content, and task step formats.&lt;/p&gt;
+&lt;p&gt;However, if you are using a style guide developed exclusively for yourself or a small team of technical writers, you might forget to include technical writing best practices like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Orient the user before giving an instruction.&lt;/li&gt;
+&lt;li&gt;Write user-centric headings to &lt;a href=&quot;https://help.splunk.com/en/splunk-style-guide/a-word-about-splunk-docs&quot;&gt;focus on the user task instead of the product feature&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://help.splunk.com/en/splunk-style-guide/voice-and-tone/be-active-and-present&quot;&gt;Avoid future tense&lt;/a&gt; and the &lt;a href=&quot;https://help.splunk.com/en/splunk-style-guide/voice-and-tone/write-in-indicative-or-imperative-mood&quot;&gt;subjunctive mood&lt;/a&gt; to ensure clarity and precision of language.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://help.splunk.com/en/splunk-style-guide/voice-and-tone/use-plain-language&quot;&gt;Use plain language&lt;/a&gt; and avoid idioms and technical jargon.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://help.splunk.com/en/splunk-style-guide/voice-and-tone/avoid-qualitative-language&quot;&gt;Avoid terms like &amp;ldquo;easily&amp;rdquo; or &amp;ldquo;quickly&amp;rdquo;&lt;/a&gt; that make value judgments about a process.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You might also forget to document (the horror) standard practices on your team:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;File name conventions for pages and images&lt;/li&gt;
+&lt;li&gt;Heading conventions for different doc types&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Often, you might neglect to write these things down until you hire a junior writer that needs more guidance, or until your team grows large enough to where you can&amp;rsquo;t peer review each other&amp;rsquo;s work, or an editing team exists and can dedicate effort toward a style guide.&lt;/p&gt;
+&lt;p&gt;In the era of AI-generated documentation contributions, it&amp;rsquo;s essential to codify standard conventions, technical writing best practices, and nitpicky style guidelines in a style guide to increase the likelihood of higher quality contributions upfront, which can make reviewing and giving feedback on those contributions easier and quicker as well.&lt;/p&gt;
+&lt;h2 id=&quot;add-tooling-to-enforce-style-and-best-practices&quot;&gt;Add tooling to enforce style and best practices&lt;/h2&gt;
+&lt;p&gt;Documenting style guidance is step one — enforcing it is step two! Make it easy on your contributors and yourself (and your teammates) by combining deterministic tools, like scripts and rules-based checks, with probabilistic tooling, like AI-driven audits and skills, that might be more comfortable for new contributors to interact with.&lt;/p&gt;
+&lt;p&gt;Some deterministic tooling that I recommend setting up in your documentation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://vale.sh/&quot;&gt;Vale&lt;/a&gt; to assess the style compliance of content, checking for errors like duplicate words, missing alt text for images, and warning for use of passive voice and future tense.&lt;/li&gt;
+&lt;li&gt;A tool like &lt;a href=&quot;https://docs.doc-detective.com/&quot;&gt;Doc Detective&lt;/a&gt; to assess the accuracy of your content.&lt;/li&gt;
+&lt;li&gt;An automatic link checker to ensure that links included in the content are valid. Many content management systems provide a link checker, but you can adapt a package like &lt;a href=&quot;https://github.com/lycheeverse/lychee/&quot;&gt;Lychee&lt;/a&gt; to run automatically.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you are not in a docs-as-code environment, you can run some of these tools locally when you draft your content, explore similar functionality in your content management system (and request that your CMS add it), or lean more heavily on the probabilistic tooling options.&lt;/p&gt;
+&lt;p&gt;If you are getting AI-generated documentation, meet your contributors where they are. Consider providing the following resources to use with AI assistants to improve the quality of contributions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a skill file to use for reviewing documentation, assessing important characteristics that are difficult to assess with a deterministic rule, like use of plain language, qualitative phrasing, overuse of feature names, and other style standards.&lt;/li&gt;
+&lt;li&gt;If using docs-as-code, a repo-specific &lt;a href=&quot;http://agents.md&quot;&gt;agents.md&lt;/a&gt; file to provide instructions to an AI agent about content structure, semantics, and syntax expectations, including high-level style guidelines about header structure and task formatting.&lt;/li&gt;
+&lt;li&gt;Make your documentation available for semantic search by AI tools, using an MCP server or a service like &lt;a href=&quot;http://Kapa.ai&quot;&gt;Kapa&lt;/a&gt;, &lt;a href=&quot;https://inkeep.com/&quot;&gt;Inkeep&lt;/a&gt;, &lt;a href=&quot;https://fin.ai/&quot;&gt;Fin&lt;/a&gt;, or &lt;a href=&quot;https://decagon.ai/&quot;&gt;Decagon&lt;/a&gt;, to help reduce the likelihood of duplicate or inaccurate content contributions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you find yourself consistently providing the same, repetitive review feedback, it&amp;rsquo;s a sign that you need to expand your style guide.&lt;/p&gt;
+&lt;p&gt;To improve accuracy of contributed content, explore a tool like &lt;a href=&quot;https://github.com/reem-sab/doc-sentinel-ai&quot;&gt;Doc Sentinel AI&lt;/a&gt;, &lt;a href=&quot;https://promptless.ai/&quot;&gt;Promptless&lt;/a&gt;, or AI tools with the capacity to explore the product code base and answer questions about it.&lt;/p&gt;
+&lt;p&gt;The more tooling that you have in place to enable higher-quality contributions, the easier it can be to address a high volume of AI-generated unofficial product content.&lt;/p&gt;
+&lt;h2 id=&quot;ai-driven-contributions-dont-have-to-be-sloppy&quot;&gt;AI-driven contributions don&amp;rsquo;t have to be sloppy&lt;/h2&gt;
+&lt;p&gt;Don&amp;rsquo;t be exhausted by an inevitable future as a desperate defender of the documentation site from the incursion of AI slop. I&amp;rsquo;ve provided a comprehensive list of options, but remember: something is better than nothing, and all process is iterative.&lt;/p&gt;
+&lt;p&gt;Avoid sloppy documentation contributions with a combination of process, internal documentation, and effective tooling.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://thisisimportant.net/images/2026/06/ai-generated-content.png&quot; alt=&quot;Illustration of a person looking delighted in front of an open laptop, with a robot crawling over the corner of the laptop screen with a scared expression&quot;&gt;&lt;/p&gt;
+</description>
+      <pubDate>Thu, 25 Jun 2026 21:59:53 -0000</pubDate>
+      <guid isPermaLink="true">https://thisisimportant.net/posts/manage-ai-contributions/</guid>
+      <dc:date>2026-06-25T21:59:53Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Regular Expressions: Essential Tool for Technical Writers</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/regular-expressions-essential-tool-for-technical-writers/</link>
+      <description>&lt;p&gt;Picture a documentation specialist staring at a 500-page API reference manual needing urgent revision before tomorrow’s release. This pressure alone tests endurance limits. Now imagine this specialist confronting a critical formatting nightmare without knowledge of regular expressions. It’s akin to being dropped into an infinite spreadsheet maze without formulas or cell references. One careless bulk...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/regular-expressions-essential-tool-for-technical-writers/&quot;&gt;Regular Expressions: Essential Tool for Technical Writers&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 24 Jun 2026 11:34:04 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/regular-expressions-essential-tool-for-technical-writers/</guid>
+      <dc:date>2026-06-24T11:34:04Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] Tal Gluck on the State of Docs and What&#39;s Broken in Tech Writing</title>
+      <link>https://www.youtube.com/watch?v=DDQMJPhoY3k</link>
+      <description>Interested in refining your professional brand, interview prep, or other career coaching?
+Schedule a meeting to see if we&#39;re a good fit: https://calendly.com/dfhauer/30min
+Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+What happens when the person writing the report on AI and documentation also has to fact-check AI for lying about who said what?
+
+Spoiler: a lot of babysitting.
+
+In this episode of Technical Writing Uncensored, I sit down with Tal Gluck — developer advocate at GitBook and author of the State of the Docs Report — to talk about what&#39;s actually changing for technical writers right now, not the hype version.
+
+🎯 What we cover:
+- Why AI usage among documentation teams jumped from a third to two-thirds in one year
+- The &quot;garbage in, garbage out&quot; problem, now applied to AI consuming your docs
+- What happened when Tal used AI to help write a report about AI — including fabricated quotes he had to catch
+- Tal&#39;s blunt take on the documentation layoffs sweeping the industry
+- The new job titles emerging — Docs Engineer, Docs Auditor, Context Engineer — and what they actually mean
+
+State of the Docs: https://www.stateofdocs.com/2026
+LinkedIn: https://www.linkedin.com/in/tal-gluck-32464131/ 
+Instagram: https://www.instagram.com/talagluck/
+
+If you got value from this, please like, subscribe, and hit that bell icon. It really helps the channel.
+
+👉 Have you seen your title or role description start to shift this year? Drop a comment below.
+
+#TechnicalWriting #TechComm #TechnicalWriter #Documentation #DocsAsCode #TechWriterLife #TechnicalWritingUncensored #CareerAdvice #APIDocumentation #DeveloperExperience #DocsOrItDidntHappen
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Mon, 22 Jun 2026 15:00:32 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=DDQMJPhoY3k</guid>
+      <dc:date>2026-06-22T15:00:32Z</dc:date>
+    </item>
+    <item>
+      <title>[Heroic Technical Writing] Dog Toy Test Report</title>
+      <link>https://heroictechwriting.com/2026/06/20/dog-toy-test-report/</link>
+      <description>&lt;p&gt;The Pup Puzzle was purchased as a way to file down the dogs’ claws. Test #1: Treats inserted into trays so dogs could see them. Dog 1 kept waiting for the humans to hand her treats. Dog 2 became startled &amp;#8230; &lt;a href=&quot;https://heroictechwriting.com/2026/06/20/dog-toy-test-report/&quot;&gt;Continue reading &lt;span class=&quot;meta-nav&quot;&gt;&amp;#8594;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://heroictechwriting.com/2026/06/20/dog-toy-test-report/&quot;&gt;Dog Toy Test Report&lt;/a&gt; appeared first on &lt;a href=&quot;https://heroictechwriting.com&quot;&gt;Heroic Technical Writing: Advice and Insights on the Business of Technical Communication&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 20 Jun 2026 12:19:42 -0000</pubDate>
+      <guid isPermaLink="true">https://heroictechwriting.com/2026/06/20/dog-toy-test-report/</guid>
+      <dc:date>2026-06-20T12:19:42Z</dc:date>
+    </item>
+    <item>
+      <title>[Story Needle] Why is using AI so exhausting? </title>
+      <link>https://storyneedle.com/why-is-using-ai-so-exhausting/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=why-is-using-ai-so-exhausting</link>
+      <description>&lt;p&gt;AI doesn&#39;t always save time, and even when it does, it can leave users exhausted.  AI tools are poorly matched to the needs of knowledge workers.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://storyneedle.com/why-is-using-ai-so-exhausting/&quot;&gt;Why is using AI so exhausting? &lt;/a&gt; appeared first on &lt;a href=&quot;https://storyneedle.com&quot;&gt;Story Needle&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 18 Jun 2026 13:38:48 -0000</pubDate>
+      <guid isPermaLink="true">https://storyneedle.com/why-is-using-ai-so-exhausting/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=why-is-using-ai-so-exhausting</guid>
+      <dc:date>2026-06-18T13:38:48Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Google Docs vs. ClickHelp</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/google-docs-vs-clickhelp/</link>
+      <description>&lt;p&gt;Google Docs has earned its spot as the world’s most popular word processor, with over a billion users worldwide. Its cloud-based simplicity is attractive for beginners and start-ups: draft a quick API guide, share, and collaborate live without software installs. Free tiers and seamless Google Workspace integration make it simple for small teams, individual entrepreneurs,...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/google-docs-vs-clickhelp/&quot;&gt;Google Docs vs. ClickHelp&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 17 Jun 2026 12:15:46 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/google-docs-vs-clickhelp/</guid>
+      <dc:date>2026-06-17T12:15:46Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] Early Tech Writers Solve Problems. Late Ones Just Document Them | Interview with Carl Isaac</title>
+      <link>https://www.youtube.com/watch?v=6lWPtqLKF8I</link>
+      <description>Interested in refining your professional brand, interview prep, or other career coaching?
+Schedule a meeting to see if we&#39;re a good fit: https://calendly.com/dfhauer/30min
+Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+Learn how a career as a technical documentation manager evolves from a background in translation and language studies.
+
+In this episode of Technical Writing Uncensored, we interview Carl Isaac, a seasoned professional based in Stuttgart, Germany. Carl details his transition from studying German and translation to managing complex technical documentation projects. This conversation is designed for anyone considering a shift into the field or looking to understand the day-to-day reality of a technical documentation manager working in Germany.
+
+We discuss the skills required to bridge the gap between linguistic expertise and technical communication. You will hear firsthand how Carl leveraged his translation experience to excel in his current role. Whether you are currently working as a translator or exploring a new path in technical writing, this interview provides a clear look at the professional journey involved in mastering this discipline.
+
+#TechnicalWriting #TechComm #TechnicalWriter #Documentation #TechWriterLife #TechnicalWritingUncensored #ContentStrategy #KnowledgeManagement #WriteTheDocs #DocsOrItDidntHappen #CareerAdvice #UXWriting #DeveloperExperience
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Tue, 16 Jun 2026 17:52:04 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=6lWPtqLKF8I</guid>
+      <dc:date>2026-06-16T17:52:04Z</dc:date>
+    </item>
+    <item>
+      <title>[CyberText Newsletter] AI voiceover</title>
+      <link>https://cybertext.wordpress.com/2026/06/15/ai-voiceover/</link>
+      <description>I&amp;#8217;ve gone to the dark side! I&amp;#8217;ve now used AI to do the voiceovers in some instructional videos I&amp;#8217;m making. These videos are for some software I&amp;#8217;ve been using (not related to technical writing and editing) that has no documentation. The aim is to upload these to YouTube once I&amp;#8217;ve finished so that others can [&amp;#8230;]</description>
+      <pubDate>Mon, 15 Jun 2026 03:39:34 -0000</pubDate>
+      <guid isPermaLink="true">https://cybertext.wordpress.com/2026/06/15/ai-voiceover/</guid>
+      <dc:date>2026-06-15T03:39:34Z</dc:date>
+    </item>
+    <item>
+      <title>[Paligo Blog] Import Markdown and Convert it to Structured Content Automatically</title>
+      <link>https://paligo.net/blog/technical-writing/import-markdown-and-convert-to-structured-content-automatically/</link>
+      <description>&lt;p&gt;Banking and financial institutions that must adhere to strict regulatory and supervisory compliance‌ requirements. A CCMS, like the Paligo CCMS, offers a comprehensive solution to overcome these content-related challenges from ensuring compliance to streamlining workflows and supporting global expansion, and more.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://paligo.net/blog/technical-writing/import-markdown-and-convert-to-structured-content-automatically/&quot;&gt;Import Markdown and Convert it to Structured Content Automatically&lt;/a&gt; appeared first on &lt;a href=&quot;https://paligo.net&quot;&gt;Paligo&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 12 Jun 2026 12:40:29 -0000</pubDate>
+      <guid isPermaLink="true">https://paligo.net/blog/technical-writing/import-markdown-and-convert-to-structured-content-automatically/</guid>
+      <dc:date>2026-06-12T12:40:29Z</dc:date>
+    </item>
+    <item>
+      <title>[Passo Uno] Feed the machines, then guide the humans</title>
+      <link>https://passo.uno/tech-writing-role-split/</link>
+      <description>&lt;p&gt;Docs as code used to mean editing docs as if they were code. Today it also means that docs have become &lt;em&gt;executable&lt;/em&gt;, either as agentic instructions, skills, or context for large language models. Tech writers must now ensure that the reference and procedures they’ve carefully written and edited are the best possible fuel for AI, lest they jam the machine or make it stray into dangerous territory. Humans have their own needs though. Who feeds them?&lt;/p&gt;</description>
+      <pubDate>Fri, 12 Jun 2026 12:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://passo.uno/tech-writing-role-split/</guid>
+      <dc:date>2026-06-12T12:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Damilola Oladele] My first AI integration: adding semantic search to my blog</title>
+      <link>https://damilola-oladele.dev/posts/my-first-ai-integration/</link>
+      <description>How I added an opt-in semantic search mode to my static Jekyll blog.</description>
+      <pubDate>Wed, 10 Jun 2026 23:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://damilola-oladele.dev/posts/my-first-ai-integration/</guid>
+      <dc:date>2026-06-10T23:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Paligo Blog] The Next-Gen Editor Democratizes Structured Authoring for the Entire Enterprise</title>
+      <link>https://paligo.net/blog/technical-writing/the-next-gen-editor-democratizes-structured-authoring-for-the-enterprise/</link>
+      <description>&lt;p&gt;Banking and financial institutions that must adhere to strict regulatory and supervisory compliance‌ requirements. A CCMS, like the Paligo CCMS, offers a comprehensive solution to overcome these content-related challenges from ensuring compliance to streamlining workflows and supporting global expansion, and more.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://paligo.net/blog/technical-writing/the-next-gen-editor-democratizes-structured-authoring-for-the-enterprise/&quot;&gt;The Next-Gen Editor Democratizes Structured Authoring for the Entire Enterprise&lt;/a&gt; appeared first on &lt;a href=&quot;https://paligo.net&quot;&gt;Paligo&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 10 Jun 2026 15:21:40 -0000</pubDate>
+      <guid isPermaLink="true">https://paligo.net/blog/technical-writing/the-next-gen-editor-democratizes-structured-authoring-for-the-enterprise/</guid>
+      <dc:date>2026-06-10T15:21:40Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] AI for Video Content in Technical Documentation</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/ai-for-video-content-in-technical-documentation/</link>
+      <description>&lt;p&gt;Screen recording tools and AI services significantly streamline video tutorial production for technical documentation. They enable content creators to capture, edit, and distribute instructional content efficiently. Tools such as Snagit, OBS Studio, and AI-powered platforms like Descript help both startups and enterprise teams produce high-quality tutorials. These videos can then be seamlessly embedded into documentation...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/ai-for-video-content-in-technical-documentation/&quot;&gt;AI for Video Content in Technical Documentation&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 10 Jun 2026 11:40:48 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/ai-for-video-content-in-technical-documentation/</guid>
+      <dc:date>2026-06-10T11:40:48Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] ClickHelp: Documentation Platform That Helps You Build Better Products</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/clickhelp-documentation-platform-that-helps-you-build-better-products/</link>
+      <description>&lt;p&gt;What Is ClickHelp? ClickHelp is a cloud-based documentation platform that helps product teams create, host, and publish technical documentation (from user manuals and API references to knowledge bases and customer-facing portals) without installing software. The editor works like Google Docs, an AI layer handles authoring assistance and reader-facing Q&amp;#38;A, and the whole team contributes: product...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/clickhelp-documentation-platform-that-helps-you-build-better-products/&quot;&gt;ClickHelp: Documentation Platform That Helps You Build Better Products&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 09 Jun 2026 08:24:40 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/clickhelp-documentation-platform-that-helps-you-build-better-products/</guid>
+      <dc:date>2026-06-09T08:24:40Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] Information Architecture Is Having a Moment (Here&#39;s Why) | Delfina Hoxha</title>
+      <link>https://www.youtube.com/watch?v=kj2Egl2d9bI</link>
+      <description>Interested in refining your professional brand, interview prep, or other career coaching?
+Schedule a meeting to see if we&#39;re a good fit: https://calendly.com/dfhauer/30min
+Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+Information architecture isn&#39;t sitemaps and sticky notes. It&#39;s the reason users find what they need — or don&#39;t.
+
+In this episode of Technical Writing Uncensored, I sit down with Delfina Hoxha, information architect, consultant, and author of Introduction to Intuitive Information Architecture — a beginner&#39;s guide to building content structures that actually work for humans and machines alike.
+
+🗺️ What we cover:
+- Why &quot;intuitive&quot; IA has nothing to do with the platform you&#39;re working on
+- How IA and UX overlap (and why the title debate is a little ironic)
+- What good information architecture looks like for agentic AI — and why it matters right now
+- Why your navigation growing from 8 to 23 items without a plan is a language-shaped problem
+- How Delfina turned 50+ newsletter articles into a cohesive beginner&#39;s ebook
+
+Like, subscribe, and hit the bell icon. It really helps the channel.
+
+🔗 Delfina&#39;s consultancy — Little Language Models: https://littlelanguagemodels.com/
+📖 Get the ebook — Introduction to Intuitive Information Architecture: https://littlelanguagemodels.com/a-beginners-guide-to-intuitive-information-architecture-ebook/
+
+#TechnicalWriting #TechComm #InformationArchitecture #ContentDesign #TechnicalWritingUncensored #DocsOrItDidntHappen #KnowledgeManagement #UXWriting #ContentStrategy 
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity
+Learn the fundamentals of information architecture with author Delfina Hoxha. Get a clear overview of her new guide for non-experts.
+
+In this episode of Technical Writing Uncensored, I sit down with Delfina Hoxha to discuss her newly released book, Introduction to Intuitive Information Architecture. If you have been curious about how to structure content effectively, this conversation breaks down the core concepts behind her approach. We explore why she decided to write this guide and how it bridges the gap for professionals who want to understand information architecture without needing a deep background in design or complex engineering.
+
+This discussion is specifically for anyone working in tech, product management, or technical writing who wants to improve their ability to organize information. Delfina explains that her book is designed to be accessible to those outside of traditional tech roles, making intuitive information architecture concepts easier to apply in everyday projects. You will walk away with a better understanding of how these principles apply to your daily workflow and why clear structure matters for any career path.
+
+Subscribe for weekly technical writing breakdowns, and comment below with your biggest challenge when organizing complex documentation.</description>
+      <pubDate>Mon, 08 Jun 2026 15:00:04 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=kj2Egl2d9bI</guid>
+      <dc:date>2026-06-08T15:00:04Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] How AI Agents Can Work Directly with Your Documentation Portal Using MCP</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/how-ai-agents-can-work-directly-with-your-documentation-portal-using-mcp/</link>
+      <description>&lt;p&gt;Documentation Teams Already Use AI, But the Workflow Is Still Broken Writers use Claude or ChatGPT to draft topics, rephrase sections, or generate outlines. The output is usually good – and then the same person copies it, opens the documentation portal, finds the right topic, and pastes it in by hand. The AI produces the...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/how-ai-agents-can-work-directly-with-your-documentation-portal-using-mcp/&quot;&gt;How AI Agents Can Work Directly with Your Documentation Portal Using MCP&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 05 Jun 2026 14:16:08 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/how-ai-agents-can-work-directly-with-your-documentation-portal-using-mcp/</guid>
+      <dc:date>2026-06-05T14:16:08Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Agent Assist Software: How AI Helps Customer Service Teams Work Faster</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/agent-assist-software-how-ai-helps-customer-service-teams-work-faster/</link>
+      <description>&lt;p&gt;Picture a busy contact center at a major e-commerce platform during peak holiday season. Support agents handle thousands of customer queries daily: tracking orders, resolving shipping issues, managing returns. The bottleneck is not the agents themselves. It is the time lost hunting through fragmented knowledge resources mid-call. Agent assist software is an AI-powered solution built...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/agent-assist-software-how-ai-helps-customer-service-teams-work-faster/&quot;&gt;Agent Assist Software: How AI Helps Customer Service Teams Work Faster&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 03 Jun 2026 09:27:52 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/agent-assist-software-how-ai-helps-customer-service-teams-work-faster/</guid>
+      <dc:date>2026-06-03T09:27:52Z</dc:date>
+    </item>
+    <item>
+      <title>[Story Needle] Audio AI is hacking your brain</title>
+      <link>https://storyneedle.com/audio-ai-is-hacking-your-brain/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=audio-ai-is-hacking-your-brain</link>
+      <description>&lt;p&gt;AI-generated audio is fast becoming a primary channel for consuming content online. It&#39;s changing user behavior.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://storyneedle.com/audio-ai-is-hacking-your-brain/&quot;&gt;Audio AI is hacking your brain&lt;/a&gt; appeared first on &lt;a href=&quot;https://storyneedle.com&quot;&gt;Story Needle&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 02 Jun 2026 16:02:15 -0000</pubDate>
+      <guid isPermaLink="true">https://storyneedle.com/audio-ai-is-hacking-your-brain/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=audio-ai-is-hacking-your-brain</guid>
+      <dc:date>2026-06-02T16:02:15Z</dc:date>
+    </item>
+    <item>
+      <title>[Write the Docs Newsletter] Write the Docs Newsletter – June 2026</title>
+      <link>https://www.writethedocs.org/blog/newsletter-june-2026/</link>
+      <description>Salutations, documentarians. I’m writing to you from a trip up to Estonia, where the days are longer than I’ve experienced in a while. The way the light stretches on makes it seem possible to accomplish more in a single day. It brings a sense of optimism that maybe we can solve more problems, whether they are big, global ones or just finally fixing those outdated articles I’ve been meaning to get to. I hope you can manage to find time to fix some problems too.</description>
+      <pubDate>Tue, 02 Jun 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://www.writethedocs.org/blog/newsletter-june-2026/</guid>
+      <dc:date>2026-06-02T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Passo Uno] Fine-tuning an LLM to write docs like it&#39;s 1995</title>
+      <link>https://passo.uno/fine-tuning-docs-llm/</link>
+      <description>&lt;p&gt;In my &lt;a href=&quot;https://passo.uno/my-day-tech-writer-2030/&quot;&gt;predictions for 2030&lt;/a&gt; I wrote that tech writers would be using specialized LLMs, running locally on powerful hardware. I see hints of this move to “local first” among engineering pundits, but we’re not there yet, in part because of how much more powerful connected frontier models are. That doesn’t mean we can’t experiment, though. That’s precisely what I did last week, trying to fine-tune an instruct model to write like a software technical writer from the 80s and 90s.&lt;/p&gt;</description>
+      <pubDate>Mon, 01 Jun 2026 08:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://passo.uno/fine-tuning-docs-llm/</guid>
+      <dc:date>2026-06-01T08:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Code, Content, and Career Newsletter] Issue 53 - Run Your Own Git Remote and Rethink Audience Segments for Docs</title>
+      <link>https://newsletter.bphogan.com/archive/issue-53-run-your-own-git-remote-and-rethink/</link>
+      <description>&lt;p&gt;Instead of thinking just about user personas for your documentation, think about where people are in their awareness of your product and its features. In this issue, you&#39;ll explore the intersection of documentation and marketing to drive product growth in your docs. Then you&#39;ll set up your own private Git remote on a Linux server so you can still collaborate with your peers when you experience an outage at a hosted provider.&lt;/p&gt;
+&lt;h1&gt;Four Audiences for Product Growth and Enablement&lt;/h1&gt;
+&lt;p&gt;You can&#39;t write a single piece of content that works for everyone. People try, but it never goes well. You make assumptions about their experience, you leave readers behind, or the content has no real depth. What you end up with is a junk drawer of stuff that never feels right. It creates information architecture problems, and it feels messy.&lt;/p&gt;
+&lt;p&gt;So you have to define your audience, and you have to write different content for each one.&lt;/p&gt;
+&lt;p&gt;When people sort their audience for product work, they reach for use cases, &quot;jobs to be done,&quot; or &quot;personas.&quot; Those tell you who your reader is and what they want to get done. But they skip the one thing that decides what content to write: how much your reader already knows.&lt;/p&gt;
+&lt;p&gt;Sort your readers by what they know instead. This will tell you exactly what each person needs from you. You can break your audience into four groups:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;People who know the feature they need but can&#39;t remember how to use it.&lt;/li&gt;
+&lt;li&gt;People who have a problem but don&#39;t know how to use your product to solve it.&lt;/li&gt;
+&lt;li&gt;People who have a problem but don&#39;t know you have a solution for it.&lt;/li&gt;
+&lt;li&gt;People who don&#39;t know they have the problem you solve.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Marketers have a framework that sounds like this. Eugene Schwartz laid out the &lt;a href=&quot;https://www.outbrain.com/blog/the-5-stages-of-customer-awareness-and-how-to-create-content-for-each/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-53-run-your-own-git-remote-and-rethink&quot; target=&quot;_blank&quot;&gt;stages of awareness&lt;/a&gt; in his 1966 book &lt;em&gt;Breakthrough Advertising&lt;/em&gt;, and copywriters have leaned on it for almost sixty years. The framework sorts prospects by how aware they are, then moves them toward a sale. But that framework is built to turn strangers into customers. It stops at the sign-up. Your job doesn&#39;t. &lt;/p&gt;
+&lt;p&gt;A lot of your readers already signed up. They&#39;re inside the product right now, trying to get work done. Your docs have to serve two kinds of people at once: the ones you want to win over, and the ones who already chose you. That second group is where marketing awareness content runs out of things to say.&lt;/p&gt;
+&lt;p&gt;Each group needs different kinds of content, and that&#39;s where the &lt;a href=&quot;https://diataxis.fr/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-53-run-your-own-git-remote-and-rethink&quot; target=&quot;_blank&quot;&gt;Diátaxis&lt;/a&gt; framework can help. Diátaxis sorts content into reference, how-to guides, tutorials, and conceptual content. If you&#39;re not familiar with Diátaxis, that&#39;s your homework for this month.&lt;/p&gt;
+&lt;p&gt;Let&#39;s look at each awareness group and how to reach them with the right content.&lt;/p&gt;
+&lt;h2&gt;People who know the feature they need but can&#39;t remember how to use it.&lt;/h2&gt;
+&lt;p&gt;This group is your core users. They&#39;re active, they&#39;re engaged, and they have a lot to do. Your product is one of many they touch every day. They already know you have the feature they need, so they go straight to your reference docs and code samples.&lt;/p&gt;
+&lt;p&gt;Say your product is a tool that runs background jobs and retries them when they fail using a feature called a Retry Policy. This reader types &quot;retry policy syntax&quot; into your documentation&#39;s search box. They don&#39;t want theory, and they&#39;re not looking to discover a new feature right now. They want the exact option name and a working example, fast.&lt;/p&gt;
+&lt;p&gt;Give them content that solves their immediate problem, quickly. Your reference documentation and how-to guides are key assets here. Keep them accurate and keep them current, because this is where quality content stops paying customers from churning. Link out to your explainers in case they need more information, but lead with the answer to their problem so they can get back to work.&lt;/p&gt;
+&lt;h2&gt;People who have a problem but don&#39;t know how to use your product to solve it.&lt;/h2&gt;
+&lt;p&gt;This group consists of two subgroups. The first subgroup is made up of people new to your product. They heard it can do a few things that they need, and they want to know how that works. The other subgroup is made up of your core users who hit a new use case and heard your product can do that too. This second subgroup is where your real product growth comes from, because they&#39;re already giving you money. You&#39;re going to help them give you more.&lt;/p&gt;
+&lt;p&gt;Back to the background job tool example. Someone searches &quot;how to retry failed jobs in [your product].&quot; They know your name, and they&#39;ve heard you&#39;re the solution. They just don&#39;t know the steps yet, or they might not be sure it works the way they need it to work. This is the content with the best return on investment if you do it well. &lt;/p&gt;
+&lt;p&gt;Use how-to guides here, but build out tutorials too. A tutorial teaches instead of just showing someone how to do a task. Build tutorials around specific jobs within use cases, and put them where new users will find them, like your onboarding or in customer newsletters. This is also where good conceptual content shines, because you&#39;re making the case for adoption. People want proof you solve their problem in a way that fits how they work, so show them how things work under the hood. &lt;/p&gt;
+&lt;h2&gt;People who have a problem but don&#39;t know you have a solution for it.&lt;/h2&gt;
+&lt;p&gt;People in this group are often prospective customers, but a lot of your current customers fall into this group too. As your product grows, people stop keeping up with new features and new product lines. Think about current customers as prospects for new product features and treat them with the same approach, because it&#39;s a discoverability issue.&lt;/p&gt;
+&lt;p&gt;When people are searching Google or using LLMs and asking &quot;how do I retry failed API calls without losing data,&quot; they don&#39;t use your product name at all. They&#39;re focused on the outcome, not on you. If your product solves that problem, you want to be the solution that pops up.&lt;/p&gt;
+&lt;p&gt;That changes the role of your documentation. Good docs are a huge top-of-funnel marketing asset. You&#39;ll find that documentation drives a lot of traffic to your product&#39;s domain, and you can build how-to and tutorial content that helps discovery when you use the words your readers actually search for. Use their keywords and their framing, not your product names and jargon. Write tutorials that target the outcome first, then tie your product in. Be sure to do this in an authentic and helpful way.&lt;/p&gt;
+&lt;p&gt;This is another place where you should steer into your use cases. Identify the most impactful ones and create tutorials focused on those areas. Promote them to get them in front of your prospects, make sure your sales teams can find them and share them with prospects, and find ways to get the content into the product so existing customers find it.&lt;/p&gt;
+&lt;p&gt;If you do this well, you may be able to syndicate this use-case content on other platforms and pull people back to you.&lt;/p&gt;
+&lt;h2&gt;People who don&#39;t know they have the problem you solve.&lt;/h2&gt;
+&lt;p&gt;This is the hardest group to reach, and it can pay off the most.&lt;/p&gt;
+&lt;p&gt;This reader isn&#39;t searching at all. They wrote their own retry code. A loop, a counter, and a &lt;code&gt;sleep&lt;/code&gt; call. It works most of the time, so they think it&#39;s fine. They don&#39;t know they have a problem, so they&#39;ll never type a question about it. But you know your product does it better than anything they could write on their own.&lt;/p&gt;
+&lt;p&gt;You can&#39;t catch them with reference docs or a how-to, because they aren&#39;t looking at your documentation. You reach them by naming the problem they&#39;ve learned to live with. This is where your conceptual content and thought leadership content comes in. Show them why their hand-rolled retry loop drops jobs when the server restarts. Reframe the way they work today as the problem, and your product becomes the answer they didn&#39;t know to ask for. &lt;/p&gt;
+&lt;p&gt;Create conceptual technical content and work with your partners in Marketing to make sure the right people see it. This content is slow to pay off and hard to measure. But when it lands, you&#39;ve created demand that wasn&#39;t there before. &lt;/p&gt;
+&lt;h2&gt;Tie it together&lt;/h2&gt;
+&lt;p&gt;Link your content across the groups. Your reference docs should point to your explainers. Your outcome tutorials should point to your reference docs. A reader can enter at any group, and good links move them along to whatever they need next. Then make sure you&#39;re partnering with everyone else in your organization to get that content in front of as many customers and prospects as possible. Use it to start conversations, close deals, and create new opportunities.&lt;/p&gt;
+&lt;p&gt;Sort your readers by what they already know, match the content to that, and connect the pieces. That beats writing for &quot;everyone&quot; every time.&lt;/p&gt;
+&lt;h1&gt;Things To Explore&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://rijverse.github.io/phpvm/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-53-run-your-own-git-remote-and-rethink&quot; target=&quot;_blank&quot;&gt;phpvm&lt;/a&gt; is a PHP version manager. You can manage multiple PHP versions and tie a version to a project.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/kubernetes-sigs/agent-sandbox?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-53-run-your-own-git-remote-and-rethink&quot; target=&quot;_blank&quot;&gt;Agent Sandbox&lt;/a&gt; &quot;enables easy management of isolated, stateful, singleton workloads, ideal for use cases like AI agent runtimes.&quot; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Run Your Own Git Remote with SSH&lt;/h1&gt;
+&lt;p&gt;You don&#39;t need a hosting service to share code with your team or back up your work. A plain Linux server and SSH can do the job. Your server, your repositories, no third party in the middle. And when the big hosting providers have a rough day, which they sometimes do, your remote keeps working.&lt;/p&gt;
+&lt;p&gt;Before you start, set your expectations. This gives you a place to push and pull code. That&#39;s it. You won&#39;t get a website, pull requests, issues, or automated builds. If you need those, a hosted service is still the right tool. But if you just want a shared remote you control, you can set one up in a matter of minutes.&lt;/p&gt;
+&lt;p&gt;To do this, you need a Linux server you can already reach over SSH, and your public SSH key on the machine you&#39;ll push from. If you don&#39;t have a key yet, GitHub&#39;s &lt;a href=&quot;https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-53-run-your-own-git-remote-and-rethink&quot; target=&quot;_blank&quot;&gt;guide to generating one&lt;/a&gt; works fine no matter where you plan to use it.&lt;/p&gt;
+&lt;h2&gt;Create a git user and repositories on the remote machine&lt;/h2&gt;
+&lt;p&gt;You&#39;re going to create a dedicated &lt;code&gt;git&lt;/code&gt; user and an empty repository on the remote machine. A remote repository should be &quot;bare,&quot; which means it has no working copy of the files. It only stores the history that people push and pull. Trying to push to a normal repository with a working copy causes problems, so bare is what you want on a server.&lt;/p&gt;
+&lt;p&gt;Log in to your Linux server over SSH with your regular user.&lt;/p&gt;
+&lt;p&gt;Make a dedicated account that owns the repositories. A separate user keeps your repos tidy and limits the damage if a key ever leaks. Later, you&#39;ll ensure that nobody can log in as the &lt;code&gt;git&lt;/code&gt; user to poke around the system. You&#39;ll make sure they can only push and pull.&lt;/p&gt;
+&lt;p&gt;Create the account with no password, which blocks password logins right away:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;adduser&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--disabled-password&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--gecos&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This creates a normal user named &lt;code&gt;git&lt;/code&gt; with a home directory at &lt;code&gt;/home/git&lt;/code&gt;. You&#39;ll use that home directory in the next steps.&lt;/p&gt;
+&lt;p&gt;Create a folder to hold your repositories, owned by the &lt;code&gt;git&lt;/code&gt; user:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-u&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mkdir&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-p&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/home/git/repos
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now create your first repository. &lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-u&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;init&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--bare&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/home/git/repos/project.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;.git&lt;/code&gt; suffix on the folder name is a common convention for bare repositories. It&#39;s not required, but it makes them easy to spot.&lt;/p&gt;
+&lt;h2&gt;Add SSH keys so people can authenticate.&lt;/h2&gt;
+&lt;p&gt;People will connect using their SSH keys, so the server needs to know which keys to trust. Those go in a file called &lt;code&gt;authorized_keys&lt;/code&gt; inside the &lt;code&gt;git&lt;/code&gt; user&#39;s &lt;code&gt;.ssh&lt;/code&gt; folder.&lt;/p&gt;
+&lt;p&gt;Set up the folder and file with the right permissions. Run the following commands:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-u&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mkdir&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-p&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/home/git/.ssh
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-u&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;chmod&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/home/git/.ssh
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-u&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;touch&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/home/git/.ssh/authorized_keys
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-u&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;chmod&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/home/git/.ssh/authorized_keys
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;SSH is picky about these permissions. If they&#39;re too open, it will refuse to use the file, so don&#39;t skip the &lt;code&gt;chmod&lt;/code&gt; steps.&lt;/p&gt;
+&lt;p&gt;Now add a public key to the file. Grab the contents of your &lt;code&gt;.pub&lt;/code&gt; key file and append it to &lt;code&gt;authorized_keys&lt;/code&gt;. For example, if your public key is &lt;code&gt;id_rsa.pub&lt;/code&gt;, run the following command:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;cat&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;~/.ssh/id_rsa.pub&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-u&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;tee&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-a&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/home/git/.ssh/authorized_keys
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Each line in the &lt;code&gt;authorized_keys&lt;/code&gt; file is one public key. If you want more people to connect, you&#39;ll have to get their keys and add them.&lt;/p&gt;
+&lt;p&gt;Typing keys by hand gets old once you have a few people to add. GitHub can help here. Every GitHub user&#39;s public keys are available at a URL based on their username. Visit &lt;code&gt;https://github.com/{username}.keys&lt;/code&gt; in your browser, swap in a real username, and you&#39;ll see that user&#39;s public keys.&lt;/p&gt;
+&lt;p&gt;You can use that to script the whole thing. Start with a text file of GitHub usernames, one per line. Call it &lt;code&gt;github-users.txt&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;alice
+bob
+carol
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then run a script that reads the file, fetches each person&#39;s keys, and writes them all to &lt;code&gt;authorized_keys&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=&quot;ch&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-euo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;pipefail
+
+&lt;span class=&quot;nv&quot;&gt;USER_FILE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-users.txt&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;GIT_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/home/git&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;AUTH_KEYS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$GIT_HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.ssh/authorized_keys&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;TMP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;mktemp&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-r&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;username&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;||&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-n&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-z&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\#&lt;/span&gt;*&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;esac&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;curl&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-fsSL&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://github.com/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.keys&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sed&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;s/&lt;/span&gt;$&lt;span class=&quot;s2&quot;&gt;/ github:&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&amp;gt;&amp;gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$TMP&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&amp;lt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$USER_FILE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;install&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-d&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-m&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;700&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-o&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-g&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$GIT_HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.ssh&quot;&lt;/span&gt;
+sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;install&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-m&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;600&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-o&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-g&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$TMP&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$AUTH_KEYS&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+rm&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-f&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$TMP&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The script tags each key with the GitHub username it came from, so you can tell whose key is whose later. It also sets the correct permissions and ownership for you.&lt;/p&gt;
+&lt;p&gt;This script replaces &lt;code&gt;authorized_keys&lt;/code&gt; every time it runs. The username file is now the single source of truth. Don&#39;t hand-edit &lt;code&gt;authorized_keys&lt;/code&gt; after this, or your changes will disappear the next time you run the script. To add or remove someone, edit &lt;code&gt;github-users.txt&lt;/code&gt; and run it again.&lt;/p&gt;
+&lt;h2&gt;Lock the &lt;code&gt;git&lt;/code&gt; account down with git-shell&lt;/h2&gt;
+&lt;p&gt;Right now the &lt;code&gt;git&lt;/code&gt; user can log in and get a full shell. That means anyone whose key is in &lt;code&gt;authorized_keys&lt;/code&gt; can run any command on your server, not just git commands. That&#39;s more access than you want to hand out.&lt;/p&gt;
+&lt;p&gt;Git ships with a tool called &lt;a href=&quot;https://git-scm.com/docs/git-shell?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-53-run-your-own-git-remote-and-rethink&quot; target=&quot;_blank&quot;&gt;git-shell&lt;/a&gt; that fixes this. It lets people run git commands over SSH but blocks everything else. No real shell, no poking around.&lt;/p&gt;
+&lt;p&gt;Find where &lt;code&gt;git-shell&lt;/code&gt; lives, add it to the list of valid login shells, and set it as the &lt;code&gt;git&lt;/code&gt; user&#39;s shell:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;which&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git-shell&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;tee&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-a&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/etc/shells
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;chsh&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-s&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;which&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git-shell&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now the &lt;code&gt;git&lt;/code&gt; account can only move git data in and out. &lt;/p&gt;
+&lt;p&gt;From the machine you&#39;ll push from, try connecting over SSH with the &lt;code&gt;git&lt;/code&gt; user:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;ssh&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git@server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Instead of a prompt, you&#39;ll receive a message like the following:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;fatal: Interactive git shell is not enabled.
+Connection to server closed.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That message verifies you can&#39;t log in with this user.&lt;/p&gt;
+&lt;h2&gt;Push your first repository&lt;/h2&gt;
+&lt;p&gt;To push code to your remote server, add it as a remote on your project.&lt;/p&gt;
+&lt;p&gt;Navigate to your project and set up git if you haven&#39;t already:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/path/to/project
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;init
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;add&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;.
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;commit&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-m&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;initial commit&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now point your project at the server and push. The path is relative to the &lt;code&gt;git&lt;/code&gt; user&#39;s home directory, so &lt;code&gt;repos/project.git&lt;/code&gt; finds the bare repository you created:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;remote&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;add&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;origin&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git@server:repos/project.git
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;push&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-u&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;origin&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;main
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Your history is now on your own server. The &lt;code&gt;-u&lt;/code&gt; flag sets it as the default remote, so from now on you can just run &lt;code&gt;git push&lt;/code&gt; and &lt;code&gt;git pull&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;Clone your repository on another machine&lt;/h2&gt;
+&lt;p&gt;The whole point of a remote is that more than one person, or more than one machine, can use it. Anyone with a trusted key clones the repo the same way:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;clone&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git@server:repos/project.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That pulls down a working copy they can commit to and push back. &lt;/p&gt;
+&lt;p&gt;When you have another project you want to push to your remote server, create another bare repository on the remote and push your code to it. Log in to the server with your regular account that has &lt;code&gt;sudo&lt;/code&gt; access, and run the &lt;code&gt;git init&lt;/code&gt; command again with a new name:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-u&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;git&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;init&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--bare&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/home/git/repos/another-project.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then push to it the same way you pushed the first one, using &lt;code&gt;another-project.git&lt;/code&gt; as the path.&lt;/p&gt;
+&lt;p&gt;Consider backing up the repositories on your remote server. Clones on people&#39;s machines hold the history too, but don&#39;t count on that as a real backup plan. Set up something that copies &lt;code&gt;/home/git/repos&lt;/code&gt; somewhere safe on a schedule.&lt;/p&gt;
+&lt;p&gt;Using an SSH-based Git remote has some tradeoffs. There&#39;s no web interface, no pull requests, no issue tracking, no automated builds, and no granular user access. For a personal project or a small team that just needs a shared place to push code, this is a quick low-tech solution that works well, especially if a hosted provider is offline.&lt;/p&gt;
+&lt;h1&gt;Parting Thoughts&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;What kinds of audience segments have you created content for already? How can you target people who don&#39;t know about the problem you solve? Identify some opportunities to educate people about your problem space rather than your solution. This can build trust.&lt;/li&gt;
+&lt;li&gt;Set up a remote &lt;code&gt;git&lt;/code&gt; server, but use &lt;code&gt;remote&lt;/code&gt; instead of &lt;code&gt;origin&lt;/code&gt; and try pushing some of your existing repositories to your private server as a second source. This will get you used to juggling multiple remotes.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Thanks for reading.&lt;/p&gt;</description>
+      <pubDate>Mon, 01 Jun 2026 00:17:38 -0000</pubDate>
+      <guid isPermaLink="true">https://newsletter.bphogan.com/archive/issue-53-run-your-own-git-remote-and-rethink/</guid>
+      <dc:date>2026-06-01T00:17:38Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Judging beautiful docs, AI fatigue, and tool slop -- podcast with Fabrizio</title>
+      <link>https://idratherbewriting.com/blog/judging-beautiful-docs-ai-fatigue-podcast</link>
+      <description>In this podcast, I chat with &lt;a href=&#39;https://passo.uno&#39;&gt;Fabrizio Ferri-Benedetti&lt;/a&gt; about a variety of topics related to AI and docs, such as applying Italo Calvino&#39;s literary principles of lightness and quickness to evaluate docs, the reality of AI review fatigue versus creator fatigue, whether vibe-coded tools are tools slop, developing internal skills for repeatable doc processes, and the utility of running local AI models.
+        </description>
+      <pubDate>Sun, 31 May 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/judging-beautiful-docs-ai-fatigue-podcast</guid>
+      <dc:date>2026-05-31T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] How I track my token maxxing</title>
+      <link>https://amanhimself.dev/blog/track-my-token-maxxing/</link>
+      <description>Back in February 2026, I wrote two posts about how I am tracking Codex CLI and Claude Code token usage. During that time, I used both CLI agent tools for work and personal projects. Both posts used a tool called ccusage and its variant (at that time), @ccusage/codex. ccusage is created by ryoppippi and is a popular command-line tool to analyze coding agent token usage and costs from local data that lives in your Claude or Codex sessions. It also support other CLI agents and its latest version provides daily, weekly, monthly, or session usage stats.</description>
+      <pubDate>Sat, 30 May 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/track-my-token-maxxing/</guid>
+      <dc:date>2026-05-30T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] Is Your Documentation Ready for AI? | Interview with Michael Iantosca</title>
+      <link>https://www.youtube.com/watch?v=x304uIdvLyc</link>
+      <description>Interested in refining your professional brand, interview prep, or other career coaching?
+Schedule a meeting to see if we&#39;re a good fit: https://calendly.com/dfhauer/30min
+Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+Learn how a career in technical writing can evolve from a background in journalism and photography. Discover Michael Iantosca&#39;s path.
+
+In this interview, Michael Iantosca, Senior Director of Content and Knowledge Engineering at Avalara, shares his unique professional origin story. We discuss how his early experience in television media and photography at ABC TV shaped his approach to technical writing and content strategy. This conversation is ideal for professionals interested in technical writing career paths or those looking to transition from creative media fields into corporate knowledge engineering.
+
+Michael explains the unexpected ways his communications degree and journalism experience prepared him for complex technical documentation roles. You will gain insights into how transferable skills like visual storytelling and media production can be applied to technical writing projects. We also explore his transition to IBM, illustrating how diverse backgrounds can lead to leadership roles in content engineering.
+
+Subscribe for weekly technical writing career breakdowns, and comment below with your own non-traditional path into this industry.🔗 Find Michael&#39;s work:Website: https://thinkingdocumentation.com/Medium: https://medium.com/@nc_mike#TechnicalWriting #TechComm #AgenticAI #Documentation #ContentStrategy #TechnicalWritingUncensored #KnowledgeManagement #DocsAsCode #WriteTheDocs #TechWriterLife #DITA #ContentDesign #AIDocumentation #DocsOrItDidntHappen #TechnicalCommunication#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Fri, 29 May 2026 15:00:19 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=x304uIdvLyc</guid>
+      <dc:date>2026-05-29T15:00:19Z</dc:date>
+    </item>
+    <item>
+      <title>[Story Needle] Knowledge isn’t communication</title>
+      <link>https://storyneedle.com/knowledge-isnt-communication/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=knowledge-isnt-communication</link>
+      <description>&lt;p&gt;Conveying knowledge is different from ordinary communication. It&#39;s easy for either clarity or detail to get lost in AI responses. &lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://storyneedle.com/knowledge-isnt-communication/&quot;&gt;Knowledge isn&amp;#8217;t communication&lt;/a&gt; appeared first on &lt;a href=&quot;https://storyneedle.com&quot;&gt;Story Needle&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 27 May 2026 18:12:15 -0000</pubDate>
+      <guid isPermaLink="true">https://storyneedle.com/knowledge-isnt-communication/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=knowledge-isnt-communication</guid>
+      <dc:date>2026-05-27T18:12:15Z</dc:date>
+    </item>
+    <item>
+      <title>[Paligo Blog] 8 Best Practices Required to Manage Formal Knowledge in a CCMS</title>
+      <link>https://paligo.net/blog/structured-authoring/8-best-practices-to-manage-formal-knowledge-in-ccms/</link>
+      <description>&lt;p&gt;Banking and financial institutions that must adhere to strict regulatory and supervisory compliance‌ requirements. A CCMS, like the Paligo CCMS, offers a comprehensive solution to overcome these content-related challenges from ensuring compliance to streamlining workflows and supporting global expansion, and more.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://paligo.net/blog/structured-authoring/8-best-practices-to-manage-formal-knowledge-in-ccms/&quot;&gt;8 Best Practices Required to Manage Formal Knowledge in a CCMS&lt;/a&gt; appeared first on &lt;a href=&quot;https://paligo.net&quot;&gt;Paligo&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 27 May 2026 12:43:41 -0000</pubDate>
+      <guid isPermaLink="true">https://paligo.net/blog/structured-authoring/8-best-practices-to-manage-formal-knowledge-in-ccms/</guid>
+      <dc:date>2026-05-27T12:43:41Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] In-App Help: The Practical Guide to Better User Onboarding and Adoption</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/in-app-help-the-practical-guide-to-better-user-onboarding-and-adoption/</link>
+      <description>&lt;p&gt;A new sales employee&amp;#8217;s first week with complex CRM software often follows a familiar pattern: constant switching between the application and separate training documents, mounting frustration, and tasks that take far longer than they should. In-app help breaks this cycle by embedding step-by-step guidance directly inside the tool, so learning happens in the moment, without...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/in-app-help-the-practical-guide-to-better-user-onboarding-and-adoption/&quot;&gt;In-App Help: The Practical Guide to Better User Onboarding and Adoption&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 27 May 2026 12:25:28 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/in-app-help-the-practical-guide-to-better-user-onboarding-and-adoption/</guid>
+      <dc:date>2026-05-27T12:25:28Z</dc:date>
+    </item>
+    <item>
+      <title>[CyberText Newsletter] Print all sorts of lined paper</title>
+      <link>https://cybertext.wordpress.com/2026/05/23/print-all-sorts-of-lined-paper/</link>
+      <description>This is a handy dandy little website that has all sorts of paper types (lined, music, grid, calligraphy etc.) that you can choose from, set up your preferences for colour, size etc. then download (as various file types) and print &amp;#8212; for free: https://paperme.pixzens.com/en But be careful &amp;#8212; I tested some graph paper at 1 [&amp;#8230;]</description>
+      <pubDate>Sat, 23 May 2026 00:32:43 -0000</pubDate>
+      <guid isPermaLink="true">https://cybertext.wordpress.com/2026/05/23/print-all-sorts-of-lined-paper/</guid>
+      <dc:date>2026-05-23T00:32:43Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] The Words Nobody Notices (Until They&#39;re Wrong) | Natalie Dunbar Interview</title>
+      <link>https://www.youtube.com/watch?v=MuMJpaOy51g</link>
+      <description>Interested in refining your professional brand, interview prep, or other career coaching?
+Schedule a meeting to see if we&#39;re a good fit: https://calendly.com/dfhauer/30min
+Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+Curious what a content designer actually does? Learn the core responsibilities of this role and how they shape the digital experience.
+
+In this episode of Technical Writing Uncensored, Diana Payton sits down with Natalie Dunbar, author and owner of the Content Practice Architect, to demystify the field. We break down what a content designer does on a daily basis and why their work is critical to the success of any digital product. This conversation is designed for technical writers and professionals looking to understand how content design overlaps with broader product design teams.
+
+By the end of this discussion, you will have a clear definition of the content designer role and how it differs from traditional technical writing. We explain how these professionals ensure that every word within a product serves the user effectively, moving beyond just documentation into full-scale experience architecture.
+
+Subscribe for weekly technical writing and content strategy breakdowns, and comment below with your biggest question about the content design career path.
+
+📖 Read the book: From Solo to Scaled: Building a Sustainable Content Strategy Practice is available now at rosenfeldmedia.com. Use code TWU20 for 20% off. (Code expires June 7, 2026)
+
+🎓 Join the waitlist for my online course: I&#39;m building a self-paced course based on the book — with AI-powered workflows, real demos, and frameworks you can apply immediately. It&#39;s designed for technical writers, content strategists, UX writers, content designers, and anyone in digital spaces who wants to build a sustainable, AI-informed practice.
+
+Early access list is open now → http://eepurl.com/d_3mQNd7jJP
+
+Founding students get first access and a launch discount. Come build with me. 💙
+
+#TechnicalWriting #TechComm #ContentDesign #ContentStrategy #UXWriting #TechnicalWritingUncensored #Accessibility #DocsOrItDidntHappen #TechWriterLife #CareerAdvice
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Thu, 21 May 2026 15:00:33 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=MuMJpaOy51g</guid>
+      <dc:date>2026-05-21T15:00:33Z</dc:date>
+    </item>
+    <item>
+      <title>[Story Needle] Agent fatigue and the death of simplicity</title>
+      <link>https://storyneedle.com/agent-fatigue-and-the-death-of-simplicity/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=agent-fatigue-and-the-death-of-simplicity</link>
+      <description>&lt;p&gt;As users pile instructions into AI bots, it&#39;s getting harder to understand what bots are supposed to be doing.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://storyneedle.com/agent-fatigue-and-the-death-of-simplicity/&quot;&gt;Agent fatigue and the death of simplicity&lt;/a&gt; appeared first on &lt;a href=&quot;https://storyneedle.com&quot;&gt;Story Needle&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 20 May 2026 13:59:08 -0000</pubDate>
+      <guid isPermaLink="true">https://storyneedle.com/agent-fatigue-and-the-death-of-simplicity/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=agent-fatigue-and-the-death-of-simplicity</guid>
+      <dc:date>2026-05-20T13:59:08Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Why AI Tools Can’t Read Your Documentation Portal</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/why-ai-tools-cant-read-your-documentation-portal/</link>
+      <description>&lt;p&gt;You spent months building a documentation portal. Hundreds of topics, organized structure, accurate content. Then a user asks ChatGPT about your product and gets a confident, wrong answer, because the AI couldn&amp;#8217;t read your portal at all. If AI tools can&amp;#8217;t read your documentation, your documentation doesn&amp;#8217;t exist for a growing share of your users....&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/why-ai-tools-cant-read-your-documentation-portal/&quot;&gt;Why AI Tools Can&amp;#8217;t Read Your Documentation Portal&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 20 May 2026 11:28:02 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/why-ai-tools-cant-read-your-documentation-portal/</guid>
+      <dc:date>2026-05-20T11:28:02Z</dc:date>
+    </item>
+    <item>
+      <title>[Robert Delwood] More About API Documentation Errors, Part II</title>
+      <link>https://robertdelwood.medium.com/more-about-api-documentation-errors-part-ii-2eb48bb787b2?source=rss-f921fd898ddb------2</link>
+      <description>&lt;figure&gt;&lt;img alt=&quot;&quot; src=&quot;https://cdn-images-1.medium.com/max/512/1*HiHwTYPJNloNpRtr2gDUSQ.png&quot; /&gt;&lt;figcaption&gt;Il David di Michelangelo in dettaglio&lt;/figcaption&gt;&lt;/figure&gt;&lt;p&gt;By Robert Delwood, a Lead API Documentation Writer&lt;/p&gt;&lt;p&gt;Thinking like a developer to the rescue. Again. And again.&lt;/p&gt;&lt;p&gt;This is the second part of an API documentation page critique. See &lt;a href=&quot;https://robertdelwood.medium.com/more-about-api-documentation-errors-part-i-969999176c9f&quot;&gt;Part I&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;There is more to API documentation writing than just writing documentation. Thinking like a technical writer produces good descriptions. This information can come from knowing the product, reading the engineer’s specification, or listening to meetings. This is a valid approach when beginning API documentation.&lt;/p&gt;&lt;p&gt;However, this only gets writers so far. We shouldn’t be thinking like a technical writer. Those descriptions are not necessarily complete or great descriptions. We should be thinking like a developer. This is API documentation writing.&lt;/p&gt;&lt;p&gt;There’s information missing.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Did the writer make the call, such as with Postman?&lt;/li&gt;&lt;li&gt;Did the writer actually use the call in an application, as a developer would do?&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;If they have not, then clearly, information may be missing.&lt;/p&gt;&lt;p&gt;We writers need to know what clients know and we need to think how they think. Only in this way can we make a connection with them. This helps provide the information they need and in the format they need. Some may think these are minor or nuanced points or that they don’t matter. I heard that before. Ignore the points here that aren’t right for you or right for your documentation.&lt;/p&gt;&lt;p&gt;The following API documentation page looks complete at first glance. It’s got dense text, examples, and each field has a description. However, initial impressions are wrong. It’s when you get down to the details and start using, or trying to use, each field that a series of disappointing descriptions and a lack of details become apparent. I suspect a technical writer wrote this page because there is a lack of programmatic details. A lack of details that clients immediately spot. There are nuances, yes. Nuances that developers notice.&lt;/p&gt;&lt;p&gt;Take a moment to review this portion from an API reference page, and try to anticipate my comments. There are enough issues here that I needed two articles, not just one.&lt;/p&gt;&lt;figure&gt;&lt;img alt=&quot;&quot; src=&quot;https://cdn-images-1.medium.com/max/1024/1*9O2k4Ut41ZOLrHr6MkMZIQ.png&quot; /&gt;&lt;/figure&gt;&lt;h3&gt;The Endpoint Description&lt;/h3&gt;&lt;p&gt;The endpoint description is supposed to be an overview of the endpoint, along with any general information, warnings, or caveats. I like seeing a lot of text here. It tells me the writer has done their homework and that the quality of information is going to be good.&lt;/p&gt;&lt;p&gt;They got the first sentence right. I advocate that the first sentence of any description is short, to the point, and stands alone. That is, it’s a single sentence that, in 10 words, tells me what this does. Literally, “This endpoint does X.” In this case, it’s “Executes a SQL query on the project’s logs.” What could be more to the point? If the client decides this is not the endpoint they are looking for, the details won’t matter. The clients move on, actually happy that you saved them time. Writers don’t get victories like that often enough.&lt;/p&gt;&lt;p&gt;Or they decide this is the endpoint they are looking for. And this one sentence does that exactly. In fact, it’s so well done, it makes me think this is a mistake by the writer or that the writing manager argued to take it out. But don’t worry. No good deed lasts for long.&lt;/p&gt;&lt;h3&gt;Supporting the First Sentence&lt;/h3&gt;&lt;p&gt;The rest of the description needs to support that sentence. In this case, not in the slightest. Unfortunately, I have to go sentence by sentence because every one of them is just plain wrong.&lt;/p&gt;&lt;p&gt;It goes beyond not supporting the initial sentence to I don’t know what the hell it says. “Either the &lt;em&gt;iso_timestamp_start&lt;/em&gt; and &lt;em&gt;iso_timestamp_end&lt;/em&gt; parameters must be provided. If both are not provided, only the last 1 minute of logs will be queried.”&lt;/p&gt;&lt;p&gt;This doesn’t make a lick of sense. The construct &lt;em&gt;Either-And&lt;/em&gt; is correct and contradictory. They meant &lt;em&gt;Either-Or&lt;/em&gt;, meaning at least one of the two timestamps is included. This scenario makes sense in having open-ended timestamps. That means, for example, if &lt;em&gt;iso_timestamp_start&lt;/em&gt; is present, the logs after that time are included. If &lt;em&gt;iso_timestamp_end&lt;/em&gt; is present, the logs up to that time are included. That’s a reasonable and common scenario. But that’s not what it says, though. The next sentence contradicts that meaning. “If both are not provided…” It sounds like both must be present. That forms a date-time range and that range must be less than 24 hours. This is also a reasonable and common scenario, even though it took some work to get that meaning.&lt;/p&gt;&lt;p&gt;One of the few things the writers did correctly was the example code. In the Test Request panel, the example shows:&lt;/p&gt;&lt;blockquote&gt;“iso_timestamp_start”: “2025–03–01T00:00:00Z”,&lt;br&gt;“iso_timestamp_end”: “2025–03–01T23:59:59Z”&lt;/blockquote&gt;&lt;p&gt;This is exactly 24 hours. It’s a welcomed level of detail I wasn’t expecting, not after reading the previous sentences.&lt;/p&gt;&lt;h3&gt;About Examples&lt;/h3&gt;&lt;p&gt;The quality of the examples is worth noting.&lt;/p&gt;&lt;p&gt;First, I advocate that every field has an example. Keep in mind that:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Clients often learn more from seeing just an example than from reading text. In this example, the timestamp fields do have an example, although there is more about this later. The &lt;em&gt;sql&lt;/em&gt; field does not. Even more of a problem because that’s the one example I want.&lt;/li&gt;&lt;li&gt;Clients are skimming the material and they might get the information they need at nothing more than a glance. For instance, for a telephone number field, all they want may be just the format, and an example shows that.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Second, the examples should be representative of the actual values. Don’t use patterns like &lt;em&gt;abcdefg&lt;/em&gt;. It looks fake and, so, less credible. The irony is that, for as good an example as the timestamps were earlier, the examples displayed on the screen are both the same time. It’s possible that they are interested in the logs only in that 100th of a second. But unlikely. It would have been a nice touch if not only the times were different but also like the previous code, showing a day separation. Having an example is good. In this case, they provide timestamp formats. But they could have gone one step further and provided useful coding details. It’s those little details that add to documentation credibility.&lt;/p&gt;&lt;p&gt;Third, I like all my timestamp examples to be recent. These show a 2017 date. Unless the example intends to show historical dates, I interpret this to mean the documentation hasn’t been updated since 2017, a considerable amount of time, ancient in computer terms. Again, it’s the details.&lt;/p&gt;&lt;p&gt;Fourth, as mentioned, the SQL field doesn’t have an example. But the problems that cause do not end there. This will be discussed in a moment.&lt;/p&gt;&lt;p&gt;“The timestamp range must be no more than 24 hours and is rounded to the nearest minute.” This seems to be two thoughts at the same time. This is one of the reasons I advocate short sentences and one fact per sentence. The first part is clear: be no more than 24 hours.&lt;/p&gt;&lt;p&gt;It’s the second part that muddies things. What does “rounded to the nearest minute” mean? I have to make an assumption here. Technical documentation isn’t about making readers guess or make assumptions. One assumption is that the client has not provided both timestamp fields. This would mean “only the last 1 minute of logs will be queried,” and “is rounded to the nearest minute.” Technically, times less than 30 seconds, rounded to the “nearest minute,” is zero. Are there no logs searched? Times 30 seconds or more round up to the nearest minute. That would be in keeping, I think, with the intent. The description could have been written more clearly as “rounded &lt;em&gt;up &lt;/em&gt;to the nearest minute.” See the importance a single word makes? The truth, however, is for the writer to find out what the code does. If the call does round down to zero, that’s worth writing a ticket, for the developers because it needs to be fixed. Even if that’s what the code does, it’s bad design for the client.&lt;/p&gt;&lt;h3&gt;The Cost for Clarity&lt;/h3&gt;&lt;p&gt;The last two sentences are just a mess.&lt;/p&gt;&lt;p&gt;First, do not use &lt;em&gt;Note&lt;/em&gt;. It’s overused and almost every time is not needed. Why is this even considered a note? Why is that information any more or less important than anything else on the page? I will answer that. It is not. It is just more information.&lt;/p&gt;&lt;p&gt;Here’s a confusing sentence: Unless the &lt;em&gt;sql&lt;/em&gt; parameter is provided, only edge_logs will be queried. This raises an astonishing number of questions.&lt;/p&gt;&lt;p&gt;WTH are edge_logs? Are there other types of log files it queries instead?&lt;/p&gt;&lt;p&gt;If no SQL command is provided, how do the edge_logs even get queried? It might mean it returns all the logs. This might mean there is a default query that the writer never tells us about. I think that would be an important detail to mention.&lt;/p&gt;&lt;p&gt;Then, clients will have to know the formatting of the edge_logs. Would they have seen one? Do they know the field names and values? Do they have access to one? How else will they be able to write SQL commands?&lt;/p&gt;&lt;p&gt;How do they enter the command? It’s a string, so something like these may work:&lt;/p&gt;&lt;blockquote&gt;SELECT * FROM logs WHERE status_code = 500;&lt;/blockquote&gt;&lt;p&gt;or&lt;/p&gt;&lt;blockquote&gt;WITH recent_orders AS (SELECT o.id, o.user_id, o.total_amount, o.created_at FROM orders o WHERE o.created_at &amp;gt;= NOW() — INTERVAL ’30 days’), user_totals AS (SELECT ro.user_id, COUNT(ro.id) AS order_count, SUM(ro.total_amount) AS total_spent FROM recent_orders ro GROUP BY ro.user_id), ranked_users AS (SELECT ut.user_id, ut.order_count, ut.total_spent, RANK() OVER (ORDER BY ut.total_spent DESC) AS spending_rank FROM user_totals ut), top_products AS (SELECT oi.product_id, SUM(oi.quantity) AS total_quantity FROM order_items oi JOIN recent_orders ro ON ro.id = oi.order_id GROUP BY oi.product_id), product_details AS (SELECT p.id, p.name, tp.total_quantity FROM products p JOIN top_products tp ON tp.product_id = p.id) SELECT u.id, u.name, ru.order_count, ru.total_spent, ru.spending_rank, pd.name AS top_product, pd.total_quantity FROM users u JOIN ranked_users ru ON ru.user_id = u.id LEFT JOIN product_details pd ON pd.total_quantity = (SELECT MAX(total_quantity) FROM product_details) WHERE ru.spending_rank &amp;lt;= 10 ORDER BY ru.spending_rank ASC, u.name ASC;&lt;/blockquote&gt;&lt;p&gt;The second example is awkward if the command has to both be direct and be one line. Here’s where an example is convenient. It gives clients an idea of what is possible and the format it uses. There is a help link in the documentation. “See querying logs for more details.” More details? So far, there have not been any details. No matter, it’s a bad link and returns an error. Whoever wrote this document needs a good talking to. In fact, whoever approved this document needs a good talking to, also.&lt;/p&gt;&lt;h3&gt;Timestamps&lt;/h3&gt;&lt;p&gt;The timestamps are a beacon of hope. There is nothing technically wrong with these descriptions.&lt;/p&gt;&lt;figure&gt;&lt;img alt=&quot;&quot; src=&quot;https://cdn-images-1.medium.com/max/810/1*pXRSH1pLp_LAFC-JKBip0g.png&quot; /&gt;&lt;/figure&gt;&lt;p&gt;The field names are reasonable. The &lt;em&gt;iso&lt;/em&gt; prefix is a nice touch towards understanding their use. Without the examples, clients will likely assume they are ISO timestamps anyhow but the confirmation is reassuring. The &lt;em&gt;date-time&lt;/em&gt; label is good, providing extra confirmation. The clickable example is also good but it’d be better displayed directly. You want to make it as easy on the client as possible.&lt;/p&gt;&lt;p&gt;The description is the interesting part. First, use proper grammar. Initial capitalization on the first letter and a period at the end. Why is it that so many writers don’t do this? The writing manager should have more points deducted more points for allowing this to go out.&lt;/p&gt;&lt;p&gt;Second, and this is going to sound ironic, but it’s too detailed. ISO 8601 is a very broad specification of time. For dates and times, it specifies 13 different formats for month/day to the full time to an unlimited fraction of milliseconds. So, simply saying, as many do, ISO 8601 format, isn’t specific enough. RFC 3339, section 5.6, which defines these formats, does specify date-time exactly. But the reference still isn’t widely known. So, it becomes equally unhelpful. The compromise is to show an example. Specifically, for what they call Z, UTC, or time zone offset formats:&lt;/p&gt;&lt;blockquote&gt;2017–07–21T17:32:28Z&lt;br&gt;2017–07–21T17:32:28+05:30&lt;/blockquote&gt;&lt;p&gt;As mentioned earlier, keep the examples fresh, too. 2017 is too old and raises document accuracy considerations with clients. At the end of each year, update all the year examples.&lt;/p&gt;&lt;h3&gt;Timestamp Descriptions Placement&lt;/h3&gt;&lt;p&gt;The last point here is the placement of the timestamp descriptions. They are included in the endpoint overview at the top of the page. This is thinking like a technical writer. The writer shows this in two ways.&lt;/p&gt;&lt;p&gt;First, writers consolidate common information in one place. The problem is, this is not one piece of information. It’s two. They each need to go into different places.&lt;/p&gt;&lt;p&gt;Second, writers know the complete picture. Clients don’t. Clients are going to be looking, or searching, for the timestamp note. We need to be thinking like a developer. Developers likely have found this section through a search, or the timestamp field caught their eye. They start reading there and likely will read only that one field. There’s no guarantee they saw any other part of the page, or any other field. Neither would they have a reason to look anywhere else. No, put the information into the correct place.&lt;/p&gt;&lt;p&gt;At first, that sounds like a massive amount of redundant text, and also harder to maintain for the writer. Perhaps so, but the effort of maintaining the document is not a goal of documentation. Assisting clients is. Remember the adage: We’re here for their convenience, not ours. Think like a developer.&lt;/p&gt;&lt;p&gt;We just covered that clients are likely to find the location through a search. Now add the common fact that clients don’t read documentation, they skim. In other words, after finding the information they want, they’re going to skim and copy what they need. They may not look at the field right below or above where they are. And that’s assuming the two fields are even adjacent. Many times, they’re not, being separated by other fields. I discuss this more in another article. I advocate putting related fields adjacent, such as firstName and lastName. I even go so far as pushing back and suggest renaming the fields, such as &lt;em&gt;nameFirst &lt;/em&gt;and &lt;em&gt;nameLast, &lt;/em&gt;so they are together alphabetically.&lt;/p&gt;&lt;p&gt;The same comment applies to the SQL note in the endpoint overview. Move that to the relevant SQL field.&lt;/p&gt;&lt;h3&gt;Responses&lt;/h3&gt;&lt;p&gt;The response section introduces its own set of problems.&lt;/p&gt;&lt;p&gt;In the simplest of cases, there is no example of successful operation. The main field clients want to see is empty. Response 200: “result”: []. What was the writer thinking?&lt;/p&gt;&lt;p&gt;First, almost never include null or empty in an example. It does not illustrate anything. Then, while the result data type is described as result &lt;strong&gt;Type:array object[]&lt;/strong&gt;, it never describes what kind of object that is. Clients do not know the object type and they have no examples.&lt;/p&gt;&lt;p&gt;How did anyone consider this documentation to be helpful? This is compelling evidence for me that the author is a technical writer, with no development training or experience, does not know Postman, never ran any of these endpoints, and that the manager is equally clueless. Why does this matter? Because clients are not getting what they need. They have to stop, taking time to figure these things out themselves. Along the way, they are probably straining customer service with a lot of unnecessary and completely avoidable questions, and stressing developers as they are taken away from their coding to respond to client questions.&lt;/p&gt;&lt;p&gt;Second, as for the error object, there are no descriptions. There are no examples in either the fields or the comprehensive display under the Test Request panel.&lt;/p&gt;&lt;p&gt;The other errors, such as 401, 403, and 429, are not documented. The middle column documentation implies they return specific errors, and, yes, that is the intent. The comprehensive display under the Test Request panel supports this by even saying there is no response body. The problem is that the actual Test Request responds with a response body. In this case, the only error I can see without being a client:&lt;/p&gt;&lt;blockquote&gt;{ “message”: “Unauthorized” }&lt;/blockquote&gt;&lt;p&gt;Why does this matter? Because for clients to retrieve the result programmatically, they have to know the exact structure and name. Returning a value without a response body is different than returning a value with a response body. Developers know that. Telling them incorrect information is going to do nothing more than annoy clients. It may actually lose potential clients.&lt;/p&gt;&lt;h3&gt;Conclusion&lt;/h3&gt;&lt;p&gt;At this point, with everything I have discussed, I think upper management really needs to re-evaluate the documentation team’s management, the writer, and the procedures.&lt;/p&gt;&lt;img src=&quot;https://medium.com/_/stat?event=post.clientViewed&amp;referrerSource=full_rss&amp;postId=2eb48bb787b2&quot; width=&quot;1&quot; height=&quot;1&quot; alt=&quot;&quot;&gt;</description>
+      <pubDate>Wed, 20 May 2026 00:46:16 -0000</pubDate>
+      <guid isPermaLink="true">https://robertdelwood.medium.com/more-about-api-documentation-errors-part-ii-2eb48bb787b2?source=rss-f921fd898ddb------2</guid>
+      <dc:date>2026-05-20T00:46:16Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Review of Max Tegmark&#39;s &#39;Life 3.0: Being Human in the Age of Artificial Intelligence&#39;</title>
+      <link>https://idratherbewriting.com/blog/book-review-tegmark-life-3-0-ai</link>
+      <description>This post is my review of Max Tegmark&#39;s &lt;a href=&#39;https://www.amazon.com/dp/1101970316&#39;&gt;&lt;i&gt;Life 3.0&lt;/i&gt;&lt;/a&gt;, a book we read in the &lt;a href=&#39;/ai-book-club&#39;&gt;AI Book Club&lt;/a&gt;. Tegmark, an MIT physicist and founder of the Future of Life Institute, says Life 1.0 relies entirely on biological evolution to change its hardware and software, Life 2.0 (humanity) can design its own software (through learning and culture) but is stuck with its evolved hardware, and Life 3.0 is a technological stage where life can design both its software and its physical hardware. Although Tegmark&#39;s book was published in 2017 (before ChatGPT), the book&#39;s core questions about recursive self-improvement, AI alignment, steering beneficial AI, etc., are still highly relevant today.
+        </description>
+      <pubDate>Sun, 17 May 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/book-review-tegmark-life-3-0-ai</guid>
+      <dc:date>2026-05-17T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] AI Book Club discussion recording of &#39;Life 3.0: Being Human in the Age of Artificial Intelligence&#39;, by Max Tegmark</title>
+      <link>https://idratherbewriting.com/blog/book-club-tegmark-life-3-0</link>
+      <description>This is a recording of the AI Book Club discussion of Max Tegmark&#39;s &lt;i&gt;&lt;a href=&#39;https://www.amazon.com/dp/1101946598&#39;&gt;Life 3.0: Being Human in the Age of Artificial Intelligence&lt;/a&gt;&lt;/i&gt;. Our discussion explores Tegmark&#39;s visions of superintelligence, the unpredictability of AI goals and subgoals, and how the Asilomar principles fare against the relentless market pressures of today&#39;s AI arms race. We also contrast the book&#39;s theoretical focus on cosmic energy (and how superintelligence might more efficiently extract energy from matter) with the immediate, tangible threats AI poses to cybersecurity and global financial systems.
+        </description>
+      <pubDate>Sun, 17 May 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/book-club-tegmark-life-3-0</guid>
+      <dc:date>2026-05-17T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[CyberText Newsletter] Word: Forcing a link in an email to open in the desktop app</title>
+      <link>https://cybertext.wordpress.com/2026/05/16/word-forcing-a-link-in-an-email-to-open-in-the-desktop-app/</link>
+      <description>I typically get client files emailed as attachments, but sometimes they&amp;#8217;ll link to the document on their SharePoint server. Emailed attachments are easy&amp;#8212;right-click and &amp;#8216;save attachments&amp;#8217;, then virus check before opening. But SharePoint links are a different game and quite often the document will open in the browser version of Word. I then have to [&amp;#8230;]</description>
+      <pubDate>Sat, 16 May 2026 00:24:14 -0000</pubDate>
+      <guid isPermaLink="true">https://cybertext.wordpress.com/2026/05/16/word-forcing-a-link-in-an-email-to-open-in-the-desktop-app/</guid>
+      <dc:date>2026-05-16T00:24:14Z</dc:date>
+    </item>
+    <item>
+      <title>[Sarah Deaton] Making All Caps as a Service</title>
+      <link>https://sdeaton.com/blog/making-acaas/</link>
+      <description>&lt;p&gt;For my recent &lt;a href=&quot;../git-talk-recap/&quot;&gt;Write the Docs talk&lt;/a&gt;, I needed a docs site that felt real enough to demo against. I didn’t have a convenient API lying around to document, so I built a toy API and a full docs site on top of that; overengineered, but did what I wanted and it was a fun side quest.&lt;/p&gt;
+&lt;p&gt;This is the full walkthrough of building ACAAS, &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://acaas.mintlify.app/&quot;&gt;All Caps as a Service&lt;/a&gt;. Looking back, I thought it was an interesting, abbreviated case study in some AI/docs tooling and building a site from scratch, so I wanted to jot down the decisions and steps.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/acaas-home.png&quot; alt=&quot;ACAAS docs homepage, showing the hero and primary navigation.&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-build-the-service&quot;&gt;1. Build the service&lt;/h2&gt;
+&lt;p&gt;First, I used the Claude Code CLI to build a small API from scratch. I gave it the concept (you send text, it sends it back in all caps) and asked it to make it realistic enough to write docs against (like rate limits and error messages, and a few endpoints). It chose Python for the backend and came back with a few new endpoints like &lt;code&gt;/shout&lt;/code&gt; and &lt;code&gt;/whisper&lt;/code&gt;, and the supporting machinery to go with them.&lt;/p&gt;
+&lt;p&gt;I also told it I wanted one AI-powered feature, ideally something on the path to GA; a feature graduating from experimental is the kind of documentation moment I wanted to demo (and every SaaS company needs an AI feature). It proposed &lt;code&gt;/experimental&lt;/code&gt;, which uses a small model to decide which words in your sentence deserve to be bolded.&lt;/p&gt;
+&lt;p&gt;After it finished building the API, I ran &lt;code&gt;/simplify&lt;/code&gt;, which is &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/skills#bundled-skills&quot;&gt;a bundled Claude Code skill&lt;/a&gt; that does a quick cleanup pass to look for dead code and unnecessary indirection. This wasn’t important for anything, but I wanted to at least feel like the code was cleaner than a one-shot pass. Then I &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/best-practices#write-an-effective-claude-md&quot;&gt;ran &lt;code&gt;/init&lt;/code&gt;&lt;/a&gt; to generate a README and CLAUDE.md. The README is for future me, in case I ever need to run or modify this thing again. The CLAUDE.md is just good practice at this point, the scaffold I’d want if I came back to this project for something else.&lt;/p&gt;
+&lt;h2 id=&quot;2-find-a-documentation-platform&quot;&gt;2. Find a documentation platform&lt;/h2&gt;
+&lt;p&gt;My first instinct for the docs platform was &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.getzola.org/&quot;&gt;Zola&lt;/a&gt; or &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://astro.build/&quot;&gt;Astro&lt;/a&gt;. But before choosing, I did a sanity check on &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.mintlify.com/&quot;&gt;Mintlify&lt;/a&gt;, which I’ve worked with professionally for a couple of years and have never tried spinning up for a personal project. I’d assumed the free tier would be limited in some way that didn’t fit a one-off demo site, but it wasn’t. I created &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://acaas.mintlify.app&quot;&gt;acaas.mintlify.app&lt;/a&gt; in about a minute, cloned the repo, and was ready to go.&lt;/p&gt;
+&lt;p&gt;I was mildly embarrassed not to have known about the free tier. I also kind of want to move my blog over to Mintlify now.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/mintlify-dashboard.png&quot; alt=&quot;The Mintlify analytics dashboard for ACAAS, with 19 visitors and 41 views over a recent date range, a Humans/Agents traffic split, a Visitors Over Time bar chart, and a left sidebar covering Home, Editor, Analytics, Settings, and an Agents group for Workflows, Agent, Assistant, and MCP.&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;3-design-the-site&quot;&gt;3. Design the site&lt;/h2&gt;
+&lt;p&gt;I didn’t need to do this step at all, but it was the most fun. I have 0 design sense whatsoever, and &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://claude.ai/design&quot;&gt;Claude Design&lt;/a&gt; has been a lifesaver for me. I started a new prototype, described what I was building (“a Mintlify docs site for a fake API called All Caps as a Service”), and it started guiding me through the design steps until I had a lovely new branded docs site.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/claude-design-landing.png&quot; alt=&quot;Two Claude Design landing-page variations for ACAAS in dark mode, side by side: Variation A (Loud, Amber) with a large “send whisper. RECEIVE THUNDER.” hero, and Variation B (Restrained, Cobalt) with a status dashboard, quickstart steps, and an endpoint table.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I like that Claude Design asks clarifying questions as it works; things like what kind of feel I was after (bold or minimal or standard SaaS), whether I had color directions or wanted it to pick, etc. I landed on a theme I was happy with, had it generate a favicon and logo to match, and the whole time it was working inside Mintlify’s design constraints rather than producing something I’d have to retrofit. When I was done, I chose the “Handoff to Claude Code” export option and went on with my day.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/claude-design-marks.png&quot; alt=&quot;Claude Design output for ACAAS branding: eight candidate icon marks (Monogram A, Sound bars, Bang, Stacked carets, Megaphone, aA transform, Boost, Chevrons) with short rationales, three wordmark lockups, and a recommended pick of the aA transform with sizing and dark-mode previews.&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;4-apply-the-design&quot;&gt;4. Apply the design&lt;/h2&gt;
+&lt;p&gt;I used Claude Code Desktop for this because it has a built-in local preview. I could run the site locally and watch it render while Claude made changes, and Claude can see the preview too, so it catches its own rendering errors without me having to describe what I’m seeing. The workflow felt closer to pairing than to instructing. You could also do this with the CLI and then use the &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/chrome&quot;&gt;Claude in Chrome extension&lt;/a&gt; or &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://github.com/microsoft/playwright-mcp&quot;&gt;Playwright MCP&lt;/a&gt; to have Claude iterate on the design itself locally, but I just like the Desktop in-app experience.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/claude-code-desktop-preview.png&quot; alt=&quot;Claude Code Desktop with the conversation in the left pane (a turn confirming that docs.json, index.mdx, styles.css, and new logo files were copied to the worktree, with Mintlify hot-reloading on localhost:3000) and the live ACAAS docs site rendered at localhost:3000 in the right pane, showing the freshly-applied “send whisper. RECEIVE THUNDER.” hero.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;This step was pretty anticlimactic in a nice way. Claude took the design handoff, implemented it cleanly, and there wasn’t anything to debug. As an aside, I’ve shipped so many ugly, half-finished prototypes and waved it away with “I don’t like CSS,” and it feels like the days of that are finally over.&lt;/p&gt;
+&lt;h2 id=&quot;5-scaffold-the-docs&quot;&gt;5. Scaffold the docs&lt;/h2&gt;
+&lt;p&gt;I let AI generate the content with little direction, and I feel very fine about that. I said I wanted getting-started guides, cookbooks, and a changelog, and it produced them. I’m sure a few are confidently wrong in ways that don’t matter for a demo.&lt;/p&gt;
+&lt;p&gt;One thing that surprised me was that new Mintlify sites ship with a pre-built &lt;code&gt;AGENTS.md&lt;/code&gt; file and a &lt;code&gt;.claude/&lt;/code&gt; directory with settings and skills scaffolding for working with Mintlify, along with some basic style guides. The core instructions felt fairly useful/didn’t include anything I’d argue didn’t deserve to be there.&lt;/p&gt;
+&lt;h2 id=&quot;6-create-an-openapi-spec&quot;&gt;6. Create an OpenAPI spec&lt;/h2&gt;
+&lt;p&gt;The last piece was an API reference section. This is one of my favorite Mintlify features, even though the docs I work on now don’t have an API component. The API reference pages are built in and include an interactive playground where visitors can make live calls to the service from inside the docs themselves. All it needs is an OpenAPI spec, which Claude Code generated directly from the service code.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/making-acaas/acaas-openapi.png&quot; alt=&quot;The ACAAS API reference section generated from the OpenAPI spec, with a “Try it” panel and request/response examples.&quot; /&gt;&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Start to finish, the whole build was about two hours, most of which was the design step and a small detour deciding how much realism the rate limits needed. A year ago I would have spent the same two hours scaffolding just the initial API and decided nevermind maybe I’ll go a different direction.&lt;/p&gt;
+&lt;p&gt;End result: I used the demo in my talk, &lt;a href=&quot;../git-talk-recap/&quot;&gt;the git commands I avoided for nine years&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Sat, 16 May 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://sdeaton.com/blog/making-acaas/</guid>
+      <dc:date>2026-05-16T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] Your Documentation Has a Hidden Assumption Problem | Rin Oliver Interview</title>
+      <link>https://www.youtube.com/watch?v=0wnB4Y-DeUU</link>
+      <description>Interested in refining your professional brand, interview prep, or other career coaching?
+Schedule a meeting to see if we&#39;re a good fit: https://calendly.com/dfhauer/30min
+Connect with me on LinkedIn: https://www.linkedin.com/in/dianapayton/
+
+Learn how technical writing fits into the product manager role and what it takes to build effective DevOps tools. Rin Oliver shares his workflow.
+
+In this episode of Technical Writing Uncensored, Rin Oliver joins us to break down the intersection of product management and documentation. We discuss the daily responsibilities of a product manager working on DevOps tools and how clear technical communication impacts the development lifecycle. Whether you are a writer looking to move into product or a developer seeking to improve your documentation, this conversation highlights the practical skills required to succeed.
+
+We also explore the unique challenges of building software specifically for neurodivergent users. Rin explains how his background influences his approach to design and accessibility. By the end of this discussion, you will understand how to bridge the gap between complex engineering concepts and user-focused technical writing.
+
+Rin&#39;s website: https://kiranoliver.com/
+
+#TechnicalWriting #TechComm #Neurodivergent #AccessibleDesign #TechnicalWritingUncensored #Documentation #ContentStrategy #UXWriting #TechWriterLife #DocsOrItDidntHappen #ADHD #CognitiveAccessibility #WriteTheDocs #DeveloperExperience #CareerAdvice #TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Fri, 15 May 2026 15:00:05 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=0wnB4Y-DeUU</guid>
+      <dc:date>2026-05-15T15:00:05Z</dc:date>
+    </item>
+    <item>
+      <title>[Sarah Deaton] The git commands I avoided for nine years</title>
+      <link>https://sdeaton.com/blog/git-talk-recap/</link>
+      <description>&lt;!--
+TODO before publishing:
+- copy videos from ~/src/git-talk-slides/videos/ into this directory:
+  with-worktrees.mp4, with-reflog.mp4, update-refs.mp4
+--&gt;
+&lt;p&gt;I recently gave a &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.youtube.com/watch?v=FiGT3XYICSE&quot;&gt;talk&lt;/a&gt; at &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.writethedocs.org/&quot;&gt;Write the Docs&lt;/a&gt; about three git commands I’d been avoiding for most of my career, or in two cases didn’t know existed at all. For the demo environment behind the talk, I built &lt;a href=&quot;../making-acaas/&quot;&gt;All Caps as a Service&lt;/a&gt;, a fake API and docs site that turned into its own side quest.&lt;/p&gt;
+&lt;p&gt;To properly set expectations up front: I’m not a git expert. I’ve used git almost daily for a decade with a workflow I’ll describe in a minute, and recently discovered some parts of git that changed my thinking on it. I gave the talk and wrote this post because you don’t need to be a git expert to get a long way with the tool, or to look into the parts you’ve been avoiding.&lt;/p&gt;
+&lt;iframe
+  width=&quot;100%&quot;
+  height=&quot;415&quot;
+  src=&quot;https://www.youtube.com/embed/FiGT3XYICSE&quot;
+  title=&quot;The git commands I avoided for nine years&quot;
+  frameborder=&quot;0&quot;
+  allow=&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&quot;
+  allowfullscreen
+&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;img src=&quot;https://sdeaton.com/blog/git-talk-recap/git-talk-sketchnote.jpg&quot; alt=&quot;Sketchnote of the talk by Dennis Dawson. A timeline of sticky notes across the top reads “The Git Commands I Avoided for Nine Years (and why I wish I hadn’t).” Below, three commands are illustrated: git worktree, described as creating a second checkout of the repo; git reflog, described as an undo button for recovering lost commits, deleted branches, and bad rebases; and git rebase –update-refs, described as automagically force-updating all local branches that point to commits being rebased. Jujutsu (jj) appears at the bottom, described as reimagining what a commit is with no staging area and conflicts as first-class objects. On the right, “commit often” is written vertically in large pink letters.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Sketchnote by &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://dennissdawson.wixsite.com/mr--dawson/portfolio&quot;&gt;Dennis Dawson&lt;/a&gt;, via the &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.flickr.com/photos/writethedocs/55266348341/in/album-72177720333614185&quot;&gt;Write the Docs Flickr&lt;/a&gt;. I love the reflog drawing.&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;how-i-got-here&quot;&gt;How I got here&lt;/h2&gt;
+&lt;p&gt;For the majority of my time in tech, I used about six git commands: &lt;code&gt;add&lt;/code&gt;, &lt;code&gt;commit -m &quot;wip&quot;&lt;/code&gt;, &lt;code&gt;rebase -i&lt;/code&gt;, &lt;code&gt;commit --amend&lt;/code&gt;, &lt;code&gt;cherry-pick&lt;/code&gt;, &lt;code&gt;push&lt;/code&gt;. Add, save, clean up the history, polish, and push. It worked, and it produced nice clean PRs.&lt;/p&gt;
+&lt;p&gt;When I first learned git in a software engineering bootcamp, the framing was unambiguous. Git was esssential but could be dangerous. You could lose work, and you should stay inside a small set of safe commands. Above all, don’t touch rebase while you’re learning. If you got into a mess with it, you were on your own.&lt;/p&gt;
+&lt;p&gt;I eventually went to work on teams with other engineers, learned about collaborating on projects using git, added &lt;code&gt;git rebase -i&lt;/code&gt; to my toolkit, and felt pretty accomplished. My daily git commands worked for the most part… except for the few times when I’d do a bad rebase, and think I lost hours of work, despair and start over. Or get into a really tangled merge conflict and just end up deleting the branch and pulling down again from the remote. I thought that was the way it was; git was powerful with some rough edges.&lt;/p&gt;
+&lt;p&gt;What changed this for me had nothing to do with git initially. Last year, I wanted to run two Claude Code sessions on the same repo on different branches at once, purely for parallelism. I didn’t know how to do this, because as far as I knew, you could only have one branch checked out for a repo at a given time on your computer.&lt;/p&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://code.claude.com/docs/en/worktrees&quot;&gt;The fix turned out to be &lt;code&gt;git worktree&lt;/code&gt;&lt;/a&gt;, a git feature rather than anything to do with Claude Code. It also addressed a paper cut I’d been living with for years that I didn’t even realized I’d had: the stash-checkout-checkout-back-stash-pop dance every time I wanted to spin up a quick branch for a typo fix when I was in the middle of other work. Fixing a problem I hadn’t let rise to consciousness made me wonder what else was there and what I should incorporate into my toolkit.&lt;/p&gt;
+&lt;h2 id=&quot;the-three-commands&quot;&gt;The three commands&lt;/h2&gt;
+&lt;p&gt;I picked these three commands because they were the most directly useful ones that I found, and, in the case of git reflog, changed my view of git entirely.&lt;/p&gt;
+&lt;h3 id=&quot;git-worktree&quot;&gt;&lt;code&gt;git worktree&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;You’re mid-edit on a quickstart change, and someone asks for a one-line typo fix on a different branch. The dance is &lt;code&gt;git stash&lt;/code&gt;, &lt;code&gt;git checkout main&lt;/code&gt;, &lt;code&gt;git checkout -b typo-fix&lt;/code&gt;, fix it, &lt;code&gt;git checkout quickstart&lt;/code&gt;, &lt;code&gt;git stash pop&lt;/code&gt;. So much context switching and heaven forbid you get pulled away in the middle of it and have to remember where you were in the dance when you left off.&lt;/p&gt;
+&lt;p&gt;Worktrees solve this context switching problem. The command &lt;code&gt;git worktree add ../typo-fix main -b typo-fix&lt;/code&gt; makes a second working directory on your machine, pointing at the same repo, on a new branch. Then you can cd into that directory (&lt;code&gt;../typo-fix&lt;/code&gt;) and have two branches open at the same time, without needing to wind down/stash your work from one task to switch to the other.&lt;/p&gt;
+&lt;p&gt;The worktrees share the same &lt;code&gt;.git&lt;/code&gt; history, but all the files are duplicated and won’t clobber each other as you make changes in each branch. The quickstart edits stay sitting in the original directory, untouched. Open the new folder in a second editor window, fix the typo, push, and the original is exactly where you left it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When you’d reach for it:&lt;/strong&gt; any time you’d otherwise stash or do the checkout dance. Especially worth it if you context-switch between branches a lot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When it shipped:&lt;/strong&gt; 2015, a year before I started learning git.&lt;/p&gt;
+&lt;h3 id=&quot;git-reflog&quot;&gt;&lt;code&gt;git reflog&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;A pronunciation note: it’s &lt;em&gt;ref-log&lt;/em&gt;, short for “reference log.” I’d always pronounced it &lt;code&gt;git re-flog&lt;/code&gt;, which made it sound made up and was a primary reason I didn’t investigate it any further. Based on the people who came up to me after the talk, I’m not the only one who did this. This is also the one command that made me rethink my whole vision of git and realize it’s so much safer than I’d been taught.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git reflog&lt;/code&gt; shows everywhere &lt;code&gt;HEAD&lt;/code&gt; has been recently (every commit, reset, checkout, rebase, all of it). If you ever accidentally &lt;code&gt;git reset --hard&lt;/code&gt; too far or drop a commit during a rebase, or get a tangled git history through a merge conflict, this is the command that saves you. The “lost” commit, or the good place you used to be but now aren’t, is sitting right there in the reference log. You can always go back to it. Just run &lt;code&gt;git reflog&lt;/code&gt;, find the SHA for the commit/place in time you want to return to, and &lt;code&gt;git reset&lt;/code&gt; back to that place.&lt;/p&gt;
+&lt;p&gt;The piece that finally clicked for me, which I’d been missing when I was taught: HEAD in your repository is just a &lt;strong&gt;pointer&lt;/strong&gt;. Doing something like &lt;code&gt;reset&lt;/code&gt; or changes branches moves the pointer, but the commits themselves don’t go anywhere. &lt;code&gt;reflog&lt;/code&gt; is the trail the pointer left behind, kept for 90 days by default.&lt;/p&gt;
+&lt;p&gt;The one catch is that it only saves &lt;em&gt;committed&lt;/em&gt; work, and uncommitted changes blown away by &lt;code&gt;reset --hard&lt;/code&gt; are gone. Commit early and often!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When you’d reach for it:&lt;/strong&gt; any time you think you’ve lost work or are in an otherwise irreparable state.&lt;/p&gt;
+&lt;p&gt;Neat trick: I also learned recently that you can even do things like &lt;code&gt;main@{one.week.ago}&lt;/code&gt; to go back to where your main branch was a week ago. You don’t even need to find exact commits but can say things like “I knew this was working two days ago, let’s go back there.”&lt;/p&gt;
+&lt;h3 id=&quot;git-rebase-update-refs&quot;&gt;&lt;code&gt;git rebase --update-refs&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;You have a stacked PR (branch A off main, branch B off A). Someone lands a change on main that conflicts with A. The naive flow is to rebase A onto main, resolve the conflict, then rebase B onto the new A, where the same conflict is waiting for you to resolve a second time.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;git rebase --update-refs main&lt;/code&gt;, run from the top of the stack, rebases the whole stack in one pass and moves the branch pointers along the way. You only need to resolve the conflict once, and then all the downstream branches get updated with the changes from main as well.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When you’d reach for it:&lt;/strong&gt; stacked PRs that should all get updates from a branch at the same time.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When it shipped:&lt;/strong&gt; 2022. I’d originally planned to talk about &lt;code&gt;git rerere&lt;/code&gt; (it remembers a conflict resolution and replays it next time the same one shows up), and found &lt;code&gt;--update-refs&lt;/code&gt; while writing the talk.&lt;/p&gt;
+&lt;h2 id=&quot;the-one-i-think-actually-matters&quot;&gt;The one I think actually matters&lt;/h2&gt;
+&lt;p&gt;If you take one of these home, take reflog.&lt;/p&gt;
+&lt;p&gt;Worktrees and &lt;code&gt;--update-refs&lt;/code&gt; are about ergonomics and make day-to-day tasks easier. Reflog is different; it changes the belief that screwing up means losing work, and that belief was what kept me out of the parts of git where the real power lives.&lt;/p&gt;
+&lt;h2 id=&quot;for-the-record&quot;&gt;For the record&lt;/h2&gt;
+&lt;p&gt;A few QA questions where my live answer was either hand-wavy or wrong, because again, I’m not a git expert at all. Here are my corrected answers (and thanks for the opportunity to learn this with you all!)&lt;/p&gt;
+&lt;h3 id=&quot;git-worktree-vs-multiple-clones&quot;&gt;&lt;code&gt;git worktree&lt;/code&gt; vs. multiple clones&lt;/h3&gt;
+&lt;p&gt;Someone asked what the actual difference was between doing &lt;code&gt;git worktree&lt;/code&gt; vs. just having multiple cloned versions of your repo. A clearer answer than whatever I gave:&lt;/p&gt;
+&lt;p&gt;Multiple clones give you fully independent copies of the repo, each with its own &lt;code&gt;.git&lt;/code&gt; directory. Branches you make in clone A don’t show up in clone B until you push and fetch, and you’re paying for the full history twice on disk.&lt;/p&gt;
+&lt;p&gt;Worktrees share the underlying &lt;code&gt;.git&lt;/code&gt; (the secondary worktree has a tiny &lt;code&gt;.git&lt;/code&gt; &lt;em&gt;file&lt;/em&gt; pointing back to the main one). Branches and commits show up in every worktree immediately, with no fetching and no duplicate storage. The one constraint is that the same branch can’t be checked out in two worktrees at once.&lt;/p&gt;
+&lt;p&gt;If you want two separate copies of the project that can drift apart, that’s &lt;code&gt;git clone&lt;/code&gt;. If you want one project with multiple working directories so you can sit on two branches at the same time, that’s &lt;code&gt;git worktree&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;does-reflog-work-with-reset-soft-and-hard&quot;&gt;Does reflog work with &lt;code&gt;reset --soft&lt;/code&gt; and &lt;code&gt;--hard&lt;/code&gt;?&lt;/h3&gt;
+&lt;p&gt;Yes for both. I also want to walk back something I said on stage, because I had it backwards. Every form of &lt;code&gt;git reset&lt;/code&gt; moves HEAD, which is the whole point of the command. The flags change what happens to the index and working tree on top of that:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--soft&lt;/code&gt;: move HEAD. Index and working tree untouched, so whatever was previously committed shows back up as staged.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--mixed&lt;/code&gt; (the default): move HEAD, reset the index to match it. Working tree untouched, so changes show up as unstaged.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--hard&lt;/code&gt;: move HEAD, reset the index, and overwrite the working tree to match. Uncommitted changes (staged or not) are gone.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Reflog records every move of HEAD, so all three are recoverable in the sense that you can always put HEAD back where it was. The thing reflog &lt;em&gt;can’t&lt;/em&gt; save you from is the working-tree damage &lt;code&gt;--hard&lt;/code&gt; does. Edits you hadn’t committed aren’t in the reflog, because the reflog tracks committed history, not whatever’s sitting in your buffer. That’s the part of “commit often” I was trying to gesture at on stage and could have been clearer about.&lt;/p&gt;
+&lt;h3 id=&quot;a-note-on-jujutsu&quot;&gt;A note on Jujutsu&lt;/h3&gt;
+&lt;p&gt;At the end of the talk I mentioned &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://github.com/jj-vcs/jj&quot;&gt;Jujutsu (or &lt;code&gt;jj&lt;/code&gt;)&lt;/a&gt;. I didn’t even realize for a while that there were other version control systems being developed; I kind of thought git was the one we’d settled on. But of course there were VCS systems before and people are making new ones too, revisiting these foundational concepts and/or layering on top.&lt;/p&gt;
+&lt;p&gt;I find &lt;code&gt;jj&lt;/code&gt; to be really interesting because it’s a more recent VCS that’s gaining popularity. It can live alongside a git repo, sharing objects and remotes, but rethinks the model. &lt;code&gt;jj&lt;/code&gt; has no staging area, and you carry conflicts with you across operations instead of resolving them on the spot. The command surface is also much smaller. I’ve just heard of it and haven’t used it for real work, so I don’t have an opinion on whether it’s worth switching. But it’s on the list, and if you’ve been bouncing off git for years and it still doesn’t fit, that might be the direction to look.&lt;/p&gt;
+&lt;h2 id=&quot;coda&quot;&gt;Coda&lt;/h2&gt;
+&lt;p&gt;I keep coming back to one specific story. After learning software engineering at a bootcamp, I taught there for a year. One day a student ran a rebase even though we’d warned her against it. She lost a day of work and asked for help. The response from the instructors, mine included, was “oops, oh well, we told you so,” and I still feel bad about it. Reflog would have walked her right back to where she was, but none of us knew about it, so none of us could tell her. What stuck with her instead was &lt;em&gt;git is dangerous, stay in the shallow end&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;I gave the talk as a non-expert and that was sort of the point. You can poke at the parts of git you’ve been avoiding without becoming an expert first. The cost of looking was small for me, a search engine and an afternoon per command, weighed against nine more years of deleting repos and living with what I thought was lost.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 15 May 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://sdeaton.com/blog/git-talk-recap/</guid>
+      <dc:date>2026-05-15T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Story Needle] Setting boundaries for bots</title>
+      <link>https://storyneedle.com/setting-boundaries-for-bots/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=setting-boundaries-for-bots</link>
+      <description>&lt;p&gt;Our AI usage is quickly pivoting from copiloting to autopilot. Time for people to define their relationship with bots.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://storyneedle.com/setting-boundaries-for-bots/&quot;&gt;Setting boundaries for bots&lt;/a&gt; appeared first on &lt;a href=&quot;https://storyneedle.com&quot;&gt;Story Needle&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 14 May 2026 14:00:34 -0000</pubDate>
+      <guid isPermaLink="true">https://storyneedle.com/setting-boundaries-for-bots/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=setting-boundaries-for-bots</guid>
+      <dc:date>2026-05-14T14:00:34Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] Moving away from Oh My Zsh (OMZ)</title>
+      <link>https://amanhimself.dev/blog/moving-away-from-oh-my-zsh/</link>
+      <description>I&#39;ve been running Oh My Zsh (OMZ) on every workstation I&#39;ve ever owned. It was one of the first things I&#39;d install when setting up a new machine or cleanly updating an existing one. For years, I&#39;ve blindly copied my workstation configuration from one Macbook to the next, without questioning whether I still needed something in the current day and age, or whether it had quietly been replaced by something better. The first time I wrote about my setup was in 2023 and since then I&#39;ve written about it every year: 2024 and 2025 and recently in 2026. The last post is a result of me taking my time and making conscious decisions. Somewhere in that process, I realized that my setup and especially my terminal setup, was bloated.</description>
+      <pubDate>Thu, 14 May 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/moving-away-from-oh-my-zsh/</guid>
+      <dc:date>2026-05-14T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Architecture Docs: A Guide to Clear, Effective System Documentation</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/architecture-docs-a-guide-to-clear-effective-system-documentation/</link>
+      <description>&lt;p&gt;What&amp;#160; Is Architecture Documentation? Architecture documentation describes the design and structure of a software system. It captures the system’s high-level components, their relationships, and the major decisions that shaped how the system is built and operated. It answers three core questions: Unlike code comments or user manuals, architecture documentation explains the “why” and “how” at...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/architecture-docs-a-guide-to-clear-effective-system-documentation/&quot;&gt;Architecture Docs: A Guide to Clear, Effective System Documentation&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 13 May 2026 11:08:02 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/architecture-docs-a-guide-to-clear-effective-system-documentation/</guid>
+      <dc:date>2026-05-13T11:08:02Z</dc:date>
+    </item>
+    <item>
+      <title>[James Tasse] Meowlin</title>
+      <link>https://jamestasse.tech/blog/posts/meowlin</link>
+      <description>You may have heard of Merlin, a fantastic mobile app that can identify birds in real time.</description>
+      <pubDate>Wed, 13 May 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://jamestasse.tech/blog/posts/meowlin</guid>
+      <dc:date>2026-05-13T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Dachary Carey] A Skill is More than Markdown</title>
+      <link>https://dacharycarey.com/2026/05/11/agent-skill-more-than-markdown/</link>
+      <description>&lt;p&gt;Organizations have been pushing official company skills out the door because skills look like just a markdown file, and that seems simple and trivial. But when you dig into the lifecycle of an official skill that you intend to support, distribute, and stand behind, it&#39;s a lot more than a markdown file. I&#39;m not sure a single organization shipping skills today recognizes how much more.&lt;/p&gt;
+&lt;p&gt;This is the article I promised at the end of &lt;a href=&quot;https://dacharycarey.com/2026/05/07/can-agent-skills-make-output-worse/&quot;&gt;Can Agent Skills Make Output Worse?&lt;/a&gt;, where I closed by saying I&#39;d been ideating around what skill lifecycle management looks like and would write more about it as I proposed process and tooling around it. This is the lifecycle that I&#39;m picturing. Let me tell you what&#39;s actually involved, where the work falls, and where the org chart runs out of people to do it.&lt;/p&gt;</description>
+      <pubDate>Mon, 11 May 2026 12:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://dacharycarey.com/2026/05/11/agent-skill-more-than-markdown/</guid>
+      <dc:date>2026-05-11T12:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Passo Uno] What I&#39;ve learned designing agentic workflows for docs</title>
+      <link>https://passo.uno/agentic-workflows-for-docs/</link>
+      <description>&lt;p&gt;Back in 2024 &lt;a href=&quot;https://passo.uno/ai-tech-writer-examples/&quot;&gt;I wrote&lt;/a&gt; that AI helps me remove boring work at the margins. This is fine for a lone writer, but how to scale this to an entire team of technical writers? How to make the system helpful but not intrusive? These are all questions I’m starting to answer now, partly through experimentation, but also through dialogue with practitioners and colleagues. One answer I’m testing these days relies on GitHub Agentic Workflows.&lt;/p&gt;</description>
+      <pubDate>Mon, 11 May 2026 12:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://passo.uno/agentic-workflows-for-docs/</guid>
+      <dc:date>2026-05-11T12:00:00Z</dc:date>
+    </item>
+  </channel>
+</rss>

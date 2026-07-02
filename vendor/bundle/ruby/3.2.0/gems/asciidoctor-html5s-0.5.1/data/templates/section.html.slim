@@ -1,0 +1,12 @@
+section.doc-section class=["level-#{section_level}", role]
+  h level=(section_level + 1) id=id
+    - if id
+      - if document.attr? :sectanchors
+        a.anchor href="##{id}" aria-hidden='true'
+      - if document.attr? :sectlinks
+        a.link href="##{id}" =section_title
+      - else
+        =section_title
+    - else
+      =section_title
+  =content

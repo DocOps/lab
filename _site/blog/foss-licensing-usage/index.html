@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocOps Lab Licensing and Usage | DocOps Lab</title>
+  <meta name="description" content="">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="DocOps Lab Licensing and Usage">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://docopslab.org/blog/foss-licensing-usage/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/blog-foss-licenses.jpg">
+    
+  
+  
+  <meta property="article:author" content="DocOps Lab">
+  <meta property="article:published_time" content="2025-09-16T00:00:00+00:00">
+    
+      
+  <meta property="article:tag" content="open-source">
+      
+  <meta property="article:tag" content="policy">
+      
+  <meta property="article:tag" content="projects">
+      
+    
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DocOps Lab Licensing and Usage">
+  <meta name="twitter:description" content="">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/blog-foss-licenses.jpg">
+    
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <meta name="publish_date" property="og:publish_date" content="2025-09-16T00:00:00+00:00">
+  
+  <link rel="canonical" href="https://docopslab.org/blog/foss-licensing-usage/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+  <link rel="alternate" type="application/rss+xml" title="DocOps Lab Blog" href="https://docopslab.org/feeds/docops-lab-blog.xml">
+  
+</head>
+<body class="layout-post  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  
+
+
+
+<div class="blog-post-container">
+  <div class="container">
+    <article class="blog-post">
+    <header class="post-header">
+      <h1 class="post-title">
+        DocOps Lab Licensing and Usage
+        
+      </h1>
+      
+      
+      <h2 class="blog-title">
+        <img src="/assets/images/favicons/favicon-raw-transparent.png" alt="DocOps Lab Favicon" class="blog-favicon-logo">
+        A DocOps Lab Blog entry
+      </h2>
+      
+      
+      <div class="post-meta">
+        
+        <time class="post-date" datetime="2025-09-16T00:00:00+00:00">
+          <i data-lucide="calendar"></i>
+          September 16, 2025
+        </time>
+        
+        
+        
+        
+        <div class="post-tags">
+          <i data-lucide="tag"></i>
+          
+            <span class="tag">open-source</span>
+          
+            <span class="tag">policy</span>
+          
+            <span class="tag">projects</span>
+          
+        </div>
+        
+        
+      </div>
+    </header>
+    
+    <div class="post-content">
+      
+      <figure class="post-image">
+        <img src="/assets/images/blog-foss-licenses.jpg" alt="DocOps Lab Licensing and Usage" class="post-image-img">
+        
+        <figcaption class="post-image-caption">
+          
+          
+        </figcaption>
+        
+      </figure>
+      
+      <div class="paragraph">
+<p>Let&#8217;s talk about permissively licensed software and how it is best used and managed downstream.</p>
+</div>
+<div class="paragraph">
+<p>Most people&#8201;&#8212;&#8201;including software developers&#8201;&#8212;&#8201;interact with most software as <em>consumers</em> or <em>end users</em>.
+Nevertheless, open source software often seems to be packaged <em>for</em> other developers.</p>
+</div>
+<div class="paragraph">
+<p>This is a guide for new developers or non-devs who need to incorporate FOSS (free open source software) into their own projects.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>This blog entry is meant to help demystify the world of runtime-based open source software.
+It is meant to empower rather than intimidate, just like the best open source software does.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>DocOps Lab software is typically released in both source code and binary/packaged forms, for users' convenience.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>code</strong> is released on an interactive platform (<a href="https://github.com/DocOps">GitHub</a>) so you can investigate it, extend it, or help fix and improve it.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>binaries and packages</strong> are released so you can install and execute it without including the source code in your own projects.
+This way even if you share your project as open source, any open source software it uses unmodified can be referenced as a dependency rather than packaged in your codebase.</p>
+</div>
+<div class="paragraph">
+<p>Likewise, DocOps Labs' <strong>documentation</strong> is similarly shared as both source code and rendered HTML/PDF, also under these exact same conditions.
+Use it as you wish, help improve it, even re-brand it&#8201;&#8212;&#8201;the only requirement is maintaining the &#8220;upstream&#8221; chain of attribution.
+We mainly care about this for accountability, not credit (which we don&#8217;t care about) or control (which we fully relinquish).</p>
+</div>
+<div class="paragraph">
+<p>Our licensing says you can use it however you want, but if you re-share the code, it must remain under the same license and be attributed to DocOps Lab.</p>
+</div>
+<div class="paragraph">
+<p>Note that you do NOT have to share it or changes you make to it, and also note that we do not really care if you keep the attribution or not, whether you release a modified version or not.
+We just want to make it easy for you to use our tools, and we want to be able to point to a common codebase that we can all work on together (or not).</p>
+</div>
+<div class="sect1">
+<h2 id="how-to-use-docops-lab-software">How to Use DocOps Lab Software</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you want to use our software, there is a near certainty that it will not &#8220;just work&#8221;, so to speak, &#8220;out of the box&#8221;, so to speak.</p>
+</div>
+<div class="paragraph">
+<p>However, this does not mean you must modify or even look at the source code to make use of our software in the vast majority of cases.</p>
+</div>
+<div class="paragraph">
+<p>In fact, if you know you&#8217;re not going to &#8220;hack&#8221; our source code, skip to <a href="#make-foss-work-for-you">Make FOSS Work for You</a>.
+The next section is about the distinction between forking and modding open source software vs just installing and using it as intended by its provider.</p>
+</div>
+<div class="sect2">
+<h3 id="modified-vs-packaged">Modified vs Packaged</h3>
+<div class="paragraph">
+<p>There are a few ways to take advantage of DocOps Lab software and content.
+Much of the following will apply to any similar open source runtime applications.</p>
+</div>
+<div class="paragraph">
+<p>The most common way would be as a compiled-and-packaged dependency in your own project, perhaps as a Ruby gem or a Docker image.
+This way, you do not need to fuss over licensing at all.</p>
+</div>
+<div class="paragraph">
+<p>If you do want to modify the code, you can fork it and make changes, then use your own modified version as a dependency in your own project.
+You do not need to re-share or contribute back your changes.</p>
+</div>
+<div class="paragraph">
+<p>Source code can be modified and used in many ways, including copied and pasted snippets, or even just as inspiration for your own code.
+But of course you can also make a wholesale copy, modify it, and rebuild and package it for yourself, then cite that dependency in your <code>Gemfile</code> or <code>Dockerfile</code> or <code>Rakefile</code>, for instance.</p>
+</div>
+<div class="paragraph">
+<p>The goal of any open source project should be a balance between extensibility and configurability.
+Most users needing to customize should be able to do so by tweaking powerful settings or an application programming interface (API) or a domain-specific language (DSL) without needing to modify the project&#8217;s source code.</p>
+</div>
+<div class="paragraph">
+<p>Yet for users with extraordinary needs, or perhaps after the project has been abandoned, the ability to fork and modify the code is essential.</p>
+</div>
+<div class="paragraph">
+<p>However, source code modification is not the topic of the day.
+In fact, it&#8217;s the opposite.
+We are going to review all the ways the kinds of &#8220;runtime tools&#8221; we use most in docs-as-code platforms can be modified and used <em>without</em> touching their source code.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="make-foss-work-for-you">Make FOSS Work for You</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are many ways to interact with and amend the behavior of software before you should ever consider hacking the source.
+True programmers do their best to <em>avoid</em> modifying the source code of products they wish to <em>use</em> but not to <em>maintain</em>.</p>
+</div>
+<div class="sect2">
+<h3 id="clis">CLIs</h3>
+<div class="paragraph">
+<p>Command-line interfaces can be run from any UNIX-like shell environment and manipulated with arguments, options, flags, and environment variables.
+This is likely the fastest way to leverage any DocOps Lab tools.</p>
+</div>
+<div class="paragraph">
+<p>CLI commands can be scripted.
+You can string them together, run them conditionally, run them in loops, and so forth.
+Commands are simply instructions, and instructions can be concatenated into scripts.</p>
+</div>
+<div class="paragraph">
+<p>The output can be piped to other commands for further processing.</p>
+</div>
+<div class="paragraph">
+<p>CLIs can be used in combination with configuration, domain-specific languages, and extensions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="apis">APIs</h3>
+<div class="paragraph">
+<p>There are two broad categories of APIs: native and remote.</p>
+</div>
+<div class="paragraph">
+<p>Native APIs are libraries or modules designed to be used in a given programming environment, such as Java, Python, JavaScript, or in our case mostly Ruby.</p>
+</div>
+<div class="paragraph">
+<p>Most people in tech are more familiar with remote APIs, specifically RESTful APIs, but also GraphQL, SOAP, and other kinds.</p>
+</div>
+<div class="paragraph">
+<p>In both cases, an API is a system that awaits input in an expected format and returns output in a documented format&#8201;&#8212;&#8201;usually some kind of data structure.
+In the case of remote APIs, the output is typically JSON delivered over HTTP.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configs">Configs</h3>
+<div class="paragraph">
+<p>Most runtime tools can be configured with local files that stablish a baseline of settings and behaviors.
+Configuration files, or &#8220;configs&#8221; , are a kind of interface, though they tend to be application-specific in structure, syntax, and nomenclature.</p>
+</div>
+<div class="paragraph">
+<p>DocOps Lab prefers YAML-formatted configuration files, but sometimes we use INI format.</p>
+</div>
+<div class="paragraph">
+<p>Configs are constrained by whatever the product&#8217;s developers predicted users would want to do.
+It often means establishing persistent preferences for the types of things CLIs and APIs allow you to indicate at runtime using arguments.</p>
+</div>
+<div class="paragraph">
+<p>Good Configs are well documented, but truthfully configuration docs often get de-emphasized, especially in open source projects.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dsls">DSLs</h3>
+<div class="paragraph">
+<p>Domain-specific languages (DSLs) are mini programming syntaxes designed to express concepts in a particular domain, usually with modest scope.</p>
+</div>
+<div class="paragraph">
+<p>DSLs can be their very own syntax, or they can use an existing syntax like YAML or XML in a predefined manner, expecting particular keys with a given range of values to script or configure user-defined outcomes for a given set of inputs.</p>
+</div>
+<div class="paragraph">
+<p>Examples of DSLs you might be familiar with include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>GitHub Actions workflow files</p>
+</li>
+<li>
+<p>Kubernetes manifests</p>
+</li>
+<li>
+<p>Dockerfiles</p>
+</li>
+<li>
+<p>SCSS/SASS and LESS for CSS pre-processing</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>DocOps Lab prefers to use YAML-based DSLs wherever possible, as they are easy to read and write, and YAML is widely supported.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="templates">Templates</h3>
+<div class="paragraph">
+<p>Templates are a kind of DSL that define how input textual and variable data is to be transformed into output content.</p>
+</div>
+<div class="paragraph">
+<p>Templates use a syntax that is interpreted by a rendering engine.
+This engine accepts data from an outside source (YAML or JSON or a relational database) and merges it into the template structure to produce predictable output.</p>
+</div>
+<div class="paragraph">
+<p>Templates are often used in DocOps Lab projects to generate HTML, Markdown, AsciiDoc, YAML, or other text-based formats.</p>
+</div>
+<div class="paragraph">
+<p>DocOps Lab prefers Liquid templates and uses an extended version of Jekyll&#8217;s Liquid 4 engine.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="extensions-plugins">Extensions/Plugins</h3>
+<div class="paragraph">
+<p>Forward-thinking developers instill their software with &#8220;hooks&#8221; so that downstream devs can extend the product&#8217;s behavior using its native source syntax or a DSL.</p>
+</div>
+<div class="paragraph">
+<p>While some DSLs and templating systems are used to perform tasks the product developer predicted most users would need, extensions are for needs the developer did not anticipate or has not yet implemented.</p>
+</div>
+<div class="paragraph">
+<p>Extensions are often packaged as plugins or modules that can be installed alongside the main product.
+Developers themselves often provide plugins for optional features that might not be optimal as a built-in aspect of the core product.</p>
+</div>
+<div class="paragraph">
+<p>Other times, plugins are created by third-party developers to add functionality the original developers did not envision.
+These &#8220;community extensions&#8221; sometimes get merged into the official product.</p>
+</div>
+<div class="paragraph">
+<p>Any user can develop an extension and <em>not</em> share it.
+This is common for extensions that solve an internal use case but are not designed for public consumption.
+A local extension can even include hard-coded data or proprietary logic that would not be appropriate for open source sharing.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="licensing-choices-and-implications">Licensing Choices and Implications</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In some ways, the distinctions between open source licenses do not matter very much.
+If you just want to use some FOSS utility or another, even for professional or commercial purposes, most licenses will allow you to do so with no strings attached.</p>
+</div>
+<div class="paragraph">
+<p>Licensing starts to matter when you want to package or copy source code into your own projects, especially if you intend to share your own project as open source.</p>
+</div>
+<div class="sect2">
+<h3 id="why-licenses">Why Licenses?</h3>
+<div class="paragraph">
+<p>Software you intend to share needs a license.
+What many people misunderstand is that unlicensed software you find on GitHub or elsewhere is still copyrighted, and you technically are <em>NOT</em> supposed to reuse it in your own projects.</p>
+</div>
+<div class="paragraph">
+<p>Truthfully, a lot of shared code just happens to be lacking a license out of neglect, and it&#8217;s fine for you to reuse.</p>
+</div>
+<div class="paragraph">
+<p>Most of the engineering shops I&#8217;ve worked at disallow incorporating unlicensed code into published software, even if the developer obviously intended to share it.
+You can always post an Issue on a project&#8217;s GitHub repo to ask the author to add a permissive license.</p>
+</div>
+<div class="paragraph">
+<p>So we have to have a license to make it clear our code is freely copyable and reusable.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-mit">Why MIT?</h3>
+<div class="paragraph">
+<p>By some stroke of coincidence or culture or convention, nearly everything in our particular toolchain (meaning the applications we use to develop our own) is <a href="https://opensource.org/license/mit">MIT licensed</a>, so it makes sense to use the same license for our own code.</p>
+</div>
+<div class="paragraph">
+<p>MIT License is totally permissive; it should not trouble anyone&#8217;s manager or CTO or Legal Department, and that&#8217;s that.</p>
+</div>
+<div class="paragraph">
+<p>There are lots of other considerations deep thinkers fuss over, but I have not found time to care much about the nuance politics of FOSS licensing.</p>
+</div>
+<div class="paragraph">
+<p>MIT works.
+<a href="https://opensource.org/license/apache-2-0">Apache</a> works.
+<a href="https://opensource.org/license/bsd-2-clause">BSD</a> works.
+Knock yourself out.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="why-cc-by-4-0">Why CC BY 4.0?</h3>
+<div class="paragraph">
+<p>We release some extra documentation like websites and educational materials under <a href="https://creativecommons.org/licenses/by/4.0/deed.en">Creative Commons Attribution 4.0 International (CC BY 4.0)</a> because it is similarly permissive like MIT and widely understood, and because we quite like CC and their efforts in the world of knowledge sharing.</p>
+</div>
+<div class="paragraph">
+<p>CC BY indicates a requirement to note what changes are made if you redistribute the so-licensed content, so for stuff like Docs-as-Code School or <a href="https://github.com/DocOps">the main (this) DocOpsLab.org</a> website.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="what-does-all-this-mean">What Does All This Mean?</h3>
+<div class="paragraph">
+<p>In practical terms, you can use DocOps Lab software and documentation in your own projects, whether personal or commercial, without worrying about licensing fees or restrictions.
+You can modify it, adapt it, and even redistribute it, and we don&#8217;t even care about credit, so long as you leave some trail back to the source.</p>
+</div>
+<div class="paragraph">
+<p>The only real requirement is that if you do redistribute the <em>source code</em> itself, it must remain under the same license.
+You may even appoint a different license to govern your changes/additions to the software.</p>
+</div>
+</div>
+</div>
+</div>
+    </div>
+    
+    
+      
+    
+
+    
+    <div class="related-posts">
+
+      
+
+      
+        <h2>Related posts</h2>
+        <ul>
+          
+            
+            
+            <li>
+              <a href="/blog/why-github/">Why DocOps Lab Chooses GitHub over GitLab</a>
+            </li>
+            
+          
+        </ul>
+      
+    </div>
+    
+    
+    <footer class="post-footer">
+      
+      
+      <div class="post-navigation">
+        
+        <a href="/blog/how-to-train-your-agent/" class="nav-link nav-prev">
+          <i data-lucide="arrow-left"></i>
+          <div class="nav-text">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">How to Train Your Agent</span>
+          </div>
+        </a>
+        
+        
+        
+        <a href="/blog/code-to-docs-pipelines/" class="nav-link nav-next">
+          <div class="nav-text">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">Code-to-Docs Pipelines</span>
+          </div>
+          <i data-lucide="arrow-right"></i>
+        </a>
+        
+      </div>
+      
+      <div class="back-to-blog">
+        <a href="/blog/" class="btn-secondary">
+          <i data-lucide="arrow-left"></i>
+          Back to Blog
+        </a>
+      </div>
+    </footer>
+    </article>
+  </div>
+</div>
+
+
+<footer>
+  <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>
