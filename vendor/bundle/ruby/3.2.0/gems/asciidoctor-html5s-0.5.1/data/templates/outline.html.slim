@@ -1,0 +1,10 @@
+- unless sections.empty?
+  / XXX: opts[:toclevels] is workaround for Opal (see asciidoctor-templates-compiler)
+  - toclevels ||= opts[:toclevels] || (document.attr 'toclevels', DEFAULT_TOCLEVELS).to_i
+  - slevel = section_level sections.first
+  ol.toc-list class="level-#{slevel}"
+    - sections.each do |sec|
+      li
+        a href="##{sec.id}" =(section_title sec, drop_anchors: true)
+        - if (sec.level < toclevels) && (child_toc = converter.convert sec, 'outline')
+          = child_toc

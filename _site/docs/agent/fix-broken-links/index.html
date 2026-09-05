@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fix Broken Links | DocOps Lab</title>
+  <meta name="description" content="">
+  
+  <meta name="robots" content="noindex,nofollow" />
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Fix Broken Links">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://docopslab.org/docs/agent/fix-broken-links/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Fix Broken Links">
+  <meta name="twitter:description" content="">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/agent/fix-broken-links/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Fix Broken Links</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Fix Broken Links</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Fix Broken Links</h1>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+        <div class="audience-agent info">
+          <p>This document is intended for AI agents operating within a DocOps Lab environment.</p>
+          
+            <p>Original sources for this document include:</p>
+            <ul>
+            
+              <!-- detect the origin url based on the slug (origin) -->
+              
+              
+              
+              <li><a href="/docs/agent/fix-broken-links/">Fix Broken Links</a></li>
+            
+            </ul>
+          
+        </div>
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A systematic approach to debugging and fixing broken links in DocOps Lab websites or sites generated with DocOps Lab tooling.</p>
+</div>
+<div class="paragraph">
+<p>Due to complex sourcing procedures at work in DocOps Lab projects, where a particular link comes from is not always obvious.</p>
+</div>
+<div class="paragraph">
+<p>This guide focuses on the methodologies for tracing link sources rather than specific solutions, making it applicable across different Jekyll/AsciiDoc sites.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#common-link-failure-patterns">Common Link Failure Patterns</a>
+<ul class="sectlevel2">
+<li><a href="#external-link-failures">External Link Failures</a></li>
+<li><a href="#internal-link-failures">Internal Link Failures</a></li>
+</ul>
+</li>
+<li><a href="#debugging-methodology">Debugging Methodology</a>
+<ul class="sectlevel2">
+<li><a href="#step-counter-step-run-htmlproofer-and-categorize-failures">Step 1: Run HTMLProofer and Categorize Failures</a></li>
+<li><a href="#step-counter-step-identify-high-impact-patterns">Step 2: Identify High-Impact Patterns</a></li>
+<li><a href="#step-counter-step-trace-link-sources">Step 3: Trace Link Sources</a></li>
+<li><a href="#step-counter-step-apply-appropriate-fix-strategy">Step 4: Apply Appropriate Fix Strategy</a></li>
+</ul>
+</li>
+<li><a href="#data-driven-link-debugging">Data-Driven Link Debugging</a>
+<ul class="sectlevel2">
+<li><a href="#yaml-data-sources">YAML Data Sources</a></li>
+<li><a href="#dependency-tracing-process">Dependency Tracing Process</a></li>
+<li><a href="#example-trace-asciidocsy-links">Example Trace: AsciiDocsy Links</a></li>
+</ul>
+</li>
+<li><a href="#pre-publication-link-strategy">Pre-Publication Link Strategy</a></li>
+<li><a href="#validation-and-testing">Validation and Testing</a>
+<ul class="sectlevel2">
+<li><a href="#rebuild-and-verify">Rebuild and Verify</a></li>
+<li><a href="#test-cycle">Test Cycle</a></li>
+</ul>
+</li>
+<li><a href="#prevention-strategies">Prevention Strategies</a>
+<ul class="sectlevel2">
+<li><a href="#development-practices">Development Practices</a></li>
+<li><a href="#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="common-link-failure-patterns">Common Link Failure Patterns</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="external-link-failures">External Link Failures</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Network timeouts</dt>
+<dd>
+<p>Temporary connectivity issues that resolve after rebuild</p>
+</dd>
+<dt class="hdlist1">404 errors</dt>
+<dd>
+<p>Missing pages or incorrect URLs</p>
+</dd>
+<dt class="hdlist1">Pre-publication links</dt>
+<dd>
+<p>Links to repositories or resources not yet available</p>
+</dd>
+<dt class="hdlist1">Malformed URLs</dt>
+<dd>
+<p>Missing repository names or incorrect paths</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="internal-link-failures">Internal Link Failures</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Missing project anchors</dt>
+<dd>
+<p>Data/template mismatches in generated content</p>
+</dd>
+<dt class="hdlist1">Section anchor mismatches</dt>
+<dd>
+<p>ID generation vs link target differences</p>
+</dd>
+<dt class="hdlist1">Template variable errors</dt>
+<dd>
+<p>Unprocessed variables in URLs</p>
+</dd>
+<dt class="hdlist1">Missing pages</dt>
+<dd>
+<p>Links to pages that don&#8217;t exist</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="debugging-methodology">Debugging Methodology</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="step-counter-step-run-htmlproofer-and-categorize-failures">Step 1: Run HTMLProofer and Categorize Failures</h3>
+<div class="literalblock prompt">
+<div class="title">Run link validation</div>
+<div class="content">
+<pre>bundle exec rake labdev:lint:html 2&gt;&amp;1 | tee .agent/scratch/link-failures.txt</pre>
+</div>
+</div>
+<div class="literalblock prompt">
+<div class="title">Extract external failure patterns</div>
+<div class="content">
+<pre>grep "External link.*failed" .agent/scratch/link-failures.txt | wc -l</pre>
+</div>
+</div>
+<div class="literalblock prompt">
+<div class="title">Extract internal failure patterns</div>
+<div class="content">
+<pre>grep "internally linking" .agent/scratch/link-failures.txt | wc -l</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="step-counter-step-identify-high-impact-patterns">Step 2: Identify High-Impact Patterns</h3>
+<div class="paragraph">
+<p>Look for repeated failures across multiple pages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Same broken link appearing on 3+ pages = template/data issue</p>
+</li>
+<li>
+<p>Similar link patterns = systematic problem</p>
+</li>
+<li>
+<p>Timeout clusters = network/rebuild issue</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="step-counter-step-trace-link-sources">Step 3: Trace Link Sources</h3>
+<div class="sect3">
+<h4 id="for-missing-anchors-internal-links-and-x-refs">For Missing Anchors (Internal Links and X-refs)</h4>
+<div class="paragraph">
+<p>If the problem is an anchor that does not exist, either the pointer or the anchor must be wrong.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Consider how the page was generated:</strong></dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Is it a standard <code>.adoc</code> file?</p>
+</li>
+<li>
+<p>Is it a Liquid-rendered HTML page?</p>
+</li>
+<li>
+<p>Is it a Liquid-rendered AsciiDoc file (usually <code>*.adoc.liquid</code> or <code>*.asciidoc</code>)</p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1"><strong>For standard AsciiDoc files&#8230;&#8203;</strong></dt>
+<dd>
+<p>The offending link source will likely be:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p>an AsciiDoc xref (<code><&lt;anchor-slug&gt;&gt;</code> or <code>xref:anchor-slug[]</code>)</p>
+</li>
+<li>
+<p>a pre-generated xref in the form of an attribute placeholder (<code>{xref_scope_anchor-slug_link}</code>) that has resolved to a proper AsciiDoc xref</p>
+</li>
+<li>
+<p>a hybrid reference (<code>link:{xref_scope_anchor-slug_url}[some text]</code>)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In any case, the <code>anchor-slug</code> portion should correspond literally to the reported missing anchor.
+If these are rendering properly and do not contain obvious misspellings, consider how the intended target might be misspelled or missing and address the source of the anchor itself.</p>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><strong>For Liquid-rendered pages&#8230;&#8203;</strong></dt>
+<dd>
+<p>The offending link source will likely be a misspelled or poorly constructed link.</p>
+<div class="openblock">
+<div class="content">
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
+<li>
+<p>a hard-coded link in Liquid/HTML (<code>&quot;a href="#anchor-slug"></code>)</p>
+</li>
+<li>
+<p>a data-driven link in Liquid/HTML (<code>&quot;a href="#{{ variable | slugify }}"></code>)</p>
+</li>
+<li>
+<p>a data-driven link in Liquid/AsciiDoc (<code>link:#{{ variable | slugify }}</code>)</p>
+</li>
+<li>
+<p>a pre-generated xref in the form of an attribute placeholder (<code>{xref_some-scope_some-slug-string_link}</code>; generated from Liquid such as: <code>{xref_{{ scope }}_{{ variable }}_link}</code>)</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Other than for hard-coded links, you will need to trace the source to one of the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A YAML file, typically in a <code>_data/</code> or <code>data/</code> directory.</p>
+<div class="literalblock prompt">
+<div class="title">Search for the offending anchor</div>
+<div class="content">
+<pre>grep -rn "broken-anchor-slug" --include \*.yml --include \*.yaml</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If there are numerous errors of this kind, the problem <em>could</em> be in the code that generates the attributes from the YAML source.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Attributes derived from a file like <code>README.adoc</code>.</p>
+<div class="literalblock prompt">
+<div class="title">Search for the offending attribute</div>
+<div class="content">
+<pre>grep -rn "^:.*broken-anchor.*:" --include \*.adoc</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1"><strong>Other tips for investigating broken anchors:</strong></dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="literalblock">
+<div class="title">Check what anchors actually exist</div>
+<div class="content">
+<pre>grep -on 'id="[^"]*"' _site/page-slug/index.html</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="title">Find template generating the links</div>
+<div class="content">
+<pre>grep -rn "distinct identifier string" _includes _pages _templates</pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="step-counter-step-apply-appropriate-fix-strategy">Step 4: Apply Appropriate Fix Strategy</h3>
+<div class="sect3">
+<h4 id="option-a-fix-the-data-recommended-for-project-links">Option A: Fix the Data (Recommended for Project Links)</h4>
+<div class="paragraph">
+<p>Update dependency names to match actual project slugs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Before
+deps: [jekyll-asciidoc-ui, AsciiDocsy]
+
+# After
+deps: [jekyll-asciidoc-ui, asciidocsy-jekyll-theme]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="option-b-fix-the-template">Option B: Fix the Template</h4>
+<div class="paragraph">
+<p>Update link generation to use project lookup:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-liquid hljs" data-lang="liquid">{% assign dep_project = projects | where: 'slug', dep | first %}
+{% unless dep_project %}{% assign dep_project = projects | where: 'name', dep | first %}{% endunless %}
+&lt;a href="/projects/#{{ dep_project.slug | default: dep | slugify }}"&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="option-c-fix-the-anchors-ids">Option C: Fix the Anchors/IDs</h4>
+<div class="paragraph">
+<p>Update actual IDs to match expected links.
+Use this solution only when the link source is wrong or the target anchor ID is wrong where it is designated or missing.</p>
+</div>
+<div class="listingblock">
+<div class="title">Misspelled link source</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">See xref:sectione-one[Section One] for details.</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Misspelled anchor ID</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[[secton-one]]
+=== Section One</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="data-driven-link-debugging">Data-Driven Link Debugging</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="yaml-data-sources">YAML Data Sources</h3>
+<div class="paragraph">
+<p>Key files that commonly generate broken links:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>_data/docops-lab-projects.yml</code></dt>
+<dd>
+<p>Project dependencies and metadata</p>
+</dd>
+<dt class="hdlist1"><code>_data/pages/*.yml</code></dt>
+<dd>
+<p>Navigation and cross-references</p>
+</dd>
+<dt class="hdlist1">Individual frontmatter</dt>
+<dd>
+<p>Local link definitions</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dependency-tracing-process">Dependency Tracing Process</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Identify the broken link pattern</strong>: <code>#missing-anchor</code></p>
+</li>
+<li>
+<p><strong>Find the data source</strong>: Search YAML files for dependency names</p>
+</li>
+<li>
+<p><strong>Trace template processing</strong>: Follow Liquid template logic</p>
+</li>
+<li>
+<p><strong>Compare with reality</strong>: Check actual generated IDs</p>
+</li>
+<li>
+<p><strong>Apply data fix</strong>: Update dependency to match actual slug</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example-trace-asciidocsy-links">Example Trace: AsciiDocsy Links</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 1. Broken link found
+# internally linking to /projects/#asciidocsy
+
+# 2. Find template source
+grep -r "#asciidocsy" _includes/
+# Found in: _includes/project-profile.html line 76
+
+# 3. Check template logic
+# href="/projects/#{{ dep | slugify }}"
+
+# 4. Find data source
+grep -n "AsciiDocsy" _data/docops-lab-projects.yml
+# Found: deps: [..., AsciiDocsy]
+
+# 5. Check actual anchor
+grep 'id=".*asciidoc.*"' _site/projects/index.html
+# Found: id="asciidocsy-jekyll-theme"
+
+# 6. Fix: Change AsciiDocsy → asciidocsy-jekyll-theme</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pre-publication-link-strategy">Pre-Publication Link Strategy</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For links to resources not yet available:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Tag with FIXME-PREPUB</strong>: Add comments for easy identification</p>
+</li>
+<li>
+<p><strong>Document in notes</strong>: Track what needs to be updated at publication</p>
+</li>
+<li>
+<p><strong>Use conditional logic</strong>: Hide pre-pub links in production builds</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">// FIXME-PREPUB: Update when DocOps/box repository is published
+See the link:https://github.com/DocOps/docops-box[DocOps Box repository] for details.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="validation-and-testing">Validation and Testing</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="rebuild-and-verify">Rebuild and Verify</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Rebuild site with fixes
+bundle exec rake build
+
+# Re-run validation
+bundle exec rake labdev:lint:html
+
+# Check specific fix
+grep "#fixed-anchor" _site/target-page.html</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="test-cycle">Test Cycle</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fix high-impact patterns first (3+ occurrences)</p>
+</li>
+<li>
+<p>Rebuild and validate after each batch of fixes</p>
+</li>
+<li>
+<p>Document fixes for future reference</p>
+</li>
+<li>
+<p>Test both internal and external link resolution</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prevention-strategies">Prevention Strategies</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="development-practices">Development Practices</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Consistent naming</dt>
+<dd>
+<p>Align dependency names with actual project slugs</p>
+</dd>
+<dt class="hdlist1">Template validation</dt>
+<dd>
+<p>Test link generation logic with sample data</p>
+</dd>
+<dt class="hdlist1">Documentation standards</dt>
+<dd>
+<p>Document expected anchor patterns</p>
+</dd>
+<dt class="hdlist1">Regular validation</dt>
+<dd>
+<p>Include link checking in CI/CD pipelines</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration-management">Configuration Management</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Default values</dt>
+<dd>
+<p>Define link patterns in configuration rather than hardcoding</p>
+</dd>
+<dt class="hdlist1">Validation rules</dt>
+<dd>
+<p>Create checks for common link anti-patterns</p>
+</dd>
+<dt class="hdlist1">Documentation</dt>
+<dd>
+<p>Maintain mapping between logical names and actual slugs</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>This systematic approach transforms broken link debugging from a frustrating manual process into a predictable, methodical workflow that scales across projects and team members.</p>
+</div>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>

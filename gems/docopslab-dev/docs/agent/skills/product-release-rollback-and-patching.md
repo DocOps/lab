@@ -1,0 +1,100 @@
+# Rolling Back and/or Patching a Product Release
+
+This document is intended for AI agents operating within a DocOps Lab environment.
+
+As an AI agent, you can assist DocOps Lab developers in executing product-release patching and rolling back.
+
+Table of Contents
+
+- Rollback Failsafe
+- Standard Patching
+- Patch Releasing
+
+## Rollback Failsafe
+
+If a release must be rolled back and retracted, you must revert the changes and “yank” the artifacts.
+
+```
+git tag -d v<$tok.majmin>.<$tok.patch>
+git push origin :refs/tags/v<$tok.majmin>.<$tok.patch>
+git revert -m 1 <merge-commit>
+git push origin main
+```
+
+Retract or yank the artifacts (DockerHub, RubyGems, etc) and nullify the GH release.
+
+```
+gh release delete v<$tok.majmin>.<$tok.patch>
+gem yank --version <$tok.majmin>.<$tok.patch> <gemname>
+docker rmi <image>:<$tok.majmin>.<$tok.patch>
+```
+
+Be sure to un-publish any additional artifacts specific to the project.
+
+## Standard Patching
+
+Perform patch work against the earliest affected `release/x.y`. These examples use `1.1`, `1.2`, and `1.2.1` as example versions.
+
+Patch development procedure
+
+```
+git checkout release/1.1
+git checkout -b fix/parser-typo
+# … FIX …
+git add .
+git commit -m "fix: correct parser typo"
+git push origin fix/parser-typo
+# … TEST …
+git checkout release/1.1
+git merge --squash fix/parser-typo
+git commit -m "fix: correct parser typo"
+git push origin release/1.1
+```
+
+Example forward porting procedure
+
+```
+git checkout release/1.2
+git cherry-pick <commit-hash>
+# … TEST …
+git push origin release/1.2
+```
+
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Be sure to change <code>1.1</code>, <code>1.2</code>, and <code>1.2.1</code> to the actual affected branches and versions.
+> </td>
+> </tr>
+> </table>
+
+Repeat for every affected branch then release the patched versions.
+
+> **NOTE:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-note" title="Note"></i>
+> </td>
+> <td>
+> Between minor versions, patch versions may vary due to inconsistent applicability of patches.
+> </td>
+> </tr>
+> </table>
+
+## Patch Releasing
+
+Perform Steps 1 through 5 of the standard release procedure:
+
+1. [release-step-history]
+
+2. [release-step-merge-to-main]
+
+3. [release-step-tag-release]
+
+4. [release-step-announce]
+
+5. [release-step-artifacts]
+

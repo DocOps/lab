@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/">
+  <channel>
+    <title>Latest 50 posts from the DocOps Lab tech docs blog directory</title>
+    <link>https://docopslab.org/docs-blogs/latest/</link>
+    <description>Aggregated feed of the latest posts from technical writing and documentation blogs</description>
+    <language>en</language>
+    <lastBuildDate>Sat, 05 Sep 2026 19:56:19 +0000</lastBuildDate>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Product Specifications Explained</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/product-specifications-explained/</link>
+      <description>&lt;p&gt;What Are Product Specifications? In practice, a product specification is a structured document (or set of documents) that defines what a product must do and how it should behave. It answers core questions such as: A specification acts as a single source of truth during design, development, and testing. It helps teams avoid misunderstandings, scope...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/product-specifications-explained/&quot;&gt;Product Specifications Explained&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 02 Sep 2026 11:21:00 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/product-specifications-explained/</guid>
+      <dc:date>2026-09-02T11:21:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Getting into Y Combinator is only the start</title>
+      <link>https://www.cherryleaf.com/2026/09/y-combinator-startup-launch-documentation/</link>
+      <description>&lt;p&gt;Getting selected for Y Combinator is a significant moment for a startup. It brings funding, a network, deadlines, investor attention, and pressure to move quickly. It also changes the nature of the work. A team that has been building privately now needs to explain its product to prospective customers, early employees, partners, investors, and support...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/09/y-combinator-startup-launch-documentation/&quot; title=&quot;Read Getting into Y Combinator is only the start&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/09/y-combinator-startup-launch-documentation/&quot;&gt;Getting into Y Combinator is only the start&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 02 Sep 2026 09:00:22 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/09/y-combinator-startup-launch-documentation/</guid>
+      <dc:date>2026-09-02T09:00:22Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Writing for an audience of agents — podcast with Ethan Palm from Mintlify</title>
+      <link>https://idratherbewriting.com/blog/podcast-ethan-palm-agent-traffic</link>
+      <description>In this podcast, co-host &lt;a href=&#39;https://passo.uno&#39;&gt;Fabrizio Ferri-Benedetti&lt;/a&gt; and I chat with &lt;a href=&#39;https://mintlify.com&#39;&gt;Ethan Palm&lt;/a&gt;, a technical writer and knowledge engineer at Mintlify, about what happens when nearly half your documentation traffic comes from AI agents. We discuss Mintlify&#39;s platform data on agent versus human traffic, hidden directories for agent-only content, the uncertain future of &lt;code&gt;llms.txt&lt;/code&gt;, automated doc maintenance workflows where writing accounts for at most ten percent of the job, and the social atrophy that comes from reaching for a terminal prompt instead of a coworker.
+        </description>
+      <pubDate>Wed, 02 Sep 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/podcast-ethan-palm-agent-traffic</guid>
+      <dc:date>2026-09-02T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Your MVP needs documentation</title>
+      <link>https://www.cherryleaf.com/2026/09/mvp-software-documentation-founders-guide/</link>
+      <description>&lt;p&gt;Documentation is a growth constraint Most founders treat documentation as work for later. First, ship the product. Then find customers. Then deal with the support questions. That sequence creates a problem. The support questions arrive when the people who understand the product are busiest building it. It&amp;#8217;s an approach that can hold back your growth....  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/09/mvp-software-documentation-founders-guide/&quot; title=&quot;Read Your MVP needs documentation&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/09/mvp-software-documentation-founders-guide/&quot;&gt;Your MVP needs documentation&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 01 Sep 2026 20:30:40 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/09/mvp-software-documentation-founders-guide/</guid>
+      <dc:date>2026-09-01T20:30:40Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Three documentation processes. Can you spot what went wrong?</title>
+      <link>https://www.cherryleaf.com/2026/09/documentation-process-exercises/</link>
+      <description>&lt;p&gt;Can you spot what’s wrong with these documentation processes? We’ve created three short, interactive exercises that put you in the technical writing reviewer’s seat. Each exercise presents a Slack conversation about a documentation project. Your task is to work out what has gone wrong and identify the type of problem each message reveals. They’re designed...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/09/documentation-process-exercises/&quot; title=&quot;Read Three documentation processes. Can you spot what went wrong?&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/09/documentation-process-exercises/&quot;&gt;Three documentation processes. Can you spot what went wrong?&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 01 Sep 2026 15:59:09 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/09/documentation-process-exercises/</guid>
+      <dc:date>2026-09-01T15:59:09Z</dc:date>
+    </item>
+    <item>
+      <title>[Write the Docs Newsletter] Write the Docs Newsletter – September 2026</title>
+      <link>https://www.writethedocs.org/blog/newsletter-september-2026/</link>
+      <description>Hello and hello, fellow documentarians! Aaron and the rest of the newsletter team are back after our short break (summer for some, winter for others) and ready to fill your inbox with insight from the community.</description>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://www.writethedocs.org/blog/newsletter-september-2026/</guid>
+      <dc:date>2026-09-01T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Code, Content, and Career Newsletter] Issue 56 - A Docker Alternative, and Why You Must Verify Your Content</title>
+      <link>https://newsletter.bphogan.com/archive/issue-56-a-docker-alternative-and-why-you-must/</link>
+      <description>&lt;h1&gt;Issue 56&lt;/h1&gt;
+&lt;p&gt;A broken step in a tutorial costs more than one frustrated reader. In this issue, you&#39;ll explore how working code turns into a broken draft, and how a full technical test protects your readers and the trust they place in you. And then you&#39;ll explore Podman, an alternative to Docker, and use it to set up a way to quickly test PHP locally.&lt;/p&gt;
+&lt;h1&gt;Don&#39;t Skip the Technical Review&lt;/h1&gt;
+&lt;p&gt;One of the worst things you can do when creating content for learners is to leave them stranded.&lt;/p&gt;
+&lt;p&gt;You&#39;ve probably experienced this as a learner. You&#39;ve followed a tutorial and gotten stuck along the way. You followed every step, copied the code and commands right from the page, but somewhere in the middle a command failed, or the code referenced a file you never created. Then you spent time looking for the step you must have skipped. And you probably thought it was your fault, until you discovered there was something missing.&lt;/p&gt;
+&lt;p&gt;The author probably wasn&#39;t lazy. They probably tested their code; it probably even came from a working example. But they likely never tested the final draft itself. The draft is what your reader holds.&lt;/p&gt;
+&lt;p&gt;You have to incorporate your own final walkthrough of your technical content, lessons, and more. And it starts with understanding how mistakes creep in.&lt;/p&gt;
+&lt;h2&gt;How working code becomes a broken tutorial&lt;/h2&gt;
+&lt;p&gt;You started with a working example. You ran it, it worked, and then you started writing. But as you write and revise, things shift, and it all starts with the example itself and how you sequence it.&lt;/p&gt;
+&lt;h3&gt;You pull the code apart to tell the story&lt;/h3&gt;
+&lt;p&gt;A tutorial walks the reader through building a solution piece by piece, so writing one means you have to take your finished code and split it into pieces you then arrange into a narrative. Every time you do that, you increase the chances you&#39;ll lose something important. An import gets removed in a fragment you cut. A configuration step lands after the command that needs it. A code block references a file the reader hasn&#39;t created yet, because you moved the step that creates it to a later section of the tutorial.&lt;/p&gt;
+&lt;p&gt;You won&#39;t notice any of this while writing. The code still works in your project. But the tutorial is broken, and you find out when a reader tells you.&lt;/p&gt;
+&lt;p&gt;You should use tools to pull code into your drafts from a working repository instead of pasting snippets in by hand. A build process that imports code from source files ensures they can&#39;t drift from code you can test outside of the draft. &lt;a href=&quot;https://newsletter.bphogan.com/archive/issue-23-tools-for-text-based-content-creation/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-56-a-docker-alternative-and-why-you-must&quot; target=&quot;_blank&quot;&gt;Issue 23&lt;/a&gt; covered SnipSync, a tool built for this job.&lt;/p&gt;
+&lt;p&gt;But sourcing code only guarantees the code works, not how you sequenced the steps or explained it. The reader follows your learning pathway, with your prose between the fragments. Correct code in the wrong sequence still strands the reader on step six. The repository proves the code works, but it can&#39;t prove the draft does.&lt;/p&gt;
+&lt;h3&gt;Editorial feedback moves things again&lt;/h3&gt;
+&lt;p&gt;Once you get feedback from an editor or a reviewer, you change things again. You merge sections, split others apart, and move sections around. For example, a reviewer suggests introducing the database before the routes, so you swap the sections. The piece flows  better now, but the swap moved a snippet ahead of the setup it depends on, and nobody caught it because the review focused on the words. And worse, you may have forgotten to move the transitions, so they&#39;re more confusing because they reference a section that doesn&#39;t exist where it used to.&lt;/p&gt;
+&lt;p&gt;Each feedback round takes you further from the version you originally ran. By the final draft, the sequence you tested and the sequence you&#39;re publishing may be considerably different/&lt;/p&gt;
+&lt;h3&gt;A copy edit pass won&#39;t catch those issues&lt;/h3&gt;
+&lt;p&gt;Most content review looks at sentences and paragraphs for spelling and style, clarity and tone. Those reviews are important for clarity, but they won&#39;t find a step that&#39;s out of order, because sequence bugs don&#39;t live in sentences. They live in the story.&lt;/p&gt;
+&lt;p&gt;And you still tell stories in technical content. A tutorial&#39;s story is &quot;do this, then this, and here&#39;s why, and now you have a working thing.&quot; When you miss a step, the story has a plot hole, and the only way to find a plot hole is to experience the story from the beginning, the way the reader will. This is what a good developmental editor does. They ensure that the story is in place, and that one thing flows to the next. However, not every developmental editor is going to catch technical inconsistencies. Your readers will, though.&lt;/p&gt;
+&lt;p&gt;The fix is for you to walk the entire article from the top, like your readers will.&lt;/p&gt;
+&lt;h2&gt;Run a real tech test&lt;/h2&gt;
+&lt;p&gt;A tech test is a full content audit. You&#39;re auditing whether a reader can follow the prose and the code, together, from the first sentence to the final working result. You can automate running the commands, and you can hand your snippets to an AI to execute. Both will catch code that fails. Neither reads the piece as a reader. Neither notices the unexplained code block or the prerequisite you never mentioned. That&#39;s your job, because nobody knows the expected outcome like you.&lt;/p&gt;
+&lt;p&gt;Here&#39;s how to run one:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Start from a clean environment.&lt;/strong&gt; Your machine has every dependency installed, every environment variable set, and every credential cached, so you&#39;re starting with a lot of assumptions. Use a fresh virtual machine, a container, or a new user account. A clean directory and a clean shell are the minimum.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Follow the draft from the top, copying from the draft.&lt;/strong&gt; Not from your project. Run each command and add each code block from the document itself, in the order the document presents them. The moment you grab code from your repository instead, you&#39;re testing the wrong thing. Even if you give the readers full access to the finished example, you want to reduce any friction.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Audit the prose as you go.&lt;/strong&gt; Confirm every code block gets an introduction and an explanation, the way the &lt;a href=&quot;https://bphogan.com/2020/02/05/improve-tutorials-with-code-sandwich/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-56-a-docker-alternative-and-why-you-must&quot; target=&quot;_blank&quot;&gt;Code Sandwich&lt;/a&gt; prescribes. Confirm your &quot;signposts&quot; along the way guide your reader through the story. Make sure each section picks up where the last one ended. Then confirm the prerequisites match what your clean environment actually needed. If you had to install something the prerequisites never mentioned, the prerequisites section is wrong.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Test again after you reorganize the content.&lt;/strong&gt; If you move a section, or delete a paragraph that contained a step, you have to test again.  If the structure changed, the test you ran before the change no longer matters.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hand it to a second tester.&lt;/strong&gt; You know what the missing step was supposed to say, so your brain supplies it without asking. A second person won&#39;t have any of that context. Where they get stuck is where your draft is broken.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;As you review, you might find new things to explain, like missing steps or errors the reader might see. But if you catch yourself writing &quot;if you see this error, try this instead,&quot; pause. Sometimes that note belongs there. But often it&#39;s a patch over a step you might have left out. Add the missing step and the note becomes  unnecessary.&lt;/p&gt;
+&lt;h2&gt;Your tech test has an expiration date&lt;/h2&gt;
+&lt;p&gt;Passing a tech test means the tutorial worked on that day, in that environment, with those software versions. Dependencies ship new releases and APIs change underneath you. The tutorial that worked in March can fail in September without you changing a thing.&lt;/p&gt;
+&lt;p&gt;Frequent updates can break things, too. When a reader reports a broken step, it&#39;s tempting to patch that one section and publish. Don&#39;t. The upstream change that broke one step probably touched others, and the reader who reported the bug stopped at the first failure. They can&#39;t tell you about the next one your tutorial still contains. A revision is a reorganization like any other, so you have to give it the same testing treatment.&lt;/p&gt;
+&lt;p&gt;You can build accountability for this into your publishing platform and process.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Display a &quot;last verified&quot; date instead of &quot;last updated.&quot; Updated tells the reader you touched the file. Verified tells them you followed it end to end and it worked. When you verify the content&#39;s correctness, update the date. Learners will appreciate your transparency.&lt;/li&gt;
+&lt;li&gt;Generate reports of the content you haven&#39;t verified recently so you stay on top of  stale pages. Flag any content when the verified date gets too old. Six months is a reasonable starting point, and you can adjust it to how fast your stack moves. More important and high-value content might need more frequent updates.&lt;/li&gt;
+&lt;li&gt;Show readers a notice when a page is past its verification window. A public &quot;this may be out of date&quot; banner holds you accountable in a very public way. A reader might overlook a date, but a big red banner admitting you haven&#39;t looked at the content in a while really stands out.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A reader who hits a broken step assumes they made the mistake, not the author. They retrace their work and waste time hunting for an error they didn&#39;t make. When they finally realize the error is in your tutorial, they stop trusting the rest of what you wrote, and the next time they need help, they look somewhere else.&lt;/p&gt;
+&lt;p&gt;If they can&#39;t complete your tutorial as written, that&#39;s your mistake, not theirs. Hold yourself to that standard, because your readers do.&lt;/p&gt;
+&lt;h1&gt;Run Containers with Podman instead of Docker&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://podman.io/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-56-a-docker-alternative-and-why-you-must&quot; target=&quot;_blank&quot;&gt;Podman&lt;/a&gt; is a container engine similar to Docker. It understands the same images and commands as Docker, but each container runs as a regular child process of your user. There&#39;s no background service to configure, manage, or secure.&lt;/p&gt;
+&lt;p&gt;In this tutorial, you&#39;ll install Podman and use it to build an Apache image with PHP support so you can test websites locally.&lt;/p&gt;
+&lt;h2&gt;Install Podman&lt;/h2&gt;
+&lt;p&gt;On Fedora, install Podman with &lt;code&gt;dnf&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;dnf&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;install&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;On Ubuntu or Debian, use &lt;code&gt;apt&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sudo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;apt&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;install&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;On macOS, install Podman with Homebrew:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;brew&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;install&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Linux runs containers natively. On macOS, containers run inside a lightweight virtual machine that Podman manages for you. Create and start the virtual machine with the following commands:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;machine&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;init
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;machine&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Verify the installation on any platform:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--version
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Podman displays the version number. Now you can test it out,&lt;/p&gt;
+&lt;h2&gt;Build the image&lt;/h2&gt;
+&lt;p&gt;You&#39;ll test out Podman by creating a container image with Apache and PHP, and use it as a local development environment.&lt;/p&gt;
+&lt;p&gt;Create a project directory and switch into it:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;mkdir&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman-demo
+$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman-demo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now create a &lt;code&gt;Dockerfile&lt;/code&gt;. Podman reads Dockerfiles without any changes. Add the following code to the file to configure the image:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;php:8.3-apache&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;RUN&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;a2enmod&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;rewrite&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;headers&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;expires
+
+&lt;span class=&quot;k&quot;&gt;RUN&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;sed&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-i&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;/&amp;lt;Directory \/var\/www\/&amp;gt;/,/&amp;lt;\/Directory&amp;gt;/ s/AllowOverride None/AllowOverride All/&#39;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;/etc/apache2/apache2.conf
+
+&lt;span class=&quot;k&quot;&gt;EXPOSE&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;80&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;CMD&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;apache2-foreground&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;FROM&lt;/code&gt; line uses the official PHP image, using the variant that bundles Apache with PHP. That base image uses Debian&#39;s Apache packaging, which gives you the &lt;code&gt;a2enmod&lt;/code&gt; helper. The first &lt;code&gt;RUN&lt;/code&gt; uses it to enable the &lt;code&gt;rewrite&lt;/code&gt;, &lt;code&gt;headers&lt;/code&gt;, and &lt;code&gt;expires&lt;/code&gt; modules, which &lt;code&gt;.htaccess&lt;/code&gt; files commonly rely on for redirects, custom headers, and caching rules. The &lt;code&gt;.htaccess&lt;/code&gt; file lets you configure many features for your website project. You won&#39;t use an &lt;code&gt;.htaccess&lt;/code&gt; file in this tutorial, but this example demonstrates how Podman understands the same &lt;code&gt;Dockerfile&lt;/code&gt; directives as Docker.&lt;/p&gt;
+&lt;p&gt;The second &lt;code&gt;RUN&lt;/code&gt; edits Apache&#39;s main configuration file, changing &lt;code&gt;AllowOverride None&lt;/code&gt; to &lt;code&gt;AllowOverride All&lt;/code&gt; inside the &lt;code&gt;&amp;lt;Directory /var/www/&amp;gt;&lt;/code&gt; block. Without that change, Apache ignores &lt;code&gt;.htaccess&lt;/code&gt; files entirely, so the modules you enabled would have nothing to respond to.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;EXPOSE 80&lt;/code&gt; documents that the server listens on port 80 inside the container. And &lt;code&gt;CMD&lt;/code&gt; runs Apache in the foreground, because a container lives only as long as its main process. If Apache went to the background, the container would exit immediately.&lt;/p&gt;
+&lt;p&gt;Build the image and tag it with the following command:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;build&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-t&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman-demo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Podman downloads the base image, applies your configuration changes, and reports the new image&#39;s ID when it finishes:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;STEP 1/5: FROM php:8.3-apache
+Resolved &quot;php&quot; as an alias (/etc/containers/registries.conf.d/000-shortnames.conf)
+Trying to pull docker.io/library/php:8.3-apache...
+Getting image source signatures
+Copying blob sha256:e4315bdbbc2f739b25dd3dd053ed6c1a3f1cb2f7aa93a1b7eb878d068efa6026
+...
+Copying config sha256:ea298c5a424f1d55478b88d34f27719c067e6903ea8c2d446d8a822b1bd1fbce
+Writing manifest to image destination
+STEP 2/5: RUN a2enmod rewrite headers expires
+Enabling module rewrite.
+To activate the new configuration, you need to run:
+  service apache2 restart
+--&amp;gt; 7e29e8e88c69
+STEP 3/5: RUN sed -i &#39;/&amp;lt;Directory \/var\/www\/&amp;gt;/,/&amp;lt;\/Directory&amp;gt;/ s/AllowOverride None/AllowOverride All/&#39; /etc/apache2/apache2.conf
+--&amp;gt; f77a6b78a660
+STEP 4/5: EXPOSE 80
+--&amp;gt; a9bab236545e
+STEP 5/5: CMD [&quot;apache2-foreground&quot;]
+COMMIT podman-demo
+--&amp;gt; 2d7e52aad65c
+Successfully tagged localhost/podman-demo:latest
+2d7e52aad65c469f0db69d5af61a441b3625c9d81f3c31063d313f1ad45bd79e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now you can create some content and test it out.&lt;/p&gt;
+&lt;h2&gt;Test the container&lt;/h2&gt;
+&lt;p&gt;Now run the container and mount your project directory into it:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;run&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;-d&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;--rm&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;-p&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;8080&lt;/span&gt;:80&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;-v&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;:/var/www/html:Z&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;--name&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman-demo&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;w&quot;&gt;  &lt;/span&gt;podman-demo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;-d&lt;/code&gt; flag runs the container in the background, and the  &lt;code&gt;--rm&lt;/code&gt; flag removes the container when it stops. The &lt;code&gt;-p 8080:80&lt;/code&gt; flag maps your machine&#39;s port &lt;code&gt;8080&lt;/code&gt; to the container&#39;s port &lt;code&gt;80&lt;/code&gt;, where Apache is listening.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;-v&lt;/code&gt; flag mounts your current directory to &lt;code&gt;/var/www/html&lt;/code&gt;, which is the image&#39;s document root. This means Apache serves your files directly rather than serving a copy baked into the image. The &lt;code&gt;:Z&lt;/code&gt; suffix relabels the directory for SELinux, which Fedora and RHEL require before a container can read your files. On systems without SELinux, Podman ignores it.&lt;/p&gt;
+&lt;p&gt;Visit &lt;code&gt;http://localhost:8080&lt;/code&gt; in your browser, and you&#39;ll see your &quot;Hello from Podman&quot; page. Then visit &lt;code&gt;http://localhost:8080/info.php&lt;/code&gt;, and you&#39;ll see the PHP configuration report, which proves Apache is handing PHP files to the interpreter rather than serving them as plain text.&lt;/p&gt;
+&lt;p&gt;To prove the mount is live, change the text inside the &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; tag, save the file, and refresh the browser. The change appears immediately. No rebuild, no restart, because the container reads your directory, not a snapshot of it.&lt;/p&gt;
+&lt;p&gt;You can see the containers that are running with the &lt;code&gt;podman ps&lt;/code&gt; command:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;ps
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The output displays the container name, uptime, image hash, and status:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;CONTAINER ID  IMAGE                         COMMAND               CREATED         STATUS         PORTS                NAMES
+46cacd9a04d1  localhost/podman-demo:latest  apache2-foregroun...  43 seconds ago  Up 43 seconds  0.0.0.0:8080-&amp;gt;80/tcp  podman-demo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you&#39;re done, stop the container:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;stop&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman-demo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Thanks to &lt;code&gt;--rm&lt;/code&gt;, stopping it also removes it, and the image stays behind for next time.&lt;/p&gt;
+&lt;p&gt;You can see the images downloaded with &lt;code&gt;podman images&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;images
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The output shows your &lt;code&gt;podman-demo&lt;/code&gt; image and the image you based it on:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;REPOSITORY                TAG         IMAGE ID      CREATED        SIZE
+localhost/podman-demo     latest      2d7e52aad65c  4 minutes ago  525 MB
+docker.io/library/php     8.3-apache  ea298c5a424f  5 days ago     525 MB
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You now have a disposable Apache and PHP server you can point at any directory, running without a daemon and without root. You can use this on other projects as well by changing the directory you mount.&lt;/p&gt;
+&lt;p&gt;Remove your image with &lt;code&gt;podman rmi&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;$&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;rmi&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;podman-demo
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Podman untags and removes the image&lt;/p&gt;
+&lt;div class=&quot;codehilite&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;Untagged: localhost/podman-demo:latest
+Deleted: 2d7e52aad65c469f0db69d5af61a441b3625c9d81f3c31063d313f1ad45bd79e
+Deleted: a9bab236545ed302540e0e77dc5c8bae2fc0ab648547347ca2df348ebdd44624
+Deleted: f77a6b78a660544c1846c0f2befb747a376f415d41d5338039e790582a9ae374
+Deleted: 7e29e8e88c6999f71da1ee366b2de62824a49bac9a38315eadbb9887d069460f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Podman gives you the same features as Docker, but with a more secure model that doesn&#39;t require a background process. And there are additional features you can take advantage of, too. For example, Podman&#39;s pods let you group containers that work together, such as a web server and its database, under a single name. Look at the &lt;a href=&quot;https://docs.podman.io/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-56-a-docker-alternative-and-why-you-must&quot; target=&quot;_blank&quot;&gt;Podman documentation&lt;/a&gt; to discover more.&lt;/p&gt;
+&lt;h1&gt;Things To Explore&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/zenbu-labs/terminal-browser?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-56-a-docker-alternative-and-why-you-must&quot; target=&quot;_blank&quot;&gt;terminal-browser&lt;/a&gt; is a web browser that runs in your terminal.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://terminal-code.com/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-56-a-docker-alternative-and-why-you-must&quot; target=&quot;_blank&quot;&gt;terminal-code&lt;/a&gt; brings Visual Studio Code to your terminal by using &lt;a href=&quot;https://github.com/coder/code-server?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-56-a-docker-alternative-and-why-you-must&quot; target=&quot;_blank&quot;&gt;&lt;code&gt;code-server&lt;/code&gt;&lt;/a&gt; and &lt;code&gt;terminal-browser&lt;/code&gt; together.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Parting Thoughts&lt;/h1&gt;
+&lt;p&gt;Here are a couple of things for you to think about before next month&#39;s issue:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pick your most recent published tutorial. Spin up a clean environment and follow it as written, from the top, copying from the page. When it passes, add a verified date.&lt;/li&gt;
+&lt;li&gt;Pick a piece of content you haven&#39;t touched in a while and test it in a clean environment. What changed? How can you stay on top of this?&lt;/li&gt;
+&lt;li&gt;Switch one of your local Docker-powered projects over to Podman for a week and see how it works for you.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As always, thanks for reading.&lt;/p&gt;</description>
+      <pubDate>Mon, 31 Aug 2026 22:00:40 -0000</pubDate>
+      <guid isPermaLink="true">https://newsletter.bphogan.com/archive/issue-56-a-docker-alternative-and-why-you-must/</guid>
+      <dc:date>2026-08-31T22:00:40Z</dc:date>
+    </item>
+    <item>
+      <title>[Damilola Oladele] Extending semantic search to my work published elsewhere</title>
+      <link>https://damilola-oladele.dev/posts/extending-semantic-search-to-my-work-published-elsewhere/</link>
+      <description>How I extended my blog&amp;#39;s semantic search to cover content I&amp;#39;ve published outside the blog.</description>
+      <pubDate>Sun, 30 Aug 2026 23:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://damilola-oladele.dev/posts/extending-semantic-search-to-my-work-published-elsewhere/</guid>
+      <dc:date>2026-08-30T23:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Seven mistakes organisations make when implementing AI in technical writing</title>
+      <link>https://www.cherryleaf.com/2026/08/implementing-ai-technical-writing/</link>
+      <description>&lt;p&gt;AI can draft a troubleshooting topic, rewrite a paragraph, or summarise a product specification in seconds. But that is just part of technical writing. A Technical Author’s working day, in reality, includes research, planning, interviewing subject matter experts, checking facts, managing reviews, publishing content and maintaining it after release. Much of the job involves getting...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/08/implementing-ai-technical-writing/&quot; title=&quot;Read Seven mistakes organisations make when implementing AI in technical writing&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/08/implementing-ai-technical-writing/&quot;&gt;Seven mistakes organisations make when implementing AI in technical writing&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 28 Aug 2026 05:24:49 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/08/implementing-ai-technical-writing/</guid>
+      <dc:date>2026-08-28T05:24:49Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] Taking the terminal seriously in the age of AI coding agents</title>
+      <link>https://amanhimself.dev/blog/taking-terminals-seriously/</link>
+      <description>These days I am spending more time in the terminal app than any other environment on my development machine.</description>
+      <pubDate>Fri, 28 Aug 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/taking-terminals-seriously/</guid>
+      <dc:date>2026-08-28T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[Story Needle] Show me the work: Overcoming AI’s impostor syndrome</title>
+      <link>https://storyneedle.com/show-me-the-work-overcoming-ais-impostor-syndrome/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=show-me-the-work-overcoming-ais-impostor-syndrome</link>
+      <description>&lt;p&gt;When AI is involved in content development, readers don&#39;t know who the real author is.  It&#39;s time to offer traceability through version histories.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://storyneedle.com/show-me-the-work-overcoming-ais-impostor-syndrome/&quot;&gt;Show me the work: Overcoming AI&amp;#8217;s impostor syndrome&lt;/a&gt; appeared first on &lt;a href=&quot;https://storyneedle.com&quot;&gt;Story Needle&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 27 Aug 2026 17:47:11 -0000</pubDate>
+      <guid isPermaLink="true">https://storyneedle.com/show-me-the-work-overcoming-ais-impostor-syndrome/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=show-me-the-work-overcoming-ais-impostor-syndrome</guid>
+      <dc:date>2026-08-27T17:47:11Z</dc:date>
+    </item>
+    <item>
+      <title>[I Make Things] More Adventures In Spec-Driven Development</title>
+      <link>https://shaunagordon.com/2026/08/27/more-adventures-in-spec-driven-development/</link>
+      <description>Six Months Later</description>
+      <pubDate>Thu, 27 Aug 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://shaunagordon.com/2026/08/27/more-adventures-in-spec-driven-development/</guid>
+      <dc:date>2026-08-27T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Everyone Can Write Documentation Now. That Turned Out to Be the Problem.</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/everyone-can-write-documentation-now-that-turned-out-to-be-the-problem/</link>
+      <description>&lt;p&gt;Two dictionaries independently picked the same word of the year for 2025: slop. Merriam-Webster defines it as digital content of low quality, produced in quantity by artificial intelligence. Macquarie went with &amp;#8220;AI slop&amp;#8221; and added a detail I keep thinking about: content &amp;#8220;not requested by the user.&amp;#8221; The dictionaries were describing social media. But what...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/everyone-can-write-documentation-now-that-turned-out-to-be-the-problem/&quot;&gt;Everyone Can Write Documentation Now. That Turned Out to Be the Problem.&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 25 Aug 2026 14:08:48 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/everyone-can-write-documentation-now-that-turned-out-to-be-the-problem/</guid>
+      <dc:date>2026-08-25T14:08:48Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] UK Technical Writer and Technical Author Jobs – August 2026</title>
+      <link>https://www.cherryleaf.com/2026/08/uk-technical-writer-and-technical-author-jobs-august-2026/</link>
+      <description>&lt;p&gt;Our August 2026 survey suggests that the UK employment market for Technical Writers and Technical Authors remains broadly stable, although slightly softer than it was in June. We estimate there are currently around 4,300-4,500 Technical Writer, Technical Author, and closely related vacancies in the UK. This compares with approximately 4,500 vacancies in June 2026, suggesting...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/08/uk-technical-writer-and-technical-author-jobs-august-2026/&quot; title=&quot;Read UK Technical Writer and Technical Author Jobs &amp;#8211; August 2026&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/08/uk-technical-writer-and-technical-author-jobs-august-2026/&quot;&gt;UK Technical Writer and Technical Author Jobs &amp;#8211; August 2026&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 24 Aug 2026 13:16:16 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/08/uk-technical-writer-and-technical-author-jobs-august-2026/</guid>
+      <dc:date>2026-08-24T13:16:16Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] A practical workflow for AI-assisted training video production</title>
+      <link>https://www.cherryleaf.com/2026/08/a-practical-workflow-for-ai-assisted-training-video-production/</link>
+      <description>&lt;p&gt;A lot of policy and onboarding training still follows a familiar format: a presenter, some PowerPoint slides, and generic stock footage. That format is straightforward to produce, but it can make important information harder for staff to follow. AI-assisted production gives learning teams access to motion graphics, tailored scenes, and interactive exercises, without needing a...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/08/a-practical-workflow-for-ai-assisted-training-video-production/&quot; title=&quot;Read A practical workflow for AI-assisted training video production&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/08/a-practical-workflow-for-ai-assisted-training-video-production/&quot;&gt;A practical workflow for AI-assisted training video production&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 24 Aug 2026 08:10:07 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/08/a-practical-workflow-for-ai-assisted-training-video-production/</guid>
+      <dc:date>2026-08-24T08:10:07Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] Adding Content-Signal to a docs site</title>
+      <link>https://amanhimself.dev/blog/adding-content-signal-to-docs-site/</link>
+      <description>A few weeks ago I ran isagentready.com on docs.expo.dev, a site that I manage and work on, for my day job.</description>
+      <pubDate>Mon, 24 Aug 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/adding-content-signal-to-docs-site/</guid>
+      <dc:date>2026-08-24T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Review of The MANIAC, by Benjamin Labatut -- thoughts on logic and the end of play</title>
+      <link>https://idratherbewriting.com/blog/review-maniac-labatut-rationality-end-of-play</link>
+      <description>We recently read &lt;a href=&#39;https://www.amazon.com/MANIAC-Benjamin-Labatut/dp/0593654498/&#39;&gt;&lt;i&gt;The MANIAC&lt;/i&gt;&lt;/a&gt;, by Benjamin Labatut in my &lt;a href=&#39;/ai-book-club&#39;&gt;AI Book Club&lt;/a&gt;. This was our first work of fiction, though much of the text is imagined biography, so not really traditional fiction. It reads more like a collection of short biographical facets, connected thematically but lacking a tighter plot coherence. The last third of the book barely resembles the first two-thirds of the book, mostly in narrative style, as it shifts from von Neumann to Lee Sedol. However, the author is constructing a larger critique about the acceleration of science/logic and AI towards an incomprehensible, horrific end. Despite the lack of a more coherent plot, thematically the book coheres quite well and is thought-provoking and deep. The core idea: Logic pushed to its limits results in madness.
+        </description>
+      <pubDate>Thu, 20 Aug 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/review-maniac-labatut-rationality-end-of-play</guid>
+      <dc:date>2026-08-20T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] How to Keep Terminology Consistent in AI-Translated Documentation</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/how-to-keep-terminology-consistent-in-ai-translated-documentation/</link>
+      <description>&lt;p&gt;One question keeps coming from customers running multilingual docs through machine translation: why does the same term come back different across languages, or even across their own topics?&amp;#160; To understand where terminology drift comes from and how teams can prevent it, we compared common multilingual documentation workflows with practical localization experience from Alconost, a company...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/how-to-keep-terminology-consistent-in-ai-translated-documentation/&quot;&gt;How to Keep Terminology Consistent in AI-Translated Documentation&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 19 Aug 2026 12:55:53 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/how-to-keep-terminology-consistent-in-ai-translated-documentation/</guid>
+      <dc:date>2026-08-19T12:55:53Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] The AI Rollout Is a Disaster: Here’s Why</title>
+      <link>https://www.youtube.com/watch?v=HPza9xSCAwY</link>
+      <description>The evidence gap: a free worksheet for technical writers https://links.dianapayton.com/evidence-gap-worksheet
+
+You led the migration. You built the pipeline. You trained the product managers. And none of it is visible to anyone outside your employer. That gap is the single biggest reason strong writers lose to weaker candidates who happen to have a public repository.
+
+The worksheet shows you what current documentation postings ask you to prove, quoted from live listings so you can go verify it yourself. Then it walks you through inventorying your own work and sorting what you can legally show from what you cannot. Set aside about ninety minutes and bring three real job postings.
+
+I coach senior technical writers who are employed and repositioning into adjacent roles: documentation engineer, content engineer, taxonomist, knowledge architect. If that is where you are headed, book a call here: https://calendly.com/dfhauer/30min
+
+Download Camtasia or SnagIt for a free trial: https://techsmith.z6rjha.net/c/7435048/347799/5161
+
+Everyone on LinkedIn talks like the entire world already knows what Claude is. Anne Cantera works with the people who have never opened it.
+
+Anne is an AI and voice technology expert, conversation designer, and founder of Elementyl Intelligence. She advises enterprise CEOs on AI strategy and small, underserved businesses on the basics, and she has strong opinions about why the rollout has gone the way it has. We got into what that means for those of us who write the docs.
+
+🎯 What we cover:
+- Why Anne calls the botched AI rollout a leadership failure powered by hubris
+- Extractive prompting, and why &quot;generate this for me&quot; is the wrong ask
+- Omnimodal design, and why &quot;orchestrator&quot; and &quot;architect&quot; may be in all our futures
+- Why conversation designers live in the failure modes, and why tech writers are built for that work
+- The Dollar Tree version of breaking into conversation design, no budget required
+
+👉 Anne is thinking about starting a newsletter so she can actually hear from the people using her free resources. Tell her to do it in the comments and I will make sure she sees it.
+
+If you got value from this content, please like, subscribe, and hit that bell icon. It really helps the channel.
+
+CONNECT WITH ANNE
+LinkedIn (check her Featured section for the operator lessons she mentions): https://www.linkedin.com/in/anne-cantera/
+Elementyl Intelligence: https://elementylintelligence.ai/
+Voice of AI, free, no email required: https://voiceofai.io
+Anne&#39;s T-shirt Shop: https://snark-a-tects.com/ 
+DESIGNathon Podcast: https://thepodcastcollaborative.com/view/podcast_discovery_database/entry/40291/
+Conversation Design Institute: https://www.conversationdesigninstitute.com/
+
+#TechnicalWriting #TechComm #ConversationDesign #VoiceAI #UXWriting #TechnicalWriter #ContentDesign #AIStrategy #CareerAdvice #TechnicalWritingUncensored
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Mon, 17 Aug 2026 15:00:05 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=HPza9xSCAwY</guid>
+      <dc:date>2026-08-17T15:00:05Z</dc:date>
+    </item>
+    <item>
+      <title>[Passo Uno] Does whispering to agents in docs help?</title>
+      <link>https://passo.uno/if-you-are-an-agent-read-this/</link>
+      <description>&lt;p&gt;I’m seeing more instances of docs and README files addressing agents directly, as in “Hey, if you’re an agent, follow these instructions”. In some cases, those instructions are visible to human readers as well, which makes for a deeply awkward experience, the reading equivalent of getting a robotic kick in the butt. Is this whistling to machines helpful? I ran some experiments to find out.&lt;/p&gt;</description>
+      <pubDate>Mon, 17 Aug 2026 13:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://passo.uno/if-you-are-an-agent-read-this/</guid>
+      <dc:date>2026-08-17T13:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] My impressions after using Claude Code for six months</title>
+      <link>https://amanhimself.dev/blog/impressions-after-using-claude-code-for-six-months/</link>
+      <description>Last time when I started to write this post, I got carried away. My brain was on verge of explosion because Claude and I had worked together on so many…</description>
+      <pubDate>Mon, 17 Aug 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/impressions-after-using-claude-code-for-six-months/</guid>
+      <dc:date>2026-08-17T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] AI Book Club recording of The MANIAC by Benjamin Labatut</title>
+      <link>https://idratherbewriting.com/blog/the-maniac-labatut-ai-book-club</link>
+      <description>This is a recording of our &lt;a href=&#39;/ai-book-club&#39;&gt;AI Book Club&lt;/a&gt; discussion of &lt;a href=&#39;https://www.amazon.com/dp/0593654498&#39;&gt;&lt;i&gt;The MANIAC&lt;/i&gt;&lt;/a&gt; by Benjamin Labatut, held August 16, 2026. This was the club&#39;s first work of fiction, and much of the discussion is about what that mode makes possible: getting inside the madness of scientists like John von Neumann in a way a biography can&#39;t. We talk about the book&#39;s opening scene as a thesis in miniature, logic carried to irrational ends, the &#39;death of play&#39; in the AlphaGo match against Lee Sedol, Move 78 as a case for human unpredictability, the garage door scene as a metaphor for the gap between AI labs and what people actually want, and von Neumann&#39;s deathbed claim that a machine would have to play like a child.
+        </description>
+      <pubDate>Sun, 16 Aug 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/the-maniac-labatut-ai-book-club</guid>
+      <dc:date>2026-08-16T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] How to Improve Knowledge Management in B2B Customer Support</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/how-to-improve-knowledge-management-in-b2b-customer-support/</link>
+      <description>&lt;p&gt;Knowledge management in B2B customer support is challenging in its own way. B2B teams handle complex products with multi-system integrations, require lengthy onboarding for agents to master technical details, and face situations where clients simply don’t tolerate slow or inconsistent responses. The productivity cost is measurable. According to Pryon&amp;#8217;s research, 47% of professionals spend between...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/how-to-improve-knowledge-management-in-b2b-customer-support/&quot;&gt;How to Improve Knowledge Management in B2B Customer Support&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 14 Aug 2026 11:52:06 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/how-to-improve-knowledge-management-in-b2b-customer-support/</guid>
+      <dc:date>2026-08-14T11:52:06Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] What can L&amp;D teams learn from social media creators?</title>
+      <link>https://www.cherryleaf.com/2026/08/what-can-ld-teams-learn-from-social-media-creators/</link>
+      <description>&lt;p&gt;People willingly spend hours watching YouTube, yet groan when asked to watch an eight-minute training video. Why is that? At Cherryleaf, we develop videos for our e-learning courses on technical communication and publish our own marketing videos on YouTube. But we are not, by any stretch, social media influencers. To look beyond our own experience,...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/08/what-can-ld-teams-learn-from-social-media-creators/&quot; title=&quot;Read What can L&amp;#038;D teams learn from social media creators?&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/08/what-can-ld-teams-learn-from-social-media-creators/&quot;&gt;What can L&amp;#038;D teams learn from social media creators?&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 13 Aug 2026 08:01:32 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/08/what-can-ld-teams-learn-from-social-media-creators/</guid>
+      <dc:date>2026-08-13T08:01:32Z</dc:date>
+    </item>
+    <item>
+      <title>[Sarah Deaton] Reader as actor</title>
+      <link>https://sdeaton.com/blog/reader-as-actor/</link>
+      <description>&lt;p&gt;Last week, I wrote the words “reader as actor” about 200 times in PR reviews. I updated a few skills and reworked lots of sentences around this theme. Making sure the reader is the actor in the docs is my newest obsession, the latest sentence-level nit I’ve started noticing everywhere.&lt;/p&gt;
+&lt;p&gt;To me, the phrase “reader as actor” means that the reader should be the main character in the docs’ narrative. The reader ultimately needs to take what the docs tell them and use that effectively. When we elevate a different aspect of the interface to the actor in the narrative (ex: “the settings file lives in the root folder” – the settings file is now the main character in this sentence), we’re obscuring what we actually want the user to do, know, or observe. If I’m reading the docs and see “the settings file lives in the root folder,” does that mean you want me to put it there? Or it’s already there and I edit it? Or the program just does it without me doing anything?&lt;/p&gt;
+&lt;p&gt;It’s not that the reader isn’t smart enough to put two and two together, but that they shouldn’t need to. They’re already piecing together how a complicated piece of software works, often when something’s actively broken and they want to figure out what’s wrong, so I want to take away the extra mental burden of deciphering the indirect language and just say what needs to happen.&lt;/p&gt;
+&lt;p&gt;With AI added to the mix, making sure the reader’s actions are clearly stated helps close gaps where AI would otherwise infer. Where a reader might take an ambiguous statement and be confused and read around for more context, AI will sometimes insert a confidently incorrect conclusion.&lt;/p&gt;
+&lt;p&gt;Now that I’m on the lookout for this pattern, I notice it all over the place, across docs sites. Here are a few examples I pulled out of existing docs when skimming for examples of what I would call out in a review:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Workspace or folder specific tasks are configured from the tasks.json file in the .vscode folder for a workspace.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p class=&quot;fm-rewrite&quot;&gt;→ Possible rewrite: To configure workspace- or folder-specific tasks, edit the &lt;code&gt;tasks.json&lt;/code&gt; file in your workspace&#39;s &lt;code&gt;.vscode&lt;/code&gt; folder.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When working locally in a project, a .npmrc file in the root of the project (ie, a sibling of node_modules and package.json) will set config values specific to this project.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p class=&quot;fm-rewrite&quot;&gt;→ Possible rewrite: To set config values for a single project, add a &lt;code&gt;.npmrc&lt;/code&gt; file to the project root, next to &lt;code&gt;node_modules&lt;/code&gt; and &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A configuration can only provide one backend block.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p class=&quot;fm-rewrite&quot;&gt;→ Possible rewrite: Include only one backend block per configuration.&lt;/p&gt;
+&lt;p&gt;With each one of these, I can piece together the actual intention and required actions from the surrounding context, but I’d argue it’s an unnecessary indirection that deserves a rewrite. All of these could be clearer by centering the reader’s actions and not making a file, folder, configuration, etc, the main character in the sentence.&lt;/p&gt;
+&lt;p&gt;A lot of existing style rules circle around this rule as well, like active over passive voice. But the reader as actor framework helps me quickly articulate what feels off in a sentence more than those other pieces of guidance have. Even if the sentence has other weird issues, rewriting the sentence to focus on what the reader needs to do or observe often smoothes the rest out and makes the prose noticeably better on the next pass. It gives me a vocabulary when I previously would have said “this feels awkward”.&lt;/p&gt;
+&lt;p&gt;I don’t expect “reader as actor” to catch everything. Passive voice and vague referents will keep sneaking past it, along with plenty of other issues I don’t have a tidy label for yet. But it’s given me a way to name what’s off before I can always explain why, which is more useful to me right now than another rule to check against.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Note 1&lt;/strong&gt;: This isn’t an absolute. Models, programs, and other things can be actors when they legitimately drive, decide, act. A setting can turn something on or off (but really, the reader configures the setting, which then does something). Changelogs often read better with more abstract concepts as the actor.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;Note 2&lt;/strong&gt;: This all finally clicked for me after I read &lt;a rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; href=&quot;https://www.amazon.com/dp/0134080416&quot;&gt;&lt;em&gt;Style: Lessons in Clarity and Grace&lt;/em&gt;&lt;/a&gt; by Joseph Williams. It’s a great book, and it starts from a similar premise, just more general: every sentence has an actor, which is whoever or whatever is doing the acting, and readers instinctively look for who that is. Williams leaves that actor open, but for my technical writing specifically, I’ve decided I always want that actor to be the reader, unless I have a real reason for it not to be.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 13 Aug 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://sdeaton.com/blog/reader-as-actor/</guid>
+      <dc:date>2026-08-13T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] 10 Docs-as-Code Tools: Free and Commercial Options Compared</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/docs-as-code-tools/</link>
+      <description>&lt;p&gt;Docs-as-code is a practical way to treat documentation the same way teams treat software: it lives in Git, changes go through pull requests, versions can be tracked, and publishing can be automated on every push. It gives technical writing the same discipline that engineering already applies to code review, branching, release management, and continuous integration....&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/docs-as-code-tools/&quot;&gt;10 Docs-as-Code Tools: Free and Commercial Options Compared&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 12 Aug 2026 08:47:53 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/docs-as-code-tools/</guid>
+      <dc:date>2026-08-12T08:47:53Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] How to turn policies and procedures into effective e-learning</title>
+      <link>https://www.cherryleaf.com/2026/08/policies-procedures-effective-elearning/</link>
+      <description>&lt;p&gt;There is a tempting way to create e-learning from a policy or procedure: Split the document into sections. Put each section on a slide. Add narration. Finish with a multiple-choice quiz. It is also a good way to produce very dull, and ineffective, training. Policies and procedures define rules, responsibilities and processes. They are reference...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/08/policies-procedures-effective-elearning/&quot; title=&quot;Read How to turn policies and procedures into effective e-learning&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/08/policies-procedures-effective-elearning/&quot;&gt;How to turn policies and procedures into effective e-learning&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 12 Aug 2026 08:00:34 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/08/policies-procedures-effective-elearning/</guid>
+      <dc:date>2026-08-12T08:00:34Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Managing Documentation Projects with AI: September Course</title>
+      <link>https://www.cherryleaf.com/2026/08/managing-documentation-projects-with-ai-post/</link>
+      <description>&lt;p&gt;AI can help technical writers draft, summarise, review, and restructure content. But there’s a bigger opportunity. What if you could use AI to help manage the documentation project itself? Our next Managing and mastering documentation projects with AI course takes place online on 7 and 8 September 2026. The course is designed for people who...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/08/managing-documentation-projects-with-ai-post/&quot; title=&quot;Read Managing Documentation Projects with AI: September Course&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/08/managing-documentation-projects-with-ai-post/&quot;&gt;Managing Documentation Projects with AI: September Course&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Mon, 10 Aug 2026 14:56:52 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/08/managing-documentation-projects-with-ai-post/</guid>
+      <dc:date>2026-08-10T14:56:52Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Reflections on Ai4 conference - some absences from a tech writer&#39;s POV</title>
+      <link>https://idratherbewriting.com/blog/ai4-conference-reflections-tw</link>
+      <description>This week I attended &lt;a href=&#39;https://ai4.io/&#39;&gt;Ai4&lt;/a&gt;, promoted as the largest AI conference in North America. It was held at The Venetian in Las Vegas and lasted 3 days. The conference had more than 12,000 attendees (from 100 countries), 400 exhibitors/sponsors, 1,000 speakers, 700 sessions, keynotes from luminaries, and more. Needless to say, the sheer size of the conference was overwhelming. In this post, I&#39;ll share thoughts about the conference, focusing on a few key things:&lt;ul&gt;&lt;li&gt;The overwhelming size of the conference&lt;/li&gt;&lt;li&gt;The focus on agents and near absence of skills talk &lt;/li&gt; &lt;li&gt;The absence of any vendors tackling tech comm solutions  &lt;/li&gt;&lt;li&gt;Whether conferences are good places to learn&lt;/li&gt;&lt;/ul&gt;
+        </description>
+      <pubDate>Sun, 09 Aug 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/ai4-conference-reflections-tw</guid>
+      <dc:date>2026-08-09T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] From plan mode to auto mode in Claude Code</title>
+      <link>https://amanhimself.dev/blog/from-plan-mode-to-auto-mode-claude-code/</link>
+      <description>I am using Claude Code since February 2026 and recently I have completely stopped using &quot;plan mode&quot; in Claude Code most of the time and using &quot;auto mode&quot; most…</description>
+      <pubDate>Sun, 09 Aug 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/from-plan-mode-to-auto-mode-claude-code/</guid>
+      <dc:date>2026-08-09T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] What Is Technical Writing? (It&#39;s Not What You Think)</title>
+      <link>https://www.youtube.com/watch?v=g06pIFQ9Yps</link>
+      <description>Technical writing is not &quot;the job where you make the PDFs.&quot; Here&#39;s what it actually is, and why the definition matters more now than it did 5 years ago.
+
+What I cover:
+
+- A working definition of technical writing that holds up under pressure
+- Why nobody reads documentation for fun, and how that changes what &quot;good&quot; means
+- The three-way split between technical writing, technical content writing, and business writing
+- A quick test to classify any piece of writing in about 10 seconds
+Where LLMs actually fit, and why garbage in still means garbage out
+
+⏱️ Chapters:
+00:00 What Technical Writing Is
+01:03 Audience and Use
+03:08 What It Is Not
+04:31 Quick Classification Test
+05:06 Everyone Writes Docs
+05:43 The Technical Writer Craft
+06:25 LLMs And Documentation
+08:03 Docs Are The Product
+08:57 More Than Writing
+
+The evidence gap: a free worksheet for technical writers https://links.dianapayton.com/evidence-gap-worksheet
+
+You led the migration. You built the pipeline. You trained the product managers. And none of it is visible to anyone outside your employer. That gap is the single biggest reason strong writers lose to weaker candidates who happen to have a public repository.
+
+The worksheet shows you what current documentation postings ask you to prove, quoted from live listings so you can go verify it yourself. Then it walks you through inventorying your own work and sorting what you can legally show from what you cannot. Set aside about ninety minutes and bring three real job postings.
+
+I coach senior technical writers who are employed and repositioning into adjacent roles: documentation engineer, content engineer, taxonomist, knowledge architect. If that is where you are headed, book a call here: https://calendly.com/dfhauer/30min
+
+Download Camtasia or SnagIt for a free trial: https://techsmith.z6rjha.net/c/7435048/347799/5161
+
+
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Fri, 07 Aug 2026 15:00:10 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=g06pIFQ9Yps</guid>
+      <dc:date>2026-08-07T15:00:10Z</dc:date>
+    </item>
+    <item>
+      <title>[Story Needle] The demise of websites and CMSs</title>
+      <link>https://storyneedle.com/the-demise-of-websites-and-cmss/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=the-demise-of-websites-and-cmss</link>
+      <description>&lt;p&gt;Neither people nor bots are reading web pages.  What comes next?&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://storyneedle.com/the-demise-of-websites-and-cmss/&quot;&gt;The demise of websites and CMSs&lt;/a&gt; appeared first on &lt;a href=&quot;https://storyneedle.com&quot;&gt;Story Needle&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 07 Aug 2026 13:32:46 -0000</pubDate>
+      <guid isPermaLink="true">https://storyneedle.com/the-demise-of-websites-and-cmss/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=the-demise-of-websites-and-cmss</guid>
+      <dc:date>2026-08-07T13:32:46Z</dc:date>
+    </item>
+    <item>
+      <title>[CyberText Newsletter] Word: How to find and delete links that have come from ChatGPT</title>
+      <link>https://cybertext.wordpress.com/2026/08/07/word-how-to-find-and-delete-links-that-have-come-from-chatgpt/</link>
+      <description>A Canadian edibuddy (editing buddy) of mine recently posted an excellent &amp;#8216;how to&amp;#8217; for identifying URLs that have come from ChatGPT or other sources, and then deleting them: https://eiw365.com/how-to-find-chatgpt-links-delete-them-from-a-word-file/ Thanks Adrienne! [Link last checked August 2026]</description>
+      <pubDate>Fri, 07 Aug 2026 08:18:29 -0000</pubDate>
+      <guid isPermaLink="true">https://cybertext.wordpress.com/2026/08/07/word-how-to-find-and-delete-links-that-have-come-from-chatgpt/</guid>
+      <dc:date>2026-08-07T08:18:29Z</dc:date>
+    </item>
+    <item>
+      <title>[Cherryleaf Blog] Docs as tests: documentation that can prove it still works</title>
+      <link>https://www.cherryleaf.com/2026/08/docs-as-tests/</link>
+      <description>&lt;p&gt;“We’ve long thought of documentation as something to be repaired. The testing process quietly assumes something else, which is that documentation is something to be executed.” I find that quote from Stephen Mallette significant because it highlights an important distinction. AI is making this issue even more important. Some organisations end up treating documentation maintenance...  &lt;a class=&quot;excerpt-read-more&quot; href=&quot;https://www.cherryleaf.com/2026/08/docs-as-tests/&quot; title=&quot;Read Docs as tests: documentation that can prove it still works&quot;&gt;Read more &amp;#187;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.cherryleaf.com/2026/08/docs-as-tests/&quot;&gt;Docs as tests: documentation that can prove it still works&lt;/a&gt; appeared first on &lt;a href=&quot;https://www.cherryleaf.com&quot;&gt;Cherryleaf&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Thu, 06 Aug 2026 08:42:42 -0000</pubDate>
+      <guid isPermaLink="true">https://www.cherryleaf.com/2026/08/docs-as-tests/</guid>
+      <dc:date>2026-08-06T08:42:42Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Snippet Management in Technical Documentation: Stop Copy-Pasting, Start Reusing</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/snippet-management-in-technical-documentation-stop-copy-pasting-start-reusing/</link>
+      <description>&lt;p&gt;If you work with technical documentation, this situation is familiar: the same warning, installation note, or legal disclaimer appears across dozens of topics. When something changes (a product requirement, a version constraint, or a legal statement) every copy has to be updated manually. This approach is inefficient and introduces risk. Even small inconsistencies between copies...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/snippet-management-in-technical-documentation-stop-copy-pasting-start-reusing/&quot;&gt;Snippet Management in Technical Documentation: Stop Copy-Pasting, Start Reusing&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 05 Aug 2026 10:35:53 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/snippet-management-in-technical-documentation-stop-copy-pasting-start-reusing/</guid>
+      <dc:date>2026-08-05T10:35:53Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] 2026 - half year in books</title>
+      <link>https://amanhimself.dev/blog/2026-half-year-in-books/</link>
+      <description>In 2026, I set a goal to read 26 books. I had the lowest expectations of myself, and I stayed true to those expectations, because in January I did not read…</description>
+      <pubDate>Wed, 05 Aug 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/2026-half-year-in-books/</guid>
+      <dc:date>2026-08-05T00:00:01Z</dc:date>
+    </item>
+    <item>
+      <title>[Heroic Technical Writing] Context, Not Content, is King</title>
+      <link>https://heroictechwriting.com/2026/08/04/context-not-content-is-king/</link>
+      <description>&lt;p&gt;I&amp;#8217;ve spent much of my time on this blog explaining how to write content: organizing it, shaping it, researching it, imbuing it with just the right facts or tone. But after a discussion with ChatGPT, it occurred to me that &amp;#8230; &lt;a href=&quot;https://heroictechwriting.com/2026/08/04/context-not-content-is-king/&quot;&gt;Continue reading &lt;span class=&quot;meta-nav&quot;&gt;&amp;#8594;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://heroictechwriting.com/2026/08/04/context-not-content-is-king/&quot;&gt;Context, Not Content, is King&lt;/a&gt; appeared first on &lt;a href=&quot;https://heroictechwriting.com&quot;&gt;Heroic Technical Writing: Advice and Insights on the Business of Technical Communication&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Tue, 04 Aug 2026 11:25:52 -0000</pubDate>
+      <guid isPermaLink="true">https://heroictechwriting.com/2026/08/04/context-not-content-is-king/</guid>
+      <dc:date>2026-08-04T11:25:52Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] AI Researcher Just Revealed What Tech Writers Need to Do Right Now | Derek Ciula</title>
+      <link>https://www.youtube.com/watch?v=l_zfg7m85kE</link>
+      <description>The evidence gap: a free worksheet for technical writers https://links.dianapayton.com/evidence-gap-worksheet
+
+You led the migration. You built the pipeline. You trained the product managers. And none of it is visible to anyone outside your employer. That gap is the single biggest reason strong writers lose to weaker candidates who happen to have a public repository.
+
+The worksheet shows you what current documentation postings ask you to prove, quoted from live listings so you can go verify it yourself. Then it walks you through inventorying your own work and sorting what you can legally show from what you cannot. Set aside about ninety minutes and bring three real job postings.
+
+I coach senior technical writers who are employed and repositioning into adjacent roles: documentation engineer, content engineer, taxonomist, knowledge architect. If that is where you are headed, book a call here: https://calendly.com/dfhauer/30min
+
+Download Camtasia or SnagIt for a free trial: https://techsmith.z6rjha.net/c/7435048/347799/5161
+
+Derek Ciula builds agentic systems for a living, and he thinks technical writers are the people best equipped to keep them honest.
+
+In this episode of Technical Writing Uncensored, I sat down with Derek, a solutions architect who came up through a dot-com R&amp;D shop and now runs a distributed local model lab out of hardware most people would have thrown away. We got into what actually happens when you point agents at documentation, why he had to invent the term &quot;artifact-driven development,&quot; and why he calls this the golden era of the generalist.
+
+🧠 What we cover:
+
+- Why getting an agent to write docs is easy, and getting it to write them consistently is a full-time job
+- Artifact-driven development, and what changes when your documentation becomes the interface
+- Why Derek thinks technical writers have more to gain from LLMs than he does
+- The proof problem, and how you actually demonstrate you&#39;re using these tools well
+- What happens when docs slide three days and the agents have been shipping the whole time
+
+If you got value from this conversation, please like, subscribe, and hit the bell icon. It really helps the channel.
+
+👉 Do you buy the golden era of the generalist argument, or are the job postings demanding Kubernetes specialists telling the real story? Drop a comment.
+
+Derek&#39;s links:
+- Derek&#39;s LinkedIn: https://www.linkedin.com/in/derekciula/
+- Functional Enterprise Architecture: https://steppeintegrations.com/articles/functional-enterprise-architecture/
+- Build Your Own HEARTH: https://www.steppeintegrations.com/articles/build-your-own-hearth/
+
+
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Mon, 03 Aug 2026 15:00:04 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=l_zfg7m85kE</guid>
+      <dc:date>2026-08-03T15:00:04Z</dc:date>
+    </item>
+    <item>
+      <title>[I&#39;d Rather Be Writing] Orchestrating docs instead of writing them yourself — podcast with Sarah Deaton of Anthropic</title>
+      <link>https://idratherbewriting.com/blog/podcast-deaton-anthropic-tw-automation</link>
+      <description>In this podcast, co-host &lt;a href=&#39;https://passo.uno&#39;&gt;Fabrizio Ferri-Benedetti&lt;/a&gt; and I chat with &lt;a href=&#39;https://sdeaton.com&#39;&gt;Sarah Deaton&lt;/a&gt;, a technical writer at Anthropic who works on the Claude Code docs, about what documentation work looks like when much of it is automated. We discuss orchestrating docs through skills and agents rather than writing them, mining AI assistant conversations for doc gaps, running forensics on every false claim that reaches the docs, new metrics like time-to-correction and steers per PR, the fences that keep AI-generated docs honest, and how she closed more than a hundred pull requests in a single day.
+        </description>
+      <pubDate>Sun, 02 Aug 2026 07:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://idratherbewriting.com/blog/podcast-deaton-anthropic-tw-automation</guid>
+      <dc:date>2026-08-02T07:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Everything Technical Writing] How to Build an Effective Developer Advocacy Strategy (Part 3)</title>
+      <link>https://everythingproducteducation.com/how-to-build-a-devrel-strategy-part-3/</link>
+      <description>Two companies can share the same market position and growth stage, yet need completely different DevRel strategies because they make money in different ways. Learn how to identify your company&#39;s monetization strategy and what it means for your work.</description>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://everythingproducteducation.com/how-to-build-a-devrel-strategy-part-3/</guid>
+      <dc:date>2026-08-01T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Code, Content, and Career Newsletter] Issue 55 - The Experience Cost</title>
+      <link>https://newsletter.bphogan.com/archive/issue-55-the-experience-cost/</link>
+      <description>&lt;p&gt;The experience you&#39;ve built over your career is what helps you make decisions and identify trouble quickly. But experience has a cost. In this issue, you&#39;ll explore how you might undermine your expertise, and what you can do to be more effective when offering it to others.&lt;/p&gt;
+&lt;h1&gt;Your Experience Makes You Answer Too Quickly&lt;/h1&gt;
+&lt;p&gt;The longer you work on technical problems, the faster you get at spotting what&#39;s wrong and coming up with solutions based on what you&#39;ve seen before.&lt;/p&gt;
+&lt;p&gt;Someone starts describing an issue, and you&#39;ve been in this situation plenty of times before. Your experience starts pattern-matching and you start thinking of an answer before they&#39;ve finished their explanation.  You&#39;re also doing something dangerous; you&#39;re answering a question you only partly heard. The part you skipped is sometimes where the details live.&lt;/p&gt;
+&lt;p&gt;You&#39;ve likely experienced that from the other side. You describe your symptoms to a doctor, and before you reach the second sentence, the doctor gives you a diagnosis. Lose some weight. Get more sleep. Drink more water. Come back in six months if it doesn&#39;t clear up. The diagnosis fits the category you appear to belong to, and they made it before they looked at you specifically. Sometimes it&#39;s correct, but you still feel like nobody was listening to you.&lt;/p&gt;
+&lt;p&gt;The real risk is that the expert reputation you built for yourself can get torn down quickly if you become dismissive and provide wrong answers. To keep yourself from doing this, you&#39;ll first need to understand why that reflex forms, and why nothing at work will correct it for you. Then you&#39;ll explore a few habits that keep your speed and still leave room for the details you&#39;re skipping.&lt;/p&gt;
+&lt;h2&gt;How the shortcut forms and gets reinforced&lt;/h2&gt;
+&lt;p&gt;Every time you solve a problem, you add it to your personal knowledge base you can draw from later. You remember what the logs looked like, what the person said, and what you experienced right before you found the cause. Build up enough of those experiences, and you start recognizing problems instead of working through them from the beginning.&lt;/p&gt;
+&lt;p&gt;Reasoning from the ground up every time is slow, and most problems are not new. Your experience is valuable because you can fix things more quickly. This is a big part of why a senior costs more than a junior, and why the money makes sense.&lt;/p&gt;
+&lt;p&gt;And when everything around you rewards the fast answer, the behavior gets reinforced.&lt;/p&gt;
+&lt;p&gt;First, fast answers feel good. The person who brought you the problem walks away relieved, and you were the reason. They&#39;re unblocked quickly, and they keep coming back to you for help.&lt;/p&gt;
+&lt;p&gt;Second, many people perceive confidence as competence. That works on almost everyone watching, including the people who can&#39;t evaluate whether the answer was right. &quot;Ask Sarah, she&#39;ll know&quot; comes with status.&lt;/p&gt;
+&lt;p&gt;Speed is easier to measure than accuracy, so organizations measure and reward the thing they can count. You&#39;re helping people get things done faster, and you&#39;re making quick decisions yourself. As a result, you create an expectation that you&#39;ll answer quickly, which you then try to keep meeting.&lt;/p&gt;
+&lt;p&gt;Finally, every time you pattern-match correctly, you trust your experience a little more. Nobody keeps score of the times you were wrong at first, because a wrong fast answer looks exactly like a right one until much later.&lt;/p&gt;
+&lt;h2&gt;Danger lurks ahead.&lt;/h2&gt;
+&lt;p&gt;The &lt;a href=&quot;https://thedecisionlab.com/biases/einstellung-effect?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-55-the-experience-cost&quot; target=&quot;_blank&quot;&gt;Einstellung effect&lt;/a&gt; describes how a familiar solution, once it comes to mind, blocks you from finding a better one. The familiar answer doesn&#39;t only arrive first. It crowds out the search for anything else, and it does that whether or not the answer is right.&lt;/p&gt;
+&lt;p&gt;A few things end up happening as a result.&lt;/p&gt;
+&lt;h3&gt;You diagnose before you have evidence.&lt;/h3&gt;
+&lt;p&gt;Someone is three sentences into describing the problem, and you&#39;re already assembling the answer instead of listening to the rest of it. Or worse, you cut them off and state the solution. The details that didn&#39;t arrive because you stopped listening are often the ones that matter, because those are the details that make this problem different from the one you&#39;re thinking of.&lt;/p&gt;
+&lt;p&gt;And nobody likes a know-it-all, especially one who does not, in fact, know it all.&lt;/p&gt;
+&lt;h3&gt;You miss what changed.&lt;/h3&gt;
+&lt;p&gt;Patterns expire, and nothing tells you when. You&#39;re prone to solving last month&#39;s problem instead of this one. Last month&#39;s is fresh and well-worn, and the new situation looks pretty similar, so you reach for what worked before.&lt;/p&gt;
+&lt;p&gt;The database timeout you always traced to a slow query starts happening after the move to managed hosting, and now it&#39;s a connection pool limit. The onboarding question you always answered the same way stops making sense after the signup flow changed. The match feels exactly as certain as it did back when you formed it, but it&#39;s not the same problem anymore.&lt;/p&gt;
+&lt;h3&gt;Overconfidence kills your curiosity.&lt;/h3&gt;
+&lt;p&gt;Certainty is comfortable, so you stop asking questions that used to come naturally, like &quot;what am I missing here? What would I have to see to believe I&#39;m wrong?&quot; When you were new, you were curious. Maybe you felt you couldn&#39;t function properly without asking curious questions, so you asked them constantly. Now you have answers, and they feel like they fit patterns so clearly that asking questions feels like a waste of time.&lt;/p&gt;
+&lt;p&gt;The curiosity you had as a junior wasn&#39;t supposed to be a personality trait you outgrew on the way to getting good. It&#39;s what helped you get good and will help you continue to level up. &lt;/p&gt;
+&lt;p&gt;Losing your curiosity can have real costs that aren&#39;t immediately obvious. Approaching every problem that looks the same with the same fix means you&#39;ll innovate less and be less open to optimizing things further.&lt;/p&gt;
+&lt;h2&gt;The reputational cost of being wrong and fast&lt;/h2&gt;
+&lt;p&gt;Being wrong once in a while costs you nothing. Everyone is wrong once in a while, and most people will forgive you. Being wrong fast and often builds distrust and resentment, and it happens slowly enough that you won&#39;t notice it happening.&lt;/p&gt;
+&lt;p&gt;Look at what the fast answer costs in practice. &quot;It&#39;s always DNS&quot; became a joke because it&#39;s right often enough to be worth saying out loud. When it isn&#39;t DNS, you spend the next hour on the resolver while the real failure still affects people. The wrong diagnosis costs you and those affected.&lt;/p&gt;
+&lt;p&gt;This shows up anywhere you handle the same kind of request over and over.&lt;/p&gt;
+&lt;p&gt;&quot;We already have an answer to that question in our documentation&quot; is another version of this. Sometimes the answer is in the docs, but nobody can find it, or it sits ten paragraphs down in a guide nobody reads. Sometimes the words are identical, but the reason underneath them isn&#39;t. Two readers ask how to configure a timeout. One is tuning performance, and the other hit an error and is guessing, and the answer you have only serves one of those readers. Without digging deeper, you&#39;re failing to address a completely different problem than the one you thought you had.&lt;/p&gt;
+&lt;p&gt;The end result is that people start hedging around you. They stop coming to you first, or they bring you in later for a second opinion. Or they take your answer, spend a day on it, quietly verifying it themselves. You keep getting asked questions, but you stop getting the hard ones, which are the ones you find more interesting. And. you stop growing.&lt;/p&gt;
+&lt;p&gt;In Issue 40, you saw how &lt;a href=&quot;https://newsletter.bphogan.com/archive/issue-40-a-unified-dev-environment-and-your/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-55-the-experience-cost&quot; target=&quot;_blank&quot;&gt;your career has a permanent record&lt;/a&gt;. If you&#39;re quick to answer and end up being wrong a lot, you&#39;re building a reputation that could follow you from one job to the next.&lt;/p&gt;
+&lt;p&gt;The fix is to slow down just enough to inspect the problem.&lt;/p&gt;
+&lt;h2&gt;Build habits to be curious and fast&lt;/h2&gt;
+&lt;p&gt;You should continue to pattern-match, but with curiosity. Be less reactive and more interested in the problem than the solution. You need to force yourself to turn off your internal autopilot and rebuild the habits you had when you were more junior. When you were less experienced, you asked questions to help shape your mental model.&lt;/p&gt;
+&lt;p&gt;There are three things you can do to make that shift:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Say the match out loud as a guess, and name the check&lt;/strong&gt;. Instead of &quot;it&#39;s the cache,&quot; try &quot;sounds like the cache. Look at the cache logs and find the hit rate for the last hour and see what you find.&quot; That costs you one sentence. You still answered in fifteen seconds, you still look like the person who knows, and now there&#39;s a step between your instinct and someone&#39;s production system. It also leaves you correctable in public, which is worth more than being right.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ask what changed&lt;/strong&gt;. If you&#39;ve solved this issue before, ask what&#39;s different now. Is there a new dependency? Is there a new customer involved? Is there a new version? When nothing changed, your pattern is probably fine. When you can name three things that changed, treat the match as a first guess and then take a deeper look.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Treat strong confidence about an unfamiliar process as a reason to slow down&lt;/strong&gt;. Feeling certain about something you&#39;ve handled a hundred times is earned. Feeling that certain about a system you&#39;ve touched twice borders on hubris and arrogance. Pattern-matching is one of your strengths, but if you don&#39;t have enough context, you&#39;re only guessing. Ask questions that will help you get more information to determine if the pattern you see actually fits the situation you&#39;re in.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Your experience needs to shorten the investigation, not end it before it starts. That&#39;s the difference between being fast and being closed, and it costs about one sentence per problem.&lt;/p&gt;
+&lt;p&gt;So the next time someone brings you a problem, answer as quickly as you normally would, then add one sentence about what would tell you you&#39;re wrong, and suggest people look into that before anyone acts on your answer. It keeps you in check, keeps you curious, and will strengthen your reputation overall, because you&#39;ll be genuinely more approachable.&lt;/p&gt;
+&lt;h1&gt;Things To Explore&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://sazardev.github.io/shiki/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-55-the-experience-cost&quot; target=&quot;_blank&quot;&gt;shiki&lt;/a&gt; is a note-taking app for your terminal. Each notebook is a Git repository, and each note gets versioned. While this is all something you can do with your regular text editor, shiki gives you a three-pane interface to navigate and view your notes quickly.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://feelingswheel.app/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-55-the-experience-cost&quot; target=&quot;_blank&quot;&gt;https://feelingswheel.app/&lt;/a&gt;&lt;a href=&quot;https://feelingswheel.app/?utm_source=bphogan&amp;amp;utm_medium=email&amp;amp;utm_campaign=issue-55-the-experience-cost&quot; target=&quot;_blank&quot;&gt;https://feelingswheel.app/&lt;/a&gt; is an interactive version of a Feelings Wheel, or Emotions Wheel, that helps you think through your own feelings. This can be a great tool for managing stress or emotions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;Parting Thoughts&lt;/h1&gt;
+&lt;p&gt;Here are a couple of things for you to think about before next month&#39;s issue:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Think of the last time someone described a problem, and you knew the answer before they finished. Did you verify it, or did you move on?&lt;/li&gt;
+&lt;li&gt;Is there someone who used to bring you their hardest problems and stopped? When did that change?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;As always, thanks for reading.&lt;/p&gt;</description>
+      <pubDate>Fri, 31 Jul 2026 23:20:56 -0000</pubDate>
+      <guid isPermaLink="true">https://newsletter.bphogan.com/archive/issue-55-the-experience-cost/</guid>
+      <dc:date>2026-07-31T23:20:56Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Best MCP Servers in 2026: A Practical Catalog by Use Case</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/best-mcp-servers-a-practical-catalog-by-use-case/</link>
+      <description>&lt;p&gt;AI coding assistants can write complex code, explain architecture, and catch bugs. However, without MCP servers, they cannot do anything in the real world. An AI agent cannot read your files, query your database, or create a ticket in your issue tracker. MCP servers turn a chatbot into a working tool. Choosing one is harder...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/best-mcp-servers-a-practical-catalog-by-use-case/&quot;&gt;Best MCP Servers in 2026: A Practical Catalog by Use Case&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Fri, 31 Jul 2026 12:04:20 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/best-mcp-servers-a-practical-catalog-by-use-case/</guid>
+      <dc:date>2026-07-31T12:04:20Z</dc:date>
+    </item>
+    <item>
+      <title>[Everything Technical Writing] How to Build an Effective Developer Advocacy Strategy (Part 2)</title>
+      <link>https://everythingproducteducation.com/how-to-build-a-devrel-strategy-part-2/</link>
+      <description>Early-stage startups and mature companies need completely different DevRel work. Learn how to match your priorities to your company&#39;s growth stage.</description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://everythingproducteducation.com/how-to-build-a-devrel-strategy-part-2/</guid>
+      <dc:date>2026-07-30T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Passo Uno] Advice for tech writers on a job hunt in the AI age</title>
+      <link>https://passo.uno/job-hunt-tech-writers-ai/</link>
+      <description>&lt;p&gt;A friend of mine recently lost her job in a layoff. She looked at her résumé with a pang of despair and asked me for advice on what she should learn next. She hasn’t thrown in the towel on technical writing yet; she wants to find another tech writing job, despite the &lt;a href=&quot;https://passo.uno/tech-writing-optimism-reddit/&quot;&gt;prevailing pessimism&lt;/a&gt; that besieges our craft. &lt;em&gt;How does one upgrade to, say, content engineering&lt;/em&gt;, she asked.&lt;/p&gt;</description>
+      <pubDate>Wed, 29 Jul 2026 15:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://passo.uno/job-hunt-tech-writers-ai/</guid>
+      <dc:date>2026-07-29T15:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] Multimedia Documentation: Videos, Screencasts, and Automated Process Capture</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/multimedia-documentation-videos-screencasts-and-automated-process-capture/</link>
+      <description>&lt;p&gt;Text documentation is still the backbone of technical communication: it explains what to do, defines concepts, and structures logic. But multimedia documentation, especially video in technical documentation, screencasts for documentation, and automated process capture, answers the question how by showing real‑time interactions with the product. Today&amp;#8217;s users expect embedded video guides alongside articles. Modern authoring...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/multimedia-documentation-videos-screencasts-and-automated-process-capture/&quot;&gt;Multimedia Documentation: Videos, Screencasts, and Automated Process Capture&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 29 Jul 2026 09:16:42 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/multimedia-documentation-videos-screencasts-and-automated-process-capture/</guid>
+      <dc:date>2026-07-29T09:16:42Z</dc:date>
+    </item>
+    <item>
+      <title>[Everything Technical Writing] How to Build an Effective Developer Advocacy Strategy (Part 1)</title>
+      <link>https://everythingproducteducation.com/how-to-build-a-devrel-strategy-part-1/</link>
+      <description>New developer advocates rush to ship content before understanding the business. Learn why your company&#39;s market position should shape your strategy first.</description>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://everythingproducteducation.com/how-to-build-a-devrel-strategy-part-1/</guid>
+      <dc:date>2026-07-29T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Everything Technical Writing] How to Craft an Effective DevRel Strategy</title>
+      <link>https://everythingproducteducation.com/how-to-build-a-devrel-strategy/</link>
+      <description>You can&#39;t do everything as a developer advocate. Learn the three areas of strategic analysis that narrow every possible DevRel initiative down to the ones most likely to create meaningful business value.</description>
+      <pubDate>Tue, 28 Jul 2026 00:00:00 -0000</pubDate>
+      <guid isPermaLink="true">https://everythingproducteducation.com/how-to-build-a-devrel-strategy/</guid>
+      <dc:date>2026-07-28T00:00:00Z</dc:date>
+    </item>
+    <item>
+      <title>[Technical Writing Uncensored] They Told Me to Be Twice As Productive With AI, Laid Off Anyway | Brittany Robrahn</title>
+      <link>https://www.youtube.com/watch?v=Eak1vx-GVR0</link>
+      <description>The evidence gap: a free worksheet for technical writers https://links.dianapayton.com/evidence-gap-worksheet
+
+You led the migration. You built the pipeline. You trained the product managers. And none of it is visible to anyone outside your employer. That gap is the single biggest reason strong writers lose to weaker candidates who happen to have a public repository.
+
+The worksheet shows you what current documentation postings ask you to prove, quoted from live listings so you can go verify it yourself. Then it walks you through inventorying your own work and sorting what you can legally show from what you cannot. Set aside about ninety minutes and bring three real job postings.
+
+I coach senior technical writers who are employed and repositioning into adjacent roles: documentation engineer, content engineer, taxonomist, knowledge architect. If that is where you are headed, book a call here: https://calendly.com/dfhauer/30min
+
+Download Camtasia or SnagIt for a free trial: https://techsmith.z6rjha.net/c/7435048/347799/5161
+
+Brittany&#39;s LinkedIn: https://www.linkedin.com/in/brobrahn/
+
+Twice as productive with LLMs. That was the company mandate. Nobody mentioned where the time to learn them would come from.
+
+In this episode of Technical Writing Uncensored, I sit down with technical writer Brittany Robrahn, a longtime solo writer who has been a team of one at nearly every company she&#39;s worked for. We get into what it&#39;s actually like documenting alone, sneaking humor past the reviewers, and job hunting in a market that keeps redefining the word &quot;remote.&quot;
+
+🧩 What it&#39;s really like being the sole technical writer, with no peer to bounce drafts off of
+😅 Why humor belongs in docs (shoutout to Slack release notes and the Amazon 404 dog)
+🤖 The &quot;be twice as productive&quot; LLM mandate, and why that benchmark falls apart for docs
+🔒 What happens when your docs live behind a login wall and become invisible to crawlers and agents
+💼 Job hunting right now: contract creep, clearance-only roles, and the great &quot;remote asterisk&quot;
+
+If you got value from this conversation, please like, subscribe, and hit the bell icon. It really helps the channel.
+
+👉 Are you the only technical writer at your company? How do you handle having no one to review your drafts? Drop a comment below.
+
+#TechnicalWriting #TechComm #TechnicalWriter #TechWriterLife #Documentation #CareerAdvice #WriteTheDocs #TechnicalWritingUncensored
+#TechnicalWritingUncensored #TechnicalWriter #TechnicalWriting #Documentarian #Documentation #WordNerds #TechComm  #ContentStrategy #WritingTips #CareerAdvice #UserExperience #DocsLikeCode #TechWritingUncensored #TechCommunity</description>
+      <pubDate>Mon, 27 Jul 2026 20:01:35 -0000</pubDate>
+      <guid isPermaLink="true">https://www.youtube.com/watch?v=Eak1vx-GVR0</guid>
+      <dc:date>2026-07-27T20:01:35Z</dc:date>
+    </item>
+    <item>
+      <title>[ClickHelp Technical Writing Blog] How to Build Your Own MCP Server: A Step-by-Step Guide</title>
+      <link>https://clickhelp.com/clickhelp-technical-writing-blog/how-to-build-your-own-mcp-server-a-step-by-step-guide/</link>
+      <description>&lt;p&gt;AI agents are evolving into essential tools used in everyday work, but they still have a hard limit: without access to your real data and systems, they can only guess about the content and context. MCP (Model Context Protocol) is an open standard from Anthropic that solves this problem. It gives AI clients a unified...&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://clickhelp.com/clickhelp-technical-writing-blog/how-to-build-your-own-mcp-server-a-step-by-step-guide/&quot;&gt;How to Build Your Own MCP Server: A Step-by-Step Guide&lt;/a&gt; appeared first on &lt;a href=&quot;https://clickhelp.com&quot;&gt;ClickHelp&lt;/a&gt;.&lt;/p&gt;
+</description>
+      <pubDate>Wed, 22 Jul 2026 11:57:55 -0000</pubDate>
+      <guid isPermaLink="true">https://clickhelp.com/clickhelp-technical-writing-blog/how-to-build-your-own-mcp-server-a-step-by-step-guide/</guid>
+      <dc:date>2026-07-22T11:57:55Z</dc:date>
+    </item>
+    <item>
+      <title>[AmanHimself.dev] Notes that can never be atomic</title>
+      <link>https://amanhimself.dev/blog/notes-that-can-never-be-atomic/</link>
+      <description>Every guide to atomic notes eventually meets the same objection: most of what I write cannot be atomic.</description>
+      <pubDate>Wed, 22 Jul 2026 00:00:01 -0000</pubDate>
+      <guid isPermaLink="true">https://amanhimself.dev/blog/notes-that-can-never-be-atomic/</guid>
+      <dc:date>2026-07-22T00:00:01Z</dc:date>
+    </item>
+  </channel>
+</rss>
