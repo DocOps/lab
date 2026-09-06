@@ -429,6 +429,11 @@ module DocOpsLab
             task :md, %i[path form syntax] => [] do |_t, args|
               Skim.run_md(args[:path], form: args[:form], syntax: args[:syntax])
             end
+
+            desc desc_for('skim:ruby')
+            task :ruby, %i[path form syntax] => [] do |_t, args|
+              Skim.run_ruby(args[:path], form: args[:form], syntax: args[:syntax])
+            end
           end
 
           # ============================================================

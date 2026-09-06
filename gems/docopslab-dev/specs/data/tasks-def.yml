@@ -337,7 +337,7 @@ labdev:
         - bundle exec rake 'labdev:show:rule[rubocop,Layout/LineLength]'
         - bundle exec rake 'labdev:show:rule[vale,DocOpsLab-Authoring.ExNotEg]'
   skim:
-    _desc: Skim source files for machine-oriented structured outlines (AsciiDoc + Markdown autodetect)
+    _desc: Skim source files for machine-oriented structured outlines (AsciiDoc, Markdown, Ruby)
     _args:
       path:
         summ: |
@@ -402,7 +402,8 @@ labdev:
         form:
           summ: |
             Output shape: tree, flat, or tree,flat (comma-separated).
-            Defaults to flat for Markdown. When form is explicitly passed, output defaults to JSON.
+            Defaults to flat for Markdown.
+            When form is explicitly passed, output defaults to JSON.
           required: false
         syntax:
           summ: |
@@ -413,6 +414,23 @@ labdev:
         - bundle exec rake 'labdev:skim:md[.agent/docs/]'
         - bundle exec rake 'labdev:skim:md[.agent/docs/,flat,json]'
         - bundle exec rake 'labdev:skim:md[.agent/docs/:_docs/agent/,flat,json]'
+    ruby:
+      _desc: Use ri to detect API surface (Modules, Classes, Methods, etc.).
+      _args:
+        path:
+          summ: |
+            Optional path to Ruby gem directory to skim. (Default: '.')
+          required: false
+        form:
+          summ: |
+            Output shape: tree, flat, or tree,flat (comma-separated).
+            Defaults to tree. When form is explicitly passed, output defaults to JSON.
+          required: false
+        syntax:
+          summ: |
+            Override output format: json or yaml.
+            Default: yaml when form is omitted; json when form is explicitly passed.
+          required: false
   # ADDING:
   help:
     _desc: Show help information about labdev tasks
