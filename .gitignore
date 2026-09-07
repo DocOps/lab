@@ -33,6 +33,7 @@ vendor/
 # Markdown files (except important docs)
 *.md
 ./!AGENTS.md
+!gems/docopslab-dev/assets/templates/CLAUDE.md
 # DocOps Lab vendor files
 .config/.vendor/
 

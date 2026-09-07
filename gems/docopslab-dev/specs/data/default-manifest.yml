@@ -20,6 +20,8 @@ templates:
       target: .gitignore
     - source: templates/README.asciidoc
       target: README.adoc
+    - source: templates/CLAUDE.md
+      target: CLAUDE.md
 
 tools:
   - tool: rubocop
