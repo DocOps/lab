@@ -313,6 +313,14 @@ module DocOpsLab
         ConfigManager.generate_htmlproofer_config(self)
       end
 
+      def generate_git_lint_config
+        ConfigManager.generate_git_lint_config(self)
+      end
+
+      def load_commit_conventions
+        ConfigManager.load_commit_conventions
+      end
+
       def load_htmlproofer_config
         ConfigManager.load_htmlproofer_config
       end
@@ -333,6 +341,14 @@ module DocOpsLab
 
       def run_actionlint opts_string=''
         Linters.run_actionlint(self, opts_string)
+      end
+
+      def run_git_lint target=nil, opts_string=''
+        Linters.run_git_lint(self, target, opts_string)
+      end
+
+      def run_git_lint_hook message_file
+        Linters.run_git_lint_hook(self, message_file)
       end
 
       def run_all_linters

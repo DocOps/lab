@@ -119,6 +119,8 @@ module DocOpsLab
             description = case hook_name
                           when 'pre-commit'
                             'Advisory checks & syntax validation (non-blocking)'
+                          when 'commit-msg'
+                            'Commit message style gate (blocking)'
                           when 'pre-push'
                             'Comprehensive linting & quality gate (blocking)'
                           else

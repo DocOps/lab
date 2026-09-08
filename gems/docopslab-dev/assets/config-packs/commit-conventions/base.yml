@@ -1,0 +1,79 @@
+conventions:
+  types:
+    edit:
+      summ: Minor edits to content, documentation, or UI text
+    create:
+      summ: New content items, documentation, or UI surfaces
+    chore:
+      summ: Routine tasks and maintenance
+    feat:
+      summ: New downstream-facing features or functionality
+    fix:
+      summ: Bug fixes and error corrections
+    perf:
+      summ: Performance improvements
+    refactor:
+      summ: Code restructuring without changing behavior
+    revert:
+      summ: Reverting previous changes
+    style:
+      summ: Code or documentation style and formatting changes
+    test:
+      summ: Test code changes
+
+  scopes:
+    auto:
+      name: Automation
+      summ: Changes to automation and CI/CD scripts, workflows, and pipelines
+      akas: [auto, ci, cd, ci-cd, cicd, pipeline, devops, ops, scripts]
+    cli:
+      name: CLI
+      summ: Changes to a command-line interface
+    config:
+      name: Config
+      summ: Changes to configuration files and settings
+    content:
+      name: Content
+      summ: Changes to content
+    core:
+      name: Core
+      summ: Changes to native API, engine logic, or core behavior
+    data:
+      name: Data
+      summ: Changes to data structures, schemas, and formats
+    docs:
+      name: Documentation
+      summ: Changes to user-facing or internal documentation, including README and inline docs
+      akas: [doc, documentation]
+    infra:
+      name: Infrastructure
+      summ: Changes to infrastructure, deployment, and CI/CD pipelines
+      akas: [infrastructure]
+    lib:
+      name: Libraries
+      summ: Changes to libraries, modules, and dependencies
+      akas: [library, libraries, module, dependency, dependencies, package, packages]
+    server:
+      name: Server
+      summ: Changes to server-side configuration or remote services
+    specs:
+      name: Specifications
+      summ: Changes to specifications, design docs, requirements, and planning artifacts
+      akas: [spec, specification, definition, design, plan, requirement, requirements]
+    tests:
+      name: Tests
+      summ: Changes to test cases, test suites, and testing frameworks
+      akas: [test, testing]
+
+rules:
+  subject:
+    maximum: 72
+    require_capitalized_imperative: true
+    reject_terminal_punctuation: true
+    allowed_scope_separator: "+"
+  body:
+    maximum_line_length: 90
+    require_one_sentence_per_line: true
+  text:
+    reject_em_dash: true
+    reject_agent_signature: true

@@ -146,6 +146,12 @@ module DocOpsLab
               opts = args[:opts] || ''
               Dev.run_actionlint(opts)
             end
+
+            desc desc_for('run:git_lint')
+            task :git_lint, [:opts] => [] do |_t, args|
+              opts = args[:opts] || ''
+              Dev.run_git_lint(nil, opts)
+            end
           end
 
           # ============================================================
@@ -337,6 +343,29 @@ module DocOpsLab
               else
                 Dev.run_linter_group('GitHub Actions', %w[actionlint])
               end
+            end
+
+            desc desc_for('lint:commits')
+            task :commits, %i[target opts] => [] do |_t, args|
+              success = Dev.run_git_lint(args[:target], args[:opts] || '')
+              exit(1) unless success
+            end
+
+            desc desc_for('lint:commit')
+            task :commit, [:path] => [] do |_t, args|
+              unless args[:path]
+                puts 'Usage: bundle exec rake labdev:lint:commit[path/to/COMMIT_EDITMSG]'
+                exit(1)
+              end
+
+              success = Dev.run_git_lint_hook(args[:path])
+              exit(1) unless success
+            end
+
+            desc 'Deprecated alias for labdev:lint:commit'
+            task :commit_msg, [:path] => [] do |_t, args|
+              warn '⚠️  labdev:lint:commit_msg is deprecated; use labdev:lint:commit.'
+              Rake::Task['labdev:lint:commit'].invoke(args[:path])
             end
 
             desc desc_for('lint:spellcheck')

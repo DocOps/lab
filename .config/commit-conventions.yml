@@ -1,0 +1,10 @@
+# Project-local commit convention overrides.
+---
+inherit_from: .vendor/docopslab/commit-conventions.yml
+
+conventions:
+  scopes:
+    labdev:
+      name: docopslab-dev
+      summ: Changes to the docopslab-dev gem and distributed development tooling
+      akas: [docopslab-dev, dev, gem]

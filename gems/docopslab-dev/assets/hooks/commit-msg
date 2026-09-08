@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# DocOps Lab commit-msg hook template
+# Managed by docopslab-dev gem
+
+set -e
+
+MESSAGE_FILE="${1:-}"
+
+if [[ -z "$MESSAGE_FILE" ]]; then
+  echo "❌ Missing commit message file path."
+  exit 1
+fi
+
+if ! command -v bundle > /dev/null 2>&1; then
+  echo "⚠️  Bundler not available; skipping commit message lint."
+  exit 0
+fi
+
+echo "🪝 Linting commit message..."
+bundle exec rake "labdev:lint:commit[$MESSAGE_FILE]"

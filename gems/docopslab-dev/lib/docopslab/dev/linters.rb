@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 require 'open3'
+require 'fileutils'
 require 'pathname'
 require 'sourcerer/util/pathifier'
+require 'tmpdir'
 
 module DocOpsLab
   module Dev
@@ -183,6 +185,149 @@ module DocOpsLab
             puts '❌ actionlint found issues'
           end
           success
+        end
+
+        def run_git_lint context, target=nil, opts_string=''
+          puts '🧾 Running git-lint...'
+          context.generate_git_lint_config if context.respond_to?(:generate_git_lint_config)
+
+          unless File.exist?(Paths::CONFIG_FILES[:git_lint])
+            puts "❌ No git-lint config found. Run 'labdev:sync:configs' to create one."
+            return false
+          end
+
+          cmd = %w[bundle exec git-lint analyze]
+          if target
+            cmd += ['--commit', target]
+          else
+            cmd << '--branch'
+          end
+          cmd += opts_string.split unless opts_string.empty?
+
+          success = with_git_lint_config_env do |env|
+            system(env, *cmd)
+          end
+
+          if success
+            puts '✅ git-lint passed'
+          else
+            puts '❌ git-lint found commit message issues'
+          end
+
+          success
+        end
+
+        def run_git_lint_hook context, message_file
+          puts "🧾 Checking commit message: #{message_file}"
+          context.generate_git_lint_config if context.respond_to?(:generate_git_lint_config)
+
+          unless File.exist?(message_file)
+            puts "❌ Commit message file not found: #{message_file}"
+            return false
+          end
+
+          convention_success = validate_commit_message_subject(context, message_file)
+          git_lint_success = with_git_lint_config_env do |env|
+            system(env, 'bundle', 'exec', 'git-lint', '--hook', message_file)
+          end
+
+          if convention_success && git_lint_success
+            puts '✅ Commit message passed'
+            true
+          else
+            puts '❌ Commit message failed'
+            false
+          end
+        end
+
+        def validate_commit_message_subject context, message_file
+          subject = File.readlines(message_file, chomp: true).find { |line| !line.strip.empty? }
+          return true if subject.nil? || subject.match?(/\A(?:fixup|squash|amend)!\s/)
+
+          conventions = context.load_commit_conventions if context.respond_to?(:load_commit_conventions)
+          return true unless conventions
+
+          types = convention_slugs(conventions, 'types').sort
+          scopes = convention_slugs(conventions, 'scopes').sort
+          separator = conventions.dig('rules', 'subject', 'allowed_scope_separator') || '+'
+          reject_punctuation = conventions.dig('rules', 'subject', 'reject_terminal_punctuation')
+          reject_agent_signature = conventions.dig('rules', 'text', 'reject_agent_signature')
+
+          match = subject.match(/\A(?<type>[a-z]+)(?:\((?<scope>[^)]+)\))?: (?<subject>.+)\z/)
+          unless match
+            puts '❌ Commit subject must match `<type>[optional scope]: Subject`.'
+            return false
+          end
+
+          valid = true
+          valid = false unless validate_commit_type(match[:type], types)
+          valid = false unless validate_commit_scopes(match[:scope], scopes, separator)
+          valid = false unless validate_subject_text(match[:subject], reject_punctuation)
+          valid = false if reject_agent_signature && agent_signature?(File.read(message_file))
+          valid
+        end
+
+        def with_git_lint_config_env
+          Dir.mktmpdir('docopslab-dev-git-lint') do |dir|
+            config_dir = File.join(dir, 'git-lint')
+            FileUtils.mkdir_p(config_dir)
+            FileUtils.cp(Paths::CONFIG_FILES[:git_lint], File.join(config_dir, 'configuration.yml'))
+            yield({ 'XDG_CONFIG_HOME' => dir })
+          end
+        end
+
+        def convention_slugs conventions, key
+          values = conventions.dig('conventions', key)
+          case values
+          when Hash
+            values.keys
+          else
+            Array(values).filter_map { |entry| entry['slug'] if entry.is_a?(Hash) }
+          end
+        end
+
+        def validate_commit_type type, types
+          return true if types.include?(type)
+
+          puts "❌ Commit type `#{type}` is not allowed. Use one of: #{types.join(', ')}."
+          false
+        end
+
+        def validate_commit_scopes scope_text, scopes, separator
+          return true if scope_text.nil? || scopes.empty?
+
+          invalid = scope_text.split(separator).reject { |scope| scopes.include?(scope) }
+          return true if invalid.empty?
+
+          puts "❌ Commit scope(s) not allowed: #{invalid.join(', ')}."
+          puts "   Use configured scopes joined with `#{separator}` when multiple scopes are needed."
+          false
+        end
+
+        def validate_subject_text subject_text, reject_punctuation
+          valid = true
+          unless subject_text.match?(/\A[[:upper:]]/)
+            puts '❌ Commit subject must start with a capitalized imperative verb.'
+            valid = false
+          end
+
+          if reject_punctuation && subject_text.match?(/[.?!]\z/)
+            puts '❌ Commit subject must not end with terminal punctuation.'
+            valid = false
+          end
+
+          valid
+        end
+
+        def agent_signature? message
+          patterns = [
+            /Co-authored-by:\s*(?:Codex|Claude|ChatGPT)/i,
+            /Generated with (?:Claude Code|Codex|ChatGPT)/i
+          ]
+          return false unless patterns.any? { |pattern| message.match?(pattern) }
+
+          puts '❌ Commit message must not include agent authorship signatures.'
+          true
         end
 
         def run_vale context, file_path=nil, opts_string='', output_format: :cli, filter: nil, style_override: nil

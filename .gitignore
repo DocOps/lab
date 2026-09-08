@@ -37,9 +37,12 @@ vendor/
 # DocOps Lab vendor files
 .config/.vendor/
 
+# tag::universal-docopslab-dev-configs[]
 # Generated config files (merged from base + local)
 .config/vale.ini
 .config/htmlproofer.yml
+.config/git-lint.yml
+# end::universal-docopslab-dev-configs[]
 
 # Gem content paths
 gems/**/pkg/

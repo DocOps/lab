@@ -58,3 +58,10 @@
     inheritance: native         # Supports standard YAML patterns
     uses_vendor_base: true      # Syncs base config to .vendor/
     format: YAML
+
+- slug: git-lint
+  name: git-lint
+  config:
+    inheritance: generated_yaml  # Builds .config/git-lint.yml from shared conventions
+    uses_vendor_base: true
+    format: YAML

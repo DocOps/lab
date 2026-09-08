@@ -525,6 +525,33 @@ For full Vale configuration settings ("`keys`") reference, see the link:https://
 
 // end::config-vale[]
 
+[[git-lint]]
+=== git-lint
+
+Git commit message checking for local hooks and CI.
+
+Convention data:: `.config/.vendor/docopslab/commit-conventions.yml`
+Project convention overrides:: `.config/commit-conventions.yml` (inherits via `inherit_from`)
+Base config:: `.config/.vendor/docopslab/git-lint.yml`
+Project config overrides:: `.config/git-lint.local.yml`
+Ephemeral config:: `.config/git-lint.yml`
+Sync command:: `bundle exec rake labdev:sync:configs`
+Branch lint command:: `bundle exec rake labdev:lint:commits`
+Commit-message hook command:: `bundle exec rake labdev:lint:commit[path/to/COMMIT_EDITMSG]`
+
+The generated git-lint config is derived from shared commit convention data so other commit-message linters can reuse the same types, scopes, and prose rules later.
+Commit subjects must follow `<type>[optional scope]: Subject`, use a configured type and scope, start the subject with a capitalized imperative verb, and omit terminal punctuation.
+
+Commit convention overrides are mapping-based.
+Local projects can add or overwrite keys under `rules`, `conventions.types`, and `conventions.scopes`.
+Set a key to `null` in the local file to drop an inherited convention.
+
+`git-lint` 6.x expects an XDG config path named `git-lint/configuration.yml`.
+The `labdev` wrappers bridge `.config/git-lint.yml` into that path at runtime, so use the rake tasks instead of invoking `git-lint` directly.
+
+The distributed `commit-msg` hook runs `labdev:lint:commit` against the unsaved commit message.
+CI should use `labdev:lint:commits` on feature branches or pull request heads.
+
 [[htmlproofer]]
 === HTMLProofer
 // tag::config-htmlproofer[]
@@ -1023,6 +1050,11 @@ Vale::
 HTMLProofer::
 +
  bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
+
+git-lint::
++
+ bundle exec rake "labdev:lint:commit[.git/COMMIT_EDITMSG]"
+ bundle exec rake labdev:lint:commits
 
 // end::standard-usage[]
 // end::usage[]

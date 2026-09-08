@@ -18,6 +18,7 @@ module DocOpsLab
       CONFIG_FILES = {
         vale: '.config/vale.ini',
         htmlproofer: '.config/htmlproofer.yml',
+        git_lint: '.config/git-lint.yml',
         rubocop: '.config/rubocop.yml'
       }.freeze
 

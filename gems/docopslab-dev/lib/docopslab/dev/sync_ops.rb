@@ -383,6 +383,7 @@ module DocOpsLab
           generated_count = 0
           generated_count += 1 if context.generate_vale_config
           generated_count += 1 if context.generate_htmlproofer_config
+          generated_count += 1 if context.generate_git_lint_config
 
           puts '  ✅ All runtime configs up to date' if generated_count.zero?
 
