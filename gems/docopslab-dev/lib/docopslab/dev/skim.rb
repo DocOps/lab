@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
+require 'pathname'
 require 'asciisourcerer'
 require 'sourcerer/util/pathifier'
 
@@ -60,7 +61,7 @@ module DocOpsLab
             skim_opts[:forms] = forms if forms
             skim_opts[:descriptions] = true if opts[:descriptions]
 
-            results[fp] = Sourcerer::SourceSkim.skim_file(fp, **skim_opts)
+            results[relative_path(fp)] = Sourcerer::SourceSkim.skim_file(fp, **skim_opts)
           end
           portable = JSON.parse(JSON.generate(results))
 
@@ -92,6 +93,11 @@ module DocOpsLab
                                     .each_with_object({}) do |abs_path, map|
             map[abs_path.sub("#{abs_base}/", '')] = abs_path
           end
+        end
+
+        # Render an absolute file path as relative to the current working directory.
+        def relative_path fp
+          Pathname.new(fp).relative_path_from(Pathname.pwd).to_s
         end
 
         def parse_forms form
