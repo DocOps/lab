@@ -336,6 +336,24 @@ projects:
     icon: folder-tree
     libs: [OpenPathYML]
 
+# FRAMEWORKS (FRONT-END / DESIGN)
+
+## AsciiDoc FabLab:
+  - name: AsciiDoc FabLab
+    slug: asciidoc-fablab
+    type: framework
+    desc: |
+      CSS, JavaScript, and other front-end affecting assets for designing and styling rich-text output from AsciiDoc source files, with a focus on accessibility.
+    line: Component library and methods for designing AsciiDoc-sourced output
+    vrsn: 0.1.0
+    tags: [design,styling,front-end]
+    tech: [CSS,Sass,JavaScript,Node.js,HTML,Asciidoctor,Asciidoctor.js]
+    wave: 1
+    done: 90%
+    icon: palette
+    deps: []
+    libs: [OpenFormYML]
+
 # FRAMEWORKS (DOCUMENT[ATION] OPS)
 
 ## Clientele-as-Code:
@@ -950,28 +968,40 @@ projects:
       - name: OpenHXY
         desc: YAML-based syntax for product release history, notes, changelog
         slug: open-release-history-sgyml
+        repo: releasehx
       - name: OpenSGGY
         desc: YAML-based syntax for style guide / glossary definition format (Open Style Guides)
         slug: open-style-guide-glossary-sgyml
+        repo: schemagraphy
       - name: OpenVMY
         desc: YAML-based syntax for version (source and output) divergence mapping system
         slug: open-version-management-sgyml
+        repo: versioneer
       - name: OpenCLY
         desc: YAML-based syntax for defining & documenting CLIs
         slug: open-cli-definition-sgyml
+        repo: schemagraphy
       - name: OpenFormY
         desc: YAML-based syntax for defining & documenting Web forms
         slug: open-form-definition-sgyml
+        repo: schemagraphy
       - name: OpenCFGY
         desc: YAML-based syntax for defining config files
         slug: open-config-definition-sgyml
+        repo: schemagraphy
       - name: OpenPathY
         desc: |
           A YAML-based syntax for defining, documenting, validating, & initiating fileset structures
         slug: open-pathtree-sgyml
+        repo: openpathyml
       - name: OpenIMY
         desc: YAML-based syntax for defining issue tickets
         slug: open-issues-definition-sgyml
+        repo: issuer
+      - name: UserStoryML
+        desc: YAML-based syntax for defining user stories
+        slug: open-user-story-definition-sgyml
+        repo: schemagraphy
     packs:
       schemagraphy-specs:
         desc: |
@@ -986,6 +1016,7 @@ projects:
           - schemagraphy-open-config-spec-ruby
           - schemagraphy-open-pathy-spec-ruby
           - schemagraphy-open-issues-spec-ruby
+          - schemagraphy-open-user-story-spec-ruby
       schemagraphy-specs-py:
         desc: |
           Specification schemas as Python libraries.
@@ -999,6 +1030,7 @@ projects:
           - schemagraphy-open-config-spec-python
           - schemagraphy-open-pathy-spec-python
           - schemagraphy-open-issues-spec-python
+          - schemagraphy-open-user-story-spec-python
       schemagraphy-specs-npm:
         desc: |
           Specification schemas as JavaScript libraries.
@@ -1012,6 +1044,7 @@ projects:
           - schemagraphy-open-config-spec-node
           - schemagraphy-open-pathy-spec-node
           - schemagraphy-open-issues-spec-node
+          - schemagraphy-open-user-story-spec-node
     tech: [SGYML,YAML,JSON,JSON Schema,JMESPath,JSONPath,Ruby,Python,JavaScript]
     wave: 2
     done: 30%
