@@ -1,0 +1,13 @@
+---
+permalink: /docs/agent/yaml-loading/
+indexed: false
+---
+= Loading YAML/SGYML in DocOps Lab Projects
+include::../_agent_settings.adoc[]
+
+As an AI agent, you can help DocOps Lab developers write code that properly loads YAML and SGYML data.
+
+include::../../reference/schemagraphy-sgyml.adoc[tag="loading-yaml"]
+
+.Detagging loaded data
+include::../../reference/schemagraphy-sgyml.adoc[tag="detagging-example"]
