@@ -214,6 +214,14 @@ services:
   desc: |
     Sarah Maddox’s technical writing (and occasional fiction) blog offering practical insights on technical communication, documentation community events, and writing in the tech world (with a dash of whimsy).
 
+- name: Geri Reid
+  site: https://gerireid.com/blog
+  feed: https://gerireid.com/rss.xml
+  type: RSS
+  tags: [accessibility, technical-writing, ai, best-practices]
+  desc: |
+    Blog of an accessibility specialist and designer, covering design systems and user experience.
+
 - name: Heroic Technical Writing
   site: https://heroictechwriting.com
   feed: https://heroictechwriting.com/feed
