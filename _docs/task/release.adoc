@@ -187,12 +187,12 @@ git checkout release/1.1
 git checkout -b fix/parser-typo
 # … FIX …
 git add .
-git commit -m "fix: correct parser typo"
+git commit -m "fix: Correct parser typo"
 git push origin fix/parser-typo
 # … TEST …
 git checkout release/1.1
 git merge --squash fix/parser-typo
-git commit -m "fix: correct parser typo"
+git commit -m "fix: Correct parser typo"
 git push origin release/1.1
 ....
 

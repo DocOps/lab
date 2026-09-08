@@ -23,7 +23,7 @@ Most DocOps Lab projects do not base Changelog/Release Notes generation on commi
 The basic outline for a Conventional Commit message is:
 
 ....
-<type>[optional scope]: <summary>
+<type>[optional scope]: <subject>
 
 [optional body]
 
@@ -31,30 +31,31 @@ The basic outline for a Conventional Commit message is:
 ....
 
 
-[[commit-summary]]
-== Commit Summary
+[[commit-subject]]
+== Commit Subject
 
-The commit description should be concise and to the point, summarizing the change in 50 characters or less.
+The commit subject is the text after `<type>[optional scope]:`.
+It should be concise and to the point, summarizing the change in 50 characters or less.
 
-Use the imperative mood (e.g., "Add feature X" instead of "Added feature X").
+Start the subject with a capitalized imperative verb.
+For example, use "`feat: Add widget`" instead of "`feat: add widget`" or "`feat: Added widget`".
 
 
 [[commit-types]]
 == Commit Types
 
 // tag::commit-types[]
-* Use imperative verbs ("`Add widget`", not "`Added`" or "`add`")
-* `create: ...` for new docs or UI content
-* `edit: ...` for minor edits to docs or UI content
-* `feat: ...` for new features OR improvements
-* `fix: ...` for bugfixes
-* `chore: ...` for version bumps and sundry tasks with no product impact
-* `test: ...` for test code changes
-* `refactor: ...` for code restructuring with no functional changes
-* `style: ...` for formatting, missing semi-colons, etc; no functional changes
-* `perf: ...` for performance improvements
-* `auto: ...` for changes to CI/CD pipelines and build system
-* `revert: ...` for reverting previous changes
+* `create: Add installation guide` for new docs or UI content
+* `edit: Clarify setup notes` for minor edits to docs or UI content
+* `feat: Add widget` for new features OR improvements
+* `fix: Handle missing widget config` for bugfixes
+* `chore: Bump gem version` for version bumps and sundry tasks with no product impact
+* `test: Cover widget validation` for test code changes
+* `refactor: Extract widget parser` for code restructuring with no functional changes
+* `style: Format widget examples` for formatting, missing semi-colons, etc; no functional changes
+* `perf: Cache widget lookup` for performance improvements
+* `auto: Update release workflow` for changes to CI/CD pipelines and build system
+* `revert: Restore previous widget behavior` for reverting previous changes
 // end::commit-types[]
 
 
