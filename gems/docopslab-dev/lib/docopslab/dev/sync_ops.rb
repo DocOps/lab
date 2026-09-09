@@ -257,6 +257,21 @@ module DocOpsLab
           synced_count.positive? || skipped_count.positive?
         end
 
+        def ensure_library_available
+          Library.ensure_available!
+          true
+        rescue StandardError => e
+          puts "❌ #{e.message}"
+          false
+        end
+
+        def load_manifest_or_report_error
+          YAML.load_file(MANIFEST_PATH)
+        rescue StandardError => e
+          puts "❌ Failed to parse #{MANIFEST_PATH}: #{e.message}"
+          nil
+        end
+
         def sync_config_files context, tool_filter: :all, offline: false
           # Validate tool filter parameter
           unless tool_filter == :all || tool_filter.is_a?(String) || tool_filter.is_a?(Symbol)
@@ -273,22 +288,10 @@ module DocOpsLab
             return false
           end
 
-          # Parse manifest
-          begin
-            manifest = YAML.load_file(MANIFEST_PATH)
-          rescue StandardError => e
-            puts "❌ Failed to parse #{MANIFEST_PATH}: #{e.message}"
-            return false
-          end
+          manifest = load_manifest_or_report_error
+          return false unless manifest
 
-          unless offline
-            begin
-              Library.ensure_available!
-            rescue StandardError => e
-              puts "❌ #{e.message}"
-              return false
-            end
-          end
+          return false unless offline || ensure_library_available
 
           config_packs_root = Library.resolve('config-packs')
           unless config_packs_root && Dir.exist?(config_packs_root)

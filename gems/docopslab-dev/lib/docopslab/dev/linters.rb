@@ -222,6 +222,13 @@ module DocOpsLab
           success
         end
 
+        def merge_commit_message? message_file
+          subject = File.readlines(message_file, chomp: true).find { |line| !line.strip.empty? }
+          return false if subject.nil?
+
+          subject.match?(/\AMerge /)
+        end
+
         def merge_commit? sha
           out, status = Open3.capture2('git', 'rev-list', '--no-walk', '--parents', sha)
           return false unless status.success?
@@ -237,6 +244,11 @@ module DocOpsLab
           unless File.exist?(message_file)
             puts "❌ Commit message file not found: #{message_file}"
             return false
+          end
+
+          if merge_commit_message?(message_file)
+            puts 'ℹ️  Merge commit message (exempt from subject conventions); nothing to check.'
+            return true
           end
 
           convention_success = validate_commit_message_subject(context, message_file)
