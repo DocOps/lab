@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'asciisourcerer', path: '../../../asciisourcerer'
+gem 'asciisourcerer'
 
 gemspec
 

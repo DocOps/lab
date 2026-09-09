@@ -1,22 +1,9 @@
 PATH
-  remote: ../../../asciisourcerer
-  specs:
-    asciisourcerer (0.5.0)
-      asciidoctor (~> 2.0)
-      asciidoctor-html5s (~> 0.5)
-      jekyll (~> 4.4)
-      jekyll-asciidoc (~> 3.0)
-      kramdown-asciidoc (~> 2.1)
-      liquid (~> 4.0)
-      reverse_markdown (~> 2.1)
-      yard (~> 0.9)
-
-PATH
   remote: .
   specs:
     docopslab-dev (0.4.0)
       asciidoctor (~> 2.0)
-      asciisourcerer (~> 0.4)
+      asciisourcerer (~> 0.5)
       brakeman (~> 7.1)
       bundler-audit (~> 0.9)
       debride (~> 1.13)
@@ -45,6 +32,15 @@ GEM
     asciidoctor-html5s (0.5.1)
       asciidoctor (>= 1.5.7, < 3.0)
       thread_safe (~> 0.3.4)
+    asciisourcerer (0.5.0)
+      asciidoctor (~> 2.0)
+      asciidoctor-html5s (~> 0.5)
+      jekyll (~> 4.4)
+      jekyll-asciidoc (~> 3.0)
+      kramdown-asciidoc (~> 2.1)
+      liquid (~> 4.0)
+      reverse_markdown (~> 2.1)
+      yard (~> 0.9)
     ast (2.4.3)
     async (2.32.1)
       console (~> 1.29)
@@ -373,7 +369,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  asciisourcerer!
+  asciisourcerer
   docopslab-dev!
   rspec (~> 3.0)
 

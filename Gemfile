@@ -12,7 +12,7 @@ gem 'reverse_markdown'
 gem 'rubyzip', '~> 2.3' # For Vale package building
 gem 'sass'
 # DocOps Lab
-gem 'asciisourcerer', path: '../asciisourcerer'
+gem 'asciisourcerer'
 gem 'schemagraphy'
 
 group :jekyll_plugins do
