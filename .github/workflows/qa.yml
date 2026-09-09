@@ -35,10 +35,6 @@ on:
         description: "Skip HTML-Proofer link checking"
         type: boolean
         default: false
-      skip_git_lint:
-        description: "Skip git-lint commit message checking"
-        type: boolean
-        default: false
 
 jobs:
   config-sync:
@@ -95,31 +91,6 @@ jobs:
           else
             bundle exec rake labdev:lint:ruby
           fi
-
-  git-lint:
-    runs-on: ubuntu-latest
-    needs: config-sync
-    timeout-minutes: 5
-    if: ${{ !inputs.skip_git_lint }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2'
-          bundler-cache: ${{ inputs.enable_cache }}
-
-      - name: Sync configurations
-        run: bundle exec rake labdev:sync:configs
-
-      - name: Run git-lint
-        run: |
-          COMMIT_SHA="${{ github.event.pull_request.head.sha || github.sha }}"
-          bundle exec rake "labdev:lint:commits[$COMMIT_SHA]"
 
   vale:
     runs-on: ubuntu-latest
@@ -189,7 +160,7 @@ jobs:
 
   summary:
     runs-on: ubuntu-latest
-    needs: [config-sync, rubocop, git-lint, vale, htmlproofer]
+    needs: [config-sync, rubocop, vale, htmlproofer]
     if: always()
     timeout-minutes: 2
     steps:
@@ -214,15 +185,6 @@ jobs:
             echo "❌ **RuboCop**: Failed" >> $GITHUB_STEP_SUMMARY
           fi
 
-          # git-lint
-          if [ "${{ inputs.skip_git_lint }}" = "true" ]; then
-            echo "⏭️ **git-lint**: Skipped" >> $GITHUB_STEP_SUMMARY
-          elif [ "${{ needs.git-lint.result }}" = "success" ]; then
-            echo "✅ **git-lint**: Passed" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ **git-lint**: Failed" >> $GITHUB_STEP_SUMMARY
-          fi
-          
           # Vale
           if [ "${{ inputs.skip_vale }}" = "true" ]; then
             echo "⏭️ **Vale**: Skipped" >> $GITHUB_STEP_SUMMARY

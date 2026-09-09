@@ -528,7 +528,7 @@ For full Vale configuration settings ("`keys`") reference, see the link:https://
 [[git-lint]]
 === git-lint
 
-Git commit message checking for local hooks and CI.
+Git commit message checking for local hooks.
 
 Convention data:: `.config/.vendor/docopslab/commit-conventions.yml`
 Project convention overrides:: `.config/commit-conventions.yml` (inherits via `inherit_from`)
@@ -550,7 +550,8 @@ Version 6.x of `git-lint` expects an XDG config path named `git-lint/configurati
 The `labdev` wrappers bridge `.config/git-lint.yml` into that path at runtime, so use the rake tasks instead of invoking `git-lint` directly.
 
 The distributed `commit-msg` hook runs `labdev:lint:commit` against the unsaved commit message.
-CI should use `labdev:lint:commits` on feature branches or pull request heads.
+This is a local, commit-time check by design, not a CI gate: fixing a violation caught after a push means rewriting shared history, which the local hook avoids entirely.
+`labdev:lint:commits` remains available for manually linting a branch or arbitrary commit range.
 
 [[htmlproofer]]
 === HTMLProofer
