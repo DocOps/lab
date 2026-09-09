@@ -601,6 +601,7 @@ Downstream projects running `bundle exec rake labdev:sync:docs` read the local c
 Use `gemdo:push:library:docs:local` before running `bundle exec rake labdev:sync:docs` in a local downstream checkout such as AsciiSourcerer.
 This avoids testing against a stale `~/.cache/docopslab/dev/library/current/` copy.
 
+
 [[troubleshooting]]
 == Troubleshooting
 

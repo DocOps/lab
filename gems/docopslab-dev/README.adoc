@@ -546,7 +546,7 @@ Commit convention overrides are mapping-based.
 Local projects can add or overwrite keys under `rules`, `conventions.types`, and `conventions.scopes`.
 Set a key to `null` in the local file to drop an inherited convention.
 
-`git-lint` 6.x expects an XDG config path named `git-lint/configuration.yml`.
+Version 6.x of `git-lint` expects an XDG config path named `git-lint/configuration.yml`.
 The `labdev` wrappers bridge `.config/git-lint.yml` into that path at runtime, so use the rake tasks instead of invoking `git-lint` directly.
 
 The distributed `commit-msg` hook runs `labdev:lint:commit` against the unsaved commit message.

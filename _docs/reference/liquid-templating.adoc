@@ -22,7 +22,7 @@ This means all Jekyll's filters and its special `include` tag are available with
 
 Not all custom tags are always available, but the following are generally available in DocOps Lab projects:
 
-.Table of custom tags, their souurce gems, and usage notes.
+.Table of custom tags, their source gems, and usage notes.
 [cols="1,1,4",options="header"]
 |===
 | Tag Name | Source Gem | Usage Notes
@@ -62,6 +62,7 @@ ifdef::audience-agent[]
 See `.agent/docs/topics/liquid-filters-reference.md` for a listing of filters available to projects with AsciiSourcerer available.
 See the section starting at `// tag::asciisourcerer[]` for custom filters available downstream of AsciiSourcerer.
 endif::[]
+
 
 [[liquid-syntax-styles]]
 == Liquid Syntax Styles
@@ -157,6 +158,6 @@ Sourcerer::Rendering.render_outputs([
 ])
 ----
 
-Direct invocation of Liquid rendering is also possible, but the above method is recommended for most use cases in DocOps Lab projects, as it provides a consistent user experience in terms of availability and behavior of tags and fliters.
+Direct invocation of Liquid rendering is also possible, but the above method is recommended for most use cases in DocOps Lab projects, as it provides a consistent user experience in terms of availability and behavior of tags and filters.
 
 // end::content[]
