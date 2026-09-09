@@ -259,6 +259,13 @@ task :copy_asciisourcerer_doc_partials do
     dest = File.join(dest_dir, File.basename(source))
     FileUtils.cp(source, dest)
     puts "  ✓ Copied #{dest}"
+    # Temporarily, force-swap source format designations in imported Liquid filter reference files
+    if File.basename(source) =~ /liquid-filters-by-/
+      content = File.read(dest)
+      content.gsub!(/^\.Input\n\[source,liquid\]/, ".Input\n[source,twig]")
+      content.gsub!(/^\.Output\n\[source,liquid\]/, ".Output\n[source,yaml]")
+      File.write(dest, content)
+    end
   end
   puts "✅ Copied #{partials.count} AsciiSourcerer documentation partial(s)"
 end
