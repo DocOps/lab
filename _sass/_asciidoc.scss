@@ -129,7 +129,6 @@ article {
     color: var(--code-color);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
-    font-size: 0.875em;
   }
 
   .literalblock pre,
@@ -214,7 +213,7 @@ article {
         margin-top: 0;
       }
 
-      pre {
+      pre:not(.listingblock pre):not(.literalblock pre) {
         background-color: var(--example-background);
         color: var(--code-color);
         border: none;
