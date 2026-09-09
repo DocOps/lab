@@ -198,7 +198,12 @@ module DocOpsLab
 
           cmd = %w[bundle exec git-lint analyze]
           if target
-            cmd += ['--commit', target]
+            commits = target.split(',').reject { |sha| merge_commit?(sha) }
+            if commits.empty?
+              puts 'ℹ️  All targeted commits are merge commits (exempt from subject conventions); nothing to check.'
+              return true
+            end
+            cmd += ['--commit', commits.join(',')]
           else
             cmd << '--branch'
           end
@@ -215,6 +220,14 @@ module DocOpsLab
           end
 
           success
+        end
+
+        def merge_commit? sha
+          out, status = Open3.capture2('git', 'rev-list', '--no-walk', '--parents', sha)
+          return false unless status.success?
+
+          # First token is the commit itself; anything beyond one remaining token is a second parent.
+          out.strip.split.size > 2
         end
 
         def run_git_lint_hook context, message_file
