@@ -6,12 +6,13 @@ source 'https://rubygems.org'
 gem 'docopslab-dev', path: './gems/docopslab-dev'
 # 3rd Party
 gem 'colorize',          '~> 1.1'
-gem 'jekyll',            '~> 4.r'
+gem 'jekyll',            '~> 4.4'
 gem 'pathspec',          '~> 2.1'
 gem 'reverse_markdown'
 gem 'rubyzip', '~> 2.3' # For Vale package building
 gem 'sass'
 # DocOps Lab
+gem 'asciisourcerer'
 gem 'schemagraphy'
 
 group :jekyll_plugins do

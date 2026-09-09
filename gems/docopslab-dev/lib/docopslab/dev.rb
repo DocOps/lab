@@ -313,6 +313,14 @@ module DocOpsLab
         ConfigManager.generate_htmlproofer_config(self)
       end
 
+      def generate_git_lint_config
+        ConfigManager.generate_git_lint_config(self)
+      end
+
+      def load_commit_conventions
+        ConfigManager.load_commit_conventions
+      end
+
       def load_htmlproofer_config
         ConfigManager.load_htmlproofer_config
       end
@@ -335,13 +343,21 @@ module DocOpsLab
         Linters.run_actionlint(self, opts_string)
       end
 
+      def run_git_lint target=nil, opts_string=''
+        Linters.run_git_lint(self, target, opts_string)
+      end
+
+      def run_git_lint_hook message_file
+        Linters.run_git_lint_hook(self, message_file)
+      end
+
       def run_all_linters
         Linters.run_all_linters(self)
       end
 
       def run_auto_fix
-        Linters.run_auto_fix
-        AsciiidocAutoFix.fix_asciidoc_files(self)
+        Linters.run_auto_fix(self)
+        AutoFixAsciidoc.fix_asciidoc_files(self)
       end
 
       def run_rubocop_auto_fix path: nil

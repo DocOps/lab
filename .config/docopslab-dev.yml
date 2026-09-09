@@ -85,6 +85,21 @@ tools:
         target: .config/actionlint.yml
         synced: false
 
+  - tool: git-lint
+    files:
+      - source: commit-conventions/base.yml
+        target: .config/.vendor/docopslab/commit-conventions.yml
+        synced: true
+      - source: commit-conventions/project.yml
+        target: .config/commit-conventions.yml
+        synced: false
+      - source: git-lint/base.yml
+        target: .config/.vendor/docopslab/git-lint.yml
+        synced: true
+      - source: git-lint/project.yml
+        target: .config/git-lint.local.yml
+        synced: false
+
 # Local library declaration used by lab release and local tests
 library:
   enabled: true

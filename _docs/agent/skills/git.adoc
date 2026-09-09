@@ -19,10 +19,12 @@ This document describes protocols for committing and pushing changes to a git Do
 . Commit messages should be concise and easy for users to edit. +
 See <<commit-messages>> for guidance.
 
-. Always prompt user to approve commits before pushing.
+. Always prompt Operator to approve commits before pushing.
 
 . Use `gh` for interacting with GitHub whenever possible. +
 See <<gh-cli>> for more information.
+
+. NEVER sign commits as a co-author.
 // end::basics-snippet[]
 
 include::../../task/development.adoc[tag=repo-state]

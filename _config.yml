@@ -100,12 +100,13 @@ defaults:
     values:
       type: procedure
       indexed: true
-  - scope: 
+  - scope:
       path: "_docs/agent/"
     values:
       type: agent
       indexed: false
       noindex: true
+      permalink: /docs/agent/:slug/
   - scope:
       path: "_docs/agent/topics"
     values:
@@ -122,6 +123,12 @@ defaults:
       path: "_docs/agent/missions"
     values:
       group: missions
+  - scope:
+      path: "_docs/partials/"
+    values:
+      published: false
+      indexed: false
+      noindex: true
 # end::defaults-snippet[]
 
 highlighting:

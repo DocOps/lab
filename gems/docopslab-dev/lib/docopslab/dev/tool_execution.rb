@@ -58,7 +58,7 @@ module DocOpsLab
           # Run command in docopslab/dev container
           # Handle both String and Array command formats
           cmd_str = command.is_a?(Array) ? command.shelljoin : command
-          docker_cmd = "docker run -it --rm -v \"$(pwd):/workspace\" -w /workspace docopslab/dev #{cmd_str}"
+          docker_cmd = "docker run --rm -v \"$(pwd):/workspace\" -w /workspace docopslab/dev #{cmd_str}"
           puts "🐳 Running in Docker: #{cmd_str}"
           system(docker_cmd)
         end

@@ -32,10 +32,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'yaml', '~> 0.2'
 
   # Code quality and linting
-  spec.add_dependency 'asciisourcerer', '~> 0.4'
+  spec.add_dependency 'asciisourcerer', '~> 0.5'
   spec.add_dependency 'debride',        '~> 1.13'
   spec.add_dependency 'fasterer',       '~> 0.11'
   spec.add_dependency 'flog',           '~> 4.8'
+  spec.add_dependency 'git-lint',       '~> 6.2'
   spec.add_dependency 'reek',           '~> 6.5'
   spec.add_dependency 'rubocop',        '~> 1.80'
   spec.add_dependency 'rubocop-rake',   '~> 0.7'

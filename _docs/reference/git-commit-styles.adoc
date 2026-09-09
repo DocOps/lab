@@ -11,11 +11,11 @@ This document outlines the protocols for authoring Git commit messages in DocOps
 
 
 [[general-style]]
-== General Style (Conventional Commits)
+== General Style
 
 DocOps Lab _loosely_ follows the link:https://www.conventionalcommits.org/en/v1.0.0/[Conventional Commits] specification for Git commit messages.
 
-Enforcement is not strict, but using Conventional Commits style is encouraged for consistency and clarity.
+Enforcement is not strict, but using modified Conventional Commits style is encouraged for consistency and clarity.
 
 [NOTE]
 Most DocOps Lab projects do not base Changelog/Release Notes generation on commit messages.
@@ -23,7 +23,7 @@ Most DocOps Lab projects do not base Changelog/Release Notes generation on commi
 The basic outline for a Conventional Commit message is:
 
 ....
-<type>[optional scope]: <description>
+<type>[optional scope]: <subject>
 
 [optional body]
 
@@ -31,27 +31,31 @@ The basic outline for a Conventional Commit message is:
 ....
 
 
-[[commit-description]]
-== Commit Description
+[[commit-subject]]
+== Commit Subject
 
-The commit description should be concise and to the point, summarizing the change in 50 characters or less.
+The commit subject is the text after `<type>[optional scope]:`.
+It should be concise and to the point, summarizing the change in 50 characters or less.
 
-Use the _past tense_ rather than imperative mood (e.g., "Added feature X" instead of "Add feature X").
+Start the subject with a capitalized imperative verb.
+For example, use "`feat: Add widget`" instead of "`feat: add widget`" or "`feat: Added widget`".
 
 
 [[commit-types]]
 == Commit Types
+
 // tag::commit-types[]
-* Use present-tense descriptive verbs ("`adds widget`", not "`added`" or "`add`")
-* `feat: ...` for new features OR improvements
-* `fix: ...` for bugfixes
-* `chore: ...` for version bumps and sundry tasks with no product impact
-* `docs: ...` for documentation changes
-* `test: ...` for test code changes
-* `refactor: ...` for code restructuring with no functional changes
-* `style: ...` for formatting, missing semi-colons, etc; no functional changes
-* `perf: ...` for performance improvements
-* `auto: ...` for changes to CI/CD pipelines and build system
+* `create: Add installation guide` for new docs or UI content
+* `edit: Clarify setup notes` for minor edits to docs or UI content
+* `feat: Add widget` for new features OR improvements
+* `fix: Handle missing widget config` for bugfixes
+* `chore: Bump gem version` for version bumps and sundry tasks with no product impact
+* `test: Cover widget validation` for test code changes
+* `refactor: Extract widget parser` for code restructuring with no functional changes
+* `style: Format widget examples` for formatting, missing semi-colons, etc; no functional changes
+* `perf: Cache widget lookup` for performance improvements
+* `auto: Update release workflow` for changes to CI/CD pipelines and build system
+* `revert: Restore previous widget behavior` for reverting previous changes
 // end::commit-types[]
 
 

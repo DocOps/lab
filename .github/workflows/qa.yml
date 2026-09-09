@@ -184,7 +184,7 @@ jobs:
           else
             echo "❌ **RuboCop**: Failed" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           # Vale
           if [ "${{ inputs.skip_vale }}" = "true" ]; then
             echo "⏭️ **Vale**: Skipped" >> $GITHUB_STEP_SUMMARY

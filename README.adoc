@@ -574,6 +574,9 @@ See link:https://vale.sh/docs/styles[Vale's Style documentation] for details on 
 ==== Asset Library Publishing
 
 These tasks live in the `DocOps/lab` Rakefile and are used to stage and publish library assets to the `labdev-library` branch.
+Generated agent docs follow this chain of truth:
+`_docs/agent/` -> `_site/docs/agent/` -> `gems/docopslab-dev/docs/agent/` -> `.library/` -> `~/.cache/docopslab/dev/library/current/`.
+Downstream projects running `bundle exec rake labdev:sync:docs` read the local cache first when it is available.
 
 .Stage assets from `gems/docopslab-dev/assets/` and generated docs into `.library/`
 [.prompt]
@@ -590,6 +593,13 @@ These tasks live in the `DocOps/lab` Rakefile and are used to stage and publish 
 .Run all three steps in sequence
 [.prompt]
  bundle exec rake gemdo:push:library
+
+.Build the latest agent docs and load them into the local cache for downstream repo testing
+[.prompt]
+ bundle exec rake gemdo:push:library:docs:local
+
+Use `gemdo:push:library:docs:local` before running `bundle exec rake labdev:sync:docs` in a local downstream checkout such as AsciiSourcerer.
+This avoids testing against a stale `~/.cache/docopslab/dev/library/current/` copy.
 
 
 [[troubleshooting]]

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'fileutils'
+require 'yaml'
+
 module DocOpsLab
   module Dev
     module ConfigManager
@@ -55,6 +58,51 @@ module DocOpsLab
           end
         end
 
+        def generate_git_lint_config _context
+          default_config = load_git_lint_defaults
+          return false unless default_config
+
+          base_config = File.join(Paths.config_vendor_dir, 'git-lint.yml')
+          project_config = '.config/git-lint.local.yml'
+          generated_config = Paths::CONFIG_FILES[:git_lint]
+
+          merged_content = default_config
+          if File.exist?(base_config)
+            merged_content = deep_merge_configs(merged_content, YAML.load_file(base_config) || {})
+          end
+          if File.exist?(project_config)
+            merged_content = deep_merge_configs(merged_content, YAML.load_file(project_config) || {})
+          end
+
+          conventions = load_commit_conventions
+          merged_content = apply_commit_conventions_to_git_lint(merged_content, conventions) if conventions
+
+          rendered = YAML.dump(merged_content)
+          FileUtils.mkdir_p(File.dirname(generated_config))
+
+          if !File.exist?(generated_config) || File.read(generated_config) != rendered
+            File.write(generated_config, rendered)
+            puts "  📝 Generated #{generated_config} from git-lint defaults + DocOps Lab conventions"
+            true
+          else
+            false
+          end
+        end
+
+        def load_commit_conventions
+          base_path = File.join(Paths.config_vendor_dir, 'commit-conventions.yml')
+          local_path = '.config/commit-conventions.yml'
+
+          if File.exist?(local_path)
+            load_inheritable_yaml_config(local_path)
+          elsif File.exist?(base_path)
+            YAML.load_file(base_path) || {}
+          end
+        rescue StandardError => e
+          warn "⚠️  Failed to load commit conventions: #{e.message}"
+          nil
+        end
+
         def load_htmlproofer_config config_path=nil, policy: 'merge'
           config_paths = if config_path && File.exist?(config_path)
                            [config_path]
@@ -97,6 +145,67 @@ module DocOpsLab
 
           # Convert string keys to symbols for HTMLProofer
           config.transform_keys(&:to_sym)
+        end
+
+        def load_git_lint_defaults
+          spec = Gem.loaded_specs['git-lint'] || Gem::Specification.find_all_by_name('git-lint').first
+          unless spec
+            warn "⚠️  git-lint is not installed. Run 'bundle install'."
+            return nil
+          end
+
+          YAML.load_file(File.join(spec.full_gem_path, 'lib/git/lint/configuration/defaults.yml')) || {}
+        rescue StandardError => e
+          warn "⚠️  Failed to load git-lint defaults: #{e.message}"
+          nil
+        end
+
+        def apply_commit_conventions_to_git_lint config, conventions
+          types = convention_slugs(conventions, 'types')
+          scopes = convention_slugs(conventions, 'scopes')
+          separator = conventions.dig('rules', 'subject', 'allowed_scope_separator') || '+'
+          max_length = conventions.dig('rules', 'subject', 'maximum')
+          body_max = conventions.dig('rules', 'body', 'maximum_line_length')
+
+          subject = config.dig('commits', 'subject')
+          if subject && types.any?
+            scope_pattern = git_lint_scope_pattern(scopes, separator)
+            subject['prefix']['includes'] = types.sort.map { |type| "#{Regexp.escape(type)}#{scope_pattern}: " }
+          end
+
+          subject['length']['maximum'] = max_length if subject && max_length
+          body = config.dig('commits', 'body')
+          body['line_length']['maximum'] = body_max if body&.dig('line_length') && body_max
+
+          config
+        end
+
+        def git_lint_scope_pattern scopes, separator
+          return '(?:\\([a-z0-9_-]+\\))?' if scopes.empty?
+
+          escaped_scopes = scopes.sort.map { |scope| Regexp.escape(scope) }
+          escaped_separator = Regexp.escape(separator)
+          "(?:\\((?:#{escaped_scopes.join('|')})(?:#{escaped_separator}(?:#{escaped_scopes.join('|')}))*\\))?"
+        end
+
+        def convention_slugs conventions, key
+          values = conventions.dig('conventions', key)
+          case values
+          when Hash
+            values.keys
+          else
+            Array(values).filter_map { |entry| entry['slug'] if entry.is_a?(Hash) }
+          end
+        end
+
+        def load_inheritable_yaml_config path
+          local = YAML.load_file(path) || {}
+          inherit_from = local.delete('inherit_from')
+          return local unless inherit_from
+
+          base_path = File.expand_path(inherit_from, File.dirname(path))
+          base = File.exist?(base_path) ? YAML.load_file(base_path) || {} : {}
+          deep_merge_configs(base, local)
         end
 
         def merge_yaml_configs base_path, local_path

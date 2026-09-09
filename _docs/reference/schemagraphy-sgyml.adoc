@@ -1,0 +1,56 @@
+---
+title: SchemaGraphy and SGYML in DocOps Lab Development
+docs-group: technical
+description: "Using in-house tools to load YAML/SGYML in DocOps Lab projects."
+order: 81
+---
+include::../_local_settings.adoc[]
+= SchemaGraphy and SGYML in DocOps Lab Development
+
+The SchemaGraphy gem provides enhanced means of loading and working with YAML and the nascent format SGYML (SchemaGraphy YAML-based modeling language).
+
+The extension of YAML is limited to this day, but the SchemaGraphy gem provides a convenient way to load and work with these files in Ruby.
+
+
+[[loading-yaml-sgyml]]
+== Loading YAML/SGYML
+
+DocOps Lab projects often require loading YAML or SGYML data files for configuration, content, or other purposes.
+The `schemagraphy` gem provides a convenient way to load and work with these files in Ruby.
+
+// tag::loading-yaml[]
+There are two types of basic YAML loaders in SchemaGraphy, differing around whether you need to resolve AsciiDoc attributes in the content.
+
+`SchemaGraphy::Loader.load_yaml_with_tags`::
+This method loads a YAML file while preserving any custom tags (e.g., `!sometag`, `!somenamespace:anothertag`).
+Custom tags are attached to the data structure, allowing for later processing based on those tags.
++
+The resulting data structure will have the original string value along with a `__tag__` key that contains the normalized tag name (without `!` or namespace).
+
+`SchemaGraphy::Loader.load_yaml_with_attributes`::
+This method loads a YAML file and resolves AsciiDoc attribute references like `\{attribute_name}`.
+It first loads the YAML with tags and then resolves any attribute references using the provided attributes.
+// end::loading-yaml[]
+
+
+[[yaml-tags]]
+== De-tagging and Normalization
+
+When using either loading method, the resulting data structure may include both the original value and a `__tag__` key for any tagged values.
+When you want to work with the original value without the tag metadata, you can use the `SchemaGraphy::TagUtils.detag` method to extract just the value.
+
+This is useful when you want to ignore the tags and work with the raw data.
+
+To ensure you are working with the original value without the tag metadata, you can use the `SchemaGraphy::TagUtils.detag` method:
+
+// tag::detagging-example[]
+[source,ruby]
+----
+require 'schemagraphy'
+
+yaml_data = SchemaGraphy::Loader.load_yaml_with_tags('path/to/file.yaml')
+original_value = SchemaGraphy::TagUtils.detag(yaml_data['some_key'])
+puts original_value
+----
+
+// end::detagging-example[]

@@ -35,7 +35,7 @@ git checkout main
 git pull origin main
 git checkout -b dev/1.2
 git checkout -b chore/bump-version-1.2.0
-git commit -am "Bumped version attributes in README"
+git commit -am "chore: Bump version attributes"
 git checkout dev/1.2
 git merge chore/bump-version-1.2.0
 git push -u origin dev/1.2
@@ -54,9 +54,9 @@ git checkout dev/1.2
 git checkout -b feat/add-widget
 … implement …
 git add .
-git commit -m "feat: add widget"
+git commit -m "feat: Add widget"
 git push -u origin feat/add-widget
-gh pr create --base dev/1.2 --title "feat: add widget" --body "Adds a new widget to the dashboard."
+gh pr create --base dev/1.2 --title "feat: Add widget" --body "Adds a new widget to the dashboard."
 ....
 
 Branch naming conventions::
@@ -69,7 +69,7 @@ Branch naming conventions::
 [[commit-message-conventions]]
 === Commit Message Conventions
 
-Description (first line) conventions::
+Subject conventions::
 
 include::../reference/git-commit-styles.adoc[tag=commit-types]
 
@@ -91,9 +91,9 @@ git checkout dev/1.2
 git checkout -b feat/add-widget
 … implement …
 git add .
-git commit -m "feat: add widget"
+git commit -m "feat: Add widget"
 git merge --squash feat/add-widget
-git commit -m "feat: add widget"
+git commit -m "feat: Add widget"
 git push origin dev/1.2
 ....
 

@@ -230,6 +230,39 @@ task :write_rubocop_styles do
   puts '✅ RuboCop styles written to _docs/partials/built/_rubocop-styles.adoc'
 end
 
+def asciisourcerer_doc_partials_dir
+  candidates = []
+  candidates << ENV['ASCIISOURCERER_DOC_PARTIALS_DIR'] if ENV['ASCIISOURCERER_DOC_PARTIALS_DIR']
+  candidates << File.expand_path('../asciisourcerer/lib/sourcerer/_docs/partials', __dir__)
+
+  if Gem.loaded_specs['asciisourcerer']
+    candidates << File.join(Gem.loaded_specs['asciisourcerer'].full_gem_path, 'lib/sourcerer/_docs/partials')
+  end
+
+  candidates.find { |path| Dir.exist?(path) }
+end
+
+desc 'Copy AsciiSourcerer documentation partials for site includes'
+task :copy_asciisourcerer_doc_partials do
+  source_dir = asciisourcerer_doc_partials_dir
+  unless source_dir
+    abort '❌ AsciiSourcerer documentation partials not found. Expected lib/sourcerer/_docs/partials ' \
+          'in ../asciisourcerer or the bundled asciisourcerer gem.'
+  end
+
+  partials = Dir.glob(File.join(source_dir, '*.adoc'))
+  abort "❌ No AsciiSourcerer documentation partials found in #{source_dir}" if partials.empty?
+
+  dest_dir = '_docs/partials/built'
+  FileUtils.mkdir_p(dest_dir)
+  partials.each do |source|
+    dest = File.join(dest_dir, File.basename(source))
+    FileUtils.cp(source, dest)
+    puts "  ✓ Copied #{dest}"
+  end
+  puts "✅ Copied #{partials.count} AsciiSourcerer documentation partial(s)"
+end
+
 desc 'Render an AsciiDoc file of universal attributes'
 # use _data/docops-lab-projects.yml data and the Liquid template at _includes/docpslab-universal-attributes.asciidoc to produce a file at _docs/partials/built/_docopslab-universal-attributes.adoc
 task :generate_universal_attributes do
@@ -264,11 +297,17 @@ task :build_vale_package do
   system('bundle exec ruby scripts/build_vale_package.rb') or raise 'Failed to build Vale package'
 end
 
-desc 'Build the Jekyll site (with single-sourced cards and project pages)'
-task build_site: %i[extract_readme_attrs generate_project_pages generate_metadata copy_jekyll_ui_config
-                    write_rubocop_styles generate_universal_attributes gemdo:gen_agent_docs] do
+desc 'Build Jekyll HTML used by the site and generated docs'
+task build_site_html: %i[extract_readme_attrs generate_project_pages generate_metadata copy_jekyll_ui_config
+                         write_rubocop_styles copy_asciisourcerer_doc_partials generate_universal_attributes] do
   puts '🔨 Building Jekyll site...'
   system('bundle exec jekyll build') or raise 'Jekyll build failed'
+  puts '✅ Jekyll HTML build complete'
+end
+
+desc 'Build the Jekyll site (with single-sourced cards, project pages, and agent docs)'
+task build_site: [:build_site_html] do
+  Rake::Task['gemdo:gen_agent_docs'].invoke
   puts '✅ Build complete'
 end
 
@@ -652,11 +691,7 @@ namespace :gemdo do
   task :gen_agent_docs do
     require_relative 'scripts/gen_agent_docs'
 
-    # Build Jekyll site if not already built (for agent docs HTML)
-    unless Dir.exist?(BUILD_DIR) && !Dir.empty?(BUILD_DIR)
-      puts '📄 Building Jekyll site for agent docs HTML...'
-      system('bundle exec jekyll build') or raise 'Jekyll build failed'
-    end
+    Rake::Task['build_site_html'].invoke
 
     # Run the generation script
     GenAgentDocs.run(BUILD_DIR)
@@ -711,6 +746,14 @@ namespace :gemdo do
         DocOpsLab::Dev::Library::Cache.write!(LibraryManager::STAGE_DIR)
         puts "✅ Library installed to #{DocOpsLab::Dev::Library::Cache.current_path}"
         puts '   Run `bundle exec rake labdev:show:library` in any downstream project to verify.'
+      end
+
+      namespace :docs do
+        desc 'Build latest agent docs, stage library, and load it into the host cache for downstream sync'
+        task local: %w[gemdo:push:library:local] do
+          puts '✅ Latest generated docs are available in the local library cache.'
+          puts '   Downstream projects can now run `bundle exec rake labdev:sync:docs`.'
+        end
       end
 
       desc "Force-push #{LibraryManager::STAGE_DIR}/ to the #{LIBRARY_BRANCH} branch on GitHub"

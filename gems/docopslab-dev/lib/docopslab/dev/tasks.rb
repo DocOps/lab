@@ -146,6 +146,12 @@ module DocOpsLab
               opts = args[:opts] || ''
               Dev.run_actionlint(opts)
             end
+
+            desc desc_for('run:git_lint')
+            task :git_lint, [:opts] => [] do |_t, args|
+              opts = args[:opts] || ''
+              Dev.run_git_lint(nil, opts)
+            end
           end
 
           # ============================================================
@@ -339,6 +345,29 @@ module DocOpsLab
               end
             end
 
+            desc desc_for('lint:commits')
+            task :commits, %i[target opts] => [] do |_t, args|
+              success = Dev.run_git_lint(args[:target], args[:opts] || '')
+              exit(1) unless success
+            end
+
+            desc desc_for('lint:commit')
+            task :commit, [:path] => [] do |_t, args|
+              unless args[:path]
+                puts 'Usage: bundle exec rake labdev:lint:commit[path/to/COMMIT_EDITMSG]'
+                exit(1)
+              end
+
+              success = Dev.run_git_lint_hook(args[:path])
+              exit(1) unless success
+            end
+
+            desc 'Deprecated alias for labdev:lint:commit'
+            task :commit_msg, [:path] => [] do |_t, args|
+              warn '⚠️  labdev:lint:commit_msg is deprecated; use labdev:lint:commit.'
+              Rake::Task['labdev:lint:commit'].invoke(args[:path])
+            end
+
             desc desc_for('lint:spellcheck')
             task :spellcheck, %i[path opts] => [] do |_t, args|
               path = args[:path]
@@ -390,14 +419,12 @@ module DocOpsLab
             end
 
             desc desc_for('heal:adoc')
-            # Add an optional path argument that defaults to nil
             task :adoc, %i[path] => [] do |_t, args|
               Dev.run_adoc_auto_fix(args[:path])
             end
 
             desc desc_for('heal:all')
             task :all do
-              # if the user passed an argument, we wan to tell them this task does not accept any arguments and we want to peaec out of this operation rather than running it
               if ARGV.any? { |arg| arg.include?('labdev:heal:all') && arg.include?('[') }
                 puts '⚠️  labdev:heal:all does not accept any arguments. Exiting.'
                 puts 'Use labdev:heal:ruby[path] or labdev:heal:adoc[path] to auto-fix specific files.'
@@ -430,6 +457,11 @@ module DocOpsLab
             desc desc_for('skim:md')
             task :md, %i[path form syntax] => [] do |_t, args|
               Skim.run_md(args[:path], form: args[:form], syntax: args[:syntax])
+            end
+
+            desc desc_for('skim:ruby')
+            task :ruby, %i[path form syntax] => [] do |_t, args|
+              Skim.run_ruby(args[:path], form: args[:form], syntax: args[:syntax])
             end
           end
 

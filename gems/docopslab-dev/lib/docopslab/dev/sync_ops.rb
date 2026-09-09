@@ -281,6 +281,15 @@ module DocOpsLab
             return false
           end
 
+          unless offline
+            begin
+              Library.ensure_available!
+            rescue StandardError => e
+              puts "❌ #{e.message}"
+              return false
+            end
+          end
+
           config_packs_root = Library.resolve('config-packs')
           unless config_packs_root && Dir.exist?(config_packs_root)
             puts '❌ config-packs not found in library; run `labdev:sync:library` to fetch.'
@@ -383,6 +392,7 @@ module DocOpsLab
           generated_count = 0
           generated_count += 1 if context.generate_vale_config
           generated_count += 1 if context.generate_htmlproofer_config
+          generated_count += 1 if context.generate_git_lint_config
 
           puts '  ✅ All runtime configs up to date' if generated_count.zero?
 

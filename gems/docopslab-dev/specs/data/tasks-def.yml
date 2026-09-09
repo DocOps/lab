@@ -113,6 +113,14 @@ labdev:
       _test:
         - bundle exec rake 'labdev:run:actionlint'
         - bundle exec rake 'labdev:run:actionlint["-oneline -verbose"]'
+    git_lint:
+      _desc: Run the base git-lint branch analyzer and options.
+      _args:
+        opts:
+          summ: Additional arguments to pass to the git-lint command.
+          required: false
+      _test:
+        - bundle exec rake 'labdev:run:git_lint'
   sync:
     _desc: Sync all managed files (configs, scripts, docs, styles, etc)
     all:
@@ -270,6 +278,23 @@ labdev:
         opts:
           summ: Additional options to pass to actionlint
           required: false
+    commits:
+      _desc: Run git-lint on current branch commits or specific commit SHAs
+      _args:
+        target:
+          summ: Optional commit SHA or comma-separated commit SHAs to lint
+          required: false
+        opts:
+          summ: Additional options to pass to git-lint
+          required: false
+    commit:
+      _desc: Run git-lint on an unsaved commit message file
+      _args:
+        path:
+          summ: Path to the commit message file passed by the commit-msg hook
+          required: true
+    commit_msg:
+      _alias: "labdev:lint:commit"
     spellcheck:
       _desc: Generate spellcheck report on content files
       _args:
@@ -337,7 +362,7 @@ labdev:
         - bundle exec rake 'labdev:show:rule[rubocop,Layout/LineLength]'
         - bundle exec rake 'labdev:show:rule[vale,DocOpsLab-Authoring.ExNotEg]'
   skim:
-    _desc: Skim source files for machine-oriented structured outlines (AsciiDoc + Markdown autodetect)
+    _desc: Skim source files for machine-oriented structured outlines (AsciiDoc, Markdown, Ruby)
     _args:
       path:
         summ: |
@@ -402,7 +427,8 @@ labdev:
         form:
           summ: |
             Output shape: tree, flat, or tree,flat (comma-separated).
-            Defaults to flat for Markdown. When form is explicitly passed, output defaults to JSON.
+            Defaults to flat for Markdown.
+            When form is explicitly passed, output defaults to JSON.
           required: false
         syntax:
           summ: |
@@ -413,6 +439,23 @@ labdev:
         - bundle exec rake 'labdev:skim:md[.agent/docs/]'
         - bundle exec rake 'labdev:skim:md[.agent/docs/,flat,json]'
         - bundle exec rake 'labdev:skim:md[.agent/docs/:_docs/agent/,flat,json]'
+    ruby:
+      _desc: Use ri to detect API surface (Modules, Classes, Methods, etc.).
+      _args:
+        path:
+          summ: |
+            Optional path to Ruby gem directory to skim. (Default: '.')
+          required: false
+        form:
+          summ: |
+            Output shape: tree, flat, or tree,flat (comma-separated).
+            Defaults to tree. When form is explicitly passed, output defaults to JSON.
+          required: false
+        syntax:
+          summ: |
+            Override output format: json or yaml.
+            Default: yaml when form is omitted; json when form is explicitly passed.
+          required: false
   # ADDING:
   help:
     _desc: Show help information about labdev tasks
@@ -430,4 +473,3 @@ labdev:
           When a task_string is passed, shows all docstrings from this file for that task.
         required: false
     _test: []
-

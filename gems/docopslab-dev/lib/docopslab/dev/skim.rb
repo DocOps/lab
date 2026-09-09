@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
+require 'pathname'
 require 'asciisourcerer'
 require 'sourcerer/util/pathifier'
 
@@ -28,17 +29,24 @@ module DocOpsLab
           run_with_format(path, exts: MD_EXTS, form: form, syntax: syntax, overlay: true)
         end
 
+        # Skim a Ruby application for its API surface (Modules, Classes, Methods, etc.). Form and syntax are auto-detected.
+        def run_ruby path, form: nil, syntax: nil
+          # path is path + lib/
+          path = File.join(path, 'lib')
+          run_with_format(path, exts: ['.rb'], form: form, syntax: syntax)
+        end
+
         private
 
-        def run_with_format path, exts:, form: nil, syntax: nil, default_forms: nil, overlay: false
+        def run_with_format path, exts:, form: nil, syntax: nil, **opts
           unless path
             puts '❌ Path is required.'
-            puts 'Usage: bundle exec rake labdev:skim[path,form,syntax]'
+            puts 'Usage: bundle exec rake labdev:skim:<type>[path,form,syntax]'
             return
           end
 
-          forms      = form ? parse_forms(form) : default_forms
-          file_paths = overlay ? resolve_overlay_paths(path, exts) : resolve_paths(path, exts)
+          forms      = form ? parse_forms(form) : opts[:default_forms]
+          file_paths = opts[:overlay] ? resolve_overlay_paths(path, exts) : resolve_paths(path, exts)
 
           if file_paths.empty?
             ext_desc = exts.size == 1 ? exts.first : exts.join(', ')
@@ -51,7 +59,9 @@ module DocOpsLab
           file_paths.each do |fp|
             skim_opts = { categories: cats }
             skim_opts[:forms] = forms if forms
-            results[fp] = Sourcerer::SourceSkim.skim_file(fp, **skim_opts)
+            skim_opts[:descriptions] = true if opts[:descriptions]
+
+            results[relative_path(fp)] = Sourcerer::SourceSkim.skim_file(fp, **skim_opts)
           end
           portable = JSON.parse(JSON.generate(results))
 
@@ -85,6 +95,11 @@ module DocOpsLab
           end
         end
 
+        # Render an absolute file path as relative to the current working directory.
+        def relative_path fp
+          Pathname.new(fp).relative_path_from(Pathname.pwd).to_s
+        end
+
         def parse_forms form
           form.split(',').map { |f| f.strip.to_sym }
         end
@@ -98,7 +113,7 @@ module DocOpsLab
           return :yaml unless form
 
           syntax = 'yaml' if syntax == 'yml'
-          puts
+
           return syntax.to_sym if syntax
 
           :json

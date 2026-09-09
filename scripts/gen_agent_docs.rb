@@ -10,7 +10,10 @@ module GenAgentDocs
 
     # Setup ReverseMarkdown extensions for better conversion
     # Strip internal anchor links and disable anchor IDs for LLM consumption
-    Sourcerer::MarkDownGrade.bootstrap!(strip_internal_links: true, preserve_heading_ids: false)
+    Sourcerer::MarkDownGrade.bootstrap!(
+      strip_internal_links: true,
+      preserve_heading_ids: false,
+      convert_dls_to_markdown: true)
 
     # Manage paths
     source_dir = File.expand_path(File.join(build_dir, 'docs', 'agent'))
@@ -90,7 +93,7 @@ module GenAgentDocs
     body_div = doc.at_css('div.document-body')
 
     if body_div
-      markdown_content = MarkDownGrade.convert(body_div.inner_html, github_flavored: true)
+      markdown_content = Sourcerer::MarkDownGrade.convert_html(body_div.inner_html, github_flavored: true)
 
       title = h1 ? "# #{h1.text.strip}\n\n" : ''
       File.write(dest_file, title + markdown_content)
