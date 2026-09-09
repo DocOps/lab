@@ -4,7 +4,21 @@ inherit_from: .vendor/docopslab/commit-conventions.yml
 
 conventions:
   scopes:
+    site:
+      name: DocOps Lab Site
+      summ: Changes to the DocOps Lab site and related content
+    blog:
+      name: DocOps Lab Blog
+      summ: Changes to the DocOps Lab blog and related content
+    projects:
+      name: DocOps Lab Projects
+      summ: Changes to DocOps Lab project data and profile content
+      akas: [project]
     labdev:
       name: docopslab-dev
       summ: Changes to the docopslab-dev gem and distributed development tooling
       akas: [docopslab-dev, dev, gem]
+    services:
+      name: DocOps Lab Services
+      summ: Changes to services such as feeds, REST APIs, and programs
+      akas: [feeds,docs-blogs]
