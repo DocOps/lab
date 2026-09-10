@@ -8,24 +8,18 @@ For less-formalized projects, documentation is restricted to `README.adoc` and o
 
 The URL structure is as follows:
 
-<dl>
-<dt class="hdlist1">Project landing page</dt>
-<dd>
-`https://<project>.docopslab.org/`
+**Project landing page:**
+   `https://<project>.docopslab.org/`
 
-At a minimum, this should be a subset of the `README.adoc` file.
-</dd>
-<dt class="hdlist1">Product user docs</dt>
-<dd>
-`https://<project>.docopslab.org/docs/`
-</dd>
-<dt class="hdlist1">Product developer docs</dt>
-<dd>
-`https://<project>.docopslab.org/docs/api/(<apiname>/)`
+   At a minimum, this should be a subset of the `README.adoc` file.
 
-The final `<apiname>` directory is only applicable when the product contains multiple distinct APIs.
-</dd>
-</dl>
+**Product user docs:**
+   `https://<project>.docopslab.org/docs/`
+
+**Product developer docs:**
+   `https://<project>.docopslab.org/docs/api/(<apiname>/)`
+
+   The final `<apiname>` directory is only applicable when the product contains multiple distinct APIs.
 
 GH Pages configuration for these sites enables deployment by way of a clean `gh-pages` branch containing only generated documentation artifacts and the `CNAME` file.
 

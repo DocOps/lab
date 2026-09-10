@@ -39,45 +39,31 @@ Table of Contents
 
 ### External Link Failures
 
-<dl>
-<dt class="hdlist1">Network timeouts</dt>
-<dd>
-Temporary connectivity issues that resolve after rebuild
-</dd>
-<dt class="hdlist1">404 errors</dt>
-<dd>
-Missing pages or incorrect URLs
-</dd>
-<dt class="hdlist1">Pre-publication links</dt>
-<dd>
-Links to repositories or resources not yet available
-</dd>
-<dt class="hdlist1">Malformed URLs</dt>
-<dd>
-Missing repository names or incorrect paths
-</dd>
-</dl>
+**Network timeouts:**
+   Temporary connectivity issues that resolve after rebuild
+
+**404 errors:**
+   Missing pages or incorrect URLs
+
+**Pre-publication links:**
+   Links to repositories or resources not yet available
+
+**Malformed URLs:**
+   Missing repository names or incorrect paths
 
 ### Internal Link Failures
 
-<dl>
-<dt class="hdlist1">Missing project anchors</dt>
-<dd>
-Data/template mismatches in generated content
-</dd>
-<dt class="hdlist1">Section anchor mismatches</dt>
-<dd>
-ID generation vs link target differences
-</dd>
-<dt class="hdlist1">Template variable errors</dt>
-<dd>
-Unprocessed variables in URLs
-</dd>
-<dt class="hdlist1">Missing pages</dt>
-<dd>
-Links to pages that don’t exist
-</dd>
-</dl>
+**Missing project anchors:**
+   Data/template mismatches in generated content
+
+**Section anchor mismatches:**
+   ID generation vs link target differences
+
+**Template variable errors:**
+   Unprocessed variables in URLs
+
+**Missing pages:**
+   Links to pages that don’t exist
 
 ## Debugging Methodology
 
@@ -106,9 +92,7 @@ grep "internally linking" .agent/scratch/link-failures.txt | wc -l
 Look for repeated failures across multiple pages:
 
 - Same broken link appearing on 3+ pages = template/data issue
-
 - Similar link patterns = systematic problem
-
 - Timeout clusters = network/rebuild issue
 
 ### Step 3: Trace Link Sources
@@ -117,60 +101,68 @@ Look for repeated failures across multiple pages:
 
 If the problem is an anchor that does not exist, either the pointer or the anchor must be wrong.
 
-<dl>
-<dt class="hdlist1"> **Consider how the page was generated:** </dt>
-<dd>
-- Is it a standard `.adoc` file?
+****Consider how the page was generated:** :**
+   - Is it a standard `.adoc` file?
+   - Is it a Liquid-rendered HTML page?
+   - Is it a Liquid-rendered AsciiDoc file (usually `*.adoc.liquid` or `*.asciidoc`)
 
-- Is it a Liquid-rendered HTML page?
+****For standard AsciiDoc files…​** :**
+   The offending link source will likely be:
 
-- Is it a Liquid-rendered AsciiDoc file (usually `*.adoc.liquid` or `*.asciidoc`)
-</dd>
-<dt class="hdlist1"> **For standard AsciiDoc files…​** </dt>
-<dd>
-The offending link source will likely be:
+   1. an AsciiDoc xref (`<<anchor-slug>>` or `xref:anchor-slug[]`)
+   2. a pre-generated xref in the form of an attribute placeholder (`{xref_scope_anchor-slug_link}`) that has resolved to a proper AsciiDoc xref
+   3. a hybrid reference (`link:{xref_scope_anchor-slug_url}[some text]`)
 
-1. an AsciiDoc xref (`<<anchor-slug>>` or `xref:anchor-slug[]`)
+   In any case, the `anchor-slug` portion should correspond literally to the reported missing anchor. If these are rendering properly and do not contain obvious misspellings, consider how the intended target might be misspelled or missing and address the source of the anchor itself.
 
-2. a pre-generated xref in the form of an attribute placeholder (`{xref_scope_anchor-slug_link}`) that has resolved to a proper AsciiDoc xref
+****For Liquid-rendered pages…​** :**
+   The offending link source will likely be a misspelled or poorly constructed link.
 
-3. a hybrid reference (`link:{xref_scope_anchor-slug_url}[some text]`)
+   1. a hard-coded link in Liquid/HTML (`"a href="#anchor-slug">`)
+   2. a data-driven link in Liquid/HTML (`"a href="#{{ variable | slugify }}">`)
+   3. a data-driven link in Liquid/AsciiDoc (`link:#{{ variable | slugify }}`)
+   4. a pre-generated xref in the form of an attribute placeholder (`{xref_some-scope_some-slug-string_link}`; generated from Liquid such as: `{xref_{{ scope }}_{{ variable }}_link}`)
 
-In any case, the `anchor-slug` portion should correspond literally to the reported missing anchor. If these are rendering properly and do not contain obvious misspellings, consider how the intended target might be misspelled or missing and address the source of the anchor itself.
-</dd>
-<dt class="hdlist1"> **For Liquid-rendered pages…​** </dt>
-<dd>
-The offending link source will likely be a misspelled or poorly constructed link.
+   Other than for hard-coded links, you will need to trace the source to one of the following:
 
-1. a hard-coded link in Liquid/HTML (`"a href="#anchor-slug">`)
+   - A YAML file, typically in a `_data/` or `data/` directory.
 
-2. a data-driven link in Liquid/HTML (`"a href="#{{ variable | slugify }}">`)
+   Search for the offending anchor
 
-3. a data-driven link in Liquid/AsciiDoc (`link:#{{ variable | slugify }}`)
+   ```
+   grep -rn "broken-anchor-slug" --include \*.yml --include \*.yaml
+   ```
 
-4. a pre-generated xref in the form of an attribute placeholder (`{xref_some-scope_some-slug-string_link}`; generated from Liquid such as: `{xref_{{ scope }}_{{ variable }}_link}`)
+   > **NOTE:** <table>
+   > <tr>
+   > <td>
+   > <i class="fa icon-note" title="Note"></i>
+   > </td>
+   > <td>
+   > If there are numerous errors of this kind, the problem <em>could</em> be in the code that generates the attributes from the YAML source.
+   > </td>
+   > </tr>
+   > </table>
+   - Attributes derived from a file like `README.adoc`.
 
-Other than for hard-coded links, you will need to trace the source to one of the following:
+   Search for the offending attribute
 
-- A YAML file, typically in a `_data/` or `data/` directory.
+   ```
+   grep -rn "^:.*broken-anchor.*:" --include \*.adoc
+   ```
 
-- Attributes derived from a file like `README.adoc`.
-</dd>
-<dt class="hdlist1"> **Other tips for investigating broken anchors:** </dt>
-<dd>
-Check what anchors actually exist
+****Other tips for investigating broken anchors:** :**
+   Check what anchors actually exist
 
-```
-grep -on 'id="[^"]*"' _site/page-slug/index.html
-```
+   ```
+   grep -on 'id="[^"]*"' _site/page-slug/index.html
+   ```
 
-Find template generating the links
+   Find template generating the links
 
-```
-grep -rn "distinct identifier string" _includes _pages _templates
-```
-</dd>
-</dl>
+   ```
+   grep -rn "distinct identifier string" _includes _pages _templates
+   ```
 
 ### Step 4: Apply Appropriate Fix Strategy
 
@@ -219,31 +211,21 @@ Misspelled anchor ID
 
 Key files that commonly generate broken links:
 
-<dl>
-<dt class="hdlist1">`_data/docops-lab-projects.yml`</dt>
-<dd>
-Project dependencies and metadata
-</dd>
-<dt class="hdlist1">`_data/pages/*.yml`</dt>
-<dd>
-Navigation and cross-references
-</dd>
-<dt class="hdlist1">Individual frontmatter</dt>
-<dd>
-Local link definitions
-</dd>
-</dl>
+**`_data/docops-lab-projects.yml`:**
+   Project dependencies and metadata
+
+**`_data/pages/*.yml`:**
+   Navigation and cross-references
+
+**Individual frontmatter:**
+   Local link definitions
 
 ### Dependency Tracing Process
 
 1. **Identify the broken link pattern** : `#missing-anchor`
-
 2. **Find the data source** : Search YAML files for dependency names
-
 3. **Trace template processing** : Follow Liquid template logic
-
 4. **Compare with reality** : Check actual generated IDs
-
 5. **Apply data fix** : Update dependency to match actual slug
 
 ### Example Trace: AsciiDocsy Links
@@ -275,9 +257,7 @@ grep 'id=".*asciidoc.*"' _site/projects/index.html
 For links to resources not yet available:
 
 1. **Tag with FIXME-PREPUB** : Add comments for easy identification
-
 2. **Document in notes** : Track what needs to be updated at publication
-
 3. **Use conditional logic** : Hide pre-pub links in production builds
 
 ```asciidoc
@@ -303,52 +283,36 @@ grep "#fixed-anchor" _site/target-page.html
 ### Test Cycle
 
 1. Fix high-impact patterns first (3+ occurrences)
-
 2. Rebuild and validate after each batch of fixes
-
 3. Document fixes for future reference
-
 4. Test both internal and external link resolution
 
 ## Prevention Strategies
 
 ### Development Practices
 
-<dl>
-<dt class="hdlist1">Consistent naming</dt>
-<dd>
-Align dependency names with actual project slugs
-</dd>
-<dt class="hdlist1">Template validation</dt>
-<dd>
-Test link generation logic with sample data
-</dd>
-<dt class="hdlist1">Documentation standards</dt>
-<dd>
-Document expected anchor patterns
-</dd>
-<dt class="hdlist1">Regular validation</dt>
-<dd>
-Include link checking in CI/CD pipelines
-</dd>
-</dl>
+**Consistent naming:**
+   Align dependency names with actual project slugs
+
+**Template validation:**
+   Test link generation logic with sample data
+
+**Documentation standards:**
+   Document expected anchor patterns
+
+**Regular validation:**
+   Include link checking in CI/CD pipelines
 
 ### Configuration Management
 
-<dl>
-<dt class="hdlist1">Default values</dt>
-<dd>
-Define link patterns in configuration rather than hardcoding
-</dd>
-<dt class="hdlist1">Validation rules</dt>
-<dd>
-Create checks for common link anti-patterns
-</dd>
-<dt class="hdlist1">Documentation</dt>
-<dd>
-Maintain mapping between logical names and actual slugs
-</dd>
-</dl>
+**Default values:**
+   Define link patterns in configuration rather than hardcoding
+
+**Validation rules:**
+   Create checks for common link anti-patterns
+
+**Documentation:**
+   Maintain mapping between logical names and actual slugs
 
 This systematic approach transforms broken link debugging from a frustrating manual process into a predictable, methodical workflow that scales across projects and team members.
 

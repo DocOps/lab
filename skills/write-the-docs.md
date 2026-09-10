@@ -21,20 +21,14 @@ Table of Contents
 
 GitHub Issues are use specific labels to indicate documentation expectations.
 
-<dl>
-<dt class="hdlist1">`needs:docs`</dt>
-<dd>
-The issue requires documentation updates as part of its resolution. Documentation updates will likely be in a sub-issue with a `documentation` label.
-</dd>
-<dt class="hdlist1">`needs:note`</dt>
-<dd>
-The issue requires a note in the release history when resolved. Release notes are appended to the description body under `## Release Note`.
-</dd>
-<dt class="hdlist1">`changelog`</dt>
-<dd>
-The issue summary should be included in the changelog for the next release, even if no release note is included.
-</dd>
-</dl>
+**`needs:docs`:**
+   The issue requires documentation updates as part of its resolution. Documentation updates will likely be in a sub-issue with a `documentation` label.
+
+**`needs:note`:**
+   The issue requires a note in the release history when resolved. Release notes are appended to the description body under `## Release Note`.
+
+**`changelog`:**
+   The issue summary should be included in the changelog for the next release, even if no release note is included.
 
 Issues labeled `changelog` will automatically appear in the Changelog section of the Release History document. Release notes must be manually entered.
 
@@ -50,6 +44,17 @@ When a product matures (prior to 1.0), the documentation should move into new pa
 
 In either case, the way to discover where to put documentation changes is to use a `docopslab-dev` _skim_ task on the existing docs source. These skims are semantic outlines of the source files in their converted state. They can be used for navigation, content discovery, and change impact analysis.
 
+> **TIP:** <table>
+> <tr>
+> <td>
+> <i class="fa icon-tip" title="Tip"></i>
+> </td>
+> <td>
+> For a structured agentic procedure to assess which documentation files are affected by a code change, see <a href="/docs/agent/assess-documentation-impact/">Documentation Impact Assessment Procedure</a>.
+> </td>
+> </tr>
+> </table>
+
 ### User-Facing Documentation
 
 End-user docs, including API documentation, is usually sourced in `docs/content/`, alongside asset files for the documentation site (images, CSS, etc.).
@@ -58,9 +63,7 @@ The `docs/` path is typically a Jekyll site’s source path, but in most cases a
 
 If the changes you are documenting are user-facing, use the tasks below to determine where the relevant documentation lives.
 
-<dl>
-<dt class="hdlist1">Skim the docs</dt>
-</dl>
+**Skim the docs:**
 
 ```
 bundle exec rake labdev:skim:adoc[README.adoc,tree,json] > .agent/docs/readme.json
@@ -73,25 +76,19 @@ Generally speaking, internal documentation (for developers, maintainers, and the
 
 The `_docs/agent/` path is for overlays that take priority over parallel docs in `.agent/docs/` (maintained by docopslab-dev library syncing).
 
-<dl>
-<dt class="hdlist1">Skim the README</dt>
-</dl>
+**Skim the README:**
 
 ```
 bundle exec rake labdev:skim:adoc[README.adoc,tree,json] > .agent/docs/readme.json
 ```
 
-<dl>
-<dt class="hdlist1">Skim the internal docs</dt>
-</dl>
+**Skim the internal docs:**
 
 ```
 bundle exec rake labdev:skim:adoc[_docs/,tree,json] > .agent/docs/skim-internal.json
 ```
 
-<dl>
-<dt class="hdlist1">Skim the agent docs to see if any overlay is needed</dt>
-</dl>
+**Skim the agent docs to see if any overlay is needed:**
 
 ```
 bundle exec rake labdev:skim:md[.agent/docs/:_docs/agent/,tree,json] > .agent/docs/skim-agent.json

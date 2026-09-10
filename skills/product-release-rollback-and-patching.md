@@ -42,12 +42,12 @@ git checkout release/1.1
 git checkout -b fix/parser-typo
 # … FIX …
 git add .
-git commit -m "fix: correct parser typo"
+git commit -m "fix: Correct parser typo"
 git push origin fix/parser-typo
 # … TEST …
 git checkout release/1.1
 git merge --squash fix/parser-typo
-git commit -m "fix: correct parser typo"
+git commit -m "fix: Correct parser typo"
 git push origin release/1.1
 ```
 
@@ -89,12 +89,8 @@ Repeat for every affected branch then release the patched versions.
 Perform Steps 1 through 5 of the standard release procedure:
 
 1. [release-step-history]
-
 2. [release-step-merge-to-main]
-
 3. [release-step-tag-release]
-
 4. [release-step-announce]
-
 5. [release-step-artifacts]
 

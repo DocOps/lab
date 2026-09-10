@@ -15,8 +15,8 @@ Table of Contents
   - Merging Changes
 - Dev Branch Rules
 - Commit Messages
-  - General Style (Conventional Commits)
-  - Commit Description
+  - General Style
+  - Commit Subject
   - Commit Types
   - Commit Body Conventions
 - Use `gh` the GitHub CLI Tool
@@ -24,14 +24,12 @@ Table of Contents
 ## The Basics
 
 1. Follow proper branching procedures as outlined in Repository State.
-
 2. Commit messages should be concise and easy for users to edit.  
 See Commit Messages for guidance.
-
-3. Always prompt user to approve commits before pushing.
-
+3. Always prompt Operator to approve commits before pushing.
 4. Use `gh` for interacting with GitHub whenever possible.  
 See Use `gh` the GitHub CLI Tool for more information.
+5. NEVER sign commits as a co-author.
 
 ## Repository State
 
@@ -44,7 +42,7 @@ git checkout main
 git pull origin main
 git checkout -b dev/1.2
 git checkout -b chore/bump-version-1.2.0
-git commit -am "Bumped version attributes in README"
+git commit -am "chore: Bump version attributes"
 git checkout dev/1.2
 git merge chore/bump-version-1.2.0
 git push -u origin dev/1.2
@@ -59,60 +57,40 @@ git checkout dev/1.2
 git checkout -b feat/add-widget
 … implement …
 git add .
-git commit -m "feat: add widget"
+git commit -m "feat: Add widget"
 git push -u origin feat/add-widget
-gh pr create --base dev/1.2 --title "feat: add widget" --body "Adds a new widget to the dashboard."
+gh pr create --base dev/1.2 --title "feat: Add widget" --body "Adds a new widget to the dashboard."
 ```
 
-<dl>
-<dt class="hdlist1">Branch naming conventions</dt>
-<dd>
-- `feat/…​` for new features OR improvements
-
-- `fix/…​` for bugfixes
-
-- `chore/…​` for version bumps and sundry tasks with no product impact
-
-- `epic/…​` for large features or changes that span releases
-</dd>
-</dl>
+**Branch naming conventions:**
+   - `feat/…​` for new features OR improvements
+   - `fix/…​` for bugfixes
+   - `chore/…​` for version bumps and sundry tasks with no product impact
+   - `epic/…​` for large features or changes that span releases
 
 ### Commit Message Conventions
 
-<dl>
-<dt class="hdlist1">Description (first line) conventions</dt>
-<dd>
-- Use present-tense descriptive verbs (“adds widget”, not “added” or “add”)
+**Subject conventions:**
+   - `create: Add installation guide` for new docs or UI content
+   - `edit: Clarify setup notes` for minor edits to docs or UI content
+   - `feat: Add widget` for new features OR improvements
+   - `fix: Handle missing widget config` for bugfixes
+   - `chore: Bump gem version` for version bumps and sundry tasks with no product impact
+   - `test: Cover widget validation` for test code changes
+   - `refactor: Extract widget parser` for code restructuring with no functional changes
+   - `style: Format widget examples` for formatting, missing semi-colons, etc; no functional changes
+   - `perf: Cache widget lookup` for performance improvements
+   - `auto: Update release workflow` for changes to CI/CD pipelines and build system
+   - `revert: Restore previous widget behavior` for reverting previous changes
 
-- `feat: …​` for new features OR improvements
+**Body conventions:**
+   - Use the body to explain what and why vs. how.
+   - Reference issues and pull requests as needed.
+   - Use bullet points (`- text`) and paragraphs as needed for clarity.
+   - Do not hard-wrap lines, but _do_:
 
-- `fix: …​` for bugfixes
-
-- `chore: …​` for version bumps and sundry tasks with no product impact
-
-- `docs: …​` for documentation changes
-
-- `test: …​` for test code changes
-
-- `refactor: …​` for code restructuring with no functional changes
-
-- `style: …​` for formatting, missing semi-colons, etc; no functional changes
-
-- `perf: …​` for performance improvements
-
-- `auto: …​` for changes to CI/CD pipelines and build system
-</dd>
-<dt class="hdlist1">Body conventions</dt>
-<dd>
-- Use the body to explain what and why vs. how.
-
-- Reference issues and pull requests as needed.
-
-- Use bullet points (`- text`) and paragraphs as needed for clarity.
-
-- Do not hard-wrap lines, but _do_:
-</dd>
-</dl>
+     - use 1-sentence per line
+     - keep sentences short
 
 ### Merging Changes
 
@@ -123,9 +101,9 @@ git checkout dev/1.2
 git checkout -b feat/add-widget
 … implement …
 git add .
-git commit -m "feat: add widget"
+git commit -m "feat: Add widget"
 git merge --squash feat/add-widget
-git commit -m "feat: add widget"
+git commit -m "feat: Add widget"
 git push origin dev/1.2
 ```
 
@@ -134,20 +112,18 @@ Delete merged branches.
 ## Dev Branch Rules
 
 - Always branch from `dev/x.y`.
-
 - Always squash-merge into `dev/x.y`.
-
 - Never merge directly into `main`.
 
 ## Commit Messages
 
 This document outlines the protocols for authoring Git commit messages in DocOps Lab projects.
 
-### General Style (Conventional Commits)
+### General Style
 
 DocOps Lab _loosely_ follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification for Git commit messages.
 
-Enforcement is not strict, but using Conventional Commits style is encouraged for consistency and clarity.
+Enforcement is not strict, but using modified Conventional Commits style is encouraged for consistency and clarity.
 
 > **NOTE:** <table>
 > <tr>
@@ -163,50 +139,42 @@ Enforcement is not strict, but using Conventional Commits style is encouraged fo
 The basic outline for a Conventional Commit message is:
 
 ```
-<type>[optional scope]: <description>
+<type>[optional scope]: <subject>
 
 [optional body]
 
 [optional footer(s)]
 ```
 
-### Commit Description
+### Commit Subject
 
-The commit description should be concise and to the point, summarizing the change in 50 characters or less.
+The commit subject is the text after `<type>[optional scope]:`. It should be concise and to the point, summarizing the change in 50 characters or less.
 
-Use the _past tense_ rather than imperative mood (e.g., "Added feature X" instead of "Add feature X").
+Start the subject with a capitalized imperative verb. For example, use “feat: Add widget” instead of “feat: add widget” or “feat: Added widget”.
 
 ### Commit Types
 
-- Use present-tense descriptive verbs (“adds widget”, not “added” or “add”)
-
-- `feat: …​` for new features OR improvements
-
-- `fix: …​` for bugfixes
-
-- `chore: …​` for version bumps and sundry tasks with no product impact
-
-- `docs: …​` for documentation changes
-
-- `test: …​` for test code changes
-
-- `refactor: …​` for code restructuring with no functional changes
-
-- `style: …​` for formatting, missing semi-colons, etc; no functional changes
-
-- `perf: …​` for performance improvements
-
-- `auto: …​` for changes to CI/CD pipelines and build system
+- `create: Add installation guide` for new docs or UI content
+- `edit: Clarify setup notes` for minor edits to docs or UI content
+- `feat: Add widget` for new features OR improvements
+- `fix: Handle missing widget config` for bugfixes
+- `chore: Bump gem version` for version bumps and sundry tasks with no product impact
+- `test: Cover widget validation` for test code changes
+- `refactor: Extract widget parser` for code restructuring with no functional changes
+- `style: Format widget examples` for formatting, missing semi-colons, etc; no functional changes
+- `perf: Cache widget lookup` for performance improvements
+- `auto: Update release workflow` for changes to CI/CD pipelines and build system
+- `revert: Restore previous widget behavior` for reverting previous changes
 
 ### Commit Body Conventions
 
 - Use the body to explain what and why vs. how.
-
 - Reference issues and pull requests as needed.
-
 - Use bullet points (`- text`) and paragraphs as needed for clarity.
-
 - Do not hard-wrap lines, but _do_:
+
+  - use 1-sentence per line
+  - keep sentences short
 
 ## Use `gh` the GitHub CLI Tool
 

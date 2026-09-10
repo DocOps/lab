@@ -2,7 +2,7 @@
 
 This document is intended for AI agents operating within a DocOps Lab environment.
 
-This guide pertains to the `docopslab-dev` environment. For complete documentation, see the [project’s README]({xref_projects_box_url}).
+This guide pertains to the `docopslab-dev` environment. For complete documentation, see the [project’s README](/projects/box/).
 
 > **IMPORTANT:** <table>
 > <tr>
@@ -53,45 +53,40 @@ bundle exec rake labdev:heal:all
 
 Most executions of the packaged tools are handled through Rake tasks, but you can always run them directly, especially to pass arguments not built into the tasks.
 
-<dl>
-<dt class="hdlist1">RuboCop</dt>
-<dd>
-```
-bundle exec rubocop --config .config/rubocop.yml [options]
-bundle exec rubocop --config .config/rubocop.yml --auto-correct-all
-bundle exec rubocop --config .config/rubocop.yml --only Style/StringLiterals
-```
-</dd>
-<dt class="hdlist1">Vale</dt>
-<dd>
-```
-vale --config=.config/vale.ini [options] [files]
-vale --config=.config/vale.ini README.adoc
-vale --config=.config/vale.ini --minAlertLevel=error .
-```
-</dd>
-<dt class="hdlist1">HTMLProofer</dt>
-<dd>
-```
-bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
-```
-</dd>
-</dl>
+**RuboCop:**
+   ```
+   bundle exec rubocop --config .config/rubocop.yml [options]
+   bundle exec rubocop --config .config/rubocop.yml --auto-correct-all
+   bundle exec rubocop --config .config/rubocop.yml --only Style/StringLiterals
+   ```
+
+**Vale:**
+   ```
+   vale --config=.config/vale.ini [options] [files]
+   vale --config=.config/vale.ini README.adoc
+   vale --config=.config/vale.ini --minAlertLevel=error .
+   ```
+
+**HTMLProofer:**
+   ```
+   bundle exec htmlproofer --ignore-urls "/www.github.com/,/foo.com/" ./_site
+   ```
+
+**git-lint:**
+   ```
+   bundle exec rake "labdev:lint:commit[.git/COMMIT_EDITMSG]"
+   bundle exec rake labdev:lint:commits
+   ```
 
 ## Customization
 
 Override settings by editing the project configs:
 
 - `.config/docopslab-dev.yml`
-
 - `.config/rubocop.yml`
-
 - `.config/vale.local.ini`
-
 - `.config/htmlproofer.local.yml`
-
 - `.config/actionlint.yml`
-
 - `.config/shellcheckrc`
 
 Your configurations will inherit from the base configurations and source libraries as sourced in the Git-ignored `.config/.vendor/docopslab/` path.

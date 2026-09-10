@@ -34,6 +34,10 @@
 
 #### [Code Commenting](/docs/agent/code-commenting/)
 
+#### [Documentation Impact Assessment Procedure](/docs/agent/assess-documentation-impact/)
+
+Procedure for assessing which documentation files, sections, or fragments require additions, edits, or removal after a code change.
+
 #### [Documenting Product Changes](/docs/agent/write-the-docs/)
 
 #### [Fix Broken Links](/docs/agent/fix-broken-links/)
@@ -43,6 +47,10 @@
 #### [Fix Spelling Issues in Documentation](/docs/agent/fix-spelling-issues/)
 
 #### [GitHub Issues Management for AI Agents](/docs/agent/github-issues/)
+
+#### [Liquid Templating in DocOps Lab Projects](/docs/agent/liquid-templating/)
+
+#### [Loading YAML/SGYML in DocOps Lab Projects](/docs/agent/yaml-loading/)
 
 #### [Preparing a Version Release History Document](/docs/agent/release-history/)
 
@@ -63,6 +71,8 @@
 #### [AI Agent Instructions for In-house Dev-Tooling Usage](/docs/agent/dev-tooling-usage/)
 
 #### [AI Agent Orientation to DocOps Lab DevOps/CI/CD Practices](/docs/agent/devops-ci-cd/)
+
+#### [Liquid Filters Reference for DocOps Lab Projects](/docs/agent/liquid-filters-reference/)
 
 #### [Overview of Common Paths/Files in DocOps Lab Projects](/docs/agent/common-project-paths/)
 

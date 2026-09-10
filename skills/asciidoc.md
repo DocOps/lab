@@ -94,11 +94,11 @@ DocOps Lab documentation largely follows the conventions outlined in the [Recomm
 Reinforcements and exceptions:
 
 - Use `.adoc` extensions _execpt_ for Liquid templates used to render AsciiDoc files, which use `.asciidoc`.
-
 - Use one sentence per line formatting.
 
+  - Let hard-returns signal spaces between sentences.
+  - Also do this for major colon- or semicolon-delimited sentences.
 - Use ATX-style titles and section headings.
-
 - For DRYness, use attributes for common URLs and paths (see Attribute Formatting).
 
 ## DocOps Lab Specific Syntax Guidelines
@@ -112,9 +112,7 @@ The main purpose of inline semantics is to provide a clear indication of the rol
 We can convey semantics by way of:
 
 - declaration by element, role, or class
-
 - text style based on declaration
-
 - browser effects based on declaration and additional data
 
 We use the following inline semantic coding in DocOps Lab publications.
@@ -182,72 +180,14 @@ Use one-sentence-per-line even in admonitions.
 
 The standard linewise delimiters for various AsciiDoc blocks are as follows:
 
-<table>
-<tr>
-<td>
-<code>====</code>
-</td>
-<td>
-<p>For <em>admonitions</em> and <em>examples</em></p>
-</td>
-</tr>
-<tr>
-<td>
-<code>----</code>
-</td>
-<td>
-<p>For code listing (verbatim) blocks</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>....</code>
-</td>
-<td>
-<p>For literal (verbatim) blocks</p>
-</td>
-</tr>
-<tr>
-<td>
-<code> **** </code>
-</td>
-<td>
-<p>For sidebar blocks</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>|===</code>
-</td>
-<td>
-<p>For tables</p>
-</td>
-</tr>
-<tr>
-<td>
-<code> ____ </code>
-</td>
-<td>
-<p>For quote blocks</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>++++</code>
-</td>
-<td>
-<p>For raw/passthrough blocks</p>
-</td>
-</tr>
-<tr>
-<td>
-<code>--</code>
-</td>
-<td>
-<p>For open blocks</p>
-</td>
-</tr>
-</table>
+**`====`:** For _admonitions_ and _examples_
+**`----`:** For code listing (verbatim) blocks
+**`....`:** For literal (verbatim) blocks
+**`**** `:** For sidebar blocks
+**`|===`:** For tables
+**` ____ `:** For quote blocks
+**`++++`:** For raw/passthrough blocks
+**`--`:** For open blocks
 
 For code listings, literals, or really any block that might contain text that could be confused with the delimiter, vary the length by using a greater number of delimiter characters on the _outer_ block.
 
@@ -273,17 +213,13 @@ Example single-line admonition block syntax
 NOTE: This is a single-line admonition block.
 ```
 
-<dl>
-<dt class="hdlist1">Exception to this exception</dt>
-<dd>
-We do not recommend the same-line syntax for admonition blocks other than `NOTE` and `TIP`. For `IMPORTANT`, `CAUTION`, and `WARNING`, use at least the 2-line syntax, if not explicit delimiters.
+**Exception to this exception:**
+   We do not recommend the same-line syntax for admonition blocks other than `NOTE` and `TIP`. For `IMPORTANT`, `CAUTION`, and `WARNING`, use at least the 2-line syntax, if not explicit delimiters.
 
-```asciidoc
-[IMPORTANT]
-This is a critical notice, but it's not warning you of danger.
-```
-</dd>
-</dl>
+   ```asciidoc
+   [IMPORTANT]
+   This is a critical notice, but it's not warning you of danger.
+   ```
 
 #### Exception: Single-line terminal commands
 
@@ -314,13 +250,9 @@ Use example blocks liberally. If something fits the description of being an exam
 Instances of the following block types may commonly be instances of examples, and just as commonly they may not be.
 
 - figures (diagrams, illustrations, screenshots)
-
 - tables
-
 - code listings
-
 - literal blocks (sample prompts, logs, etc)
-
 - rich-text snippets (rendered results, a user story, etc)
 
 Whenever any such instances _are examples_, prepend and append them with example blocks, and prefer to title them at the exampple-block level rather than the inner-content level.
@@ -357,9 +289,14 @@ Where:
 
 - `syntax_` is one of
 
+  - `href_` (external)
+  - `xref_` (local)
+  - none (skip it — presumed to be a straight URL)
 - `area_` is a component or category like `docs_` or `pages_`, mainly to ensure unique slugs across divisions
-
 - `form` is the way the resource is presented:
+
+  - `link` (includes linked text _and_ the URL)
+  - `url` (just the URL)
 
 Examples
 
@@ -379,31 +316,23 @@ Linting for documentation quality and consistency, both AsciiDoc markup syntax a
 
 This tool provides a custom styles package and a modified configuration system, enabling multi-file merging.
 
-<dl>
-<dt class="hdlist1">Base config</dt>
-<dd>
-`.config/.vendor/docopslab/vale.ini` (from source)
-</dd>
-<dt class="hdlist1">Project config</dt>
-<dd>
-`.config/vale.local.ini` (inherits via `BasedOnStyles`)
-</dd>
-<dt class="hdlist1">Ephemeral config</dt>
-<dd>
-`.config/vale.ini` (merged from base and target)
-</dd>
-<dt class="hdlist1">Sync command</dt>
-<dd>
-`bundle exec rake labdev:sync:vale`
-</dd>
-</dl>
+**Base config:**
+   `.config/.vendor/docopslab/vale.ini` (from source)
+
+**Project config:**
+   `.config/vale.local.ini` (inherits via `BasedOnStyles`)
+
+**Ephemeral config:**
+   `.config/vale.ini` (merged from base and target)
+
+**Sync command:**
+   `bundle exec rake labdev:sync:vale`
 
 ## Consumer Mode (Other Projects)
 
 For all other projects, the gem works in a standard package consumption mode:
 
 - The project’s `vale.ini` should list all desired packages, including a URL to the stable, published `DocOpsLabStyles.zip`.
-
 - The `labdev:sync:styles` task simply runs `vale sync` in the proper context, downloading all listed packages into a local `.vale/styles` directory.
 
 > **TIP:** <table>

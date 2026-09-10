@@ -24,7 +24,6 @@ Some DocOps Lab projects include highly customized automation scripts, but most 
 These procedures can always be invoked by way of local scripts located in `scripts/`. These include:
 
 - `build.sh`
-
 - `publish.sh`
 
 Common scripts are managed through the lnk:/docs/lab-dev-setup/[`docopslab-dev` gem].
@@ -61,6 +60,5 @@ This Dockerfile defines the image that will be built and pushed to Docker Hub fo
 ## See Also
 
 - `./dev-tooling-usage.md`
-
 - `../skills/git.md`
 

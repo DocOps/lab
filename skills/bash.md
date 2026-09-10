@@ -130,45 +130,33 @@ In longer scripts (several hundred lines or more), a horizontal rule comment may
 
 ### Variables
 
-<dl>
-<dt class="hdlist1">Global variables and constants</dt>
-<dd>
-Use `SCREAMING_SNAKE_CASE`. Use `readonly` for constants.
+**Global variables and constants:**
+   Use `SCREAMING_SNAKE_CASE`. Use `readonly` for constants.
 
-- `readonly MAX_RETRIES=5`
+   - `readonly MAX_RETRIES=5`
+   - `APP_CONFIG_PATH=".env"`
 
-- `APP_CONFIG_PATH=".env"`
-</dd>
-<dt class="hdlist1">Local variables</dt>
-<dd>
-Use `snake_case` and `local` declaration.
+**Local variables:**
+   Use `snake_case` and `local` declaration.
 
-- `local user_name="$1"`
-</dd>
-</dl>
+   - `local user_name="$1"`
 
 ### Functions
 
-<dl>
-<dt class="hdlist1">Operation functions</dt>
-<dd>
-The substantive work of a script; what `cmd_` functions orchestrate, and what sourced libraries export as their callable API. Use un-prefixed `snake_case`.
+**Operation functions:**
+   The substantive work of a script; what `cmd_` functions orchestrate, and what sourced libraries export as their callable API. Use un-prefixed `snake_case`.
 
-- `evaluate_system()`, `build_docker_image()`, `get_current_version()`
-</dd>
-<dt class="hdlist1">Helper functions</dt>
-<dd>
-Prefix internal utility functions with ``. This applies in both standalone scripts and sourced library files. In a sourced library, the `` prefix signals that these functions are implementation details and reduces the risk of collisions in the calling script’s namespace.
+   - `evaluate_system()`, `build_docker_image()`, `get_current_version()`
 
-- `_bold()`, `_check_help()`, `_resolve_slug()`, `_check_project_root()`
-</dd>
-<dt class="hdlist1">Subcommand handlers</dt>
-<dd>
-Prefix functions that implement top-level subcommands with `cmd_`. The dispatch `case` at the bottom of the script maps argument strings to these functions unambiguously.
+**Helper functions:**
+   Prefix internal utility functions with ``. This applies in both standalone scripts and sourced library files. In a sourced library, the `` prefix signals that these functions are implementation details and reduces the risk of collisions in the calling script’s namespace.
 
-- `cmd_init()`, `cmd_run()`, `cmd_check()`
-</dd>
-</dl>
+   - `_bold()`, `_check_help()`, `_resolve_slug()`, `_check_project_root()`
+
+**Subcommand handlers:**
+   Prefix functions that implement top-level subcommands with `cmd_`. The dispatch `case` at the bottom of the script maps argument strings to these functions unambiguously.
+
+   - `cmd_init()`, `cmd_run()`, `cmd_check()`
 
 ## Variables and Data
 
@@ -326,20 +314,14 @@ esac
 
 Use `set -euo pipefail` at the top of every script.
 
-<dl>
-<dt class="hdlist1">`e`</dt>
-<dd>
-Exit immediately when any command returns a non-zero status.
-</dd>
-<dt class="hdlist1">`u`</dt>
-<dd>
-Treat unset variables as an error, catching silent bugs from empty references.
-</dd>
-<dt class="hdlist1">`o pipefail`</dt>
-<dd>
-Fail a pipeline if any command within it fails, not just the last one.
-</dd>
-</dl>
+**`e`:**
+   Exit immediately when any command returns a non-zero status.
+
+**`u`:**
+   Treat unset variables as an error, catching silent bugs from empty references.
+
+**`o pipefail`:**
+   Fail a pipeline if any command within it fails, not just the last one.
 
 Print error messages to standard error (`stderr`) and exit with a non-zero status.
 
@@ -425,11 +407,8 @@ docker build ${docker_args} -t "${image}" .
 Prefer `printf` over `echo` for all script output.
 
 - `printf` is predictable, portable across Bash scripts, and supports format strings.
-
 - `echo` behaviour varies across shells and platforms, particularly with `-e` and `-n`.
-
 - Never use `echo -e`.
-
 - Use `printf` with `\n`, or a heredoc.
 
 ```bash
