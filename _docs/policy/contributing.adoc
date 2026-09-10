@@ -97,6 +97,12 @@ Documentation is a great place to get started with open-source contributions, an
 
 Be sure to check any relevant README files, including a `docs/README.adoc` file if present or the "`Documentation`" section of the main `README.adoc` in the project root.
 
+[TIP]
+====
+When your changes affect code that is documented elsewhere in the repository, follow {xref_docs_agent_skills_assess-documentation-impact_link} to identify and update all related documentation.
+This ensures documentation stays accurate and complete.
+====
+
 [[contributing-test-code]]
 === Contributing Test Code
 

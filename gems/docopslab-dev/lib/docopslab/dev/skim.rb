@@ -95,7 +95,6 @@ module DocOpsLab
           end
         end
 
-        # Render an absolute file path as relative to the current working directory.
         def relative_path fp
           Pathname.new(fp).relative_path_from(Pathname.pwd).to_s
         end

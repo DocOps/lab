@@ -44,6 +44,9 @@ In either case, the way to discover where to put documentation changes is to use
 These skims are semantic outlines of the source files in their converted state.
 They can be used for navigation, content discovery, and change impact analysis.
 
+[TIP]
+For a structured agentic procedure to assess which documentation files are affected by a code change, see {xref_docs_agent_skills_assess-documentation-impact_link}.
+
 [[user-docs]]
 ==== User-Facing Documentation
 

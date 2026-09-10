@@ -112,6 +112,7 @@ To upgrade, reference the appropriate role documentation and announce the skill 
 === Documentation
 
 * `README.adoc` (Intro and Documentation sections)
+* `.agent/docs/skills/assess-documentation-impact.md`
 * `.agent/docs/topics/product-docs-deployment.md`
 * `.agent/docs/skills/asciidoc.md`
 * `.agent/docs/skills/github-issues.md`

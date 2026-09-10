@@ -71,6 +71,14 @@ module Jekyll
             slugify(doc.basename_without_ext).tr('-', ' ').split.map(&:capitalize).join(' ')
         end
 
+        def self.agent_group_for doc
+          # Agent docs are grouped by their source directory, not their (flat)
+          # published URL, e.g. _docs/agent/skills/foo.adoc -> "skills"
+          return unless doc.relative_path.to_s =~ %r{_docs/agent/([^/]+)/}
+
+          Regexp.last_match(1)
+        end
+
         def self.build_attr_map site
           attrs = {}
 
@@ -92,10 +100,52 @@ module Jekyll
               attrs["#{base}_url"]   = url
               # Use link: for absolute site URLs; xref: is for doc/ID targets
               attrs["#{base}_link"]  = "link:#{url}[#{title}]"
+
+              # Agent docs also get a group-qualified key (e.g.
+              # xref_docs_agent_skills_foo) so that same-slugged agent and
+              # non-agent docs don't collide.
+              group = agent_group_for(d)
+              next unless group
+
+              agent_base = "xref_docs_agent_#{group}_#{slug}"
+              attrs["#{agent_base}_title"] = title
+              attrs["#{agent_base}_url"]   = url
+              attrs["#{agent_base}_link"]  = "link:#{url}[#{title}]"
             end
           end
 
           attrs
+        end
+
+        def self.build_agent_attr_map site
+          # Agent-markdown counterpart of build_attr_map: for each agent doc,
+          # emit the same group-qualified keys but pointing at the relative
+          # path used in the generated .agent/docs/ markdown library instead
+          # of the published HTML URL.
+          agent_attrs = {}
+
+          site.collections.each_value do |coll|
+            coll.docs.each do |d|
+              next if d.data['draft']
+              next if d.data['published'] == false
+              next if d.data['xref_exclude']
+
+              group = agent_group_for(d)
+              next unless group
+
+              slug  = d.data['xref_id'] || d.data['slug'] || extract_page_slug(d) || d.basename_without_ext
+              slug  = slugify(slug)
+              title = title_for(d)
+              path  = "./#{group}/#{slug}.md"
+
+              base = "xref_docs_agent_#{group}_#{slug}"
+              agent_attrs["#{base}_title"] = title
+              agent_attrs["#{base}_url"]   = path
+              agent_attrs["#{base}_link"]  = path
+            end
+          end
+
+          agent_attrs
         end
 
         def self.attrs_block attrs
@@ -107,7 +157,7 @@ module Jekyll
           lines.join "\n"
         end
 
-        def self.write_attrs_file site, attrs
+        def self.write_attrs_file site, attrs, agent_attrs = nil
           outfile_config = site.config.dig('xref_attrs', 'outfile')
           return unless outfile_config
 
@@ -117,35 +167,55 @@ module Jekyll
           # Ensure directory exists
           FileUtils.mkdir_p(outfile_dir)
 
-          # Write attributes without sentinel (for inclusion).
-          # Avoid touching the file if content hasn't changed to prevent watch loops.
+          # Write HTML attributes
           lines = attrs.map do |k, v|
             ":#{k}: #{v}"
           end
           new_content = "#{lines.join("\n")}\n"
 
-          if File.exist?(outfile_path)
-            existing = File.read(outfile_path)
-            return if existing == new_content
+          existing = (File.read(outfile_path) if File.exist?(outfile_path))
+
+          unless existing == new_content
+            File.write(outfile_path, new_content)
+            Jekyll.logger.info 'xref', "wrote #{attrs.size} attributes to #{outfile_config}"
           end
 
-          File.write(outfile_path, new_content)
-          Jekyll.logger.info 'xref', "wrote #{attrs.size} attributes to #{outfile_config}"
+          # Write agent-specific attributes if provided
+          return unless agent_attrs
+
+          agent_outfile = outfile_config.sub(/\.adoc$/, '_agent.adoc')
+          agent_outfile_path = File.join(site.source, agent_outfile)
+          agent_outfile_dir = File.dirname(agent_outfile_path)
+          FileUtils.mkdir_p(agent_outfile_dir)
+
+          agent_lines = agent_attrs.map do |k, v|
+            ":#{k}: #{v}"
+          end
+          agent_content = "#{agent_lines.join("\n")}\n"
+
+          agent_existing = (File.read(agent_outfile_path) if File.exist?(agent_outfile_path))
+
+          return if agent_existing == agent_content
+
+          File.write(agent_outfile_path, agent_content)
+          Jekyll.logger.info 'xref', "wrote #{agent_attrs.size} agent attributes to #{agent_outfile}"
         end
       end
     end
   end
 end
 
-# 1) Build the attribute map once after content is read
+# 1) Build the attribute maps once after content is read
 Jekyll::Hooks.register :site, :post_read do |site|
   map = Jekyll::AsciiDoc::Ext::XrefAttrs.build_attr_map site
+  agent_map = Jekyll::AsciiDoc::Ext::XrefAttrs.build_agent_attr_map site
   site.config['xref_attr_map']   = map
   site.config['xref_attr_block'] = Jekyll::AsciiDoc::Ext::XrefAttrs.attrs_block map
-  Jekyll.logger.info 'xref', "built #{map.size} attributes"
+  site.config['xref_attr_map_agent'] = agent_map
+  Jekyll.logger.info 'xref', "built #{map.size} attributes (#{agent_map.size} agent)"
 
   # Write attributes to file if configured
-  Jekyll::AsciiDoc::Ext::XrefAttrs.write_attrs_file site, map
+  Jekyll::AsciiDoc::Ext::XrefAttrs.write_attrs_file site, map, agent_map
 end
 
 # 2) Prepend the attribute entries to each AsciiDoc source before render

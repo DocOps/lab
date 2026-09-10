@@ -1,0 +1,170 @@
+---
+title: Documentation Impact Assessment Procedure
+permalink: /docs/agent/assess-documentation-impact/
+indexed: false
+description: "Procedure for assessing which documentation files, sections, or fragments require additions, edits, or removal after a code change."
+order: 99
+---
+= Documentation Impact Assessment Procedure
+
+Use this when you've made or are about to make a code change and need to determine which documentation files, sections, or fragments require additions, edits, or removal.
+Do not skip steps to save time;
+the narrowing steps exist to keep you from either missing real hits or reading the entire docset every time.
+
+[[assets]]
+You have:;;
+
+* full repo access
+* utilities such as `jq` and `grep`/`rg` for filtering and searching
+* a skim CLI that produces a structured JSON outline/graph of the AsciiDoc docset source's semantic elements
+
+Skims produce multi-document docset graphs, keyed by file path, with `title`, `sections_tree`, `definition_lists`, `code_blocks`, `literal_blocks`, `tables`, `includes`, and line ranges for every section
+
+== Step 1: Characterize the change, not just the diff
+
+Before touching any doc tooling, write down (to yourself, not necessarily to the Operator) a short structured summary of the change:
+
+* What identifiers changed: function/method names, class/module names, CLI commands or flags, rake tasks, config keys, file paths, environment variables, public API signatures.
+* What _behavior_ changed, in plain language, independent of naming: what does the system now do differently that it didn't before?
+* What audience-facing claims might now be false: setup steps, defaults, examples, error messages, supported options.
+
+The identifier list drives exact search.
+The behavior/claims summary drives semantic search; this is where you generate your own synonyms and related phrasings (5-10 of them).
+Example: if the change adds schema validation to a CLI test runner, your term set should include not just `schema validation` but `validate`, `validation`, `schema check`, `verify structure`, `well-formed`, and the specific format involved (`YAML`, `JSON`).
+After all, the doc prose describing this behavior may use any of these instead of your literal words.
+
+== Step 2: Build the file-level index (layer 1 drill-down)
+
+Run the skim CLI over the full docs tree(s) relevant to the project.
+Most projects have user-facing docs in `docs/` and internal/agent docs in `_docs/`.
+Write to separate ephemeral files, then narrow to paths and titles:
+
+[,bash]
+----
+# User-facing docs
+bundle exec rake labdev:skim:adoc[docs/,tree,json] > /tmp/skim-docs.json
+
+# Internal/agent docs (if present)
+bundle exec rake labdev:skim:adoc[_docs/,tree,json] > /tmp/skim-internal.json
+
+# Narrow to paths and titles for review
+jq 'to_entries | map({path: .key, title: (.value.title // empty)})' /tmp/skim-docs.json
+jq 'to_entries | map({path: .key, title: (.value.title // empty)})' /tmp/skim-internal.json
+----
+
+Scan titles and paths against both your identifier list and your synonym set.
+Anything with an obvious lexical or topical relationship becomes a *candidate file*.
+Be generous here -- this pass is cheap and false positives get filtered out in step 4, but a file excluded here is never reconsidered.
+
+If the docset is large enough that even titles+paths are unwieldy to eyeball (order of hundreds of files), narrow this list itself with grep/jq on path segments or title keywords before proceeding, rather than reading the whole list.
+
+[NOTE]
+====
+*The skim CLI only analyzes AsciiDoc (`.adoc`) files.*
+
+Some projects store documentation in Markdown (`.md`, `.markdown`) or reference data in YAML/YML files.
+These will not appear in your skim output.
+You must manually search these sources for related documentation, particularly:
+
+* Template files in agent config paths (eg. `.agent/docs/`, `_docs/templates/AGENTS.markdown`)
+* Reference data in `specs/docs/` or `specs/data/` directories
+* Schema or configuration examples in YAML that document features
+
+Use `find` and `grep` to locate references to your identifiers and synonyms in non-AsciiDoc sources.
+====
+
+== Step 3: Exact identifier search across the full skim
+
+Before reasoning about anything, run your literal identifier list against the full skim's structured fields -- this is fast, deterministic, and should be trusted at high confidence when it hits.
+
+[source,bash]
+----
+jq --arg term "cli_test" '
+  to_entries[] |
+  select(
+    ((.value.definition_lists // [])[] | .definition_terms[]?.text // "" | test($term; "i"))
+    or ((.value.code_blocks // [])[] | tostring | test($term; "i"))
+    or ((.value.literal_blocks // [])[] | tostring | test($term; "i"))
+  ) |
+  .key
+' /tmp/skim.json
+----
+
+Repeat per identifier (script this as a loop if you have more than a couple):
+
+[source,bash]
+----
+for term in identifier1 identifier2 identifier3; do
+  echo "=== $term ==="
+  jq --arg term "$term" '
+    to_entries[] |
+    select(
+      ((.value.definition_lists // [])[] | .definition_terms[]?.text // "" | test($term; "i"))
+      or ((.value.code_blocks // [])[] | tostring | test($term; "i"))
+      or ((.value.literal_blocks // [])[] | tostring | test($term; "i"))
+    ) |
+    .key
+  ' /tmp/skim.json
+done
+----
+
+Any file/section that matches here is a *high-confidence candidate*: record which identifier matched and where (skim gives you `starts_at` / `ends_near` for the containing section).
+
+== Step 4: Semantic narrowing on candidate files only
+
+For files surfaced in step 2 (by title/path) but not confirmed in step 3 (no literal identifier hit), pull their full section detail and scan `sections_tree` headings plus `definition_lists` and code block contents against your synonym set from step 1:
+
+[source,bash]
+----
+jq --arg path "_docs/reference/testing.adoc" '.[$path]' /tmp/skim.json
+----
+
+Read the section headings and terms yourself and judge relevance using your own reasoning.
+This is the step where your synonym/context understanding does the work an embedding would otherwise approximate.
+Don't just pattern-match your synonym list against the text; actually assess whether the section's _purpose_ relates to the change.
+Mark these as *medium-confidence candidates*, and note _why_ you think they're relevant in a sentence.
+(You'll need to justify this later since there's no literal anchor.)
+
+== Step 5: Read the actual candidates, not just their skim
+
+For every high- and medium-confidence candidate, open the real section text (using the line range from the skim) and confirm:
+
+* Does the change actually _require this section to be edited_, or does the section merely _mention a related concept_ without depending on it?
+* _What kind of edit_: add new content, correct existing content, remove obsolete content, or no action needed after inspection?
+
+Discard candidates that don't survive this read.
+
+[IMPORTAN]
+Do not skip this step even for high-confidence identifier hits.
+An exact match tells you _where_ the term appears, not whether the surrounding prose is actually stale.
+
+== Step 6: Propagate through includes
+
+For every file confirmed relevant in step 5, check whether it's transcluded elsewhere;
+a change relevant to an included fragment may affect every parent document, even ones that never showed up in steps 2-4.
+Such parent documents are also candidates for relevant content or references and should themselves be assessed for edits.
+
+[source,bash]
+----
+jq --arg target "gems/docopslab-dev/README.adoc" '
+  to_entries[] | select(.value.includes[]?.target == $target) | .key
+' /tmp/skim.json
+----
+
+Also check the reverse direction: if a _confirmed_ file itself contains `includes`, the included file may need the same edit propagated into it, since it's the actual source of the transcluded content.
+
+Add any newly discovered parent/child documents as candidates and run step 5 on them too.
+
+== Step 7: Report
+
+For each confirmed location, report:
+
+* Document path and section heading path
+* Line range
+* Confidence: `exact` (literal identifier match), `semantic` (your own
+reasoning, no literal anchor), or `transcluded` (via include propagation)
+* One-line rationale
+* Suggested action: add / edit / remove / verify-only
+
+Do not silently skip low-confidence findings.
+Surface them with the `semantic` label so a human reviewer can weigh them appropriately rather than have you make the inclusion/exclusion call invisibly.

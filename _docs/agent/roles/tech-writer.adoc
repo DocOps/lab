@@ -123,6 +123,7 @@ To upgrade, reference the appropriate role documentation and announce the skill 
 === Documentation
 
 * `README.adoc` (Intro/overview and Documentation sections)
+* `.agent/docs/skills/assess-documentation-impact.md` (key document for product changes)
 * `.agent/docs/skills/asciidoc.md`
 * `.agent/docs/skills/fix-broken-links.md`
 * `.agent/docs/skills/fix-spelling-issues.md`

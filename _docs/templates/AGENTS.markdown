@@ -107,6 +107,25 @@ bundle exec rake 'labdev:skim:md[.agent/docs/:{{ agent_docs_path }}/,flat,json]'
 
 For any task session for which no mission template exists, start by selecting an appropriate role and relevant skills from the Agent Docs library.
 
+#### Making Code Changes
+
+Use a systematic approach when locating, naming, styling, and documenting code changes.
+
+Scan the agent docs skim graph for `styles`, or domain-specific terms when working in a certain language, framework, tooling, or operation space.
+
+For instance:
+- `ruby`, `bash`, `asciidoc`, or other language/format terms to find relevant standards and styles
+- `git`, `release`, `comments`, or `paths` to find context docs aimed at influencing how you work in the repository
+
+Use `bundle exec rake landev:skim:ruby[lib/,tree,json] > .agent/tmp/ruby-skim.json` to map out the current gem structure and locate relevant files for changes.
+Use other Ruby-native or language-agnostic techniques to track or project the impact of your changes internally and as pertain downstream consumers.
+
+Use language-specific syntax tests (e.g., `ruby -c <file>`) and linters to validate your changes, and run the test suite to ensure you have not broken existing functionality.
+Use `bundle exec rake --tasks | grep labdev:lint:` to find available linter commands.
+Never call linters directly; always use a `labdev:lint:` or `labdev:heal:` Rake task.
+
+Read `.agent/docs/skills/assess-documentation-impact.md` when it comes time to ensure all relevant docs are updated to reflect product changes.
+
 #### 3rd Party Docs Discovery / Access Patterns
 
 When you need to find third-party documentation on the Web, follow these suggestions:
@@ -208,7 +227,7 @@ Before making any changes, **read these documents in order**:
 These components (modules, scripts, etc) are to be spun off as their own gems after a later <% Project Name %> release:
 
 ```
-<% TODO: Tree for lib/side-modules %>
+<% TODO: Tree with lib/side_module annotations %>
 ```
 
 ### Configuration System

@@ -115,6 +115,9 @@ Delete merged branches.
 A critical part of development at DocOps Lab is writing and maintaining good documentation.
 After all, docs are our business.
 
+When your code changes affect user-facing or internal documentation, you must identify and update all related documentation.
+For a systematic procedure to assess which documentation files are impacted by your changes, see {xref_docs_agent_skills_assess-documentation-impact_link}.
+
 [[standard-user-docs]]
 === Standard (User) Docs
 
