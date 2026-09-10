@@ -95,8 +95,8 @@ module DocOpsLab
           end
         end
 
-        def relative_path fp
-          Pathname.new(fp).relative_path_from(Pathname.pwd).to_s
+        def relative_path file_path
+          Pathname.new(file_path).relative_path_from(Pathname.pwd).to_s
         end
 
         def parse_forms form
