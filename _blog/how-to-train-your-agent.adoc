@@ -116,7 +116,7 @@ For now, you have to roll up your sleeves and incorporate lessons from all the k
 These are the ways bots need to be adjusted to work well with _your_ tech stack, _your_ framework, _your_ conventions, _your_ styles, and so forth.
 
 You will also need a way to distribute and sync this between projects, and to modify or override some of it in particular projects, when the standard conventions do not translate or apply.
-Cross-project orchestration is out of scope for this post, but I touched on it link:{xref_blog_single-sourcing-for-ai-agents_url}#distribution[here].
+Cross-project orchestration is out of scope for this post, but I touched on it link:{xref_blog_single-sourcing-for-ai-agents_url}#distribution[*here*].
 ****
 
 Instead, you need to _organize_ your documentation into a taxonomy of resources that the LLM can access as needed.

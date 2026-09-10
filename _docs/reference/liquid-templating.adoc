@@ -28,11 +28,11 @@ Not all custom tags are always available, but the following are generally availa
 | Tag Name | Source Gem | Usage Notes
 
 | `include`
-| jekyll
+| Jekyll
 | Transcludes the content of another file, with optional variable arguments going in but no transcendent affect on the context.
 
 | `embed`
-| asciisourcerer
+| AsciiSourcerer
 | Transcludes another file, with full pass-through of variables (no arguments needed) with full write access to the context (can add/change variables permanently).
 
 |===

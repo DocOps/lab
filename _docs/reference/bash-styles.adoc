@@ -101,7 +101,7 @@ A `case` statement at the bottom mapping argument strings to `cmd_` functions.
 
 endif::audience-agent[]
 
-[source,bash]
+[source,bash,subs="+verbatim,+attributes"]
 ----
 #!/usr/bin/env bash
 # script-name: brief description.
@@ -370,7 +370,7 @@ fi
 
 For dispatching based on a command or option, `case` statements are often cleaner than long `if/elif/else` chains.
 
-[source,bash]
+[source,bash,subs="+verbatim,+attributes"]
 ----
 case "$command" in
   build) cmd_build
@@ -398,7 +398,7 @@ Fail a pipeline if any command within it fails, not just the last one.
 
 Print error messages to standard error (`stderr`) and exit with a non-zero status.
 
-[source,bash]
+[source,bash,subs="+verbatim,+attributes"]
 ----
 #!/usr/bin/env bash
 set -euo pipefail
@@ -417,7 +417,7 @@ Document any deviations and the reason for them.
 
 For scripts that create temporary resources or modify system state, register a cleanup function with `trap` so those resources are removed whether the script exits normally, fails under `set -e`, or is interrupted.
 
-[source,bash]
+[source,bash,subs="+verbatim,+attributes"]
 ----
 _cleanup() {
   [[ -n "${tmp_file:-}" ]] && rm -f "$tmp_file"
@@ -484,7 +484,7 @@ Prefer `printf` over `echo` for all script output.
 * Never use `echo -e`.
 * Use `printf` with `\n`, or a heredoc.
 
-[source,bash]
+[source,bash,subs="+verbatim,+attributes"]
 ----
 # Good
 printf 'Error: %s not found.\n' "$name" >&2
@@ -552,7 +552,7 @@ Modern Bash versions provide safer alternatives like namerefs (`declare -n`) for
 Use `+++$(...)+++` for command substitution instead of backticks (`+++`...`+++`).
 It is easier to read and can be nested.
 
-[source,bash]
+[source,bash,subs="+verbatim,+attributes"]
 ----
 # Good
 current_dir="$(pwd)"
@@ -568,7 +568,7 @@ Use `command -v` to test whether a command is available on the `PATH`.
 `which` is an external binary whose behavior varies across systems and is not available everywhere.
 `command -v` is a Bash builtin and the POSIX-portable alternative.
 
-[source,bash]
+[source,bash,subs="+verbatim,+attributes"]
 ----
 # Good
 if command -v docker &>/dev/null; then
