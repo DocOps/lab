@@ -23,7 +23,7 @@ projects:
     type: content
     desc: |
       A highly opinionated guide to maintaining technical, legal, educational, and other types of documentation in a technology stack revolving around AsciiDoc, YAML, and Liquid.
-      Also standardized around utilities such as Git, Docker, Asciidoctor, Jekyll, and Clide.
+      Also standardized around utilities such as Git, Docker, Asciidoctor, Jekyll, and DocOps Lab tools.
       Styles, conventions, and bootstrapping tools to get you started in the world of docs-as-code;
        references, deep-dives, and tutorials to help you excel.
     line: An open-source tech stack, frameworks, and guidance for planning and implementing professional docs-as-code projects
@@ -185,7 +185,7 @@ projects:
     type: content
     desc: |
       Disambiguation and coordination of the core components of an application based in our Jekyll/Asciidoctor-based publishing framework.
-      These utilities make up the Jekyll _publishing_ aspect of a typical Asciidoctor, Jekyll, and Clide-based toolchain, but they can readily be used independent of that toolchain.
+      These utilities make up the Jekyll _publishing_ aspect of a typical Asciidoctor, Jekyll, and DocOps Lab-based toolchain.
 
       This is a unified docs site for the various plugins and themes based on jekyll-docops.
       The intention is for this plugin to differentially feed all of these extensions with core options and a means for each plugin to incorporate these libraries into its own gem or application.
@@ -379,7 +379,7 @@ projects:
     slug: asciidoc-ops
     type: framework
     desc: | 
-      * True single-sourcing framework for managing technical documents using YAML, AsciiDoc, Jekyll, Liquid, and clide.
+      * True single-sourcing framework for managing technical documents using YAML, AsciiDoc, Jekyll, Liquid, and the `docops` CLI.
       * Builds modern websites and PDFs.
       * Enables highly customized instances with version control, scripted builds, integrated search.
       * Includes schemas for YAML objects and lots of Liquid templates for generating YAML, AsciiDoc, and HTML output.
@@ -390,7 +390,7 @@ projects:
     wave: 3
     done: 50%
     icon: layers
-    deps: [clide, LiquiDoc, SchemaGraphy, ayl-docstack]
+    deps: [docops, LiquiDoc, SchemaGraphy, ayl-docstack]
     page: true
 
 ## LegalDoc Ops:
@@ -408,7 +408,7 @@ projects:
     wave: 3
     done: 40%
     icon: scale
-    deps: [clide, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
+    deps: [docops, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
     page: true
 
 ## AsciiDoc EDU:
@@ -428,7 +428,7 @@ projects:
     done: 30%
     icon: graduation-cap
     note: Currently developed as part of Docs-as-Code School.
-    deps: [clide, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
+    deps: [docops, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
     page: true
 
 # APIs
@@ -625,14 +625,14 @@ projects:
     done: 70%
     icon: text-cursor-input
 
-## clide:
-  - name: clide
-    slug: clide
+## docops:
+  - name: DocOps CLI
+    slug: docops
     type: utility
     desc: |
       A domain-customized CommandLine-Integrated Documentation Environment utility for automating document management tasks, including project initiation, new-file stubbing, scripted-build execution, and Git-related functions.
       A way to organize and execute your own scripted procedures using simple, semantic commands.
-      Clide has preset grammars and workflows for different domains/frameworks: tech docs/AsciiDoc Ops, legal docs/LegalDoc Ops, and educational docs (Liquid EDU).
+      The `docops` CLI has preset grammars and workflows for different domains/frameworks: tech docs/AsciiDoc Ops, legal docs/LegalDoc Ops, and educational docs (Liquid EDU).
     line: Domain-customized CLI for automating document management workflows
     vrsn: 0.1.0
     tags: [CLI,automation,documentation,workflow,project management,Dockerized]
@@ -1140,7 +1140,7 @@ projects:
 #     line: Framework for designing interactive challenges like stories, surveys, exams, quiz games, and elections
 #     vrsn: 0.1.0
 #     tags: [interactive,framework,utility,game]
-#     deps: [LiquiDoc, Clide, formagraphy]
+#     deps: [LiquiDoc, docops, formagraphy]
 #     wave: 5
 #     icon: split
 
