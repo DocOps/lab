@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+
+# DocOps Lab development tooling
+# TODO: Once published to RubyGems, replace with: gem 'docopslab-dev'
+gem 'docopslab-dev', path: '../lab/gems/docopslab-dev'

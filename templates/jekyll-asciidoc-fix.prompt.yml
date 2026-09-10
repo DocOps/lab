@@ -1,0 +1,17 @@
+# When processing this file, focus on the relationship between
+#  the 'file' and 'with' properties:
+#
+# 1. 'file' = The Jekyll file that includes/references the problem
+# 2. 'with' = The file that contains the actual structural issue
+# 3. 'kind' types and typical fixes:
+#    - include_file_not_found: Create missing files or fix paths
+#    - section_title_out_of_sequence: Adjust heading levels or leveloffset
+#    - unterminated_listing_block: Close code blocks with proper delimiters
+#    - invalid_reference: Fix broken cross-references
+#    - missing_attribute: Define the attribute locally or via included settings
+#
+# Common patterns:
+# - Multiple files referencing the same with file suggest the issue is in the shared file
+# - #excerpt errors usually indicate an include is embedded in the excerpted text
+# - Section title sequence errors often need leveloffset adjustments in include directives
+# - Missing files may need creation or path corrections

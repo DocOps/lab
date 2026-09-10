@@ -1,0 +1,1 @@
+Read, respect, and defer to the local `AGENTS.md` file.

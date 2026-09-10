@@ -1,0 +1,25 @@
+# DocOps Lab HTML-Proofer Configuration
+# Combined base and project configuration for consistent HTML validation
+# URL checking options
+check_external_hash: false    # Skip checking external URL fragments (can be slow)
+check_img_http: false         # Allow HTTP images for now
+enforce_https: false          # Don't enforce HTTPS for all links
+check_favicon: false         # Don't require favicon
+check_html: true            # Check HTML structure
+check_opengraph: false      # Skip OpenGraph validation
+disable_external: false     # Check external links (can be disabled for speed)
+
+# URLs to ignore (patterns and strings)
+ignore_urls:
+  - /localhost/               # Skip local development URLs
+  - /127\.0\.0\.1/           # Skip local IPs  
+  - /example\.com/           # Skip example URLs
+  - /foo\.bar/               # Skip placeholder URLs
+  - /fonts\.googleapis\.com/ # Skip Google Fonts
+  - /fonts\.gstatic\.com/    # Skip Google Fonts static
+  # Add project-specific URL ignores below:
+
+# Files to ignore (patterns)
+ignore_files:
+  - slides/                  # Skip slides directories
+  # Add project-specific file ignores below:
