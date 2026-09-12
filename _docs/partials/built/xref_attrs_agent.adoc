@@ -1,0 +1,111 @@
+:xref_docs_agent_missions_conduct-release_title: Conduct Release
+:xref_docs_agent_missions_conduct-release_url: ./missions/conduct-release.md
+:xref_docs_agent_missions_conduct-release_link: ./missions/conduct-release.md
+:xref_docs_agent_missions_setup-new-project_title: Setup New Project
+:xref_docs_agent_missions_setup-new-project_url: ./missions/setup-new-project.md
+:xref_docs_agent_missions_setup-new-project_link: ./missions/setup-new-project.md
+:xref_docs_agent_roles_devops-release-engineer_title: Devops Release Engineer
+:xref_docs_agent_roles_devops-release-engineer_url: ./roles/devops-release-engineer.md
+:xref_docs_agent_roles_devops-release-engineer_link: ./roles/devops-release-engineer.md
+:xref_docs_agent_roles_docops-engineer_title: Docops Engineer
+:xref_docs_agent_roles_docops-engineer_url: ./roles/docops-engineer.md
+:xref_docs_agent_roles_docops-engineer_link: ./roles/docops-engineer.md
+:xref_docs_agent_roles_planner-architect_title: Planner Architect
+:xref_docs_agent_roles_planner-architect_url: ./roles/planner-architect.md
+:xref_docs_agent_roles_planner-architect_link: ./roles/planner-architect.md
+:xref_docs_agent_roles_product-engineer_title: Product Engineer
+:xref_docs_agent_roles_product-engineer_url: ./roles/product-engineer.md
+:xref_docs_agent_roles_product-engineer_link: ./roles/product-engineer.md
+:xref_docs_agent_roles_product-manager_title: Product Manager
+:xref_docs_agent_roles_product-manager_url: ./roles/product-manager.md
+:xref_docs_agent_roles_product-manager_link: ./roles/product-manager.md
+:xref_docs_agent_roles_project-manager_title: Project Manager
+:xref_docs_agent_roles_project-manager_url: ./roles/project-manager.md
+:xref_docs_agent_roles_project-manager_link: ./roles/project-manager.md
+:xref_docs_agent_roles_qa-testing-engineer_title: Qa Testing Engineer
+:xref_docs_agent_roles_qa-testing-engineer_url: ./roles/qa-testing-engineer.md
+:xref_docs_agent_roles_qa-testing-engineer_link: ./roles/qa-testing-engineer.md
+:xref_docs_agent_roles_tech-docs-manager_title: Tech Docs Manager
+:xref_docs_agent_roles_tech-docs-manager_url: ./roles/tech-docs-manager.md
+:xref_docs_agent_roles_tech-docs-manager_link: ./roles/tech-docs-manager.md
+:xref_docs_agent_roles_tech-writer_title: Tech Writer
+:xref_docs_agent_roles_tech-writer_url: ./roles/tech-writer.md
+:xref_docs_agent_roles_tech-writer_link: ./roles/tech-writer.md
+:xref_docs_agent_skills_asciidoc_title: Asciidoc
+:xref_docs_agent_skills_asciidoc_url: ./skills/asciidoc.md
+:xref_docs_agent_skills_asciidoc_link: ./skills/asciidoc.md
+:xref_docs_agent_skills_assess-documentation-impact_title: Documentation Impact Assessment Procedure
+:xref_docs_agent_skills_assess-documentation-impact_url: ./skills/assess-documentation-impact.md
+:xref_docs_agent_skills_assess-documentation-impact_link: ./skills/assess-documentation-impact.md
+:xref_docs_agent_skills_bash-cli-dev_title: Bash Cli Dev
+:xref_docs_agent_skills_bash-cli-dev_url: ./skills/bash-cli-dev.md
+:xref_docs_agent_skills_bash-cli-dev_link: ./skills/bash-cli-dev.md
+:xref_docs_agent_skills_bash_title: Bash
+:xref_docs_agent_skills_bash_url: ./skills/bash.md
+:xref_docs_agent_skills_bash_link: ./skills/bash.md
+:xref_docs_agent_skills_code-commenting_title: Code Commenting
+:xref_docs_agent_skills_code-commenting_url: ./skills/code-commenting.md
+:xref_docs_agent_skills_code-commenting_link: ./skills/code-commenting.md
+:xref_docs_agent_skills_fix-broken-links_title: Fix Broken Links
+:xref_docs_agent_skills_fix-broken-links_url: ./skills/fix-broken-links.md
+:xref_docs_agent_skills_fix-broken-links_link: ./skills/fix-broken-links.md
+:xref_docs_agent_skills_fix-jekyll-asciidoc-build-errors_title: Fix Jekyll Asciidoc Build Errors
+:xref_docs_agent_skills_fix-jekyll-asciidoc-build-errors_url: ./skills/fix-jekyll-asciidoc-build-errors.md
+:xref_docs_agent_skills_fix-jekyll-asciidoc-build-errors_link: ./skills/fix-jekyll-asciidoc-build-errors.md
+:xref_docs_agent_skills_fix-spelling-issues_title: Fix Spelling Issues
+:xref_docs_agent_skills_fix-spelling-issues_url: ./skills/fix-spelling-issues.md
+:xref_docs_agent_skills_fix-spelling-issues_link: ./skills/fix-spelling-issues.md
+:xref_docs_agent_skills_git_title: Git
+:xref_docs_agent_skills_git_url: ./skills/git.md
+:xref_docs_agent_skills_git_link: ./skills/git.md
+:xref_docs_agent_skills_github-issues_title: Github Issues
+:xref_docs_agent_skills_github-issues_url: ./skills/github-issues.md
+:xref_docs_agent_skills_github-issues_link: ./skills/github-issues.md
+:xref_docs_agent_skills_liquid-templating_title: Liquid Templating
+:xref_docs_agent_skills_liquid-templating_url: ./skills/liquid-templating.md
+:xref_docs_agent_skills_liquid-templating_link: ./skills/liquid-templating.md
+:xref_docs_agent_skills_product-release-rollback-and-patching_title: Product Release Rollback And Patching
+:xref_docs_agent_skills_product-release-rollback-and-patching_url: ./skills/product-release-rollback-and-patching.md
+:xref_docs_agent_skills_product-release-rollback-and-patching_link: ./skills/product-release-rollback-and-patching.md
+:xref_docs_agent_skills_rake-cli-dev_title: Rake Cli Dev
+:xref_docs_agent_skills_rake-cli-dev_url: ./skills/rake-cli-dev.md
+:xref_docs_agent_skills_rake-cli-dev_link: ./skills/rake-cli-dev.md
+:xref_docs_agent_skills_readme-driven-dev_title: Readme Driven Dev
+:xref_docs_agent_skills_readme-driven-dev_url: ./skills/readme-driven-dev.md
+:xref_docs_agent_skills_readme-driven-dev_link: ./skills/readme-driven-dev.md
+:xref_docs_agent_skills_release-history_title: Release History
+:xref_docs_agent_skills_release-history_url: ./skills/release-history.md
+:xref_docs_agent_skills_release-history_link: ./skills/release-history.md
+:xref_docs_agent_skills_ruby_title: Ruby
+:xref_docs_agent_skills_ruby_url: ./skills/ruby.md
+:xref_docs_agent_skills_ruby_link: ./skills/ruby.md
+:xref_docs_agent_skills_schemagraphy-sgyml_title: Schemagraphy Sgyml
+:xref_docs_agent_skills_schemagraphy-sgyml_url: ./skills/schemagraphy-sgyml.md
+:xref_docs_agent_skills_schemagraphy-sgyml_link: ./skills/schemagraphy-sgyml.md
+:xref_docs_agent_skills_tests-running_title: Tests Running
+:xref_docs_agent_skills_tests-running_url: ./skills/tests-running.md
+:xref_docs_agent_skills_tests-running_link: ./skills/tests-running.md
+:xref_docs_agent_skills_tests-writing_title: Tests Writing
+:xref_docs_agent_skills_tests-writing_url: ./skills/tests-writing.md
+:xref_docs_agent_skills_tests-writing_link: ./skills/tests-writing.md
+:xref_docs_agent_skills_write-the-docs_title: Write The Docs
+:xref_docs_agent_skills_write-the-docs_url: ./skills/write-the-docs.md
+:xref_docs_agent_skills_write-the-docs_link: ./skills/write-the-docs.md
+:xref_docs_agent_skills_yaml-loading_title: Yaml Loading
+:xref_docs_agent_skills_yaml-loading_url: ./skills/yaml-loading.md
+:xref_docs_agent_skills_yaml-loading_link: ./skills/yaml-loading.md
+:xref_docs_agent_topics_common-project-paths_title: Common Project Paths
+:xref_docs_agent_topics_common-project-paths_url: ./topics/common-project-paths.md
+:xref_docs_agent_topics_common-project-paths_link: ./topics/common-project-paths.md
+:xref_docs_agent_topics_dev-tooling-usage_title: Dev Tooling Usage
+:xref_docs_agent_topics_dev-tooling-usage_url: ./topics/dev-tooling-usage.md
+:xref_docs_agent_topics_dev-tooling-usage_link: ./topics/dev-tooling-usage.md
+:xref_docs_agent_topics_devops-ci-cd_title: Devops Ci Cd
+:xref_docs_agent_topics_devops-ci-cd_url: ./topics/devops-ci-cd.md
+:xref_docs_agent_topics_devops-ci-cd_link: ./topics/devops-ci-cd.md
+:xref_docs_agent_topics_liquid-filters-reference_title: Liquid Filters Reference
+:xref_docs_agent_topics_liquid-filters-reference_url: ./topics/liquid-filters-reference.md
+:xref_docs_agent_topics_liquid-filters-reference_link: ./topics/liquid-filters-reference.md
+:xref_docs_agent_topics_product-docs-deployment_title: Product Docs Deployment
+:xref_docs_agent_topics_product-docs-deployment_url: ./topics/product-docs-deployment.md
+:xref_docs_agent_topics_product-docs-deployment_link: ./topics/product-docs-deployment.md

@@ -1,0 +1,17 @@
+= Bill of Materials
+:toc:
+
+This document lists third-party source code and documentation code copied (rather than referenced) in this repository, per license terms requiring attribution.
+
+[[shopify-liquid]]
+== Shopify Liquid
+
+[horizontal]
+Project::
+https://github.com/Shopify/liquid[Shopify/liquid]
+
+License::
+https://github.com/Shopify/liquid/blob/main/LICENSE[MIT], Copyright (C) 2005, 2006 Tobias Luetke
+
+Version::
+https://github.com/Shopify/liquid/blob/v5.13.0/lib/liquid/standardfilters.rb[`v5.13.0`]
