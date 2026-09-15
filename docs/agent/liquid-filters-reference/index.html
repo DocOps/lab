@@ -1,0 +1,5986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquid Filters Reference for DocOps Lab Projects | DocOps Lab</title>
+  <meta name="description" content="">
+  
+  <meta name="robots" content="noindex,nofollow" />
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Liquid Filters Reference for DocOps Lab Projects">
+  <meta property="og:description" content="">
+  <meta property="og:url" content="https://docopslab.org/docs/agent/liquid-filters-reference/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Liquid Filters Reference for DocOps Lab Projects">
+  <meta name="twitter:description" content="">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/agent/liquid-filters-reference/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Liquid Filters Reference for DocOps Lab Projects</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Liquid Filters Reference for DocOps Lab Projects</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Liquid Filters Reference for DocOps Lab Projects</h1>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+        <div class="audience-agent info">
+          <p>This document is intended for AI agents operating within a DocOps Lab environment.</p>
+          
+        </div>
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Custom AsciiSourcerer/DocOps Lab filters are located under <code>## Filters from AsciiSourcerer</code> below.</p>
+</div>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#jekyll">Filters from Jekyll</a></li>
+<li><a href="#asciisourcerer">Filters from AsciiSourcerer</a></li>
+<li><a href="#shopify">Filters from Shopify</a></li>
+<li><a href="#schemagraphy">Filters from schemagraphy</a></li>
+<li><a href="#jekyll-asciidoc">Filters from jekyll-asciidoc</a></li>
+</ul>
+</div>
+</div>
+<div class="sect1">
+<h2 id="jekyll">Filters from Jekyll</h2>
+<div class="sectionbody">
+<div id="filter__date_to_xml_schema" class="dlist">
+<dl>
+<dt class="hdlist1">Date to XML Schema (<code>date_to_xml_schema</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert a Date into XML Schema (ISO 8601) format.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Date Formatting</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "2008-11-07 1:07:54pm" | date_to_xmlschema }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">2008-11-07T13:07:54-08:00</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__date_to_rfc822" class="dlist">
+<dl>
+<dt class="hdlist1">Date to RFC-822 Format (<code>date_to_rfc822</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert a Date into the RFC-822 format used for RSS feeds.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Date Formatting</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.time | date_to_rfc822 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Fri, 07 Nov 2008 13:07:54 -0800</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__date_to_string" class="dlist">
+<dl>
+<dt class="hdlist1">Date to String (<code>date_to_string</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert a date to short format.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Date Formatting</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.time | date_to_string }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">07 Nov 2008</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.time | date_to_string: "ordinal", "US" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Nov 7th, 2008</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__date_to_long_string" class="dlist">
+<dl>
+<dt class="hdlist1">Date to Long String (<code>date_to_long_string</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Format a date to long format.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Date Formatting</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.time | date_to_long_string }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">07 November 2008</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.time | date_to_long_string: "ordinal" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">7th November 2008</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__where" class="dlist">
+<dl>
+<dt class="hdlist1">Where (<code>where</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Select all the objects in an array where the key has the given value.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Selection</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign filtered = data.users | where:"level", 2 %}
+{{ filtered | size }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">1</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign member = data.users | where:"user","alice" %}
+{{ member[0] | jsonify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">{"user":"alice","level":1}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__where_exp" class="dlist">
+<dl>
+<dt class="hdlist1">Where Expression (<code>where_exp</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Select all the objects in an array where the expression is true.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Selection</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.members | where_exp:"item",
+"item.grad_year == 2014" | jsonify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[{"user":"andie","grad_year":2014,"projects":["fooman","barbaz"]},{"user":"lonnie","grad_year":2014,"projects":["fooman"]}]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.members | where_exp:"item",
+"item.grad_year &lt; 2014" | jsonify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[{"user":"cindy","grad_year":2012,"projects":["fooman","foobar"]}]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.members | where_exp:"item",
+"item.projects contains 'barbaz'" | jsonify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[{"user":"andie","grad_year":2014,"projects":["fooman","barbaz"]}]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__group_by" class="dlist">
+<dl>
+<dt class="hdlist1">Group By (<code>group_by</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Group an array&#8217;s items by a given property.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Organizing</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign grouped = data.members | group_by:"grad_year" | first %}
+{{ grouped.name }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">2014</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__group_by_exp" class="dlist">
+<dl>
+<dt class="hdlist1">Group By Expression (<code>group_by_exp</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Group an array&#8217;s items using a Liquid expression.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Organizing</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.members | group_by_exp: "item", "item.grad_year" | map: "name" | join: "," }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">2014,2012</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__xml_escape" class="dlist">
+<dl>
+<dt class="hdlist1">XML Escape (<code>xml_escape</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Escape some text for use in XML.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Escaping</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "&lt;strong&gt;some text&lt;/strong&gt;" | xml_escape }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">&amp;lt;strong&amp;gt;some text&amp;lt;/strong&amp;gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__cgi_escape" class="dlist">
+<dl>
+<dt class="hdlist1">CGI Escape (<code>cgi_escape</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>CGI escape a string for use in a URL.
+Replaces any special characters with appropriate <code>%XX</code> replacements.
+CGI escape normally replaces a space with a plus <code>+</code> sign.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Escaping</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "foo, bar; baz?" | cgi_escape }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">foo%2C+bar%3B+baz%3F</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__uri_escape" class="dlist">
+<dl>
+<dt class="hdlist1">URI Escape (<code>uri_escape</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Percent encodes any special characters in a URI.
+URI escape normally replaces a space with <code>%20</code>.
+<a href="https://en.wikipedia.org/wiki/Percent-encoding#Types_of_URI_characters">Reserved characters</a>
+will not be escaped.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Escaping</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "http://foo.com/?q=foo, \bar?" | uri_escape }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">http://foo.com/?q=foo,%20%5Cbar?</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__number_of_words" class="dlist">
+<dl>
+<dt class="hdlist1">Number of Words (<code>number_of_words</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Count the number of words in a text.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Analysis</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.content | number_of_words }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">3</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__array_to_sentence_string" class="dlist">
+<dl>
+<dt class="hdlist1">Array to Sentence (<code>array_to_sentence_string</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert an array into a sentence. Useful for listing tags.
+Optional argument for connector.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ tags_array | array_to_sentence_string }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">foo, bar, and baz</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ tags_array | array_to_sentence_string: "or" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">foo, bar, or baz</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__jsonify" class="dlist">
+<dl>
+<dt class="hdlist1">Data To JSON (<code>jsonify</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert Hash or Array to JSON.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ tags_array | jsonify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["foo","bar","baz"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__normalize_whitespace" class="dlist">
+<dl>
+<dt class="hdlist1">Normalize Whitespace (<code>normalize_whitespace</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Replace any occurrence of whitespace with a single space.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "a    b" | normalize_whitespace }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">a b</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__sort" class="dlist">
+<dl>
+<dt class="hdlist1">Sort (<code>sort</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Sort an array. Optional arguments for hashes
+1. property name
+2. nils order (<em>first</em> or <em>last</em>).</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Organizing</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | sort | inspect }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[&amp;quot;Seattle&amp;quot;, &amp;quot;Spokane&amp;quot;, &amp;quot;Tacoma&amp;quot;]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ site.posts | sort: "author" }}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ site.pages | sort: "title", "last" }}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__sample" class="dlist">
+<dl>
+<dt class="hdlist1">Sample (<code>sample</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Pick a random value from an array. Optionally, pick multiple values.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Selection</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ site.pages | sample }}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ site.pages | sample: 2 }}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__to_integer" class="dlist">
+<dl>
+<dt class="hdlist1">To Integer (<code>to_integer</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert a string or boolean to integer.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ true | to_integer }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">1</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign five = "5" | to_integer %}
+{% if five == 5 %}Samesies!{% endif %}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Samesies!</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "five" | to_integer }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__push" class="dlist">
+<dl>
+<dt class="hdlist1">Push (<code>push</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Insert an item at the end of an array</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | push: "Spokane" | inspect }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[&amp;quot;Seattle&amp;quot;, &amp;quot;Tacoma&amp;quot;, &amp;quot;Spokane&amp;quot;, &amp;quot;Spokane&amp;quot;]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__pop" class="dlist">
+<dl>
+<dt class="hdlist1">Pop (<code>pop</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Remove an item from the end of an array</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | pop | inspect }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[&amp;quot;Seattle&amp;quot;, &amp;quot;Tacoma&amp;quot;]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__shift" class="dlist">
+<dl>
+<dt class="hdlist1">Shift (<code>shift</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Remove an item from the beginning of an array</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | shift | inspect }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[&amp;quot;Tacoma&amp;quot;, &amp;quot;Spokane&amp;quot;]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__unshift" class="dlist">
+<dl>
+<dt class="hdlist1">Unshift (<code>unshift</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Insert an item at the beginning of an array</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | unshift: "Olympia" | inspect }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[&amp;quot;Olympia&amp;quot;, &amp;quot;Seattle&amp;quot;, &amp;quot;Tacoma&amp;quot;, &amp;quot;Spokane&amp;quot;]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__relative_url" class="dlist">
+<dl>
+<dt class="hdlist1">Relative URL (<code>relative_url</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Prepend <code>baseurl</code> config value to the input to convert a URL path into a relative URL.
+This is recommended for a site that is hosted on a subpath of a domain.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Requires registration of a <code>site.baseurl</code> object outside <code>jekyll build</code> contexts.
+</td>
+</tr>
+</table>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "test-path" | relative_url }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">/docs/test-path</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__absolute_url" class="dlist">
+<dl>
+<dt class="hdlist1">Absolute URL (<code>absolute_url</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Prepend <code>url</code> and <code>baseurl</code> values to the input to convert a URL path to an absolute URL.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Requires registration of <code>site.baseurl</code> and <code>site.url</code> objects outside <code>jekyll build</code> contexts.
+</td>
+</tr>
+</table>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "test-path" | absolute_url }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">https://example.com/docs/test-path</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__markdownify" class="dlist">
+<dl>
+<dt class="hdlist1">Markdownify (<code>markdownify</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Converts a Markdown string to HTML.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Test with **bold** and a [link](https://example.com)." | markdownify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">&lt;p&gt;Test with &lt;strong&gt;bold&lt;/strong&gt; and a &lt;a href="https://example.com"&gt;link&lt;/a&gt;.&lt;/p&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__smartify" class="dlist">
+<dl>
+<dt class="hdlist1">Smartify (<code>smartify</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert "quotes" into &ldquo;smart quotes.&rdquo;</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 'He said, "Hello!"' | smartify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">He said, “Hello!”</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__sassify" class="dlist">
+<dl>
+<dt class="hdlist1">Sassify (<code>sassify</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert an indented-syntax Sass string into CSS.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ sass_text | sassify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">body {
+  color: red;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__scssify" class="dlist">
+<dl>
+<dt class="hdlist1">Scssify (<code>scssify</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert a SCSS-formatted (brace/semicolon syntax) string into CSS.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ scss_text | scssify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">body {
+  color: red;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="asciisourcerer">Filters from AsciiSourcerer</h2>
+<div class="sectionbody">
+<div id="filter__slugify" class="dlist">
+<dl>
+<dt class="hdlist1">Slugify (<code>slugify</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert a string into a lowercase URL "slug".</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is not the Jekyll version.
+</td>
+</tr>
+</table>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "The _config.yml file" | slugify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">the-config-yml-file</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "The _config.yml file" | slugify: "_" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">the_config_yml_file</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__inspect" class="dlist">
+<dl>
+<dt class="hdlist1">Inspect (<code>inspect</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert an object into its String representation for debugging.
+Overrides Jekyll&#8217;s <code>inspect</code> filter, adding an optional <code>format</code> argument:
+<code>html</code> (default) reproduces Jekyll&#8217;s own behavior exactly (an HTML-escaped
+<code>Object#inspect</code> string, quotes become <code>&quot;</code>); <code>yaml</code> and <code>json</code> render
+the object in those formats instead.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Analysis</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="title">Example 1. Default (html) format, matches Jekyll&#8217;s inspect</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ tags_array | inspect }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[&amp;quot;foo&amp;quot;, &amp;quot;bar&amp;quot;, &amp;quot;baz&amp;quot;]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. YAML format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ tags_array | inspect: "yaml" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+- foo
+- bar
+- baz</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. JSON format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ tags_array | inspect: "json" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["foo","bar","baz"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__sum" class="dlist">
+<dl>
+<dt class="hdlist1">Sum (<code>sum</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Sums a numeric array, or an array of Hashes at the given property.</p>
+</div>
+<div class="paragraph">
+<p>(This filter duplicates Shopify&#8217;s <code>sum</code> filter.)</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.members | sum: "grad_year" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">6040</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__remove_last" class="dlist">
+<dl>
+<dt class="hdlist1">Remove Last (<code>remove_last</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes the last instance of a substring from a string.</p>
+</div>
+<div class="paragraph">
+<p>(This filter duplicates Shopify&#8217;s <code>remove_last</code> filter.)</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | remove_last: "o" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Ground control to Major Tm.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__replace_last" class="dlist">
+<dl>
+<dt class="hdlist1">Replace Last (<code>replace_last</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Replaces the last instance of a substring in a string with a replacement.</p>
+</div>
+<div class="paragraph">
+<p>(This filter duplicates Shopify&#8217;s <code>replace_last</code> filter.)</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | replace_last: "o", "0" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Ground control to Major T0m.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__squish" class="dlist">
+<dl>
+<dt class="hdlist1">Squish (<code>squish</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Strips leading and trailing whitespace and collapses interior runs of
+whitespace to a single space.</p>
+</div>
+<div class="paragraph">
+<p>(This filter duplicates Liquid 5&#8217;s <code>squish</code> filter.)</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "  A string that   is obviously  longer than 25 characters  " | squish }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">A string that is obviously longer than 25 characters</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__wrap" class="dlist">
+<dl>
+<dt class="hdlist1">Wrap (<code>wrap</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "A string that is obviously longer than 25 characters" | wrap: 25 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">A string that is
+obviously longer than 25
+characters</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__commentwrap" class="dlist">
+<dl>
+<dt class="hdlist1">Comment Wrap (<code>commentwrap</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ comment_text | commentwrap: 25, "// " }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">// A string that is
+// obviously longer than 25
+// characters</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ comment_text | commentwrap: 25, "xml" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">&lt;!-- A string that is
+obviously longer than 25
+characters --&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ comment_text | commentwrap: 25, "/*|*/" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">/* A string that is
+obviously longer than 25
+characters
+*/</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__to_cli_args" class="dlist">
+<dl>
+<dt class="hdlist1">Convert to CLI Arguments (<code>to_cli_args</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Transform a Hash into a string of CLI-formatted arguments.
+Accepts an optional template name to format the output.
+See <code>parameters</code> section for all available templates and their output formats.
+When no template is specified, defaults to <code>long_space</code> format.
+Arguments are joined with a space by default; can be customized via delimiter parameter.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="title">Example 4. Default (long_space) format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">--key1 valuu_one --key2 val_two --key3 third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 5. Long equals format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args: "long_equals" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">--key1=valuu_one --key2=val_two --key3=third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. Single-letter flags with values</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ cli_flags_hash | to_cli_args: "short_space" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">-k valuu_one -v val_two -o third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 7. Positional arguments only</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args: "positional" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">valuu_one val_two third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 8. Environment variable format (uppercase keys)</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args: "env_arg" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">KEY1=valuu_one KEY2=val_two KEY3=third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 9. Key=value format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args: "keyval" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">key1=valuu_one key2=val_two key3=third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__to_yaml" class="dlist">
+<dl>
+<dt class="hdlist1">Data objects to YAML (<code>to_yaml</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Turn any parameter or data object into YAML format.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_yaml }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+key1: valuu_one
+key2: val_two
+key3: third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_yaml: "flow" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">{key1: "valuu_one", key2: "val_two", key3: "third value"}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | to_yaml }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+- Seattle
+- Tacoma
+- Spokane</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | to_yaml: "flow" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["Seattle", "Tacoma", "Spokane"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | to_yaml: "flow", "quotes" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["Seattle", "Tacoma", "Spokane"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__to_json" class="dlist">
+<dl>
+<dt class="hdlist1">Data objects to JSON (<code>to_json</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Turn any parameter or data object into JSON format.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_json }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">{"key1":"valuu_one","key2":"val_two","key3":"third value"}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | to_json }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["Seattle","Tacoma","Spokane"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ odd_keys_hash | to_json }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">{"key 1":"valuu_one","$key2":"val_two","key:3":"third value"}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__replace_regex" class="dlist">
+<dl>
+<dt class="hdlist1">Regular Expression Replace (<code>replace_regex</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Use regular expressions to match and replace text patterns.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "hello world" | replace_regex: "world", "there" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">hello there</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "one,two,three" | replace_regex: ",", "-" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">one-two-three</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__match" class="dlist">
+<dl>
+<dt class="hdlist1">Pattern Match (<code>match</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns  of string or number matches pattern.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Analysis</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign matched = "testword" | match: "^.*word$" %}
+{% if matched %}It matched!{% endif %}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">It matched!</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__holds_liquid" class="dlist">
+<dl>
+<dt class="hdlist1">Holds Liquid (<code>holds_liquid</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns true if a snippet of text contains Liquid markup tags.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Analysis</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ liquidy_text | holds_liquid }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">true</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "This is just text." | holds_liquid }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">false</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__store_list_concat" class="dlist">
+<dl>
+<dt class="hdlist1">Metastore list concat (<code>store_list_concat</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Concatenates each Array-formatted value of the same-named property across all nodes in an Array of Hashes (Metastore).
+Accepts an Array of Hashes and the keyname of a property to collect from.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.metastore | store_list_concat: "children" | jsonify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["child1","child2","child3","child4","child5","child6"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__store_list_dupes" class="dlist">
+<dl>
+<dt class="hdlist1">Metastore list duplicates (<code>store_list_dupes</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns a list of duplicate items among multiple Arrays across multiple same-named properties in an Array of Hashes (Metastore).
+Accepts an Array of Hashes and the keyname of a Scalar property to check; returns the names of duplicate properties.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.metastore | store_list_dupes: "children" | jsonify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["child1"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="shopify">Filters from Shopify</h2>
+<div class="sectionbody">
+<div id="filter__abs" class="dlist">
+<dl>
+<dt class="hdlist1">Absolute Value (<code>abs</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns the absolute value of a number.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ -17 | abs }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">17</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "-19.86" | abs }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">19.86</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__append" class="dlist">
+<dl>
+<dt class="hdlist1">Append (<code>append</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Adds the specified string to the end of another string.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "/my/fancy/url" | append: ".html" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">/my/fancy/url.html</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__at_least" class="dlist">
+<dl>
+<dt class="hdlist1">At Least (<code>at_least</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Limits a number to a minimum value; returns the input unchanged if it&#8217;s already at or above the minimum.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 4 | at_least: 5 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">5</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 4 | at_least: 3 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">4</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__at_most" class="dlist">
+<dl>
+<dt class="hdlist1">At Most (<code>at_most</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Limits a number to a maximum value; returns the input unchanged if it&#8217;s already at or below the maximum.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 4 | at_most: 5 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">4</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 4 | at_most: 3 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">3</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__capitalize" class="dlist">
+<dl>
+<dt class="hdlist1">Capitalize (<code>capitalize</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Capitalizes the first character of a string and downcases the rest. Only the first character is affected, so later words are not capitalized.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "my GREAT title" | capitalize }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">My great title</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__ceil" class="dlist">
+<dl>
+<dt class="hdlist1">Ceiling (<code>ceil</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Rounds a number up to the nearest whole number. Liquid tries to convert the input to a number before applying the filter.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 1.2 | ceil }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">2</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__compact" class="dlist">
+<dl>
+<dt class="hdlist1">Compact (<code>compact</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes any <code>nil</code> values from an array.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign compacted = mixed_array | compact %}
+{{ compacted | join: "," }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">a,b,c</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__concat" class="dlist">
+<dl>
+<dt class="hdlist1">Concatenate (<code>concat</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Concatenates (joins together) multiple arrays. The resulting array contains all the items from the input arrays.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign fruits = "apples, oranges" | split: ", " %}
+{% assign veggies = "carrots, turnips" | split: ", " %}
+{{ fruits | concat: veggies | join: "," }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apples,oranges,carrots,turnips</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__date" class="dlist">
+<dl>
+<dt class="hdlist1">Date Format (<code>date</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Converts a timestamp into another date format, using the same format
+syntax as <code>strftime</code>.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Date Formatting</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.time | date: "%Y-%m-%d" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">2008-11-07</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__default" class="dlist">
+<dl>
+<dt class="hdlist1">Default (<code>default</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Sets a fallback value for a variable that is <code>nil</code>, <code>false</code>, or empty.
+Has no effect if the input already has a value.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Variable Defaults</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ nonexistent_var | default: "fallback" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">fallback</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__divided_by" class="dlist">
+<dl>
+<dt class="hdlist1">Divided By (<code>divided_by</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Divides a number by another number. The result&#8217;s type matches the
+divisor&#8217;s: dividing by an integer floors to an integer, dividing by a
+float returns a float.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 16 | divided_by: 4 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">4</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 20 | divided_by: 7 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 20 | divided_by: 7.0 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">2.857142857142857</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__downcase" class="dlist">
+<dl>
+<dt class="hdlist1">Downcase (<code>downcase</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Makes each character in a string lowercase.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Parker Moore" | downcase }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">parker moore</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__escape" class="dlist">
+<dl>
+<dt class="hdlist1">Escape (<code>escape</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Escapes a string&#8217;s HTML-unsafe characters (so it can safely be embedded in HTML markup).</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Have you read 'James &amp; the Giant Peach'?" | escape }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Have you read &amp;#39;James &amp;amp; the Giant Peach&amp;#39;?</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__escape_once" class="dlist">
+<dl>
+<dt class="hdlist1">Escape Once (<code>escape_once</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Escapes a string&#8217;s HTML-unsafe characters without double-escaping entities that are already escaped.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "1 &lt; 2 &amp; 3" | escape_once }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">1 &amp;lt; 2 &amp;amp; 3</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "1 &amp;lt; 2 &amp;amp; 3" | escape_once }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">1 &amp;lt; 2 &amp;amp; 3</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__first" class="dlist">
+<dl>
+<dt class="hdlist1">First (<code>first</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns the first item of an array.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Selection</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | split: " " | first }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Ground</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__floor" class="dlist">
+<dl>
+<dt class="hdlist1">Floor (<code>floor</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Rounds a number down to the nearest whole number. Liquid tries to convert the input to a number before applying the filter.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 1.2 | floor }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__join" class="dlist">
+<dl>
+<dt class="hdlist1">Join (<code>join</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Combines the items in an array into a single string, using the argument as a separator.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign beatles = "John, Paul, George, Ringo" | split: ", " %}
+{{ beatles | join: " and " }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">John and Paul and George and Ringo</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__last" class="dlist">
+<dl>
+<dt class="hdlist1">Last (<code>last</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns the last item of an array.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Selection</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | split: " " | last }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Tom.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__lstrip" class="dlist">
+<dl>
+<dt class="hdlist1">Left Strip (<code>lstrip</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes whitespace (tabs, spaces, newlines) from the left side of a
+string. Does not affect spaces between words.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "   So much room   " | lstrip }}!</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">So much room   !</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__map" class="dlist">
+<dl>
+<dt class="hdlist1">Map (<code>map</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Creates an array of values by extracting the values of a named property from an array of objects.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.members | map: "user" | join: "," }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">andie,lonnie,cindy</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__minus" class="dlist">
+<dl>
+<dt class="hdlist1">Minus (subtract) (<code>minus</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Subtracts a number from another number.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 4 | minus: 2 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 16 | minus: 4 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">12</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__modulo" class="dlist">
+<dl>
+<dt class="hdlist1">Modulo (<code>modulo</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns the remainder of a division operation.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 3 | modulo: 2 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">1</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 24 | modulo: 7 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">3</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__newline_to_br" class="dlist">
+<dl>
+<dt class="hdlist1">Newline to Break Tag (<code>newline_to_br</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Inserts an HTML line break (<code>&lt;br /&gt;</code>) in front of each newline in a string.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% capture s %}Hello
+there{% endcapture %}{{ s | newline_to_br }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Hello&lt;br /&gt;
+there</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__plus" class="dlist">
+<dl>
+<dt class="hdlist1">Plus (add) (<code>plus</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Adds a number to another number.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 4 | plus: 2 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">6</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__prepend" class="dlist">
+<dl>
+<dt class="hdlist1">Prepend (<code>prepend</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Adds the specified string to the beginning of another string.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "apples, oranges, and bananas" | prepend: "Some fruit: " }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Some fruit: apples, oranges, and bananas</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__remove" class="dlist">
+<dl>
+<dt class="hdlist1">Remove (<code>remove</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes every occurrence of the specified substring from a string.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "I strained to see the train through the rain" | remove: "rain" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">I sted to see the t through the</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__remove_first" class="dlist">
+<dl>
+<dt class="hdlist1">Remove First (<code>remove_first</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes only the first occurrence of the specified substring from a string.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "I strained to see the train through the rain" | remove_first: "rain" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">I sted to see the train through the rain</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__replace" class="dlist">
+<dl>
+<dt class="hdlist1">Replace (<code>replace</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Replaces every occurrence of the first argument in a string with the second argument.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Take my protein pills and put my helmet on" | replace: "my", "your" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Take your protein pills and put your helmet on</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__replace_first" class="dlist">
+<dl>
+<dt class="hdlist1">Replace First (<code>replace_first</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Replaces only the first occurrence of the first argument in a string with the second argument.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Take my protein pills and put my helmet on" | replace_first: "my", "your" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Take your protein pills and put my helmet on</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__reverse" class="dlist">
+<dl>
+<dt class="hdlist1">Reverse (<code>reverse</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Reverses the order of the items in an array. Cannot reverse a string
+directly; split it into an array first.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Organizing</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign arr = "apples, oranges, peaches, plums" | split: ", " %}
+{{ arr | reverse | join: ", " }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">plums, peaches, oranges, apples</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__round" class="dlist">
+<dl>
+<dt class="hdlist1">Round (<code>round</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Rounds a number to the nearest integer, or to a given number of decimal places if an argument is passed.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 1.2 | round }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">1</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 2.7 | round }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">3</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 183.357 | round: 2 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">183.36</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__rstrip" class="dlist">
+<dl>
+<dt class="hdlist1">Right Strip (<code>rstrip</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes whitespace (tabs, spaces, newlines) from the right side of a
+string. Does not affect spaces between words.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "   So much room   " | rstrip }}!</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">   So much room!</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__size" class="dlist">
+<dl>
+<dt class="hdlist1">Size (<code>size</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns the number of characters in a string, or the number of items in an array.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Analysis</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | size }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">28</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__slice" class="dlist">
+<dl>
+<dt class="hdlist1">Slice (<code>slice</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns a substring or array slice, starting at the index given by the
+first argument. An optional second argument gives the length. Negative
+indices count from the end.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Liquid" | slice: 0 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">L</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Liquid" | slice: 2, 3 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">qui</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Liquid" | slice: -3, 2 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">ui</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__split" class="dlist">
+<dl>
+<dt class="hdlist1">Split (<code>split</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Divides a string into an array using the argument as a separator.
+Commonly used to convert delimited text into an array.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign beatles = "John, Paul, George, Ringo" | split: ", " %}
+{{ beatles | join: "|" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">John|Paul|George|Ringo</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__strip" class="dlist">
+<dl>
+<dt class="hdlist1">Strip (<code>strip</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes whitespace (tabs, spaces, newlines) from both sides of a
+string. Does not affect spaces between words.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "   So much room   " | strip }}!</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">So much room!</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__strip_html" class="dlist">
+<dl>
+<dt class="hdlist1">Strip HTML (<code>strip_html</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes any HTML tags from a string.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Have &lt;em&gt;you&lt;/em&gt; read &lt;strong&gt;Ulysses&lt;/strong&gt;?" | strip_html }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Have you read Ulysses?</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__strip_newlines" class="dlist">
+<dl>
+<dt class="hdlist1">Strip Newlines (<code>strip_newlines</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes any newline characters from a string.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% capture s %}Hello
+there{% endcapture %}{{ s | strip_newlines }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Hellothere</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__times" class="dlist">
+<dl>
+<dt class="hdlist1">Times (multiply) (<code>times</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Multiplies a number by another number.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ 3 | times: 2 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">6</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__truncate" class="dlist">
+<dl>
+<dt class="hdlist1">Truncate (<code>truncate</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Shortens a string to the given number of characters. If shortened, an
+ellipsis (<code>&#8230;&#8203;</code>) is appended and counts against the total; pass a
+second argument to use a different (or no) ellipsis.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | truncate: 20 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Ground control to...</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | truncate: 25, ", and so on" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Ground control, and so on</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__truncatewords" class="dlist">
+<dl>
+<dt class="hdlist1">Truncate Words (<code>truncatewords</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Shortens a string to the given number of words. If shortened, an
+ellipsis (<code>&#8230;&#8203;</code>) is appended; pass a second argument to use a
+different (or no) ellipsis.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | truncatewords: 3 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Ground control to...</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__uniq" class="dlist">
+<dl>
+<dt class="hdlist1">Uniq (<code>uniq</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes any duplicate items from an array, preserving the first occurrence&#8217;s order.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign arr = "ants, bugs, bees, bugs, ants" | split: ", " %}
+{{ arr | uniq | join: "," }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">ants,bugs,bees</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__upcase" class="dlist">
+<dl>
+<dt class="hdlist1">Upcase (<code>upcase</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Makes each character in a string uppercase.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Parker Moore" | upcase }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">PARKER MOORE</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__url_decode" class="dlist">
+<dl>
+<dt class="hdlist1">URL Decode (<code>url_decode</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Decodes a string that has been encoded as a URL, or by <code>url_encode</code>.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Recode</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "%27Stop%21%27+said+Fred" | url_decode }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">'Stop!' said Fred</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__url_encode" class="dlist">
+<dl>
+<dt class="hdlist1">URL Encode (<code>url_encode</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Converts any URL-unsafe characters in a string into percent-encoded
+characters. A space becomes a <code>+</code> rather than a percent-encoded
+character.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Recode</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "john@liquid.com" | url_encode }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">john%40liquid.com</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Tetsuro Takara" | url_encode }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Tetsuro+Takara</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="schemagraphy">Filters from schemagraphy</h2>
+<div class="sectionbody">
+<div id="filter__sgyml_type" class="dlist">
+<dl>
+<dt class="hdlist1">SGYML Type (<code>sgyml_type</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>data-type</p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="jekyll-asciidoc">Filters from jekyll-asciidoc</h2>
+<div class="sectionbody">
+<div id="filter__asciidocify" class="dlist">
+<dl>
+<dt class="hdlist1">AsciiDocify (<code>asciidocify</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert an AsciiDoc string to HTML, with or without paragraphing.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Test with *bold* and a http://example.com[link]." | asciidocify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">&lt;div class="paragraph"&gt;
+&lt;p&gt;Test with &lt;strong&gt;bold&lt;/strong&gt; and a &lt;a href="http://example.com"&gt;link&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Test with *bold* and a http://example.com[link]." | asciidocify: "inline" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Test with &lt;strong&gt;bold&lt;/strong&gt; and a &lt;a href="http://example.com"&gt;link&lt;/a&gt;.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>
