@@ -68,6 +68,7 @@ jobs:
           # Copy built site
           cp -r _site/* .
           cp -r _site/.* . 2>/dev/null || true
+          touch .nojekyll
           
           # Commit and push
           git add -A
