@@ -5,24 +5,54 @@
 # (1) declare the identical tag lines AND
 # (2) are registered in their project's docopslab-dev.yml manifest.
 # Edit only here, then run the sync tooling to propagate changes.
+# Consumers read the published library (rake gemdo:push:library), not this file directly.
 
 # tag::universal-style-helpers[]
-# Respects NO_COLOR standard: https://no-color.org
-_bold() { [[ -n "${NO_COLOR:-}" ]] && printf '%s' "$*" || printf '\033[1m%s\033[0m' "$*"; }
-_green() { [[ -n "${NO_COLOR:-}" ]] && printf '%s' "$*" || printf '\033[32m%s\033[0m' "$*"; }
-_yellow() { [[ -n "${NO_COLOR:-}" ]] && printf '%s' "$*" || printf '\033[33m%s\033[0m' "$*"; }
-_red() { [[ -n "${NO_COLOR:-}" ]] && printf '%s' "$*" || printf '\033[31m%s\033[0m' "$*"; }
+# Color only for terminals, and never when NO_COLOR is set (https://no-color.org) or TERM is dumb
+# Decide once at load: helpers usually run inside command substitution, where stdout is always a pipe
+_COLOR_OUT=false
+_COLOR_ERR=false
+if [[ -z "${NO_COLOR:-}" && "${TERM:-}" != dumb ]]; then
+  if [[ -t 1 ]]; then _COLOR_OUT=true; fi
+  if [[ -t 2 ]]; then _COLOR_ERR=true; fi
+fi
+
+# Wrap text in an ANSI style, colored only when the chosen stream is a terminal
+# Usage: _paint out|err CODE TEXT...
+_paint() {
+  local stream="$1" code="$2" enabled="$_COLOR_OUT"
+  shift 2
+  if [[ "$stream" == err ]]; then enabled="$_COLOR_ERR"; fi
+  if [[ "$enabled" == true ]]; then
+    printf '\033[%sm%s\033[0m' "$code" "$*"
+  else
+    printf '%s' "$*"
+  fi
+}
+
+# Colors for text printed to stdout
+_bold() { _paint out 1 "$*"; }
+_green() { _paint out 32 "$*"; }
+_yellow() { _paint out 33 "$*"; }
+_red() { _paint out 31 "$*"; }
+
+# Status output: report lines go to stdout; warnings, failures, hints, and command echoes go to stderr
+# Set DOCOPS_SHOW_WARNINGS=false or DOCOPS_SHOW_COMMANDS=false to silence _warn or _run_echo
 _tick()     { printf '%s %s\n' "$(_green '✓')" "$*"; }
-_warn()     { printf '%s %s\n' "$(_yellow '⚠')" "$*"; }
-_fail()     { printf '%s %s\n' "$(_red '✗')" "$*"; }
+_warn()     { [[ "${DOCOPS_SHOW_WARNINGS:-true}" == true ]] || return 0; printf '%s %s\n' "$(_paint err 33 '⚠')" "$*" >&2; }
+_fail()     { printf '%s %s\n' "$(_paint err 31 '✗')" "$*" >&2; }
+_hint()     { printf '  %s\n' "$*" >&2; }
 _info()     { printf '  %s\n' "$*"; }
 _sep()      { printf '%s\n' "────────────────────────────────────────────────"; }
-_run_echo() { printf '\n%s %s\n\n' "$(_bold '▶')" "$(_bold "$*")"; }
+_run_echo() { [[ "${DOCOPS_SHOW_COMMANDS:-true}" == true ]] || return 0; printf '\n%s %s\n\n' "$(_paint err 1 '▶')" "$(_paint err 1 "$*")" >&2; }
 # end::universal-style-helpers[]
 
 # tag::universal-resolve-script-dir[]
+# Resolve symlinks so an installed link finds the real script; keep the given path when realpath is unavailable
 # shellcheck disable=SC2034 # exported; read by callers that source this block
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_PATH="$(realpath "${BASH_SOURCE[0]}" 2>/dev/null || printf '%s' "${BASH_SOURCE[0]}")"
+# shellcheck disable=SC2034 # exported; read by callers that source this block
+SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
 # end::universal-resolve-script-dir[]
 
 # tag::universal-package-managers[]
@@ -30,9 +60,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Returns non-zero if none are found.
 #
 # Usage: _package_managers [FORMAT]
-#   FORMAT  cli   (default) — print the binary name: apt, brew, nix
-#           name            — print the display name: APT, Homebrew, Nix
-#           both            — print tab-separated cli<TAB>Name pairs
+#   FORMAT  cli   (default): print the binary name: apt, brew, nix
+#           name: print the display name: APT, Homebrew, Nix
+#           both: print tab-separated cli<TAB>Name pairs
 #
 # Output is in priority order (native system managers before cross-platform).
 # With two or more managers found, all are printed; callers decide what to do.
@@ -47,7 +77,7 @@ _package_managers() {
     [apt]="APT" [dnf]="DNF" [pacman]="Pacman" [zypper]="Zypper"
     [dpkg]="dpkg" [rpm]="RPM" [brew]="Homebrew" [nix]="Nix"
   )
-  local found=()
+  local found=() cli
   for cli in "${priority[@]}"; do
     command -v "$cli" &>/dev/null && found+=("$cli")
   done
@@ -57,6 +87,7 @@ _package_managers() {
       cli)  printf '%s\n' "$cli" ;;
       name) printf '%s\n' "${display_names[$cli]}" ;;
       both) printf '%s\t%s\n' "$cli" "${display_names[$cli]}" ;;
+      *)    printf 'Error: unknown format: %s\n' "$format" >&2; return 1 ;;
     esac
   done
 }
