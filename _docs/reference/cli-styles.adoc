@@ -60,7 +60,7 @@ At DocOps Lab, we save inventive interfaces for domain-optimized operations.
 
  rake domain:action:target[option1,option2]
 
-Where both `domain`` and `target` are optional, as of course are arguments that go in the braces.
+Where both `domain` and `target` are optional, as of course are arguments that go in the braces.
 
 Think of the domain as a component "`scope`" within the codebase or project.
 
@@ -91,10 +91,11 @@ rake gemdo:build:gemname
 == Bash CLIs
 
 Bash scripts are often used for simple CLIs that wrap around more complex operations.
-Most repo-wide chores that do not require specialized Ruby-based tools like Asciidoctor or other gems are handled with Bash scripts
+Most repo-wide chores that do not require specialized Ruby-based tools like Asciidoctor or other gems are handled with Bash scripts.
 (The significant exception to this are multi-repo libraries like the link:{xref_docs_lab-dev-setup_url}[DocOps Lab Devtool].)
 
-The one truly major Bash CLI we maintain is `docksh`, our Docker shell utility for launching properly configured containers for development, testing, and deployment (sourced in `box`).
+The one truly major Bash CLI we maintain is `dxbx`, our Docker workspace manager for launching properly configured containers for development, testing, and deployment (sourced in `box`).
+Another, `osmosys.sh`, is the management script for OSMOsys.
 
 [[bash-cli-model]]
 === Bash CLI Model
@@ -108,7 +109,17 @@ Let's examine our typical Bash script CLI structure:
 
  ./bashscript.sh [arguments] [options]
 
-If a Bash script is likely to eventually need to encompass multiple arguments or options, consider making it a Rake task and invoking Ruby scripts, instead. 
+For _development_ scripts (repo chores and internal tooling), if a Bash script is likely to eventually need multiple arguments or options, consider making it a Rake task that invokes Ruby, instead.
+
+[[shippable-bash-clis]]
+=== Shippable Bash CLIs
+
+Some Bash scripts are products, not chores.
+They are installed on users' machines, they run where Ruby cannot be assumed, or they must support the widest possible range of systems (`dxbx` and `osmosys.sh` are examples).
+
+Treat these as robust, shippable executables.
+Adhere to all of the guidance in this document and in {xref_docs_bash-styles_link}, including <<general-cli-principles>>.
+The advice above to prefer Rake once a script grows options does not apply to them.
 
 // end::bash-clis[]
 
@@ -169,7 +180,7 @@ For ex: `--no-cache` to disable caching.
 Use subcommand only with apps that perform categorically diverse operations,::
 Prefer flag combinations when possible.
 Subcommands signal a shift in execution context, and thus they can be greatly helpful when needed.
-Otherwise, reserve the first argument slot for something a meaningful arbitrary argument.
+Otherwise, reserve the first argument slot for a meaningful arbitrary argument.
 +
 .A CLI with very handy subcommands
  git fetch
