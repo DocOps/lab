@@ -129,7 +129,9 @@ module DocOpsLab
                          else
                            script
                          end
-            cmd = "shellcheck --severity=warning #{opts_string} --rcfile=.config/shellcheckrc #{script_arg}".strip
+            # Report at style severity so the optional checks enabled in shellcheckrc (all info/style level)
+            # take effect; a later --severity in opts_string overrides this default.
+            cmd = "shellcheck --severity=style #{opts_string} --rcfile=.config/shellcheckrc #{script_arg}".strip
             shellcheck = context.run_with_fallback('shellcheck', cmd)
             unless shellcheck
               success = false
