@@ -1,0 +1,6 @@
+# Project-local git-lint overrides.
+#
+# This file is copied once to `.config/git-lint.local.yml`.
+# Leave it empty to use DocOps Lab defaults, or override keys from
+# `.config/.vendor/docopslab/git-lint.yml`.
+---

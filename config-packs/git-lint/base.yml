@@ -1,0 +1,39 @@
+commits:
+  body:
+    line_length:
+      enabled: true
+      severity: error
+      maximum: 90
+    presence:
+      enabled: false
+      severity: warn
+      minimum: 1
+    phrase:
+      enabled: true
+      severity: error
+      excludes:
+        - "—"
+        - "Co-authored by Codex"
+        - "Generated with Claude Code"
+  signature:
+    enabled: false
+    severity: error
+    includes:
+      - ""
+  subject:
+    length:
+      enabled: true
+      severity: error
+      maximum: 72
+    prefix:
+      enabled: true
+      severity: error
+      delimiter: "[[:upper:]]"
+      includes: []
+    suffix:
+      enabled: true
+      severity: error
+      excludes:
+        - "\\."
+        - "\\?"
+        - "\\!"

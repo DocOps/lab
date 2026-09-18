@@ -1,0 +1,6 @@
+# Project-local commit convention overrides.
+#
+# This file is copied once to `.config/commit-conventions.yml`.
+# Local keys merge over inherited DocOps Lab defaults.
+---
+inherit_from: .vendor/docopslab/commit-conventions.yml

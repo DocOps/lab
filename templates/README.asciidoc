@@ -1,0 +1,62 @@
+= Product Name
+:toc: macro
+:toclevels: 3
+// tag::ai-prompt[]
+// tag::global-settings[]
+:this_proj_slug: product-slug
+:this_proj_name: {doctitle}
+// tag::universal-settings[]
+// ALL changes within this block must be made in prime template:
+//  DocOps/lab/gems/docopslab-dev/templates/README.asciidoc
+:docopslab_src_www_url: https://github.com/DocOps
+:docopslab_domain: docopslab.org
+:docopslab_www_url: https://{docopslab_domain}
+:docopslab_io_www_url: https://docopslab.github.io
+:docopslab_ruby_version: 3.2.7
+:docopslab_git_src_uri: git@github.com:DocOps
+:docopslab_src_raw_url: https://raw.githubusercontent.com/DocOps
+:this_proj_src_www_url: {docopslab_src_www_url}/{this_proj_slug}
+:this_proj_src_raw_url: {docopslab_src_raw_url}/{this_proj_slug}
+:this_proj_src_main_raw_url: {this_proj_src_raw_url}/main
+:this_proj_src_main_files_url: {this_proj_src_www_url}/blob/main
+:this_proj_src_git_uri: {docopslab_git_src_uri}/{this_proj_slug}.git
+:this_proj_ruby_version: {docopslab_ruby_version}
+// tag::env-settings[]
+:docs_extn:
+ifdef::env-github[]
+:docs_extn: .adoc
+:icons: font
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
+// end::env-settings[]
+// Settings likely to be overridden locally
+:this_prod_slug: {this_proj_slug}
+:this_prod_name: {this_proj_name}
+:this_prod_src_www_url: {this_proj_src_www_url}
+// end::universal-settings[]
+// tag::product-settings[]
+// tag::version-settings[]
+:this_prod_ruby_version_prime: {docopslab_ruby_version_prime}
+:this_prod_ruby_version_range: {docopslab_ruby_version_range}
+:this_prod_vrsn_major: 0
+:this_prod_vrsn_minor: 1
+:this_prod_vrsn_majmin: {this_prod_vrsn_major}.{this_prod_vrsn_minor}
+:this_prod_vrsn_patch: 0
+:this_prod_vrsn_suffix:
+:this_prod_vrsn: {this_prod_vrsn_majmin}.{this_prod_vrsn_patch}{this_prod_vrsn_suffix}
+:next_prod_vrsn_majmin: 0.2
+:next_prod_vrsn_patch: 0
+:next_prod_vrsn: {next_prod_vrsn_majmin}.{next_prod_vrsn_patch}
+// end::version-settings[]
+:this_prod_www_url: https://{this_proj_slug}.{docopslab_domain}
+:this_prod_docs_url: {this_prod_www_url}/docs
+:gem_config_definition_path: ./specs/data/config-def.yml
+:app_default_config_path: ./.{this_prod_slug}.yml
+:docker_run_command: docker run -it --rm --user $(id -u):$(id -g) -v $(pwd):/workdir docopslab/{this_prod_slug} {this_prod_slug}
+// end::product-settings[]
+// end::global-settings[]
+// end::ai-prompt[]
