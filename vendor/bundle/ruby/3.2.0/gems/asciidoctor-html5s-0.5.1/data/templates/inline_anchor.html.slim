@@ -1,0 +1,10 @@
+- case type
+- when :xref
+  a href=target class=role =xref_text
+- when :ref
+  a id=id aria-hidden='true'
+- when :bibref
+  a id=id aria-hidden='true'
+  =bibref_text
+- else
+  a id=id class=role href=target target=(attr :window) rel=link_rel title=(attr :title) =text
