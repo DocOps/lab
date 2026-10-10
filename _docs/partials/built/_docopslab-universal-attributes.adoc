@@ -1,0 +1,5 @@
+Liquid error: internal
+// tag::universals[]
+:docopslab_src_www_url: https://github.com/DocOps
+:docopslab_domain: docopslab.org
+// end::universals[]
