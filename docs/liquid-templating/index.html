@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquid Templating Guide | DocOps Lab</title>
+  <meta name="description" content="Liquid 4++ templating methods for DocOps Lab projects.">
+  
+  
+  <!-- Social Graph / Open Graph metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Liquid Templating Guide">
+  <meta property="og:description" content="Liquid 4++ templating methods for DocOps Lab projects.">
+  <meta property="og:url" content="https://docopslab.org/docs/liquid-templating/">
+  <meta property="og:site_name" content="DocOps Lab">
+  <meta property="og:logo" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  
+  <meta property="og:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta property="og:image:alt" content="DocOps Lab Logo">
+  
+  
+  
+  <!-- Twitter Card metadata -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Liquid Templating Guide">
+  <meta name="twitter:description" content="Liquid 4++ templating methods for DocOps Lab projects.">
+  
+  <meta name="twitter:image" content="https://docopslab.org/assets/images/favicons/android-chrome-512x512.png">
+  <meta name="twitter:image:alt" content="DocOps Lab Logo">
+  
+  
+  <!-- Additional metadata -->
+  <meta name="author" content="DocOps Lab">
+  
+  <link rel="canonical" href="https://docopslab.org/docs/liquid-templating/">
+  
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicons/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon.svg" color="#667eea">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta name="msapplication-TileColor" content="#667eea">
+  <meta name="msapplication-config" content="/assets/images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#667eea">
+  
+  <script>
+    (function() {
+      var savedTheme = null;
+      try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+      
+      var theme;
+      if (savedTheme) {
+        theme = savedTheme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+      } else {
+        theme = 'dark';
+      }
+      
+      if (theme === 'light') {
+        document.write('<style>html,body{background-color:#f7faea!important;color:#1a202c!important;}</style>');
+      } else {
+        document.write('<style>html,body{background-color:#1a202c!important;color:#e2e8f0!important;}</style>');
+      }
+      
+      window.__initialTheme = theme;
+    })();
+  </script>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+  
+  <!-- Highlight.js CSS - Themes (both loaded, toggled via JS) -->
+  <link id="hljs-theme-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" disabled>
+  <link id="hljs-theme-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-light.min.css" disabled>
+
+  <!-- Font Awesome for AsciiDoc callouts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- Conditional MetaBlog Fonts - Only load for metablog pages -->
+  
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>---
+---<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script><script id="search-config" type="application/json">
+  {
+    "engine": "elasticlunr",
+    "version": "0.9.6",
+    "options": {"prefix":true,"fuzzy":0.2,"title_boost":3,"bool":"AND","expand":true},
+    "debug": false,
+    "searchJson": "/search.json"
+  }
+  </script>
+
+  <script defer src="/assets/js/search.js"></script>  
+  <!-- Custom Icons Setup -->
+  <script>
+      // Wait for both DOM and Lucide to be ready
+      function initCustomIcons() {
+      if (typeof lucide !== 'undefined') {
+          // Custom icons to add to Lucide
+          const customIcons = {
+        'grid-2x2-radio-button': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"18\" cy=\"18\" r=\"3.25\"/><circle cx=\"18\" cy=\"18\" r=\"1.25\" fill=\"currentColor\" stroke=\"none\"/></svg>',
+
+        'grid-2x2-pathslash': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><circle cx=\"15.1\" cy=\"20.6\" r=\"1.15\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M16.9 20.8L22 15.6\"/></svg>',
+
+        'grid-2x2-prompt': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 3 3-3 3\"/><path d=\"M19.5 22h2.5\"/></svg>',
+
+        'grid-2x2-version': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"m14.5 16.5 4 4m0-4-4 4\"/><circle cx=\"20.5\" cy=\"20.5\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><path d=\"M22 16.5l-1.5 2.5v2.5\"/></svg>',
+
+        // optional alternate for pathslash using a folder-tree motif
+        'grid-2x2-pathtree': '<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v17a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1H3\"/><path d=\"M15 16v6\"/><path d=\"M15 18h4\"/><path d=\"M19 20h3\"/><circle cx=\"15\" cy=\"16\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"19\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/><circle cx=\"22\" cy=\"20\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>'
+
+
+          };
+
+          // First, replace custom icon elements BEFORE calling lucide.createIcons()
+          for (const [iconName, svgContent] of Object.entries(customIcons)) {
+        const elements = document.querySelectorAll(`[data-lucide="${iconName}"]`);
+        
+        elements.forEach(element => {
+            // Replace the element with our custom SVG
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = svgContent;
+            const svgElement = tempDiv.firstChild;
+            
+            // Copy classes from the original element
+            if (element.className) {
+        svgElement.className = element.className;
+            }
+            
+            // Set attributes to match original Lucide styling
+            svgElement.setAttribute('width', '2.5rem');
+            svgElement.setAttribute('height', '2.5rem');
+            svgElement.style.width = '2.5rem';
+            svgElement.style.height = '2.5rem';
+            svgElement.setAttribute('stroke', 'currentColor');
+            svgElement.setAttribute('stroke-width', '1.5');
+            svgElement.setAttribute('fill', 'none');
+            svgElement.setAttribute('stroke-linecap', 'round');
+            svgElement.setAttribute('stroke-linejoin', 'round');
+            // Force color inline
+            svgElement.style.color = 'var(--primary-color)';
+            svgElement.style.stroke = 'var(--primary-color)';
+            svgElement.setAttribute('stroke', 'var(--primary-color)');
+            
+            // Replace the element
+            element.parentNode.replaceChild(svgElement, element);
+        });
+          }
+          
+          // Now create icons for all remaining Lucide icons (but not our custom ones)
+          lucide.createIcons();
+          return true;
+      }
+      return false;
+      }
+
+      // Try to initialize when DOM is ready
+      document.addEventListener('DOMContentLoaded', function() {
+      if (!initCustomIcons()) {
+          // If Lucide isn't ready yet, wait a bit and try again
+          setTimeout(initCustomIcons, 100);
+      }
+      });
+
+      // Also try when window loads (fallback)
+      window.addEventListener('load', function() {
+      setTimeout(initCustomIcons, 200);
+      });
+  </script>
+  
+  <script>
+    window.themeConfig = {
+      "darkMode": true,
+      "parallax": true,
+      "scrollspy": true
+    };
+
+    (function() {
+      if (!window.themeConfig.darkMode) return;
+      
+      var theme = window.__initialTheme;
+      var html = document.documentElement;
+      
+      if (theme === 'dark') {
+        html.classList.add('dark-mode');
+        html.classList.remove('force-light-mode');
+      } else {
+        html.classList.add('force-light-mode');
+        html.classList.remove('dark-mode');
+      }
+      
+      var hljsLight = document.getElementById('hljs-theme-light');
+      var hljsDark = document.getElementById('hljs-theme-dark');
+      if (hljsLight && hljsDark) {
+        if (theme === 'dark') {
+          hljsDark.disabled = false;
+          hljsLight.disabled = true;
+        } else {
+          hljsDark.disabled = true;
+          hljsLight.disabled = false;
+        }
+      }
+    })();
+  </script>
+  
+  
+
+  
+  
+</head>
+<body class="layout-document  has-sticky-banner">
+  <script>
+    (function() {
+      var theme = window.__initialTheme;
+      if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else if (theme === 'light') {
+        document.body.classList.add('force-light-mode');
+      }
+    })();
+  </script>
+  
+  <!-- Top Navigation Banner -->
+  <!-- Top Banner with Sticky Navigation -->
+
+
+
+<header class="top-banner sticky-banner hide-on-scroll" 
+        id="top-banner"
+        data-hide-threshold="200"
+        >
+  
+  <div class="banner-container">
+    <div class="banner-content">
+      
+      <!-- Brand Section -->
+      <div class="banner-brand">
+        <a href="/" class="banner-brand-link">
+          <span class="banner-brand-name">DocOps Lab</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="banner-nav">
+        <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-banner">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="banner-toggle" id="banner-toggle" aria-label="Toggle navigation menu">
+        <i data-lucide="menu" class="banner-toggle-icon"></i>
+      </button>
+      <div class="search-widget">
+        <label for="search-input" class="sr-only">Search</label>
+        <input id="search-input" type="search" autocomplete="off" placeholder="Search…">
+        <ol id="search-results" aria-live="polite"></ol>
+      </div></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="banner-mobile-nav" id="banner-mobile-nav">
+      <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-mobile">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <i data-lucide="folder-code" class="nav-icon"></i>
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <i data-lucide="rss" class="nav-icon"></i>
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <i data-lucide="book-open" class="nav-icon"></i>
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <i data-lucide="heart-handshake" class="nav-icon"></i>
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <i data-lucide="github" class="nav-icon"></i>
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <i data-lucide="users" class="nav-icon"></i>
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+    </div>
+    
+  </div>
+</header>
+
+  
+  <div class="document-container document">
+  <nav class="document-nav">
+    
+    <div class="toc-container">
+      <h4>Contents</h4>
+      <h5>Liquid Templating Guide</h5>
+      <div id="toc" class="toc">
+        <!-- TOC will be generated by JavaScript -->
+      </div>
+    </div>
+    
+  </nav>
+
+  <main class="document-content">
+    
+
+<nav class="breadcrumbs mb-6">
+  <a href="/" class="breadcrumb-link">Home</a>
+  <span class="breadcrumb-separator">/</span>
+  
+  
+  <a href="/docs/" class="breadcrumb-link">Documentation</a>
+  
+    <span class="breadcrumb-separator">/</span>
+    <span class="breadcrumb-current">Liquid Templating Guide</span>
+  
+  
+</nav>
+
+    <article>
+    
+    <header class="document-header">
+      <h1>Liquid Templating Guide</h1>
+      
+      <p class="document-description">Liquid 4++ templating methods for DocOps Lab projects.</p>
+      
+    </header>
+    
+
+    <div class="document-body">
+      
+
+      
+
+      <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab&#8217;s Liquid 4 environment is invoked through a special bootstrapping procedure.
+It introduces numerous custom Liquid tags and filters.</p>
+</div>
+<div class="paragraph">
+<p>Throughout DocOps Lab applications, Jekyll&#8217;s extended and modified version of Liquid 4 is standard.</p>
+</div>
+<div class="paragraph">
+<p>This means all Jekyll&#8217;s filters and its special <code>include</code> tag are available within and outside Jekyll sites.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="custom-tags">Custom Tags</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Not all custom tags are always available, but the following are generally available in DocOps Lab projects:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Table of custom tags, their source gems, and usage notes.</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 66.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Tag Name</th>
+<th class="tableblock halign-left valign-top">Source Gem</th>
+<th class="tableblock halign-left valign-top">Usage Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>include</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jekyll</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transcludes the content of another file, with optional variable arguments going in but no transcendent affect on the context.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>embed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AsciiSourcerer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transcludes another file, with full pass-through of variables (no arguments needed) with full write access to the context (can add/change variables permanently).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="liquid-filters">Liquid Filters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A canonical listing of custom filters is available in the AsciiSourcerer gem at <a href="https://github.com/DocOps/asciisourcerer/blob/main/lib/specs/data/liquid-filters.yml"><code>lib/specs/data/liquid-filters.yml</code></a>.</p>
+</div>
+<div class="paragraph">
+<p>The full compendium includes <em>all</em> filters available in Liquid 5 and Jekyll 4, even though officially Jekyll and AsciiSourcerer standardize on Liquid 4.
+Shopify&#8217;s novel Liquid 5 filters are hard-coded in AsciiSourcerer.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+All other Shopify-sourced filters are conveyed directly from their Liquid 4.0.4 versions.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Where official Jekyll filters override their Liquid 4 counterparts, the Jekyll versions are used.
+Where an AsciiSourcerer filter overrides either upstream counterpart, the AsciiSourcerer version is used.</p>
+</div>
+<div class="sect2">
+<h3 id="custom-filters">Custom Filters</h3>
+<div id="filter__slugify" class="dlist">
+<dl>
+<dt class="hdlist1">Slugify (<code>slugify</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert a string into a lowercase URL "slug".</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is not the Jekyll version.
+</td>
+</tr>
+</table>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "The _config.yml file" | slugify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">the-config-yml-file</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "The _config.yml file" | slugify: "_" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">the_config_yml_file</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__inspect" class="dlist">
+<dl>
+<dt class="hdlist1">Inspect (<code>inspect</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Convert an object into its String representation for debugging.
+Overrides Jekyll&#8217;s <code>inspect</code> filter, adding an optional <code>format</code> argument:
+<code>html</code> (default) reproduces Jekyll&#8217;s own behavior exactly (an HTML-escaped
+<code>Object#inspect</code> string, quotes become <code>&quot;</code>); <code>yaml</code> and <code>json</code> render
+the object in those formats instead.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Analysis</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="title">Example 1. Default (html) format, matches Jekyll&#8217;s inspect</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ tags_array | inspect }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">[&amp;quot;foo&amp;quot;, &amp;quot;bar&amp;quot;, &amp;quot;baz&amp;quot;]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. YAML format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ tags_array | inspect: "yaml" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+- foo
+- bar
+- baz</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. JSON format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ tags_array | inspect: "json" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["foo","bar","baz"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__sum" class="dlist">
+<dl>
+<dt class="hdlist1">Sum (<code>sum</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Sums a numeric array, or an array of Hashes at the given property.</p>
+</div>
+<div class="paragraph">
+<p>(This filter duplicates Shopify&#8217;s <code>sum</code> filter.)</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Math Operations</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.members | sum: "grad_year" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">6040</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__remove_last" class="dlist">
+<dl>
+<dt class="hdlist1">Remove Last (<code>remove_last</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Removes the last instance of a substring from a string.</p>
+</div>
+<div class="paragraph">
+<p>(This filter duplicates Shopify&#8217;s <code>remove_last</code> filter.)</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | remove_last: "o" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Ground control to Major Tm.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__replace_last" class="dlist">
+<dl>
+<dt class="hdlist1">Replace Last (<code>replace_last</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Replaces the last instance of a substring in a string with a replacement.</p>
+</div>
+<div class="paragraph">
+<p>(This filter duplicates Shopify&#8217;s <code>replace_last</code> filter.)</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "Ground control to Major Tom." | replace_last: "o", "0" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Ground control to Major T0m.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__squish" class="dlist">
+<dl>
+<dt class="hdlist1">Squish (<code>squish</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Strips leading and trailing whitespace and collapses interior runs of
+whitespace to a single space.</p>
+</div>
+<div class="paragraph">
+<p>(This filter duplicates Liquid 5&#8217;s <code>squish</code> filter.)</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "  A string that   is obviously  longer than 25 characters  " | squish }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">A string that is obviously longer than 25 characters</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__wrap" class="dlist">
+<dl>
+<dt class="hdlist1">Wrap (<code>wrap</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "A string that is obviously longer than 25 characters" | wrap: 25 }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">A string that is
+obviously longer than 25
+characters</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__commentwrap" class="dlist">
+<dl>
+<dt class="hdlist1">Comment Wrap (<code>commentwrap</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ comment_text | commentwrap: 25, "// " }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">// A string that is
+// obviously longer than 25
+// characters</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ comment_text | commentwrap: 25, "xml" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">&lt;!-- A string that is
+obviously longer than 25
+characters --&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ comment_text | commentwrap: 25, "/*|*/" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">/* A string that is
+obviously longer than 25
+characters
+*/</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__to_cli_args" class="dlist">
+<dl>
+<dt class="hdlist1">Convert to CLI Arguments (<code>to_cli_args</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Transform a Hash into a string of CLI-formatted arguments.
+Accepts an optional template name to format the output.
+See <code>parameters</code> section for all available templates and their output formats.
+When no template is specified, defaults to <code>long_space</code> format.
+Arguments are joined with a space by default; can be customized via delimiter parameter.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="title">Example 4. Default (long_space) format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">--key1 valuu_one --key2 val_two --key3 third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 5. Long equals format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args: "long_equals" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">--key1=valuu_one --key2=val_two --key3=third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. Single-letter flags with values</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ cli_flags_hash | to_cli_args: "short_space" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">-k valuu_one -v val_two -o third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 7. Positional arguments only</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args: "positional" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">valuu_one val_two third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 8. Environment variable format (uppercase keys)</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args: "env_arg" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">KEY1=valuu_one KEY2=val_two KEY3=third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 9. Key=value format</div>
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_cli_args: "keyval" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">key1=valuu_one key2=val_two key3=third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__to_yaml" class="dlist">
+<dl>
+<dt class="hdlist1">Data objects to YAML (<code>to_yaml</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Turn any parameter or data object into YAML format.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_yaml }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+key1: valuu_one
+key2: val_two
+key3: third value</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_yaml: "flow" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">{key1: "valuu_one", key2: "val_two", key3: "third value"}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | to_yaml }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">---
+- Seattle
+- Tacoma
+- Spokane</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | to_yaml: "flow" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["Seattle", "Tacoma", "Spokane"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | to_yaml: "flow", "quotes" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["Seattle", "Tacoma", "Spokane"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__to_json" class="dlist">
+<dl>
+<dt class="hdlist1">Data objects to JSON (<code>to_json</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Turn any parameter or data object into JSON format.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Conversion</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ my_flat_hash | to_json }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">{"key1":"valuu_one","key2":"val_two","key3":"third value"}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ page.tags | to_json }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["Seattle","Tacoma","Spokane"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ odd_keys_hash | to_json }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">{"key 1":"valuu_one","$key2":"val_two","key:3":"third value"}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__replace_regex" class="dlist">
+<dl>
+<dt class="hdlist1">Regular Expression Replace (<code>replace_regex</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Use regular expressions to match and replace text patterns.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "hello world" | replace_regex: "world", "there" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">hello there</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "one,two,three" | replace_regex: ",", "-" }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">one-two-three</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__match" class="dlist">
+<dl>
+<dt class="hdlist1">Pattern Match (<code>match</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns  of string or number matches pattern.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>String Analysis</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{% assign matched = "testword" | match: "^.*word$" %}
+{% if matched %}It matched!{% endif %}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">It matched!</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__holds_liquid" class="dlist">
+<dl>
+<dt class="hdlist1">Holds Liquid (<code>holds_liquid</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns true if a snippet of text contains Liquid markup tags.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Object Analysis</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ liquidy_text | holds_liquid }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">true</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ "This is just text." | holds_liquid }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">false</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__store_list_concat" class="dlist">
+<dl>
+<dt class="hdlist1">Metastore list concat (<code>store_list_concat</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Concatenates each Array-formatted value of the same-named property across all nodes in an Array of Hashes (Metastore).
+Accepts an Array of Hashes and the keyname of a property to collect from.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.metastore | store_list_concat: "children" | jsonify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["child1","child2","child3","child4","child5","child6"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+<div id="filter__store_list_dupes" class="dlist">
+<dl>
+<dt class="hdlist1">Metastore list duplicates (<code>store_list_dupes</code>)</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Returns a list of duplicate items among multiple Arrays across multiple same-named properties in an Array of Hashes (Metastore).
+Accepts an Array of Hashes and the keyname of a Scalar property to check; returns the names of duplicate properties.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Category
+</td>
+<td class="hdlist2">
+<p>Array Management</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist vertical">
+<dl>
+<dt>Examples</dt>
+<dd>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Input</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-twig hljs" data-lang="twig">{{ data.metastore | store_list_dupes: "children" | jsonify }}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">["child1"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="liquid-syntax-styles">Liquid Syntax Styles</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>DocOps Lab contributions should standardize around certain Liquid syntax conventions, namely around indentation and integration with various markup languages we generate from templates.</p>
+</div>
+<div class="sect2">
+<h3 id="html-rendering-style">HTML Rendering Style</h3>
+<div class="paragraph">
+<p>HTML is by far the most common output target for Liquid templates, but DocOps Lab house style prefers a certain form of indentation.</p>
+</div>
+<div class="paragraph">
+<p>Our preference is to indent the Liquid tags in cadence with the surrounding HTML tags, so that the Liquid tags are visually aligned with the HTML they are generating.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">{% for item in items %}
+  &lt;div class="item"&gt;
+    &lt;h2&gt;{{ item.title }}&lt;/h2&gt;
+    &lt;p&gt;
+      {{ item.description }}
+      {% if item.link %}
+      &lt;hr&gt;
+      &lt;a href="{{ item.link }}"&gt;Read more&lt;/a&gt;
+      {% endif %}
+    &lt;/p&gt;
+  &lt;/div&gt;
+{% endfor %}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="asciidoc-rendering-style">AsciiDoc Rendering Style</h3>
+<div class="paragraph">
+<p>Because AsciiDoc does not involve much indentation, Liquid syntax meant to render AsciiDoc output is a little awkward.</p>
+</div>
+<div class="paragraph">
+<p>Maintain left-flush, un-indented Liquid tags, but indent the tag internals to match the intended AsciiDoc output.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{%- for item in items %}
+{{ item.title }};;
+{{ item.description }}
+{%-   if item.link %}
+Link:;;; {{ item.link }}
+{%-   endif %}
+{% endfor %}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use left-side whitespace control (<code>{%-</code>) to avoid extra blank lines in the output, but skip it on typical <code>{% endfor %}</code> tags to ensure a blank line between iterations where it matters.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="yaml-rendering-style">YAML Rendering Style</h3>
+<div class="paragraph">
+<p>YAML pre-processing with Liquid can be fairly straightforward.
+YAML is a great target for Liquid, even though indentation and whitespace control matter more than for HTML or AsciiDoc.</p>
+</div>
+<div class="paragraph">
+<p>Intertwine Liquid on its own indentation scale and it should map to the YAML fairly well.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">{%- for item in items %}
+- title: {{ item.title }}
+  description: {{ item.description }}
+  {%- if item.link %}
+  link: {{ item.link }}
+  {%- endif %}
+{% endfor %}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="invocation">Means of Invocation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you are developing a Ruby gem or app in the DocOps Lab ecosystem, the basic Jekyll/Liquid engine is invoked via the <code>asciisourcerer</code> gem.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ruby hljs" data-lang="ruby">require 'asciisourcerer'
+
+Sourcerer::Rendering.render_outputs([
+  {
+    template: 'templates/release-notes.liquid',
+    data: 'data/release.yml',
+    out: 'build/docs/release-notes.md',
+    key: 'release',
+    attrs: 'README.adoc',
+    engine: 'liquid'
+  },
+  {
+    converter: 'MyProject::JsonRenderer',
+    data: 'data/release.yml',
+    out: 'build/api/release.json'
+  }
+])</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Direct invocation of Liquid rendering is also possible, but the above method is recommended for most use cases in DocOps Lab projects, as it provides a consistent user experience in terms of availability and behavior of tags and filters.</p>
+</div>
+</div>
+</div>
+    </div>
+
+    <footer class="document-footer">
+      
+      <div class="container">
+      <section class="footer-page">
+        
+          <a href="https://github.com/DocOps/lab/edit/main/_docs/liquid-templating.adoc" class="edit-link">
+          <i data-lucide="edit"></i>
+          Edit this page
+          </a>
+        
+      </section>
+      </div>
+      <!-- Footer Section Common Core -->
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-content">
+        <h3 class="footer-brand">
+          <a href="/">DocOps Lab</a>
+        </h3>
+        <p class="footer-tagline">Powering documentation operations with automation, tooling, and best practices</p>
+        
+        <div class="footer-links">
+          <!-- Reusable Navigation Component -->
+
+
+<nav class="nav-component nav-footer">
+  
+  
+  <ul class="nav-links">
+    
+    <li>
+      <a href="/projects/" class="nav-link" title="Open source tools and libraries">
+        
+        <span class="nav-text">Projects</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/blog/" class="nav-link" title="Latest insights and tutorials">
+        
+        <span class="nav-text">Blog</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/" class="nav-link" title="Documentation and guides">
+        
+        <span class="nav-text">Docs</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="/docs/contributing/" class="nav-link" title="How to get involved">
+        
+        <span class="nav-text">Contributing</span>
+      </a>
+    </li>
+    
+    
+    
+    
+    <li>
+      <a href="https://github.com/DocOps" class="nav-link nav-external" 
+         target="_blank"
+         title="Source code and repositories">
+        
+        <span class="nav-text">GitHub</span>
+      </a>
+    </li>
+    
+    <li>
+      <a href="https://www.writethedocs.org/slack/" class="nav-link nav-external" 
+         target="_blank"
+         title="Join our Write the Docs and find the #DocOps channel">
+        
+        <span class="nav-text">Community</span>
+      </a>
+    </li>
+    
+    
+  </ul>
+</nav>
+
+        </div>
+      </div>
+      
+      <div class="footer-legal">
+        <p class="copyright">
+          &copy; 2026 DocOps Lab
+        </p>
+        <p class="license">
+          Content licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" class="footer-link">CC BY 4.0</a>
+        </p>
+        <p class="source">
+          <a href="https://github.com/DocOps/lab" target="_blank" class="footer-link">
+            <i data-lucide="github" class="footer-source-icon"></i>
+            View Source
+          </a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-divider"></div>
+    
+    <div class="footer-bottom">
+      <div class="footer-note">
+        Built with <a href="https://jekyllrb.com" target="_blank" class="footer-link"><img src="/assets/images/jekyll-favicon.png" alt="Jekyll Favicon" class="footer-logo logo-jekyll">Jekyll</a> 
+        and <a href="https://asciidoctor.org" target="_blank" class="footer-link"><img src="/assets/images/asciidoctor-logo.svg" alt="Asciidoctor Logo" class="footer-logo logo-asciidoctor">Asciidoctor</a>
+      </div>
+      <div class="footer-note">
+         hosted on <a href="https://pages.github.com" target="_blank" class="footer-link">
+          <img src="/assets/images/github-mark-white.png" alt="GitHub Logo" class="footer-logo logo-github">
+         GitHub Pages</a>.
+      </div>
+    </div>
+  </div>
+
+    </footer>
+    </article>
+  </main>
+</div>
+
+  
+  <!-- JavaScript -->
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/micro-profiles.js"></script>
+  
+  
+      <script src="/assets/js/scrollspy.js"></script>
+  
+  
+  <!-- Highlight.js JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <!-- Language-specific modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/asciidoc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/twig.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  
+  <!-- Initialize Highlight.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Configure highlight.js
+      hljs.configure({
+        languages: ['asciidoc', 'twig', 'shell', 'python']
+      });
+    
+      // Process code blocks but preserve callouts during syntax highlighting
+      document.querySelectorAll('pre code:not(.literalblock code), .listingblock pre code').forEach(function(block) {
+          // Check if this block contains callouts
+          const callouts = block.querySelectorAll('.conum');
+          if (callouts.length > 0) {
+            // Extract callouts before highlighting
+            const calloutsData = [];
+            callouts.forEach(function(callout, index) {
+              const nextElement = callout.nextElementSibling;
+              const fallbackText = nextElement && nextElement.tagName === 'B' ? nextElement : null;
+              
+              // Create a placeholder for the callout
+              const placeholder = document.createTextNode(`__CALLOUT_${index}__`);
+              
+              // Store callout data
+              calloutsData.push({
+                element: callout.cloneNode(true),
+                fallback: fallbackText ? fallbackText.cloneNode(true) : null,
+                placeholder: placeholder
+              });
+              
+              // Replace callout with placeholder
+              callout.parentNode.replaceChild(placeholder, callout);
+              
+              // Remove fallback text if present
+              if (fallbackText) {
+                fallbackText.remove();
+              }
+            });
+            
+            // Run syntax highlighting
+            hljs.highlightElement(block);
+
+            // Mark container so CSS can avoid overriding HLJS backgrounds
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+            
+            // Restore callouts after highlighting
+            calloutsData.forEach(function(calloutData, index) {
+              const walker = document.createTreeWalker(
+                block,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+              );
+              
+              let textNode;
+              while (textNode = walker.nextNode()) {
+                if (textNode.textContent.includes(`__CALLOUT_${index}__`)) {
+                  const parts = textNode.textContent.split(`__CALLOUT_${index}__`);
+                  
+                  // Create text node for part before callout
+                  if (parts[0]) {
+                    const beforeText = document.createTextNode(parts[0]);
+                    textNode.parentNode.insertBefore(beforeText, textNode);
+                  }
+                  
+                  // Insert the callout
+                  textNode.parentNode.insertBefore(calloutData.element, textNode);
+                  
+                  // Create text node for part after callout if there is one
+                  if (parts[1]) {
+                    textNode.textContent = parts[1];
+                  } else {
+                    textNode.remove();
+                  }
+                  break;
+                }
+              }
+            });
+          } else {
+            // No callouts, just highlight normally
+            hljs.highlightElement(block);
+            const pre = block.closest('pre');
+            if (pre) {
+              pre.classList.add('hljs-container');
+            }
+          }
+      });
+    
+    });
+  </script>
+  
+</body>
+</html>
