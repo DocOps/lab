@@ -1,0 +1,11 @@
+- if option? :collapsible
+  details id=id class=role open=(option? :open)
+    - if title
+      summary
+        =title
+    .content
+      =content
+- else
+  = block_with_caption :top, :class=>'example-block'
+    .example
+      =content
