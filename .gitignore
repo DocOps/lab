@@ -26,6 +26,7 @@ vendor/
 .agent/
 # DO track team-shared files
 !.agent/team/
+.claude/
 
 # Logs
 *.log
