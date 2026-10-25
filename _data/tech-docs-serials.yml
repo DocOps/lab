@@ -383,13 +383,21 @@ services:
   type: RSS
   tags: [ai]
   desc: |
-    Sarah's deep and practical analysis of AI tools and techniques as they apply to content and software.
+    A technical writer for Claude Code offers deep and practical analysis of AI tools and techniques as they apply to content and software.
+
+- name: Scriptorium
+  site: https://scriptorium.com
+  feed: https://www.scriptorium.com/feed/
+  type: RSS
+  tags: [technical-writing, content-strategy, dita, ai]
+  desc: |
+    The multi-author blog from Scriptorium, a content strategy and technical communication consultancy that especially covers DITA and AI.
 
 - name: Story Needle
   site: https://storyneedle.com
   feed: https://storyneedle.com/feed
   type: RSS
-  tags: [ai, content-strategy, content-modeling, content-management]
+  tags: [ai, content-strategy, content-management, dita, technical-writing]
   desc: |
     A massive compendium of articles by content strategist Michael Andrews, author of numerous https://storyneedle.com/books-content-strategy/[books such as _No More Silos_ and _Metadata Basics for Web Content_].
 
@@ -480,6 +488,8 @@ $config:
       name: content modeling
     - slug: content-strategy
       name: content strategy
+    - slug: dita
+      name: DITA
     - slug: document-design
       name: document design
     - slug: docs-as-code
