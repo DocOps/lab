@@ -1,0 +1,1314 @@
+filters:
+
+  - key: date_to_xml_schema
+    name: Date to XML Schema
+    source: jekyll
+    description: Convert a Date into XML Schema (ISO 8601) format.
+    tags: [string, date, conversion]
+    kind: date-format
+    examples:
+      - input: '{{ "2008-11-07 1:07:54pm" | date_to_xmlschema }}'
+        output: '2008-11-07T13:07:54-08:00'
+
+  - key: date_to_rfc822
+    name: Date to RFC-822 Format
+    source: jekyll
+    description: Convert a Date into the RFC-822 format used for RSS feeds.
+    tags: [string, date, conversion]
+    kind: date-format
+    examples:
+      - input: '{{ data.time | date_to_rfc822 }}'
+        output: 'Fri, 07 Nov 2008 13:07:54 -0800'
+
+  - key: date_to_string
+    name: Date to String
+    source: jekyll
+    description: Convert a date to short format.
+    tags: [string, date, conversion]
+    kind: date-format
+    examples:
+      - input: '{{ data.time | date_to_string }}'
+        output: '07 Nov 2008'
+      - input: '{{ data.time | date_to_string: "ordinal", "US" }}'
+        output: 'Nov 7th, 2008'
+
+  - key: date_to_long_string
+    name: Date to Long String
+    source: jekyll
+    description: Format a date to long format.
+    tags: [string, date, conversion]
+    kind: date-format
+    examples:
+      - input: '{{ data.time | date_to_long_string }}'
+        output: '07 November 2008'
+      - input: '{{ data.time | date_to_long_string: "ordinal" }}'
+        output: '7th November 2008'
+
+  - key: where
+    name: Where
+    source: jekyll
+    description: Select all the objects in an array where the key has the given value.
+    tags: [array]
+    kind: array-select
+    examples:
+      - input: |
+          {% assign filtered = data.users | where:"level", 2 %}
+          {{ filtered | size }}
+        output: '1'
+      - output: '{"user":"alice","level":1}'
+        input: |
+          {% assign member = data.users | where:"user","alice" %}
+          {{ member[0] | jsonify }}
+    notes: To express a lone result record, use `result_var[0]`.
+
+  - key: where_exp
+    name: Where Expression
+    source: jekyll
+    description: Select all the objects in an array where the expression is true.
+    tags: [array]
+    kind: array-select
+    examples:
+      - output: '[{"user":"andie","grad_year":2014,"projects":["fooman","barbaz"]},{"user":"lonnie","grad_year":2014,"projects":["fooman"]}]'
+        input: |
+          {{ data.members | where_exp:"item",
+          "item.grad_year == 2014" | jsonify }}
+      - output: '[{"user":"cindy","grad_year":2012,"projects":["fooman","foobar"]}]'
+        input: |
+          {{ data.members | where_exp:"item",
+          "item.grad_year < 2014" | jsonify }}
+      - output: '[{"user":"andie","grad_year":2014,"projects":["fooman","barbaz"]}]'
+        input: |
+          {{ data.members | where_exp:"item",
+          "item.projects contains 'barbaz'" | jsonify }}
+
+  - key: group_by
+    name: Group By
+    source: jekyll
+    description: Group an array's items by a given property.
+    tags: [array]
+    kind: array-organizing
+    examples:
+      - input: |
+          {% assign grouped = data.members | group_by:"grad_year" | first %}
+          {{ grouped.name }}
+        output: '2014'
+
+  - key: group_by_exp
+    name: Group By Expression
+    source: jekyll
+    description: Group an array's items using a Liquid expression.
+    tags: [array]
+    kind: array-organizing
+    examples:
+      - input: |-
+          {{ data.members | group_by_exp: "item", "item.grad_year" | map: "name" | join: "," }}
+        output: '2014,2012'
+
+  - key: xml_escape
+    name: XML Escape
+    source: jekyll
+    description: Escape some text for use in XML.
+    kind: string-escape
+    examples:
+      - input: '{{ "<strong>some text</strong>" | xml_escape }}'
+        output: '&lt;strong&gt;some text&lt;/strong&gt;'
+
+  - key: cgi_escape
+    name: CGI Escape
+    source: jekyll
+    description: |
+      CGI escape a string for use in a URL.
+      Replaces any special characters with appropriate `%XX` replacements.
+      CGI escape normally replaces a space with a plus `+` sign.
+    kind: string-escape
+    examples:
+      - input: '{{ "foo, bar; baz?" | cgi_escape }}'
+        output: 'foo%2C+bar%3B+baz%3F'
+
+  - key: uri_escape
+    name: URI Escape
+    source: jekyll
+    description: |
+      Percent encodes any special characters in a URI.
+      URI escape normally replaces a space with `%20`.
+      link:https://en.wikipedia.org/wiki/Percent-encoding#Types_of_URI_characters[Reserved characters]
+      will not be escaped.
+    kind: string-escape
+    examples:
+      - input: '{{ "http://foo.com/?q=foo, \bar?" | uri_escape }}'
+        output: 'http://foo.com/?q=foo,%20%5Cbar?'
+
+  - key: number_of_words
+    name: Number of Words
+    source: jekyll
+    description: Count the number of words in a text.
+    tags: [string]
+    kind: string-analysis
+    examples:
+      - input: '{{ page.content | number_of_words }}'
+        output: '3'
+
+  - key: array_to_sentence_string
+    name: Array to Sentence
+    source: jekyll
+    description: |
+      Convert an array into a sentence. Useful for listing tags.
+      Optional argument for connector.
+    kind: object-conversion
+    examples:
+      - input: '{{ tags_array | array_to_sentence_string }}'
+        output: 'foo, bar, and baz'
+      - input: '{{ tags_array | array_to_sentence_string: "or" }}'
+        output: 'foo, bar, or baz'
+
+  - key: slugify
+    name: Slugify
+    source: asciisourcerer
+    description: |
+      Convert a string into a lowercase URL "slug".
+
+      NOTE: This is not the Jekyll version.
+    kind: string-conversion
+    examples:
+      - input: '{{ "The _config.yml file" | slugify }}'
+        output: 'the-config-yml-file'
+      - input: '{{ "The _config.yml file" | slugify: "_" }}'
+        output: 'the_config_yml_file'
+
+  # - key: to_slug
+  #   name: String to Slug
+  #   source: sterile
+  #   description: Simple slug converter.
+  #   group: string-conversion
+
+  - key: jsonify
+    name: Data To JSON
+    source: jekyll
+    description: Convert Hash or Array to JSON.
+    kind: object-conversion
+    examples:
+      - input: '{{ tags_array | jsonify }}'
+        output: '["foo","bar","baz"]'
+
+  - key: normalize_whitespace
+    name: Normalize Whitespace
+    source: jekyll
+    description: Replace any occurrence of whitespace with a single space.
+    kind: string-conversion
+    examples:
+      - input: '{{ "a    b" | normalize_whitespace }}'
+        output: 'a b'
+
+  - key: sort
+    name: Sort
+    source: jekyll
+    description: |
+      Sort an array. Optional arguments for hashes
+      1. property name
+      2. nils order (_first_ or _last_).
+    tags: [array]
+    kind: array-organizing
+    examples:
+      - input: '{{ page.tags | sort | inspect }}'
+        output: '[&quot;Seattle&quot;, &quot;Spokane&quot;, &quot;Tacoma&quot;]'
+      - input: '{{ site.posts | sort: "author" }}'
+        returns: An array of hashes, alphabetized by the value of the `author` property
+        test: false
+      - input: '{{ site.pages | sort: "title", "last" }}'
+        returns: An array of hashes, alphabetized by the `title` property's values, with items lacking titles (nil) at the end
+        test: false
+
+  - key: sample
+    name: Sample
+    source: jekyll
+    description: 'Pick a random value from an array. Optionally, pick multiple values.'
+    tags: [array]
+    kind: array-select
+    examples:
+      - input: '{{ site.pages | sample }}'
+        returns: An array containing one randomly chosen item.
+        test: false
+      - input: '{{ site.pages | sample: 2 }}'
+        returns: An array containing two randomly chosen array items.
+        test: false
+
+  - key: to_integer
+    name: To Integer
+    source: jekyll
+    description: Convert a string or boolean to integer.
+    tags: [string, conversion, math]
+    kind: object-conversion
+    examples:
+      - input: '{{ true | to_integer }}'
+        output: 1
+      - output: Samesies!
+        input: |
+          {% assign five = "5" | to_integer %}
+          {% if five == 5 %}Samesies!{% endif %}
+      - input: '{{ "five" | to_integer }}'
+        output: 0
+
+  - key: push
+    name: Push
+    source: jekyll
+    description: |
+      Insert an item at the end of an array
+    tags: [array]
+    kind: array-management
+    examples:
+      - input: '{{ page.tags | push: "Spokane" | inspect }}'
+        output: '[&quot;Seattle&quot;, &quot;Tacoma&quot;, &quot;Spokane&quot;, &quot;Spokane&quot;]'
+
+  - key: pop
+    name: Pop
+    source: jekyll
+    description: |
+      Remove an item from the end of an array
+    tags: [array]
+    kind: array-management
+    examples:
+      - input: '{{ page.tags | pop | inspect }}'
+        output: '[&quot;Seattle&quot;, &quot;Tacoma&quot;]'
+
+  - key: shift
+    name: Shift
+    source: jekyll
+    description: |
+      Remove an item from the beginning of an array
+    tags: [array]
+    kind: array-management
+    examples:
+      - input: '{{ page.tags | shift | inspect }}'
+        output: '[&quot;Tacoma&quot;, &quot;Spokane&quot;]'
+
+  - key: unshift
+    name: Unshift
+    source: jekyll
+    description: |
+      Insert an item at the beginning of an array
+    tags: [array]
+    kind: array-management
+    examples:
+      - input: '{{ page.tags | unshift: "Olympia" | inspect }}'
+        output: '[&quot;Olympia&quot;, &quot;Seattle&quot;, &quot;Tacoma&quot;, &quot;Spokane&quot;]'
+
+  - key: inspect
+    name: Inspect
+    source: asciisourcerer
+    description: |
+      Convert an object into its String representation for debugging.
+      Overrides Jekyll's `inspect` filter, adding an optional `format` argument:
+      `html` (default) reproduces Jekyll's own behavior exactly (an HTML-escaped
+      `Object#inspect` string, quotes become `&quot;`); `yaml` and `json` render
+      the object in those formats instead.
+    tags: [conversion]
+    kind: object-analysis
+    examples:
+      - input: '{{ tags_array | inspect }}'
+        output: '[&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;]'
+        description: Default (html) format, matches Jekyll's inspect
+      - input: |
+          {{ tags_array | inspect: "yaml" }}
+        output: |
+          ---
+          - foo
+          - bar
+          - baz
+        description: YAML format
+      - input: '{{ tags_array | inspect: "json" }}'
+        output: '["foo","bar","baz"]'
+        description: JSON format
+
+  - key: abs
+    name: Absolute Value
+    source: shopify
+    description: Returns the absolute value of a number.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ -17 | abs }}'
+        output: '17'
+      - input: '{{ "-19.86" | abs }}'
+        output: '19.86'
+
+  - key: append
+    name: Append
+    source: shopify
+    description: Adds the specified string to the end of another string.
+    kind: string-management
+    examples:
+      - input: '{{ "/my/fancy/url" | append: ".html" }}'
+        output: '/my/fancy/url.html'
+
+  - key: at_least
+    name: At Least
+    source: shopify
+    description: Limits a number to a minimum value; returns the input unchanged if it's already at or above the minimum.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 4 | at_least: 5 }}'
+        output: '5'
+      - input: '{{ 4 | at_least: 3 }}'
+        output: '4'
+
+  - key: at_most
+    name: At Most
+    source: shopify
+    description: Limits a number to a maximum value; returns the input unchanged if it's already at or below the maximum.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 4 | at_most: 5 }}'
+        output: '4'
+      - input: '{{ 4 | at_most: 3 }}'
+        output: '3'
+
+  - key: sum
+    name: Sum
+    source: asciisourcerer
+    description: |
+      Sums a numeric array, or an array of Hashes at the given property.
+
+      (This filter duplicates Shopify's `sum` filter.)
+    tags: [math, array]
+    kind: math
+    examples:
+      - input: '{{ data.members | sum: "grad_year" }}'
+        output: '6040'
+
+  - key: capitalize
+    name: Capitalize
+    source: shopify
+    description: Capitalizes the first character of a string and downcases the rest. Only the first character is affected, so later words are not capitalized.
+    kind: string-conversion
+    examples:
+      - input: '{{ "my GREAT title" | capitalize }}'
+        output: 'My great title'
+
+  - key: ceil
+    name: Ceiling
+    source: shopify
+    description: Rounds a number up to the nearest whole number. Liquid tries to convert the input to a number before applying the filter.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 1.2 | ceil }}'
+        output: '2'
+
+  - key: compact
+    name: Compact
+    source: shopify
+    description: Removes any `nil` values from an array.
+    tags: [array]
+    kind: array-management
+    examples:
+      - input: |
+          {% assign compacted = mixed_array | compact %}
+          {{ compacted | join: "," }}
+        output: 'a,b,c'
+
+  - key: concat
+    name: Concatenate
+    source: shopify
+    description: Concatenates (joins together) multiple arrays. The resulting array contains all the items from the input arrays.
+    tags: [array]
+    kind: array-management
+    examples:
+      - input: |
+          {% assign fruits = "apples, oranges" | split: ", " %}
+          {% assign veggies = "carrots, turnips" | split: ", " %}
+          {{ fruits | concat: veggies | join: "," }}
+        output: 'apples,oranges,carrots,turnips'
+
+  - key: date
+    name: Date Format
+    source: shopify
+    description: |
+      Converts a timestamp into another date format, using the same format
+      syntax as `strftime`.
+    tags: [string, date]
+    kind: date-format
+    examples:
+      - input: '{{ data.time | date: "%Y-%m-%d" }}'
+        output: '2008-11-07'
+
+  - key: default
+    name: Default
+    source: shopify
+    description: |
+      Sets a fallback value for a variable that is `nil`, `false`, or empty.
+      Has no effect if the input already has a value.
+    tags: [variable]
+    kind: variable
+    examples:
+      - input: '{{ nonexistent_var | default: "fallback" }}'
+        output: 'fallback'
+
+  - key: divided_by
+    name: Divided By
+    source: shopify
+    description: |
+      Divides a number by another number. The result's type matches the
+      divisor's: dividing by an integer floors to an integer, dividing by a
+      float returns a float.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 16 | divided_by: 4 }}'
+        output: '4'
+      - input: '{{ 20 | divided_by: 7 }}'
+        output: '2'
+      - input: '{{ 20 | divided_by: 7.0 }}'
+        output: '2.857142857142857'
+
+  - key: downcase
+    name: Downcase
+    source: shopify
+    description: Makes each character in a string lowercase.
+    kind: string-conversion
+    examples:
+      - input: '{{ "Parker Moore" | downcase }}'
+        output: 'parker moore'
+
+  - key: escape
+    name: Escape
+    source: shopify
+    description: Escapes a string's HTML-unsafe characters (so it can safely be embedded in HTML markup).
+    kind: string-conversion
+    examples:
+      - input: "{{ \"Have you read 'James & the Giant Peach'?\" | escape }}"
+        output: 'Have you read &#39;James &amp; the Giant Peach&#39;?'
+
+  - key: escape_once
+    name: Escape Once
+    source: shopify
+    description: Escapes a string's HTML-unsafe characters without double-escaping entities that are already escaped.
+    kind: string-conversion
+    examples:
+      - input: '{{ "1 < 2 & 3" | escape_once }}'
+        output: '1 &lt; 2 &amp; 3'
+      - input: '{{ "1 &lt; 2 &amp; 3" | escape_once }}'
+        output: '1 &lt; 2 &amp; 3'
+
+  - key: first
+    name: First
+    source: shopify
+    description: Returns the first item of an array.
+    tags: [array]
+    kind: array-select
+    examples:
+      - input: '{{ "Ground control to Major Tom." | split: " " | first }}'
+        output: 'Ground'
+
+  - key: floor
+    name: Floor
+    source: shopify
+    description: Rounds a number down to the nearest whole number. Liquid tries to convert the input to a number before applying the filter.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 1.2 | floor }}'
+        output: '1'
+
+  - key: join
+    name: Join
+    source: shopify
+    description: Combines the items in an array into a single string, using the argument as a separator.
+    tags: [array, conversion]
+    kind: object-conversion
+    examples:
+      - input: |
+          {% assign beatles = "John, Paul, George, Ringo" | split: ", " %}
+          {{ beatles | join: " and " }}
+        output: 'John and Paul and George and Ringo'
+
+  - key: last
+    name: Last
+    source: shopify
+    description: Returns the last item of an array.
+    tags: [array]
+    kind: array-select
+    examples:
+      - input: '{{ "Ground control to Major Tom." | split: " " | last }}'
+        output: 'Tom.'
+
+  - key: lstrip
+    name: Left Strip
+    source: shopify
+    description: |
+      Removes whitespace (tabs, spaces, newlines) from the left side of a
+      string. Does not affect spaces between words.
+    kind: string-management
+    examples:
+      - input: '{{ "   So much room   " | lstrip }}!'
+        output: 'So much room   !'
+
+  - key: map
+    name: Map
+    source: shopify
+    description: Creates an array of values by extracting the values of a named property from an array of objects.
+    tags: [array, conversion]
+    kind: object-conversion
+    examples:
+      - input: |
+          {{ data.members | map: "user" | join: "," }}
+        output: 'andie,lonnie,cindy'
+
+  - key: minus
+    name: Minus (subtract)
+    source: shopify
+    description: Subtracts a number from another number.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 4 | minus: 2 }}'
+        output: '2'
+      - input: '{{ 16 | minus: 4 }}'
+        output: '12'
+
+  - key: modulo
+    name: Modulo
+    source: shopify
+    description: Returns the remainder of a division operation.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 3 | modulo: 2 }}'
+        output: '1'
+      - input: '{{ 24 | modulo: 7 }}'
+        output: '3'
+
+  - key: newline_to_br
+    name: Newline to Break Tag
+    source: shopify
+    description: Inserts an HTML line break (`<br />`) in front of each newline in a string.
+    kind: string-conversion
+    examples:
+      - input: |
+          {% capture s %}Hello
+          there{% endcapture %}{{ s | newline_to_br }}
+        output: "Hello<br />\nthere"
+
+  - key: plus
+    name: Plus (add)
+    source: shopify
+    description: Adds a number to another number.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 4 | plus: 2 }}'
+        output: '6'
+
+  - key: prepend
+    name: Prepend
+    source: shopify
+    description: Adds the specified string to the beginning of another string.
+    kind: string-management
+    examples:
+      - input: '{{ "apples, oranges, and bananas" | prepend: "Some fruit: " }}'
+        output: 'Some fruit: apples, oranges, and bananas'
+
+  - key: remove
+    name: Remove
+    source: shopify
+    description: Removes every occurrence of the specified substring from a string.
+    kind: string-conversion
+    examples:
+      - input: '{{ "I strained to see the train through the rain" | remove: "rain" }}'
+        output: 'I sted to see the t through the '
+
+  - key: remove_first
+    name: Remove First
+    source: shopify
+    description: Removes only the first occurrence of the specified substring from a string.
+    kind: string-conversion
+    examples:
+      - input: '{{ "I strained to see the train through the rain" | remove_first: "rain" }}'
+        output: 'I sted to see the train through the rain'
+
+  - key: remove_last
+    name: Remove Last
+    source: asciisourcerer
+    description: |
+      Removes the last instance of a substring from a string.
+
+      (This filter duplicates Shopify's `remove_last` filter.)
+    kind: string-conversion
+    examples:
+      - input: '{{ "Ground control to Major Tom." | remove_last: "o" }}'
+        output: 'Ground control to Major Tm.'
+
+  - key: replace
+    name: Replace
+    source: shopify
+    description: Replaces every occurrence of the first argument in a string with the second argument.
+    kind: string-conversion
+    examples:
+      - input: '{{ "Take my protein pills and put my helmet on" | replace: "my", "your" }}'
+        output: 'Take your protein pills and put your helmet on'
+
+  - key: replace_first
+    name: Replace First
+    source: shopify
+    description: Replaces only the first occurrence of the first argument in a string with the second argument.
+    kind: string-conversion
+    examples:
+      - input: '{{ "Take my protein pills and put my helmet on" | replace_first: "my", "your" }}'
+        output: 'Take your protein pills and put my helmet on'
+
+  - key: replace_last
+    name: Replace Last
+    source: asciisourcerer
+    description: |
+      Replaces the last instance of a substring in a string with a replacement.
+
+      (This filter duplicates Shopify's `replace_last` filter.)
+
+    kind: string-conversion
+    examples:
+      - input: '{{ "Ground control to Major Tom." | replace_last: "o", "0" }}'
+        output: 'Ground control to Major T0m.'
+
+  - key: squish
+    name: Squish
+    source: asciisourcerer
+    description: |
+      Strips leading and trailing whitespace and collapses interior runs of
+      whitespace to a single space.
+      
+      (This filter duplicates Liquid 5's `squish` filter.)
+    kind: string-conversion
+    examples:
+      - input: '{{ "  A string that   is obviously  longer than 25 characters  " | squish }}'
+        output: 'A string that is obviously longer than 25 characters'
+
+  - key: reverse
+    name: Reverse
+    source: shopify
+    description: |
+      Reverses the order of the items in an array. Cannot reverse a string
+      directly; split it into an array first.
+    tags: [array]
+    kind: array-organizing
+    examples:
+      - input: |
+          {% assign arr = "apples, oranges, peaches, plums" | split: ", " %}
+          {{ arr | reverse | join: ", " }}
+        output: 'plums, peaches, oranges, apples'
+
+  - key: round
+    name: Round
+    source: shopify
+    description: Rounds a number to the nearest integer, or to a given number of decimal places if an argument is passed.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 1.2 | round }}'
+        output: '1'
+      - input: '{{ 2.7 | round }}'
+        output: '3'
+      - input: '{{ 183.357 | round: 2 }}'
+        output: '183.36'
+
+  - key: rstrip
+    name: Right Strip
+    source: shopify
+    description: |
+      Removes whitespace (tabs, spaces, newlines) from the right side of a
+      string. Does not affect spaces between words.
+    kind: string-conversion
+    examples:
+      - input: '{{ "   So much room   " | rstrip }}!'
+        output: '   So much room!'
+
+  - key: size
+    name: Size
+    source: shopify
+    description: Returns the number of characters in a string, or the number of items in an array.
+    tags: [string, array]
+    kind: object-analysis
+    examples:
+      - input: '{{ "Ground control to Major Tom." | size }}'
+        output: '28'
+
+  - key: slice
+    name: Slice
+    source: shopify
+    description: |
+      Returns a substring or array slice, starting at the index given by the
+      first argument. An optional second argument gives the length. Negative
+      indices count from the end.
+    tags: [string, array, conversion]
+    kind: object-conversion
+    examples:
+      - input: '{{ "Liquid" | slice: 0 }}'
+        output: 'L'
+      - input: '{{ "Liquid" | slice: 2, 3 }}'
+        output: 'qui'
+      - input: '{{ "Liquid" | slice: -3, 2 }}'
+        output: 'ui'
+
+  - key: split
+    name: Split
+    source: shopify
+    description: |
+      Divides a string into an array using the argument as a separator.
+      Commonly used to convert delimited text into an array.
+    tags: [string, array, conversion]
+    kind: object-conversion
+    examples:
+      - input: |
+          {% assign beatles = "John, Paul, George, Ringo" | split: ", " %}
+          {{ beatles | join: "|" }}
+        output: 'John|Paul|George|Ringo'
+
+  - key: strip
+    name: Strip
+    source: shopify
+    description: |
+      Removes whitespace (tabs, spaces, newlines) from both sides of a
+      string. Does not affect spaces between words.
+    kind: string-conversion
+    examples:
+      - input: '{{ "   So much room   " | strip }}!'
+        output: 'So much room!'
+
+  - key: strip_html
+    name: Strip HTML
+    source: shopify
+    description: Removes any HTML tags from a string.
+    kind: string-conversion
+    examples:
+      - input: '{{ "Have <em>you</em> read <strong>Ulysses</strong>?" | strip_html }}'
+        output: 'Have you read Ulysses?'
+
+  - key: strip_newlines
+    name: Strip Newlines
+    source: shopify
+    description: Removes any newline characters from a string.
+    kind: string-conversion
+    examples:
+      - input: |
+          {% capture s %}Hello
+          there{% endcapture %}{{ s | strip_newlines }}
+        output: 'Hellothere'
+
+  - key: times
+    name: Times (multiply)
+    source: shopify
+    description: Multiplies a number by another number.
+    tags: [math]
+    kind: math
+    examples:
+      - input: '{{ 3 | times: 2 }}'
+        output: '6'
+
+  - key: truncate
+    name: Truncate
+    source: shopify
+    description: |
+      Shortens a string to the given number of characters. If shortened, an
+      ellipsis (`...`) is appended and counts against the total; pass a
+      second argument to use a different (or no) ellipsis.
+    kind: string-management
+    examples:
+      - input: '{{ "Ground control to Major Tom." | truncate: 20 }}'
+        output: 'Ground control to...'
+      - input: '{{ "Ground control to Major Tom." | truncate: 25, ", and so on" }}'
+        output: 'Ground control, and so on'
+
+  - key: truncatewords
+    name: Truncate Words
+    source: shopify
+    description: |
+      Shortens a string to the given number of words. If shortened, an
+      ellipsis (`...`) is appended; pass a second argument to use a
+      different (or no) ellipsis.
+    kind: string-conversion
+    examples:
+      - input: '{{ "Ground control to Major Tom." | truncatewords: 3 }}'
+        output: 'Ground control to...'
+
+  - key: uniq
+    name: Uniq
+    source: shopify
+    description: Removes any duplicate items from an array, preserving the first occurrence's order.
+    tags: [array]
+    kind: array-management
+    examples:
+      - input: |
+          {% assign arr = "ants, bugs, bees, bugs, ants" | split: ", " %}
+          {{ arr | uniq | join: "," }}
+        output: 'ants,bugs,bees'
+
+  - key: upcase
+    name: Upcase
+    source: shopify
+    description: Makes each character in a string uppercase.
+    kind: string-conversion
+    examples:
+      - input: '{{ "Parker Moore" | upcase }}'
+        output: 'PARKER MOORE'
+
+  - key: url_decode
+    name: URL Decode
+    source: shopify
+    description: Decodes a string that has been encoded as a URL, or by `url_encode`.
+    kind: string-recode
+    examples:
+      - input: '{{ "%27Stop%21%27+said+Fred" | url_decode }}'
+        output: "'Stop!' said Fred"
+
+  - key: url_encode
+    name: URL Encode
+    source: shopify
+    description: |
+      Converts any URL-unsafe characters in a string into percent-encoded
+      characters. A space becomes a `+` rather than a percent-encoded
+      character.
+    kind: string-recode
+    examples:
+      - input: '{{ "john@liquid.com" | url_encode }}'
+        output: 'john%40liquid.com'
+      - input: '{{ "Tetsuro Takara" | url_encode }}'
+        output: 'Tetsuro+Takara'
+
+  - key: sgyml_type
+    name: SGYML Type
+    source: schemagraphy
+    kind: data-type
+    
+
+  - key: wrap
+    name: Wrap
+    source: asciisourcerer
+    kind: string-conversion
+    examples:
+      - input: '{{ "A string that is obviously longer than 25 characters" | wrap: 25 }}'
+        output: |
+          A string that is
+          obviously longer than 25
+          characters
+
+  - key: commentwrap
+    name: Comment Wrap
+    source: asciisourcerer
+    kind: string-conversion
+    examples:
+      - input: '{{ comment_text | commentwrap: 25, "// " }}'
+        output: |
+          // A string that is
+          // obviously longer than 25
+          // characters
+      - input: '{{ comment_text | commentwrap: 25, "xml" }}'
+        output: |
+          <!-- A string that is
+          obviously longer than 25
+          characters -->
+      - input: '{{ comment_text | commentwrap: 25, "/*|*/" }}'
+        output: |
+          /* A string that is
+          obviously longer than 25
+          characters
+          */
+  
+  - key: to_cli_args
+    name: Convert to CLI Arguments
+    source: asciisourcerer
+    kind: object-conversion
+    description: |
+      Transform a Hash into a string of CLI-formatted arguments.
+      Accepts an optional template name to format the output.
+      See `parameters` section for all available templates and their output formats.
+      When no template is specified, defaults to `long_space` format.
+      Arguments are joined with a space by default; can be customized via delimiter parameter.
+    parameters:
+      short_flag: '-<o>'
+      long_flag: '--<option>'
+      go_flag: '-<option>'
+      short_space: '-<o> <argument>'
+      long_space: '--<option> <argument>'
+      short_equals: '-<o>=<argument>'
+      long_equals: '--<option>=<argument>'
+      short_keyval: '-<o> <key>=<value>'
+      long_keyval: '--<option> <key>=<value>'
+      positional: '<argument>'
+      keyval: '<option>=<argument>'
+      attached: '-<o><argument>'
+      env_arg: '<VARIABLE>=<value>'
+    examples:
+      - input: '{{ my_flat_hash | to_cli_args }}'
+        output: '--key1 valuu_one --key2 val_two --key3 third value'
+        description: Default (long_space) format
+      - input: '{{ my_flat_hash | to_cli_args: "long_equals" }}'
+        output: '--key1=valuu_one --key2=val_two --key3=third value'
+        description: Long equals format
+      - input: '{{ cli_flags_hash | to_cli_args: "short_space" }}'
+        output: '-k valuu_one -v val_two -o third value'
+        description: Single-letter flags with values
+      - input: '{{ my_flat_hash | to_cli_args: "positional" }}'
+        output: 'valuu_one val_two third value'
+        description: Positional arguments only
+      - input: '{{ my_flat_hash | to_cli_args: "env_arg" }}'
+        output: 'KEY1=valuu_one KEY2=val_two KEY3=third value'
+        description: Environment variable format (uppercase keys)
+      - input: '{{ my_flat_hash | to_cli_args: "keyval" }}'
+        output: 'key1=valuu_one key2=val_two key3=third value'
+        description: Key=value format
+
+  - key: to_yaml
+    name: Data objects to YAML
+    source: asciisourcerer
+    kind: object-conversion
+    description: Turn any parameter or data object into YAML format.
+    examples:
+      - input: '{{ my_flat_hash | to_yaml }}'
+        output: |
+          ---
+          key1: valuu_one
+          key2: val_two
+          key3: third value
+      - input: '{{ my_flat_hash | to_yaml: "flow" }}'
+        output: '{key1: "valuu_one", key2: "val_two", key3: "third value"}'
+      - input: '{{ page.tags | to_yaml }}'
+        output: |
+          ---
+          - Seattle
+          - Tacoma
+          - Spokane
+      - input: '{{ page.tags | to_yaml: "flow" }}'
+        output: '["Seattle", "Tacoma", "Spokane"]'
+      - input: '{{ page.tags | to_yaml: "flow", "quotes" }}'
+        output: '["Seattle", "Tacoma", "Spokane"]'
+
+  - key: to_json
+    name: Data objects to JSON
+    source: asciisourcerer
+    kind: object-conversion
+    description: Turn any parameter or data object into JSON format.
+    examples:
+      - input: '{{ my_flat_hash | to_json }}'
+        output: |
+          {"key1":"valuu_one","key2":"val_two","key3":"third value"}
+      - input: '{{ page.tags | to_json }}'
+        output: |
+          ["Seattle","Tacoma","Spokane"]
+      - input: '{{ odd_keys_hash | to_json }}'
+        output: |
+          {"key 1":"valuu_one","$key2":"val_two","key:3":"third value"}
+
+  - key: regexreplace
+    deprecated: true
+
+  - key: replace_regex
+    name: Regular Expression Replace
+    source: asciisourcerer
+    alias: regexreplace
+    description: Use regular expressions to match and replace text patterns.
+    kind: string-management
+    examples:
+      - input: '{{ "hello world" | replace_regex: "world", "there" }}'
+        output: "hello there"
+      - input: '{{ "one,two,three" | replace_regex: ",", "-" }}'
+        output: "one-two-three"
+
+  - key: match
+    name: Pattern Match
+    source: asciisourcerer
+    description: Returns  of string or number matches pattern.
+    kind: string-analysis
+    examples:
+      - input: |
+          {% assign matched = "testword" | match: "^.*word$" %}
+          {% if matched %}It matched!{% endif %}
+        output: "It matched!"
+
+  # - key: transliterate
+  #   name: Transliterate to ASCII
+  #   source: sterile
+  #   description: Convert Unicode [and accented ASCII] characters to their plain-text ASCII equivalents.
+  #   group: string-recode
+  #   examples:
+  #     - input: '{{ "šţɽĩɳģ" | transliterate }}'
+  #       output: string
+
+  # - key: smart_format
+  #   name: Smart Format
+  #   source: sterile
+  #   description: Convert UTF-8 or HTML-tagged text to “curly” quotes, emdashes, copyright, trademark, etc.
+  #   group: string-conversion
+  #   examples:
+  #     - input: |
+  #         {% capture statement %}“He said, ‘Away, Drake!’”{% endcapture %}
+  #         {{ statement | smart_format }}
+  #       output: “He said, ‘Away, Drake!’”
+  #     - input: |
+  #         {% capture statement %}"He said, <b>'Away, Drake!'</b>"{% endcapture %}
+  #         {{ statement | smart_format }}
+  #       output: “He said, ‘Away, Drake!’”
+
+  # - key: encode_entities
+  #   name: Encode Entities
+  #   source: sterile
+  #   description: Turn Unicode characters into their HTML equivilents.
+  #   group: string-recode
+  #   examples:
+  #     - input: '{{ "“Economy Hits Bottom,” ran the headline" | encode_entities }}'
+  #       output: '&ldquo;Economy Hits Bottom,&rdquo; ran the headline'
+
+  # - key: decode_entities
+  #   name: Decode Entities
+  #   source: sterile
+  #   description: Turn HTML entities into Unicode characters.
+  #   group: string-recode
+  #   examples:
+  #     - input: '{{ "&ldquo;Economy Hits Bottom,&rdquo; ran the headline" | decode_entities }}'
+  #       output: '“Economy Hits Bottom,” ran the headline'
+
+  # - key: titlecase
+  #   name: Titlecase
+  #   source: sterile
+  #   description: Format text appropriately for titles.
+  #   group: string-conversion
+  #   examples:
+  #     - output: "Q&A With Steve Jobs: 'That's What Happens in Technology'"
+  #       input: |
+  #         {{ "Q&A with Steve Jobs: 'That's what happens in technology'" | titlecase }}
+  #       test: false
+
+  # - key: strip_tags
+  #   name: Strip Tags
+  #   source: sterile
+  #   description: Remove HTML/XML tags from text. Also strips out comments, PHP and ERB style tags.
+  #   group: string-conversion
+  #   examples:
+  #     - output: 'Visit our website!'
+  #       input: '{{ "Visit our <a href=\"http://example.com\">website!</a>" | strip_tags }}'
+  #       test: false
+
+  # - key: sterilize
+  #   name: Sterilize
+  #   source: sterile
+  #   description: Transliterate to ASCII and strip out any HTML/XML tags.
+  #   group: string-recode
+  #   examples:
+  #     - input: '{{ "<b>nåsty</b>" | sterilize }}'
+  #       output: nasty
+
+  - key: holds_liquid
+    name: Holds Liquid
+    source: asciisourcerer
+    description: Returns true if a snippet of text contains Liquid markup tags.
+    kind: object-analysis
+    examples:
+      - input: |
+          {{ liquidy_text | holds_liquid }}
+        output: 'true'
+      - input: |
+          {{ "This is just text." | holds_liquid }}
+        output: 'false'
+
+  - key: store_list_concat
+    name: Metastore list concat
+    source: asciisourcerer
+    description: |
+      Concatenates each Array-formatted value of the same-named property across all nodes in an Array of Hashes (Metastore).
+      Accepts an Array of Hashes and the keyname of a property to collect from.
+    kind: array-management
+    examples:
+      - input: |
+          {{ data.metastore | store_list_concat: "children" | jsonify }}
+        output: '["child1","child2","child3","child4","child5","child6"]'
+
+  - key: store_list_dupes
+    name: Metastore list duplicates
+    source: asciisourcerer
+    description: |
+      Returns a list of duplicate items among multiple Arrays across multiple same-named properties in an Array of Hashes (Metastore).
+      Accepts an Array of Hashes and the keyname of a Scalar property to check; returns the names of duplicate properties.
+    kind: array-management
+    examples:
+      - input: |
+          {{ data.metastore | store_list_dupes: "children" | jsonify }}
+        output: '["child1"]'
+
+  - key: relative_url
+    name: Relative URL
+    source: jekyll
+    description: |
+      Prepend `baseurl` config value to the input to convert a URL path into a relative URL.
+      This is recommended for a site that is hosted on a subpath of a domain.
+
+      NOTE: Requires registration of a `site.baseurl` object outside `jekyll build` contexts.
+    kind: string-conversion
+    examples:
+      - input: '{{ "test-path" | relative_url }}'
+        output: "/docs/test-path"
+
+  - key: absolute_url
+    name: Absolute URL
+    source: jekyll
+    description: |
+      Prepend `url` and `baseurl` values to the input to convert a URL path to an absolute URL.
+
+      NOTE: Requires registration of `site.baseurl` and `site.url` objects outside `jekyll build` contexts.
+    kind: string-conversion
+    examples:
+      - input: '{{ "test-path" | absolute_url }}'
+        output: "https://example.com/docs/test-path"
+
+  - key: markdownify
+    name: Markdownify
+    source: jekyll
+    description: Converts a Markdown string to HTML.
+    kind: string-conversion
+    examples:
+      - input: '{{ "Test with **bold** and a [link](https://example.com)." | markdownify }}'
+        output: '<p>Test with <strong>bold</strong> and a <a href="https://example.com">link</a>.</p>'
+
+  - key: smartify
+    name: Smartify
+    source: jekyll
+    description: 'Convert "quotes" into &ldquo;smart quotes.&rdquo;'
+    kind: string-conversion
+    examples:
+      - input: |
+          {{ 'He said, "Hello!"' | smartify }}
+        output: "He said, “Hello!”"
+
+
+  - key: sassify
+    name: Sassify
+    source: jekyll
+    description: Convert an indented-syntax Sass string into CSS.
+    kind: string-conversion
+    examples:
+      - input: |
+          {{ sass_text | sassify }}
+        output: |
+          body {
+            color: red;
+          }
+
+  - key: scssify
+    name: Scssify
+    source: jekyll
+    description: Convert a SCSS-formatted (brace/semicolon syntax) string into CSS.
+    kind: string-conversion
+    examples:
+      - input: |
+          {{ scss_text | scssify }}
+        output: |
+          body {
+            color: red;
+          }
+  
+  - key: asciidocify
+    name: AsciiDocify
+    source: jekyll-asciidoc
+    description: Convert an AsciiDoc string to HTML, with or without paragraphing.
+    kind: string-conversion
+    examples:
+      - input: |
+          {{ "Test with *bold* and a http://example.com[link]." | asciidocify }}
+        output: |
+          <div class="paragraph">
+          <p>Test with <strong>bold</strong> and a <a href="http://example.com">link</a>.</p>
+          </div>
+      - input: |
+          {{ "Test with *bold* and a http://example.com[link]." | asciidocify: "inline" }}
+        output: |
+          Test with <strong>bold</strong> and a <a href="http://example.com">link</a>.
+
+sources:
+  jekyll:
+    name: Jekyll
+    url: https://jekyllrb.com/docs/liquid/filters/
+  shopify:
+    name: Shopify
+    url: https://shopify.github.io/liquid/filters/
+  asciisourcerer:
+    name: AsciiSourcerer
+    url: https://github.com/DocOps/asciisourcerer
+  jekyll-asciidoc:
+    name: jekyll-asciidoc
+    url: https://github.com/asciidoctor/jekyll-asciidoc
+
+kinds:
+  - key:  date-format
+    name: Date Formatting
+  - key:  array-select
+    name: Array Selection
+  - key:  array-organizing
+    name: Array Organizing
+  - key:  string-escape
+    name: String Escaping
+  - key:  string-analysis
+    name: String Analysis
+  - key:  object-conversion
+    name: Object Conversion
+  - key:  string-conversion
+    name: String Conversion
+  - key:  string-management
+    name: String Management
+  - key:  array-management
+    name: Array Management
+  - key:  object-analysis
+    name: Object Analysis
+  - key:  math
+    name: Math Operations
+  - key:  string-recode
+    name: String Recode
+  - key:  variable
+    name: Variable Defaults
+
+example_data:
+  tags_array: ['foo', 'bar', 'baz']
+  my_flat_hash:
+    key1: valuu_one
+    key2: val_two
+    key3: 'third value'
+  cli_flags_hash: # distinct first letters, for the to_cli_args short_flag example
+    kind: valuu_one
+    verbose: val_two
+    output: 'third value'
+  odd_keys_hash: # a map of YAML node keys with odd chars, spaces, etc
+    "key 1": valuu_one
+    "$key2": val_two
+    "key:3": 'third value'
+  comment_text: 'A string that is obviously longer than 25 characters'
+  mixed_array: ['a', null, 'b', null, 'c']
+  liquidy_text: "{% assign var = 'anything' %}"
+  scss_text: '$color: red; body { color: $color; }'
+  sass_text: |
+    $color: red
+    body
+      color: $color
+  data:
+    metastore:
+      - {name: "node1", children: ["child1", "child2"], type: "typeA"}
+      - {name: "node2", children: ["child3", "child4"], type: "typeB"}
+      - {name: "node3", children: ["child1", "child5", "child6"], type: "typeA"}
+    time: 2008-11-07T13:07:54-08:00
+    users:
+      - {user: "alice", level: 1}
+      - {user: "andie", level: 2}
+      - {user: "boris", level: 1}
+    members:
+      - {user: "andie", grad_year: 2014, projects: ["fooman", "barbaz"]}
+      - {user: "lonnie", grad_year: 2014, projects: ["fooman"]}
+      - {user: "cindy", grad_year: 2012, projects: ["fooman", "foobar"]}
+  page:
+    tags: ["Seattle", "Tacoma", "Spokane"]
+    content: "One Two Three"
+  site:
+    url: "https://example.com"
+    baseurl: "/docs"
+    pages:
+      - {title: "Home", path: "/"}
+      - {title: "About", path: "/about"}
+      - {title: "Contact", path: "/contact"}
+    posts:
+      - {title: "First Post", author: "alice", date: 2024-01-01}
+      - {title: "Second Post", author: "bob", date: 2024-01-15}

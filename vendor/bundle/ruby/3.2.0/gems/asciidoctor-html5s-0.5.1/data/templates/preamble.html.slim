@@ -1,0 +1,4 @@
+section#preamble aria-label='Preamble'
+  =content
+- if (document.attr? :toc) && (document.attr? 'toc-placement', 'preamble')
+  include _toc.html
