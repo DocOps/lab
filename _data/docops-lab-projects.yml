@@ -90,7 +90,7 @@ projects:
     desc: |
       Deep-dive courses and other resources for learning general docs-as-code methods.
       Initially focused on using AYL DocStack tools and strategies to tackle complex documentation tasks and projects.
-      Includes nascent AsciiDoc EDU platform/framework code.
+      Includes nascent AsciiDoc LMS platform/framework code.
     line: Learn to author and manage documents the way progrmamers do.
     star: true
     page: true
@@ -196,7 +196,7 @@ projects:
     wave: 1
     done: 80%
     icon: book-open
-    deps: [jekyll-docops,jekyll-openapi,adocBook,asciidocsy-jekyll-theme]
+    deps: [jekyll-docops-clide,jekyll-openapi,adocBook,asciidocsy-jekyll-theme]
 
 
 # ENVIRONMENT
@@ -390,7 +390,7 @@ projects:
     wave: 3
     done: 50%
     icon: layers
-    deps: [docops, LiquiDoc, SchemaGraphy, ayl-docstack]
+    deps: [docops-clide, LiquiDoc, SchemaGraphy, ayl-docstack]
     page: true
 
 ## LegalDoc Ops:
@@ -408,12 +408,12 @@ projects:
     wave: 3
     done: 40%
     icon: scale
-    deps: [docops, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
+    deps: [docops-clide, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
     page: true
 
-## AsciiDoc EDU:
-  - name: AsciiDoc EDU
-    slug: asciidoc-edu
+## AsciiDoc LMS:
+  - name: AsciiDoc LMS
+    slug: asciidoc-lms
     type: framework
     desc: |
       The Educational Document Utilities framework for authoring and maintaining curriculum matter, such as textbooks, workbooks, slide presentations, quizzes, exams, grades, and so forth.
@@ -428,7 +428,7 @@ projects:
     done: 30%
     icon: graduation-cap
     note: Currently developed as part of Docs-as-Code School.
-    deps: [docops, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
+    deps: [docops-clide, LiquiDoc, SchemaGraphy, FormaGraphy, ayl-docstack]
     page: true
 
 # APIs
@@ -625,14 +625,15 @@ projects:
     done: 70%
     icon: text-cursor-input
 
-## docops:
-  - name: DocOps CLI
-    slug: docops
+## docops-clide:
+  - name: DocOps CLIDE
+    slug: docops-clide
+    repo: docops
     type: utility
     desc: |
-      A domain-customized CommandLine-Integrated Documentation Environment utility for automating document management tasks, including project initiation, new-file stubbing, scripted-build execution, and Git-related functions.
-      A way to organize and execute your own scripted procedures using simple, semantic commands.
-      The `docops` CLI has preset grammars and workflows for different domains/frameworks: tech docs/AsciiDoc Ops, legal docs/LegalDoc Ops, and educational docs (Liquid EDU).
+      A domain-customized _commandline-integrated documentation environment_ utility for automating docs-processing tasks, including project initiation, new-file stubbing, scripted build execution, third-party tool integration, and Git-related functions.
+      A way to organize and execute scripted procedures using simple, semantic commands.
+      The `docops` CLI has preset grammars and workflows for different domains/frameworks: tech docs/AsciiDoc Ops, legal docs/LegalDoc Ops, and educational docs (AsciiDoc LMS), and business docs (OfficeDoc Ops).
     line: Domain-customized CLI for automating document management workflows
     vrsn: 0.1.0
     tags: [CLI,automation,documentation,workflow,project management,Dockerized]
@@ -1140,7 +1141,7 @@ projects:
 #     line: Framework for designing interactive challenges like stories, surveys, exams, quiz games, and elections
 #     vrsn: 0.1.0
 #     tags: [interactive,framework,utility,game]
-#     deps: [LiquiDoc, docops, formagraphy]
+#     deps: [docops-clide, formagraphy]
 #     wave: 5
 #     icon: split
 
