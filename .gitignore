@@ -68,3 +68,6 @@ feeds/aggregate.xml
 
 # DocOps Lab vendor files
 scripts/.vendor/
+
+# Private internal docs
+_docs/policy/sgyml-profile-dsl-structure-policy.adoc
