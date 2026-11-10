@@ -196,7 +196,7 @@ projects:
     wave: 1
     done: 80%
     icon: book-open
-    deps: [jekyll-docops-clide,jekyll-openapi,adocBook,asciidocsy-jekyll-theme]
+    deps: [jekyll-docops,jekyll-openapi,adocBook,asciidocsy-jekyll-theme]
 
 
 # ENVIRONMENT
@@ -505,7 +505,6 @@ projects:
     page: true
     docs:
       user: https://releasehx.docopslab.org/docs
-      api:  /releasehx/
 
 ## Issuer:
   - name: Issuer

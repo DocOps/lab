@@ -218,10 +218,10 @@ Between minor versions, patch versions may vary due to inconsistent applicabilit
 
 Perform Steps 1 through 5 of the standard release procedure:
 
-. <<release-step-history>>
-. <<release-step-merge-to-main>>
-. <<release-step-tag-release>>
-. <<release-step-announce>>
-. <<release-step-artifacts>>
+. link:/docs/release/#release-step-history[Prepare Release History]
+. link:/docs/release/#release-step-merge-to-main[Merge to Main]
+. link:/docs/release/#release-step-tag-release[Tag Release]
+. link:/docs/release/#release-step-announce[Create GitHub Release]
+. link:/docs/release/#release-step-artifacts[Publish Remaining Artifacts]
 
 // end::rollback-patching[]
