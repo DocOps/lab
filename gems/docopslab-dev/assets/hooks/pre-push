@@ -38,7 +38,7 @@ echo "🔍 Running comprehensive linting..."
 
 # If the repo has a Gemfile, make sure none of the gems have a path: '../*'
 # (while './*' paths are allowed since they won't break for other users)
-if [ -f "Gemfile" ]; then
+if [[ -f "Gemfile" ]]; then
   if grep -E 'path:\s*['"'"'"]\.\./' Gemfile > /dev/null; then
     echo ""
     echo "❌ Error: Detected gems with parent directory path: '../*' in Gemfile."

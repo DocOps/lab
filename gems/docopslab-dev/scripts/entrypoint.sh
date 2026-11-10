@@ -5,13 +5,13 @@
 set -euo pipefail
 
 # Fast path: no args -> interactive shell
-if [ "$#" -eq 0 ]; then
+if [[ $# -eq 0 ]]; then
   exec bash
 fi
 
 # If running inside a project with a Gemfile, ensure per-project bundler config
 # Only configure bundler if we're about to use it
-if [ -f "Gemfile" ] && { [ "$1" = "rake" ] || [[ "$1" == :* ]] || [[ "$1" == labdev:* ]] || [ "$1" = "bundle" ]; }; then
+if [[ -f "Gemfile" ]] && { [[ "$1" == "rake" ]] || [[ "$1" == :* ]] || [[ "$1" == labdev:* ]] || [[ "$1" == "bundle" ]]; }; then
   # Force per-project install path to .bundle/
   bundle config set --local path '.bundle' >/dev/null
 
@@ -26,9 +26,9 @@ if [ -f "Gemfile" ] && { [ "$1" = "rake" ] || [[ "$1" == :* ]] || [[ "$1" == lab
 fi
 
 # Rake routing with bundle exec when a project exists
-if [ "$1" = "rake" ]; then
+if [[ "$1" == "rake" ]]; then
   shift
-  if [ -f "Gemfile" ]; then
+  if [[ -f "Gemfile" ]]; then
     exec bundle exec rake "$@"
   else
     exec rake "$@"
@@ -40,7 +40,7 @@ fi
 if [[ $# -gt 0 ]] && [[ "$1" == :* ]]; then
   task="${1#:}"
   shift
-  if [ -f "Gemfile" ]; then
+  if [[ -f "Gemfile" ]]; then
     exec bundle exec rake "labdev:$task" "$@"
   else
     exec rake -r docopslab/dev "labdev:$task" "$@"
@@ -50,14 +50,14 @@ fi
 # labdev:* tasks -> rake tasks (BACKWARD COMPATIBILITY)
 if [[ $# -gt 0 ]] && [[ "$1" == labdev:* ]]; then
   # Special handling for init tasks - create minimal Rakefile if needed
-  if [[ "$1" == labdev:init:all ]] && [ ! -f "Rakefile" ]; then
+  if [[ "$1" == labdev:init:all ]] && [[ ! -f "Rakefile" ]]; then
     echo "# frozen_string_literal: true
 
 require 'docopslab/dev'" > Rakefile
   fi
   
   # Other labdev tasks need a project context
-  if [ -f "Gemfile" ]; then
+  if [[ -f "Gemfile" ]]; then
     exec bundle exec rake "$@"
   else
     exec rake -r docopslab/dev "$@"

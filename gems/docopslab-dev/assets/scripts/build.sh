@@ -10,13 +10,13 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Source the shared build library.
 if [[ -f "$SCRIPT_DIR/build-common.sh" ]]; then
-  # shellcheck source=build-common.sh
+  # shellcheck disable=SC1091 # resolved at runtime from script dir
   source "$SCRIPT_DIR/build-common.sh"
 elif [[ -f "$SCRIPT_DIR/lib/build-common.sh" ]]; then
-  # shellcheck source=build-common.sh
+  # shellcheck disable=SC1091 # resolved at runtime from lib/
   source "$SCRIPT_DIR/lib/build-common.sh"
 elif [[ -f "scripts/.vendor/docopslab/build-common.sh" ]]; then
-  # shellcheck source=build-common.sh
+  # shellcheck disable=SC1091 # resolved at runtime from the vendored path
   source "scripts/.vendor/docopslab/build-common.sh"
 else
   printf 'Error: build-common.sh not found. Run rake labdev:config:sync to get centrally managed scripts.\n' >&2
