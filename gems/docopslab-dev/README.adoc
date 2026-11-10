@@ -365,7 +365,7 @@ docker run -it --rm \
 
 // tag::reference[]
 
-See <<more-example-commands>> for additional common commands.
+See <<handy-labdev-tasks>> for additional common commands.
 
 [[handy-labdev-tasks]]
 === Handy Tasks
@@ -565,6 +565,11 @@ Enable in manifest:: Add `htmlproofer` tool with `enabled: true`
 
 HTMLProofer validates links, images, and HTML structure in built sites.
 Only enabled for projects that generate HTML output (Jekyll sites, etc.).
+
+Link scope:: Absolute links to the hosts listed in `own_hosts` are checked on pages unchanged since the last `origin/gh-pages` deploy.
+Links to any other host are checked only on pages that changed since that deploy, so unreliable third-party sites do not block unrelated changes.
+Own-host links on changed pages are deferred until they deploy.
+Without an `origin/gh-pages` baseline, all external links are checked.
 
 ifndef::site-gen-jekyll[]
 Default base config is in `gems/docopslab-dev/assets/config-packs/htmlproofer/base.yml`.

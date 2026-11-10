@@ -525,14 +525,92 @@ module DocOpsLab
 
           puts "🐛 [DEBUG] Final config_options: #{config_options.inspect}" if ENV['LABDEV_DEBUG'] == 'true'
 
-          begin
-            HTMLProofer.check_directory(site_dir, config_options).run
-            puts '✅ HTMLProofer passed'
-            true
-          rescue StandardError => e
-            puts "❌ HTMLProofer failed: #{e.message}"
-            false
+          # `own_hosts` is a config key, not an HTMLProofer option; remove it before checking.
+          own_hosts = Array(config_options.delete(:own_hosts))
+          changed_pages = changed_site_pages(site_dir)
+
+          if changed_pages.nil?
+            puts '⚠️ No origin/gh-pages baseline; checking third-party links on all pages'
+            return run_htmlproofer_pass(site_dir, config_options)
           end
+
+          all_pages = Dir.glob('**/*.html', base: site_dir)
+          unchanged_pages = all_pages - changed_pages
+
+          # Unchanged pages: our own hosts are checked live; third-party hosts are skipped.
+          passed = true
+          unless unchanged_pages.empty?
+            unchanged_options = htmlproofer_options(
+              config_options, ignore_pages: changed_pages,
+                                                    ignore_urls: [third_party_url_pattern(own_hosts)])
+            passed = run_htmlproofer_pass(site_dir, unchanged_options)
+          end
+
+          return passed if changed_pages.empty?
+
+          # Changed pages: third-party links are checked; absolute links to our own hosts are
+          # deferred until the page is deployed (they may point at pages this push adds).
+          puts "🔗 Checking #{changed_pages.size} changed page(s); own-host absolute links deferred until deploy"
+          changed_options = htmlproofer_options(
+            config_options, ignore_pages: unchanged_pages,
+                                                ignore_urls: [own_url_pattern(own_hosts)])
+          run_htmlproofer_pass(site_dir, changed_options) && passed
+        end
+
+        def run_htmlproofer_pass site_dir, options
+          HTMLProofer.check_directory(site_dir, options).run
+          puts '✅ HTMLProofer passed'
+          true
+        rescue StandardError => e
+          puts "❌ HTMLProofer failed: #{e.message}"
+          false
+        end
+
+        def htmlproofer_options base, ignore_pages: [], ignore_urls: []
+          base.merge(
+            ignore_files: [*base[:ignore_files], *ignore_pages.map { |page| /#{Regexp.escape(page)}\z/ }],
+            ignore_urls: [*base[:ignore_urls], *ignore_urls])
+        end
+
+        # Alternatives matching URLs on our own hosts. Entries are host names, optionally with a
+        # path prefix (e.g. `github.com/DocOps/`); subdomains of a host are included.
+        def own_url_alternatives own_hosts
+          own_hosts.map do |entry|
+            host, path = entry.split('/', 2)
+            host_pattern = "(?:[\\w-]+\\.)*#{Regexp.escape(host)}"
+            path ? "#{host_pattern}/#{Regexp.escape(path)}" : "#{host_pattern}(?:[/:?#]|\\z)"
+          end
+        end
+
+        # Matches http(s) URLs that are NOT on one of `own_hosts`.
+        def third_party_url_pattern own_hosts
+          Regexp.new("\\Ahttps?://(?!#{own_url_alternatives(own_hosts).join('|')})")
+        end
+
+        # Matches http(s) URLs on one of `own_hosts`; matches nothing when there are none.
+        def own_url_pattern own_hosts
+          alternatives = own_url_alternatives(own_hosts)
+          return /(?!)/ if alternatives.empty?
+
+          Regexp.new("\\Ahttps?://(?:#{alternatives.join('|')})")
+        end
+
+        # Returns HTML pages (relative to site_dir) whose built content differs from the
+        # deployed origin/gh-pages branch, or nil when that branch is not available.
+        def changed_site_pages site_dir
+          listing, status = Open3.capture2('git', 'ls-tree', '-r', 'origin/gh-pages')
+          return nil unless status.success?
+
+          deployed = listing.lines.to_h do |line|
+            meta, path = line.chomp.split("\t", 2)
+            [path, meta.split[2]]
+          end
+
+          pages = Dir.glob('**/*.html', base: site_dir).sort
+          built_ids, = Open3.capture2(
+            'git', 'hash-object', '--stdin-paths',
+            stdin_data: pages.map { |page| File.join(site_dir, page) }.join("\n"))
+          pages.zip(built_ids.split("\n")).reject { |page, sha| deployed[page] == sha }.map(&:first)
         end
 
         def run_auto_fix context

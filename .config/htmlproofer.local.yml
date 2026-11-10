@@ -2,22 +2,36 @@
 # This file contains project-specific overrides for HTMLProofer settings.
 # It will be merged with the base organizational config at runtime.
 
-# Project-specific URL ignores (will be merged with base ignores)
-ignore_urls:
-  # exclude all links at medium.com
-  - /medium.com/
-  - /www.4ipcouncil.com/
-  - "/medium.com/"
-  - "claudecode.io"
-  - "stock.adobe.com"
-  - "/feeds/aggregate.xml"
-  - "/docs-blogs/#blog-section"
-  - "/docs-blogs/#podcast-section"
-  - "/docs-blogs/#newsletter-section"
+# Hosts we own. Absolute links to these are checked on pages unchanged since the last
+# gh-pages deploy (deferred on changed pages). Links to any other host are checked only
+# on pages that changed since the last gh-pages deploy.
+own_hosts:
+  - docopslab.org
+  - docopslab.github.io
+  - github.com/DocOps/
 
-# Project-specific file ignores (will be merged with base ignores)  
-# ignore_files:
-#   - project-specific-dir/
+# Project-specific URL ignores (will be merged with base ignores)
+# Third-party hosts that block, mis-report, or time out under the checker.
+# Plain strings match exactly; /.../ strings are regular expressions.
+ignore_urls:
+  - /medium\.com/
+  - /www\.4ipcouncil\.com/
+  - /claudecode\.io/
+  - /stock\.adobe\.com/
+  - /damilola-oladele\.dev/
+  - /storyneedle\.com/
+  - /youtube\.com\/feeds/
+  - /github\.com\/signup/
+  - "/feeds/aggregate.xml"
+  # Kind-picker links on docs-blogs; the target headings are created by page JavaScript
+  - "#blog-section"
+  - "#podcast-section"
+  - "#newsletter-section"
+
+# Project-specific file ignores (will be merged with base ignores)
+ignore_files:
+  # Git-ignored private policy doc; built locally but never published
+  - sgyml-profile-dsl-structure-policy
 
 # Override any base settings here:
 # check_external_hash: true
