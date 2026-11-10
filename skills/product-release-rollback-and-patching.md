@@ -88,9 +88,9 @@ Repeat for every affected branch then release the patched versions.
 
 Perform Steps 1 through 5 of the standard release procedure:
 
-1. [release-step-history]
-2. [release-step-merge-to-main]
-3. [release-step-tag-release]
-4. [release-step-announce]
-5. [release-step-artifacts]
+1. [Prepare Release History](/docs/release/#release-step-history)
+2. [Merge to Main](/docs/release/#release-step-merge-to-main)
+3. [Tag Release](/docs/release/#release-step-tag-release)
+4. [Create GitHub Release](/docs/release/#release-step-announce)
+5. [Publish Remaining Artifacts](/docs/release/#release-step-artifacts)
 

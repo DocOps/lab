@@ -88,14 +88,14 @@ Code comments come in several distinct types.
    We don’t code much HTML directly. It is mostly either converted from lightweight markup or rendered by Liquid templates (or JavaScript). Comments are usually to mark nested objects for convenience, to label major structures or to highlight/clarify obscure asset references, or as directives such as `<!-- vale off -→`, which disables content linting.
 
 **JavaScript:**
-   We are not a JavaScript shop, but we do write a good bit of vanilla JavaScript. Comments are used mainly to establish our bearings in the code and therefor are sometimes heavier than with other languages.
+   We are not a JavaScript shop, but we do write a good bit of vanilla JavaScript. Comments are used mainly to establish our bearings in the code and therefore are sometimes heavier than with other languages.
 
 **CSS/SCSS:**
    We mainly write CSS as SCSS, and commenting is mainly to express the intent upon compiling.
 
 ### General Style Rules
 
-- Do not use em dashes or en dashes or (` - `).
+- Do not use em dashes or en dashes or spaced hyphens (` - `).
 
   - Use colons (`: `) to prefix a comment with a classification.
   - Use semicolons (`; `) to break up clauses.
@@ -139,8 +139,8 @@ Expository comments (and their authors) should adhere to these principles:
 
    Exception: Sometimes an oddity or pivotal point needs to be highlighted even in otherwise straightforward code.
 
-**7} Do not use comments as notes to reviewers.:**
-   Temporary comments intended to guide code reviewers should be avoided. Code used to help with flag logical points or communicate during pair programming or pre-commit review should be denoted as admonitions (such as `# LOGIC: ` or `# REVIEW: `) or `# TEMP: ` and removed before merging.
+**7) Do not use comments as notes to reviewers.:**
+   Temporary comments intended to guide code reviewers should be avoided. Comments used to flag logical points or communicate during pair programming or pre-commit review should be denoted as admonitions (such as `# LOGIC: ` or `# REVIEW: `) or `# TEMP: ` and removed before merging.
 
 ### General Examples
 
@@ -151,7 +151,7 @@ Expository comments (and their authors) should adhere to these principles:
 FileUtils.mkdir_p(File.dirname(target_path))
 ```
 
-This code does _exactly and only_ what the English comment says. In fact, the comment is muddier than the code. The code will create any necessary parent directories, whereas the comment only mentions the destination directory itself and does not explain _if needed_. In `mkdor_p`, the _if needed_ means _if the ancestor directories do not exist_.
+This code does _exactly and only_ what the English comment says. In fact, the comment is muddier than the code. The code will create any necessary parent directories, whereas the comment only mentions the destination directory itself and does not explain _if needed_. In `mkdir_p`, the _if needed_ means _if the ancestor directories do not exist_.
 
 ```ruby
 # Determine if we should copy the file
@@ -175,7 +175,7 @@ end
 def normalize_problem_path reported_path, source_file
 ```
 
-A comment preceded and followed by blank lines indicates that it references or labels multiple subsequent blocks. (Or it is be part of a series of such comments that tend to and in its own case may yet still cover multiple blocks each.)
+A comment preceded and followed by blank lines indicates that it references or labels multiple subsequent blocks. (Or it is part of a series of such comments, each of which may cover multiple blocks.)
 
 This categorizes sections for user convenience. It also helps LLM-backed tools to find relevant sections more easily.
 
@@ -298,7 +298,7 @@ end # method my_method
 end # module OurCoolGem
 ```
 
-Whenever possible, even when deep nesting is warranted, keep files small enough that such labels won’t be need, all else being equal.
+Whenever possible, even when deep nesting is warranted, keep files small enough that such labels won’t be needed, all else being equal.
 
 ### YAML Commenting Protocols
 

@@ -38,7 +38,7 @@ All runtime projects provide have their own Docker image hosted on Docker Hub an
 
 Some of our CI/CD pipelines will be “Dockerized” to provide consistent builds and tests across numerous repos.
 
-The DocOps Box project maintains an elaborate Dockerfile and image/container management script (`docksh`) that can help manage multiple environments. This is most advantageous for non-Ruby/non-programmer users building a complex documentation codebase in the Ruby/DocOps Lab ecosystem or using multiple DocOps Lab or similar tools across numerous multiple codebases.
+The DocOps Box project maintains an elaborate Dockerfile and image/container management script (`dxbx`) that can help manage multiple environments. This is most advantageous for non-Ruby/non-programmer users building a complex documentation codebase in the Ruby/DocOps Lab ecosystem or using multiple DocOps Lab or similar tools across numerous multiple codebases.
 
 ### Application Dockerfiles and Images
 

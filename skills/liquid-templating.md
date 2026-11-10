@@ -49,7 +49,7 @@ Not all custom tags are always available, but the following are generally availa
 
 ## Liquid Filters
 
-A canonical listing of custom filters is available in the AsciiSourcerer gem at [`lib/specs/data/liquid-filters.yml`](https://github.com/DocOps/asciisourcerer/blob/main/lib/specs/data/liquid-filters.yml).
+A canonical listing of custom filters is available in the AsciiSourcerer gem at [`specs/data/liquid-filters.yml`](https://github.com/DocOps/asciisourcerer/blob/main/specs/data/liquid-filters.yml).
 
 The full compendium includes _all_ filters available in Liquid 5 and Jekyll 4, even though officially Jekyll and AsciiSourcerer standardize on Liquid 4. Shopify’s novel Liquid 5 filters are hard-coded in AsciiSourcerer.
 

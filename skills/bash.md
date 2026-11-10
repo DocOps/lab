@@ -43,7 +43,7 @@ Follow the shebang with a brief inline comment block covering the script’s pur
 
 ```bash
 #!/usr/bin/env bash
-# script-name.sh: brief description of what the script does.
+# script-name.sh: brief description of what the script does
 # Requires: curl, jq
 ```
 
@@ -59,7 +59,7 @@ Structure your script into logical sections to improve readability.
 
 ```bash
 #!/usr/bin/env bash
-# script-name: brief description.
+# script-name: brief description
 # Depends on: curl, jq
 set -euo pipefail
 
@@ -100,11 +100,11 @@ Use a semicolon (`;`) to combine phrases into a single line when they are closel
 Example comment styles
 
 ```bash
-# clobber.sh: A script to overwrite files; use with caution.
+# clobber.sh: A script to overwrite files; use with caution
 
 # Write config file (first run only; do not clobber user edits)
 
-# path set by init --local; sync uses it instead of git pull
+# Path set by init --local; sync uses it instead of git pull
 ```
 
 ### Section Comments
@@ -257,13 +257,13 @@ _log_message "INFO" "Process complete."
 
 ### Returning Values
 
-**To return a string or data** , use `echo` or `printf` and capture the output using command substitution.
+**To return a string or data** , use `printf` (preferably) or `echo` and capture the output using command substitution.
 
 ```bash
 _get_user_home() {
   local user="$1"
   # ... logic to find home directory ...
-  echo "/home/$user" # Returns string via stdout
+  printf '%s\n' "/home/$user" # Returns string via stdout
 }
 ```
 
@@ -323,7 +323,7 @@ Use `set -euo pipefail` at the top of every script.
 **`o pipefail`:**
    Fail a pipeline if any command within it fails, not just the last one.
 
-Print error messages to standard error (`stderr`) and exit with a non-zero status.
+Print error messages to standard error (`stderr`) and exit with a non-zero status. The `_fail` and `_warn` style helpers do this for you (see Output Streams).
 
 ```bash
 #!/usr/bin/env bash
@@ -378,7 +378,7 @@ Do not place `set -euo pipefail` inside a sourced library file. The calling scri
 
 ```bash
 #!/usr/bin/env bash
-# my-lib.sh; shared helpers sourced by build scripts.
+# my-lib.sh: shared helpers sourced by build scripts
 # Do NOT add set -euo pipefail here.
 
 _do_something() {
@@ -439,20 +439,82 @@ echo -e "Error: $name not found.\n"
 
 For output intended for the user (status ticks, warnings, separators), use the shared style helpers from the centrally maintained [`universals.sh`](https://github.com/DocOps/lab/blob/main/gems/docopslab-dev/assets/templates/universals.sh) rather than writing raw ANSI codes inline. See the `universal-style-helpers` tagged segment for the canonical set.
 
+### Output Streams
+
+Write each kind of output to the stream a reader or a pipeline expects.
+
+**`stdout`:**
+   Data and reports.`_tick`, `_info`, and `_sep` print here. A caller that captures or pipes `stdout` should get only what it asked for.
+
+**`stderr`:**
+   Diagnostics.`_warn`, `_fail`, `_hint`, and `_run_echo` print here, as does any raw `printf …​ >&2` error message.`_hint` prints the follow-up lines under a `_warn` or `_fail` in the same stream, so a message never splits across streams.
+
+Scripts read by other programs or by AI agents (OSMOsys is one) depend on this split: an error mixed into `stdout` corrupts the data.
+
+### Color
+
+The style helpers color output only when the stream is a terminal. They never emit escape codes when `NO_COLOR` is set (see [no-color.org](https://no-color.org)), when `TERM` is `dumb`, or when the stream is redirected or piped.
+
+The helpers decide once, when the block loads. Do not test `[[-t 1]]` inside a helper: helpers usually run inside command substitution (`"$(_green '✓')"`), where `stdout` is always a pipe.
+
+### Tuning the Helpers
+
+Never edit a synced `tag::universal-*` block in place; the next sync overwrites the edit. Set these documented variables from the script’s own configuration instead:
+
+**`DOCOPS_SHOW_WARNINGS`:**
+   Set to `false` to silence `_warn`.`_fail` is never silenced.
+
+**`DOCOPS_SHOW_COMMANDS`:**
+   Set to `false` to silence `_run_echo`.
+
+### Locating the Script
+
+Scripts that need their own location include the `universal-resolve-script-dir` block, which sets `SCRIPT_PATH` (the real path, with symlinks resolved) and `SCRIPT_DIR` (its directory). An installed command that is a symlink into a repository therefore finds the repository, not the link’s directory.
+
+### How Universal Blocks Reach a Script
+
+Each `tag::universal-*[]` block in `universals.sh` is synced into scripts that declare the identical tag lines and are listed under `templates.manifest` in `.config/docopslab-dev.yml`. Scripts receive the blocks from the published `labdev-library` branch of the DocOps Lab repository, not directly from the file on `main`. A change to `universals.sh` reaches a script only after the library is published and the script’s project runs `labdev:sync:library` and `labdev:sync:templates`.
+
 Universal style helpers common to all DocOps Lab scripts
 
 ```bash
-# Respects NO_COLOR standard: https://no-color.org
-_bold() { [[-n "${NO_COLOR:-}"]] && printf '%s' "$*" || printf '\033[1m%s\033[0m' "$*"; }
-_green() { [[-n "${NO_COLOR:-}"]] && printf '%s' "$*" || printf '\033[32m%s\033[0m' "$*"; }
-_yellow() { [[-n "${NO_COLOR:-}"]] && printf '%s' "$*" || printf '\033[33m%s\033[0m' "$*"; }
-_red() { [[-n "${NO_COLOR:-}"]] && printf '%s' "$*" || printf '\033[31m%s\033[0m' "$*"; }
+# Color only for terminals, and never when NO_COLOR is set (https://no-color.org) or TERM is dumb
+# Decide once at load: helpers usually run inside command substitution, where stdout is always a pipe
+_COLOR_OUT=false
+_COLOR_ERR=false
+if [[-z "${NO_COLOR:-}" && "${TERM:-}" != dumb]]; then
+  if [[-t 1]]; then _COLOR_OUT=true; fi
+  if [[-t 2]]; then _COLOR_ERR=true; fi
+fi
+
+# Wrap text in an ANSI style, colored only when the chosen stream is a terminal
+# Usage: _paint out|err CODE TEXT...
+_paint() {
+  local stream="$1" code="$2" enabled="$_COLOR_OUT"
+  shift 2
+  if [["$stream" == err]]; then enabled="$_COLOR_ERR"; fi
+  if [["$enabled" == true]]; then
+    printf '\033[%sm%s\033[0m' "$code" "$*"
+  else
+    printf '%s' "$*"
+  fi
+}
+
+# Colors for text printed to stdout
+_bold() { _paint out 1 "$*"; }
+_green() { _paint out 32 "$*"; }
+_yellow() { _paint out 33 "$*"; }
+_red() { _paint out 31 "$*"; }
+
+# Status output: report lines go to stdout; warnings, failures, hints, and command echoes go to stderr
+# Set DOCOPS_SHOW_WARNINGS=false or DOCOPS_SHOW_COMMANDS=false to silence _warn or _run_echo
 _tick() { printf '%s %s\n' "$(_green '✓')" "$*"; }
-_warn() { printf '%s %s\n' "$(_yellow '⚠')" "$*"; }
-_fail() { printf '%s %s\n' "$(_red '✗')" "$*"; }
+_warn() { [["${DOCOPS_SHOW_WARNINGS:-true}" == true]] || return 0; printf '%s %s\n' "$(_paint err 33 '⚠')" "$*" >&2; }
+_fail() { printf '%s %s\n' "$(_paint err 31 '✗')" "$*" >&2; }
+_hint() { printf ' %s\n' "$*" >&2; }
 _info() { printf ' %s\n' "$*"; }
 _sep() { printf '%s\n' "────────────────────────────────────────────────"; }
-_run_echo() { printf '\n%s %s\n\n' "$(_bold '▶')" "$(_bold "$*")"; }
+_run_echo() { [["${DOCOPS_SHOW_COMMANDS:-true}" == true]] || return 0; printf '\n%s %s\n\n' "$(_paint err 1 '▶')" "$(_paint err 1 "$*")" >&2; }
 ```
 
 ## Practices to Avoid

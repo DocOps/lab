@@ -27,7 +27,7 @@ At DocOps Lab, we save inventive interfaces for domain-optimized operations.
 rake domain:action:target[option1,option2]
 ```
 
-Where both `domain`` and `target` are optional, as of course are arguments that go in the braces.
+Where both `domain` and `target` are optional, as of course are arguments that go in the braces.
 
 Think of the domain as a component “scope” within the codebase or project.
 
