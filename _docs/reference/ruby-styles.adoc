@@ -13,11 +13,14 @@ This guide outlines the Ruby coding styles and conventions used in DocOps Lab pr
 [[automated-style-enforcement]]
 == Automated Style Enforcement
 
-DocOps Lab projects using the `docopslab-dev` gem automatically enforce Ruby style guidelines through:
+DocOps Lab projects using the `docopslab-dev` gem receive shared RuboCop configuration and lint tasks.
+Projects may connect those tasks to hooks and CI.
+The current canonical lint wrapper reports RuboCop findings but does not yet propagate every false result as a nonzero process status.
+Until failure propagation is corrected and covered by subprocess specs, RuboCop rules are configured policy rather than reliable blocking gates.
 
-RuboCop:: Automated code style checking and auto-fixing
-Git Hooks:: Pre-commit advisory checks, pre-push quality gates
-CI/CD Integration:: Automated linting in GitHub Actions workflows
+RuboCop:: Automated code-style checking and correction.
+Git Hooks:: Optional pre-commit advice and future pre-push gates.
+CI/CD Integration:: Project-owned lint invocation that becomes blocking only when its process status is truthful.
 
 To apply style fixes: `bundle exec rake labdev:heal:ruby`
 
@@ -29,60 +32,20 @@ See {xref_docs_lab-dev-usage_link} for setup details.
 == Conventions
 
 DocOps Lab largely follows Ruby's community conventions, with some exceptions.
-Conventions are either reiterated or clarified here.
+The rule statements, rationale, enforcement classifications, and examples below are generated from
+`gems/docopslab-dev/specs/data/ruby-conventions-def.yml`.
+The definition is the source to edit when a convention changes.
 
-However, conventions are not exhaustively listed, and deviations are rarely pointed out as such.
+include::../partials/built/_ruby-conventions.adoc[]
 
-[[naming-conventions]]
-=== Naming Conventions
-
-* Use `snake_case` for variable and method names.
-* Use `CamelCase` for class and module names.
-* Use `SCREAMING_SNAKE_CASE` for constants.
-* Use descriptive names that convey the purpose of the variable, method, or class.
-* Avoid abbreviations unless they are widely understood.
-* Use verbs for method names to indicate actions.
-* Use nouns for class and module names to indicate entities.
-
-[[architectural-conventions]]
-=== Architectural Conventions
-
-* Use classes and class instance methods for objects that work like _objects_ -- they have state and do not act on other objects' state.
-* Use module methods acting on objects or carrying out general operations/utility functions.
-* Use Rake for internal (developer) CLI; use Thor for user-facing CLI
-* Gems may begin life as a module within another gem.
-
-[[path-conventions]]
-=== Path Conventions
-
-* Use `lib/` for main application code.
-** `lib/<project_name>.rb` for the main file
-** `lib/<project_name>/` for supporting files and modules
-** `lib/<project_name>/<module_name>/` for submodules
-* Use `specs/` for specifications and tests.
-* Use `docs/` or `_docs/` for documentation.
-* Use `build/` for pre-runtime artifacts.
-* Use `_build/` as default in applications that generate files at runtime, unless another path is more appropriate (ex: `_site/` in Jekyll-centric apps).
-* Do NOT assume or insist upon perfect alignment with Ruby path conventions:
-** `SomeModule` or `SomeClass` may be sourced at `lib/some_module.rb` or `lib/some_class.rb` instead of `lib/some/module.rb` or `lib/some/class.rb`.
-** Some modules like `SchemaGraphy` and `AsciiDoc` are never broken up into `schema_graphy` or `ascii_doc` namespaces.
-** Modules with multiple parallel sibling modules in a category like (`WriteOps`, `DraftOps`) belong in paths like `lib/ops/write.rb` instead of `lib/write_ops.rb` or `lib/write/ops.rb`.
-
-[[syntax-conventions]]
-=== Syntax Conventions
-
-* Use 2 spaces for indentation.
-* Limit lines to 120 characters or so when possible.
-* Use parentheses for method calls with arguments, but omit them for methods without arguments.
-* Do not use parentheses in method definitions (`def method_name arg1, arg2`).
-* Use single quotes for strings that do not require interpolation or special symbols.
-* Use double quotes for strings that require interpolation or special symbols.
-
-[[commenting-conventions]]
-=== Commenting Conventions
-
-See {xref_docs_code-commenting_link} for detailed commenting conventions.
+See {xref_docs_code-commenting_link} for detailed Ruby commenting conventions.
 // end::conventions[]
+
+
+[[quality-evaluation-interface]]
+== Quality Evaluation Interface
+
+See {xref_docs_ruby-quality-evaluation_link} for the human-facing policy, command contracts, implementation order, and baseline rules.
 
 
 [[rubocop-customization]]

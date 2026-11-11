@@ -8,6 +8,25 @@ include::../_agent_settings.adoc[]
 include::../../reference/ruby-styles.adoc[tags=conventions]
 
 
+[[agent-ruby-workflow]]
+== Agent Workflow
+
+. Read the convention rule and its enforcement classification before choosing a Ruby structure.
+. Treat `doc-only` rules as review requirements rather than inventing a mechanical proxy.
+. Add or update a contract spec when a rule is classified as `spec`.
+. Run `bundle exec rake labdev:lint:ruby` after changing Ruby source or Ruby-generating scripts.
+. Run scratch files through the target project's lint task and effective configuration; standalone syntax checks do not substitute for the project policy.
+. Run the relevant RSpec task when the repository provides one.
+. Report a failing command and its actual process status; never infer success from diagnostics alone.
+
+The machine-readable source is `gems/docopslab-dev/specs/data/ruby-conventions-def.yml` in DocOps/lab.
+Do not edit the generated `_ruby-conventions.adoc` partial.
+
+The planned evaluation interfaces are `labdev:eval:coach[scope]` for complete coaching output and
+`labdev:eval:gate[scope]` for stable blocking policy.
+Do not claim that either interface is available until the current project registers the task.
+
+
 [[rubocop-config]]
 == RuboCop Config
 

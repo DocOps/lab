@@ -230,6 +230,18 @@ task :write_rubocop_styles do
   puts '✅ RuboCop styles written to _docs/partials/built/_rubocop-styles.adoc'
 end
 
+desc 'Write Ruby conventions from the machine-readable definition'
+task :write_ruby_conventions do
+  require_relative 'scripts/ruby_conventions_adoc'
+
+  source = 'gems/docopslab-dev/specs/data/ruby-conventions-def.yml'
+  destination = '_docs/partials/built/_ruby-conventions.adoc'
+  definition = RubyConventionsAdoc.load_definition(source)
+  FileUtils.mkdir_p('_docs/partials/built')
+  File.write(destination, RubyConventionsAdoc.render(definition))
+  puts "✅ Ruby conventions written to #{destination}"
+end
+
 def asciisourcerer_doc_partials_dir
   candidates = []
   candidates << ENV['ASCIISOURCERER_DOC_PARTIALS_DIR'] if ENV['ASCIISOURCERER_DOC_PARTIALS_DIR']
@@ -306,7 +318,8 @@ end
 
 desc 'Build Jekyll HTML used by the site and generated docs'
 task build_site_html: %i[extract_readme_attrs generate_project_pages generate_metadata copy_jekyll_ui_config
-                         write_rubocop_styles copy_asciisourcerer_doc_partials generate_universal_attributes] do
+                         write_rubocop_styles write_ruby_conventions copy_asciisourcerer_doc_partials
+                         generate_universal_attributes] do
   puts '🔨 Building Jekyll site...'
   system('bundle exec jekyll build') or raise 'Jekyll build failed'
   puts '✅ Jekyll HTML build complete'

@@ -1,0 +1,37 @@
+// Generated from gems/docopslab-dev/specs/data/ruby-conventions-def.yml.
+// Edit the definition or this Liquid template, not the built partial.
+{% for group in definition.groups %}
+[[ruby-conventions-{{ group.id }}]]
+=== {{ group.title }}
+
+{{ group.summary }}{% for rule in definition.rules %}{% if rule.group == group.id %}
+
+[[ruby-convention-{{ rule.id }}]]
+==== {{ rule.title }}
+
+Rule:: {{ rule.rule | strip }}
+
+Rationale:: {{ rule.rationale | strip }}
+
+Enforcement:: `{{ rule.enforcement.mechanism }}`; {{ rule.enforcement.status }}.
+{%- if rule.enforcement.details %}
++
+{{ rule.enforcement.details }}
+{%- endif %}
+
+.Good: {{ rule.examples.good.summary }}
+[source,{{ rule.examples.good.language | default: "ruby" }}]
+----
+{{ rule.examples.good.code | strip }}
+----
+Source pattern: `{{ rule.examples.good.source }}`.
+
+.Bad: {{ rule.examples.bad.summary }}
+[source,{{ rule.examples.bad.language | default: "ruby" }}]
+----
+{{ rule.examples.bad.code | strip }}
+----
+Source pattern: `{{ rule.examples.bad.source }}`.
+
+Migration:: {{ rule.migration }}
+{% endif %}{% endfor %}{% endfor %}

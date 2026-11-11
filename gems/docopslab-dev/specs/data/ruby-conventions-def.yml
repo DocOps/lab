@@ -1,0 +1,700 @@
+version: 1
+title: DocOps Lab Ruby conventions
+summary: |
+  Defines the Ruby architecture, source layout, API-boundary, and syntax rules shared by DocOps Lab projects.
+
+groups:
+  - id: architecture
+    title: Architecture and responsibility
+    summary: Choose a Ruby form from the role and lifecycle of the code, never from a target class-to-module ratio.
+  - id: definitions
+    title: Definitions and extensions
+    summary: Keep data contracts visible and keep executable behavior in Ruby.
+  - id: boundaries
+    title: Errors and presentation boundaries
+    summary: Make library outcomes predictable and translate them only at an application boundary.
+  - id: verification
+    title: Verification and evaluation
+    summary: Test contracts and require every blocking command to return a truthful process status.
+  - id: syntax
+    title: Syntax and local style
+    summary: Use the shared RuboCop configuration for mechanically decidable local style.
+
+rules:
+  - id: role-based-types
+    group: architecture
+    title: Choose classes and modules by role
+    rule: |
+      Use a class for stateful entities, lifecycle collaborators, value records, errors, and framework-required subclasses;
+      use a module for namespaces, stateless operations, protocols designed for inclusion, filters, and compatibility facades.
+    rationale: |
+      Role and lifecycle expose design intent, while class-to-module ratios say nothing reliable about maintainability.
+    enforcement:
+      mechanism: doc-only
+      status: reviewed in architecture review
+      details: No ratio is measured or gated.
+    examples:
+      good:
+        summary: A change carries identity and release state in an instance.
+        source: releasehx/lib/releasehx/rhyml/change.rb
+        code: |
+          class Change
+            def initialize attrs = {}, release:
+              @release = release
+              @summ = attrs['summ']
+            end
+          end
+      bad:
+        summary: A stateless namespace is instantiated without a lifecycle.
+        source: Counterexample derived from asciisourcerer/lib/sourcerer/asciidoc.rb
+        code: |
+          class AsciiDoc
+            def initialize; end
+            def load_attributes path
+              # Pure conversion with no retained state.
+            end
+          end
+    migration: Existing role mismatches are changed only when their behavior or dependencies are already changing.
+
+  - id: visible-module-state
+    group: architecture
+    title: Keep module state visible and replaceable
+    rule: |
+      Do not add mutable module state unless the module owns a process-wide lifecycle and provides deterministic reset or replacement.
+    rationale: Hidden singleton state couples tests and embedding consumers to call order.
+    enforcement:
+      mechanism: spec
+      status: blocking for new docopslab-dev assignments
+      details: An architecture spec rejects module instance-variable assignments not listed in this definition.
+      allow:
+        - path: lib/docopslab/dev.rb
+          variable: '@manifest'
+          reason: Existing manifest cache awaiting an explicit reset API.
+        - path: lib/docopslab/dev.rb
+          variable: '@tools_data'
+          reason: Existing tool-definition cache awaiting an explicit reset API.
+        - path: lib/docopslab/dev/tool_execution.rb
+          variable: '@docker_available'
+          reason: Existing environment probe cache awaiting an explicit reset API.
+        - path: lib/docopslab/dev/tool_execution.rb
+          variable: '@image_available'
+          reason: Existing environment probe cache awaiting an explicit reset API.
+        - path: lib/docopslab/dev/data_utils.rb
+          variable: '@project_attributes'
+          reason: Existing cache with reset_project_attributes!.
+        - path: lib/docopslab/dev/library/cache.rb
+          variable: '@root_override'
+          reason: Existing scoped override restored by ensure.
+    examples:
+      good:
+        summary: A temporary cache-root override is restored even after failure.
+        source: lab/gems/docopslab-dev/lib/docopslab/dev/library/cache.rb
+        code: |
+          def with_root_override path
+            previous = @root_override
+            @root_override = path
+            yield
+          ensure
+            @root_override = previous
+          end
+      bad:
+        summary: A module cache has no replacement or reset boundary.
+        source: Counterexample derived from lab/gems/docopslab-dev/lib/docopslab/dev/data_utils.rb
+        code: |
+          def settings
+            @settings ||= load_settings
+          end
+    migration: The allowlist records existing debt and must not grow without an approved lifecycle exception.
+
+  - id: operation-placement
+    group: architecture
+    title: Put behavior beside its governing responsibility
+    rule: |
+      Put invariant-preserving behavior on the stateful class, pure transforms in named modules, one-shot coordination in focused operation modules, and reusable configured workflows in collaborator instances.
+    rationale: Placement should reveal the state and dependencies that govern a behavior.
+    enforcement:
+      mechanism: doc-only
+      status: reviewed when responsibilities or dependencies change
+      details: File length alone does not require a split.
+    examples:
+      good:
+        summary: Change predicates remain with the state they interpret.
+        source: releasehx/lib/releasehx/rhyml/change.rb
+        code: |
+          class Change
+            def breaking? = tags.include?('breaking')
+          end
+      bad:
+        summary: A generic utility takes ownership of an entity invariant.
+        source: Counterexample derived from releasehx/lib/releasehx/rhyml/change.rb
+        code: |
+          module Utils
+            def self.breaking? change
+              change.tags.include?('breaking')
+            end
+          end
+    migration: Generic utility namespaces should be split only as affected workflows are revised.
+
+  - id: singleton-syntax
+    group: architecture
+    title: Treat singleton syntax as a readability choice
+    rule: Use either `def self.method` or `class << self` according to local readability; neither form carries architectural meaning.
+    rationale: Both forms expose the same kind of callable surface, and forced conversion creates churn without clarifying responsibility.
+    enforcement:
+      mechanism: doc-only
+      status: locally reviewed
+      details: Keep one form coherent within a small related method group when practical.
+    examples:
+      good:
+        summary: A singleton-method group shares one explicit visibility scope.
+        source: lab/gems/docopslab-dev/lib/docopslab/dev/data_utils.rb
+        code: |
+          class << self
+            def project_attributes
+              # Load attributes.
+            end
+
+            def reset_project_attributes!
+              # Reset the cache.
+            end
+          end
+      bad:
+        summary: A mechanical rewrite is justified as an architecture improvement.
+        source: Counterexample derived from lab/gems/docopslab-dev/lib/docopslab/dev/data_utils.rb
+        code: |
+          # Do not rewrite this only to change singleton syntax.
+          def self.project_attributes
+            # Load attributes.
+          end
+    migration: No existing singleton syntax changes are required.
+
+  - id: intentional-module-function
+    group: architecture
+    title: Use dual module APIs intentionally
+    rule: Use `module_function` only when callers need module-level access and an including class needs the same methods as private instance behavior.
+    rationale: The directive creates two API forms and can obscure which one consumers are expected to call.
+    enforcement:
+      mechanism: doc-only
+      status: reviewed at the public API boundary
+      details: Ordinary stateless namespaces may use explicit singleton methods instead.
+    examples:
+      good:
+        summary: Frontmatter helpers deliberately expose one small functional API.
+        source: asciisourcerer/lib/sourcerer/yaml_frontmatter.rb
+        code: |
+          module YamlFrontmatter
+            module_function
+
+            def extract source_text
+              # Parse frontmatter.
+            end
+          end
+      bad:
+        summary: A large operations namespace duplicates every method as an instance API without a consumer.
+        source: Counterexample derived from lab/gems/docopslab-dev/lib/docopslab/dev/sync_ops.rb
+        code: |
+          module SyncOps
+            module_function
+            # Many workflow methods follow, but no includer exists.
+          end
+    migration: Existing uses remain unless their public API is already being revised.
+
+  - id: definition-source
+    group: definitions
+    title: Use YAML for definitions and Ruby for behavior
+    rule: |
+      Put human-edited product definitions, schema-validated settings, and records with multiple generated consumers in YAML;
+      keep intrinsic method defaults and executable behavior in Ruby.
+    rationale: YAML improves human editing and derivation only when the content is genuinely data rather than indirect control flow.
+    enforcement:
+      mechanism: spec
+      status: blocking where a YAML definition has a runtime consumer
+      details: Contract specs must connect the definition, resolver, and generated or runtime consumer.
+    examples:
+      good:
+        summary: Task descriptions and examples are data while task execution remains Ruby.
+        source: lab/gems/docopslab-dev/specs/data/tasks-def.yml
+        language: yaml
+        code: |
+          labdev:
+            lint:
+              ruby:
+                _desc: Run RuboCop on Ruby files
+      bad:
+        summary: Executable callbacks are encoded as strings in configuration.
+        source: Counterexample derived from lab/gems/docopslab-dev/specs/data/tasks-def.yml
+        language: yaml
+        code: |
+          callback: "DocOpsLab::Dev.run_rubocop(path)"
+    migration: Duplicate Ruby and YAML defaults require compatibility review before consolidation.
+
+  - id: definition-layout
+    group: definitions
+    title: Keep specifications and tests under specs
+    rule: Store definition files in `specs/data/`, natural-language requirements in `specs/docs/`, and Ruby examples in `specs/tests/rspec/`.
+    rationale: One specification tree keeps definitions, requirements, and their verification discoverable together.
+    enforcement:
+      mechanism: doc-only
+      status: reviewed when adding a specification asset
+      details: Runtime resources may live under `lib/` when packaging or direct runtime lookup requires that location.
+    examples:
+      good:
+        summary: The task registry is stored beside its contract spec.
+        source: lab/gems/docopslab-dev/specs/data/tasks-def.yml
+        language: text
+        code: |
+          specs/data/tasks-def.yml
+          specs/tests/rspec/tasks_spec.rb
+      bad:
+        summary: A product definition is hidden among implementation files without a packaging need.
+        source: Counterexample derived from lab/gems/docopslab-dev/specs/data/tasks-def.yml
+        language: text
+        code: |
+          lib/docopslab/dev/tasks-def.yml
+    migration: Existing packaged runtime data may remain where moving it would change lookup behavior.
+
+  - id: extension-mechanism
+    group: definitions
+    title: Match extension machinery to discovery needs
+    rule: |
+      Use direct namespaced calls for internal features, a factory or registry for named discovery, a public registration API for third-party plugins, and a framework's native registration for framework extensions.
+    rationale: A universal registry duplicates framework contracts and adds indirection where discovery is not required.
+    enforcement:
+      mechanism: doc-only
+      status: reviewed when an extension family is introduced
+      details: Shared RSpec contracts are required only when implementations claim substitutable behavior.
+    examples:
+      good:
+        summary: Liquid filters use Liquid's native module-level filter contract.
+        source: asciisourcerer/lib/sourcerer/jekyll/liquid/filters.rb
+        code: |
+          module Filters
+            module_function
+            # Liquid filter methods follow.
+          end
+      bad:
+        summary: A second registry wraps a framework that already owns discovery.
+        source: Counterexample derived from asciisourcerer/lib/sourcerer/jekyll/liquid/filters.rb
+        code: |
+          FILTERS.register(:native_liquid, Filters)
+    migration: Do not replace an existing public extension mechanism without a compatibility window.
+
+  - id: outcome-contract
+    group: boundaries
+    title: Signal outcomes according to caller expectations
+    rule: |
+      Use nil or an empty collection for documented ordinary absence, booleans for predicates, `ArgumentError` for invalid direct arguments, product errors for integration failures, and result records for recoverable batch failures.
+    rationale: A caller should be able to distinguish ordinary data, recoverable partial work, and exceptional failure without parsing messages.
+    enforcement:
+      mechanism: doc-only
+      status: reviewed as part of public API design
+      details: Add product-error subclasses only when callers can respond differently.
+    examples:
+      good:
+        summary: Invalid direct arguments raise Ruby's conventional argument error.
+        source: releasehx/lib/releasehx/rhyml/change.rb
+        rubocop_cops:
+          - Style/IfUnlessModifier
+        code: |
+          raise ArgumentError, 'attrs must be a Hash' unless attrs.is_a?(Hash)
+      bad:
+        summary: Invalid input is converted into a false value with no diagnosis.
+        source: Counterexample derived from releasehx/lib/releasehx/rhyml/change.rb
+        code: |
+          return false unless attrs.is_a?(Hash)
+    migration: Changes to public nil, false, message, or exception behavior require caller-focused compatibility specs.
+
+  - id: rescue-boundary
+    group: boundaries
+    title: Rescue broadly only at a boundary
+    rule: Rescue `StandardError` only at process, task, CLI, plugin, or external-service boundaries, and preserve the original cause when translating it.
+    rationale: Broad rescue inside reusable behavior conceals programmer errors and makes failure categories unreliable.
+    enforcement:
+      mechanism: doc-only
+      status: advisory until boundary paths are classified
+      details: A stable path-based check may replace review after the inventory proves its signal.
+    examples:
+      good:
+        summary: A cache lookup treats an unreadable external file as ordinary unavailability.
+        source: lab/gems/docopslab-dev/lib/docopslab/dev/library/cache.rb
+        code: |
+          def stored_head
+            File.read(head_path).strip
+          rescue StandardError
+            nil
+          end
+      bad:
+        summary: Domain behavior swallows every defect and returns nil.
+        source: Counterexample derived from releasehx/lib/releasehx/rhyml/change.rb
+        code: |
+          def breaking?
+            tags.include?('breaking')
+          rescue StandardError
+            nil
+          end
+    migration: Existing broad rescues must be inventoried before any blocking path rule is enabled.
+
+  - id: presentation-boundary
+    group: boundaries
+    title: Keep reusable library APIs terminal-independent
+    rule: Allow output in task and CLI presentation roles, but do not require a terminal or call `exit` or `abort` from reusable parsing, configuration, conversion, or path APIs.
+    rationale: Embedding consumers need to control reporting and process lifetime.
+    enforcement:
+      mechanism: doc-only
+      status: blocking in review for newly added reusable APIs
+      details: Inject a reporter only when a workflow has meaningful progress to report.
+    examples:
+      good:
+        summary: A parser returns a value without writing to the terminal.
+        source: asciisourcerer/lib/sourcerer/yaml_frontmatter.rb
+        code: |
+          def extract source_text
+            parsed = YAML.safe_load(source_text)
+            parsed.is_a?(Hash) ? parsed : {}
+          end
+      bad:
+        summary: A reusable parser terminates its host process.
+        source: Counterexample derived from asciisourcerer/lib/sourcerer/yaml_frontmatter.rb
+        code: |
+          def extract source_text
+            abort 'Invalid frontmatter' unless source_text
+          end
+    migration: Presentation extraction in mature workflows should follow feature work rather than trigger a blanket rewrite.
+
+  - id: contract-specs
+    group: verification
+    title: Test cross-file and substitutable contracts
+    rule: Add contract specs for YAML-to-Ruby definitions and for adapter families whose implementations claim the same behavior.
+    rationale: Contract boundaries fail through drift even when each file or implementation passes isolated tests.
+    enforcement:
+      mechanism: spec
+      status: blocking for each declared contract
+      details: Do not impose shared examples on callbacks that share registration but not behavior.
+    examples:
+      good:
+        summary: The task spec compares every described YAML task with registered Rake tasks.
+        source: lab/gems/docopslab-dev/specs/tests/rspec/tasks_spec.rb
+        code: |
+          missing = described_yaml_paths - all_rake_task_names
+          expect(missing).to be_empty
+      bad:
+        summary: A definition and implementation are tested only for independent parseability.
+        source: Counterexample derived from lab/gems/docopslab-dev/specs/tests/rspec/tasks_spec.rb
+        code: |
+          expect(YAML.load_file(path)).to be_a(Hash)
+          expect(rake_tasks).not_to be_empty
+    migration: Add contracts at active boundaries before reorganizing the data they connect.
+
+  - id: truthful-gates
+    group: verification
+    title: Make every blocking gate truthful
+    rule: A blocking Rake task or hook must produce diagnostics and return a nonzero process status when its underlying check fails or crashes.
+    rationale: A green shell status that contains failed checks defeats hooks, CI, and automation.
+    enforcement:
+      mechanism: spec
+      status: blocking once each gate is implemented
+      details: Subprocess specs must cover one passing fixture and one deliberately failing fixture.
+    examples:
+      good:
+        summary: A task converts a false tool result into Rake failure.
+        source: Target contract for lab/gems/docopslab-dev/lib/docopslab/dev/tasks.rb
+        code: |
+          success = Dev.run_rubocop(target, opts)
+          raise 'RuboCop failed' unless success
+      bad:
+        summary: A task discards the tool result and exits successfully.
+        source: Existing migration case in lab/gems/docopslab-dev/lib/docopslab/dev/tasks.rb
+        code: |
+          Dev.run_rubocop(target, opts)
+    migration: Failure propagation and subprocess coverage are the first quality-harness implementation priority.
+
+  - id: evaluation-modes
+    group: verification
+    title: Separate coaching from gating
+    rule: Use `labdev:eval:coach[scope]` for complete advisory findings and `labdev:eval:gate[scope]` for the stable blocking policy.
+    rationale: Developers need full visibility without making every experimental signal a release blocker.
+    enforcement:
+      mechanism: doc-only
+      status: canonical interface for the planned quality harness
+      details: RuboCop owns Ruby metric thresholds; the coach explains and groups them without duplicating policy.
+    examples:
+      good:
+        summary: The command name makes blocking behavior explicit.
+        source: Approved DocOps Lab quality-harness contract
+        language: shell
+        code: |
+          bundle exec rake 'labdev:eval:gate[branch]'
+      bad:
+        summary: One ambiguous command changes between advisory and blocking behavior.
+        source: Counterexample derived from the approved quality-harness contract
+        language: shell
+        code: |
+          bundle exec rake 'labdev:quality[branch]'
+    migration: Implement the commands only after existing lint tasks propagate failures truthfully.
+
+  - id: ruby-naming
+    group: syntax
+    title: Use conventional Ruby names
+    rule: Use `snake_case` for variables and methods, `CamelCase` for classes and modules, and `SCREAMING_SNAKE_CASE` for constants.
+    rationale: Conventional names make Ruby APIs predictable without constraining product vocabulary.
+    enforcement:
+      mechanism: rubocop
+      status: configured where a corresponding naming cop applies; not reliably blocking until the canonical task propagates failure
+      details: Descriptive domain terms are preferred over abbreviations that are not already established.
+    examples:
+      good:
+        summary: A constant and predicate use their conventional forms.
+        source: asciisourcerer/lib/sourcerer/sync/block_parser.rb
+        code: |
+          DEFAULT_CANONICAL_PREFIX = 'universal-'
+          def self.canonical? tag
+      bad:
+        summary: Constant and method casing obscure their Ruby roles.
+        source: Counterexample derived from asciisourcerer/lib/sourcerer/sync/block_parser.rb
+        code: |
+          defaultCanonicalPrefix = 'universal-'
+          def self.Canonical tag
+    migration: Existing public names require compatibility review before renaming.
+
+  - id: indentation
+    group: syntax
+    title: Indent Ruby with two spaces
+    rule: Use two spaces for each Ruby indentation level and never use tabs for indentation.
+    rationale: The shared indentation makes nested Ruby structure visually consistent across projects.
+    enforcement:
+      mechanism: rubocop
+      status: configured; not reliably blocking until the canonical task propagates failure
+      details: Enforced by RuboCop's enabled layout cops and default indentation width.
+    examples:
+      good:
+        summary: A method body is indented by two spaces.
+        source: asciisourcerer/lib/sourcerer/yaml_frontmatter.rb
+        code: |
+          def extract source_text
+            source_text.to_s
+          end
+      bad:
+        summary: A method body is indented by four spaces.
+        source: Counterexample derived from asciisourcerer/lib/sourcerer/yaml_frontmatter.rb
+        code: |
+          def extract source_text
+              source_text.to_s
+          end
+    migration: RuboCop automatic correction can repair most violations.
+
+  - id: line-length
+    group: syntax
+    title: Keep Ruby lines within 120 columns
+    rule: Keep Ruby source lines within 120 columns, except for the configured comment and RDoc patterns.
+    rationale: The limit keeps code reviewable without forcing unhelpful wrapping of explanatory comments.
+    enforcement:
+      mechanism: rubocop
+      status: configured; not reliably blocking until the canonical task propagates failure
+      details: Enforced by `Layout/LineLength` with a maximum of 120.
+    examples:
+      good:
+        summary: A long call is split at argument boundaries.
+        source: releasehx/lib/releasehx/configuration.rb
+        code: |
+          definition = SchemaGraphy::Loader.load_yaml_with_attributes(
+            definition_path,
+            attrs)
+      bad:
+        summary: Unrelated operations are compressed onto one long line.
+        source: Counterexample derived from releasehx/lib/releasehx/configuration.rb
+        code: |
+          definition = load_definition(path); settings = apply_schema(definition['properties'], user_config); config = new(settings)
+    migration: RuboCop automatic correction may require a manual readability pass.
+
+  - id: source-layout
+    group: definitions
+    title: Keep implementation and specifications distinct
+    rule: Put runtime Ruby under `lib/`, definitions and tests under `specs/`, generated build inputs under `build/`, and runtime-generated artifacts under an application-appropriate underscore path.
+    rationale: The layout distinguishes shipped behavior, product contracts, pre-runtime inputs, and disposable runtime output.
+    enforcement:
+      mechanism: doc-only
+      status: reviewed when adding a top-level path
+      details: |
+        Namespace-to-path correspondence may remain pragmatic when established names or sibling operation families are clearer.
+        Configure the project's RuboCop path transform or a narrow exclusion when an intentional acronym path differs from RuboCop's default transform.
+    examples:
+      good:
+        summary: Runtime behavior and its tests occupy distinct trees.
+        source: lab/gems/docopslab-dev
+        language: text
+        code: |
+          lib/docopslab/dev/cast_ops.rb
+          specs/tests/rspec/cast_ops_spec.rb
+      bad:
+        summary: Tests are mixed into the shipped library tree.
+        source: Counterexample derived from lab/gems/docopslab-dev
+        language: text
+        code: |
+          lib/docopslab/dev/cast_ops_spec.rb
+    migration: Do not move established public require paths solely to create namespace symmetry.
+
+  - id: cli-tooling
+    group: boundaries
+    title: Match command tooling to its audience
+    rule: Use Rake for internal developer workflows and a user-facing CLI framework such as Thor for product commands.
+    rationale: Rake integrates internal build tasks, while a dedicated CLI framework provides discoverable user commands and option handling.
+    enforcement:
+      mechanism: doc-only
+      status: reviewed when introducing a command surface
+      details: Reusable behavior must remain below either presentation layer.
+    examples:
+      good:
+        summary: ReleaseHx exposes user commands through Thor.
+        source: releasehx/lib/releasehx/cli.rb
+        code: |
+          class CLI < Thor
+      bad:
+        summary: A public product command is hidden as an undocumented build task.
+        source: Counterexample derived from releasehx/lib/releasehx/cli.rb
+        code: |
+          task :publish_for_end_users do
+            # Product command behavior.
+          end
+    migration: Existing command surfaces change only with an explicit compatibility plan.
+
+  - id: documentation-format
+    group: definitions
+    title: Write shared documentation in AsciiDoc
+    rule: Use AsciiDoc for user-facing prose and for prose stored in YAML string nodes; reserve Markdown for tool-owned files that require it.
+    rationale: One authoring language keeps includes, attributes, and generated documentation consistent across DocOps Lab.
+    enforcement:
+      mechanism: doc-only
+      status: supplemented by documentation linting
+      details: Ruby API explanation remains in RDoc or YARD comments next to the code.
+    examples:
+      good:
+        summary: A YAML documentation node uses AsciiDoc inline literals.
+        source: lab/gems/docopslab-dev/specs/data/tasks-def.yml
+        language: yaml
+        code: |
+          docs: |
+            Use `labdev:show:scripts` to see the available scripts.
+      bad:
+        summary: A YAML documentation node uses Markdown fenced code.
+        source: Counterexample derived from lab/gems/docopslab-dev/specs/data/tasks-def.yml
+        language: yaml
+        code: |
+          docs: |
+            ```sh
+            bundle exec rake task
+            ```
+    migration: Convert affected prose when its containing documentation is next revised.
+
+  - id: method-definition-parentheses
+    group: syntax
+    title: Omit parentheses in method definitions
+    rule: Define methods without parentheses around their parameters.
+    rationale: This is the established DocOps Lab Ruby signature style.
+    enforcement:
+      mechanism: rubocop
+      status: configured; not reliably blocking until the canonical task propagates failure
+      details: Enforced by `Style/MethodDefParentheses` with `require_no_parentheses`.
+    examples:
+      good:
+        summary: A method definition leaves its parameter list open.
+        source: asciisourcerer/lib/sourcerer/asciidoc.rb
+        code: |
+          def self.load_attributes path, user_only: false
+      bad:
+        summary: A method definition wraps its parameters in parentheses.
+        source: Counterexample derived from asciisourcerer/lib/sourcerer/asciidoc.rb
+        code: |
+          def self.load_attributes(path, user_only: false)
+    migration: RuboCop automatic correction can repair violations.
+
+  - id: method-call-parentheses
+    group: syntax
+    title: Use parentheses for calls with arguments
+    rule: Use parentheses for method calls with arguments and omit empty parentheses from argument-free calls.
+    rationale: Call-site parentheses make argument boundaries explicit while preserving concise argument-free calls.
+    enforcement:
+      mechanism: rubocop
+      status: configured; not reliably blocking until the canonical task propagates failure
+      details: Enforced by `Style/MethodCallWithArgsParentheses` with documented allowances for calls spanning multiple lines and for chaining.
+    examples:
+      good:
+        summary: A method call encloses its argument.
+        source: lab/gems/docopslab-dev/lib/docopslab/dev/library/cache.rb
+        code: |
+          File.join(root, 'current')
+      bad:
+        summary: A method call leaves its argument bare.
+        source: Counterexample derived from lab/gems/docopslab-dev/lib/docopslab/dev/library/cache.rb
+        code: |
+          File.join root, 'current'
+    migration: RuboCop automatic correction can repair most violations.
+
+  - id: string-literals
+    group: syntax
+    title: Prefer single-quoted strings
+    rule: Use single quotes unless interpolation or an escape sequence requires double quotes.
+    rationale: Literal intent remains visible and consistent across the reference gems.
+    enforcement:
+      mechanism: rubocop
+      status: configured; not reliably blocking until the canonical task propagates failure
+      details: Enforced by `Style/StringLiterals` and `Style/StringLiteralsInInterpolation`.
+    examples:
+      good:
+        summary: A literal path segment uses single quotes.
+        source: lab/gems/docopslab-dev/lib/docopslab/dev/library/cache.rb
+        code: |
+          File.join(root, 'current')
+      bad:
+        summary: A literal without interpolation uses double quotes.
+        source: Counterexample derived from lab/gems/docopslab-dev/lib/docopslab/dev/library/cache.rb
+        code: |
+          File.join(root, "current")
+    migration: RuboCop automatic correction can repair violations.
+
+  - id: frozen-string-header
+    group: syntax
+    title: Freeze string literals by file
+    rule: 'Begin Ruby source files with `# frozen_string_literal: true`.'
+    rationale: File-level frozen literals avoid accidental mutation and allocation without scattering calls to `freeze`.
+    enforcement:
+      mechanism: rubocop
+      status: configured; not reliably blocking until the canonical task propagates failure
+      details: Enforced by `Style/FrozenStringLiteralComment`.
+    examples:
+      good:
+        summary: A Ruby source file declares frozen literals first.
+        source: releasehx/lib/releasehx/configuration.rb
+        code: |
+          # frozen_string_literal: true
+      bad:
+        summary: A Ruby source file has no frozen-literal declaration.
+        source: Counterexample derived from releasehx/lib/releasehx/configuration.rb
+        code: |
+          require 'psych'
+    migration: RuboCop automatic correction can add the header.
+
+  - id: calibrated-metrics
+    group: syntax
+    title: Calibrate metrics before adding gates
+    rule: Keep the shared method-length baseline at 25 during study, honor documented project overrides, and do not enable new complexity or size gates until reference-code distributions and upper-tail examples are reviewed.
+    rationale: Generic thresholds confuse unfamiliarity with risk and create exclusions before the signal is understood.
+    enforcement:
+      mechanism: rubocop
+      status: method length follows the effective project configuration but is not reliably blocking until the canonical task propagates failure; other shared metrics remain disabled pending calibration
+      details: RuboCop is the sole threshold source; no class-to-module ratio is ever measured.
+    examples:
+      good:
+        summary: One shared configuration owns the active method-length threshold.
+        source: lab/gems/docopslab-dev/assets/config-packs/rubocop/base.yml
+        language: yaml
+        code: |
+          Metrics/MethodLength:
+            Max: 25
+      bad:
+        summary: A coaching tool silently invents a second threshold.
+        source: Counterexample derived from the DocOps Lab quality-harness proposal
+        language: yaml
+        code: |
+          habit_hooks:
+            method_length: 15
+    migration: Run a threshold study before enabling complexity, nesting, class-size, or module-size gates.

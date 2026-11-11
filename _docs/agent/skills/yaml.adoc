@@ -1,0 +1,33 @@
+---
+permalink: /docs/agent/yaml/
+indexed: false
+origins: ["yaml-styles", "schemagraphy-sgyml"]
+---
+= YAML Coding Guide for DocOps Lab AI Agents
+include::../_agent_settings.adoc[]
+
+Use these conventions when authoring, editing, or loading YAML and SGYML in DocOps Lab projects.
+
+include::../../reference/yaml-styles.adoc[tag=conventions]
+
+
+[[agent-yaml-workflow]]
+== Agent Workflow
+
+. Preserve the distinction between source representation and parsed value when reviewing a YAML change.
+. Follow the house style for human-authored YAML even when multiple source representations would parse identically.
+. Treat prose inside YAML string nodes as AsciiDoc unless the containing format defines another markup language.
+. Use the loader provided by the target project rather than introducing a second YAML-loading path.
+. Validate both YAML parsing and the relevant schema or consumer behavior after changing structured data.
+
+
+[[agent-yaml-loading]]
+== Loading YAML and SGYML
+
+include::../../reference/schemagraphy-sgyml.adoc[tag="loading-yaml"]
+
+
+[[agent-yaml-detagging]]
+== Removing Tags from Loaded Data
+
+include::../../reference/schemagraphy-sgyml.adoc[tag="detagging-example"]

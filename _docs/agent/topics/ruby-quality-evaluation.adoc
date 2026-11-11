@@ -1,0 +1,20 @@
+---
+permalink: /docs/agent/ruby-quality-evaluation/
+indexed: false
+---
+= Ruby Quality Evaluation Boundaries
+include::../_agent_settings.adoc[]
+
+include::../../reference/ruby-quality-evaluation.adoc[tag=content]
+
+
+[[agent-ruby-quality-application]]
+== Agent Application
+
+Check that a task is registered before invoking a planned evaluation interface.
+
+Report the command's actual process status with its diagnostics.
+
+Do not convert a documented review judgment into a new mechanical threshold.
+
+Do not expand an architecture allowlist or RuboCop exclusion without explaining the concrete exception.

@@ -1,0 +1,80 @@
+---
+title: DocOps Lab YAML Style Guide
+tags: ["reference", "documentation", "styles", "yaml"]
+description: "YAML source-formatting and embedded-prose conventions for DocOps Lab projects."
+docs-group: technical
+order: 65
+---
+include::../_local_settings.adoc[]
+= YAML Styles and Conventions
+
+DocOps Lab uses YAML for definitions, configuration, schemas, and structured documentation data.
+These conventions govern the source representation as well as the parsed value.
+
+// tag::conventions[]
+
+
+[[yaml-indentation]]
+== Indentation
+
+Use two spaces (never tabs) for each indentation level.
+
+Align sibling mapping keys and sequence markers at the same level.
+
+
+[[yaml-block-strings]]
+== Block Strings
+
+Use the literal block indicator `|` for prose, examples, templates, and other strings that span multiple lines.
+Do not use folded block indicators such as `>` or `>-` as the routine house style.
+
+Use an explicit chomping indicator only when the value's trailing newline is part of a tested external contract.
+
+Write one sentence per source line for prose inside a YAML block string.
+Do not insert arbitrary hard returns merely to constrain source width.
+Let sentence and structural boundaries (sometimes semicolons) determine line breaks.
+
+.Preferred
+[source,yaml]
+----
+summary: |
+  The first sentence occupies one source line.
+  The second sentence occupies the next source line, regardless of either sentence's length.
+----
+
+.Avoid
+[source,yaml]
+----
+summary: >-
+  The sentence is folded and wrapped at an
+  arbitrary source-width boundary.
+----
+
+
+[[yaml-embedded-prose]]
+== Embedded Prose
+
+Write user-facing prose inside YAML string nodes in AsciiDoc.
+Use backticks for inline literals and AsciiDoc lists, links, admonitions, and source blocks where structure requires them.
+
+Do not introduce Markdown syntax into a YAML documentation node.
+
+
+[[yaml-scalars]]
+== Scalars
+
+Use plain scalars when YAML parses the value unambiguously and the source remains readable.
+
+Quote a scalar when it contains syntax that could change its type or structure.
+
+Use single quotes for literal strings and double quotes only when YAML escape processing is intentional.
+
+
+[[yaml-data-boundary]]
+== Data Boundary
+
+Store human-edited product definitions, schema-validated settings, and records with multiple generated consumers in YAML.
+Keep executable behavior, callbacks, classes, and callable strategies in the implementation language.
+Do not encode executable Ruby expressions as YAML strings except when the entirety of a block (such as a `code:` node) is intended to be treated as literal Ruby or other programming content.
+
+// end::conventions[]

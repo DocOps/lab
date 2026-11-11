@@ -25,6 +25,8 @@ Layout/LineLength:
     - '\A\s*#.*\z'   # Comments
     - '\A\s*\*.*\z'  # Rdoc comments
 
+# Current inherited gate during the cross-repository threshold study.
+# Change this value only after reviewing distributions and upper-tail examples.
 Metrics/MethodLength:
   Max: 25
 
@@ -101,6 +103,9 @@ Layout/SpaceAroundEqualsInParameterDefault:
   Enabled: false
   EnforcedStyle: no_space
 
+# These metrics remain advisory candidates until the reference-repository
+# calibration study demonstrates stable signal and the Operator approves gates.
+# RuboCop remains the sole threshold source when any of them are enabled.
 Metrics/AbcSize:
   Enabled: false
 

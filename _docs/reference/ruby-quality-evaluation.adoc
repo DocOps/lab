@@ -1,0 +1,64 @@
+---
+tags: ["reference", "infrastructure", "ruby", "development", "quality"]
+description: "Ruby code-quality evaluation policy for DocOps Lab projects."
+docs-group: technical
+order: 63
+---
+include::../_local_settings.adoc[]
+= Ruby Quality Evaluation
+
+DocOps Lab separates local style enforcement, behavioral contracts, coaching, and blocking evaluation.
+This policy is written for maintainers and contributors first.
+Agent instructions include the same policy and add execution-specific cautions.
+
+// tag::content[]
+
+
+[[ruby-quality-responsibilities]]
+== Responsibilities
+
+*RuboCop* owns formatting, lint, security cops, and approved numeric Ruby thresholds.
+
+*RSpec* owns behavioral contracts, definition agreement, extension-family contracts, architecture allowlists, and process-status behavior.
+
+*Documentation and review* own responsibility placement and other judgments that do not have stable mechanical signals.
+
+*Habit Hooks* may explain and group findings, but it must not duplicate RuboCop thresholds.
+
+
+[[ruby-quality-commands]]
+== Command Contracts
+
+`bundle exec rake labdev:lint:ruby`::
+Runs the current Ruby linter through the project-owned interface.
+
+`bundle exec rake 'labdev:eval:coach[scope]'`::
+Produces complete advisory output across `all`, `branch`, or one path.
+
+`bundle exec rake 'labdev:eval:gate[scope]'`::
+Applies the approved blocking policy across `all`, `branch`, or one path.
+
+The evaluation tasks are the canonical planned interface until the quality-harness package implements and registers them.
+Callers must check task availability before invoking them.
+
+
+[[ruby-quality-implementation-order]]
+== Implementation Order
+
+. Make existing lint tasks propagate false results and tool crashes as nonzero process statuses.
+. Prove each gate with passing and deliberately failing subprocess fixtures.
+. Introduce coaching and gating as separate tasks.
+. Measure reference repositories before approving additional metric thresholds.
+. Add a branch-scoped gate to hooks only after runtime and failure behavior are deterministic.
+
+
+[[ruby-quality-baselines]]
+== Baselines and Exclusions
+
+Do not introduce a hidden debt baseline for new scaffolding.
+
+Use narrow, documented exclusions for established code only when a rule has known signal and a current violation cannot yet be changed safely.
+
+Never measure class-to-module or singleton-to-instance ratios as a quality gate.
+
+// end::content[]
