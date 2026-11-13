@@ -50,8 +50,6 @@ Procedure for assessing which documentation files, sections, or fragments requir
 
 #### [Liquid Templating in DocOps Lab Projects](/docs/agent/liquid-templating/)
 
-#### [Loading YAML/SGYML in DocOps Lab Projects](/docs/agent/yaml-loading/)
-
 #### [Preparing a Version Release History Document](/docs/agent/release-history/)
 
 #### [README-driven Development](/docs/agent/readme-driven-dev/)
@@ -66,6 +64,8 @@ Procedure for assessing which documentation files, sections, or fragments requir
 
 #### [Writing Tests for DocOps Lab Projects](/docs/agent/tests-writing/)
 
+#### [YAML Coding Guide for DocOps Lab AI Agents](/docs/agent/yaml/)
+
 ## Topics
 
 #### [AI Agent Instructions for In-house Dev-Tooling Usage](/docs/agent/dev-tooling-usage/)
@@ -77,6 +77,8 @@ Procedure for assessing which documentation files, sections, or fragments requir
 #### [Overview of Common Paths/Files in DocOps Lab Projects](/docs/agent/common-project-paths/)
 
 #### [Product Documentation Deployment](/docs/agent/product-docs-deployment/)
+
+#### [Ruby Quality Evaluation Boundaries](/docs/agent/ruby-quality-evaluation/)
 
 ## Missions
 

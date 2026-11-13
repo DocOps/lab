@@ -14,6 +14,7 @@ Table of Contents
 - Avoid Slop Syntax
 - Automated Style Enforcement
 - General AsciiDoc Syntax Guidelines
+- Generated AsciiDoc
 - DocOps Lab Specific Syntax Guidelines
 - Inline Syntax
   - Inline Semantics
@@ -89,17 +90,25 @@ DocOps Lab maintains a general-audience style guide in the AYL DocStack project 
 
 ## General AsciiDoc Syntax Guidelines
 
-DocOps Lab documentation largely follows the conventions outlined in the [Recommended Practices](https://asciidoctor.org/docs/asciidoc-recommended-practices/) and[Writer’s Guide](https://asciidoctor.org/docs/asciidoc-writers-guide/) documents maintained by the Asciidoctor project.
+DocOps Lab documentation largely follows the conventions outlined in the [Recommended Practices](https://asciidoctor.org/docs/asciidoc-recommended-practices/) and [Writer’s Guide](https://asciidoctor.org/docs/asciidoc-writers-guide/) documents maintained by the Asciidoctor project.
 
 Reinforcements and exceptions:
 
-- Use `.adoc` extensions _execpt_ for Liquid templates used to render AsciiDoc files, which use `.asciidoc`.
+- Use `.adoc` extensions _except_ for Liquid templates used to render AsciiDoc files, which use `.asciidoc`.
 - Use one sentence per line formatting.
 
   - Let hard-returns signal spaces between sentences.
   - Also do this for major colon- or semicolon-delimited sentences.
 - Use ATX-style titles and section headings.
 - For DRYness, use attributes for common URLs and paths (see Attribute Formatting).
+
+## Generated AsciiDoc
+
+Use a Liquid template file when structured data generates an AsciiDoc document or partial. Do not assemble the document through Ruby string literals, inline ERB, or a sequence of output statements.
+
+Use the `.asciidoc` extension for a Liquid template whose output is AsciiDoc. Store a reusable source template under `_docs/partials/` or `_includes/`, according to whether its primary role is documentation generation or site composition. Write generated artifacts under `_docs/partials/built/` when another document includes them.
+
+Keep the rendering code limited to loading and validating data, registering intentional filters, rendering the template, and writing the artifact. Keep document structure, headings, labels, and source blocks in the Liquid template where maintainers can review them as AsciiDoc.
 
 ## DocOps Lab Specific Syntax Guidelines
 
