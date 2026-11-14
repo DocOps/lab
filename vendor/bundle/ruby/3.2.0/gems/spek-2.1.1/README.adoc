@@ -1,0 +1,197 @@
+:toc: macro
+:toclevels: 5
+:figure-caption!:
+
+= Spek
+
+Spek is short for _specification_ and enhances Ruby gem
+link:https://guides.rubygems.org/specification-reference[specifications] with additional information
+and tooling. You can use this library as foundational support to build on top of with your own
+enhancements.
+
+toc::[]
+
+== Features
+
+* Supports finding gems by name.
+* Supports loading gems by path to specification.
+* Supports picking gems by name with optional version selection.
+* Supports link:https://semver.org[semantic versions] via
+  link:https://alchemists.io/projects/versionaire[Versionaire].
+
+== Requirements
+
+. link:https://www.ruby-lang.org[Ruby].
+
+== Setup
+
+To set up the project, run:
+
+[source,bash]
+----
+bin/setup
+----
+
+== Usage
+
+This gem makes interacting with Ruby gems easier by providing foundational objects for which you can
+built on top of. link:https://alchemists.io/projects/gemsmith[Gemsmith] is built on top of this
+gem if you need working example.
+
+=== Presenter
+
+This object wraps the `Gem::Specification` for presentation purposes, provides semantic versioning, direct access to metadata information, pathnames, and other enriched information. You can obtain an
+instance using the following code, for example:
+
+[source,ruby]
+----
+specification = Gem::Specification.new do |spec|
+  spec.name = "demo"
+  spec.version = "0.0.0"
+  spec.authors = ["Jill Smith"]
+  spec.email = ["demo@alchemists.io"]
+  spec.homepage = "https://alchemists.io/projects/demo"
+  spec.summary = "A demo summary."
+  spec.license = "Hippocratic-2.1"
+
+  spec.signing_key = Gem.default_key_path
+  spec.cert_chain = [Gem.default_cert_path]
+
+  spec.metadata = {
+    "bug_tracker_uri" => "https://github.com/bkuhlmann/demo/issues",
+    "changelog_uri" => "https://alchemists.io/projects/demo/versions",
+    "documentation_uri" => "https://alchemists.io/projects/demo",
+    "funding_uri" => "https://github.com/sponsors/bkuhlmann",
+    "label" => "Demo",
+    "rubygems_mfa_required" => "true",
+    "source_code_uri" => "https://github.com/bkuhlmann/demo"
+  }
+end
+
+presenter = Spek::Presenter.new specification
+
+presenter.allowed_push_host  # "https://rubygems.org"
+presenter.allowed_push_key   # "rubygems_api_key"
+presenter.authors            # ["Jill Smith"]
+presenter.banner             # "Demo 0.0.0: A demo summary."
+presenter.certificate_chain  # [#<Pathname:~/.gem/gem-public_cert.pem>]
+presenter.documentation_url  # "https://alchemists.io/projects/demo"
+presenter.emails             # ["demo@alchemists.io"]
+presenter.funding_url        # "https://github.com/sponsors/bkuhlmann"
+presenter.homepage_url       # "https://alchemists.io/projects/demo"
+presenter.issues_url         # "https://github.com/bkuhlmann/demo/issues"
+presenter.label              # "Demo"
+presenter.labeled_summary    # "Demo: A demo summary."
+presenter.labeled_version    # "Demo 0.0.0"
+presenter.named_version      # "demo 0.0.0"
+presenter.package_name       # "demo-0.0.0.gem"
+presenter.package_path       # #<Pathname:tmp/demo-0.0.0.gem>
+presenter.rubygems_mfa?      # true
+presenter.signing_key        # #<Pathname:~/.gem/gem-private_key.pem>
+presenter.source_path        # #<Pathname:~/.cache/.../3.2.0/gems/demo-0.0.0>
+presenter.source_url         # "https://github.com/bkuhlmann/demo"
+presenter.version            # #<struct Versionaire::Version major=0, minor=0, patch=0>
+presenter.versions_url       # "https://alchemists.io/projects/demo/versions"
+----
+
+The presenter is a read-only object so you'll only have access to _getter_ methods which are mostly
+documented link:https://guides.rubygems.org/specification-reference[here]. Please note that not all
+methods map one-to-one so you'll want to look at the public API of this object for further details.
+
+=== Loader
+
+When given a path to a gem specification file, the loader will load a gem specification for you.
+Example:
+
+[source,ruby]
+----
+presenter = Spek::Loader.call "path/to/my/test.gemspec"
+presenter.class  # Spek::Presenter
+----
+
+=== Finder
+
+The finder will find all gem specifications for a given name. Example:
+
+[source,ruby]
+----
+presenters = Spek::Finder.call "refinements"
+presenters.map(&:class)  # [Spek::Presenter]
+----
+
+=== Picker
+
+When given a gem name, this will allow you pick from a list of gem versions if any. Otherwise, if
+multiple versions don't exist, the first version found will be answered instead. Example:
+
+[source,ruby]
+----
+require "dry/monads"
+
+include Dry::Monads[:result]
+
+case Spek::Picker.call("refinements")
+  in Success(specification) then puts "You selected: #{specification.name}."
+  in Failure(error) then puts error
+end
+----
+
+The picker always answers a link:https://dry-rb.org/gems/dry-monads[monad] so you can quickly
+link:https://alchemists.io/articles/ruby_pattern_matching[pattern match] for further action.
+
+=== Versioner
+
+When given a version and path, the versioner will update the version of your gem specification.
+Example:
+
+[source,ruby]
+----
+specification = Spek::Versioner.call "1.0.0", "path/to/my/test.gemspec"
+specification.version  # <struct Versionaire::Version major=1, minor=0, patch=0>
+----
+
+This makes it easier to automate the updating of your gem specification version information.
+
+== Development
+
+To contribute, run:
+
+[source,bash]
+----
+git clone https://github.com/bkuhlmann/spek
+cd spek
+bin/setup
+----
+
+You can also use the IRB console for direct access to all objects:
+
+[source,bash]
+----
+bin/console
+----
+
+== Tests
+
+To test, run:
+
+[source,bash]
+----
+bin/rake
+----
+
+== link:https://alchemists.io/policies/license[License]
+
+== link:https://alchemists.io/policies/security[Security]
+
+== link:https://alchemists.io/policies/code_of_conduct[Code of Conduct]
+
+== link:https://alchemists.io/policies/contributions[Contributions]
+
+== link:https://alchemists.io/projects/spek/versions[Versions]
+
+== link:https://alchemists.io/community[Community]
+
+== Credits
+
+* Built with link:https://alchemists.io/projects/gemsmith[Gemsmith].
+* Engineered by link:https://alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].
