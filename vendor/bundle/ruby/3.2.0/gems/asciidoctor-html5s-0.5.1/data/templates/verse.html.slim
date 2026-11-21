@@ -1,0 +1,7 @@
+= block_with_title :class=>'verse-block'
+  - if attr?(:attribution) || attr?(:citetitle)
+    blockquote.verse
+      pre.verse =content
+      include _attribution.html
+  - else
+    pre.verse =content

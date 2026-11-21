@@ -1,0 +1,19 @@
+current directory: /home/runner/work/lab/lab/vendor/bundle/ruby/3.2.0/gems/stringio-3.2.0/ext/stringio
+/opt/hostedtoolcache/Ruby/3.2.11/x64/bin/ruby extconf.rb
+checking for rb_io_mode_t in ruby/io.h... no
+creating Makefile
+
+current directory: /home/runner/work/lab/lab/vendor/bundle/ruby/3.2.0/gems/stringio-3.2.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20261107-2263-7vvueo sitelibdir\=./.gem.20261107-2263-7vvueo clean
+
+current directory: /home/runner/work/lab/lab/vendor/bundle/ruby/3.2.0/gems/stringio-3.2.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20261107-2263-7vvueo sitelibdir\=./.gem.20261107-2263-7vvueo
+compiling stringio.c
+linking shared-object stringio.so
+
+current directory: /home/runner/work/lab/lab/vendor/bundle/ruby/3.2.0/gems/stringio-3.2.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20261107-2263-7vvueo sitelibdir\=./.gem.20261107-2263-7vvueo install
+/usr/bin/install -c -m 0755 stringio.so ./.gem.20261107-2263-7vvueo
+
+current directory: /home/runner/work/lab/lab/vendor/bundle/ruby/3.2.0/gems/stringio-3.2.0/ext/stringio
+make DESTDIR\= sitearchdir\=./.gem.20261107-2263-7vvueo sitelibdir\=./.gem.20261107-2263-7vvueo clean
