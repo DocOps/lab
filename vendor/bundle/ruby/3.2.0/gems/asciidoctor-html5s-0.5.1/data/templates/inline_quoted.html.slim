@@ -1,0 +1,32 @@
+- case type
+- when :emphasis
+  em id=id class=role =text
+- when :strong
+  strong id=id class=role =text
+- when :monospaced
+  code id=id class=role =text
+- when :superscript
+  sup id=id class=role =text
+- when :subscript
+  sub id=id class=role =text
+- when :mark
+  mark id=id class=role =text
+- when :double
+  = html_tag_if role? || id, :span, :id=>id, :class=>role
+    =(double_quoted text)
+- when :single
+  = html_tag_if role? || id, :span, :id=>id, :class=>role
+    =(single_quoted text)
+- when :asciimath, :latexmath
+  span.math id=id data-lang=stem_lang =(delimit_stem text, type)
+- else
+  - case role
+  - when 'line-through', 'strike'
+    s id=id =text
+  - when 'del'
+    del id=id =text
+  - when 'ins'
+    ins id=id =text
+  - else
+    = html_tag_if role? || id, :span, :id=>id, :class=>role
+      =text

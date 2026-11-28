@@ -1,0 +1,187 @@
+:toc: macro
+:toclevels: 5
+:figure-caption!:
+
+:xdg_link: link:https://alchemists.io/projects/xdg[XDG]
+:etcher_link: link:https://alchemists.io/projects/etcher[Etcher]
+
+= Runcom
+
+Runcom is a link:https://en.wikipedia.org/wiki/Run_commands[Run Command] portmanteau (i.e. `run + [com]mand = runcom`) which provides common functionality for Command Line Interfaces (CLIs) in which to manage global/local caches, configurations, data, and/or state. It does this by leveraging the https://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html[XDG Base Directory Specification] built atop the {xdg_link} implementation. In other words, Runcom is an enhanced version of {xdg_link}.
+
+toc::[]
+
+== Features
+
+* Wraps the {xdg_link} implementation which provides access to
+  the following environment variables:
+** `+$XDG_CACHE_HOME+`
+** `+$XDG_CONFIG_HOME+`
+** `+$XDG_CONFIG_DIRS+`
+** `+$XDG_DATA_HOME+`
+** `+$XDG_DATA_DIRS+`
+** `+$XDG_STATE_HOME+`
+* Enhances the {xdg_link} cache, config, data, and state implementations.
+
+== Requirements
+
+. https://www.ruby-lang.org[Ruby]
+
+== Setup
+
+To install _with_ security, run:
+
+[source,bash]
+----
+# 💡 Skip this line if you already have the public certificate installed.
+gem cert --add <(curl --compressed --location https://alchemists.io/gems.pem)
+gem install runcom --trust-policy HighSecurity
+----
+
+To install _without_ security, run:
+
+[source,bash]
+----
+gem install runcom
+----
+
+You can also add the gem directly to your project:
+
+[source,bash]
+----
+bundle add runcom
+----
+
+Once the gem is installed, you only need to require it:
+
+[source,ruby]
+----
+require "runcom"
+----
+
+== Usage
+
+The following describes the enhancements built atop the {xdg_link} implementation.
+
+=== Overview
+
+While there isn’t an environment convenience object as found with the `XDG` gem, you can instantiate each object individually:
+
+[source,ruby]
+----
+cache = Runcom::Cache.new "demo/data.json"
+config = Runcom::Config.new "demo/configuration.yml"
+data = Runcom::Data.new "demo/store.dat"
+state = Runcom::State.new "demo/history.log"
+----
+
+💡 By default, each Runcom object expects a relative path but you can use a fully qualified path as well.
+
+Each of the above objects share the same Object API:
+
+* `#relative`: Answers the relative path from which the object was constructed.
+* `#namespace`: Answers the namespace as a pathname object from which the instance was constructed. The namespace must be unique and identical across the cache, config, data, and state objects since this is what identifies and organizes all files associated with your program.
+* `#file_name`: Answers the file name from which the object was constructed.
+* `#active`: Answers first _existing file path_ as computed by `+$XDG_*_HOME+` followed by each computed `+$XDG_*_DIRS+` path in order defined. Otherwise, `nil` is answered back when no path exists.
+* `#passive`: Answers first path as computed by `+$XDG_*_HOME+` followed by each computed `+$XDG_*_DIRS+` path in order defined which _may_ or _may not_ exist. This behaves like `#active`  but doesn't care if the path exists. Handy for situations where you'd like the active path but can  fallback to creating the global path if otherwise.
+* `#global`: Answers the first _existing_ or _non-existing_ global path only.
+* `#local`: Answers the first _existing_ or _non-existing_ local path only.
+* `#all`: Answers all paths which is the combined `+$XDG_*_HOME+` and `+$XDG_*_DIRS+` values in order defined. These paths _may_ or _may not_ exist.
+* `#inspect`: Answers a string representation of default XDG home and directory paths for debugging purposes.
+
+Using a `cache` object, for example, here is what each method answers back:
+
+[source,ruby]
+----
+cache = Runcom::Cache.new "demo/content.json"
+
+cache.relative   # => #<Pathname:demo/content.json>
+cache.namespace  # #<Pathname:demo>
+cache.file_name  # #<Pathname:content.json>
+cache.active     # nil
+cache.passive    # #<Pathname:/Users/demo/.cache/demo/content.json>
+cache.global     # #<Pathname:/Users/demo/.cache/demo/content.json>
+cache.local      # #<Pathname:/Users/demo/Engineering/OSS/runcom/.cache/demo/content.json>
+cache.all        # [#<Pathname:/Users/demo/Engineering/OSS/runcom/.cache/demo/content.json>, #<Pathname:/Users/demo/.cache/demo/content.json>]
+cache.inspect    # "XDG_CACHE_HOME=/Users/demo/Engineering/OSS/runcom/.cache:/Users/demo/.cache"
+----
+
+=== Variable Priority
+
+Path precedence is determined in the following order (with the first taking highest priority):
+
+. *Local Configuration* - If a `+$XDG_*_HOME+` or `+$XDG_*_DIRS+` path relative to the
+  current working directory is detected, it will take precedence over the global configuration.
+  This is the same behavior as found in Git where the local `.git/config` takes precedence over the
+  global `$HOME/.gitconfig`.
+. *Global Configuration* - When a local configuration isn’t found, the global configuration is used
+  as defined by the _XDG Base Directory Specification_.
+
+=== Building Blocks
+
+While {xdg_link} and Runcom are powerful in their own right, a great building block you can add on top of this gem is the {etcher_link} gem which loads, transforms, validates, and produces structured data from raw Runcom information. For more sophisticated applications, this synergetic coupling of `XDG + Runcom + Etcher` makes for nicely designed architectures.
+
+=== Examples
+
+Examples of gems built atop this gem are:
+
+* link:https://alchemists.io/projects/rubysmith[Rubysmith]: A command line interface for
+  smithing Ruby projects.
+* link:https://alchemists.io/projects/gemsmith[Gemsmith]: A command line interface for smithing
+  new Ruby gems.
+* link:https://alchemists.io/projects/hanamismith[Hanamismith]: A command line interace for smithing link:https://hanamirb.org[Hanami] projects.
+* link:https://alchemists.io/projects/git-lint[Git Lint]: Enforces consistent Git commits.
+* link:https://alchemists.io/projects/milestoner[Milestoner]: A command line interface for
+  releasing Git repository milestones.
+* link:https://alchemists.io/projects/pennyworth[Pennyworth]: A command line interface that
+  enhances and extends link:https://www.alfredapp.com[Alfred] with Ruby support.
+* link:https://alchemists.io/projects/pragmater[Pragmater]: A command line interface for
+  managing/formatting source file pragma comments.
+* link:https://alchemists.io/projects/sublime_text_kit[Sublime Text Kit]: A command line
+  interface for managing Sublime Text metadata.
+* link:https://alchemists.io/projects/tocer[Tocer]: A command line interface for generating
+  Markdown table of contents.
+
+== Development
+
+To contribute, run:
+
+[source,bash]
+----
+git clone https://github.com/bkuhlmann/runcom
+cd runcom
+bin/setup
+----
+
+You can also use the IRB console for direct access to all objects:
+
+[source,bash]
+----
+bin/console
+----
+
+== Tests
+
+To test, run:
+
+[source,bash]
+----
+bin/rake
+----
+
+== link:https://alchemists.io/policies/license[License]
+
+== link:https://alchemists.io/policies/security[Security]
+
+== link:https://alchemists.io/policies/code_of_conduct[Code of Conduct]
+
+== link:https://alchemists.io/policies/contributions[Contributions]
+
+== link:https://alchemists.io/projects/runcom/versions[Versions]
+
+== link:https://alchemists.io/community[Community]
+
+== Credits
+
+* Built with link:https://alchemists.io/projects/gemsmith[Gemsmith].
+* Engineered by link:https://alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].

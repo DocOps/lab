@@ -1,0 +1,18 @@
+- if local_attr :menuitem
+  - capture
+    | &#160;
+    span.caret &#8250;
+    | &#32;
+  kbd.menuseq
+    kbd.menu
+      samp =(attr :menu)
+    - yield_capture
+    - (attr 'submenus').each do |submenu|
+      kbd.menu
+        samp =submenu
+      - yield_capture
+    kbd.menu
+      samp =(local_attr :menuitem)
+- else
+  kbd.menu
+    samp =(attr :menu)

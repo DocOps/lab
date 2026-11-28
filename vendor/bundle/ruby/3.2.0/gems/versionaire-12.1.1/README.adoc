@@ -1,0 +1,394 @@
+:toc: macro
+:toclevels: 5
+:figure-caption!:
+
+:option_parser_link: link:https://alchemists.io/articles/ruby_option_parser[OptionParser]
+:semver_link: link:https://semver.org[Semantic Versioning]
+
+= Versionaire
+
+Ruby doesn't provide a primitive version type by default so Versionaire fills this gap by providing immutable and thread-safe {semver_link} so you can leverage versions within your applications. This new `Version` type behaves and feels a lot like other primitives (i.e. `String`, `Array`, `Hash`, etc) and can even be cast/converted from other primitives.
+
+toc::[]
+
+== Features
+
+* Provides _strict_ {semver_link} which means `<major>.<minor>.<patch>`.
+* Provides immutable, thread-safe version instances.
+* Converts (casts) from a `String`, `Array`, `Hash`, or `Version` to a `Version`.
+* Disallows `<major>.<minor>.<patch>-<pre-release>` usage even though {semver_link} suggests that you _may_ use pre-release information.
+* Disallows `<major>.<minor>.<patch>+<build_metadata>` usage even though {semver_link} suggests that you _may_ use build metadata.
+
+== Screencasts
+
+[link=https://alchemists.io/screencasts/versionaire]
+image::https://alchemists.io/images/screencasts/versionaire/cover.svg[Screencast,600,240,role=focal_point]
+
+== Requirements
+
+. https://www.ruby-lang.org[Ruby].
+
+== Setup
+
+To install _with_ security, run:
+
+[source,bash]
+----
+# 💡 Skip this line if you already have the public certificate installed.
+gem cert --add <(curl --compressed --location https://alchemists.io/gems.pem)
+gem install versionaire --trust-policy HighSecurity
+----
+
+To install _without_ security, run:
+
+[source,bash]
+----
+gem install versionaire
+----
+
+You can also add the gem directly to your project:
+
+[source,bash]
+----
+bundle add versionaire
+----
+
+Once the gem is installed, you only need to require it:
+
+[source,ruby]
+----
+require "versionaire"
+----
+
+== Usage
+
+=== Initialization
+
+A new version can be initialized in a variety of ways:
+
+[source,ruby]
+----
+Versionaire::Version.new                            # "0.0.0"
+Versionaire::Version[major: 1]                      # "1.0.0"
+Versionaire::Version[major: 1, minor: 2]            # "1.2.0"
+Versionaire::Version[major: 1, minor: 2, patch: 3]  # "1.2.3"
+----
+
+=== Equality
+
+==== Value (`+#==+`)
+
+Equality is determined by the state of the object. This means that a version is equal to another version as long as all of the values (i.e. state) are equal to each other. Example:
+
+[source,ruby]
+----
+version_a = Versionaire::Version[major: 1]
+version_b = Versionaire::Version[major: 2]
+version_c = Versionaire::Version[major: 1]
+
+version_a == version_a  # true
+version_a == version_b  # false
+version_a == version_c  # true
+----
+
+Knowing this, versions can be compared against one another too:
+
+[source,ruby]
+----
+version_a > version_b                    # false
+version_a < version_b                    # true
+version_a.between? version_c, version_b  # true
+----
+
+==== Hash (`#eql?`)
+
+Behaves exactly as `#==`.
+
+==== Case (`#===`)
+
+Behaves exactly as `#==`.
+
+==== Identity (`#equal?`)
+
+Works like any other standard Ruby object where an object is equal only to itself.
+
+[source,ruby]
+----
+version_a = Versionaire::Version[major: 1]
+version_b = Versionaire::Version[major: 2]
+version_c = Versionaire::Version[major: 1]
+
+version_a.equal? version_a  # true
+version_a.equal? version_b  # false
+version_a.equal? version_c  # false
+----
+
+=== Conversions
+
+==== Function
+
+Use the `Versionaire::Version` function to explicitly cast to a version:
+
+[source,ruby]
+----
+version = Versionaire::Version[major: 1]
+
+Versionaire::Version "1.0.0"
+Versionaire::Version [1, 0, 0]
+Versionaire::Version major: 1, minor: 0, patch: 0
+Versionaire::Version version
+----
+
+Each of these conversions will result in a version object that represents "`1.0.0`". When attempting
+to convert an unsupported type, a `Versionaire::Error` exception will be thrown.
+
+==== Refinement
+
+Building upon the above examples, a more elegant solution is to use a link:https://alchemists.io/articles/ruby_refinements[refinement]:
+
+[source,ruby]
+----
+using Versionaire::Cast
+
+version = Versionaire::Version[major: 1]
+
+Version "1.0.0"
+Version [1, 0, 0]
+Version major: 1, minor: 0, patch: 0
+Version version
+----
+
+By adding `using Versionaire::Cast` to your implementation, this allows Versionaire to refine
+`Kernel` so you have a top-level `Version` conversion function much like Kernel's native support for
+`Integer`, `String`, `Array`, `Hash`, etc. The benefit to this approach is it reduces the amount of
+typing, doesn't pollute your entire object space like a monkey patch would, and provides a idiomatic
+approach to casting like any other primitive.
+
+==== Implicit
+
+Implicit conversion to a `String` is supported:
+
+[source,ruby]
+----
+"1.0.0".match Versionaire::Version[major: 1]  # <MatchData "1.0.0">
+----
+
+==== Explicit
+
+Explicit conversion to a `String`, `Array`, `Hash`, or `Proc` is supported:
+
+[source,ruby]
+----
+version = Versionaire::Version.new
+
+version.to_s     # "0.0.0"
+version.to_a     # [0, 0, 0]
+version.to_h     # {major: 0, minor: 0, patch: 0}
+version.to_proc  # #<Proc:0x000000010b015b88 (lambda)>
+----
+
+To elaborate on procs further, this means the following is possible:
+
+[source,ruby]
+----
+using Versionaire::Cast
+
+version = Version "1.2.3"
+
+version.to_proc.call :major               # 1
+[version, version, version].map(&:minor)  # [2, 2, 2]
+----
+
+=== Inspections
+
+You can inspect a version which is the equivalent of an escaped string representation. Example:
+
+[source,ruby]
+----
+using Versionaire::Cast
+
+Version("1.2.3").inspect  # "\"1.2.3\""
+----
+
+=== Comparisons
+
+All versions are comparable which means any of the operators from the `+Comparable+` module will
+work. Example:
+
+[source,ruby]
+----
+version_1 = Versionaire::Version "1.0.0"
+version_2 = Versionaire::Version "2.0.0"
+
+version_1 < version_2                    # true
+version_1 <= version_2                   # true
+version_1 == version_2                   # false (see Equality section above for details)
+version_1 > version_2                    # false
+version_1 >= version_2                   # false
+version_1.between? version_1, version_2  # true
+version_1.clamp version_1, version_2     # version_1 (added in Ruby 2.4.0)
+----
+
+=== Bumping
+
+Versions can be bumped to next logical version with respect current version. Example:
+
+[source,ruby]
+----
+version = Versionaire::Version.new  # #<struct Versionaire::Version major=0, minor=0, patch=0>
+version.bump :major                 # #<struct Versionaire::Version major=1, minor=0, patch=0>
+version.bump :minor                 # #<struct Versionaire::Version major=0, minor=1, patch=0>
+version.bump :patch                 # #<struct Versionaire::Version major=0, minor=0, patch=1>
+
+Versionaire::Version[major: 1, minor: 2, patch: 3].bump :major
+#<struct Versionaire::Version major=2, minor=0, patch=0>
+
+Versionaire::Version[major: 1, minor: 2, patch: 3].bump :minor
+#<struct Versionaire::Version major=1, minor=3, patch=0>
+
+Versionaire::Version[major: 1, minor: 2, patch: 3].bump :patch
+#<struct Versionaire::Version major=1, minor=2, patch=4>
+----
+
+You'll notice, when bumping the major or minor versions, lower precision gets zeroed out in order to provide the next logical version.
+
+=== Math
+
+Versions can be added, subtracted, sequentially increased, or sequentially decreased from each
+other.
+
+==== Addition
+
+Versions can be added together to produce a resulting version sum.
+
+[source,ruby]
+----
+version_1 = Versionaire::Version[major: 1, minor: 2, patch: 3]
+version_2 = Versionaire::Version[major: 2, minor: 5, patch: 7]
+version_1 + version_2  # "3.7.10"
+----
+
+==== Subtraction
+
+Versions can be substracted from each other as long as there isn't a negative result.
+
+[source,ruby]
+----
+version_1 = Versionaire::Version[major: 1, minor: 2, patch: 3]
+version_2 = Versionaire::Version[major: 1, minor: 1, patch: 1]
+version_1 - version_2  # "0.1.2"
+
+version_1 = Versionaire::Version[major: 1]
+version_2 = Versionaire::Version[major: 5]
+version_1 - version_2  # Versionaire::Error
+----
+
+==== Up
+
+Versions can be sequentially increased or given a specific version to jump to.
+
+[source,ruby]
+----
+version = Versionaire::Version[major: 1, minor: 1, patch: 1]
+version.up :major     # => "2.1.1"
+version.up :major, 3  # => "4.1.1"
+version.up :minor     # => "1.2.1"
+version.up :minor, 3  # => "1.4.1"
+version.up :patch     # => "1.1.2"
+version.up :patch, 3  # => "1.1.4"
+----
+
+==== Down
+
+Versions can be sequentially decreased or given a specific version to jump to as long as the result
+is not negative.
+
+[source,ruby]
+----
+version = Versionaire::Version[major: 5, minor: 5, patch: 5]
+version.down :major     # => "4.5.5"
+version.down :major, 3  # => "2.5.5"
+version.down :minor     # => "5.4.5"
+version.down :minor, 3  # => "5.2.5"
+version.down :patch     # => "5.5.4"
+version.down :patch, 3  # => "5.5.2"
+version.down :major, 6  # => Versionaire::Error
+----
+
+=== Extensions
+
+This project supports libraries which might desire native `Version` types. Each extension _must be
+explicitly required_ in order to be used since they are _optional_ by default. See below for
+details.
+
+==== OptionParser
+
+{option_parser_link} is one of Ruby's link:https://stdgems.org[default gems] which can accept additional types not native to Ruby by default. To extend `OptionParser` with the `Version` type, all you need to do is add these two lines to your implementation:
+
+. `require "versionaire/extensions/option_parser"`: This will load dependencies and register the `Version` type with `OptionParser`.
+. `act.on "--tag VERSION", Versionaire::Version`: Specifying `Versionaire::Version` as the second argument will ensure `OptionParser` properly casts command line input as a `Version` type.
+
+Here's an example implementation that demonstrates full usage:
+
+[source,ruby]
+----
+require "versionaire/extensions/option_parser"
+
+options = {}
+
+parser = OptionParser.new do |act|
+  act.on "--tag VERSION", Versionaire::Version, "Casts to version." do |value|
+    options[:version] = value
+  end
+end
+
+parser.parse %w[--tag 1.2.3]
+puts options
+----
+
+The above will ensure `--tag 1.2.3` is parsed as `{version: #<struct Versionaire::Version major = 1,
+minor = 2, patch = 3>}` within your `options` variable. Should `OptionParser` parse an invalid version, you'll get a `OptionParser::InvalidArgument` instead.
+
+== Development
+
+To contribute, run:
+
+[source,bash]
+----
+git clone https://github.com/bkuhlmann/versionaire
+cd versionaire
+bin/setup
+----
+
+You can also use the IRB console for direct access to all objects:
+
+[source,bash]
+----
+bin/console
+----
+
+== Tests
+
+To test, run:
+
+[source,bash]
+----
+bin/rake
+----
+
+== link:https://alchemists.io/policies/license[License]
+
+== link:https://alchemists.io/policies/security[Security]
+
+== link:https://alchemists.io/policies/code_of_conduct[Code of Conduct]
+
+== link:https://alchemists.io/policies/contributions[Contributions]
+
+== link:https://alchemists.io/projects/versionaire/versions[Versions]
+
+== link:https://alchemists.io/community[Community]
+
+== Credits
+
+* Built with link:https://alchemists.io/projects/gemsmith[Gemsmith].
+* Engineered by link:https://alchemists.io/team/brooke_kuhlmann[Brooke Kuhlmann].
